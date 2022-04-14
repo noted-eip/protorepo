@@ -7,7 +7,9 @@ import "google/protobuf/field_mask.proto";
 
 message Account {
     string id = 1;
+
     string name = 2;
+    
     string email = 3;
 }
 
@@ -23,11 +25,13 @@ service AccountsService {
 
 message GetAccountRequest {
     string email = 1;
+
     string id = 2;
 }
 
 message UpdateAccountRequest {
     Account account = 1;
+
     google.protobuf.FieldMask update_mask = 2;
 }
 
