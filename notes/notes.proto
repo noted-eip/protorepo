@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package notes;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+
+message Note {
+    string id = 1;
+
+    string title = 2;
+
+    repeated Block blocks = 3;
+}
+
+message Block {
+    enum Type {
+        UNKNOWN = 0;
+        HEADING_1 = 1;
+        HEADING_2 = 2;
+        HEADING_3 = 3;
+        PARAGRAPH = 4;
+    }
+
+    string id = 1;
+
+    Type type = 2;
+
+    string contents = 3;
+}
+
+service NotesService {
+    rpc CreateNote(Note) returns (google.protobuf.Empty) {}
+
+    rpc UpdateNote(UpdateNoteRequest) returns (google.protobuf.Empty) {}
+
+    rpc DeleteNote(DeleteNoteRequest) returns (google.protobuf.Empty) {}
+}
+
+message UpdateNoteRequest {
+    Note note = 1;
+
+    google.protobuf.FieldMask update_mask = 2;    
+}
+
+message DeleteNoteRequest {
+    string id = 1;
+}
