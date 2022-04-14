@@ -5,31 +5,32 @@ package accounts;
 import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 
-service AccountsService {
-    rpc AddAccount(Account) returns (google.protobuf.Empty) {
-    }
-
-    rpc ListAccounts(ListAccountsRequest) returns (stream Account) {
-    }
-
-    rpc UpdateAccount(UpdateAccountRequest) returns (Account) {
-    }
-
-    rpc DeleteAccount(UpdateAccountRequest) returns (Account) {
-    }
-}
-
 message Account {
     string id = 1;
+    string name = 2;
+    string email = 3;
+}
+
+service AccountsService {
+    rpc CreateAccount(Account) returns (google.protobuf.Empty) {}
+
+    rpc GetAccount(GetAccountRequest) returns (Account) {}
+
+    rpc UpdateAccount(UpdateAccountRequest) returns (Account) {}
+
+    rpc DeleteAccount(DeleteAccountRequest) returns (google.protobuf.Empty) {}
+}
+
+message GetAccountRequest {
+    string email = 1;
+    string id = 2;
 }
 
 message UpdateAccountRequest {
     Account account = 1;
-
-    // The update mask applies to the resource. For the `FieldMask` definition,
-    // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
     google.protobuf.FieldMask update_mask = 2;
 }
 
-message ListAccountsRequest {
+message DeleteAccountRequest {
+    string id = 1;
 }
