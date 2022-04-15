@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package accounts;
 
-option go_package = "api/accounts";
+option go_package = "grpc/accounts";
 
 service AuthService {
     rpc Authenticate(AuthenticateRequest) returns (AuthenticateReply) {}

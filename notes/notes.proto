@@ -5,6 +5,8 @@ package notes;
 import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 
+option go_package = "grpc/notes";
+
 message Note {
     string id = 1;
 
