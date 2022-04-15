@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "grpc/recommendations";
+
+message Recommendation {
+
+}
+
+service RecommendationsService {
+    rpc GenerateRecommendation(GenerateRecommendationRequest) returns (Recommendation) {}
+}
+
+message GenerateRecommendationRequest {
+    
+}
