@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package accounts;
 
-option go_package = "grpc/accounts";
+option go_package = "grpc/accountspb";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";

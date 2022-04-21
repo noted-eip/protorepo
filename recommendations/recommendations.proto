@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "grpc/recommendations";
+option go_package = "grpc/recommendationspb";
 
 message Recommendation {
 
