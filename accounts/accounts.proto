@@ -23,6 +23,8 @@ service AccountsService {
     rpc UpdateAccount(UpdateAccountRequest) returns (Account) {}
 
     rpc DeleteAccount(DeleteAccountRequest) returns (google.protobuf.Empty) {}
+    
+    rpc Authenticate(AuthenticateRequest) returns (AuthenticateReply) {}
 }
 
 message GetAccountRequest {
@@ -39,4 +41,13 @@ message UpdateAccountRequest {
 
 message DeleteAccountRequest {
     string id = 1;
+}
+
+message AuthenticateRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message AuthenticateReply {
+    string token = 1;
 }
