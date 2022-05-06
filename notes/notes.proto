@@ -34,6 +34,8 @@ message Block {
 }
 
 service NotesService {
+    rpc GetNote(GetNoteRequest) returns (Note) {}
+
     rpc CreateNote(Note) returns (google.protobuf.Empty) {}
 
     rpc UpdateNote(UpdateNoteRequest) returns (google.protobuf.Empty) {}
@@ -45,6 +47,10 @@ service NotesService {
     rpc UpdateBlock(UpdateBlockRequest) returns (google.protobuf.Empty) {}
 
     rpc DeleteBlock(DeleteBlockRequest) returns (google.protobuf.Empty) {}
+}
+
+message GetNoteRequest {
+    string id = 1;
 }
 
 message UpdateNoteRequest {
