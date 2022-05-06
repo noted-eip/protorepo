@@ -43,6 +43,8 @@ service NotesService {
     rpc AddBlock(AddBlockRequest) returns (google.protobuf.Empty) {}
 
     rpc UpdateBlock(UpdateBlockRequest) returns (google.protobuf.Empty) {}
+
+    rpc DeleteBlock(DeleteBlockRequest) returns (google.protobuf.Empty) {}
 }
 
 message UpdateNoteRequest {
@@ -72,4 +74,8 @@ message UpdateBlockRequest {
     Block block = 2;
 
     google.protobuf.FieldMask update_mask = 3;
+}
+
+message DeleteBlockRequest {
+    string id = 1;
 }
