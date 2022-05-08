@@ -1,9 +1,15 @@
 syntax = "proto3";
 
+package recommendations; 
+
 option go_package = "grpc/recommendationspb";
 
-message Recommendation {
+import "notes/notes.proto";
 
+message Recommendation {
+    string id = 1;
+    string block_id = 2;
+    repeated notes.Block blocks = 3;
 }
 
 service RecommendationsService {
@@ -11,5 +17,5 @@ service RecommendationsService {
 }
 
 message GenerateRecommendationRequest {
-    
+    string id = 1;
 }
