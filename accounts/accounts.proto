@@ -16,7 +16,7 @@ message Account {
 }
 
 service AccountsService {
-    rpc CreateAccount(Account) returns (google.protobuf.Empty) {}
+    rpc CreateAccount(CreateAccountRequest) returns (google.protobuf.Empty) {}
 
     rpc GetAccount(GetAccountRequest) returns (Account) {}
 
@@ -25,6 +25,14 @@ service AccountsService {
     rpc DeleteAccount(DeleteAccountRequest) returns (google.protobuf.Empty) {}
     
     rpc Authenticate(AuthenticateRequest) returns (AuthenticateReply) {}
+}
+
+message CreateAccountRequest {
+    string password = 1;
+
+    string email = 2;
+
+    string name = 3;
 }
 
 message GetAccountRequest {
