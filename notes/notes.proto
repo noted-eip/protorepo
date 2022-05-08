@@ -10,9 +10,11 @@ option go_package = "grpc/notespb";
 message Note {
     string id = 1;
 
-    string title = 2;
+    string author_id = 2;
 
-    repeated Block blocks = 3;
+    string title = 3;
+
+    repeated Block blocks = 4;
 }
 
 message Block {
@@ -31,26 +33,55 @@ message Block {
     string contents = 3;
 }
 
-message UpdateNoteRequest {
-    Note note = 1;
+service NotesService {
+    rpc GetNote(GetNoteRequest) returns (Note) {}
 
-    google.protobuf.FieldMask update_mask = 2;
+    rpc CreateNote(Note) returns (google.protobuf.Empty) {}
+
+    rpc UpdateNote(UpdateNoteRequest) returns (google.protobuf.Empty) {}
+
+    rpc DeleteNote(DeleteNoteRequest) returns (google.protobuf.Empty) {}
+
+    rpc AddBlock(AddBlockRequest) returns (google.protobuf.Empty) {}
+
+    rpc UpdateBlock(UpdateBlockRequest) returns (google.protobuf.Empty) {}
+
+    rpc DeleteBlock(DeleteBlockRequest) returns (google.protobuf.Empty) {}
 }
 
 message GetNoteRequest {
     string id = 1;
 }
 
+message UpdateNoteRequest {
+    string id = 1;
+
+    Note note = 2;
+
+    google.protobuf.FieldMask update_mask = 3;
+}
+
 message DeleteNoteRequest {
     string id = 1;
 }
 
-service NotesService {
-    rpc CreateNote(Note) returns (google.protobuf.Empty) {}
+message AddBlockRequest {
+    // The block to append to the note.
+    Block block = 1;
 
-    rpc GetNote(GetNoteRequest) returns (Note) {}
+    // Given that a note is an array of blocks, provide the index at
+    // which the block shall be inserted.
+    uint32 index = 2;
+}
 
-    rpc UpdateNote(UpdateNoteRequest) returns (google.protobuf.Empty) {}
+message UpdateBlockRequest {
+    string id = 1;
 
-    rpc DeleteNote(DeleteNoteRequest) returns (google.protobuf.Empty) {}
+    Block block = 2;
+
+    google.protobuf.FieldMask update_mask = 3;
+}
+
+message DeleteBlockRequest {
+    string id = 1;
 }
