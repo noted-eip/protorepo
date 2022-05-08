@@ -31,20 +31,26 @@ message Block {
     string contents = 3;
 }
 
-service NotesService {
-    rpc CreateNote(Note) returns (google.protobuf.Empty) {}
-
-    rpc UpdateNote(UpdateNoteRequest) returns (google.protobuf.Empty) {}
-
-    rpc DeleteNote(DeleteNoteRequest) returns (google.protobuf.Empty) {}
-}
-
 message UpdateNoteRequest {
     Note note = 1;
 
-    google.protobuf.FieldMask update_mask = 2;    
+    google.protobuf.FieldMask update_mask = 2;
+}
+
+message GetNoteRequest {
+    string id = 1;
 }
 
 message DeleteNoteRequest {
     string id = 1;
+}
+
+service NotesService {
+    rpc CreateNote(Note) returns (google.protobuf.Empty) {}
+
+    rpc GetNote(GetNoteRequest) returns (Note) {}
+
+    rpc UpdateNote(UpdateNoteRequest) returns (google.protobuf.Empty) {}
+
+    rpc DeleteNote(DeleteNoteRequest) returns (google.protobuf.Empty) {}
 }
