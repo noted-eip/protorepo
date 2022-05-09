@@ -14,7 +14,7 @@ message Note {
 
     string title = 3;
 
-    []Block blocks = 4;
+    repeated Block blocks = 4;
 }
 
 message Block {
