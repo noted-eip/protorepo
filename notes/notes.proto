@@ -42,11 +42,19 @@ service NotesService {
 
     rpc DeleteNote(DeleteNoteRequest) returns (google.protobuf.Empty) {}
 
+    rpc ListNotes(ListNotesRequest) returns ([]*notespb.Note, error) {}
+
     rpc AddBlock(AddBlockRequest) returns (google.protobuf.Empty) {}
 
     rpc UpdateBlock(UpdateBlockRequest) returns (google.protobuf.Empty) {}
 
     rpc DeleteBlock(DeleteBlockRequest) returns (google.protobuf.Empty) {}
+}
+
+message ListNotesRequest {
+    string author_id = 1;
+
+    string organization_id = 2;
 }
 
 message GetNoteRequest {
