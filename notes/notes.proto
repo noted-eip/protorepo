@@ -42,7 +42,7 @@ service NotesService {
 
     rpc DeleteNote(DeleteNoteRequest) returns (google.protobuf.Empty) {}
 
-    rpc ListNotes(ListNotesRequest) returns ([]notespb.Note, error) {}
+    rpc ListNotes(ListNotesRequest) returns ([]notespb.Note) {}
 
     rpc AddBlock(AddBlockRequest) returns (google.protobuf.Empty) {}
 
