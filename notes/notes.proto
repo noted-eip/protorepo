@@ -8,7 +8,7 @@ import "google/protobuf/field_mask.proto";
 option go_package = "grpc/notespb";
 
 message Notes {
-    repeated Notes notes = 1;
+    repeated Note notes = 1;
 }
 
 message Note {
