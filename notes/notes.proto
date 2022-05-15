@@ -7,10 +7,6 @@ import "google/protobuf/field_mask.proto";
 
 option go_package = "grpc/notespb";
 
-message Notes {
-    repeated Note notes = 1;
-}
-
 message Note {
     string id = 1;
 
@@ -46,7 +42,7 @@ service NotesService {
 
     rpc DeleteNote(DeleteNoteRequest) returns (google.protobuf.Empty) {}
 
-    rpc ListNotes(ListNotesRequest) returns (Notes) {}
+    rpc ListNotes(ListNotesRequest) returns (ListNotesReply) {}
 
     rpc AddBlock(AddBlockRequest) returns (google.protobuf.Empty) {}
 
@@ -57,6 +53,10 @@ service NotesService {
 
 message ListNotesRequest {
     string author_id = 1;
+}
+
+message ListNotesReply {
+    repeated Note notes = 1;
 }
 
 message GetNoteRequest {
