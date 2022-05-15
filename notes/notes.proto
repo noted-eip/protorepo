@@ -51,22 +51,14 @@ service NotesService {
     rpc DeleteBlock(DeleteBlockRequest) returns (google.protobuf.Empty) {}
 }
 
+message GetNoteRequest {
+    string id = 1;
+}
+
 message CreateNoteRequest {
     string title = 1;
 
     string author_id = 2;
-}
-
-message ListNotesRequest {
-    string author_id = 1;
-}
-
-message ListNotesReply {
-    repeated Note notes = 1;
-}
-
-message GetNoteRequest {
-    string id = 1;
 }
 
 message UpdateNoteRequest {
@@ -79,6 +71,14 @@ message UpdateNoteRequest {
 
 message DeleteNoteRequest {
     string id = 1;
+}
+
+message ListNotesRequest {
+    string author_id = 1;
+}
+
+message ListNotesReply {
+    repeated Note notes = 1;
 }
 
 message AddBlockRequest {
