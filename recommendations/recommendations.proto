@@ -4,6 +4,7 @@ import "google/protobuf/struct.proto";
 
 package recommendations; 
 
+option go_package = "grpc/recommendationspb";
 message ExtractKeywordsResponse {
     repeated string keywords = 2;
 }
