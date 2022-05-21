@@ -5,11 +5,11 @@ option go_package = "grpc/recommendationspb";
 package recommendations; 
 
 message ExtractKeywordsReply {
-    repeated string keywords = 2;
+    repeated string keywords = 1;
 }
 
 message ExtractKeywordsBatchReply {
-    repeated ExtractKeywordsReply keywords_array = 3;
+    repeated ExtractKeywordsReply keywords_array = 1;
 }
 
 service RecommendationsService {
@@ -18,9 +18,9 @@ service RecommendationsService {
 }
 
 message ExtractKeywordsRequest {
-    string content = 2;
+    string content = 1;
 }
 
 message ExtractKeywordsBatchRequest {
-    repeated string contents = 4;
+    repeated string contents = 1;
 }
