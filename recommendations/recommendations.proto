@@ -1,21 +1,26 @@
 syntax = "proto3";
 
-package recommendations; 
-
 option go_package = "grpc/recommendationspb";
 
-import "notes/notes.proto";
+package recommendations; 
 
-message Recommendation {
-    string block_id = 1;
+message ExtractKeywordsReply {
+    repeated string keywords = 1;
+}
 
-    repeated notes.Block blocks = 2;
+message ExtractKeywordsBatchReply {
+    repeated ExtractKeywordsReply keywords_array = 1;
 }
 
 service RecommendationsService {
-    rpc GenerateRecommendation(GenerateRecommendationRequest) returns (Recommendation) {}
+    rpc ExtractKeywords(ExtractKeywordsRequest) returns (ExtractKeywordsReply) {}
+    rpc ExtractKeywordsBatch(ExtractKeywordsBatchRequest) returns (ExtractKeywordsBatchReply) {}
 }
 
-message GenerateRecommendationRequest {
-    string block_id = 1;
+message ExtractKeywordsRequest {
+    string content = 1;
+}
+
+message ExtractKeywordsBatchRequest {
+    repeated string contents = 1;
 }
