@@ -1,28 +1,26 @@
 syntax = "proto3";
 
-import "google/protobuf/struct.proto";
-
 option go_package = "grpc/recommendationspb";
 
 package recommendations; 
 
-message ExtractKeywordsResponse {
+message ExtractKeywordsReply {
     repeated string keywords = 2;
 }
 
-message ExtractKeywordsFromMultipleTextsResponse {
-    repeated google.protobuf.ListValue values = 3;
+message ExtractKeywordsBatchReply {
+    repeated ExtractKeywordsReply keywords_array = 3;
 }
 
 service RecommendationsService {
-    rpc ExtractKeywords(ExtractKeywordsRequest) returns (ExtractKeywordsResponse) {}
-    rpc ExtractKeywordsFromMultipleTexts(ExtractKeywordsFromMultipleTextsRequest) returns (ExtractKeywordsFromMultipleTextsResponse) {}
+    rpc ExtractKeywords(ExtractKeywordsRequest) returns (ExtractKeywordsReply) {}
+    rpc ExtractKeywordsBatch(ExtractKeywordsBatchRequest) returns (ExtractKeywordsBatchReply) {}
 }
 
 message ExtractKeywordsRequest {
     string content = 2;
 }
 
-message ExtractKeywordsFromMultipleTextsRequest {
+message ExtractKeywordsBatchRequest {
     repeated string contents = 4;
 }
