@@ -1,17 +1,28 @@
 syntax = "proto3";
 
+import "google/protobuf/struct.proto";
+
 package recommendations; 
 
-message KeywordsRecommendation {
-    string block_id = 1;
+message ExtractKeywordsResponse {
     repeated string keywords = 2;
 }
 
-service RecommendationsService {
-    rpc ExtractKeyword(ExtractKeywordRequest) returns (KeywordsRecommendation) {}
+message ExtractKeywordsFromMultipleTextsResponse {
+    uint32 cols = 1;
+    uint32 rows = 2;
+    repeated google.protobuf.ListValue values = 3;
 }
 
-message ExtractKeywordRequest {
-    string block_id = 1;
+service RecommendationsService {
+    rpc ExtractKeywords(ExtractKeywordsRequest) returns (ExtractKeywordsResponse) {}
+    rpc ExtractKeywordsFromMultipleTexts(ExtractKeywordsFromMultipleTextsRequest) returns (ExtractKeywordsFromMultipleTextsResponse) {}
+}
+
+message ExtractKeywordsRequest {
     string content = 2;
+}
+
+message ExtractKeywordsFromMultipleTextsRequest {
+    repeated string contents = 4;
 }
