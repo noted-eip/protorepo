@@ -40,7 +40,9 @@ message Block {
 service NotesService {
     rpc GetNote(GetNoteRequest) returns (Note) {}
 
-    rpc CreateNote(CreateNoteRequest) returns (google.protobuf.Empty) {}
+    rpc CreateNote(Note) returns (google.protobuf.Empty) {}
+
+    rpc InitNote(InitNoteRequest) returns (google.protobuf.Empty) {}
 
     rpc UpdateNote(UpdateNoteRequest) returns (google.protobuf.Empty) {}
 
@@ -59,7 +61,7 @@ message GetNoteRequest {
     string id = 1;
 }
 
-message CreateNoteRequest {
+message InitNoteRequest {
     string title = 1;
 
     string author_id = 2;
