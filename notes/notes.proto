@@ -89,7 +89,7 @@ message ListNotesReply {
 
 message AddBlockRequest {
     //the note id where we add a block
-    string id = 1;
+    string note_id = 1;
 
     // The block to append to the note.
     Block block = 2;
