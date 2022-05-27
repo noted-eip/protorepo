@@ -100,11 +100,18 @@ message AddBlockRequest {
 }
 
 message UpdateBlockRequest {
-    string id = 1;
+    // The note id where we add a block
+    string note_id = 1;
 
-    Block block = 2;
+    // The block id to modify
+    string id = 2;
+    
+    Block block = 3;
 
-    google.protobuf.FieldMask update_mask = 3;
+    // In order to move the position of an existing block
+    uint32 index = 4;
+
+    google.protobuf.FieldMask update_mask = 5;
 }
 
 message DeleteBlockRequest {
