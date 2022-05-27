@@ -112,5 +112,7 @@ message UpdateBlockRequest {
 }
 
 message DeleteBlockRequest {
-    string id = 1;
+    string note_id = 1;
+
+    string id = 2;
 }
