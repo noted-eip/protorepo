@@ -102,9 +102,6 @@ message AddBlockRequest {
 message UpdateBlockRequest {
     // The note id where we add a block
     string note_id = 1;
-
-    // The block id to modify
-    string id = 2;
     
     Block block = 3;
 
