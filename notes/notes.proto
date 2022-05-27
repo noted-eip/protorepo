@@ -88,12 +88,15 @@ message ListNotesReply {
 }
 
 message AddBlockRequest {
+    //the note id where we add a block
+    string id = 1;
+
     // The block to append to the note.
-    Block block = 1;
+    Block block = 2;
 
     // Given that a note is an array of blocks, provide the index at
     // which the block shall be inserted.
-    uint32 index = 2;
+    uint32 index = 3;
 }
 
 message UpdateBlockRequest {
