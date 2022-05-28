@@ -42,8 +42,6 @@ service NotesService {
 
     rpc CreateNote(Note) returns (google.protobuf.Empty) {}
 
-    rpc InitNote(InitNoteRequest) returns (google.protobuf.Empty) {}
-
     rpc UpdateNote(UpdateNoteRequest) returns (google.protobuf.Empty) {}
 
     rpc DeleteNote(DeleteNoteRequest) returns (google.protobuf.Empty) {}
@@ -59,12 +57,6 @@ service NotesService {
 
 message GetNoteRequest {
     string id = 1;
-}
-
-message InitNoteRequest {
-    string title = 1;
-
-    string author_id = 2;
 }
 
 message UpdateNoteRequest {
