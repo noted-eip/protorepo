@@ -1,54 +1,58 @@
 syntax = "proto3";
 
-package groups;
+package accounts;
 
-option go_package = "grpc/groupspb";
+option go_package = "accountspb";
 
-import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
 
 message Group {
     string id = 1;
-
     string name = 2;
-
-    string owner_id = 3;
-    
-    repeated Member members = 4;
+    string owner_id = 3;   
+    repeated GroupMember members = 4;
 }
 
-message Member {
+message GroupMember {
     string account_id = 1;
 }
 
-service GroupService {
-    rpc CreateGroup(CreateGroupRequest) returns (google.protobuf.Empty) {}
-
-    rpc DeleteGroup(GroupFilterRequest) returns (google.protobuf.Empty) {}
-
-    rpc UpdateGroup(UpdateGroupRequest) returns (google.protobuf.Empty) {}
-
-    rpc LisGroupMembers(GroupFilterRequest) returns (ListGroupMembersReply) {}
+service GroupAPI {
+    rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {}
+    rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
+    rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {}
+    rpc ListGroupMembers(ListGroupMembersRequest) returns (ListGroupMembersResponse) {}
 }
 
 message CreateGroupRequest {
     string name = 1;
-
     string owner_id = 2;
 }
 
-message GroupFilterRequest {
-    string id = 1;
+message CreateGroupResponse {
+}
 
+message DeleteGroupRequest {
+    string id = 1;
     string name = 2;
+}
+
+message DeleteGroupResponse {
 }
 
 message UpdateGroupRequest {
     Group group = 1;
-
     google.protobuf.FieldMask update_mask = 2;
 }
 
-message ListGroupMembersReply {
-    repeated Member members = 1;
+message UpdateGroupResponse {
+}
+
+message ListGroupMembersRequest {
+    string id = 1;
+    string name = 2;
+}
+
+message ListGroupMembersResponse {
+    repeated GroupMember members = 1;
 }
