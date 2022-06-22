@@ -1,6 +1,6 @@
 version: v1
 plugins:
   - name: go
-    out: gen/go
+    out: out/go
   - name: python
-    out: gen/python
+    out: out/python

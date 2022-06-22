@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-option go_package = "recommendationspb";
+package noted.recommendations.v1; 
 
-package recommendations; 
+option go_package = "./recommendationsv1";
 
 service RecommendationAPI {
     rpc ExtractKeywords(ExtractKeywordsRequest) returns (ExtractKeywordsResponse) {}

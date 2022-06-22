@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package notes;
+package noted.notes.v1;
+
+option go_package = "./notesv1";
 
 import "google/protobuf/field_mask.proto";
-
-option go_package = "notespb";
 
 message Notes {
     repeated Note notes = 1;
