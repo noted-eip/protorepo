@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package noted.accounts.v1;
+
+option go_package = "./accountsv1";
+
+import "google/protobuf/field_mask.proto";
+
+message Group {
+    string id = 1;
+    string name = 2;
+    string owner_id = 3;   
+    repeated GroupMember members = 4;
+}
+
+message GroupMember {
+    string account_id = 1;
+}
+
+service GroupAPI {
+    rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {}
+    rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
+    rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {}
+    rpc ListGroupMembers(ListGroupMembersRequest) returns (ListGroupMembersResponse) {}
+}
+
+message CreateGroupRequest {
+    string name = 1;
+    string owner_id = 2;
+}
+
+message CreateGroupResponse {
+}
+
+message DeleteGroupRequest {
+    string id = 1;
+    string name = 2;
+}
+
+message DeleteGroupResponse {
+}
+
+message UpdateGroupRequest {
+    Group group = 1;
+    google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateGroupResponse {
+}
+
+message ListGroupMembersRequest {
+    string id = 1;
+    string name = 2;
+}
+
+message ListGroupMembersResponse {
+    repeated GroupMember members = 1;
+}

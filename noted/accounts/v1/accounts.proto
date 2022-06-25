@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package noted.accounts.v1;
+
+option go_package = "./accountsv1";
+
+import "google/protobuf/field_mask.proto";
+
+message Account {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+}
+
+service AccountAPI {
+    // Create an account using the email and password flow.
+    rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
+    rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {}
+    rpc UpdateAccount(UpdateAccountRequest) returns (UpdateAccountResponse) {}
+    rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
+    // Authenticate using the email and password flow.
+    rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse) {}
+}
+
+message CreateAccountRequest {
+    string password = 1;
+    string email = 2;
+    string name = 3;
+}
+
+message CreateAccountResponse {
+}
+
+message GetAccountRequest {
+    string email = 1;
+    string id = 2;
+}
+
+message GetAccountResponse {
+    Account account = 1;
+}
+
+message UpdateAccountRequest {
+    Account account = 1;
+    google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateAccountResponse {
+    Account account = 1;
+}
+
+message DeleteAccountRequest {
+    string id = 1;
+}
+
+message DeleteAccountResponse {
+}
+
+message AuthenticateRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message AuthenticateResponse {
+    string token = 1;
+}
