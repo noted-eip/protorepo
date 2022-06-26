@@ -17,7 +17,7 @@ message GroupMember {
     string account_id = 1;
 }
 
-service GroupAPI {
+service GroupsAPI {
     rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {}
     rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
     rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {}

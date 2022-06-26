@@ -30,7 +30,7 @@ message Block {
     string contents = 3;
 }
 
-service NoteAPI {
+service NotesAPI {
     rpc GetNote(GetNoteRequest) returns (GetNoteResponse) {}
     rpc CreateNote(CreateNoteRequest) returns (CreateNoteResponse) {}
     rpc UpdateNote(UpdateNoteRequest) returns (UpdateNoteResponse) {}

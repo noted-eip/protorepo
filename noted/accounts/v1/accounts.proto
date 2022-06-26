@@ -12,7 +12,7 @@ message Account {
     string email = 3;
 }
 
-service AccountAPI {
+service AccountsAPI {
     // Create an account using the email and password flow.
     rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
     rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {}
