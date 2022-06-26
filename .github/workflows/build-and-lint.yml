@@ -1,7 +1,7 @@
-name: protobuf-check
+name: build-and-lint
 on: [push]
 jobs:
-  build:
+  main:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
