@@ -5,12 +5,16 @@ on:
       - main
       # Temporarily, for debugging purposes.
       - centralized-protobuf-builds
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
       - name: Setup protoc
         uses: arduino/setup-protoc@v1.1.2
         with:
@@ -25,13 +29,11 @@ jobs:
           version: "1.6.0"
       - name: Generate
         run: buf generate
-      - name: Debug
-        run: |
-          ls -la . ./out
-          git status
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4.14.1
         with:
           commit_message: "ci: generate protobuf code"
           commit_user_name: Protobot
-          add_options: '-fA'
+          status_options: ""
+          add_options: "-f"
+          file_pattern: "out"
