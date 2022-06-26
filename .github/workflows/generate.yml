@@ -1,9 +1,11 @@
 name: generate
 on:
   push:
-    branches: [main, centralized-protobuf-builds]
+    branches:
+      - main
+      # Temporarily, for debugging purposes.
+      - centralized-protobuf-builds
 jobs:
-  if: ${{ github.event.workflow_run.conclusion == 'success' }}
   build:
     runs-on: ubuntu-latest
     steps:
