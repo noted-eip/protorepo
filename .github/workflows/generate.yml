@@ -26,7 +26,10 @@ jobs:
         with:
           version: "1.6.0"
       - name: Generate
-        run: buf generate
+        run: |
+          find noted -name "*.go" -type f -delete
+          find noted -name "*.py" -type f -delete
+          buf generate
       - name: Add generated code
         run: git add -f .
       - name: Commit changes
