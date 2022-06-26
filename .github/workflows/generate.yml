@@ -30,4 +30,5 @@ jobs:
         with:
           commit_message: "ci: generate protobuf code"
           commit_user_name: Protobot
-          add_options: '-uf'
+          file_pattern: out
+          add_options: '-f'
