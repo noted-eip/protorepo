@@ -1,4 +1,4 @@
-name: protobuf-check
+name: build-and-lint
 on: [push]
 jobs:
   build:

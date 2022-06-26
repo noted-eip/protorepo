@@ -1,0 +1,28 @@
+name: generate
+on:
+  push:
+    branches:
+      - main
+      # Temporarily, for debugging purposes.
+      - centralized-protobuf-builds
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup protoc
+        uses: arduino/setup-protoc@v1.1.2
+        with:
+          version: "3.19.4"
+      - name: Setup buf
+        uses: bufbuild/buf-setup-action@v1
+        with:
+          version: "1.6.0"
+      - name: Generate
+        run: buf generate
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4.14.1
+        with:
+          commit_message: "ci: generate protobuf code"
+          commit_user_name: Protobot
