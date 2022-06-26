@@ -1,11 +1,11 @@
 name: generate
 on:
   workflow_run:
-    workflows: [build-and-lint]
-    branches: [main, centralized-protobuf-builds]
+    workflows: ["build-and-lint"]
     types: 
       - completed
 jobs:
+  if: ${{ github.event.workflow_run.conclusion == 'success' }}
   build:
     runs-on: ubuntu-latest
     steps:
