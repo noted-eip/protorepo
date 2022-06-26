@@ -1,5 +1,7 @@
 name: generate
 on:
+  push:
+    branches: [main, centralized-protobuf-builds]
   workflow_run:
     workflows: ["build-and-lint"]
     types: 
