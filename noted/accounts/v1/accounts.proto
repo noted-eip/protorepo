@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package noted.accounts.v1;
 
-option go_package = "./accountsv1";
+option go_package = "noted/accounts/v1";
 
 import "google/protobuf/field_mask.proto";
 
