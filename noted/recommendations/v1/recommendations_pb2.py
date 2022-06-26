@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n.noted/recommendations/v1/recommendations.proto\x12\x18noted.recommendations.v1\"2\n\x16\x45xtractKeywordsRequest\x12\x18\n\x07\x63ontent\x18\x01 \x01(\tR\x07\x63ontent\"5\n\x17\x45xtractKeywordsResponse\x12\x1a\n\x08keywords\x18\x01 \x03(\tR\x08keywords\"9\n\x1b\x45xtractKeywordsBatchRequest\x12\x1a\n\x08\x63ontents\x18\x01 \x03(\tR\x08\x63ontents\"x\n\x1c\x45xtractKeywordsBatchResponse\x12X\n\x0ekeywords_array\x18\x01 \x03(\x0b\x32\x31.noted.recommendations.v1.ExtractKeywordsResponseR\rkeywordsArray2\x97\x02\n\x11RecommendationAPI\x12x\n\x0f\x45xtractKeywords\x12\x30.noted.recommendations.v1.ExtractKeywordsRequest\x1a\x31.noted.recommendations.v1.ExtractKeywordsResponse\"\x00\x12\x87\x01\n\x14\x45xtractKeywordsBatch\x12\x35.noted.recommendations.v1.ExtractKeywordsBatchRequest\x1a\x36.noted.recommendations.v1.ExtractKeywordsBatchResponse\"\x00\x42\x1aZ\x18noted/recommendations/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n.noted/recommendations/v1/recommendations.proto\x12\x18noted.recommendations.v1\"2\n\x16\x45xtractKeywordsRequest\x12\x18\n\x07\x63ontent\x18\x01 \x01(\tR\x07\x63ontent\"5\n\x17\x45xtractKeywordsResponse\x12\x1a\n\x08keywords\x18\x01 \x03(\tR\x08keywords\"9\n\x1b\x45xtractKeywordsBatchRequest\x12\x1a\n\x08\x63ontents\x18\x01 \x03(\tR\x08\x63ontents\"x\n\x1c\x45xtractKeywordsBatchResponse\x12X\n\x0ekeywords_array\x18\x01 \x03(\x0b\x32\x31.noted.recommendations.v1.ExtractKeywordsResponseR\rkeywordsArray2\x98\x02\n\x12RecommendationsAPI\x12x\n\x0f\x45xtractKeywords\x12\x30.noted.recommendations.v1.ExtractKeywordsRequest\x1a\x31.noted.recommendations.v1.ExtractKeywordsResponse\"\x00\x12\x87\x01\n\x14\x45xtractKeywordsBatch\x12\x35.noted.recommendations.v1.ExtractKeywordsBatchRequest\x1a\x36.noted.recommendations.v1.ExtractKeywordsBatchResponse\"\x00\x42\x1aZ\x18noted/recommendations/v1b\x06proto3')
 
 
 
@@ -50,7 +50,7 @@ ExtractKeywordsBatchResponse = _reflection.GeneratedProtocolMessageType('Extract
   })
 _sym_db.RegisterMessage(ExtractKeywordsBatchResponse)
 
-_RECOMMENDATIONAPI = DESCRIPTOR.services_by_name['RecommendationAPI']
+_RECOMMENDATIONSAPI = DESCRIPTOR.services_by_name['RecommendationsAPI']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
@@ -63,6 +63,6 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _EXTRACTKEYWORDSBATCHREQUEST._serialized_end=240
   _EXTRACTKEYWORDSBATCHRESPONSE._serialized_start=242
   _EXTRACTKEYWORDSBATCHRESPONSE._serialized_end=362
-  _RECOMMENDATIONAPI._serialized_start=365
-  _RECOMMENDATIONAPI._serialized_end=644
+  _RECOMMENDATIONSAPI._serialized_start=365
+  _RECOMMENDATIONSAPI._serialized_end=645
 # @@protoc_insertion_point(module_scope)

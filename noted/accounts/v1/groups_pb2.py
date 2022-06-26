@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mask__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1enoted/accounts/v1/groups.proto\x12\x11noted.accounts.v1\x1a google/protobuf/field_mask.proto\"\x80\x01\n\x05Group\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12\x19\n\x08owner_id\x18\x03 \x01(\tR\x07ownerId\x12\x38\n\x07members\x18\x04 \x03(\x0b\x32\x1e.noted.accounts.v1.GroupMemberR\x07members\",\n\x0bGroupMember\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\"C\n\x12\x43reateGroupRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x19\n\x08owner_id\x18\x02 \x01(\tR\x07ownerId\"\x15\n\x13\x43reateGroupResponse\"8\n\x12\x44\x65leteGroupRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\"\x15\n\x13\x44\x65leteGroupResponse\"\x81\x01\n\x12UpdateGroupRequest\x12.\n\x05group\x18\x01 \x01(\x0b\x32\x18.noted.accounts.v1.GroupR\x05group\x12;\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"\x15\n\x13UpdateGroupResponse\"=\n\x17ListGroupMembersRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\"T\n\x18ListGroupMembersResponse\x12\x38\n\x07members\x18\x01 \x03(\x0b\x32\x1e.noted.accounts.v1.GroupMemberR\x07members2\x99\x03\n\x08GroupAPI\x12^\n\x0b\x43reateGroup\x12%.noted.accounts.v1.CreateGroupRequest\x1a&.noted.accounts.v1.CreateGroupResponse\"\x00\x12^\n\x0b\x44\x65leteGroup\x12%.noted.accounts.v1.DeleteGroupRequest\x1a&.noted.accounts.v1.DeleteGroupResponse\"\x00\x12^\n\x0bUpdateGroup\x12%.noted.accounts.v1.UpdateGroupRequest\x1a&.noted.accounts.v1.UpdateGroupResponse\"\x00\x12m\n\x10ListGroupMembers\x12*.noted.accounts.v1.ListGroupMembersRequest\x1a+.noted.accounts.v1.ListGroupMembersResponse\"\x00\x42\x13Z\x11noted/accounts/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1enoted/accounts/v1/groups.proto\x12\x11noted.accounts.v1\x1a google/protobuf/field_mask.proto\"\x80\x01\n\x05Group\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12\x19\n\x08owner_id\x18\x03 \x01(\tR\x07ownerId\x12\x38\n\x07members\x18\x04 \x03(\x0b\x32\x1e.noted.accounts.v1.GroupMemberR\x07members\",\n\x0bGroupMember\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\"C\n\x12\x43reateGroupRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x19\n\x08owner_id\x18\x02 \x01(\tR\x07ownerId\"\x15\n\x13\x43reateGroupResponse\"8\n\x12\x44\x65leteGroupRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\"\x15\n\x13\x44\x65leteGroupResponse\"\x81\x01\n\x12UpdateGroupRequest\x12.\n\x05group\x18\x01 \x01(\x0b\x32\x18.noted.accounts.v1.GroupR\x05group\x12;\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"\x15\n\x13UpdateGroupResponse\"=\n\x17ListGroupMembersRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\"T\n\x18ListGroupMembersResponse\x12\x38\n\x07members\x18\x01 \x03(\x0b\x32\x1e.noted.accounts.v1.GroupMemberR\x07members2\x9a\x03\n\tGroupsAPI\x12^\n\x0b\x43reateGroup\x12%.noted.accounts.v1.CreateGroupRequest\x1a&.noted.accounts.v1.CreateGroupResponse\"\x00\x12^\n\x0b\x44\x65leteGroup\x12%.noted.accounts.v1.DeleteGroupRequest\x1a&.noted.accounts.v1.DeleteGroupResponse\"\x00\x12^\n\x0bUpdateGroup\x12%.noted.accounts.v1.UpdateGroupRequest\x1a&.noted.accounts.v1.UpdateGroupResponse\"\x00\x12m\n\x10ListGroupMembers\x12*.noted.accounts.v1.ListGroupMembersRequest\x1a+.noted.accounts.v1.ListGroupMembersResponse\"\x00\x42\x13Z\x11noted/accounts/v1b\x06proto3')
 
 
 
@@ -99,7 +99,7 @@ ListGroupMembersResponse = _reflection.GeneratedProtocolMessageType('ListGroupMe
   })
 _sym_db.RegisterMessage(ListGroupMembersResponse)
 
-_GROUPAPI = DESCRIPTOR.services_by_name['GroupAPI']
+_GROUPSAPI = DESCRIPTOR.services_by_name['GroupsAPI']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
@@ -124,6 +124,6 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _LISTGROUPMEMBERSREQUEST._serialized_end=653
   _LISTGROUPMEMBERSRESPONSE._serialized_start=655
   _LISTGROUPMEMBERSRESPONSE._serialized_end=739
-  _GROUPAPI._serialized_start=742
-  _GROUPAPI._serialized_end=1151
+  _GROUPSAPI._serialized_start=742
+  _GROUPSAPI._serialized_end=1152
 # @@protoc_insertion_point(module_scope)
