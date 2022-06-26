@@ -2,10 +2,6 @@ name: generate
 on:
   push:
     branches: [main, centralized-protobuf-builds]
-  workflow_run:
-    workflows: ["build-and-lint"]
-    types: 
-      - completed
 jobs:
   if: ${{ github.event.workflow_run.conclusion == 'success' }}
   build:
