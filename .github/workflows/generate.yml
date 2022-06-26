@@ -3,12 +3,10 @@ on:
   push:
     branches:
       - main
-      # Temporarily, for debugging purposes.
-      - centralized-protobuf-builds
 permissions:
   contents: write
 jobs:
-  build:
+  main:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
