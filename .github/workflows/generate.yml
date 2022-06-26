@@ -1,10 +1,10 @@
 name: generate
 on:
-  push:
-    branches:
-      - main
-      # Temporarily, for debugging purposes.
-      - centralized-protobuf-builds
+  workflow_run:
+    workflows: [build-and-lint]
+    branches: [main, centralized-protobuf-builds]
+    types: 
+      - completed
 jobs:
   build:
     runs-on: ubuntu-latest
