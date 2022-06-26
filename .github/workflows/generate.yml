@@ -27,7 +27,8 @@ jobs:
         run: buf generate
       - name: Debug
         run: |
-          ls -la . /out
+          ls -la . ./out
+          git status
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4.14.1
         with:
