@@ -29,11 +29,11 @@ jobs:
           version: "1.6.0"
       - name: Generate
         run: buf generate
+      - name: Add generated code
+        run: git add -f out
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4.14.1
         with:
           commit_message: "ci: generate protobuf code"
           commit_user_name: Protobot
           status_options: ""
-          add_options: "-f"
-          file_pattern: "out"
