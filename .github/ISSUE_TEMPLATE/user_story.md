@@ -2,7 +2,7 @@
 name: User Story
 about: This issue will be included in PLD generation
 title: ""
-labels: "user-story"
+labels: "noted/user-story"
 assignees: ""
 ---
 
