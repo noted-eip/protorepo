@@ -36,7 +36,7 @@ service NotesAPI {
     rpc UpdateNote(UpdateNoteRequest) returns (UpdateNoteResponse) {}
     rpc DeleteNote(DeleteNoteRequest) returns (DeleteNoteResponse) {}
     rpc ListNotes(ListNotesRequest) returns (ListNotesResponse) {}
-    rpc AddBlock(AddBlockRequest) returns (AddBlockResponse) {}
+    rpc InsertBlock(InsertBlockRequest) returns (InsertBlockResponse) {}
     rpc UpdateBlock(UpdateBlockRequest) returns (UpdateBlockResponse) {}
     rpc DeleteBlock(DeleteBlockRequest) returns (DeleteBlockResponse) {}
 }
@@ -54,6 +54,7 @@ message CreateNoteRequest {
 }
 
 message CreateNoteResponse {
+    Note note = 1;
 }
 
 message UpdateNoteRequest {
@@ -80,7 +81,7 @@ message ListNotesResponse {
     repeated Note notes = 1;
 }
 
-message AddBlockRequest {
+message InsertBlockRequest {
     // The block to append to the note.
     Block block = 1;
     // Given that a note is an array of blocks, provide the index at
@@ -88,7 +89,8 @@ message AddBlockRequest {
     uint32 index = 2;
 }
 
-message AddBlockResponse {
+message InsertBlockResponse {
+    Block block = 1;
 }
 
 message UpdateBlockRequest {
@@ -98,6 +100,7 @@ message UpdateBlockRequest {
 }
 
 message UpdateBlockResponse {
+    Block block = 1;
 }
 
 message DeleteBlockRequest {

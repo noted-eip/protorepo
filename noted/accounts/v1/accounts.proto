@@ -29,6 +29,7 @@ message CreateAccountRequest {
 }
 
 message CreateAccountResponse {
+    Account account = 1;
 }
 
 message GetAccountRequest {

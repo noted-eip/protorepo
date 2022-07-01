@@ -30,6 +30,7 @@ message CreateGroupRequest {
 }
 
 message CreateGroupResponse {
+    Group group = 1;
 }
 
 message DeleteGroupRequest {
@@ -46,6 +47,7 @@ message UpdateGroupRequest {
 }
 
 message UpdateGroupResponse {
+    Group group = 1;
 }
 
 message ListGroupMembersRequest {
