@@ -18,16 +18,43 @@ message Note {
 }
 
 message Block {
+    string id = 1;
+
     enum Type {
         TYPE_INVALID = 0;
         TYPE_HEADING_1 = 1;
         TYPE_HEADING_2 = 2;
         TYPE_HEADING_3 = 3;
         TYPE_PARAGRAPH = 4;
+        TYPE_BULLET_POINT = 7;
+        TYPE_NUMBERED_POINT = 8;
+        TYPE_MATH = 5;
+        TYPE_CODE = 6;
+        TYPE_IMAGE = 9;
     }
-    string id = 1;
     Type type = 2;
-    string contents = 3;
+
+    message Code {
+        string snippet = 1;
+        string lang = 2;
+    }
+
+    message Image {
+        string url = 1;
+        string caption = 2;
+    }
+
+    oneof data {
+        string heading = 3;
+        string paragraph = 4;
+        string number_point = 5;
+        string bullet_point = 6;
+        Image image = 16;
+        Code code = 17;
+        string math = 18;
+    }
+
+    reserved 7, 8, 9, 10, 11, 12, 13, 14;
 }
 
 service NotesAPI {
