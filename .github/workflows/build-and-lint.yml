@@ -9,6 +9,6 @@ jobs:
       - name: Build
         uses: bufbuild/buf-setup-action@v1
         with:
-          version: '1.6.0'
+          version: "1.6.0"
       - name: Lint
         uses: bufbuild/buf-lint-action@v1
