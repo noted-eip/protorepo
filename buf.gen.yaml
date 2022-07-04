@@ -2,5 +2,10 @@ version: v1
 plugins:
   - name: go
     out: .
+  - name: go-grpc
+    out: .
   - name: python
     out: .
+  - name: python-grpc
+    out: .
+    path: protoc-gen-python_grpc
