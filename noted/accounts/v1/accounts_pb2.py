@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mask__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n noted/accounts/v1/accounts.proto\x12\x11noted.accounts.v1\x1a google/protobuf/field_mask.proto\"C\n\x07\x41\x63\x63ount\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n\x05\x65mail\x18\x03 \x01(\tR\x05\x65mail\"\\\n\x14\x43reateAccountRequest\x12\x1a\n\x08password\x18\x01 \x01(\tR\x08password\x12\x14\n\x05\x65mail\x18\x02 \x01(\tR\x05\x65mail\x12\x12\n\x04name\x18\x03 \x01(\tR\x04name\"\x17\n\x15\x43reateAccountResponse\"9\n\x11GetAccountRequest\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\x12\x0e\n\x02id\x18\x02 \x01(\tR\x02id\"J\n\x12GetAccountResponse\x12\x34\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountR\x07\x61\x63\x63ount\"\x89\x01\n\x14UpdateAccountRequest\x12\x34\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountR\x07\x61\x63\x63ount\x12;\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"M\n\x15UpdateAccountResponse\x12\x34\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountR\x07\x61\x63\x63ount\"&\n\x14\x44\x65leteAccountRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x17\n\x15\x44\x65leteAccountResponse\"G\n\x13\x41uthenticateRequest\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\x12\x1a\n\x08password\x18\x02 \x01(\tR\x08password\",\n\x14\x41uthenticateResponse\x12\x14\n\x05token\x18\x01 \x01(\tR\x05token2\xff\x03\n\x0b\x41\x63\x63ountsAPI\x12\x64\n\rCreateAccount\x12\'.noted.accounts.v1.CreateAccountRequest\x1a(.noted.accounts.v1.CreateAccountResponse\"\x00\x12[\n\nGetAccount\x12$.noted.accounts.v1.GetAccountRequest\x1a%.noted.accounts.v1.GetAccountResponse\"\x00\x12\x64\n\rUpdateAccount\x12\'.noted.accounts.v1.UpdateAccountRequest\x1a(.noted.accounts.v1.UpdateAccountResponse\"\x00\x12\x64\n\rDeleteAccount\x12\'.noted.accounts.v1.DeleteAccountRequest\x1a(.noted.accounts.v1.DeleteAccountResponse\"\x00\x12\x61\n\x0c\x41uthenticate\x12&.noted.accounts.v1.AuthenticateRequest\x1a\'.noted.accounts.v1.AuthenticateResponse\"\x00\x42\x13Z\x11noted/accounts/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n noted/accounts/v1/accounts.proto\x12\x11noted.accounts.v1\x1a google/protobuf/field_mask.proto\"C\n\x07\x41\x63\x63ount\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n\x05\x65mail\x18\x03 \x01(\tR\x05\x65mail\"\\\n\x14\x43reateAccountRequest\x12\x1a\n\x08password\x18\x01 \x01(\tR\x08password\x12\x14\n\x05\x65mail\x18\x02 \x01(\tR\x05\x65mail\x12\x12\n\x04name\x18\x03 \x01(\tR\x04name\"M\n\x15\x43reateAccountResponse\x12\x34\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountR\x07\x61\x63\x63ount\"9\n\x11GetAccountRequest\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\x12\x0e\n\x02id\x18\x02 \x01(\tR\x02id\"J\n\x12GetAccountResponse\x12\x34\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountR\x07\x61\x63\x63ount\"\x89\x01\n\x14UpdateAccountRequest\x12\x34\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountR\x07\x61\x63\x63ount\x12;\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"M\n\x15UpdateAccountResponse\x12\x34\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountR\x07\x61\x63\x63ount\"&\n\x14\x44\x65leteAccountRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x17\n\x15\x44\x65leteAccountResponse\"G\n\x13\x41uthenticateRequest\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\x12\x1a\n\x08password\x18\x02 \x01(\tR\x08password\",\n\x14\x41uthenticateResponse\x12\x14\n\x05token\x18\x01 \x01(\tR\x05token2\xff\x03\n\x0b\x41\x63\x63ountsAPI\x12\x64\n\rCreateAccount\x12\'.noted.accounts.v1.CreateAccountRequest\x1a(.noted.accounts.v1.CreateAccountResponse\"\x00\x12[\n\nGetAccount\x12$.noted.accounts.v1.GetAccountRequest\x1a%.noted.accounts.v1.GetAccountResponse\"\x00\x12\x64\n\rUpdateAccount\x12\'.noted.accounts.v1.UpdateAccountRequest\x1a(.noted.accounts.v1.UpdateAccountResponse\"\x00\x12\x64\n\rDeleteAccount\x12\'.noted.accounts.v1.DeleteAccountRequest\x1a(.noted.accounts.v1.DeleteAccountResponse\"\x00\x12\x61\n\x0c\x41uthenticate\x12&.noted.accounts.v1.AuthenticateRequest\x1a\'.noted.accounts.v1.AuthenticateResponse\"\x00\x42\x13Z\x11noted/accounts/v1b\x06proto3')
 
 
 
@@ -117,23 +117,23 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _CREATEACCOUNTREQUEST._serialized_start=158
   _CREATEACCOUNTREQUEST._serialized_end=250
   _CREATEACCOUNTRESPONSE._serialized_start=252
-  _CREATEACCOUNTRESPONSE._serialized_end=275
-  _GETACCOUNTREQUEST._serialized_start=277
-  _GETACCOUNTREQUEST._serialized_end=334
-  _GETACCOUNTRESPONSE._serialized_start=336
-  _GETACCOUNTRESPONSE._serialized_end=410
-  _UPDATEACCOUNTREQUEST._serialized_start=413
-  _UPDATEACCOUNTREQUEST._serialized_end=550
-  _UPDATEACCOUNTRESPONSE._serialized_start=552
-  _UPDATEACCOUNTRESPONSE._serialized_end=629
-  _DELETEACCOUNTREQUEST._serialized_start=631
-  _DELETEACCOUNTREQUEST._serialized_end=669
-  _DELETEACCOUNTRESPONSE._serialized_start=671
-  _DELETEACCOUNTRESPONSE._serialized_end=694
-  _AUTHENTICATEREQUEST._serialized_start=696
-  _AUTHENTICATEREQUEST._serialized_end=767
-  _AUTHENTICATERESPONSE._serialized_start=769
-  _AUTHENTICATERESPONSE._serialized_end=813
-  _ACCOUNTSAPI._serialized_start=816
-  _ACCOUNTSAPI._serialized_end=1327
+  _CREATEACCOUNTRESPONSE._serialized_end=329
+  _GETACCOUNTREQUEST._serialized_start=331
+  _GETACCOUNTREQUEST._serialized_end=388
+  _GETACCOUNTRESPONSE._serialized_start=390
+  _GETACCOUNTRESPONSE._serialized_end=464
+  _UPDATEACCOUNTREQUEST._serialized_start=467
+  _UPDATEACCOUNTREQUEST._serialized_end=604
+  _UPDATEACCOUNTRESPONSE._serialized_start=606
+  _UPDATEACCOUNTRESPONSE._serialized_end=683
+  _DELETEACCOUNTREQUEST._serialized_start=685
+  _DELETEACCOUNTREQUEST._serialized_end=723
+  _DELETEACCOUNTRESPONSE._serialized_start=725
+  _DELETEACCOUNTRESPONSE._serialized_end=748
+  _AUTHENTICATEREQUEST._serialized_start=750
+  _AUTHENTICATEREQUEST._serialized_end=821
+  _AUTHENTICATERESPONSE._serialized_start=823
+  _AUTHENTICATERESPONSE._serialized_end=867
+  _ACCOUNTSAPI._serialized_start=870
+  _ACCOUNTSAPI._serialized_end=1381
 # @@protoc_insertion_point(module_scope)
