@@ -4,12 +4,6 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-      - name: Install Python GRPC Plugin
-        run: pip install grpclib protobuf
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
