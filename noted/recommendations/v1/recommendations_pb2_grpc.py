@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from noted.recommendations.v1 import recommendations_pb2 as noted_dot_recommendations_dot_v1_dot_recommendations__pb2
+from protorepo.noted.recommendations.v1 import recommendations_pb2 as noted_dot_recommendations_dot_v1_dot_recommendations__pb2
 
 
 class RecommendationsAPIStub(object):
