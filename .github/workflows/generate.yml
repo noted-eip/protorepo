@@ -26,6 +26,10 @@ jobs:
           find noted -name "*.go" -type f -delete
           find noted -name "*.py" -type f -delete
           buf generate
+      - name: Rewrite Python imports
+        shell: bash
+        run: |
+          .github/workflows/scripts/python-sed.sh
       - name: Add generated code
         run: git add -f .
       - name: Commit changes
