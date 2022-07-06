@@ -1,11 +1,10 @@
 version: v1
 plugins:
-  - name: go
+  - remote: buf.build/protocolbuffers/plugins/go:v1.27.1-1
     out: .
-  - name: go-grpc
+  - remote: buf.build/grpc/plugins/go:v1.1.0-1
     out: .
-  - name: python
+  - remote: buf.build/protocolbuffers/plugins/python:v3.19.1-1
     out: .
-  - name: python-grpc
+  - remote: buf.build/grpc/plugins/python:v1.41.1-1
     out: .
-    path: protoc-gen-python_grpc
