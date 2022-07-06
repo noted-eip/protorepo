@@ -1,4 +1,10 @@
-# IDE
-/.vscode/
-*.py
-*.go
+# Ignore everything
+*
+
+# Except
+!*.proto
+!buf.*
+!README.md
+!.gitignore
+!/docs/
+!/.github/
