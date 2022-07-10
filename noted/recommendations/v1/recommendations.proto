@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package noted.recommendations.v1; 
+
+option go_package = "noted/recommendations/v1";
+
+service RecommendationsAPI {
+    rpc ExtractKeywords(ExtractKeywordsRequest) returns (ExtractKeywordsResponse) {}
+    rpc ExtractKeywordsBatch(ExtractKeywordsBatchRequest) returns (ExtractKeywordsBatchResponse) {}
+}
+
+message ExtractKeywordsRequest {
+    string content = 1;
+}
+
+message ExtractKeywordsResponse {
+    repeated string keywords = 1;
+}
+
+message ExtractKeywordsBatchRequest {
+    repeated string contents = 1;
+}
+
+message ExtractKeywordsBatchResponse {
+    repeated ExtractKeywordsResponse keywords_array = 1;
+}

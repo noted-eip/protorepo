@@ -1,0 +1,10 @@
+version: v1
+plugins:
+  - remote: buf.build/protocolbuffers/plugins/go:v1.27.1-1
+    out: .
+  - remote: buf.build/grpc/plugins/go:v1.1.0-1
+    out: .
+  - remote: buf.build/protocolbuffers/plugins/python:v3.19.1-1
+    out: .
+  - remote: buf.build/grpc/plugins/python:v1.41.1-1
+    out: .
