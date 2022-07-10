@@ -114,6 +114,8 @@ message InsertBlockRequest {
     // Given that a note is an array of blocks, provide the index at
     // which the block shall be inserted.
     uint32 index = 2;
+    //A new block need a note to be attached
+    uint32 noteId = 3;
 }
 
 message InsertBlockResponse {
