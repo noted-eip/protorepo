@@ -2,6 +2,7 @@
 *
 
 # Except
+LICENSE
 !*.proto
 !buf.*
 !README.md
