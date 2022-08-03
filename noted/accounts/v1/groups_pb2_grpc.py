@@ -36,7 +36,7 @@ class GroupsAPIStub(object):
                 )
         self.JoinGroup = channel.unary_unary(
                 '/noted.accounts.v1.GroupsAPI/JoinGroup',
-                request_serializer=groups__pb2.JoingGroupRequest.SerializeToString,
+                request_serializer=groups__pb2.JoinGroupRequest.SerializeToString,
                 response_deserializer=groups__pb2.JoinGroupResponse.FromString,
                 )
         self.AddNoteToGroup = channel.unary_unary(
@@ -110,7 +110,7 @@ def add_GroupsAPIServicer_to_server(servicer, server):
             ),
             'JoinGroup': grpc.unary_unary_rpc_method_handler(
                     servicer.JoinGroup,
-                    request_deserializer=groups__pb2.JoingGroupRequest.FromString,
+                    request_deserializer=groups__pb2.JoinGroupRequest.FromString,
                     response_serializer=groups__pb2.JoinGroupResponse.SerializeToString,
             ),
             'AddNoteToGroup': grpc.unary_unary_rpc_method_handler(
@@ -208,7 +208,7 @@ class GroupsAPI(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/JoinGroup',
-            groups__pb2.JoingGroupRequest.SerializeToString,
+            groups__pb2.JoinGroupRequest.SerializeToString,
             groups__pb2.JoinGroupResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

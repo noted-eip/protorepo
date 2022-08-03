@@ -23,7 +23,7 @@ service GroupsAPI {
     rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
     rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {}
     rpc ListGroupMembers(ListGroupMembersRequest) returns (ListGroupMembersResponse) {}
-    rpc JoinGroup(JoingGroupRequest) returns (JoinGroupResponse) {}
+    rpc JoinGroup(JoinGroupRequest) returns (JoinGroupResponse) {}
     rpc AddNoteToGroup(AddNoteToGroupRequest) returns (AddNoteToGroupResponse) {}
 }
 
@@ -63,7 +63,7 @@ message ListGroupMembersResponse {
     repeated GroupMember members = 1;
 }
 
-message JoingGroupRequest {
+message JoinGroupRequest {
 }
 
 message JoinGroupResponse {

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: noted/accounts/v1/groups.proto
+// source: groups.proto
 
 package v1
 
@@ -26,7 +26,7 @@ type GroupsAPIClient interface {
 	DeleteGroup(ctx context.Context, in *DeleteGroupRequest, opts ...grpc.CallOption) (*DeleteGroupResponse, error)
 	UpdateGroup(ctx context.Context, in *UpdateGroupRequest, opts ...grpc.CallOption) (*UpdateGroupResponse, error)
 	ListGroupMembers(ctx context.Context, in *ListGroupMembersRequest, opts ...grpc.CallOption) (*ListGroupMembersResponse, error)
-	JoinGroup(ctx context.Context, in *JoingGroupRequest, opts ...grpc.CallOption) (*JoinGroupResponse, error)
+	JoinGroup(ctx context.Context, in *JoinGroupRequest, opts ...grpc.CallOption) (*JoinGroupResponse, error)
 	AddNoteToGroup(ctx context.Context, in *AddNoteToGroupRequest, opts ...grpc.CallOption) (*AddNoteToGroupResponse, error)
 }
 
@@ -74,7 +74,7 @@ func (c *groupsAPIClient) ListGroupMembers(ctx context.Context, in *ListGroupMem
 	return out, nil
 }
 
-func (c *groupsAPIClient) JoinGroup(ctx context.Context, in *JoingGroupRequest, opts ...grpc.CallOption) (*JoinGroupResponse, error) {
+func (c *groupsAPIClient) JoinGroup(ctx context.Context, in *JoinGroupRequest, opts ...grpc.CallOption) (*JoinGroupResponse, error) {
 	out := new(JoinGroupResponse)
 	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/JoinGroup", in, out, opts...)
 	if err != nil {
@@ -100,7 +100,7 @@ type GroupsAPIServer interface {
 	DeleteGroup(context.Context, *DeleteGroupRequest) (*DeleteGroupResponse, error)
 	UpdateGroup(context.Context, *UpdateGroupRequest) (*UpdateGroupResponse, error)
 	ListGroupMembers(context.Context, *ListGroupMembersRequest) (*ListGroupMembersResponse, error)
-	JoinGroup(context.Context, *JoingGroupRequest) (*JoinGroupResponse, error)
+	JoinGroup(context.Context, *JoinGroupRequest) (*JoinGroupResponse, error)
 	AddNoteToGroup(context.Context, *AddNoteToGroupRequest) (*AddNoteToGroupResponse, error)
 	mustEmbedUnimplementedGroupsAPIServer()
 }
@@ -121,7 +121,7 @@ func (UnimplementedGroupsAPIServer) UpdateGroup(context.Context, *UpdateGroupReq
 func (UnimplementedGroupsAPIServer) ListGroupMembers(context.Context, *ListGroupMembersRequest) (*ListGroupMembersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListGroupMembers not implemented")
 }
-func (UnimplementedGroupsAPIServer) JoinGroup(context.Context, *JoingGroupRequest) (*JoinGroupResponse, error) {
+func (UnimplementedGroupsAPIServer) JoinGroup(context.Context, *JoinGroupRequest) (*JoinGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method JoinGroup not implemented")
 }
 func (UnimplementedGroupsAPIServer) AddNoteToGroup(context.Context, *AddNoteToGroupRequest) (*AddNoteToGroupResponse, error) {
@@ -213,7 +213,7 @@ func _GroupsAPI_ListGroupMembers_Handler(srv interface{}, ctx context.Context, d
 }
 
 func _GroupsAPI_JoinGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(JoingGroupRequest)
+	in := new(JoinGroupRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -225,7 +225,7 @@ func _GroupsAPI_JoinGroup_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: "/noted.accounts.v1.GroupsAPI/JoinGroup",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GroupsAPIServer).JoinGroup(ctx, req.(*JoingGroupRequest))
+		return srv.(GroupsAPIServer).JoinGroup(ctx, req.(*JoinGroupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -281,5 +281,5 @@ var GroupsAPI_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "noted/accounts/v1/groups.proto",
+	Metadata: "groups.proto",
 }
