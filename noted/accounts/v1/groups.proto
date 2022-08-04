@@ -11,6 +11,7 @@ message Group {
     string name = 2;
     string owner_id = 3;   
     repeated GroupMember members = 4;
+    string description = 5;
 }
 
 message GroupMember {
@@ -22,11 +23,13 @@ service GroupsAPI {
     rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
     rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {}
     rpc ListGroupMembers(ListGroupMembersRequest) returns (ListGroupMembersResponse) {}
+    rpc JoinGroup(JoinGroupRequest) returns (JoinGroupResponse) {}
+    rpc AddNoteToGroup(AddNoteToGroupRequest) returns (AddNoteToGroupResponse) {}
 }
 
 message CreateGroupRequest {
     string name = 1;
-    string owner_id = 2;
+    string description = 2;
 }
 
 message CreateGroupResponse {
@@ -57,4 +60,19 @@ message ListGroupMembersRequest {
 
 message ListGroupMembersResponse {
     repeated GroupMember members = 1;
+}
+
+message JoinGroupRequest {
+    string id = 1;
+}
+
+message JoinGroupResponse {
+}
+
+message AddNoteToGroupRequest {
+    string id = 1;
+    string note_id = 2;
+}
+
+message AddNoteToGroupResponse {
 }
