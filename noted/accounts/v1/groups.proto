@@ -29,8 +29,7 @@ service GroupsAPI {
 
 message CreateGroupRequest {
     string name = 1;
-    string owner_id = 2;
-    string description = 3;
+    string description = 2;
 }
 
 message CreateGroupResponse {
@@ -64,6 +63,7 @@ message ListGroupMembersResponse {
 }
 
 message JoinGroupRequest {
+    string id = 1;
 }
 
 message JoinGroupResponse {
@@ -75,6 +75,4 @@ message AddNoteToGroupRequest {
 }
 
 message AddNoteToGroupResponse {
-    string id = 1;
-    string member_id = 2;
 }
