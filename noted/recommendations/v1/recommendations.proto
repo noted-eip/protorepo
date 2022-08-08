@@ -24,3 +24,11 @@ message ExtractKeywordsBatchRequest {
 message ExtractKeywordsBatchResponse {
     repeated ExtractKeywordsResponse keywords_array = 1;
 }
+
+message SummarizeRequest {
+    string content = 1;
+}
+
+message SummarizeResponse {
+    string result = 1;
+}
