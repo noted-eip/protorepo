@@ -31,5 +31,6 @@ message SummarizeRequest {
 }
 
 message SummarizeResponse {
-    string result = 1;
+    // Small text output which summarizes the original entry.
+    string summary = 1;
 }
