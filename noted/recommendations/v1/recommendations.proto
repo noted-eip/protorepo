@@ -7,6 +7,7 @@ option go_package = "noted/recommendations/v1";
 service RecommendationsAPI {
     rpc ExtractKeywords(ExtractKeywordsRequest) returns (ExtractKeywordsResponse) {}
     rpc ExtractKeywordsBatch(ExtractKeywordsBatchRequest) returns (ExtractKeywordsBatchResponse) {}
+    rpc Summarize(SummarizeRequest) returns (SummarizeResponse) {}
 }
 
 message ExtractKeywordsRequest {
