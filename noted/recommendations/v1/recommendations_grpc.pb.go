@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 type RecommendationsAPIClient interface {
 	ExtractKeywords(ctx context.Context, in *ExtractKeywordsRequest, opts ...grpc.CallOption) (*ExtractKeywordsResponse, error)
 	ExtractKeywordsBatch(ctx context.Context, in *ExtractKeywordsBatchRequest, opts ...grpc.CallOption) (*ExtractKeywordsBatchResponse, error)
+	Summarize(ctx context.Context, in *SummarizeRequest, opts ...grpc.CallOption) (*SummarizeResponse, error)
 }
 
 type recommendationsAPIClient struct {
@@ -48,12 +49,22 @@ func (c *recommendationsAPIClient) ExtractKeywordsBatch(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *recommendationsAPIClient) Summarize(ctx context.Context, in *SummarizeRequest, opts ...grpc.CallOption) (*SummarizeResponse, error) {
+	out := new(SummarizeResponse)
+	err := c.cc.Invoke(ctx, "/noted.recommendations.v1.RecommendationsAPI/Summarize", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RecommendationsAPIServer is the server API for RecommendationsAPI service.
 // All implementations must embed UnimplementedRecommendationsAPIServer
 // for forward compatibility
 type RecommendationsAPIServer interface {
 	ExtractKeywords(context.Context, *ExtractKeywordsRequest) (*ExtractKeywordsResponse, error)
 	ExtractKeywordsBatch(context.Context, *ExtractKeywordsBatchRequest) (*ExtractKeywordsBatchResponse, error)
+	Summarize(context.Context, *SummarizeRequest) (*SummarizeResponse, error)
 	mustEmbedUnimplementedRecommendationsAPIServer()
 }
 
@@ -66,6 +77,9 @@ func (UnimplementedRecommendationsAPIServer) ExtractKeywords(context.Context, *E
 }
 func (UnimplementedRecommendationsAPIServer) ExtractKeywordsBatch(context.Context, *ExtractKeywordsBatchRequest) (*ExtractKeywordsBatchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExtractKeywordsBatch not implemented")
+}
+func (UnimplementedRecommendationsAPIServer) Summarize(context.Context, *SummarizeRequest) (*SummarizeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Summarize not implemented")
 }
 func (UnimplementedRecommendationsAPIServer) mustEmbedUnimplementedRecommendationsAPIServer() {}
 
@@ -116,6 +130,24 @@ func _RecommendationsAPI_ExtractKeywordsBatch_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RecommendationsAPI_Summarize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SummarizeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RecommendationsAPIServer).Summarize(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.recommendations.v1.RecommendationsAPI/Summarize",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RecommendationsAPIServer).Summarize(ctx, req.(*SummarizeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RecommendationsAPI_ServiceDesc is the grpc.ServiceDesc for RecommendationsAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -130,6 +162,10 @@ var RecommendationsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ExtractKeywordsBatch",
 			Handler:    _RecommendationsAPI_ExtractKeywordsBatch_Handler,
+		},
+		{
+			MethodName: "Summarize",
+			Handler:    _RecommendationsAPI_Summarize_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

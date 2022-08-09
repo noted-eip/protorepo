@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n.noted/recommendations/v1/recommendations.proto\x12\x18noted.recommendations.v1\"2\n\x16\x45xtractKeywordsRequest\x12\x18\n\x07\x63ontent\x18\x01 \x01(\tR\x07\x63ontent\"5\n\x17\x45xtractKeywordsResponse\x12\x1a\n\x08keywords\x18\x01 \x03(\tR\x08keywords\"9\n\x1b\x45xtractKeywordsBatchRequest\x12\x1a\n\x08\x63ontents\x18\x01 \x03(\tR\x08\x63ontents\"x\n\x1c\x45xtractKeywordsBatchResponse\x12X\n\x0ekeywords_array\x18\x01 \x03(\x0b\x32\x31.noted.recommendations.v1.ExtractKeywordsResponseR\rkeywordsArray2\x98\x02\n\x12RecommendationsAPI\x12x\n\x0f\x45xtractKeywords\x12\x30.noted.recommendations.v1.ExtractKeywordsRequest\x1a\x31.noted.recommendations.v1.ExtractKeywordsResponse\"\x00\x12\x87\x01\n\x14\x45xtractKeywordsBatch\x12\x35.noted.recommendations.v1.ExtractKeywordsBatchRequest\x1a\x36.noted.recommendations.v1.ExtractKeywordsBatchResponse\"\x00\x42\x1aZ\x18noted/recommendations/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n.noted/recommendations/v1/recommendations.proto\x12\x18noted.recommendations.v1\"2\n\x16\x45xtractKeywordsRequest\x12\x18\n\x07\x63ontent\x18\x01 \x01(\tR\x07\x63ontent\"5\n\x17\x45xtractKeywordsResponse\x12\x1a\n\x08keywords\x18\x01 \x03(\tR\x08keywords\"9\n\x1b\x45xtractKeywordsBatchRequest\x12\x1a\n\x08\x63ontents\x18\x01 \x03(\tR\x08\x63ontents\"x\n\x1c\x45xtractKeywordsBatchResponse\x12X\n\x0ekeywords_array\x18\x01 \x03(\x0b\x32\x31.noted.recommendations.v1.ExtractKeywordsResponseR\rkeywordsArray\",\n\x10SummarizeRequest\x12\x18\n\x07\x63ontent\x18\x01 \x01(\tR\x07\x63ontent\"-\n\x11SummarizeResponse\x12\x18\n\x07summary\x18\x01 \x01(\tR\x07summary2\x80\x03\n\x12RecommendationsAPI\x12x\n\x0f\x45xtractKeywords\x12\x30.noted.recommendations.v1.ExtractKeywordsRequest\x1a\x31.noted.recommendations.v1.ExtractKeywordsResponse\"\x00\x12\x87\x01\n\x14\x45xtractKeywordsBatch\x12\x35.noted.recommendations.v1.ExtractKeywordsBatchRequest\x1a\x36.noted.recommendations.v1.ExtractKeywordsBatchResponse\"\x00\x12\x66\n\tSummarize\x12*.noted.recommendations.v1.SummarizeRequest\x1a+.noted.recommendations.v1.SummarizeResponse\"\x00\x42\x1aZ\x18noted/recommendations/v1b\x06proto3')
 
 
 
@@ -22,6 +22,8 @@ _EXTRACTKEYWORDSREQUEST = DESCRIPTOR.message_types_by_name['ExtractKeywordsReque
 _EXTRACTKEYWORDSRESPONSE = DESCRIPTOR.message_types_by_name['ExtractKeywordsResponse']
 _EXTRACTKEYWORDSBATCHREQUEST = DESCRIPTOR.message_types_by_name['ExtractKeywordsBatchRequest']
 _EXTRACTKEYWORDSBATCHRESPONSE = DESCRIPTOR.message_types_by_name['ExtractKeywordsBatchResponse']
+_SUMMARIZEREQUEST = DESCRIPTOR.message_types_by_name['SummarizeRequest']
+_SUMMARIZERESPONSE = DESCRIPTOR.message_types_by_name['SummarizeResponse']
 ExtractKeywordsRequest = _reflection.GeneratedProtocolMessageType('ExtractKeywordsRequest', (_message.Message,), {
   'DESCRIPTOR' : _EXTRACTKEYWORDSREQUEST,
   '__module__' : 'noted.recommendations.v1.recommendations_pb2'
@@ -50,6 +52,20 @@ ExtractKeywordsBatchResponse = _reflection.GeneratedProtocolMessageType('Extract
   })
 _sym_db.RegisterMessage(ExtractKeywordsBatchResponse)
 
+SummarizeRequest = _reflection.GeneratedProtocolMessageType('SummarizeRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SUMMARIZEREQUEST,
+  '__module__' : 'noted.recommendations.v1.recommendations_pb2'
+  # @@protoc_insertion_point(class_scope:noted.recommendations.v1.SummarizeRequest)
+  })
+_sym_db.RegisterMessage(SummarizeRequest)
+
+SummarizeResponse = _reflection.GeneratedProtocolMessageType('SummarizeResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SUMMARIZERESPONSE,
+  '__module__' : 'noted.recommendations.v1.recommendations_pb2'
+  # @@protoc_insertion_point(class_scope:noted.recommendations.v1.SummarizeResponse)
+  })
+_sym_db.RegisterMessage(SummarizeResponse)
+
 _RECOMMENDATIONSAPI = DESCRIPTOR.services_by_name['RecommendationsAPI']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
@@ -63,6 +79,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _EXTRACTKEYWORDSBATCHREQUEST._serialized_end=240
   _EXTRACTKEYWORDSBATCHRESPONSE._serialized_start=242
   _EXTRACTKEYWORDSBATCHRESPONSE._serialized_end=362
-  _RECOMMENDATIONSAPI._serialized_start=365
-  _RECOMMENDATIONSAPI._serialized_end=645
+  _SUMMARIZEREQUEST._serialized_start=364
+  _SUMMARIZEREQUEST._serialized_end=408
+  _SUMMARIZERESPONSE._serialized_start=410
+  _SUMMARIZERESPONSE._serialized_end=455
+  _RECOMMENDATIONSAPI._serialized_start=458
+  _RECOMMENDATIONSAPI._serialized_end=842
 # @@protoc_insertion_point(module_scope)

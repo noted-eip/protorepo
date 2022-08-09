@@ -24,6 +24,11 @@ class RecommendationsAPIStub(object):
                 request_serializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsBatchRequest.SerializeToString,
                 response_deserializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsBatchResponse.FromString,
                 )
+        self.Summarize = channel.unary_unary(
+                '/noted.recommendations.v1.RecommendationsAPI/Summarize',
+                request_serializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.SummarizeRequest.SerializeToString,
+                response_deserializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.SummarizeResponse.FromString,
+                )
 
 
 class RecommendationsAPIServicer(object):
@@ -41,6 +46,12 @@ class RecommendationsAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def Summarize(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_RecommendationsAPIServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -53,6 +64,11 @@ def add_RecommendationsAPIServicer_to_server(servicer, server):
                     servicer.ExtractKeywordsBatch,
                     request_deserializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsBatchRequest.FromString,
                     response_serializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsBatchResponse.SerializeToString,
+            ),
+            'Summarize': grpc.unary_unary_rpc_method_handler(
+                    servicer.Summarize,
+                    request_deserializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.SummarizeRequest.FromString,
+                    response_serializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.SummarizeResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -95,5 +111,22 @@ class RecommendationsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.recommendations.v1.RecommendationsAPI/ExtractKeywordsBatch',
             noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsBatchRequest.SerializeToString,
             noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsBatchResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Summarize(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.recommendations.v1.RecommendationsAPI/Summarize',
+            noted_dot_recommendations_dot_v1_dot_recommendations__pb2.SummarizeRequest.SerializeToString,
+            noted_dot_recommendations_dot_v1_dot_recommendations__pb2.SummarizeResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
