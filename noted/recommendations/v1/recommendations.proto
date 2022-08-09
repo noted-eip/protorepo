@@ -7,6 +7,7 @@ option go_package = "noted/recommendations/v1";
 service RecommendationsAPI {
     rpc ExtractKeywords(ExtractKeywordsRequest) returns (ExtractKeywordsResponse) {}
     rpc ExtractKeywordsBatch(ExtractKeywordsBatchRequest) returns (ExtractKeywordsBatchResponse) {}
+    rpc Summarize(SummarizeRequest) returns (SummarizeResponse) {}
 }
 
 message ExtractKeywordsRequest {
@@ -23,4 +24,13 @@ message ExtractKeywordsBatchRequest {
 
 message ExtractKeywordsBatchResponse {
     repeated ExtractKeywordsResponse keywords_array = 1;
+}
+
+message SummarizeRequest {
+    string content = 1;
+}
+
+message SummarizeResponse {
+    // Small text output which summarizes the original entry.
+    string summary = 1;
 }
