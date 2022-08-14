@@ -12,12 +12,18 @@ message Account {
     string email = 3;
 }
 
+message Pagination {
+    uint32 limit = 1;
+	uint32 offset = 2;
+}
+
 service AccountsAPI {
     // Create an account using the email and password flow.
     rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
     rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {}
     rpc UpdateAccount(UpdateAccountRequest) returns (UpdateAccountResponse) {}
     rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
+    rpc ListAccount(ListAccountRequest) returns (ListAccountResponse) {}
     // Authenticate using the email and password flow.
     rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse) {}
 }
@@ -64,4 +70,12 @@ message AuthenticateRequest {
 
 message AuthenticateResponse {
     string token = 1;
+}
+
+message ListAccountRequest {
+    Pagination paginate = 1;
+}
+
+message ListAccountResponse {
+    repeated Account accounts = 1;
 }
