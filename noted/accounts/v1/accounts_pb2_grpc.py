@@ -34,6 +34,11 @@ class AccountsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.DeleteAccountRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.DeleteAccountResponse.FromString,
                 )
+        self.ListAccount = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/ListAccount',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountResponse.FromString,
+                )
         self.Authenticate = channel.unary_unary(
                 '/noted.accounts.v1.AccountsAPI/Authenticate',
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateRequest.SerializeToString,
@@ -69,6 +74,12 @@ class AccountsAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListAccount(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def Authenticate(self, request, context):
         """Authenticate using the email and password flow.
         """
@@ -98,6 +109,11 @@ def add_AccountsAPIServicer_to_server(servicer, server):
                     servicer.DeleteAccount,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.DeleteAccountRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.DeleteAccountResponse.SerializeToString,
+            ),
+            'ListAccount': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListAccount,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountResponse.SerializeToString,
             ),
             'Authenticate': grpc.unary_unary_rpc_method_handler(
                     servicer.Authenticate,
@@ -179,6 +195,23 @@ class AccountsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/DeleteAccount',
             noted_dot_accounts_dot_v1_dot_accounts__pb2.DeleteAccountRequest.SerializeToString,
             noted_dot_accounts_dot_v1_dot_accounts__pb2.DeleteAccountResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListAccount(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/ListAccount',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
