@@ -12,7 +12,7 @@ message Account {
     string email = 3;
 }
 
-message Pagination {
+message pagination {
     uint32 Limit = 1;
 	uint32 offset = 2;
 }
@@ -73,7 +73,7 @@ message AuthenticateResponse {
 }
 
 message ListAccountRequest {
-    Pagination paginate = 1;
+    pagination paginate = 1;
 }
 
 message ListAccountResponse {
