@@ -9,22 +9,60 @@ import "google/protobuf/field_mask.proto";
 message Group {
     string id = 1;
     string name = 2;
-    string owner_id = 3;   
-    repeated GroupMember members = 4;
-    string description = 5;
+    string description = 3;
 }
 
 message GroupMember {
     string account_id = 1;
+    string role = 2;
+}
+
+// NoteInGroup is the representation of a note stored wihtin the context of
+// a group (which folder it belongs to, who wrote it, its title).
+// The actual note is stored in the notes-service.
+message NoteInGroup {
+    // ID of the note within the notes-service.
+    string note_id = 1;
+    string title = 2;
+    string author_account_id = 3;
+    // Next sprint -- Leave blank.
+    string folder_id = 4;
 }
 
 service GroupsAPI {
+    // Creates a group with a single administrator member (the authenticated user).
+    // Must be authenticated.
     rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {}
+    // Must be authenticated.
+    rpc GetGroup(GetGroupRequest) returns (GetGroupResponse) {}
+    // Must be group administrator.
+    // Deletes all the associated resources (members, notes).
     rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
+    // Must be group administrator.
     rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {}
+
+    // This endpoint is not meant to be used by regular users. Use the InvitesAPI instead.
+    // Only works with an internal token.
+    rpc AddMemberToGroup(AddMemberToGroupRequest) returns (AddMemberToGroupResponse) {}
+    // Must be group administrator.
+    rpc RemoveMemberFromGroup(RemoveMemberFromGroupRequest) returns (RemoveMemberFromGroupResponse) {}
+    // Must be group member.
     rpc ListGroupMembers(ListGroupMembersRequest) returns (ListGroupMembersResponse) {}
-    rpc JoinGroup(JoinGroupRequest) returns (JoinGroupResponse) {}
+
+    // Must be group member and author of the note.
     rpc AddNoteToGroup(AddNoteToGroupRequest) returns (AddNoteToGroupResponse) {}
+    // Must be group member. Can only update `note.title` and `note.folder_id`.
+    rpc UpdateNoteInGroup(UpdateNoteInGroupRequest) returns (UpdateNoteInGroupResponse) {}
+    // Must be group member, author of the note or administrator.
+    rpc RemoveNoteFromGroup(RemoveNoteFromGroupRequest) returns (RemoveNoteFromGroupResponse) {}
+    // Must be group member.
+    rpc ListNotesInGroup(ListNotesInGroupRequest) returns (ListNotesInGroupResponse) {}
+
+    // Next sprint -- Leave blank.
+    rpc CreateFolder(CreateFolderRequest) returns (CreateFolderReponse) {}
+    rpc RemoveFolder(RemoveFolderRequest) returns (RemoveFolderReponse) {}
+    rpc UpdateFolder(UpdateFolderRequest) returns (UpdateFolderReponse) {}
+    rpc ListFolders(ListFoldersRequest) returns (ListFoldersResponse) {}
 }
 
 message CreateGroupRequest {
@@ -36,9 +74,16 @@ message CreateGroupResponse {
     Group group = 1;
 }
 
+message GetGroupRequest {
+    string group_id = 1;
+}
+
+message GetGroupResponse {
+    Group group = 1;
+}
+
 message DeleteGroupRequest {
-    string id = 1;
-    string name = 2;
+    string group_id = 1;
 }
 
 message DeleteGroupResponse {
@@ -54,25 +99,109 @@ message UpdateGroupResponse {
 }
 
 message ListGroupMembersRequest {
-    string id = 1;
-    string name = 2;
+    string group_id = 1;
 }
 
 message ListGroupMembersResponse {
     repeated GroupMember members = 1;
 }
 
-message JoinGroupRequest {
-    string id = 1;
+message AddMemberToGroupRequest {
+    string group_id = 1;
+    string account_id = 2;
 }
 
-message JoinGroupResponse {
+message AddMemberToGroupResponse {
+}
+
+message RemoveMemberFromGroupRequest {
+    string group_id = 1;
+    string account_id = 2;
+}
+
+message RemoveMemberFromGroupResponse {
+
 }
 
 message AddNoteToGroupRequest {
-    string id = 1;
+    string group_id = 1;
+    // ID of the note within the notes-service.
     string note_id = 2;
+    string title = 3;
+    // Defaults to the authenticated user.
+    string author_account_id = 4;
+    // Next sprint -- Leave blank.
+    string folder_id = 5;
 }
 
 message AddNoteToGroupResponse {
+    NoteInGroup note = 1;
+}
+
+message UpdateNoteInGroupRequest {
+    string group_id = 1;
+    NoteInGroup note = 2;
+    google.protobuf.FieldMask update_mask = 3;
+}
+
+message UpdateNoteInGroupResponse {
+    NoteInGroup note = 1;
+}
+
+message RemoveNoteFromGroupRequest {
+    string group_id = 1;
+    string note_id = 2;
+}
+
+message RemoveNoteFromGroupResponse {
+
+}
+
+message ListNotesInGroupRequest {
+    string group_id = 1;
+    // (Optional) List only notes from that account.
+    string author_account_id = 2;
+
+    // Next sprint -- Leave blank.
+    // (Optional) List notes only from a given folder.
+    string folder_id = 3;
+
+    string limit = 4;
+    string offset = 5;
+}
+
+message ListNotesInGroupResponse {
+    NoteInGroup notes = 1;
+}
+
+message CreateFolderRequest {
+    // TODO
+}
+
+message CreateFolderReponse {
+    // TODO
+}
+
+message RemoveFolderRequest {
+    // TODO
+}
+
+message RemoveFolderReponse {
+    // TODO
+}
+
+message UpdateFolderRequest {
+    // TODO
+}
+
+message UpdateFolderReponse {
+    // TODO
+}
+
+message ListFoldersRequest {
+    // TODO
+}
+
+message ListFoldersResponse {
+    // TODO
 }
