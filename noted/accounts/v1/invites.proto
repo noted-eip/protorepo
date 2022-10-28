@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package noted.accounts.v1;
+
+option go_package = "noted/accounts/v1";
+
+message Invite {
+    string id = 1;
+    string group_id = 2;
+    string sender_account_id = 3;
+    string recipient_account_id = 4;
+}
+
+// Send, accept, deny, revoke and list invitations to groups.
+service InvitesAPI {
+    // The sender defaults to the authenticated user. Must be group member.
+    rpc SendInvite(SendInviteRequest) returns (SendInviteResponse) {}
+    // Must be group administrator or sender or recipient.
+    rpc GetInvite(GetInviteRequest) returns (GetInviteResponse) {}
+    // Must be recipient. Accepting an invitation automatically adds the
+    // recipient to the group and deletes the invite.
+    rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse) {}
+    // Must be recipient. Deletes the invitation without making the
+    // recipient join the group.
+    rpc DenyInvite(DenyInviteRequest) returns (DenyInviteResponse) {}
+    // Must be group administrator or sender or recipient.
+    rpc ListInvites(ListInvitesRequest) returns (ListInvitesResponse) {}
+
+    // TODO: Next sprint -- Leave blank.
+    // Must be group administrator or sender. Deletes the invitation without
+    // making the recipient join the group.
+    rpc RevokeInvite(RevokeInviteRequest) returns (RevokeInviteResponse) {}
+}
+
+message SendInviteRequest {
+    string group_id = 1;
+    string recipient_account_id = 2;
+}
+
+message SendInviteResponse {
+    Invite invite = 1;
+}
+
+message GetInviteRequest {
+    string invite_id = 1;
+}
+
+message GetInviteResponse {
+    Invite invite = 1;
+}
+
+message AcceptInviteRequest {
+    string invite_id = 1;
+}
+
+message AcceptInviteResponse {
+
+}
+
+message DenyInviteRequest {
+    string invite_id = 1;
+}
+
+message DenyInviteResponse {
+
+}
+
+message ListInvitesRequest {
+    // (Optional) Returns only invites from sender.
+    string sender_account_id = 1;
+    // (Optional) Returns only invites destined to recipient.
+    string recipient_account_id = 2;
+    // (Optional) Returns only invites for a given group.
+    string group_id = 3;
+    // Defaults to 20.
+    int32 limit = 4;
+    int32 offset = 5; 
+}
+
+message ListInvitesResponse {
+    repeated Invite invites = 1;
+}
+
+message RevokeInviteRequest {
+    // TODO: Next sprint.
+}
+
+message RevokeInviteResponse {
+    // TODO: Next sprint.
+}
