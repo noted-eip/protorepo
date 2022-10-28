@@ -29,6 +29,9 @@ message NoteInGroup {
     string folder_id = 4;
 }
 
+// Creation, read/update, deletion of groups of users.
+// Addition and removal of group members with roles.
+// Management of notes and folders within a group.
 service GroupsAPI {
     // Creates a group with a single administrator member (the authenticated user).
     // Must be authenticated.
@@ -58,7 +61,7 @@ service GroupsAPI {
     // Must be group member.
     rpc ListNotesInGroup(ListNotesInGroupRequest) returns (ListNotesInGroupResponse) {}
 
-    // Next sprint -- Leave blank.
+    // TODO: Next sprint -- Leave blank.
     rpc CreateFolder(CreateFolderRequest) returns (CreateFolderReponse) {}
     rpc RemoveFolder(RemoveFolderRequest) returns (RemoveFolderReponse) {}
     rpc UpdateFolder(UpdateFolderRequest) returns (UpdateFolderReponse) {}
@@ -175,33 +178,33 @@ message ListNotesInGroupResponse {
 }
 
 message CreateFolderRequest {
-    // TODO
+    // TODO: Next sprint.
 }
 
 message CreateFolderReponse {
-    // TODO
+    // TODO: Next sprint.
 }
 
 message RemoveFolderRequest {
-    // TODO
+    // TODO: Next sprint.
 }
 
 message RemoveFolderReponse {
-    // TODO
+    // TODO: Next sprint.
 }
 
 message UpdateFolderRequest {
-    // TODO
+    // TODO: Next sprint.
 }
 
 message UpdateFolderReponse {
-    // TODO
+    // TODO: Next sprint.
 }
 
 message ListFoldersRequest {
-    // TODO
+    // TODO: Next sprint.
 }
 
 message ListFoldersResponse {
-    // TODO
+    // TODO: Next sprint.
 }

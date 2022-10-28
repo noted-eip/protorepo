@@ -12,6 +12,9 @@ message Account {
     string email = 3;
 }
 
+// Creation, read, update and deletion of accounts.
+// Authentication using email/password and using OAuth.
+// Manages password recovery.
 service AccountsAPI {
     // Create an account using the email and password flow.
     rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
