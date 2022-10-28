@@ -20,7 +20,7 @@ service AccountsAPI {
     rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
     // Must be authenticated.
     rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {}
-    // Must be account owner. Can only update `acount.name`.
+    // Must be account owner. Can only update `account.name`.
     rpc UpdateAccount(UpdateAccountRequest) returns (UpdateAccountResponse) {}
     // Must be account owner.
     // TODO: Delete all associated resources (notes, transfer group ownership,

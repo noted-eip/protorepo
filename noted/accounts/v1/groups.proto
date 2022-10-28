@@ -62,9 +62,9 @@ service GroupsAPI {
     rpc ListNotesInGroup(ListNotesInGroupRequest) returns (ListNotesInGroupResponse) {}
 
     // TODO: Next sprint -- Leave blank.
-    rpc CreateFolder(CreateFolderRequest) returns (CreateFolderReponse) {}
-    rpc RemoveFolder(RemoveFolderRequest) returns (RemoveFolderReponse) {}
-    rpc UpdateFolder(UpdateFolderRequest) returns (UpdateFolderReponse) {}
+    rpc CreateFolder(CreateFolderRequest) returns (CreateFolderResponse) {}
+    rpc RemoveFolder(RemoveFolderRequest) returns (RemoveFolderResponse) {}
+    rpc UpdateFolder(UpdateFolderRequest) returns (UpdateFolderResponse) {}
     rpc ListFolders(ListFoldersRequest) returns (ListFoldersResponse) {}
 }
 
@@ -181,7 +181,7 @@ message CreateFolderRequest {
     // TODO: Next sprint.
 }
 
-message CreateFolderReponse {
+message CreateFolderResponse {
     // TODO: Next sprint.
 }
 
@@ -189,7 +189,7 @@ message RemoveFolderRequest {
     // TODO: Next sprint.
 }
 
-message RemoveFolderReponse {
+message RemoveFolderResponse {
     // TODO: Next sprint.
 }
 
@@ -197,7 +197,7 @@ message UpdateFolderRequest {
     // TODO: Next sprint.
 }
 
-message UpdateFolderReponse {
+message UpdateFolderResponse {
     // TODO: Next sprint.
 }
 
