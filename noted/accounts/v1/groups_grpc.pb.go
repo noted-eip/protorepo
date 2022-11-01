@@ -31,6 +31,10 @@ type GroupsAPIClient interface {
 	// This endpoint is not meant to be used by regular users. Use the InvitesAPI instead.
 	// Only works with an internal token.
 	AddGroupMember(ctx context.Context, in *AddGroupMemberRequest, opts ...grpc.CallOption) (*AddGroupMemberResponse, error)
+	// Must be group member.
+	GetGroupMember(ctx context.Context, in *GetGroupMemberRequest, opts ...grpc.CallOption) (*GetGroupMemberResponse, error)
+	// Must be group administrator.
+	UpdateGroupMember(ctx context.Context, in *UpdateGroupMemberRequest, opts ...grpc.CallOption) (*UpdateGroupMemberResponse, error)
 	// Must be group administrator or the authenticated user removing itself from
 	// the group.
 	RemoveGroupMember(ctx context.Context, in *RemoveGroupMemberRequest, opts ...grpc.CallOption) (*RemoveGroupMemberResponse, error)
@@ -38,6 +42,8 @@ type GroupsAPIClient interface {
 	ListGroupMembers(ctx context.Context, in *ListGroupMembersRequest, opts ...grpc.CallOption) (*ListGroupMembersResponse, error)
 	// Must be group member and author of the note.
 	AddGroupNote(ctx context.Context, in *AddGroupNoteRequest, opts ...grpc.CallOption) (*AddGroupNoteResponse, error)
+	// Must be group member.
+	GetGroupNote(ctx context.Context, in *GetGroupNoteRequest, opts ...grpc.CallOption) (*GetGroupNoteResponse, error)
 	// Must be group member. Can only update `note.title` and `note.folder_id`.
 	UpdateGroupNote(ctx context.Context, in *UpdateGroupNoteRequest, opts ...grpc.CallOption) (*UpdateGroupNoteResponse, error)
 	// Must be group member, author of the note or administrator.
@@ -104,6 +110,24 @@ func (c *groupsAPIClient) AddGroupMember(ctx context.Context, in *AddGroupMember
 	return out, nil
 }
 
+func (c *groupsAPIClient) GetGroupMember(ctx context.Context, in *GetGroupMemberRequest, opts ...grpc.CallOption) (*GetGroupMemberResponse, error) {
+	out := new(GetGroupMemberResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/GetGroupMember", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupsAPIClient) UpdateGroupMember(ctx context.Context, in *UpdateGroupMemberRequest, opts ...grpc.CallOption) (*UpdateGroupMemberResponse, error) {
+	out := new(UpdateGroupMemberResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/UpdateGroupMember", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *groupsAPIClient) RemoveGroupMember(ctx context.Context, in *RemoveGroupMemberRequest, opts ...grpc.CallOption) (*RemoveGroupMemberResponse, error) {
 	out := new(RemoveGroupMemberResponse)
 	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/RemoveGroupMember", in, out, opts...)
@@ -125,6 +149,15 @@ func (c *groupsAPIClient) ListGroupMembers(ctx context.Context, in *ListGroupMem
 func (c *groupsAPIClient) AddGroupNote(ctx context.Context, in *AddGroupNoteRequest, opts ...grpc.CallOption) (*AddGroupNoteResponse, error) {
 	out := new(AddGroupNoteResponse)
 	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/AddGroupNote", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupsAPIClient) GetGroupNote(ctx context.Context, in *GetGroupNoteRequest, opts ...grpc.CallOption) (*GetGroupNoteResponse, error) {
+	out := new(GetGroupNoteResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/GetGroupNote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -211,6 +244,10 @@ type GroupsAPIServer interface {
 	// This endpoint is not meant to be used by regular users. Use the InvitesAPI instead.
 	// Only works with an internal token.
 	AddGroupMember(context.Context, *AddGroupMemberRequest) (*AddGroupMemberResponse, error)
+	// Must be group member.
+	GetGroupMember(context.Context, *GetGroupMemberRequest) (*GetGroupMemberResponse, error)
+	// Must be group administrator.
+	UpdateGroupMember(context.Context, *UpdateGroupMemberRequest) (*UpdateGroupMemberResponse, error)
 	// Must be group administrator or the authenticated user removing itself from
 	// the group.
 	RemoveGroupMember(context.Context, *RemoveGroupMemberRequest) (*RemoveGroupMemberResponse, error)
@@ -218,6 +255,8 @@ type GroupsAPIServer interface {
 	ListGroupMembers(context.Context, *ListGroupMembersRequest) (*ListGroupMembersResponse, error)
 	// Must be group member and author of the note.
 	AddGroupNote(context.Context, *AddGroupNoteRequest) (*AddGroupNoteResponse, error)
+	// Must be group member.
+	GetGroupNote(context.Context, *GetGroupNoteRequest) (*GetGroupNoteResponse, error)
 	// Must be group member. Can only update `note.title` and `note.folder_id`.
 	UpdateGroupNote(context.Context, *UpdateGroupNoteRequest) (*UpdateGroupNoteResponse, error)
 	// Must be group member, author of the note or administrator.
@@ -251,6 +290,12 @@ func (UnimplementedGroupsAPIServer) UpdateGroup(context.Context, *UpdateGroupReq
 func (UnimplementedGroupsAPIServer) AddGroupMember(context.Context, *AddGroupMemberRequest) (*AddGroupMemberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddGroupMember not implemented")
 }
+func (UnimplementedGroupsAPIServer) GetGroupMember(context.Context, *GetGroupMemberRequest) (*GetGroupMemberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGroupMember not implemented")
+}
+func (UnimplementedGroupsAPIServer) UpdateGroupMember(context.Context, *UpdateGroupMemberRequest) (*UpdateGroupMemberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateGroupMember not implemented")
+}
 func (UnimplementedGroupsAPIServer) RemoveGroupMember(context.Context, *RemoveGroupMemberRequest) (*RemoveGroupMemberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveGroupMember not implemented")
 }
@@ -259,6 +304,9 @@ func (UnimplementedGroupsAPIServer) ListGroupMembers(context.Context, *ListGroup
 }
 func (UnimplementedGroupsAPIServer) AddGroupNote(context.Context, *AddGroupNoteRequest) (*AddGroupNoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddGroupNote not implemented")
+}
+func (UnimplementedGroupsAPIServer) GetGroupNote(context.Context, *GetGroupNoteRequest) (*GetGroupNoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGroupNote not implemented")
 }
 func (UnimplementedGroupsAPIServer) UpdateGroupNote(context.Context, *UpdateGroupNoteRequest) (*UpdateGroupNoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateGroupNote not implemented")
@@ -384,6 +432,42 @@ func _GroupsAPI_AddGroupMember_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GroupsAPI_GetGroupMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGroupMemberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).GetGroupMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/GetGroupMember",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).GetGroupMember(ctx, req.(*GetGroupMemberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GroupsAPI_UpdateGroupMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateGroupMemberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).UpdateGroupMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/UpdateGroupMember",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).UpdateGroupMember(ctx, req.(*UpdateGroupMemberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GroupsAPI_RemoveGroupMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RemoveGroupMemberRequest)
 	if err := dec(in); err != nil {
@@ -434,6 +518,24 @@ func _GroupsAPI_AddGroupNote_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GroupsAPIServer).AddGroupNote(ctx, req.(*AddGroupNoteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GroupsAPI_GetGroupNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGroupNoteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).GetGroupNote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/GetGroupNote",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).GetGroupNote(ctx, req.(*GetGroupNoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -592,6 +694,14 @@ var GroupsAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _GroupsAPI_AddGroupMember_Handler,
 		},
 		{
+			MethodName: "GetGroupMember",
+			Handler:    _GroupsAPI_GetGroupMember_Handler,
+		},
+		{
+			MethodName: "UpdateGroupMember",
+			Handler:    _GroupsAPI_UpdateGroupMember_Handler,
+		},
+		{
 			MethodName: "RemoveGroupMember",
 			Handler:    _GroupsAPI_RemoveGroupMember_Handler,
 		},
@@ -602,6 +712,10 @@ var GroupsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddGroupNote",
 			Handler:    _GroupsAPI_AddGroupNote_Handler,
+		},
+		{
+			MethodName: "GetGroupNote",
+			Handler:    _GroupsAPI_GetGroupNote_Handler,
 		},
 		{
 			MethodName: "UpdateGroupNote",
