@@ -20,10 +20,17 @@ const _ = grpc.SupportPackageIsVersion7
 type AccountsAPIClient interface {
 	// Create an account using the email and password flow.
 	CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...grpc.CallOption) (*CreateAccountResponse, error)
+	// Must be authenticated.
 	GetAccount(ctx context.Context, in *GetAccountRequest, opts ...grpc.CallOption) (*GetAccountResponse, error)
+	// Must be account owner. Can only update `account.name`.
 	UpdateAccount(ctx context.Context, in *UpdateAccountRequest, opts ...grpc.CallOption) (*UpdateAccountResponse, error)
+	// Must be account owner.
+	// TODO: Delete all associated resources (notes, transfer group ownership,
+	// etc).
 	DeleteAccount(ctx context.Context, in *DeleteAccountRequest, opts ...grpc.CallOption) (*DeleteAccountResponse, error)
-	ListAccount(ctx context.Context, in *ListAccountRequest, opts ...grpc.CallOption) (*ListAccountResponse, error)
+	// This endpoint is not meant to be used by regular users.
+	// Only works with an internal token.
+	ListAccounts(ctx context.Context, in *ListAccountsRequest, opts ...grpc.CallOption) (*ListAccountsResponse, error)
 	// Authenticate using the email and password flow.
 	Authenticate(ctx context.Context, in *AuthenticateRequest, opts ...grpc.CallOption) (*AuthenticateResponse, error)
 }
@@ -72,9 +79,9 @@ func (c *accountsAPIClient) DeleteAccount(ctx context.Context, in *DeleteAccount
 	return out, nil
 }
 
-func (c *accountsAPIClient) ListAccount(ctx context.Context, in *ListAccountRequest, opts ...grpc.CallOption) (*ListAccountResponse, error) {
-	out := new(ListAccountResponse)
-	err := c.cc.Invoke(ctx, "/noted.accounts.v1.AccountsAPI/ListAccount", in, out, opts...)
+func (c *accountsAPIClient) ListAccounts(ctx context.Context, in *ListAccountsRequest, opts ...grpc.CallOption) (*ListAccountsResponse, error) {
+	out := new(ListAccountsResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.AccountsAPI/ListAccounts", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,10 +103,17 @@ func (c *accountsAPIClient) Authenticate(ctx context.Context, in *AuthenticateRe
 type AccountsAPIServer interface {
 	// Create an account using the email and password flow.
 	CreateAccount(context.Context, *CreateAccountRequest) (*CreateAccountResponse, error)
+	// Must be authenticated.
 	GetAccount(context.Context, *GetAccountRequest) (*GetAccountResponse, error)
+	// Must be account owner. Can only update `account.name`.
 	UpdateAccount(context.Context, *UpdateAccountRequest) (*UpdateAccountResponse, error)
+	// Must be account owner.
+	// TODO: Delete all associated resources (notes, transfer group ownership,
+	// etc).
 	DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error)
-	ListAccount(context.Context, *ListAccountRequest) (*ListAccountResponse, error)
+	// This endpoint is not meant to be used by regular users.
+	// Only works with an internal token.
+	ListAccounts(context.Context, *ListAccountsRequest) (*ListAccountsResponse, error)
 	// Authenticate using the email and password flow.
 	Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error)
 	mustEmbedUnimplementedAccountsAPIServer()
@@ -121,8 +135,8 @@ func (UnimplementedAccountsAPIServer) UpdateAccount(context.Context, *UpdateAcco
 func (UnimplementedAccountsAPIServer) DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAccount not implemented")
 }
-func (UnimplementedAccountsAPIServer) ListAccount(context.Context, *ListAccountRequest) (*ListAccountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListAccount not implemented")
+func (UnimplementedAccountsAPIServer) ListAccounts(context.Context, *ListAccountsRequest) (*ListAccountsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAccounts not implemented")
 }
 func (UnimplementedAccountsAPIServer) Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Authenticate not implemented")
@@ -212,20 +226,20 @@ func _AccountsAPI_DeleteAccount_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AccountsAPI_ListAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListAccountRequest)
+func _AccountsAPI_ListAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAccountsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AccountsAPIServer).ListAccount(ctx, in)
+		return srv.(AccountsAPIServer).ListAccounts(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/noted.accounts.v1.AccountsAPI/ListAccount",
+		FullMethod: "/noted.accounts.v1.AccountsAPI/ListAccounts",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AccountsAPIServer).ListAccount(ctx, req.(*ListAccountRequest))
+		return srv.(AccountsAPIServer).ListAccounts(ctx, req.(*ListAccountsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -272,8 +286,8 @@ var AccountsAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AccountsAPI_DeleteAccount_Handler,
 		},
 		{
-			MethodName: "ListAccount",
-			Handler:    _AccountsAPI_ListAccount_Handler,
+			MethodName: "ListAccounts",
+			Handler:    _AccountsAPI_ListAccounts_Handler,
 		},
 		{
 			MethodName: "Authenticate",

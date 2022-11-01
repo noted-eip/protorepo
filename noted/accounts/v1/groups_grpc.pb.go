@@ -18,12 +18,37 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GroupsAPIClient interface {
+	// Creates a group with a single administrator member (the authenticated user).
+	// Must be authenticated.
 	CreateGroup(ctx context.Context, in *CreateGroupRequest, opts ...grpc.CallOption) (*CreateGroupResponse, error)
+	// Must be authenticated.
+	GetGroup(ctx context.Context, in *GetGroupRequest, opts ...grpc.CallOption) (*GetGroupResponse, error)
+	// Must be group administrator.
+	// Deletes all the associated resources (members, notes).
 	DeleteGroup(ctx context.Context, in *DeleteGroupRequest, opts ...grpc.CallOption) (*DeleteGroupResponse, error)
+	// Must be group administrator.
 	UpdateGroup(ctx context.Context, in *UpdateGroupRequest, opts ...grpc.CallOption) (*UpdateGroupResponse, error)
+	// This endpoint is not meant to be used by regular users. Use the InvitesAPI instead.
+	// Only works with an internal token.
+	AddGroupMember(ctx context.Context, in *AddGroupMemberRequest, opts ...grpc.CallOption) (*AddGroupMemberResponse, error)
+	// Must be group administrator or the authenticated user removing itself from
+	// the group.
+	RemoveGroupMember(ctx context.Context, in *RemoveGroupMemberRequest, opts ...grpc.CallOption) (*RemoveGroupMemberResponse, error)
+	// Must be group member.
 	ListGroupMembers(ctx context.Context, in *ListGroupMembersRequest, opts ...grpc.CallOption) (*ListGroupMembersResponse, error)
-	JoinGroup(ctx context.Context, in *JoinGroupRequest, opts ...grpc.CallOption) (*JoinGroupResponse, error)
-	AddNoteToGroup(ctx context.Context, in *AddNoteToGroupRequest, opts ...grpc.CallOption) (*AddNoteToGroupResponse, error)
+	// Must be group member and author of the note.
+	AddGroupNote(ctx context.Context, in *AddGroupNoteRequest, opts ...grpc.CallOption) (*AddGroupNoteResponse, error)
+	// Must be group member. Can only update `note.title` and `note.folder_id`.
+	UpdateGroupNote(ctx context.Context, in *UpdateGroupNoteRequest, opts ...grpc.CallOption) (*UpdateGroupNoteResponse, error)
+	// Must be group member, author of the note or administrator.
+	RemoveGroupNote(ctx context.Context, in *RemoveGroupNoteRequest, opts ...grpc.CallOption) (*RemoveGroupNoteResponse, error)
+	// Must be group member.
+	ListGroupNotes(ctx context.Context, in *ListGroupNotesRequest, opts ...grpc.CallOption) (*ListGroupNotesResponse, error)
+	// TODO: Next sprint -- Leave blank.
+	CreateFolder(ctx context.Context, in *CreateFolderRequest, opts ...grpc.CallOption) (*CreateFolderResponse, error)
+	DeleteFolder(ctx context.Context, in *DeleteFolderRequest, opts ...grpc.CallOption) (*DeleteFolderResponse, error)
+	UpdateFolder(ctx context.Context, in *UpdateFolderRequest, opts ...grpc.CallOption) (*UpdateFolderResponse, error)
+	ListFolders(ctx context.Context, in *ListFoldersRequest, opts ...grpc.CallOption) (*ListFoldersResponse, error)
 }
 
 type groupsAPIClient struct {
@@ -37,6 +62,15 @@ func NewGroupsAPIClient(cc grpc.ClientConnInterface) GroupsAPIClient {
 func (c *groupsAPIClient) CreateGroup(ctx context.Context, in *CreateGroupRequest, opts ...grpc.CallOption) (*CreateGroupResponse, error) {
 	out := new(CreateGroupResponse)
 	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/CreateGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupsAPIClient) GetGroup(ctx context.Context, in *GetGroupRequest, opts ...grpc.CallOption) (*GetGroupResponse, error) {
+	out := new(GetGroupResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/GetGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -61,6 +95,24 @@ func (c *groupsAPIClient) UpdateGroup(ctx context.Context, in *UpdateGroupReques
 	return out, nil
 }
 
+func (c *groupsAPIClient) AddGroupMember(ctx context.Context, in *AddGroupMemberRequest, opts ...grpc.CallOption) (*AddGroupMemberResponse, error) {
+	out := new(AddGroupMemberResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/AddGroupMember", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupsAPIClient) RemoveGroupMember(ctx context.Context, in *RemoveGroupMemberRequest, opts ...grpc.CallOption) (*RemoveGroupMemberResponse, error) {
+	out := new(RemoveGroupMemberResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/RemoveGroupMember", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *groupsAPIClient) ListGroupMembers(ctx context.Context, in *ListGroupMembersRequest, opts ...grpc.CallOption) (*ListGroupMembersResponse, error) {
 	out := new(ListGroupMembersResponse)
 	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/ListGroupMembers", in, out, opts...)
@@ -70,18 +122,72 @@ func (c *groupsAPIClient) ListGroupMembers(ctx context.Context, in *ListGroupMem
 	return out, nil
 }
 
-func (c *groupsAPIClient) JoinGroup(ctx context.Context, in *JoinGroupRequest, opts ...grpc.CallOption) (*JoinGroupResponse, error) {
-	out := new(JoinGroupResponse)
-	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/JoinGroup", in, out, opts...)
+func (c *groupsAPIClient) AddGroupNote(ctx context.Context, in *AddGroupNoteRequest, opts ...grpc.CallOption) (*AddGroupNoteResponse, error) {
+	out := new(AddGroupNoteResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/AddGroupNote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *groupsAPIClient) AddNoteToGroup(ctx context.Context, in *AddNoteToGroupRequest, opts ...grpc.CallOption) (*AddNoteToGroupResponse, error) {
-	out := new(AddNoteToGroupResponse)
-	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/AddNoteToGroup", in, out, opts...)
+func (c *groupsAPIClient) UpdateGroupNote(ctx context.Context, in *UpdateGroupNoteRequest, opts ...grpc.CallOption) (*UpdateGroupNoteResponse, error) {
+	out := new(UpdateGroupNoteResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/UpdateGroupNote", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupsAPIClient) RemoveGroupNote(ctx context.Context, in *RemoveGroupNoteRequest, opts ...grpc.CallOption) (*RemoveGroupNoteResponse, error) {
+	out := new(RemoveGroupNoteResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/RemoveGroupNote", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupsAPIClient) ListGroupNotes(ctx context.Context, in *ListGroupNotesRequest, opts ...grpc.CallOption) (*ListGroupNotesResponse, error) {
+	out := new(ListGroupNotesResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/ListGroupNotes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupsAPIClient) CreateFolder(ctx context.Context, in *CreateFolderRequest, opts ...grpc.CallOption) (*CreateFolderResponse, error) {
+	out := new(CreateFolderResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/CreateFolder", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupsAPIClient) DeleteFolder(ctx context.Context, in *DeleteFolderRequest, opts ...grpc.CallOption) (*DeleteFolderResponse, error) {
+	out := new(DeleteFolderResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/DeleteFolder", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupsAPIClient) UpdateFolder(ctx context.Context, in *UpdateFolderRequest, opts ...grpc.CallOption) (*UpdateFolderResponse, error) {
+	out := new(UpdateFolderResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/UpdateFolder", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupsAPIClient) ListFolders(ctx context.Context, in *ListFoldersRequest, opts ...grpc.CallOption) (*ListFoldersResponse, error) {
+	out := new(ListFoldersResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/ListFolders", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -92,12 +198,37 @@ func (c *groupsAPIClient) AddNoteToGroup(ctx context.Context, in *AddNoteToGroup
 // All implementations must embed UnimplementedGroupsAPIServer
 // for forward compatibility
 type GroupsAPIServer interface {
+	// Creates a group with a single administrator member (the authenticated user).
+	// Must be authenticated.
 	CreateGroup(context.Context, *CreateGroupRequest) (*CreateGroupResponse, error)
+	// Must be authenticated.
+	GetGroup(context.Context, *GetGroupRequest) (*GetGroupResponse, error)
+	// Must be group administrator.
+	// Deletes all the associated resources (members, notes).
 	DeleteGroup(context.Context, *DeleteGroupRequest) (*DeleteGroupResponse, error)
+	// Must be group administrator.
 	UpdateGroup(context.Context, *UpdateGroupRequest) (*UpdateGroupResponse, error)
+	// This endpoint is not meant to be used by regular users. Use the InvitesAPI instead.
+	// Only works with an internal token.
+	AddGroupMember(context.Context, *AddGroupMemberRequest) (*AddGroupMemberResponse, error)
+	// Must be group administrator or the authenticated user removing itself from
+	// the group.
+	RemoveGroupMember(context.Context, *RemoveGroupMemberRequest) (*RemoveGroupMemberResponse, error)
+	// Must be group member.
 	ListGroupMembers(context.Context, *ListGroupMembersRequest) (*ListGroupMembersResponse, error)
-	JoinGroup(context.Context, *JoinGroupRequest) (*JoinGroupResponse, error)
-	AddNoteToGroup(context.Context, *AddNoteToGroupRequest) (*AddNoteToGroupResponse, error)
+	// Must be group member and author of the note.
+	AddGroupNote(context.Context, *AddGroupNoteRequest) (*AddGroupNoteResponse, error)
+	// Must be group member. Can only update `note.title` and `note.folder_id`.
+	UpdateGroupNote(context.Context, *UpdateGroupNoteRequest) (*UpdateGroupNoteResponse, error)
+	// Must be group member, author of the note or administrator.
+	RemoveGroupNote(context.Context, *RemoveGroupNoteRequest) (*RemoveGroupNoteResponse, error)
+	// Must be group member.
+	ListGroupNotes(context.Context, *ListGroupNotesRequest) (*ListGroupNotesResponse, error)
+	// TODO: Next sprint -- Leave blank.
+	CreateFolder(context.Context, *CreateFolderRequest) (*CreateFolderResponse, error)
+	DeleteFolder(context.Context, *DeleteFolderRequest) (*DeleteFolderResponse, error)
+	UpdateFolder(context.Context, *UpdateFolderRequest) (*UpdateFolderResponse, error)
+	ListFolders(context.Context, *ListFoldersRequest) (*ListFoldersResponse, error)
 	mustEmbedUnimplementedGroupsAPIServer()
 }
 
@@ -108,20 +239,47 @@ type UnimplementedGroupsAPIServer struct {
 func (UnimplementedGroupsAPIServer) CreateGroup(context.Context, *CreateGroupRequest) (*CreateGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateGroup not implemented")
 }
+func (UnimplementedGroupsAPIServer) GetGroup(context.Context, *GetGroupRequest) (*GetGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGroup not implemented")
+}
 func (UnimplementedGroupsAPIServer) DeleteGroup(context.Context, *DeleteGroupRequest) (*DeleteGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteGroup not implemented")
 }
 func (UnimplementedGroupsAPIServer) UpdateGroup(context.Context, *UpdateGroupRequest) (*UpdateGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateGroup not implemented")
 }
+func (UnimplementedGroupsAPIServer) AddGroupMember(context.Context, *AddGroupMemberRequest) (*AddGroupMemberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddGroupMember not implemented")
+}
+func (UnimplementedGroupsAPIServer) RemoveGroupMember(context.Context, *RemoveGroupMemberRequest) (*RemoveGroupMemberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveGroupMember not implemented")
+}
 func (UnimplementedGroupsAPIServer) ListGroupMembers(context.Context, *ListGroupMembersRequest) (*ListGroupMembersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListGroupMembers not implemented")
 }
-func (UnimplementedGroupsAPIServer) JoinGroup(context.Context, *JoinGroupRequest) (*JoinGroupResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method JoinGroup not implemented")
+func (UnimplementedGroupsAPIServer) AddGroupNote(context.Context, *AddGroupNoteRequest) (*AddGroupNoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddGroupNote not implemented")
 }
-func (UnimplementedGroupsAPIServer) AddNoteToGroup(context.Context, *AddNoteToGroupRequest) (*AddNoteToGroupResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddNoteToGroup not implemented")
+func (UnimplementedGroupsAPIServer) UpdateGroupNote(context.Context, *UpdateGroupNoteRequest) (*UpdateGroupNoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateGroupNote not implemented")
+}
+func (UnimplementedGroupsAPIServer) RemoveGroupNote(context.Context, *RemoveGroupNoteRequest) (*RemoveGroupNoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveGroupNote not implemented")
+}
+func (UnimplementedGroupsAPIServer) ListGroupNotes(context.Context, *ListGroupNotesRequest) (*ListGroupNotesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListGroupNotes not implemented")
+}
+func (UnimplementedGroupsAPIServer) CreateFolder(context.Context, *CreateFolderRequest) (*CreateFolderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFolder not implemented")
+}
+func (UnimplementedGroupsAPIServer) DeleteFolder(context.Context, *DeleteFolderRequest) (*DeleteFolderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFolder not implemented")
+}
+func (UnimplementedGroupsAPIServer) UpdateFolder(context.Context, *UpdateFolderRequest) (*UpdateFolderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFolder not implemented")
+}
+func (UnimplementedGroupsAPIServer) ListFolders(context.Context, *ListFoldersRequest) (*ListFoldersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFolders not implemented")
 }
 func (UnimplementedGroupsAPIServer) mustEmbedUnimplementedGroupsAPIServer() {}
 
@@ -150,6 +308,24 @@ func _GroupsAPI_CreateGroup_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GroupsAPIServer).CreateGroup(ctx, req.(*CreateGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GroupsAPI_GetGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).GetGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/GetGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).GetGroup(ctx, req.(*GetGroupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -190,6 +366,42 @@ func _GroupsAPI_UpdateGroup_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GroupsAPI_AddGroupMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddGroupMemberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).AddGroupMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/AddGroupMember",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).AddGroupMember(ctx, req.(*AddGroupMemberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GroupsAPI_RemoveGroupMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveGroupMemberRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).RemoveGroupMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/RemoveGroupMember",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).RemoveGroupMember(ctx, req.(*RemoveGroupMemberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GroupsAPI_ListGroupMembers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListGroupMembersRequest)
 	if err := dec(in); err != nil {
@@ -208,38 +420,146 @@ func _GroupsAPI_ListGroupMembers_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GroupsAPI_JoinGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(JoinGroupRequest)
+func _GroupsAPI_AddGroupNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddGroupNoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GroupsAPIServer).JoinGroup(ctx, in)
+		return srv.(GroupsAPIServer).AddGroupNote(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/noted.accounts.v1.GroupsAPI/JoinGroup",
+		FullMethod: "/noted.accounts.v1.GroupsAPI/AddGroupNote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GroupsAPIServer).JoinGroup(ctx, req.(*JoinGroupRequest))
+		return srv.(GroupsAPIServer).AddGroupNote(ctx, req.(*AddGroupNoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GroupsAPI_AddNoteToGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddNoteToGroupRequest)
+func _GroupsAPI_UpdateGroupNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateGroupNoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GroupsAPIServer).AddNoteToGroup(ctx, in)
+		return srv.(GroupsAPIServer).UpdateGroupNote(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/noted.accounts.v1.GroupsAPI/AddNoteToGroup",
+		FullMethod: "/noted.accounts.v1.GroupsAPI/UpdateGroupNote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GroupsAPIServer).AddNoteToGroup(ctx, req.(*AddNoteToGroupRequest))
+		return srv.(GroupsAPIServer).UpdateGroupNote(ctx, req.(*UpdateGroupNoteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GroupsAPI_RemoveGroupNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveGroupNoteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).RemoveGroupNote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/RemoveGroupNote",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).RemoveGroupNote(ctx, req.(*RemoveGroupNoteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GroupsAPI_ListGroupNotes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListGroupNotesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).ListGroupNotes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/ListGroupNotes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).ListGroupNotes(ctx, req.(*ListGroupNotesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GroupsAPI_CreateFolder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateFolderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).CreateFolder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/CreateFolder",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).CreateFolder(ctx, req.(*CreateFolderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GroupsAPI_DeleteFolder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFolderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).DeleteFolder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/DeleteFolder",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).DeleteFolder(ctx, req.(*DeleteFolderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GroupsAPI_UpdateFolder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateFolderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).UpdateFolder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/UpdateFolder",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).UpdateFolder(ctx, req.(*UpdateFolderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GroupsAPI_ListFolders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFoldersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).ListFolders(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/ListFolders",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).ListFolders(ctx, req.(*ListFoldersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -256,6 +576,10 @@ var GroupsAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _GroupsAPI_CreateGroup_Handler,
 		},
 		{
+			MethodName: "GetGroup",
+			Handler:    _GroupsAPI_GetGroup_Handler,
+		},
+		{
 			MethodName: "DeleteGroup",
 			Handler:    _GroupsAPI_DeleteGroup_Handler,
 		},
@@ -264,16 +588,48 @@ var GroupsAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _GroupsAPI_UpdateGroup_Handler,
 		},
 		{
+			MethodName: "AddGroupMember",
+			Handler:    _GroupsAPI_AddGroupMember_Handler,
+		},
+		{
+			MethodName: "RemoveGroupMember",
+			Handler:    _GroupsAPI_RemoveGroupMember_Handler,
+		},
+		{
 			MethodName: "ListGroupMembers",
 			Handler:    _GroupsAPI_ListGroupMembers_Handler,
 		},
 		{
-			MethodName: "JoinGroup",
-			Handler:    _GroupsAPI_JoinGroup_Handler,
+			MethodName: "AddGroupNote",
+			Handler:    _GroupsAPI_AddGroupNote_Handler,
 		},
 		{
-			MethodName: "AddNoteToGroup",
-			Handler:    _GroupsAPI_AddNoteToGroup_Handler,
+			MethodName: "UpdateGroupNote",
+			Handler:    _GroupsAPI_UpdateGroupNote_Handler,
+		},
+		{
+			MethodName: "RemoveGroupNote",
+			Handler:    _GroupsAPI_RemoveGroupNote_Handler,
+		},
+		{
+			MethodName: "ListGroupNotes",
+			Handler:    _GroupsAPI_ListGroupNotes_Handler,
+		},
+		{
+			MethodName: "CreateFolder",
+			Handler:    _GroupsAPI_CreateFolder_Handler,
+		},
+		{
+			MethodName: "DeleteFolder",
+			Handler:    _GroupsAPI_DeleteFolder_Handler,
+		},
+		{
+			MethodName: "UpdateFolder",
+			Handler:    _GroupsAPI_UpdateFolder_Handler,
+		},
+		{
+			MethodName: "ListFolders",
+			Handler:    _GroupsAPI_ListFolders_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

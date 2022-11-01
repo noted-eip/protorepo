@@ -6,7 +6,10 @@ from noted.accounts.v1 import groups_pb2 as noted_dot_accounts_dot_v1_dot_groups
 
 
 class GroupsAPIStub(object):
-    """Missing associated documentation comment in .proto file."""
+    """Creation, read/update, deletion of groups of users.
+    Addition and removal of group members with roles.
+    Management of notes and folders within a group.
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -19,6 +22,11 @@ class GroupsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.CreateGroupRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.CreateGroupResponse.FromString,
                 )
+        self.GetGroup = channel.unary_unary(
+                '/noted.accounts.v1.GroupsAPI/GetGroup',
+                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.GetGroupRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.GetGroupResponse.FromString,
+                )
         self.DeleteGroup = channel.unary_unary(
                 '/noted.accounts.v1.GroupsAPI/DeleteGroup',
                 request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.DeleteGroupRequest.SerializeToString,
@@ -29,57 +37,170 @@ class GroupsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupResponse.FromString,
                 )
+        self.AddGroupMember = channel.unary_unary(
+                '/noted.accounts.v1.GroupsAPI/AddGroupMember',
+                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupMemberRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupMemberResponse.FromString,
+                )
+        self.RemoveGroupMember = channel.unary_unary(
+                '/noted.accounts.v1.GroupsAPI/RemoveGroupMember',
+                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.RemoveGroupMemberRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.RemoveGroupMemberResponse.FromString,
+                )
         self.ListGroupMembers = channel.unary_unary(
                 '/noted.accounts.v1.GroupsAPI/ListGroupMembers',
                 request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupMembersRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupMembersResponse.FromString,
                 )
-        self.JoinGroup = channel.unary_unary(
-                '/noted.accounts.v1.GroupsAPI/JoinGroup',
-                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.JoinGroupRequest.SerializeToString,
-                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.JoinGroupResponse.FromString,
+        self.AddGroupNote = channel.unary_unary(
+                '/noted.accounts.v1.GroupsAPI/AddGroupNote',
+                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupNoteRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupNoteResponse.FromString,
                 )
-        self.AddNoteToGroup = channel.unary_unary(
-                '/noted.accounts.v1.GroupsAPI/AddNoteToGroup',
-                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddNoteToGroupRequest.SerializeToString,
-                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddNoteToGroupResponse.FromString,
+        self.UpdateGroupNote = channel.unary_unary(
+                '/noted.accounts.v1.GroupsAPI/UpdateGroupNote',
+                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupNoteRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupNoteResponse.FromString,
+                )
+        self.RemoveGroupNote = channel.unary_unary(
+                '/noted.accounts.v1.GroupsAPI/RemoveGroupNote',
+                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.RemoveGroupNoteRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.RemoveGroupNoteResponse.FromString,
+                )
+        self.ListGroupNotes = channel.unary_unary(
+                '/noted.accounts.v1.GroupsAPI/ListGroupNotes',
+                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupNotesRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupNotesResponse.FromString,
+                )
+        self.CreateFolder = channel.unary_unary(
+                '/noted.accounts.v1.GroupsAPI/CreateFolder',
+                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.CreateFolderRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.CreateFolderResponse.FromString,
+                )
+        self.DeleteFolder = channel.unary_unary(
+                '/noted.accounts.v1.GroupsAPI/DeleteFolder',
+                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.DeleteFolderRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.DeleteFolderResponse.FromString,
+                )
+        self.UpdateFolder = channel.unary_unary(
+                '/noted.accounts.v1.GroupsAPI/UpdateFolder',
+                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateFolderRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateFolderResponse.FromString,
+                )
+        self.ListFolders = channel.unary_unary(
+                '/noted.accounts.v1.GroupsAPI/ListFolders',
+                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListFoldersRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListFoldersResponse.FromString,
                 )
 
 
 class GroupsAPIServicer(object):
-    """Missing associated documentation comment in .proto file."""
+    """Creation, read/update, deletion of groups of users.
+    Addition and removal of group members with roles.
+    Management of notes and folders within a group.
+    """
 
     def CreateGroup(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Creates a group with a single administrator member (the authenticated user).
+        Must be authenticated.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetGroup(self, request, context):
+        """Must be authenticated.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DeleteGroup(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be group administrator.
+        Deletes all the associated resources (members, notes).
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateGroup(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be group administrator.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddGroupMember(self, request, context):
+        """This endpoint is not meant to be used by regular users. Use the InvitesAPI instead.
+        Only works with an internal token.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RemoveGroupMember(self, request, context):
+        """Must be group administrator or the authenticated user removing itself from
+        the group.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ListGroupMembers(self, request, context):
+        """Must be group member.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddGroupNote(self, request, context):
+        """Must be group member and author of the note.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateGroupNote(self, request, context):
+        """Must be group member. Can only update `note.title` and `note.folder_id`.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RemoveGroupNote(self, request, context):
+        """Must be group member, author of the note or administrator.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListGroupNotes(self, request, context):
+        """Must be group member.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CreateFolder(self, request, context):
+        """TODO: Next sprint -- Leave blank.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteFolder(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def JoinGroup(self, request, context):
+    def UpdateFolder(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def AddNoteToGroup(self, request, context):
+    def ListFolders(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -93,6 +214,11 @@ def add_GroupsAPIServicer_to_server(servicer, server):
                     request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.CreateGroupRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.CreateGroupResponse.SerializeToString,
             ),
+            'GetGroup': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGroup,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.GetGroupRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.GetGroupResponse.SerializeToString,
+            ),
             'DeleteGroup': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteGroup,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.DeleteGroupRequest.FromString,
@@ -103,20 +229,60 @@ def add_GroupsAPIServicer_to_server(servicer, server):
                     request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupResponse.SerializeToString,
             ),
+            'AddGroupMember': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddGroupMember,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupMemberRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupMemberResponse.SerializeToString,
+            ),
+            'RemoveGroupMember': grpc.unary_unary_rpc_method_handler(
+                    servicer.RemoveGroupMember,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.RemoveGroupMemberRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.RemoveGroupMemberResponse.SerializeToString,
+            ),
             'ListGroupMembers': grpc.unary_unary_rpc_method_handler(
                     servicer.ListGroupMembers,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupMembersRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupMembersResponse.SerializeToString,
             ),
-            'JoinGroup': grpc.unary_unary_rpc_method_handler(
-                    servicer.JoinGroup,
-                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.JoinGroupRequest.FromString,
-                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.JoinGroupResponse.SerializeToString,
+            'AddGroupNote': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddGroupNote,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupNoteRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupNoteResponse.SerializeToString,
             ),
-            'AddNoteToGroup': grpc.unary_unary_rpc_method_handler(
-                    servicer.AddNoteToGroup,
-                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddNoteToGroupRequest.FromString,
-                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddNoteToGroupResponse.SerializeToString,
+            'UpdateGroupNote': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateGroupNote,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupNoteRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupNoteResponse.SerializeToString,
+            ),
+            'RemoveGroupNote': grpc.unary_unary_rpc_method_handler(
+                    servicer.RemoveGroupNote,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.RemoveGroupNoteRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.RemoveGroupNoteResponse.SerializeToString,
+            ),
+            'ListGroupNotes': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListGroupNotes,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupNotesRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupNotesResponse.SerializeToString,
+            ),
+            'CreateFolder': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateFolder,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.CreateFolderRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.CreateFolderResponse.SerializeToString,
+            ),
+            'DeleteFolder': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteFolder,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.DeleteFolderRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.DeleteFolderResponse.SerializeToString,
+            ),
+            'UpdateFolder': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateFolder,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateFolderRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateFolderResponse.SerializeToString,
+            ),
+            'ListFolders': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListFolders,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListFoldersRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListFoldersResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -126,7 +292,10 @@ def add_GroupsAPIServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class GroupsAPI(object):
-    """Missing associated documentation comment in .proto file."""
+    """Creation, read/update, deletion of groups of users.
+    Addition and removal of group members with roles.
+    Management of notes and folders within a group.
+    """
 
     @staticmethod
     def CreateGroup(request,
@@ -142,6 +311,23 @@ class GroupsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/CreateGroup',
             noted_dot_accounts_dot_v1_dot_groups__pb2.CreateGroupRequest.SerializeToString,
             noted_dot_accounts_dot_v1_dot_groups__pb2.CreateGroupResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetGroup(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/GetGroup',
+            noted_dot_accounts_dot_v1_dot_groups__pb2.GetGroupRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_groups__pb2.GetGroupResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -180,6 +366,40 @@ class GroupsAPI(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def AddGroupMember(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/AddGroupMember',
+            noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupMemberRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupMemberResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RemoveGroupMember(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/RemoveGroupMember',
+            noted_dot_accounts_dot_v1_dot_groups__pb2.RemoveGroupMemberRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_groups__pb2.RemoveGroupMemberResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def ListGroupMembers(request,
             target,
             options=(),
@@ -197,7 +417,7 @@ class GroupsAPI(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def JoinGroup(request,
+    def AddGroupNote(request,
             target,
             options=(),
             channel_credentials=None,
@@ -207,14 +427,14 @@ class GroupsAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/JoinGroup',
-            noted_dot_accounts_dot_v1_dot_groups__pb2.JoinGroupRequest.SerializeToString,
-            noted_dot_accounts_dot_v1_dot_groups__pb2.JoinGroupResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/AddGroupNote',
+            noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupNoteRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupNoteResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def AddNoteToGroup(request,
+    def UpdateGroupNote(request,
             target,
             options=(),
             channel_credentials=None,
@@ -224,8 +444,110 @@ class GroupsAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/AddNoteToGroup',
-            noted_dot_accounts_dot_v1_dot_groups__pb2.AddNoteToGroupRequest.SerializeToString,
-            noted_dot_accounts_dot_v1_dot_groups__pb2.AddNoteToGroupResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/UpdateGroupNote',
+            noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupNoteRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupNoteResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RemoveGroupNote(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/RemoveGroupNote',
+            noted_dot_accounts_dot_v1_dot_groups__pb2.RemoveGroupNoteRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_groups__pb2.RemoveGroupNoteResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListGroupNotes(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/ListGroupNotes',
+            noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupNotesRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupNotesResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreateFolder(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/CreateFolder',
+            noted_dot_accounts_dot_v1_dot_groups__pb2.CreateFolderRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_groups__pb2.CreateFolderResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeleteFolder(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/DeleteFolder',
+            noted_dot_accounts_dot_v1_dot_groups__pb2.DeleteFolderRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_groups__pb2.DeleteFolderResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateFolder(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/UpdateFolder',
+            noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateFolderRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateFolderResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListFolders(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/ListFolders',
+            noted_dot_accounts_dot_v1_dot_groups__pb2.ListFoldersRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_groups__pb2.ListFoldersResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

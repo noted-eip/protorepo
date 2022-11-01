@@ -6,7 +6,10 @@ from protorepo.noted.accounts.v1 import accounts_pb2 as noted_dot_accounts_dot_v
 
 
 class AccountsAPIStub(object):
-    """Missing associated documentation comment in .proto file."""
+    """Creation, read, update and deletion of accounts.
+    Authentication using email/password and using OAuth.
+    Manages password recovery.
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -34,10 +37,10 @@ class AccountsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.DeleteAccountRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.DeleteAccountResponse.FromString,
                 )
-        self.ListAccount = channel.unary_unary(
-                '/noted.accounts.v1.AccountsAPI/ListAccount',
-                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountRequest.SerializeToString,
-                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountResponse.FromString,
+        self.ListAccounts = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/ListAccounts',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountsRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountsResponse.FromString,
                 )
         self.Authenticate = channel.unary_unary(
                 '/noted.accounts.v1.AccountsAPI/Authenticate',
@@ -47,7 +50,10 @@ class AccountsAPIStub(object):
 
 
 class AccountsAPIServicer(object):
-    """Missing associated documentation comment in .proto file."""
+    """Creation, read, update and deletion of accounts.
+    Authentication using email/password and using OAuth.
+    Manages password recovery.
+    """
 
     def CreateAccount(self, request, context):
         """Create an account using the email and password flow.
@@ -57,25 +63,32 @@ class AccountsAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetAccount(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be authenticated.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateAccount(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be account owner. Can only update `account.name`.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DeleteAccount(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be account owner.
+        TODO: Delete all associated resources (notes, transfer group ownership,
+        etc).
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ListAccount(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+    def ListAccounts(self, request, context):
+        """This endpoint is not meant to be used by regular users.
+        Only works with an internal token.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -110,10 +123,10 @@ def add_AccountsAPIServicer_to_server(servicer, server):
                     request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.DeleteAccountRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.DeleteAccountResponse.SerializeToString,
             ),
-            'ListAccount': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListAccount,
-                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountRequest.FromString,
-                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountResponse.SerializeToString,
+            'ListAccounts': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListAccounts,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountsRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountsResponse.SerializeToString,
             ),
             'Authenticate': grpc.unary_unary_rpc_method_handler(
                     servicer.Authenticate,
@@ -128,7 +141,10 @@ def add_AccountsAPIServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class AccountsAPI(object):
-    """Missing associated documentation comment in .proto file."""
+    """Creation, read, update and deletion of accounts.
+    Authentication using email/password and using OAuth.
+    Manages password recovery.
+    """
 
     @staticmethod
     def CreateAccount(request,
@@ -199,7 +215,7 @@ class AccountsAPI(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListAccount(request,
+    def ListAccounts(request,
             target,
             options=(),
             channel_credentials=None,
@@ -209,9 +225,9 @@ class AccountsAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/ListAccount',
-            noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountRequest.SerializeToString,
-            noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/ListAccounts',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountsRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
