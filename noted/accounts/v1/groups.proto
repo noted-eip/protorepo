@@ -60,7 +60,7 @@ service GroupsAPI {
     // Must be group member, author of the note or administrator.
     rpc RemoveGroupNote(RemoveGroupNoteRequest) returns (RemoveGroupNoteResponse) {}
     // Must be group member.
-    rpc ListGroupNotes(ListNotesInGroupRequest) returns (ListNotesInGroupResponse) {}
+    rpc ListGroupNotes(ListGroupNotesRequest) returns (ListGroupNotesResponse) {}
 
     // TODO: Next sprint -- Leave blank.
     rpc CreateFolder(CreateFolderRequest) returns (CreateFolderResponse) {}
@@ -161,7 +161,7 @@ message RemoveGroupNoteResponse {
 
 }
 
-message ListNotesInGroupRequest {
+message ListGroupNotesRequest {
     string group_id = 1;
     // (Optional) List only notes from that account.
     string author_account_id = 2;
@@ -174,7 +174,7 @@ message ListNotesInGroupRequest {
     string offset = 5;
 }
 
-message ListNotesInGroupResponse {
+message ListGroupNotesResponse {
     GroupNote notes = 1;
 }
 
