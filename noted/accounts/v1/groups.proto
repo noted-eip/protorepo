@@ -17,10 +17,10 @@ message GroupMember {
     string role = 2;
 }
 
-// NoteInGroup is the representation of a note stored wihtin the context of
+// GroupNote is the representation of a note stored wihtin the context of
 // a group (which folder it belongs to, who wrote it, its title).
 // The actual note is stored in the notes-service.
-message NoteInGroup {
+message GroupNote {
     // ID of the note within the notes-service.
     string note_id = 1;
     string title = 2;
@@ -46,24 +46,25 @@ service GroupsAPI {
 
     // This endpoint is not meant to be used by regular users. Use the InvitesAPI instead.
     // Only works with an internal token.
-    rpc AddMemberToGroup(AddMemberToGroupRequest) returns (AddMemberToGroupResponse) {}
-    // Must be group administrator.
-    rpc RemoveMemberFromGroup(RemoveMemberFromGroupRequest) returns (RemoveMemberFromGroupResponse) {}
+    rpc AddGroupMember(AddGroupMemberRequest) returns (AddGroupMemberResponse) {}
+    // Must be group administrator or the authenticated user removing itself from
+    // the group.
+    rpc RemoveGroupMember(RemoveGroupMemberRequest) returns (RemoveGroupMemberResponse) {}
     // Must be group member.
     rpc ListGroupMembers(ListGroupMembersRequest) returns (ListGroupMembersResponse) {}
 
     // Must be group member and author of the note.
-    rpc AddNoteToGroup(AddNoteToGroupRequest) returns (AddNoteToGroupResponse) {}
+    rpc AddGroupNote(AddGroupNoteRequest) returns (AddGroupNoteResponse) {}
     // Must be group member. Can only update `note.title` and `note.folder_id`.
-    rpc UpdateNoteInGroup(UpdateNoteInGroupRequest) returns (UpdateNoteInGroupResponse) {}
+    rpc UpdateGroupNote(UpdateGroupNoteRequest) returns (UpdateGroupNoteResponse) {}
     // Must be group member, author of the note or administrator.
-    rpc RemoveNoteFromGroup(RemoveNoteFromGroupRequest) returns (RemoveNoteFromGroupResponse) {}
+    rpc RemoveGroupNote(RemoveGroupNoteRequest) returns (RemoveGroupNoteResponse) {}
     // Must be group member.
-    rpc ListNotesInGroup(ListNotesInGroupRequest) returns (ListNotesInGroupResponse) {}
+    rpc ListGroupNotes(ListNotesInGroupRequest) returns (ListNotesInGroupResponse) {}
 
     // TODO: Next sprint -- Leave blank.
     rpc CreateFolder(CreateFolderRequest) returns (CreateFolderResponse) {}
-    rpc RemoveFolder(RemoveFolderRequest) returns (RemoveFolderResponse) {}
+    rpc DeleteFolder(DeleteFolderRequest) returns (DeleteFolderResponse) {}
     rpc UpdateFolder(UpdateFolderRequest) returns (UpdateFolderResponse) {}
     rpc ListFolders(ListFoldersRequest) returns (ListFoldersResponse) {}
 }
@@ -109,24 +110,24 @@ message ListGroupMembersResponse {
     repeated GroupMember members = 1;
 }
 
-message AddMemberToGroupRequest {
+message AddGroupMemberRequest {
     string group_id = 1;
     string account_id = 2;
 }
 
-message AddMemberToGroupResponse {
+message AddGroupMemberResponse {
 }
 
-message RemoveMemberFromGroupRequest {
+message RemoveGroupMemberRequest {
     string group_id = 1;
     string account_id = 2;
 }
 
-message RemoveMemberFromGroupResponse {
+message RemoveGroupMemberResponse {
 
 }
 
-message AddNoteToGroupRequest {
+message AddGroupNoteRequest {
     string group_id = 1;
     // ID of the note within the notes-service.
     string note_id = 2;
@@ -137,26 +138,26 @@ message AddNoteToGroupRequest {
     string folder_id = 5;
 }
 
-message AddNoteToGroupResponse {
-    NoteInGroup note = 1;
+message AddGroupNoteResponse {
+    GroupNote note = 1;
 }
 
-message UpdateNoteInGroupRequest {
+message UpdateGroupNoteRequest {
     string group_id = 1;
-    NoteInGroup note = 2;
+    GroupNote note = 2;
     google.protobuf.FieldMask update_mask = 3;
 }
 
-message UpdateNoteInGroupResponse {
-    NoteInGroup note = 1;
+message UpdateGroupNoteResponse {
+    GroupNote note = 1;
 }
 
-message RemoveNoteFromGroupRequest {
+message RemoveGroupNoteRequest {
     string group_id = 1;
     string note_id = 2;
 }
 
-message RemoveNoteFromGroupResponse {
+message RemoveGroupNoteResponse {
 
 }
 
@@ -174,7 +175,7 @@ message ListNotesInGroupRequest {
 }
 
 message ListNotesInGroupResponse {
-    NoteInGroup notes = 1;
+    GroupNote notes = 1;
 }
 
 message CreateFolderRequest {
@@ -185,11 +186,11 @@ message CreateFolderResponse {
     // TODO: Next sprint.
 }
 
-message RemoveFolderRequest {
+message DeleteFolderRequest {
     // TODO: Next sprint.
 }
 
-message RemoveFolderResponse {
+message DeleteFolderResponse {
     // TODO: Next sprint.
 }
 
