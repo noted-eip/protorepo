@@ -26,10 +26,10 @@ message Block {
         TYPE_HEADING_2 = 2;
         TYPE_HEADING_3 = 3;
         TYPE_PARAGRAPH = 4;
-        TYPE_BULLET_POINT = 7;
-        TYPE_NUMBERED_POINT = 8;
         TYPE_MATH = 5;
         TYPE_CODE = 6;
+        TYPE_BULLET_POINT = 7;
+        TYPE_NUMBERED_POINT = 8;
         TYPE_IMAGE = 9;
     }
     Type type = 2;
@@ -114,7 +114,7 @@ message InsertBlockRequest {
     // Given that a note is an array of blocks, provide the index at
     // which the block shall be inserted.
     uint32 index = 2;
-    //A new block need a note to be attached
+    // A new block need a note to be attached
     uint32 note_id = 3;
 }
 
@@ -138,4 +138,5 @@ message DeleteBlockRequest {
 }
 
 message DeleteBlockResponse {
+
 }
