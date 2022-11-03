@@ -46,6 +46,8 @@ service GroupsAPI {
     rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
     // Must be group administrator.
     rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {}
+    // Must be groups member.
+    rpc ListGroups(ListGroupsRequest) returns (ListGroupsResponse) {}
 
     // This endpoint is not meant to be used by regular users. Use the InvitesAPI instead.
     // Only works with an internal token.
@@ -109,6 +111,14 @@ message UpdateGroupRequest {
 
 message UpdateGroupResponse {
     Group group = 1;
+}
+
+message ListGroupsRequest {
+    string account_id = 1;
+}
+
+message ListGroupsResponse {
+    repeated Group groups = 1;
 }
 
 message ListGroupMembersRequest {
