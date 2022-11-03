@@ -5,16 +5,19 @@ package noted.accounts.v1;
 option go_package = "noted/accounts/v1";
 
 import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
 
 message Group {
     string id = 1;
     string name = 2;
     string description = 3;
+    google.protobuf.Timestamp created_at = 4;
 }
 
 message GroupMember {
     string account_id = 1;
     string role = 2;
+    google.protobuf.Timestamp created_at = 3;
 }
 
 // GroupNote is the representation of a note stored wihtin the context of
