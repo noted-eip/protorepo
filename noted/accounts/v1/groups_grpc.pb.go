@@ -28,6 +28,8 @@ type GroupsAPIClient interface {
 	DeleteGroup(ctx context.Context, in *DeleteGroupRequest, opts ...grpc.CallOption) (*DeleteGroupResponse, error)
 	// Must be group administrator.
 	UpdateGroup(ctx context.Context, in *UpdateGroupRequest, opts ...grpc.CallOption) (*UpdateGroupResponse, error)
+	// Must be groups member.
+	ListGroups(ctx context.Context, in *ListGroupsRequest, opts ...grpc.CallOption) (*ListGroupsResponse, error)
 	// This endpoint is not meant to be used by regular users. Use the InvitesAPI instead.
 	// Only works with an internal token.
 	AddGroupMember(ctx context.Context, in *AddGroupMemberRequest, opts ...grpc.CallOption) (*AddGroupMemberResponse, error)
@@ -95,6 +97,15 @@ func (c *groupsAPIClient) DeleteGroup(ctx context.Context, in *DeleteGroupReques
 func (c *groupsAPIClient) UpdateGroup(ctx context.Context, in *UpdateGroupRequest, opts ...grpc.CallOption) (*UpdateGroupResponse, error) {
 	out := new(UpdateGroupResponse)
 	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/UpdateGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupsAPIClient) ListGroups(ctx context.Context, in *ListGroupsRequest, opts ...grpc.CallOption) (*ListGroupsResponse, error) {
+	out := new(ListGroupsResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.GroupsAPI/ListGroups", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -241,6 +252,8 @@ type GroupsAPIServer interface {
 	DeleteGroup(context.Context, *DeleteGroupRequest) (*DeleteGroupResponse, error)
 	// Must be group administrator.
 	UpdateGroup(context.Context, *UpdateGroupRequest) (*UpdateGroupResponse, error)
+	// Must be groups member.
+	ListGroups(context.Context, *ListGroupsRequest) (*ListGroupsResponse, error)
 	// This endpoint is not meant to be used by regular users. Use the InvitesAPI instead.
 	// Only works with an internal token.
 	AddGroupMember(context.Context, *AddGroupMemberRequest) (*AddGroupMemberResponse, error)
@@ -286,6 +299,9 @@ func (UnimplementedGroupsAPIServer) DeleteGroup(context.Context, *DeleteGroupReq
 }
 func (UnimplementedGroupsAPIServer) UpdateGroup(context.Context, *UpdateGroupRequest) (*UpdateGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateGroup not implemented")
+}
+func (UnimplementedGroupsAPIServer) ListGroups(context.Context, *ListGroupsRequest) (*ListGroupsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListGroups not implemented")
 }
 func (UnimplementedGroupsAPIServer) AddGroupMember(context.Context, *AddGroupMemberRequest) (*AddGroupMemberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddGroupMember not implemented")
@@ -410,6 +426,24 @@ func _GroupsAPI_UpdateGroup_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GroupsAPIServer).UpdateGroup(ctx, req.(*UpdateGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GroupsAPI_ListGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListGroupsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).ListGroups(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.GroupsAPI/ListGroups",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).ListGroups(ctx, req.(*ListGroupsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -688,6 +722,10 @@ var GroupsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateGroup",
 			Handler:    _GroupsAPI_UpdateGroup_Handler,
+		},
+		{
+			MethodName: "ListGroups",
+			Handler:    _GroupsAPI_ListGroups_Handler,
 		},
 		{
 			MethodName: "AddGroupMember",

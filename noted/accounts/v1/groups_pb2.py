@@ -16,7 +16,7 @@ from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mas
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1enoted/accounts/v1/groups.proto\x12\x11noted.accounts.v1\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x88\x01\n\x05Group\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x03 \x01(\tR\x0b\x64\x65scription\x12\x39\n\ncreated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\"{\n\x0bGroupMember\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x12\n\x04role\x18\x02 \x01(\tR\x04role\x12\x39\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\"\x83\x01\n\tGroupNote\x12\x17\n\x07note_id\x18\x01 \x01(\tR\x06noteId\x12\x14\n\x05title\x18\x02 \x01(\tR\x05title\x12*\n\x11\x61uthor_account_id\x18\x03 \x01(\tR\x0f\x61uthorAccountId\x12\x1b\n\tfolder_id\x18\x04 \x01(\tR\x08\x66olderId\"J\n\x12\x43reateGroupRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x02 \x01(\tR\x0b\x64\x65scription\"E\n\x13\x43reateGroupResponse\x12.\n\x05group\x18\x01 \x01(\x0b\x32\x18.noted.accounts.v1.GroupR\x05group\",\n\x0fGetGroupRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\"B\n\x10GetGroupResponse\x12.\n\x05group\x18\x01 \x01(\x0b\x32\x18.noted.accounts.v1.GroupR\x05group\"/\n\x12\x44\x65leteGroupRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\"\x15\n\x13\x44\x65leteGroupResponse\"\x81\x01\n\x12UpdateGroupRequest\x12.\n\x05group\x18\x01 \x01(\x0b\x32\x18.noted.accounts.v1.GroupR\x05group\x12;\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"E\n\x13UpdateGroupResponse\x12.\n\x05group\x18\x01 \x01(\x0b\x32\x18.noted.accounts.v1.GroupR\x05group\"4\n\x17ListGroupMembersRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\"T\n\x18ListGroupMembersResponse\x12\x38\n\x07members\x18\x01 \x03(\x0b\x32\x1e.noted.accounts.v1.GroupMemberR\x07members\"Q\n\x15\x41\x64\x64GroupMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"\x18\n\x16\x41\x64\x64GroupMemberResponse\"Q\n\x15GetGroupMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"P\n\x16GetGroupMemberResponse\x12\x36\n\x06member\x18\x01 \x01(\x0b\x32\x1e.noted.accounts.v1.GroupMemberR\x06member\"T\n\x18UpdateGroupMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"S\n\x19UpdateGroupMemberResponse\x12\x36\n\x06member\x18\x01 \x01(\x0b\x32\x1e.noted.accounts.v1.GroupMemberR\x06member\"T\n\x18RemoveGroupMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"\x1b\n\x19RemoveGroupMemberResponse\"\xa8\x01\n\x13\x41\x64\x64GroupNoteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x17\n\x07note_id\x18\x02 \x01(\tR\x06noteId\x12\x14\n\x05title\x18\x03 \x01(\tR\x05title\x12*\n\x11\x61uthor_account_id\x18\x04 \x01(\tR\x0f\x61uthorAccountId\x12\x1b\n\tfolder_id\x18\x05 \x01(\tR\x08\x66olderId\"H\n\x14\x41\x64\x64GroupNoteResponse\x12\x30\n\x04note\x18\x01 \x01(\x0b\x32\x1c.noted.accounts.v1.GroupNoteR\x04note\"I\n\x13GetGroupNoteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x17\n\x07note_id\x18\x02 \x01(\tR\x06noteId\"H\n\x14GetGroupNoteResponse\x12\x30\n\x04note\x18\x01 \x01(\x0b\x32\x1c.noted.accounts.v1.GroupNoteR\x04note\"\xa2\x01\n\x16UpdateGroupNoteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x30\n\x04note\x18\x02 \x01(\x0b\x32\x1c.noted.accounts.v1.GroupNoteR\x04note\x12;\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"K\n\x17UpdateGroupNoteResponse\x12\x30\n\x04note\x18\x01 \x01(\x0b\x32\x1c.noted.accounts.v1.GroupNoteR\x04note\"L\n\x16RemoveGroupNoteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x17\n\x07note_id\x18\x02 \x01(\tR\x06noteId\"\x19\n\x17RemoveGroupNoteResponse\"\xa9\x01\n\x15ListGroupNotesRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12*\n\x11\x61uthor_account_id\x18\x02 \x01(\tR\x0f\x61uthorAccountId\x12\x1b\n\tfolder_id\x18\x03 \x01(\tR\x08\x66olderId\x12\x14\n\x05limit\x18\x04 \x01(\tR\x05limit\x12\x16\n\x06offset\x18\x05 \x01(\tR\x06offset\"L\n\x16ListGroupNotesResponse\x12\x32\n\x05notes\x18\x01 \x01(\x0b\x32\x1c.noted.accounts.v1.GroupNoteR\x05notes\"\x15\n\x13\x43reateFolderRequest\"\x16\n\x14\x43reateFolderResponse\"\x15\n\x13\x44\x65leteFolderRequest\"\x16\n\x14\x44\x65leteFolderResponse\"\x15\n\x13UpdateFolderRequest\"\x16\n\x14UpdateFolderResponse\"\x14\n\x12ListFoldersRequest\"\x15\n\x13ListFoldersResponse2\xb7\x0e\n\tGroupsAPI\x12^\n\x0b\x43reateGroup\x12%.noted.accounts.v1.CreateGroupRequest\x1a&.noted.accounts.v1.CreateGroupResponse\"\x00\x12U\n\x08GetGroup\x12\".noted.accounts.v1.GetGroupRequest\x1a#.noted.accounts.v1.GetGroupResponse\"\x00\x12^\n\x0b\x44\x65leteGroup\x12%.noted.accounts.v1.DeleteGroupRequest\x1a&.noted.accounts.v1.DeleteGroupResponse\"\x00\x12^\n\x0bUpdateGroup\x12%.noted.accounts.v1.UpdateGroupRequest\x1a&.noted.accounts.v1.UpdateGroupResponse\"\x00\x12g\n\x0e\x41\x64\x64GroupMember\x12(.noted.accounts.v1.AddGroupMemberRequest\x1a).noted.accounts.v1.AddGroupMemberResponse\"\x00\x12g\n\x0eGetGroupMember\x12(.noted.accounts.v1.GetGroupMemberRequest\x1a).noted.accounts.v1.GetGroupMemberResponse\"\x00\x12p\n\x11UpdateGroupMember\x12+.noted.accounts.v1.UpdateGroupMemberRequest\x1a,.noted.accounts.v1.UpdateGroupMemberResponse\"\x00\x12p\n\x11RemoveGroupMember\x12+.noted.accounts.v1.RemoveGroupMemberRequest\x1a,.noted.accounts.v1.RemoveGroupMemberResponse\"\x00\x12m\n\x10ListGroupMembers\x12*.noted.accounts.v1.ListGroupMembersRequest\x1a+.noted.accounts.v1.ListGroupMembersResponse\"\x00\x12\x61\n\x0c\x41\x64\x64GroupNote\x12&.noted.accounts.v1.AddGroupNoteRequest\x1a\'.noted.accounts.v1.AddGroupNoteResponse\"\x00\x12\x61\n\x0cGetGroupNote\x12&.noted.accounts.v1.GetGroupNoteRequest\x1a\'.noted.accounts.v1.GetGroupNoteResponse\"\x00\x12j\n\x0fUpdateGroupNote\x12).noted.accounts.v1.UpdateGroupNoteRequest\x1a*.noted.accounts.v1.UpdateGroupNoteResponse\"\x00\x12j\n\x0fRemoveGroupNote\x12).noted.accounts.v1.RemoveGroupNoteRequest\x1a*.noted.accounts.v1.RemoveGroupNoteResponse\"\x00\x12g\n\x0eListGroupNotes\x12(.noted.accounts.v1.ListGroupNotesRequest\x1a).noted.accounts.v1.ListGroupNotesResponse\"\x00\x12\x61\n\x0c\x43reateFolder\x12&.noted.accounts.v1.CreateFolderRequest\x1a\'.noted.accounts.v1.CreateFolderResponse\"\x00\x12\x61\n\x0c\x44\x65leteFolder\x12&.noted.accounts.v1.DeleteFolderRequest\x1a\'.noted.accounts.v1.DeleteFolderResponse\"\x00\x12\x61\n\x0cUpdateFolder\x12&.noted.accounts.v1.UpdateFolderRequest\x1a\'.noted.accounts.v1.UpdateFolderResponse\"\x00\x12^\n\x0bListFolders\x12%.noted.accounts.v1.ListFoldersRequest\x1a&.noted.accounts.v1.ListFoldersResponse\"\x00\x42\x13Z\x11noted/accounts/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1enoted/accounts/v1/groups.proto\x12\x11noted.accounts.v1\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x88\x01\n\x05Group\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x03 \x01(\tR\x0b\x64\x65scription\x12\x39\n\ncreated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\"{\n\x0bGroupMember\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x12\n\x04role\x18\x02 \x01(\tR\x04role\x12\x39\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\"\x83\x01\n\tGroupNote\x12\x17\n\x07note_id\x18\x01 \x01(\tR\x06noteId\x12\x14\n\x05title\x18\x02 \x01(\tR\x05title\x12*\n\x11\x61uthor_account_id\x18\x03 \x01(\tR\x0f\x61uthorAccountId\x12\x1b\n\tfolder_id\x18\x04 \x01(\tR\x08\x66olderId\"J\n\x12\x43reateGroupRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x02 \x01(\tR\x0b\x64\x65scription\"E\n\x13\x43reateGroupResponse\x12.\n\x05group\x18\x01 \x01(\x0b\x32\x18.noted.accounts.v1.GroupR\x05group\",\n\x0fGetGroupRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\"B\n\x10GetGroupResponse\x12.\n\x05group\x18\x01 \x01(\x0b\x32\x18.noted.accounts.v1.GroupR\x05group\"/\n\x12\x44\x65leteGroupRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\"\x15\n\x13\x44\x65leteGroupResponse\"\x81\x01\n\x12UpdateGroupRequest\x12.\n\x05group\x18\x01 \x01(\x0b\x32\x18.noted.accounts.v1.GroupR\x05group\x12;\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"E\n\x13UpdateGroupResponse\x12.\n\x05group\x18\x01 \x01(\x0b\x32\x18.noted.accounts.v1.GroupR\x05group\"2\n\x11ListGroupsRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\"F\n\x12ListGroupsResponse\x12\x30\n\x06groups\x18\x01 \x03(\x0b\x32\x18.noted.accounts.v1.GroupR\x06groups\"4\n\x17ListGroupMembersRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\"T\n\x18ListGroupMembersResponse\x12\x38\n\x07members\x18\x01 \x03(\x0b\x32\x1e.noted.accounts.v1.GroupMemberR\x07members\"Q\n\x15\x41\x64\x64GroupMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"\x18\n\x16\x41\x64\x64GroupMemberResponse\"Q\n\x15GetGroupMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"P\n\x16GetGroupMemberResponse\x12\x36\n\x06member\x18\x01 \x01(\x0b\x32\x1e.noted.accounts.v1.GroupMemberR\x06member\"T\n\x18UpdateGroupMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"S\n\x19UpdateGroupMemberResponse\x12\x36\n\x06member\x18\x01 \x01(\x0b\x32\x1e.noted.accounts.v1.GroupMemberR\x06member\"T\n\x18RemoveGroupMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"\x1b\n\x19RemoveGroupMemberResponse\"\xa8\x01\n\x13\x41\x64\x64GroupNoteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x17\n\x07note_id\x18\x02 \x01(\tR\x06noteId\x12\x14\n\x05title\x18\x03 \x01(\tR\x05title\x12*\n\x11\x61uthor_account_id\x18\x04 \x01(\tR\x0f\x61uthorAccountId\x12\x1b\n\tfolder_id\x18\x05 \x01(\tR\x08\x66olderId\"H\n\x14\x41\x64\x64GroupNoteResponse\x12\x30\n\x04note\x18\x01 \x01(\x0b\x32\x1c.noted.accounts.v1.GroupNoteR\x04note\"I\n\x13GetGroupNoteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x17\n\x07note_id\x18\x02 \x01(\tR\x06noteId\"H\n\x14GetGroupNoteResponse\x12\x30\n\x04note\x18\x01 \x01(\x0b\x32\x1c.noted.accounts.v1.GroupNoteR\x04note\"\xa2\x01\n\x16UpdateGroupNoteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x30\n\x04note\x18\x02 \x01(\x0b\x32\x1c.noted.accounts.v1.GroupNoteR\x04note\x12;\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"K\n\x17UpdateGroupNoteResponse\x12\x30\n\x04note\x18\x01 \x01(\x0b\x32\x1c.noted.accounts.v1.GroupNoteR\x04note\"L\n\x16RemoveGroupNoteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x17\n\x07note_id\x18\x02 \x01(\tR\x06noteId\"\x19\n\x17RemoveGroupNoteResponse\"\xa9\x01\n\x15ListGroupNotesRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12*\n\x11\x61uthor_account_id\x18\x02 \x01(\tR\x0f\x61uthorAccountId\x12\x1b\n\tfolder_id\x18\x03 \x01(\tR\x08\x66olderId\x12\x14\n\x05limit\x18\x04 \x01(\tR\x05limit\x12\x16\n\x06offset\x18\x05 \x01(\tR\x06offset\"L\n\x16ListGroupNotesResponse\x12\x32\n\x05notes\x18\x01 \x01(\x0b\x32\x1c.noted.accounts.v1.GroupNoteR\x05notes\"\x15\n\x13\x43reateFolderRequest\"\x16\n\x14\x43reateFolderResponse\"\x15\n\x13\x44\x65leteFolderRequest\"\x16\n\x14\x44\x65leteFolderResponse\"\x15\n\x13UpdateFolderRequest\"\x16\n\x14UpdateFolderResponse\"\x14\n\x12ListFoldersRequest\"\x15\n\x13ListFoldersResponse2\x94\x0f\n\tGroupsAPI\x12^\n\x0b\x43reateGroup\x12%.noted.accounts.v1.CreateGroupRequest\x1a&.noted.accounts.v1.CreateGroupResponse\"\x00\x12U\n\x08GetGroup\x12\".noted.accounts.v1.GetGroupRequest\x1a#.noted.accounts.v1.GetGroupResponse\"\x00\x12^\n\x0b\x44\x65leteGroup\x12%.noted.accounts.v1.DeleteGroupRequest\x1a&.noted.accounts.v1.DeleteGroupResponse\"\x00\x12^\n\x0bUpdateGroup\x12%.noted.accounts.v1.UpdateGroupRequest\x1a&.noted.accounts.v1.UpdateGroupResponse\"\x00\x12[\n\nListGroups\x12$.noted.accounts.v1.ListGroupsRequest\x1a%.noted.accounts.v1.ListGroupsResponse\"\x00\x12g\n\x0e\x41\x64\x64GroupMember\x12(.noted.accounts.v1.AddGroupMemberRequest\x1a).noted.accounts.v1.AddGroupMemberResponse\"\x00\x12g\n\x0eGetGroupMember\x12(.noted.accounts.v1.GetGroupMemberRequest\x1a).noted.accounts.v1.GetGroupMemberResponse\"\x00\x12p\n\x11UpdateGroupMember\x12+.noted.accounts.v1.UpdateGroupMemberRequest\x1a,.noted.accounts.v1.UpdateGroupMemberResponse\"\x00\x12p\n\x11RemoveGroupMember\x12+.noted.accounts.v1.RemoveGroupMemberRequest\x1a,.noted.accounts.v1.RemoveGroupMemberResponse\"\x00\x12m\n\x10ListGroupMembers\x12*.noted.accounts.v1.ListGroupMembersRequest\x1a+.noted.accounts.v1.ListGroupMembersResponse\"\x00\x12\x61\n\x0c\x41\x64\x64GroupNote\x12&.noted.accounts.v1.AddGroupNoteRequest\x1a\'.noted.accounts.v1.AddGroupNoteResponse\"\x00\x12\x61\n\x0cGetGroupNote\x12&.noted.accounts.v1.GetGroupNoteRequest\x1a\'.noted.accounts.v1.GetGroupNoteResponse\"\x00\x12j\n\x0fUpdateGroupNote\x12).noted.accounts.v1.UpdateGroupNoteRequest\x1a*.noted.accounts.v1.UpdateGroupNoteResponse\"\x00\x12j\n\x0fRemoveGroupNote\x12).noted.accounts.v1.RemoveGroupNoteRequest\x1a*.noted.accounts.v1.RemoveGroupNoteResponse\"\x00\x12g\n\x0eListGroupNotes\x12(.noted.accounts.v1.ListGroupNotesRequest\x1a).noted.accounts.v1.ListGroupNotesResponse\"\x00\x12\x61\n\x0c\x43reateFolder\x12&.noted.accounts.v1.CreateFolderRequest\x1a\'.noted.accounts.v1.CreateFolderResponse\"\x00\x12\x61\n\x0c\x44\x65leteFolder\x12&.noted.accounts.v1.DeleteFolderRequest\x1a\'.noted.accounts.v1.DeleteFolderResponse\"\x00\x12\x61\n\x0cUpdateFolder\x12&.noted.accounts.v1.UpdateFolderRequest\x1a\'.noted.accounts.v1.UpdateFolderResponse\"\x00\x12^\n\x0bListFolders\x12%.noted.accounts.v1.ListFoldersRequest\x1a&.noted.accounts.v1.ListFoldersResponse\"\x00\x42\x13Z\x11noted/accounts/v1b\x06proto3')
 
 
 
@@ -31,6 +31,8 @@ _DELETEGROUPREQUEST = DESCRIPTOR.message_types_by_name['DeleteGroupRequest']
 _DELETEGROUPRESPONSE = DESCRIPTOR.message_types_by_name['DeleteGroupResponse']
 _UPDATEGROUPREQUEST = DESCRIPTOR.message_types_by_name['UpdateGroupRequest']
 _UPDATEGROUPRESPONSE = DESCRIPTOR.message_types_by_name['UpdateGroupResponse']
+_LISTGROUPSREQUEST = DESCRIPTOR.message_types_by_name['ListGroupsRequest']
+_LISTGROUPSRESPONSE = DESCRIPTOR.message_types_by_name['ListGroupsResponse']
 _LISTGROUPMEMBERSREQUEST = DESCRIPTOR.message_types_by_name['ListGroupMembersRequest']
 _LISTGROUPMEMBERSRESPONSE = DESCRIPTOR.message_types_by_name['ListGroupMembersResponse']
 _ADDGROUPMEMBERREQUEST = DESCRIPTOR.message_types_by_name['AddGroupMemberRequest']
@@ -135,6 +137,20 @@ UpdateGroupResponse = _reflection.GeneratedProtocolMessageType('UpdateGroupRespo
   # @@protoc_insertion_point(class_scope:noted.accounts.v1.UpdateGroupResponse)
   })
 _sym_db.RegisterMessage(UpdateGroupResponse)
+
+ListGroupsRequest = _reflection.GeneratedProtocolMessageType('ListGroupsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _LISTGROUPSREQUEST,
+  '__module__' : 'noted.accounts.v1.groups_pb2'
+  # @@protoc_insertion_point(class_scope:noted.accounts.v1.ListGroupsRequest)
+  })
+_sym_db.RegisterMessage(ListGroupsRequest)
+
+ListGroupsResponse = _reflection.GeneratedProtocolMessageType('ListGroupsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _LISTGROUPSRESPONSE,
+  '__module__' : 'noted.accounts.v1.groups_pb2'
+  # @@protoc_insertion_point(class_scope:noted.accounts.v1.ListGroupsResponse)
+  })
+_sym_db.RegisterMessage(ListGroupsResponse)
 
 ListGroupMembersRequest = _reflection.GeneratedProtocolMessageType('ListGroupMembersRequest', (_message.Message,), {
   'DESCRIPTOR' : _LISTGROUPMEMBERSREQUEST,
@@ -359,62 +375,66 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _UPDATEGROUPREQUEST._serialized_end=981
   _UPDATEGROUPRESPONSE._serialized_start=983
   _UPDATEGROUPRESPONSE._serialized_end=1052
-  _LISTGROUPMEMBERSREQUEST._serialized_start=1054
-  _LISTGROUPMEMBERSREQUEST._serialized_end=1106
-  _LISTGROUPMEMBERSRESPONSE._serialized_start=1108
-  _LISTGROUPMEMBERSRESPONSE._serialized_end=1192
-  _ADDGROUPMEMBERREQUEST._serialized_start=1194
-  _ADDGROUPMEMBERREQUEST._serialized_end=1275
-  _ADDGROUPMEMBERRESPONSE._serialized_start=1277
-  _ADDGROUPMEMBERRESPONSE._serialized_end=1301
-  _GETGROUPMEMBERREQUEST._serialized_start=1303
-  _GETGROUPMEMBERREQUEST._serialized_end=1384
-  _GETGROUPMEMBERRESPONSE._serialized_start=1386
-  _GETGROUPMEMBERRESPONSE._serialized_end=1466
-  _UPDATEGROUPMEMBERREQUEST._serialized_start=1468
-  _UPDATEGROUPMEMBERREQUEST._serialized_end=1552
-  _UPDATEGROUPMEMBERRESPONSE._serialized_start=1554
-  _UPDATEGROUPMEMBERRESPONSE._serialized_end=1637
-  _REMOVEGROUPMEMBERREQUEST._serialized_start=1639
-  _REMOVEGROUPMEMBERREQUEST._serialized_end=1723
-  _REMOVEGROUPMEMBERRESPONSE._serialized_start=1725
-  _REMOVEGROUPMEMBERRESPONSE._serialized_end=1752
-  _ADDGROUPNOTEREQUEST._serialized_start=1755
-  _ADDGROUPNOTEREQUEST._serialized_end=1923
-  _ADDGROUPNOTERESPONSE._serialized_start=1925
-  _ADDGROUPNOTERESPONSE._serialized_end=1997
-  _GETGROUPNOTEREQUEST._serialized_start=1999
-  _GETGROUPNOTEREQUEST._serialized_end=2072
-  _GETGROUPNOTERESPONSE._serialized_start=2074
-  _GETGROUPNOTERESPONSE._serialized_end=2146
-  _UPDATEGROUPNOTEREQUEST._serialized_start=2149
-  _UPDATEGROUPNOTEREQUEST._serialized_end=2311
-  _UPDATEGROUPNOTERESPONSE._serialized_start=2313
-  _UPDATEGROUPNOTERESPONSE._serialized_end=2388
-  _REMOVEGROUPNOTEREQUEST._serialized_start=2390
-  _REMOVEGROUPNOTEREQUEST._serialized_end=2466
-  _REMOVEGROUPNOTERESPONSE._serialized_start=2468
-  _REMOVEGROUPNOTERESPONSE._serialized_end=2493
-  _LISTGROUPNOTESREQUEST._serialized_start=2496
-  _LISTGROUPNOTESREQUEST._serialized_end=2665
-  _LISTGROUPNOTESRESPONSE._serialized_start=2667
-  _LISTGROUPNOTESRESPONSE._serialized_end=2743
-  _CREATEFOLDERREQUEST._serialized_start=2745
-  _CREATEFOLDERREQUEST._serialized_end=2766
-  _CREATEFOLDERRESPONSE._serialized_start=2768
-  _CREATEFOLDERRESPONSE._serialized_end=2790
-  _DELETEFOLDERREQUEST._serialized_start=2792
-  _DELETEFOLDERREQUEST._serialized_end=2813
-  _DELETEFOLDERRESPONSE._serialized_start=2815
-  _DELETEFOLDERRESPONSE._serialized_end=2837
-  _UPDATEFOLDERREQUEST._serialized_start=2839
-  _UPDATEFOLDERREQUEST._serialized_end=2860
-  _UPDATEFOLDERRESPONSE._serialized_start=2862
-  _UPDATEFOLDERRESPONSE._serialized_end=2884
-  _LISTFOLDERSREQUEST._serialized_start=2886
-  _LISTFOLDERSREQUEST._serialized_end=2906
-  _LISTFOLDERSRESPONSE._serialized_start=2908
-  _LISTFOLDERSRESPONSE._serialized_end=2929
-  _GROUPSAPI._serialized_start=2932
-  _GROUPSAPI._serialized_end=4779
+  _LISTGROUPSREQUEST._serialized_start=1054
+  _LISTGROUPSREQUEST._serialized_end=1104
+  _LISTGROUPSRESPONSE._serialized_start=1106
+  _LISTGROUPSRESPONSE._serialized_end=1176
+  _LISTGROUPMEMBERSREQUEST._serialized_start=1178
+  _LISTGROUPMEMBERSREQUEST._serialized_end=1230
+  _LISTGROUPMEMBERSRESPONSE._serialized_start=1232
+  _LISTGROUPMEMBERSRESPONSE._serialized_end=1316
+  _ADDGROUPMEMBERREQUEST._serialized_start=1318
+  _ADDGROUPMEMBERREQUEST._serialized_end=1399
+  _ADDGROUPMEMBERRESPONSE._serialized_start=1401
+  _ADDGROUPMEMBERRESPONSE._serialized_end=1425
+  _GETGROUPMEMBERREQUEST._serialized_start=1427
+  _GETGROUPMEMBERREQUEST._serialized_end=1508
+  _GETGROUPMEMBERRESPONSE._serialized_start=1510
+  _GETGROUPMEMBERRESPONSE._serialized_end=1590
+  _UPDATEGROUPMEMBERREQUEST._serialized_start=1592
+  _UPDATEGROUPMEMBERREQUEST._serialized_end=1676
+  _UPDATEGROUPMEMBERRESPONSE._serialized_start=1678
+  _UPDATEGROUPMEMBERRESPONSE._serialized_end=1761
+  _REMOVEGROUPMEMBERREQUEST._serialized_start=1763
+  _REMOVEGROUPMEMBERREQUEST._serialized_end=1847
+  _REMOVEGROUPMEMBERRESPONSE._serialized_start=1849
+  _REMOVEGROUPMEMBERRESPONSE._serialized_end=1876
+  _ADDGROUPNOTEREQUEST._serialized_start=1879
+  _ADDGROUPNOTEREQUEST._serialized_end=2047
+  _ADDGROUPNOTERESPONSE._serialized_start=2049
+  _ADDGROUPNOTERESPONSE._serialized_end=2121
+  _GETGROUPNOTEREQUEST._serialized_start=2123
+  _GETGROUPNOTEREQUEST._serialized_end=2196
+  _GETGROUPNOTERESPONSE._serialized_start=2198
+  _GETGROUPNOTERESPONSE._serialized_end=2270
+  _UPDATEGROUPNOTEREQUEST._serialized_start=2273
+  _UPDATEGROUPNOTEREQUEST._serialized_end=2435
+  _UPDATEGROUPNOTERESPONSE._serialized_start=2437
+  _UPDATEGROUPNOTERESPONSE._serialized_end=2512
+  _REMOVEGROUPNOTEREQUEST._serialized_start=2514
+  _REMOVEGROUPNOTEREQUEST._serialized_end=2590
+  _REMOVEGROUPNOTERESPONSE._serialized_start=2592
+  _REMOVEGROUPNOTERESPONSE._serialized_end=2617
+  _LISTGROUPNOTESREQUEST._serialized_start=2620
+  _LISTGROUPNOTESREQUEST._serialized_end=2789
+  _LISTGROUPNOTESRESPONSE._serialized_start=2791
+  _LISTGROUPNOTESRESPONSE._serialized_end=2867
+  _CREATEFOLDERREQUEST._serialized_start=2869
+  _CREATEFOLDERREQUEST._serialized_end=2890
+  _CREATEFOLDERRESPONSE._serialized_start=2892
+  _CREATEFOLDERRESPONSE._serialized_end=2914
+  _DELETEFOLDERREQUEST._serialized_start=2916
+  _DELETEFOLDERREQUEST._serialized_end=2937
+  _DELETEFOLDERRESPONSE._serialized_start=2939
+  _DELETEFOLDERRESPONSE._serialized_end=2961
+  _UPDATEFOLDERREQUEST._serialized_start=2963
+  _UPDATEFOLDERREQUEST._serialized_end=2984
+  _UPDATEFOLDERRESPONSE._serialized_start=2986
+  _UPDATEFOLDERRESPONSE._serialized_end=3008
+  _LISTFOLDERSREQUEST._serialized_start=3010
+  _LISTFOLDERSREQUEST._serialized_end=3030
+  _LISTFOLDERSRESPONSE._serialized_start=3032
+  _LISTFOLDERSRESPONSE._serialized_end=3053
+  _GROUPSAPI._serialized_start=3056
+  _GROUPSAPI._serialized_end=4996
 # @@protoc_insertion_point(module_scope)

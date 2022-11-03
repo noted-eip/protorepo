@@ -37,6 +37,11 @@ class GroupsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupResponse.FromString,
                 )
+        self.ListGroups = channel.unary_unary(
+                '/noted.accounts.v1.GroupsAPI/ListGroups',
+                request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupsRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupsResponse.FromString,
+                )
         self.AddGroupMember = channel.unary_unary(
                 '/noted.accounts.v1.GroupsAPI/AddGroupMember',
                 request_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.AddGroupMemberRequest.SerializeToString,
@@ -140,6 +145,13 @@ class GroupsAPIServicer(object):
 
     def UpdateGroup(self, request, context):
         """Must be group administrator.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListGroups(self, request, context):
+        """Must be groups member.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -264,6 +276,11 @@ def add_GroupsAPIServicer_to_server(servicer, server):
                     servicer.UpdateGroup,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupResponse.SerializeToString,
+            ),
+            'ListGroups': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListGroups,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupsRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupsResponse.SerializeToString,
             ),
             'AddGroupMember': grpc.unary_unary_rpc_method_handler(
                     servicer.AddGroupMember,
@@ -413,6 +430,23 @@ class GroupsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/UpdateGroup',
             noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupRequest.SerializeToString,
             noted_dot_accounts_dot_v1_dot_groups__pb2.UpdateGroupResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListGroups(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.GroupsAPI/ListGroups',
+            noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupsRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_groups__pb2.ListGroupsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
