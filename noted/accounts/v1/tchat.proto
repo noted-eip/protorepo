@@ -29,13 +29,16 @@ service ConversationsAPI {
     // Internal endpoint. Invoked upon group creation.
     rpc CreateConversation(CreateConversationRequest) returns (CreateConversationResponse) {}
     // Must be group member.
+    rpc UpdateConversation(UpdateConversationRequest) returns (UpdateConversationResponse) {}
     rpc SendConversationMessage(SendConversationMessageRequest) returns (SendConversationMessageResponse) {}
     // Must be sender or group admin.
     rpc DeleteConversationMessage(DeleteConversationMessageRequest) returns (DeleteConversationMessageResponse) {}
     // Must be group member.
     rpc GetConversationMessage(GetConversationMessageRequest) returns (GetConversationMessageResponse) {}
+    rpc UpdateConversationMessage(UpdateConversationMessageRequest) returns (UpdateConversationMessageResponse) {}
     // Must be group member.
     rpc ListConversationMessages(ListConversationMessagesRequest) returns (ListConversationMessagesResponse) {}
+    rpc ListConversations(ListConversationsRequest) returns (ListConversationsResponse) {}
 }
 
 message CreateConversationRequest {
@@ -44,6 +47,15 @@ message CreateConversationRequest {
 }
 
 message CreateConversationResponse {
+    Conversation conversation = 1;
+}
+
+message UpdateConversationRequest {
+    string conversation_id = 1;
+    string title = 2;
+}
+
+message UpdateConversationResponse {
     Conversation conversation = 1;
 }
 
@@ -73,6 +85,15 @@ message GetConversationMessageResponse {
     ConversationMessage message = 1;
 }
 
+message UpdateConversationMessageRequest {
+    string conversation_id = 1;
+    string content = 1;
+}
+
+message UpdateConversationMessageResponse {
+    ConversationMessage message = 1;
+}
+
 message ListConversationMessagesRequest {
     string conversation_id = 1;
     // (Optional) Filter messages by sender. 
@@ -87,4 +108,12 @@ message ListConversationMessagesRequest {
 
 message ListConversationMessagesResponse {
     repeated ConversationMessage messages = 1;
+}
+
+message ListConversationsRequest {
+    string group_id = 1;
+}
+
+message ListConversationsResponse {
+    repeated Conversation conversations = 1;
 }
