@@ -104,7 +104,7 @@ message ListConversationMessageRequest {
     string chronological = 2;
     // (optional) if we want the x last messages
     string limit = 3;
-    Conversation conversation = 1;
+    Conversation conversation = 4;
 }
 
 message ListConversationMessageResponse {
