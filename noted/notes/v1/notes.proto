@@ -111,7 +111,7 @@ message ListNotesRequest {
 }
 
 message ListNotesResponse {
-    repeated MetaNote noteMeta = 1;
+    repeated MetaNote note_meta = 1;
 }
 
 message InsertBlockRequest {
