@@ -87,7 +87,7 @@ message GetConversationMessageResponse {
 
 message UpdateConversationMessageRequest {
     string conversation_id = 1;
-    string content = 1;
+    string content = 2;
 }
 
 message UpdateConversationMessageResponse {
