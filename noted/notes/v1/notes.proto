@@ -17,6 +17,12 @@ message Note {
     repeated Block blocks = 4;
 }
 
+message MetaNote {
+    string id = 1;
+    string author_id = 2;
+    string title = 3;
+}
+
 message Block {
     string id = 1;
 
@@ -105,16 +111,12 @@ message ListNotesRequest {
 }
 
 message ListNotesResponse {
-    repeated Note notes = 1;
+    repeated MetaNote noteMeta = 1;
 }
 
 message InsertBlockRequest {
-    // The block to append to the note.
     Block block = 1;
-    // Given that a note is an array of blocks, provide the index at
-    // which the block shall be inserted.
     uint32 index = 2;
-    // A new block need a note to be attached
     uint32 note_id = 3;
 }
 
