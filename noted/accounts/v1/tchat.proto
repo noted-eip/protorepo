@@ -6,34 +6,36 @@ option go_package = "noted/accounts/v1";
 
 import "google/protobuf/timestamp.proto";
 
-// ConversationMessage is the representation of a tchat conversation stored
-// in a conversation context (in which conversation is it store, who write it,
+// ConversationMessage is the representation of a chat message within
+// a conversation (in which conversation is it stored, who write it,
 // content and creation date)
 message ConversationMessage {
-    string message_id = 1;
+    string id = 1;
     string conversation_id = 2;
-    string author_account_id = 3;
+    string sender_account_id = 3;
     string content = 4;
     google.protobuf.Timestamp created_at = 5;
 }
 
-// Conversation is the representation of a tchat conversation stored
-// in a group context (which group, with a title)
+// Conversation represents a chat conversation between members of a group.
 message Conversation {
-    string conversation_id = 1;
-    string folder_id = 2;
+    string id = 1;
+    // Conversations are bound to groups.
+    string group_id = 2;
     string title = 3;
 }
 
-service TchatAPI {
+service ConversationsAPI {
+    // Internal endpoint. Invoked upon group creation.
     rpc CreateConversation(CreateConversationRequest) returns (CreateConversationResponse) {}
-    rpc AddConversationMember(AddConversationMemberRequest) returns (AddConversationMemberResponse) {}
-    rpc RemoveConversationMember(RemoveConversationMemberRequest) returns (RemoveConversationMemberResponse) {}
+    // Must be group member.
     rpc SendConversationMessage(SendConversationMessageRequest) returns (SendConversationMessageResponse) {}
+    // Must be sender or group admin.
     rpc DeleteConversationMessage(DeleteConversationMessageRequest) returns (DeleteConversationMessageResponse) {}
+    // Must be group member.
     rpc GetConversationMessage(GetConversationMessageRequest) returns (GetConversationMessageResponse) {}
-    rpc ListConversationMessage(ListConversationMessageRequest) returns (ListConversationMessageResponse) {}
-    rpc ListConversationMember(ListConversationMemberRequest) returns (ListConversationMemberResponse) {}
+    // Must be group member.
+    rpc ListConversationMessages(ListConversationMessagesRequest) returns (ListConversationMessagesResponse) {}
 }
 
 message CreateConversationRequest {
@@ -45,51 +47,25 @@ message CreateConversationResponse {
     Conversation conversation = 1;
 }
 
-message AddConversationMemberRequest {
-    string member_account_id = 1;
-    string conversation_id = 2;
-}
-
-message AddConversationMemberResponse {
-    // kind of boolean to know if the operation suceed
-    // maybe put nothing here
-    string member_id = 1;
-}
-
-message RemoveConversationMemberRequest {
-    string member_account_id = 1;
-    string conversation_id = 2;
-}
-
-message RemoveConversationMemberResponse {
-    // kind of boolean to know if the operation suceed
-    // maybe put nothing here
-    string member_id = 1;
-}
-
 message SendConversationMessageRequest {
-    ConversationMessage message = 2;
+    string conversation_id = 1;
+    string content = 2;
 }
 
 message SendConversationMessageResponse {
-    // kind of boolean to know if the operation suceed
-    // maybe put nothing here
-    string message_id = 1;
+    ConversationMessage message = 1;
 }
 
 message DeleteConversationMessageRequest {
-    Conversation conversation = 1;
+    string conversation_id = 1;
     string message_id = 2;
 }
 
 message DeleteConversationMessageResponse {
-    // kind of boolean to know if the operation suceed
-    // maybe put nothing here
-    string message_id = 1;
 }
 
 message GetConversationMessageRequest {
-    Conversation conversation = 1;
+    string conversation_id = 1;
     string message_id = 2;
 }
 
@@ -97,24 +73,18 @@ message GetConversationMessageResponse {
     ConversationMessage message = 1;
 }
 
-message ListConversationMessageRequest {
-    // (optional) if we want only user's messages
-    string user_id = 1;
-    // (optional) if we want to list by chronological order
-    string chronological = 2;
-    // (optional) if we want the x last messages
-    string limit = 3;
-    Conversation conversation = 4;
+message ListConversationMessagesRequest {
+    string conversation_id = 1;
+    // (Optional) Filter messages by sender. 
+    string sender_account_id = 2;
+    // TODO: Change to `sort` enum.
+    string chronological = 3;
+    // (Optional)
+    int32 limit = 4;
+    // (Optional)
+    int32 offset = 5;
 }
 
-message ListConversationMessageResponse {
+message ListConversationMessagesResponse {
     repeated ConversationMessage messages = 1;
-}
-
-message ListConversationMemberRequest {
-    Conversation conversation = 1;
-}
-
-message ListConversationMemberResponse {
-    repeated string members_id = 1;
 }
