@@ -26,14 +26,14 @@ message Conversation {
 }
 
 service TchatAPI {
-    rpc CreateConversation(CreateConversationRequest) return (CreateConversationResponse) {}
-    rpc AddConversationMember(AddConversationMemberRequest) return (AddConversationMemberResponse) {}
-    rpc RemoveConversationMember(RemoveConversationMemberRequest) return (RemoveConversationMemberResponse) {}
-    rpc SendConversationMessage(SendConversationMessageRequest) return (SendConversationMessageResponse) {}
-    rpc DeleteConversationMessage(DeleteConversationMessageRequest) return (DeleteConversationMessageResponse) {}
-    rpc GetConversationMessage(GetConversationMessageRequest) return (GetConversationMessageResponse) {}
-    rpc ListConversationMessage(ListConversationMessageRequest) return (ListConversationMessageResponse) {}
-    rpc ListConversationMember(ListConversationMemberRequest) return (ListConversationMemberResponse) {}
+    rpc CreateConversation(CreateConversationRequest) returns (CreateConversationResponse) {}
+    rpc AddConversationMember(AddConversationMemberRequest) returns (AddConversationMemberResponse) {}
+    rpc RemoveConversationMember(RemoveConversationMemberRequest) returns (RemoveConversationMemberResponse) {}
+    rpc SendConversationMessage(SendConversationMessageRequest) returns (SendConversationMessageResponse) {}
+    rpc DeleteConversationMessage(DeleteConversationMessageRequest) returns (DeleteConversationMessageResponse) {}
+    rpc GetConversationMessage(GetConversationMessageRequest) returns (GetConversationMessageResponse) {}
+    rpc ListConversationMessage(ListConversationMessageRequest) returns (ListConversationMessageResponse) {}
+    rpc ListConversationMember(ListConversationMemberRequest) returns (ListConversationMemberResponse) {}
 }
 
 message CreateConversationRequest {
