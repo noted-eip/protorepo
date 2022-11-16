@@ -97,6 +97,7 @@ message UpdateNoteRequest {
 }
 
 message UpdateNoteResponse {
+    string id = 1;
 }
 
 message DeleteNoteRequest {
