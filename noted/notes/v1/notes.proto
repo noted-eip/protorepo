@@ -97,6 +97,7 @@ message UpdateNoteRequest {
 }
 
 message UpdateNoteResponse {
+    string note_id = 1;
 }
 
 message DeleteNoteRequest {
@@ -111,7 +112,7 @@ message ListNotesRequest {
 }
 
 message ListNotesResponse {
-    repeated MetaNote noteMeta = 1;
+    repeated MetaNote note_meta = 1;
 }
 
 message InsertBlockRequest {
