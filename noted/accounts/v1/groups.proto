@@ -174,8 +174,6 @@ message AddGroupNoteRequest {
     // ID of the note within the notes-service.
     string note_id = 2;
     string title = 3;
-    // Defaults to the authenticated user.
-    string author_account_id = 4;
     // Next sprint -- Leave blank.
     string folder_id = 5;
 }
