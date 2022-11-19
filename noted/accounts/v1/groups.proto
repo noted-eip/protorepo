@@ -54,7 +54,7 @@ service GroupsAPI {
     rpc AddGroupMember(AddGroupMemberRequest) returns (AddGroupMemberResponse) {}
     // Must be group member.
     rpc GetGroupMember(GetGroupMemberRequest) returns (GetGroupMemberResponse) {}
-    // Must be group administrator.
+    // Must be group administrator. Can only update `role`.
     rpc UpdateGroupMember(UpdateGroupMemberRequest) returns (UpdateGroupMemberResponse) {}
     // Must be group administrator or the authenticated user removing itself from
     // the group.
@@ -148,7 +148,8 @@ message GetGroupMemberResponse {
 
 message UpdateGroupMemberRequest {
     string group_id = 1;
-    string account_id = 2;
+    GroupMember member = 2;
+    google.protobuf.FieldMask update_mask = 3;
 }
 
 message UpdateGroupMemberResponse {
