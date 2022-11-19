@@ -115,6 +115,8 @@ message UpdateGroupResponse {
 
 message ListGroupsRequest {
     string account_id = 1;
+    int32 limit = 2;
+    int32 offset = 3;
 }
 
 message ListGroupsResponse {
@@ -123,6 +125,8 @@ message ListGroupsResponse {
 
 message ListGroupMembersRequest {
     string group_id = 1;
+    int32 limit = 2;
+    int32 offset = 3;
 }
 
 message ListGroupMembersResponse {
