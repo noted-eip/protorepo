@@ -219,8 +219,8 @@ message ListGroupNotesRequest {
     // (Optional) List notes only from a given folder.
     string folder_id = 3;
 
-    string limit = 4;
-    string offset = 5;
+    int32 limit = 4;
+    int32 offset = 5;
 }
 
 message ListGroupNotesResponse {
