@@ -35,7 +35,7 @@ type GroupsAPIClient interface {
 	AddGroupMember(ctx context.Context, in *AddGroupMemberRequest, opts ...grpc.CallOption) (*AddGroupMemberResponse, error)
 	// Must be group member.
 	GetGroupMember(ctx context.Context, in *GetGroupMemberRequest, opts ...grpc.CallOption) (*GetGroupMemberResponse, error)
-	// Must be group administrator.
+	// Must be group administrator. Can only update `role`.
 	UpdateGroupMember(ctx context.Context, in *UpdateGroupMemberRequest, opts ...grpc.CallOption) (*UpdateGroupMemberResponse, error)
 	// Must be group administrator or the authenticated user removing itself from
 	// the group.
@@ -259,7 +259,7 @@ type GroupsAPIServer interface {
 	AddGroupMember(context.Context, *AddGroupMemberRequest) (*AddGroupMemberResponse, error)
 	// Must be group member.
 	GetGroupMember(context.Context, *GetGroupMemberRequest) (*GetGroupMemberResponse, error)
-	// Must be group administrator.
+	// Must be group administrator. Can only update `role`.
 	UpdateGroupMember(context.Context, *UpdateGroupMemberRequest) (*UpdateGroupMemberResponse, error)
 	// Must be group administrator or the authenticated user removing itself from
 	// the group.
