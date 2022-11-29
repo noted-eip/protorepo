@@ -8,6 +8,7 @@ service RecommendationsAPI {
     rpc ExtractKeywords(ExtractKeywordsRequest) returns (ExtractKeywordsResponse) {}
     rpc ExtractKeywordsBatch(ExtractKeywordsBatchRequest) returns (ExtractKeywordsBatchResponse) {}
     rpc Summarize(SummarizeRequest) returns (SummarizeResponse) {}
+    rpc GoogleEntityExtraction(GoogleEntityExtractionRequest) returns (GoogleEntityExtractionResponse) {}
 }
 
 message ExtractKeywordsRequest {
@@ -28,6 +29,44 @@ message ExtractKeywordsBatchResponse {
 
 message SummarizeRequest {
     string content = 1;
+}
+
+message GoogleEntityExtractionRequest {
+    string content = 1;
+}
+
+message GoogleBaseEntityAbstraction {
+    string name = 1;
+    float pertinence = 2;
+    string type = 3; // NOTE: Could make an Enum
+    int32 offset = 4; // Offset in characters in the processed text
+}
+
+message GoogleEntityExtractionDateResponse {
+    GoogleBaseEntityAbstraction base = 1;
+    int32 day = 2;
+    int32 month = 3;
+    int32 year = 4;
+}
+
+message GoogleEntityExtractionWikipediaResponse {
+    GoogleBaseEntityAbstraction base = 1;
+    string url = 2;
+}
+
+message GoogleBaseEntityTopResultsWrapper {
+    oneof from {
+        GoogleBaseEntityAbstraction basic = 1;
+        GoogleEntityExtractionDateResponse date = 2;
+        GoogleEntityExtractionWikipediaResponse wikipedia_entity = 3;
+    }
+    string type = 4; // NOTE: Could be removed 🤷‍♂️
+}
+
+message GoogleEntityExtractionResponse {
+    repeated GoogleBaseEntityTopResultsWrapper top_results = 1;
+    repeated GoogleEntityExtractionDateResponse dates = 2;
+    repeated GoogleEntityExtractionWikipediaResponse wikipedia_entities = 3;
 }
 
 message SummarizeResponse {
