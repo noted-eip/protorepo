@@ -21,16 +21,23 @@ type ConversationsAPIClient interface {
 	// Internal endpoint. Invoked upon group creation.
 	CreateConversation(ctx context.Context, in *CreateConversationRequest, opts ...grpc.CallOption) (*CreateConversationResponse, error)
 	// Must be group member.
+	GetConversation(ctx context.Context, in *GetConversationRequest, opts ...grpc.CallOption) (*GetConversationResponse, error)
+	// Must be group admin. Can only update `title`.
 	UpdateConversation(ctx context.Context, in *UpdateConversationRequest, opts ...grpc.CallOption) (*UpdateConversationResponse, error)
+	// Internal endpoint. Invoked upon group deletion.
+	DeleteConversation(ctx context.Context, in *DeleteConversationRequest, opts ...grpc.CallOption) (*DeleteConversationResponse, error)
+	// Must be group member.
+	ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error)
+	// Must be group member.
 	SendConversationMessage(ctx context.Context, in *SendConversationMessageRequest, opts ...grpc.CallOption) (*SendConversationMessageResponse, error)
-	// Must be sender or group admin.
-	DeleteConversationMessage(ctx context.Context, in *DeleteConversationMessageRequest, opts ...grpc.CallOption) (*DeleteConversationMessageResponse, error)
 	// Must be group member.
 	GetConversationMessage(ctx context.Context, in *GetConversationMessageRequest, opts ...grpc.CallOption) (*GetConversationMessageResponse, error)
+	// Must be sender. Can only update `content`.
 	UpdateConversationMessage(ctx context.Context, in *UpdateConversationMessageRequest, opts ...grpc.CallOption) (*UpdateConversationMessageResponse, error)
-	// Must be group member.
+	// Must be sender or group admin.
+	DeleteConversationMessage(ctx context.Context, in *DeleteConversationMessageRequest, opts ...grpc.CallOption) (*DeleteConversationMessageResponse, error)
+	// Must be group member. Messages are sorted in reverse chronological order.
 	ListConversationMessages(ctx context.Context, in *ListConversationMessagesRequest, opts ...grpc.CallOption) (*ListConversationMessagesResponse, error)
-	ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error)
 }
 
 type conversationsAPIClient struct {
@@ -50,6 +57,15 @@ func (c *conversationsAPIClient) CreateConversation(ctx context.Context, in *Cre
 	return out, nil
 }
 
+func (c *conversationsAPIClient) GetConversation(ctx context.Context, in *GetConversationRequest, opts ...grpc.CallOption) (*GetConversationResponse, error) {
+	out := new(GetConversationResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.ConversationsAPI/GetConversation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *conversationsAPIClient) UpdateConversation(ctx context.Context, in *UpdateConversationRequest, opts ...grpc.CallOption) (*UpdateConversationResponse, error) {
 	out := new(UpdateConversationResponse)
 	err := c.cc.Invoke(ctx, "/noted.accounts.v1.ConversationsAPI/UpdateConversation", in, out, opts...)
@@ -59,18 +75,27 @@ func (c *conversationsAPIClient) UpdateConversation(ctx context.Context, in *Upd
 	return out, nil
 }
 
-func (c *conversationsAPIClient) SendConversationMessage(ctx context.Context, in *SendConversationMessageRequest, opts ...grpc.CallOption) (*SendConversationMessageResponse, error) {
-	out := new(SendConversationMessageResponse)
-	err := c.cc.Invoke(ctx, "/noted.accounts.v1.ConversationsAPI/SendConversationMessage", in, out, opts...)
+func (c *conversationsAPIClient) DeleteConversation(ctx context.Context, in *DeleteConversationRequest, opts ...grpc.CallOption) (*DeleteConversationResponse, error) {
+	out := new(DeleteConversationResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.ConversationsAPI/DeleteConversation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *conversationsAPIClient) DeleteConversationMessage(ctx context.Context, in *DeleteConversationMessageRequest, opts ...grpc.CallOption) (*DeleteConversationMessageResponse, error) {
-	out := new(DeleteConversationMessageResponse)
-	err := c.cc.Invoke(ctx, "/noted.accounts.v1.ConversationsAPI/DeleteConversationMessage", in, out, opts...)
+func (c *conversationsAPIClient) ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error) {
+	out := new(ListConversationsResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.ConversationsAPI/ListConversations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *conversationsAPIClient) SendConversationMessage(ctx context.Context, in *SendConversationMessageRequest, opts ...grpc.CallOption) (*SendConversationMessageResponse, error) {
+	out := new(SendConversationMessageResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.ConversationsAPI/SendConversationMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -95,18 +120,18 @@ func (c *conversationsAPIClient) UpdateConversationMessage(ctx context.Context, 
 	return out, nil
 }
 
-func (c *conversationsAPIClient) ListConversationMessages(ctx context.Context, in *ListConversationMessagesRequest, opts ...grpc.CallOption) (*ListConversationMessagesResponse, error) {
-	out := new(ListConversationMessagesResponse)
-	err := c.cc.Invoke(ctx, "/noted.accounts.v1.ConversationsAPI/ListConversationMessages", in, out, opts...)
+func (c *conversationsAPIClient) DeleteConversationMessage(ctx context.Context, in *DeleteConversationMessageRequest, opts ...grpc.CallOption) (*DeleteConversationMessageResponse, error) {
+	out := new(DeleteConversationMessageResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.ConversationsAPI/DeleteConversationMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *conversationsAPIClient) ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error) {
-	out := new(ListConversationsResponse)
-	err := c.cc.Invoke(ctx, "/noted.accounts.v1.ConversationsAPI/ListConversations", in, out, opts...)
+func (c *conversationsAPIClient) ListConversationMessages(ctx context.Context, in *ListConversationMessagesRequest, opts ...grpc.CallOption) (*ListConversationMessagesResponse, error) {
+	out := new(ListConversationMessagesResponse)
+	err := c.cc.Invoke(ctx, "/noted.accounts.v1.ConversationsAPI/ListConversationMessages", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -120,16 +145,23 @@ type ConversationsAPIServer interface {
 	// Internal endpoint. Invoked upon group creation.
 	CreateConversation(context.Context, *CreateConversationRequest) (*CreateConversationResponse, error)
 	// Must be group member.
+	GetConversation(context.Context, *GetConversationRequest) (*GetConversationResponse, error)
+	// Must be group admin. Can only update `title`.
 	UpdateConversation(context.Context, *UpdateConversationRequest) (*UpdateConversationResponse, error)
+	// Internal endpoint. Invoked upon group deletion.
+	DeleteConversation(context.Context, *DeleteConversationRequest) (*DeleteConversationResponse, error)
+	// Must be group member.
+	ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error)
+	// Must be group member.
 	SendConversationMessage(context.Context, *SendConversationMessageRequest) (*SendConversationMessageResponse, error)
-	// Must be sender or group admin.
-	DeleteConversationMessage(context.Context, *DeleteConversationMessageRequest) (*DeleteConversationMessageResponse, error)
 	// Must be group member.
 	GetConversationMessage(context.Context, *GetConversationMessageRequest) (*GetConversationMessageResponse, error)
+	// Must be sender. Can only update `content`.
 	UpdateConversationMessage(context.Context, *UpdateConversationMessageRequest) (*UpdateConversationMessageResponse, error)
-	// Must be group member.
+	// Must be sender or group admin.
+	DeleteConversationMessage(context.Context, *DeleteConversationMessageRequest) (*DeleteConversationMessageResponse, error)
+	// Must be group member. Messages are sorted in reverse chronological order.
 	ListConversationMessages(context.Context, *ListConversationMessagesRequest) (*ListConversationMessagesResponse, error)
-	ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error)
 	mustEmbedUnimplementedConversationsAPIServer()
 }
 
@@ -140,14 +172,20 @@ type UnimplementedConversationsAPIServer struct {
 func (UnimplementedConversationsAPIServer) CreateConversation(context.Context, *CreateConversationRequest) (*CreateConversationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateConversation not implemented")
 }
+func (UnimplementedConversationsAPIServer) GetConversation(context.Context, *GetConversationRequest) (*GetConversationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConversation not implemented")
+}
 func (UnimplementedConversationsAPIServer) UpdateConversation(context.Context, *UpdateConversationRequest) (*UpdateConversationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateConversation not implemented")
 }
+func (UnimplementedConversationsAPIServer) DeleteConversation(context.Context, *DeleteConversationRequest) (*DeleteConversationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteConversation not implemented")
+}
+func (UnimplementedConversationsAPIServer) ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListConversations not implemented")
+}
 func (UnimplementedConversationsAPIServer) SendConversationMessage(context.Context, *SendConversationMessageRequest) (*SendConversationMessageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendConversationMessage not implemented")
-}
-func (UnimplementedConversationsAPIServer) DeleteConversationMessage(context.Context, *DeleteConversationMessageRequest) (*DeleteConversationMessageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteConversationMessage not implemented")
 }
 func (UnimplementedConversationsAPIServer) GetConversationMessage(context.Context, *GetConversationMessageRequest) (*GetConversationMessageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConversationMessage not implemented")
@@ -155,11 +193,11 @@ func (UnimplementedConversationsAPIServer) GetConversationMessage(context.Contex
 func (UnimplementedConversationsAPIServer) UpdateConversationMessage(context.Context, *UpdateConversationMessageRequest) (*UpdateConversationMessageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateConversationMessage not implemented")
 }
+func (UnimplementedConversationsAPIServer) DeleteConversationMessage(context.Context, *DeleteConversationMessageRequest) (*DeleteConversationMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteConversationMessage not implemented")
+}
 func (UnimplementedConversationsAPIServer) ListConversationMessages(context.Context, *ListConversationMessagesRequest) (*ListConversationMessagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListConversationMessages not implemented")
-}
-func (UnimplementedConversationsAPIServer) ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListConversations not implemented")
 }
 func (UnimplementedConversationsAPIServer) mustEmbedUnimplementedConversationsAPIServer() {}
 
@@ -192,6 +230,24 @@ func _ConversationsAPI_CreateConversation_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConversationsAPI_GetConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConversationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConversationsAPIServer).GetConversation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.ConversationsAPI/GetConversation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConversationsAPIServer).GetConversation(ctx, req.(*GetConversationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ConversationsAPI_UpdateConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateConversationRequest)
 	if err := dec(in); err != nil {
@@ -210,6 +266,42 @@ func _ConversationsAPI_UpdateConversation_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConversationsAPI_DeleteConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteConversationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConversationsAPIServer).DeleteConversation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.ConversationsAPI/DeleteConversation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConversationsAPIServer).DeleteConversation(ctx, req.(*DeleteConversationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ConversationsAPI_ListConversations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListConversationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConversationsAPIServer).ListConversations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.ConversationsAPI/ListConversations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConversationsAPIServer).ListConversations(ctx, req.(*ListConversationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ConversationsAPI_SendConversationMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SendConversationMessageRequest)
 	if err := dec(in); err != nil {
@@ -224,24 +316,6 @@ func _ConversationsAPI_SendConversationMessage_Handler(srv interface{}, ctx cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConversationsAPIServer).SendConversationMessage(ctx, req.(*SendConversationMessageRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ConversationsAPI_DeleteConversationMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteConversationMessageRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ConversationsAPIServer).DeleteConversationMessage(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/noted.accounts.v1.ConversationsAPI/DeleteConversationMessage",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConversationsAPIServer).DeleteConversationMessage(ctx, req.(*DeleteConversationMessageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -282,6 +356,24 @@ func _ConversationsAPI_UpdateConversationMessage_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConversationsAPI_DeleteConversationMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteConversationMessageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConversationsAPIServer).DeleteConversationMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.accounts.v1.ConversationsAPI/DeleteConversationMessage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConversationsAPIServer).DeleteConversationMessage(ctx, req.(*DeleteConversationMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ConversationsAPI_ListConversationMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListConversationMessagesRequest)
 	if err := dec(in); err != nil {
@@ -300,24 +392,6 @@ func _ConversationsAPI_ListConversationMessages_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ConversationsAPI_ListConversations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListConversationsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ConversationsAPIServer).ListConversations(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/noted.accounts.v1.ConversationsAPI/ListConversations",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConversationsAPIServer).ListConversations(ctx, req.(*ListConversationsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // ConversationsAPI_ServiceDesc is the grpc.ServiceDesc for ConversationsAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -330,16 +404,24 @@ var ConversationsAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConversationsAPI_CreateConversation_Handler,
 		},
 		{
+			MethodName: "GetConversation",
+			Handler:    _ConversationsAPI_GetConversation_Handler,
+		},
+		{
 			MethodName: "UpdateConversation",
 			Handler:    _ConversationsAPI_UpdateConversation_Handler,
 		},
 		{
-			MethodName: "SendConversationMessage",
-			Handler:    _ConversationsAPI_SendConversationMessage_Handler,
+			MethodName: "DeleteConversation",
+			Handler:    _ConversationsAPI_DeleteConversation_Handler,
 		},
 		{
-			MethodName: "DeleteConversationMessage",
-			Handler:    _ConversationsAPI_DeleteConversationMessage_Handler,
+			MethodName: "ListConversations",
+			Handler:    _ConversationsAPI_ListConversations_Handler,
+		},
+		{
+			MethodName: "SendConversationMessage",
+			Handler:    _ConversationsAPI_SendConversationMessage_Handler,
 		},
 		{
 			MethodName: "GetConversationMessage",
@@ -350,14 +432,14 @@ var ConversationsAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ConversationsAPI_UpdateConversationMessage_Handler,
 		},
 		{
+			MethodName: "DeleteConversationMessage",
+			Handler:    _ConversationsAPI_DeleteConversationMessage_Handler,
+		},
+		{
 			MethodName: "ListConversationMessages",
 			Handler:    _ConversationsAPI_ListConversationMessages_Handler,
 		},
-		{
-			MethodName: "ListConversations",
-			Handler:    _ConversationsAPI_ListConversations_Handler,
-		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "noted/accounts/v1/tchat.proto",
+	Metadata: "noted/accounts/v1/conversations.proto",
 }
