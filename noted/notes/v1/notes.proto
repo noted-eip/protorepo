@@ -66,6 +66,7 @@ service NotesAPI {
     rpc InsertBlock(InsertBlockRequest) returns (InsertBlockResponse) {}
     rpc UpdateBlock(UpdateBlockRequest) returns (UpdateBlockResponse) {}
     rpc DeleteBlock(DeleteBlockRequest) returns (DeleteBlockResponse) {}
+    rpc GetRecommandationBlocks(GetRecommandationBlocksRequest) returns (GetRecommandationBlocksResponse) {}
 }
 
 message GetNoteRequest {
@@ -106,7 +107,7 @@ message ListNotesRequest {
 }
 
 message ListNotesResponse {
-    repeated Note note = 1;
+    repeated Note notes = 1;
 }
 
 message InsertBlockRequest {
@@ -136,4 +137,12 @@ message DeleteBlockRequest {
 
 message DeleteBlockResponse {
 
+}
+
+message GetRecommandationBlocksRequest {
+    uint32 id = 1;
+}
+
+message GetRecommandationBlocksResponse {
+    repeated Block blocks = 1;
 }
