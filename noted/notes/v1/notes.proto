@@ -17,12 +17,6 @@ message Note {
     repeated Block blocks = 4;
 }
 
-message MetaNote {
-    string id = 1;
-    string author_id = 2;
-    string title = 3;
-}
-
 message Block {
     string id = 1;
 
@@ -113,7 +107,7 @@ message ListNotesRequest {
 }
 
 message ListNotesResponse {
-    repeated MetaNote noteMeta = 1;
+    repeated Note note = 1;
 }
 
 message InsertBlockRequest {
