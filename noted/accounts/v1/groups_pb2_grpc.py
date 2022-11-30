@@ -173,7 +173,7 @@ class GroupsAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def UpdateGroupMember(self, request, context):
-        """Must be group administrator.
+        """Must be group administrator. Can only update `role`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
