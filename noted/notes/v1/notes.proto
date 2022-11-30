@@ -107,7 +107,7 @@ message ListNotesRequest {
 }
 
 message ListNotesResponse {
-    repeated Note note = 1;
+    repeated Note notes = 1;
 }
 
 message InsertBlockRequest {
