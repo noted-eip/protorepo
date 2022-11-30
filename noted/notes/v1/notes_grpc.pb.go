@@ -26,6 +26,7 @@ type NotesAPIClient interface {
 	InsertBlock(ctx context.Context, in *InsertBlockRequest, opts ...grpc.CallOption) (*InsertBlockResponse, error)
 	UpdateBlock(ctx context.Context, in *UpdateBlockRequest, opts ...grpc.CallOption) (*UpdateBlockResponse, error)
 	DeleteBlock(ctx context.Context, in *DeleteBlockRequest, opts ...grpc.CallOption) (*DeleteBlockResponse, error)
+	GetRecommandationBlocks(ctx context.Context, in *GetRecommandationBlocksRequest, opts ...grpc.CallOption) (*GetRecommandationBlocksResponse, error)
 }
 
 type notesAPIClient struct {
@@ -108,6 +109,15 @@ func (c *notesAPIClient) DeleteBlock(ctx context.Context, in *DeleteBlockRequest
 	return out, nil
 }
 
+func (c *notesAPIClient) GetRecommandationBlocks(ctx context.Context, in *GetRecommandationBlocksRequest, opts ...grpc.CallOption) (*GetRecommandationBlocksResponse, error) {
+	out := new(GetRecommandationBlocksResponse)
+	err := c.cc.Invoke(ctx, "/noted.notes.v1.NotesAPI/GetRecommandationBlocks", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NotesAPIServer is the server API for NotesAPI service.
 // All implementations must embed UnimplementedNotesAPIServer
 // for forward compatibility
@@ -120,6 +130,7 @@ type NotesAPIServer interface {
 	InsertBlock(context.Context, *InsertBlockRequest) (*InsertBlockResponse, error)
 	UpdateBlock(context.Context, *UpdateBlockRequest) (*UpdateBlockResponse, error)
 	DeleteBlock(context.Context, *DeleteBlockRequest) (*DeleteBlockResponse, error)
+	GetRecommandationBlocks(context.Context, *GetRecommandationBlocksRequest) (*GetRecommandationBlocksResponse, error)
 	mustEmbedUnimplementedNotesAPIServer()
 }
 
@@ -150,6 +161,9 @@ func (UnimplementedNotesAPIServer) UpdateBlock(context.Context, *UpdateBlockRequ
 }
 func (UnimplementedNotesAPIServer) DeleteBlock(context.Context, *DeleteBlockRequest) (*DeleteBlockResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBlock not implemented")
+}
+func (UnimplementedNotesAPIServer) GetRecommandationBlocks(context.Context, *GetRecommandationBlocksRequest) (*GetRecommandationBlocksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRecommandationBlocks not implemented")
 }
 func (UnimplementedNotesAPIServer) mustEmbedUnimplementedNotesAPIServer() {}
 
@@ -308,6 +322,24 @@ func _NotesAPI_DeleteBlock_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NotesAPI_GetRecommandationBlocks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRecommandationBlocksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotesAPIServer).GetRecommandationBlocks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.notes.v1.NotesAPI/GetRecommandationBlocks",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotesAPIServer).GetRecommandationBlocks(ctx, req.(*GetRecommandationBlocksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NotesAPI_ServiceDesc is the grpc.ServiceDesc for NotesAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -346,6 +378,10 @@ var NotesAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteBlock",
 			Handler:    _NotesAPI_DeleteBlock_Handler,
+		},
+		{
+			MethodName: "GetRecommandationBlocks",
+			Handler:    _NotesAPI_GetRecommandationBlocks_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
