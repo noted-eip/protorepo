@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+package noted.accounts.v1;
+
+option go_package = "noted/accounts/v1";
+
+import "google/protobuf/timestamp.proto";
+
+// Conversation represents a chat conversation between members of a group.
+message Conversation {
+    string id = 1;
+    // Conversations are bound to groups.
+    string group_id = 2;
+    string title = 3;
+}
+
+// ConversationMessage is the representation of a chat message within
+// a conversation (in which conversation is it stored, who write it,
+// content and creation date)
+message ConversationMessage {
+    string id = 1;
+    string conversation_id = 2;
+    string sender_account_id = 3;
+    string content = 4;
+    google.protobuf.Timestamp created_at = 5;
+}
+
+service ConversationsAPI {
+    // Internal endpoint. Invoked upon group creation.
+    rpc CreateConversation(CreateConversationRequest) returns (CreateConversationResponse) {}
+    // Must be group member.
+    rpc GetConversation(GetConversationRequest) returns (GetConversationResponse) {}
+    // Must be group admin. Can only update `title`.
+    rpc UpdateConversation(UpdateConversationRequest) returns (UpdateConversationResponse) {}
+    // Internal endpoint. Invoked upon group deletion.
+    rpc DeleteConversation(DeleteConversationRequest) returns (DeleteConversationResponse) {}
+    // Must be group member.
+    rpc ListConversations(ListConversationsRequest) returns (ListConversationsResponse) {}
+
+    // Must be group member.
+    rpc SendConversationMessage(SendConversationMessageRequest) returns (SendConversationMessageResponse) {}
+    // Must be group member.
+    rpc GetConversationMessage(GetConversationMessageRequest) returns (GetConversationMessageResponse) {}
+    // Must be sender. Can only update `content`.
+    rpc UpdateConversationMessage(UpdateConversationMessageRequest) returns (UpdateConversationMessageResponse) {}
+    // Must be sender or group admin.
+    rpc DeleteConversationMessage(DeleteConversationMessageRequest) returns (DeleteConversationMessageResponse) {}
+    // Must be group member. Messages are sorted in reverse chronological order.
+    rpc ListConversationMessages(ListConversationMessagesRequest) returns (ListConversationMessagesResponse) {}
+}
+
+message CreateConversationRequest {
+    string group_id = 1;
+    string title = 2;
+}
+
+message CreateConversationResponse {
+    Conversation conversation = 1;
+}
+
+message GetConversationRequest {
+    string conversation_id = 1;
+}
+
+message GetConversationResponse {
+    Conversation conversation = 1;
+}
+
+message UpdateConversationRequest {
+    string conversation_id = 1;
+    string title = 2;
+}
+
+message UpdateConversationResponse {
+    Conversation conversation = 1;
+}
+
+message DeleteConversationRequest {
+    string conversation_id = 1;
+}
+
+message DeleteConversationResponse {
+}
+
+message ListConversationsRequest {
+    string group_id = 1;
+}
+
+message ListConversationsResponse {
+    repeated Conversation conversations = 1;
+}
+
+message SendConversationMessageRequest {
+    string conversation_id = 1;
+    string content = 2;
+}
+
+message SendConversationMessageResponse {
+    ConversationMessage message = 1;
+}
+
+message GetConversationMessageRequest {
+    string message_id = 1;
+    string conversation_id = 2;
+}
+
+message GetConversationMessageResponse {
+    ConversationMessage message = 1;
+}
+
+message UpdateConversationMessageRequest {
+    string message_id = 1;
+    string conversation_id = 2;
+    string content = 3;
+}
+
+message UpdateConversationMessageResponse {
+    ConversationMessage message = 1;
+}
+
+message DeleteConversationMessageRequest {
+    string message_id = 1;
+    string conversation_id = 2;
+}
+
+message DeleteConversationMessageResponse {
+}
+
+message ListConversationMessagesRequest {
+    string conversation_id = 1;
+    // Defaults to 20.
+    int32 limit = 2;
+    // Default to 0.
+    int32 offset = 3;
+}
+
+message ListConversationMessagesResponse {
+    repeated ConversationMessage messages = 1;
+}
