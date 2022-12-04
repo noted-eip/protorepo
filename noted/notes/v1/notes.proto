@@ -18,8 +18,9 @@ message Note {
 }
 
 enum NoteExportFormat {
-    NOTE_EXPORT_FORMAT_MARKDOWN = 0;
-    NOTE_EXPORT_FORMAT_PDF = 1;
+    NOTE_EXPORT_FORMAT_INVALID = 0;
+    NOTE_EXPORT_FORMAT_MARKDOWN = 1;
+    NOTE_EXPORT_FORMAT_PDF = 2;
 }
 
 message Block {
