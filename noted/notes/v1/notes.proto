@@ -18,8 +18,8 @@ message Note {
 }
 
 enum NoteExportFormat {
-    TYPE_MARKDOWN = 0;
-    TYPE_PDF = 1;
+    NOTE_EXPORT_FORMAT_MARKDOWN = 0;
+    NOTE_EXPORT_FORMAT_PDF = 1;
 }
 
 message Block {
