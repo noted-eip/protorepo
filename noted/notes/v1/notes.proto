@@ -17,6 +17,11 @@ message Note {
     repeated Block blocks = 4;
 }
 
+enum NoteExportFormat {
+    TYPE_MARKDOWN = 1;
+    TYPE_PDF = 2;
+}
+
 message Block {
     string id = 1;
 
@@ -66,6 +71,7 @@ service NotesAPI {
     rpc InsertBlock(InsertBlockRequest) returns (InsertBlockResponse) {}
     rpc UpdateBlock(UpdateBlockRequest) returns (UpdateBlockResponse) {}
     rpc DeleteBlock(DeleteBlockRequest) returns (DeleteBlockResponse) {}
+    rpc ExportNote(ExportNoteRequest) returns (ExportNoteResponse) {}
 }
 
 message GetNoteRequest {
@@ -136,4 +142,13 @@ message DeleteBlockRequest {
 
 message DeleteBlockResponse {
 
+}
+
+message ExportNoteRequest {
+    string id = 1;
+    NoteExportFormat note_format = 2;
+}
+
+message ExportNoteResponse {
+    bytes note_bytes = 1;
 }
