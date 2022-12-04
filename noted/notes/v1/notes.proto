@@ -151,5 +151,5 @@ message ExportNoteRequest {
 }
 
 message ExportNoteResponse {
-    bytes note_bytes = 1;
+    bytes file = 1;
 }
