@@ -26,6 +26,7 @@ type NotesAPIClient interface {
 	InsertBlock(ctx context.Context, in *InsertBlockRequest, opts ...grpc.CallOption) (*InsertBlockResponse, error)
 	UpdateBlock(ctx context.Context, in *UpdateBlockRequest, opts ...grpc.CallOption) (*UpdateBlockResponse, error)
 	DeleteBlock(ctx context.Context, in *DeleteBlockRequest, opts ...grpc.CallOption) (*DeleteBlockResponse, error)
+	ExportNote(ctx context.Context, in *ExportNoteRequest, opts ...grpc.CallOption) (*ExportNoteResponse, error)
 }
 
 type notesAPIClient struct {
@@ -108,6 +109,15 @@ func (c *notesAPIClient) DeleteBlock(ctx context.Context, in *DeleteBlockRequest
 	return out, nil
 }
 
+func (c *notesAPIClient) ExportNote(ctx context.Context, in *ExportNoteRequest, opts ...grpc.CallOption) (*ExportNoteResponse, error) {
+	out := new(ExportNoteResponse)
+	err := c.cc.Invoke(ctx, "/noted.notes.v1.NotesAPI/ExportNote", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NotesAPIServer is the server API for NotesAPI service.
 // All implementations must embed UnimplementedNotesAPIServer
 // for forward compatibility
@@ -120,6 +130,7 @@ type NotesAPIServer interface {
 	InsertBlock(context.Context, *InsertBlockRequest) (*InsertBlockResponse, error)
 	UpdateBlock(context.Context, *UpdateBlockRequest) (*UpdateBlockResponse, error)
 	DeleteBlock(context.Context, *DeleteBlockRequest) (*DeleteBlockResponse, error)
+	ExportNote(context.Context, *ExportNoteRequest) (*ExportNoteResponse, error)
 	mustEmbedUnimplementedNotesAPIServer()
 }
 
@@ -150,6 +161,9 @@ func (UnimplementedNotesAPIServer) UpdateBlock(context.Context, *UpdateBlockRequ
 }
 func (UnimplementedNotesAPIServer) DeleteBlock(context.Context, *DeleteBlockRequest) (*DeleteBlockResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBlock not implemented")
+}
+func (UnimplementedNotesAPIServer) ExportNote(context.Context, *ExportNoteRequest) (*ExportNoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExportNote not implemented")
 }
 func (UnimplementedNotesAPIServer) mustEmbedUnimplementedNotesAPIServer() {}
 
@@ -308,6 +322,24 @@ func _NotesAPI_DeleteBlock_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NotesAPI_ExportNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExportNoteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotesAPIServer).ExportNote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.notes.v1.NotesAPI/ExportNote",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotesAPIServer).ExportNote(ctx, req.(*ExportNoteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NotesAPI_ServiceDesc is the grpc.ServiceDesc for NotesAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -346,6 +378,10 @@ var NotesAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteBlock",
 			Handler:    _NotesAPI_DeleteBlock_Handler,
+		},
+		{
+			MethodName: "ExportNote",
+			Handler:    _NotesAPI_ExportNote_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

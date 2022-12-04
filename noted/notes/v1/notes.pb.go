@@ -21,6 +21,55 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type NoteExportFormat int32
+
+const (
+	NoteExportFormat_NOTE_EXPORT_FORMAT_INVALID  NoteExportFormat = 0
+	NoteExportFormat_NOTE_EXPORT_FORMAT_MARKDOWN NoteExportFormat = 1
+	NoteExportFormat_NOTE_EXPORT_FORMAT_PDF      NoteExportFormat = 2
+)
+
+// Enum value maps for NoteExportFormat.
+var (
+	NoteExportFormat_name = map[int32]string{
+		0: "NOTE_EXPORT_FORMAT_INVALID",
+		1: "NOTE_EXPORT_FORMAT_MARKDOWN",
+		2: "NOTE_EXPORT_FORMAT_PDF",
+	}
+	NoteExportFormat_value = map[string]int32{
+		"NOTE_EXPORT_FORMAT_INVALID":  0,
+		"NOTE_EXPORT_FORMAT_MARKDOWN": 1,
+		"NOTE_EXPORT_FORMAT_PDF":      2,
+	}
+)
+
+func (x NoteExportFormat) Enum() *NoteExportFormat {
+	p := new(NoteExportFormat)
+	*p = x
+	return p
+}
+
+func (x NoteExportFormat) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (NoteExportFormat) Descriptor() protoreflect.EnumDescriptor {
+	return file_noted_notes_v1_notes_proto_enumTypes[0].Descriptor()
+}
+
+func (NoteExportFormat) Type() protoreflect.EnumType {
+	return &file_noted_notes_v1_notes_proto_enumTypes[0]
+}
+
+func (x NoteExportFormat) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use NoteExportFormat.Descriptor instead.
+func (NoteExportFormat) EnumDescriptor() ([]byte, []int) {
+	return file_noted_notes_v1_notes_proto_rawDescGZIP(), []int{0}
+}
+
 type Block_Type int32
 
 const (
@@ -75,11 +124,11 @@ func (x Block_Type) String() string {
 }
 
 func (Block_Type) Descriptor() protoreflect.EnumDescriptor {
-	return file_noted_notes_v1_notes_proto_enumTypes[0].Descriptor()
+	return file_noted_notes_v1_notes_proto_enumTypes[1].Descriptor()
 }
 
 func (Block_Type) Type() protoreflect.EnumType {
-	return &file_noted_notes_v1_notes_proto_enumTypes[0]
+	return &file_noted_notes_v1_notes_proto_enumTypes[1]
 }
 
 func (x Block_Type) Number() protoreflect.EnumNumber {
@@ -1165,6 +1214,108 @@ func (*DeleteBlockResponse) Descriptor() ([]byte, []int) {
 	return file_noted_notes_v1_notes_proto_rawDescGZIP(), []int{18}
 }
 
+type ExportNoteRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NoteId       string           `protobuf:"bytes,1,opt,name=note_id,json=noteId,proto3" json:"note_id,omitempty"`
+	ExportFormat NoteExportFormat `protobuf:"varint,2,opt,name=export_format,json=exportFormat,proto3,enum=noted.notes.v1.NoteExportFormat" json:"export_format,omitempty"`
+}
+
+func (x *ExportNoteRequest) Reset() {
+	*x = ExportNoteRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_noted_notes_v1_notes_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ExportNoteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExportNoteRequest) ProtoMessage() {}
+
+func (x *ExportNoteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_noted_notes_v1_notes_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExportNoteRequest.ProtoReflect.Descriptor instead.
+func (*ExportNoteRequest) Descriptor() ([]byte, []int) {
+	return file_noted_notes_v1_notes_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *ExportNoteRequest) GetNoteId() string {
+	if x != nil {
+		return x.NoteId
+	}
+	return ""
+}
+
+func (x *ExportNoteRequest) GetExportFormat() NoteExportFormat {
+	if x != nil {
+		return x.ExportFormat
+	}
+	return NoteExportFormat_NOTE_EXPORT_FORMAT_INVALID
+}
+
+type ExportNoteResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	File []byte `protobuf:"bytes,1,opt,name=file,proto3" json:"file,omitempty"`
+}
+
+func (x *ExportNoteResponse) Reset() {
+	*x = ExportNoteResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_noted_notes_v1_notes_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ExportNoteResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExportNoteResponse) ProtoMessage() {}
+
+func (x *ExportNoteResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_noted_notes_v1_notes_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExportNoteResponse.ProtoReflect.Descriptor instead.
+func (*ExportNoteResponse) Descriptor() ([]byte, []int) {
+	return file_noted_notes_v1_notes_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *ExportNoteResponse) GetFile() []byte {
+	if x != nil {
+		return x.File
+	}
+	return nil
+}
+
 type Block_Code struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1177,7 +1328,7 @@ type Block_Code struct {
 func (x *Block_Code) Reset() {
 	*x = Block_Code{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_noted_notes_v1_notes_proto_msgTypes[19]
+		mi := &file_noted_notes_v1_notes_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1190,7 +1341,7 @@ func (x *Block_Code) String() string {
 func (*Block_Code) ProtoMessage() {}
 
 func (x *Block_Code) ProtoReflect() protoreflect.Message {
-	mi := &file_noted_notes_v1_notes_proto_msgTypes[19]
+	mi := &file_noted_notes_v1_notes_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1232,7 +1383,7 @@ type Block_Image struct {
 func (x *Block_Image) Reset() {
 	*x = Block_Image{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_noted_notes_v1_notes_proto_msgTypes[20]
+		mi := &file_noted_notes_v1_notes_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1245,7 +1396,7 @@ func (x *Block_Image) String() string {
 func (*Block_Image) ProtoMessage() {}
 
 func (x *Block_Image) ProtoReflect() protoreflect.Message {
-	mi := &file_noted_notes_v1_notes_proto_msgTypes[20]
+	mi := &file_noted_notes_v1_notes_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1403,7 +1554,24 @@ var file_noted_notes_v1_notes_proto_rawDesc = []byte{
 	0x6c, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69,
 	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x15, 0x0a, 0x13, 0x44,
 	0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x32, 0xbf, 0x05, 0x0a, 0x08, 0x4e, 0x6f, 0x74, 0x65, 0x73, 0x41, 0x50, 0x49, 0x12,
+	0x73, 0x65, 0x22, 0x73, 0x0a, 0x11, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x4e, 0x6f, 0x74, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x6e, 0x6f, 0x74, 0x65, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6e, 0x6f, 0x74, 0x65, 0x49, 0x64,
+	0x12, 0x45, 0x0a, 0x0d, 0x65, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x5f, 0x66, 0x6f, 0x72, 0x6d, 0x61,
+	0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x20, 0x2e, 0x6e, 0x6f, 0x74, 0x65, 0x64, 0x2e,
+	0x6e, 0x6f, 0x74, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4e, 0x6f, 0x74, 0x65, 0x45, 0x78, 0x70,
+	0x6f, 0x72, 0x74, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x52, 0x0c, 0x65, 0x78, 0x70, 0x6f, 0x72,
+	0x74, 0x46, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x22, 0x28, 0x0a, 0x12, 0x45, 0x78, 0x70, 0x6f, 0x72,
+	0x74, 0x4e, 0x6f, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a,
+	0x04, 0x66, 0x69, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x66, 0x69, 0x6c,
+	0x65, 0x2a, 0x6f, 0x0a, 0x10, 0x4e, 0x6f, 0x74, 0x65, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x46,
+	0x6f, 0x72, 0x6d, 0x61, 0x74, 0x12, 0x1e, 0x0a, 0x1a, 0x4e, 0x4f, 0x54, 0x45, 0x5f, 0x45, 0x58,
+	0x50, 0x4f, 0x52, 0x54, 0x5f, 0x46, 0x4f, 0x52, 0x4d, 0x41, 0x54, 0x5f, 0x49, 0x4e, 0x56, 0x41,
+	0x4c, 0x49, 0x44, 0x10, 0x00, 0x12, 0x1f, 0x0a, 0x1b, 0x4e, 0x4f, 0x54, 0x45, 0x5f, 0x45, 0x58,
+	0x50, 0x4f, 0x52, 0x54, 0x5f, 0x46, 0x4f, 0x52, 0x4d, 0x41, 0x54, 0x5f, 0x4d, 0x41, 0x52, 0x4b,
+	0x44, 0x4f, 0x57, 0x4e, 0x10, 0x01, 0x12, 0x1a, 0x0a, 0x16, 0x4e, 0x4f, 0x54, 0x45, 0x5f, 0x45,
+	0x58, 0x50, 0x4f, 0x52, 0x54, 0x5f, 0x46, 0x4f, 0x52, 0x4d, 0x41, 0x54, 0x5f, 0x50, 0x44, 0x46,
+	0x10, 0x02, 0x32, 0x96, 0x06, 0x0a, 0x08, 0x4e, 0x6f, 0x74, 0x65, 0x73, 0x41, 0x50, 0x49, 0x12,
 	0x4c, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x74, 0x65, 0x12, 0x1e, 0x2e, 0x6e, 0x6f, 0x74,
 	0x65, 0x64, 0x2e, 0x6e, 0x6f, 0x74, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x4e,
 	0x6f, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x6e, 0x6f, 0x74,
@@ -1447,8 +1615,14 @@ var file_noted_notes_v1_notes_proto_rawDesc = []byte{
 	0x65, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e,
 	0x6e, 0x6f, 0x74, 0x65, 0x64, 0x2e, 0x6e, 0x6f, 0x74, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x44,
 	0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x00, 0x42, 0x10, 0x5a, 0x0e, 0x6e, 0x6f, 0x74, 0x65, 0x64, 0x2f, 0x6e, 0x6f,
-	0x74, 0x65, 0x73, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x65, 0x22, 0x00, 0x12, 0x55, 0x0a, 0x0a, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x4e, 0x6f,
+	0x74, 0x65, 0x12, 0x21, 0x2e, 0x6e, 0x6f, 0x74, 0x65, 0x64, 0x2e, 0x6e, 0x6f, 0x74, 0x65, 0x73,
+	0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x4e, 0x6f, 0x74, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x6e, 0x6f, 0x74, 0x65, 0x64, 0x2e, 0x6e, 0x6f,
+	0x74, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x4e, 0x6f, 0x74,
+	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x10, 0x5a, 0x0e, 0x6e,
+	0x6f, 0x74, 0x65, 0x64, 0x2f, 0x6e, 0x6f, 0x74, 0x65, 0x73, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1463,71 +1637,77 @@ func file_noted_notes_v1_notes_proto_rawDescGZIP() []byte {
 	return file_noted_notes_v1_notes_proto_rawDescData
 }
 
-var file_noted_notes_v1_notes_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_noted_notes_v1_notes_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_noted_notes_v1_notes_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_noted_notes_v1_notes_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_noted_notes_v1_notes_proto_goTypes = []interface{}{
-	(Block_Type)(0),               // 0: noted.notes.v1.Block.Type
-	(*Notes)(nil),                 // 1: noted.notes.v1.Notes
-	(*Note)(nil),                  // 2: noted.notes.v1.Note
-	(*Block)(nil),                 // 3: noted.notes.v1.Block
-	(*GetNoteRequest)(nil),        // 4: noted.notes.v1.GetNoteRequest
-	(*GetNoteResponse)(nil),       // 5: noted.notes.v1.GetNoteResponse
-	(*CreateNoteRequest)(nil),     // 6: noted.notes.v1.CreateNoteRequest
-	(*CreateNoteResponse)(nil),    // 7: noted.notes.v1.CreateNoteResponse
-	(*UpdateNoteRequest)(nil),     // 8: noted.notes.v1.UpdateNoteRequest
-	(*UpdateNoteResponse)(nil),    // 9: noted.notes.v1.UpdateNoteResponse
-	(*DeleteNoteRequest)(nil),     // 10: noted.notes.v1.DeleteNoteRequest
-	(*DeleteNoteResponse)(nil),    // 11: noted.notes.v1.DeleteNoteResponse
-	(*ListNotesRequest)(nil),      // 12: noted.notes.v1.ListNotesRequest
-	(*ListNotesResponse)(nil),     // 13: noted.notes.v1.ListNotesResponse
-	(*InsertBlockRequest)(nil),    // 14: noted.notes.v1.InsertBlockRequest
-	(*InsertBlockResponse)(nil),   // 15: noted.notes.v1.InsertBlockResponse
-	(*UpdateBlockRequest)(nil),    // 16: noted.notes.v1.UpdateBlockRequest
-	(*UpdateBlockResponse)(nil),   // 17: noted.notes.v1.UpdateBlockResponse
-	(*DeleteBlockRequest)(nil),    // 18: noted.notes.v1.DeleteBlockRequest
-	(*DeleteBlockResponse)(nil),   // 19: noted.notes.v1.DeleteBlockResponse
-	(*Block_Code)(nil),            // 20: noted.notes.v1.Block.Code
-	(*Block_Image)(nil),           // 21: noted.notes.v1.Block.Image
-	(*fieldmaskpb.FieldMask)(nil), // 22: google.protobuf.FieldMask
+	(NoteExportFormat)(0),         // 0: noted.notes.v1.NoteExportFormat
+	(Block_Type)(0),               // 1: noted.notes.v1.Block.Type
+	(*Notes)(nil),                 // 2: noted.notes.v1.Notes
+	(*Note)(nil),                  // 3: noted.notes.v1.Note
+	(*Block)(nil),                 // 4: noted.notes.v1.Block
+	(*GetNoteRequest)(nil),        // 5: noted.notes.v1.GetNoteRequest
+	(*GetNoteResponse)(nil),       // 6: noted.notes.v1.GetNoteResponse
+	(*CreateNoteRequest)(nil),     // 7: noted.notes.v1.CreateNoteRequest
+	(*CreateNoteResponse)(nil),    // 8: noted.notes.v1.CreateNoteResponse
+	(*UpdateNoteRequest)(nil),     // 9: noted.notes.v1.UpdateNoteRequest
+	(*UpdateNoteResponse)(nil),    // 10: noted.notes.v1.UpdateNoteResponse
+	(*DeleteNoteRequest)(nil),     // 11: noted.notes.v1.DeleteNoteRequest
+	(*DeleteNoteResponse)(nil),    // 12: noted.notes.v1.DeleteNoteResponse
+	(*ListNotesRequest)(nil),      // 13: noted.notes.v1.ListNotesRequest
+	(*ListNotesResponse)(nil),     // 14: noted.notes.v1.ListNotesResponse
+	(*InsertBlockRequest)(nil),    // 15: noted.notes.v1.InsertBlockRequest
+	(*InsertBlockResponse)(nil),   // 16: noted.notes.v1.InsertBlockResponse
+	(*UpdateBlockRequest)(nil),    // 17: noted.notes.v1.UpdateBlockRequest
+	(*UpdateBlockResponse)(nil),   // 18: noted.notes.v1.UpdateBlockResponse
+	(*DeleteBlockRequest)(nil),    // 19: noted.notes.v1.DeleteBlockRequest
+	(*DeleteBlockResponse)(nil),   // 20: noted.notes.v1.DeleteBlockResponse
+	(*ExportNoteRequest)(nil),     // 21: noted.notes.v1.ExportNoteRequest
+	(*ExportNoteResponse)(nil),    // 22: noted.notes.v1.ExportNoteResponse
+	(*Block_Code)(nil),            // 23: noted.notes.v1.Block.Code
+	(*Block_Image)(nil),           // 24: noted.notes.v1.Block.Image
+	(*fieldmaskpb.FieldMask)(nil), // 25: google.protobuf.FieldMask
 }
 var file_noted_notes_v1_notes_proto_depIdxs = []int32{
-	2,  // 0: noted.notes.v1.Notes.notes:type_name -> noted.notes.v1.Note
-	3,  // 1: noted.notes.v1.Note.blocks:type_name -> noted.notes.v1.Block
-	0,  // 2: noted.notes.v1.Block.type:type_name -> noted.notes.v1.Block.Type
-	21, // 3: noted.notes.v1.Block.image:type_name -> noted.notes.v1.Block.Image
-	20, // 4: noted.notes.v1.Block.code:type_name -> noted.notes.v1.Block.Code
-	2,  // 5: noted.notes.v1.GetNoteResponse.note:type_name -> noted.notes.v1.Note
-	2,  // 6: noted.notes.v1.CreateNoteRequest.note:type_name -> noted.notes.v1.Note
-	2,  // 7: noted.notes.v1.CreateNoteResponse.note:type_name -> noted.notes.v1.Note
-	2,  // 8: noted.notes.v1.UpdateNoteRequest.note:type_name -> noted.notes.v1.Note
-	22, // 9: noted.notes.v1.UpdateNoteRequest.update_mask:type_name -> google.protobuf.FieldMask
-	2,  // 10: noted.notes.v1.ListNotesResponse.notes:type_name -> noted.notes.v1.Note
-	3,  // 11: noted.notes.v1.InsertBlockRequest.block:type_name -> noted.notes.v1.Block
-	3,  // 12: noted.notes.v1.InsertBlockResponse.block:type_name -> noted.notes.v1.Block
-	3,  // 13: noted.notes.v1.UpdateBlockRequest.block:type_name -> noted.notes.v1.Block
-	22, // 14: noted.notes.v1.UpdateBlockRequest.update_mask:type_name -> google.protobuf.FieldMask
-	3,  // 15: noted.notes.v1.UpdateBlockResponse.block:type_name -> noted.notes.v1.Block
-	4,  // 16: noted.notes.v1.NotesAPI.GetNote:input_type -> noted.notes.v1.GetNoteRequest
-	6,  // 17: noted.notes.v1.NotesAPI.CreateNote:input_type -> noted.notes.v1.CreateNoteRequest
-	8,  // 18: noted.notes.v1.NotesAPI.UpdateNote:input_type -> noted.notes.v1.UpdateNoteRequest
-	10, // 19: noted.notes.v1.NotesAPI.DeleteNote:input_type -> noted.notes.v1.DeleteNoteRequest
-	12, // 20: noted.notes.v1.NotesAPI.ListNotes:input_type -> noted.notes.v1.ListNotesRequest
-	14, // 21: noted.notes.v1.NotesAPI.InsertBlock:input_type -> noted.notes.v1.InsertBlockRequest
-	16, // 22: noted.notes.v1.NotesAPI.UpdateBlock:input_type -> noted.notes.v1.UpdateBlockRequest
-	18, // 23: noted.notes.v1.NotesAPI.DeleteBlock:input_type -> noted.notes.v1.DeleteBlockRequest
-	5,  // 24: noted.notes.v1.NotesAPI.GetNote:output_type -> noted.notes.v1.GetNoteResponse
-	7,  // 25: noted.notes.v1.NotesAPI.CreateNote:output_type -> noted.notes.v1.CreateNoteResponse
-	9,  // 26: noted.notes.v1.NotesAPI.UpdateNote:output_type -> noted.notes.v1.UpdateNoteResponse
-	11, // 27: noted.notes.v1.NotesAPI.DeleteNote:output_type -> noted.notes.v1.DeleteNoteResponse
-	13, // 28: noted.notes.v1.NotesAPI.ListNotes:output_type -> noted.notes.v1.ListNotesResponse
-	15, // 29: noted.notes.v1.NotesAPI.InsertBlock:output_type -> noted.notes.v1.InsertBlockResponse
-	17, // 30: noted.notes.v1.NotesAPI.UpdateBlock:output_type -> noted.notes.v1.UpdateBlockResponse
-	19, // 31: noted.notes.v1.NotesAPI.DeleteBlock:output_type -> noted.notes.v1.DeleteBlockResponse
-	24, // [24:32] is the sub-list for method output_type
-	16, // [16:24] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	3,  // 0: noted.notes.v1.Notes.notes:type_name -> noted.notes.v1.Note
+	4,  // 1: noted.notes.v1.Note.blocks:type_name -> noted.notes.v1.Block
+	1,  // 2: noted.notes.v1.Block.type:type_name -> noted.notes.v1.Block.Type
+	24, // 3: noted.notes.v1.Block.image:type_name -> noted.notes.v1.Block.Image
+	23, // 4: noted.notes.v1.Block.code:type_name -> noted.notes.v1.Block.Code
+	3,  // 5: noted.notes.v1.GetNoteResponse.note:type_name -> noted.notes.v1.Note
+	3,  // 6: noted.notes.v1.CreateNoteRequest.note:type_name -> noted.notes.v1.Note
+	3,  // 7: noted.notes.v1.CreateNoteResponse.note:type_name -> noted.notes.v1.Note
+	3,  // 8: noted.notes.v1.UpdateNoteRequest.note:type_name -> noted.notes.v1.Note
+	25, // 9: noted.notes.v1.UpdateNoteRequest.update_mask:type_name -> google.protobuf.FieldMask
+	3,  // 10: noted.notes.v1.ListNotesResponse.notes:type_name -> noted.notes.v1.Note
+	4,  // 11: noted.notes.v1.InsertBlockRequest.block:type_name -> noted.notes.v1.Block
+	4,  // 12: noted.notes.v1.InsertBlockResponse.block:type_name -> noted.notes.v1.Block
+	4,  // 13: noted.notes.v1.UpdateBlockRequest.block:type_name -> noted.notes.v1.Block
+	25, // 14: noted.notes.v1.UpdateBlockRequest.update_mask:type_name -> google.protobuf.FieldMask
+	4,  // 15: noted.notes.v1.UpdateBlockResponse.block:type_name -> noted.notes.v1.Block
+	0,  // 16: noted.notes.v1.ExportNoteRequest.export_format:type_name -> noted.notes.v1.NoteExportFormat
+	5,  // 17: noted.notes.v1.NotesAPI.GetNote:input_type -> noted.notes.v1.GetNoteRequest
+	7,  // 18: noted.notes.v1.NotesAPI.CreateNote:input_type -> noted.notes.v1.CreateNoteRequest
+	9,  // 19: noted.notes.v1.NotesAPI.UpdateNote:input_type -> noted.notes.v1.UpdateNoteRequest
+	11, // 20: noted.notes.v1.NotesAPI.DeleteNote:input_type -> noted.notes.v1.DeleteNoteRequest
+	13, // 21: noted.notes.v1.NotesAPI.ListNotes:input_type -> noted.notes.v1.ListNotesRequest
+	15, // 22: noted.notes.v1.NotesAPI.InsertBlock:input_type -> noted.notes.v1.InsertBlockRequest
+	17, // 23: noted.notes.v1.NotesAPI.UpdateBlock:input_type -> noted.notes.v1.UpdateBlockRequest
+	19, // 24: noted.notes.v1.NotesAPI.DeleteBlock:input_type -> noted.notes.v1.DeleteBlockRequest
+	21, // 25: noted.notes.v1.NotesAPI.ExportNote:input_type -> noted.notes.v1.ExportNoteRequest
+	6,  // 26: noted.notes.v1.NotesAPI.GetNote:output_type -> noted.notes.v1.GetNoteResponse
+	8,  // 27: noted.notes.v1.NotesAPI.CreateNote:output_type -> noted.notes.v1.CreateNoteResponse
+	10, // 28: noted.notes.v1.NotesAPI.UpdateNote:output_type -> noted.notes.v1.UpdateNoteResponse
+	12, // 29: noted.notes.v1.NotesAPI.DeleteNote:output_type -> noted.notes.v1.DeleteNoteResponse
+	14, // 30: noted.notes.v1.NotesAPI.ListNotes:output_type -> noted.notes.v1.ListNotesResponse
+	16, // 31: noted.notes.v1.NotesAPI.InsertBlock:output_type -> noted.notes.v1.InsertBlockResponse
+	18, // 32: noted.notes.v1.NotesAPI.UpdateBlock:output_type -> noted.notes.v1.UpdateBlockResponse
+	20, // 33: noted.notes.v1.NotesAPI.DeleteBlock:output_type -> noted.notes.v1.DeleteBlockResponse
+	22, // 34: noted.notes.v1.NotesAPI.ExportNote:output_type -> noted.notes.v1.ExportNoteResponse
+	26, // [26:35] is the sub-list for method output_type
+	17, // [17:26] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_noted_notes_v1_notes_proto_init() }
@@ -1765,7 +1945,7 @@ func file_noted_notes_v1_notes_proto_init() {
 			}
 		}
 		file_noted_notes_v1_notes_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Block_Code); i {
+			switch v := v.(*ExportNoteRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1777,6 +1957,30 @@ func file_noted_notes_v1_notes_proto_init() {
 			}
 		}
 		file_noted_notes_v1_notes_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ExportNoteResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_noted_notes_v1_notes_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Block_Code); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_noted_notes_v1_notes_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Block_Image); i {
 			case 0:
 				return &v.state
@@ -1803,8 +2007,8 @@ func file_noted_notes_v1_notes_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_noted_notes_v1_notes_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   21,
+			NumEnums:      2,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
