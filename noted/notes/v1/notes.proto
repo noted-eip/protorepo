@@ -146,8 +146,8 @@ message DeleteBlockResponse {
 }
 
 message ExportNoteRequest {
-    string id = 1;
-    NoteExportFormat note_format = 2;
+    string note_id = 1;
+    NoteExportFormat export_format = 2;
 }
 
 message ExportNoteResponse {
