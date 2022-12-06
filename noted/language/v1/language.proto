@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package noted.language.v1; 
+
+option go_package = "noted/language/v1";
+
+service LanguageAPI {
+    rpc ExtractKeywords(ExtractKeywordsRequest) returns (ExtractKeywordsResponse) {}
+    rpc ExtractKeywordsBatch(ExtractKeywordsBatchRequest) returns (ExtractKeywordsBatchResponse) {}
+    rpc Summarize(SummarizeRequest) returns (SummarizeResponse) {}
+}
+
+message ExtractKeywordsRequest {
+    string content = 1;
+}
+
+message ExtractKeywordsResponse {
+    repeated string keywords = 1;
+}
+
+message ExtractKeywordsBatchRequest {
+    repeated string contents = 1;
+}
+
+message ExtractKeywordsBatchResponse {
+    repeated ExtractKeywordsResponse keywords_array = 1;
+}
+
+message SummarizeRequest {
+    string content = 1;
+}
+
+message SummarizeResponse {
+    // Small text output which summarizes the original entry.
+    string summary = 1;
+}
