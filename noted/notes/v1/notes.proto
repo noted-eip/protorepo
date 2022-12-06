@@ -18,8 +18,9 @@ message Note {
 }
 
 enum NoteExportFormat {
-    TYPE_MARKDOWN = 1;
-    TYPE_PDF = 2;
+    NOTE_EXPORT_FORMAT_INVALID = 0;
+    NOTE_EXPORT_FORMAT_MARKDOWN = 1;
+    NOTE_EXPORT_FORMAT_PDF = 2;
 }
 
 message Block {
@@ -151,12 +152,12 @@ message DeleteBlockResponse {
 }
 
 message ExportNoteRequest {
-    string id = 1;
-    NoteExportFormat note_format = 2;
+    string note_id = 1;
+    NoteExportFormat export_format = 2;
 }
 
 message ExportNoteResponse {
-    bytes note_bytes = 1;
+    bytes file = 1;
 }
 
 message GetRecommendationWebsiteWidgetsRequest {

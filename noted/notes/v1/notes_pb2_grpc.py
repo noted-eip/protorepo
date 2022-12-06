@@ -54,10 +54,10 @@ class NotesAPIStub(object):
                 request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.DeleteBlockRequest.SerializeToString,
                 response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.DeleteBlockResponse.FromString,
                 )
-        self.GetRecommandationBlocks = channel.unary_unary(
-                '/noted.notes.v1.NotesAPI/GetRecommandationBlocks',
-                request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.GetRecommandationBlocksRequest.SerializeToString,
-                response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.GetRecommandationBlocksResponse.FromString,
+        self.ExportNote = channel.unary_unary(
+                '/noted.notes.v1.NotesAPI/ExportNote',
+                request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteRequest.SerializeToString,
+                response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteResponse.FromString,
                 )
 
 
@@ -112,7 +112,7 @@ class NotesAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetRecommandationBlocks(self, request, context):
+    def ExportNote(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -161,10 +161,10 @@ def add_NotesAPIServicer_to_server(servicer, server):
                     request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.DeleteBlockRequest.FromString,
                     response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.DeleteBlockResponse.SerializeToString,
             ),
-            'GetRecommandationBlocks': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetRecommandationBlocks,
-                    request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.GetRecommandationBlocksRequest.FromString,
-                    response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.GetRecommandationBlocksResponse.SerializeToString,
+            'ExportNote': grpc.unary_unary_rpc_method_handler(
+                    servicer.ExportNote,
+                    request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteRequest.FromString,
+                    response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -313,7 +313,7 @@ class NotesAPI(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetRecommandationBlocks(request,
+    def ExportNote(request,
             target,
             options=(),
             channel_credentials=None,
@@ -323,8 +323,8 @@ class NotesAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/GetRecommandationBlocks',
-            noted_dot_notes_dot_v1_dot_notes__pb2.GetRecommandationBlocksRequest.SerializeToString,
-            noted_dot_notes_dot_v1_dot_notes__pb2.GetRecommandationBlocksResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/ExportNote',
+            noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteRequest.SerializeToString,
+            noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
