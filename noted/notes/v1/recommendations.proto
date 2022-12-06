@@ -8,9 +8,9 @@ import "google/protobuf/field_mask.proto";
 
 message Widget {
     oneof type {
-        WebsiteWidget websiteWidget = 1;
-        ImageWidget imageWidget = 2;
-        DefinitionWidget definitionWidget = 3;
+        WebsiteWidget website_widget = 1;
+        ImageWidget image_widget = 2;
+        DefinitionWidget definition_widget = 3;
     }
 }
 
