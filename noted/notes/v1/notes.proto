@@ -63,11 +63,6 @@ message Block {
     reserved 7, 8, 9, 10, 11, 12, 13, 14;
 }
 
-message Widget {
-    string title = 1;
-    string description = 2;
-}
-
 service NotesAPI {
     rpc GetNote(GetNoteRequest) returns (GetNoteResponse) {}
     rpc CreateNote(CreateNoteRequest) returns (CreateNoteResponse) {}
@@ -78,7 +73,6 @@ service NotesAPI {
     rpc UpdateBlock(UpdateBlockRequest) returns (UpdateBlockResponse) {}
     rpc DeleteBlock(DeleteBlockRequest) returns (DeleteBlockResponse) {}
     rpc ExportNote(ExportNoteRequest) returns (ExportNoteResponse) {}
-    rpc GetRecommendationWebsiteWidgets(GetRecommendationWebsiteWidgetsRequest) returns (GetRecommendationWebsiteWidgetsResponse) {}
 }
 
 message GetNoteRequest {
@@ -158,14 +152,4 @@ message ExportNoteRequest {
 
 message ExportNoteResponse {
     bytes file = 1;
-}
-
-message GetRecommendationWebsiteWidgetsRequest {
-    string note_id = 1;
-}
-
-message GetRecommendationWebsiteWidgetsResponse {
-    Widget widget = 1;
-    string url = 2;
-    string type = 3;
 }
