@@ -1,10 +1,8 @@
 syntax = "proto3";
 
-package noted.recommendations.v1;
+package noted.notes.v1;
 
-option go_package = "noted/recommendations/v1";
-
-import "google/protobuf/field_mask.proto";
+option go_package = "noted/notes/v1";
 
 message Widget {
     oneof type {
