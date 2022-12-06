@@ -12,14 +12,14 @@ message Widget {
 }
 
 service RecommendationsAPI {
-    rpc GetWebsiteWidgets(GetWebsiteWidgetsRequest) returns (GetWebsiteWidgetsResponse) {}
+    rpc GenerateWidgets(GenerateWidgetsRequest) returns (GenerateWidgetsResponse) {}
 }
 
-message GetWebsiteWidgetsRequest {
+message GenerateWidgetsRequest {
     string note_id = 1;
 }
 
-message GetWebsiteWidgetsResponse {
+message GenerateWidgetsResponse {
     Widget widget = 1;
     string url = 2;
     string type = 3;
