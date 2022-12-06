@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package noted.recommendations.v1;
+
+option go_package = "noted/recommendations/v1";
+
+import "google/protobuf/field_mask.proto";
+
+message Widget {
+    string title = 1;
+    string description = 2;
+}
+
+service RecommendationsAPI {
+    rpc GetWebsiteWidgets(GetWebsiteWidgetsRequest) returns (GetWebsiteWidgetsResponse) {}
+}
+
+message GetWebsiteWidgetsRequest {
+    string note_id = 1;
+}
+
+message GetWebsiteWidgetsResponse {
+    Widget widget = 1;
+    string url = 2;
+    string type = 3;
+}
