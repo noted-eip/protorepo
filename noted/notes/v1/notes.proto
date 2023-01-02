@@ -122,7 +122,7 @@ message ListNotesResponse {
 message InsertBlockRequest {
     Block block = 1;
     uint32 index = 2;
-    uint32 note_id = 3;
+    string note_id = 3;
 }
 
 message InsertBlockResponse {
