@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package noted.notes.v1;
+
+option go_package = "noted/notes/v1";
+
+message Widget {
+    oneof type {
+        WebsiteWidget website_widget = 1;
+        ImageWidget image_widget = 2;
+        DefinitionWidget definition_widget = 3;
+    }
+}
+
+message WebsiteWidget {
+    string title = 1;
+    string url = 2;
+    string description = 3;
+}
+
+message ImageWidget {
+    string title = 1;
+    string url = 2;
+    string caption = 3;
+}
+
+message DefinitionWidget {
+    string word = 1;
+    string gender = 2;
+    string type = 3;
+    string content = 4;
+}
+
+service RecommendationsAPI {
+    rpc GenerateWidgets(GenerateWidgetsRequest) returns (GenerateWidgetsResponse) {}
+}
+
+message GenerateWidgetsRequest {
+    string note_id = 1;
+}
+
+message GenerateWidgetsResponse {
+    repeated Widget widgets = 1;
+}

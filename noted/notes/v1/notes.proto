@@ -5,6 +5,7 @@ package noted.notes.v1;
 option go_package = "noted/notes/v1";
 
 import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
 
 message Notes {
     repeated Note notes = 1;
@@ -15,6 +16,14 @@ message Note {
     string author_id = 2;
     string title = 3;
     repeated Block blocks = 4;
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp modified_at = 6;
+}
+
+enum NoteExportFormat {
+    NOTE_EXPORT_FORMAT_INVALID = 0;
+    NOTE_EXPORT_FORMAT_MARKDOWN = 1;
+    NOTE_EXPORT_FORMAT_PDF = 2;
 }
 
 message Block {
@@ -66,7 +75,7 @@ service NotesAPI {
     rpc InsertBlock(InsertBlockRequest) returns (InsertBlockResponse) {}
     rpc UpdateBlock(UpdateBlockRequest) returns (UpdateBlockResponse) {}
     rpc DeleteBlock(DeleteBlockRequest) returns (DeleteBlockResponse) {}
-    rpc GetRecommandationBlocks(GetRecommandationBlocksRequest) returns (GetRecommandationBlocksResponse) {}
+    rpc ExportNote(ExportNoteRequest) returns (ExportNoteResponse) {}
 }
 
 message GetNoteRequest {
@@ -139,10 +148,11 @@ message DeleteBlockResponse {
 
 }
 
-message GetRecommandationBlocksRequest {
-    uint32 id = 1;
+message ExportNoteRequest {
+    string note_id = 1;
+    NoteExportFormat export_format = 2;
 }
 
-message GetRecommandationBlocksResponse {
-    repeated Block blocks = 1;
+message ExportNoteResponse {
+    bytes file = 1;
 }

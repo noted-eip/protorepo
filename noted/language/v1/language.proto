@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package noted.recommendations.v1; 
+package noted.language.v1; 
 
-option go_package = "noted/recommendations/v1";
+option go_package = "noted/language/v1";
 
-service RecommendationsAPI {
+service LanguageAPI {
     rpc ExtractKeywords(ExtractKeywordsRequest) returns (ExtractKeywordsResponse) {}
     rpc ExtractKeywordsBatch(ExtractKeywordsBatchRequest) returns (ExtractKeywordsBatchResponse) {}
     rpc Summarize(SummarizeRequest) returns (SummarizeResponse) {}

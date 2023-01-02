@@ -2,10 +2,10 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from protorepo.noted.recommendations.v1 import recommendations_pb2 as noted_dot_recommendations_dot_v1_dot_recommendations__pb2
+from protorepo.noted.language.v1 import language_pb2 as noted_dot_language_dot_v1_dot_language__pb2
 
 
-class RecommendationsAPIStub(object):
+class LanguageAPIStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -15,23 +15,23 @@ class RecommendationsAPIStub(object):
             channel: A grpc.Channel.
         """
         self.ExtractKeywords = channel.unary_unary(
-                '/noted.recommendations.v1.RecommendationsAPI/ExtractKeywords',
-                request_serializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsRequest.SerializeToString,
-                response_deserializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsResponse.FromString,
+                '/noted.language.v1.LanguageAPI/ExtractKeywords',
+                request_serializer=noted_dot_language_dot_v1_dot_language__pb2.ExtractKeywordsRequest.SerializeToString,
+                response_deserializer=noted_dot_language_dot_v1_dot_language__pb2.ExtractKeywordsResponse.FromString,
                 )
         self.ExtractKeywordsBatch = channel.unary_unary(
-                '/noted.recommendations.v1.RecommendationsAPI/ExtractKeywordsBatch',
-                request_serializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsBatchRequest.SerializeToString,
-                response_deserializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsBatchResponse.FromString,
+                '/noted.language.v1.LanguageAPI/ExtractKeywordsBatch',
+                request_serializer=noted_dot_language_dot_v1_dot_language__pb2.ExtractKeywordsBatchRequest.SerializeToString,
+                response_deserializer=noted_dot_language_dot_v1_dot_language__pb2.ExtractKeywordsBatchResponse.FromString,
                 )
         self.Summarize = channel.unary_unary(
-                '/noted.recommendations.v1.RecommendationsAPI/Summarize',
-                request_serializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.SummarizeRequest.SerializeToString,
-                response_deserializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.SummarizeResponse.FromString,
+                '/noted.language.v1.LanguageAPI/Summarize',
+                request_serializer=noted_dot_language_dot_v1_dot_language__pb2.SummarizeRequest.SerializeToString,
+                response_deserializer=noted_dot_language_dot_v1_dot_language__pb2.SummarizeResponse.FromString,
                 )
 
 
-class RecommendationsAPIServicer(object):
+class LanguageAPIServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def ExtractKeywords(self, request, context):
@@ -53,31 +53,31 @@ class RecommendationsAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_RecommendationsAPIServicer_to_server(servicer, server):
+def add_LanguageAPIServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ExtractKeywords': grpc.unary_unary_rpc_method_handler(
                     servicer.ExtractKeywords,
-                    request_deserializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsRequest.FromString,
-                    response_serializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsResponse.SerializeToString,
+                    request_deserializer=noted_dot_language_dot_v1_dot_language__pb2.ExtractKeywordsRequest.FromString,
+                    response_serializer=noted_dot_language_dot_v1_dot_language__pb2.ExtractKeywordsResponse.SerializeToString,
             ),
             'ExtractKeywordsBatch': grpc.unary_unary_rpc_method_handler(
                     servicer.ExtractKeywordsBatch,
-                    request_deserializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsBatchRequest.FromString,
-                    response_serializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsBatchResponse.SerializeToString,
+                    request_deserializer=noted_dot_language_dot_v1_dot_language__pb2.ExtractKeywordsBatchRequest.FromString,
+                    response_serializer=noted_dot_language_dot_v1_dot_language__pb2.ExtractKeywordsBatchResponse.SerializeToString,
             ),
             'Summarize': grpc.unary_unary_rpc_method_handler(
                     servicer.Summarize,
-                    request_deserializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.SummarizeRequest.FromString,
-                    response_serializer=noted_dot_recommendations_dot_v1_dot_recommendations__pb2.SummarizeResponse.SerializeToString,
+                    request_deserializer=noted_dot_language_dot_v1_dot_language__pb2.SummarizeRequest.FromString,
+                    response_serializer=noted_dot_language_dot_v1_dot_language__pb2.SummarizeResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'noted.recommendations.v1.RecommendationsAPI', rpc_method_handlers)
+            'noted.language.v1.LanguageAPI', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class RecommendationsAPI(object):
+class LanguageAPI(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -91,9 +91,9 @@ class RecommendationsAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/noted.recommendations.v1.RecommendationsAPI/ExtractKeywords',
-            noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsRequest.SerializeToString,
-            noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/noted.language.v1.LanguageAPI/ExtractKeywords',
+            noted_dot_language_dot_v1_dot_language__pb2.ExtractKeywordsRequest.SerializeToString,
+            noted_dot_language_dot_v1_dot_language__pb2.ExtractKeywordsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -108,9 +108,9 @@ class RecommendationsAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/noted.recommendations.v1.RecommendationsAPI/ExtractKeywordsBatch',
-            noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsBatchRequest.SerializeToString,
-            noted_dot_recommendations_dot_v1_dot_recommendations__pb2.ExtractKeywordsBatchResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/noted.language.v1.LanguageAPI/ExtractKeywordsBatch',
+            noted_dot_language_dot_v1_dot_language__pb2.ExtractKeywordsBatchRequest.SerializeToString,
+            noted_dot_language_dot_v1_dot_language__pb2.ExtractKeywordsBatchResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -125,8 +125,8 @@ class RecommendationsAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/noted.recommendations.v1.RecommendationsAPI/Summarize',
-            noted_dot_recommendations_dot_v1_dot_recommendations__pb2.SummarizeRequest.SerializeToString,
-            noted_dot_recommendations_dot_v1_dot_recommendations__pb2.SummarizeResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/noted.language.v1.LanguageAPI/Summarize',
+            noted_dot_language_dot_v1_dot_language__pb2.SummarizeRequest.SerializeToString,
+            noted_dot_language_dot_v1_dot_language__pb2.SummarizeResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

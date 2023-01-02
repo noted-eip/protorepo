@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -26,7 +27,7 @@ type NotesAPIClient interface {
 	InsertBlock(ctx context.Context, in *InsertBlockRequest, opts ...grpc.CallOption) (*InsertBlockResponse, error)
 	UpdateBlock(ctx context.Context, in *UpdateBlockRequest, opts ...grpc.CallOption) (*UpdateBlockResponse, error)
 	DeleteBlock(ctx context.Context, in *DeleteBlockRequest, opts ...grpc.CallOption) (*DeleteBlockResponse, error)
-	GetRecommandationBlocks(ctx context.Context, in *GetRecommandationBlocksRequest, opts ...grpc.CallOption) (*GetRecommandationBlocksResponse, error)
+	ExportNote(ctx context.Context, in *ExportNoteRequest, opts ...grpc.CallOption) (*ExportNoteResponse, error)
 }
 
 type notesAPIClient struct {
@@ -109,9 +110,9 @@ func (c *notesAPIClient) DeleteBlock(ctx context.Context, in *DeleteBlockRequest
 	return out, nil
 }
 
-func (c *notesAPIClient) GetRecommandationBlocks(ctx context.Context, in *GetRecommandationBlocksRequest, opts ...grpc.CallOption) (*GetRecommandationBlocksResponse, error) {
-	out := new(GetRecommandationBlocksResponse)
-	err := c.cc.Invoke(ctx, "/noted.notes.v1.NotesAPI/GetRecommandationBlocks", in, out, opts...)
+func (c *notesAPIClient) ExportNote(ctx context.Context, in *ExportNoteRequest, opts ...grpc.CallOption) (*ExportNoteResponse, error) {
+	out := new(ExportNoteResponse)
+	err := c.cc.Invoke(ctx, "/noted.notes.v1.NotesAPI/ExportNote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -130,7 +131,7 @@ type NotesAPIServer interface {
 	InsertBlock(context.Context, *InsertBlockRequest) (*InsertBlockResponse, error)
 	UpdateBlock(context.Context, *UpdateBlockRequest) (*UpdateBlockResponse, error)
 	DeleteBlock(context.Context, *DeleteBlockRequest) (*DeleteBlockResponse, error)
-	GetRecommandationBlocks(context.Context, *GetRecommandationBlocksRequest) (*GetRecommandationBlocksResponse, error)
+	ExportNote(context.Context, *ExportNoteRequest) (*ExportNoteResponse, error)
 	mustEmbedUnimplementedNotesAPIServer()
 }
 
@@ -162,8 +163,8 @@ func (UnimplementedNotesAPIServer) UpdateBlock(context.Context, *UpdateBlockRequ
 func (UnimplementedNotesAPIServer) DeleteBlock(context.Context, *DeleteBlockRequest) (*DeleteBlockResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBlock not implemented")
 }
-func (UnimplementedNotesAPIServer) GetRecommandationBlocks(context.Context, *GetRecommandationBlocksRequest) (*GetRecommandationBlocksResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRecommandationBlocks not implemented")
+func (UnimplementedNotesAPIServer) ExportNote(context.Context, *ExportNoteRequest) (*ExportNoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExportNote not implemented")
 }
 func (UnimplementedNotesAPIServer) mustEmbedUnimplementedNotesAPIServer() {}
 
@@ -322,20 +323,20 @@ func _NotesAPI_DeleteBlock_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NotesAPI_GetRecommandationBlocks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRecommandationBlocksRequest)
+func _NotesAPI_ExportNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExportNoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NotesAPIServer).GetRecommandationBlocks(ctx, in)
+		return srv.(NotesAPIServer).ExportNote(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/noted.notes.v1.NotesAPI/GetRecommandationBlocks",
+		FullMethod: "/noted.notes.v1.NotesAPI/ExportNote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NotesAPIServer).GetRecommandationBlocks(ctx, req.(*GetRecommandationBlocksRequest))
+		return srv.(NotesAPIServer).ExportNote(ctx, req.(*ExportNoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -380,8 +381,8 @@ var NotesAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _NotesAPI_DeleteBlock_Handler,
 		},
 		{
-			MethodName: "GetRecommandationBlocks",
-			Handler:    _NotesAPI_GetRecommandationBlocks_Handler,
+			MethodName: "ExportNote",
+			Handler:    _NotesAPI_ExportNote_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
