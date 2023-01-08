@@ -86,8 +86,7 @@ class AccountsAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def ListAccounts(self, request, context):
-        """This endpoint is not meant to be used by regular users.
-        Only works with an internal token.
+        """List users based on email regex.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

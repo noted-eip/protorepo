@@ -28,8 +28,7 @@ type AccountsAPIClient interface {
 	// TODO: Delete all associated resources (notes, transfer group ownership,
 	// etc).
 	DeleteAccount(ctx context.Context, in *DeleteAccountRequest, opts ...grpc.CallOption) (*DeleteAccountResponse, error)
-	// This endpoint is not meant to be used by regular users.
-	// Only works with an internal token.
+	// List users based on email regex.
 	ListAccounts(ctx context.Context, in *ListAccountsRequest, opts ...grpc.CallOption) (*ListAccountsResponse, error)
 	// Authenticate using the email and password flow.
 	Authenticate(ctx context.Context, in *AuthenticateRequest, opts ...grpc.CallOption) (*AuthenticateResponse, error)
@@ -111,8 +110,7 @@ type AccountsAPIServer interface {
 	// TODO: Delete all associated resources (notes, transfer group ownership,
 	// etc).
 	DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error)
-	// This endpoint is not meant to be used by regular users.
-	// Only works with an internal token.
+	// List users based on email regex.
 	ListAccounts(context.Context, *ListAccountsRequest) (*ListAccountsResponse, error)
 	// Authenticate using the email and password flow.
 	Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error)
