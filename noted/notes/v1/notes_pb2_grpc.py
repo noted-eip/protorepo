@@ -313,11 +313,7 @@ class NotesAPI(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-<<<<<<< HEAD
-    def GetRecommandationBlocks(request,
-=======
     def ExportNote(request,
->>>>>>> 45644e84bdba3829fecafd0b49659ab6288bfe92
             target,
             options=(),
             channel_credentials=None,
@@ -327,14 +323,8 @@ class NotesAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-<<<<<<< HEAD
-        return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/GetRecommandationBlocks',
-            noted_dot_notes_dot_v1_dot_notes__pb2.GetRecommandationBlocksRequest.SerializeToString,
-            noted_dot_notes_dot_v1_dot_notes__pb2.GetRecommandationBlocksResponse.FromString,
-=======
         return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/ExportNote',
             noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteRequest.SerializeToString,
             noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteResponse.FromString,
->>>>>>> 45644e84bdba3829fecafd0b49659ab6288bfe92
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
