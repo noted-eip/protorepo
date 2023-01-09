@@ -224,7 +224,7 @@ message ListGroupNotesRequest {
 }
 
 message ListGroupNotesResponse {
-    GroupNote notes = 1;
+    repeated GroupNote notes = 1;
 }
 
 message CreateFolderRequest {

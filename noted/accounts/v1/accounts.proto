@@ -26,8 +26,7 @@ service AccountsAPI {
     // TODO: Delete all associated resources (notes, transfer group ownership,
     // etc).
     rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
-    // This endpoint is not meant to be used by regular users.
-    // Only works with an internal token.
+    // List users based on email regex.
     rpc ListAccounts(ListAccountsRequest) returns (ListAccountsResponse) {}
 
     // Authenticate using the email and password flow.
@@ -79,6 +78,7 @@ message AuthenticateResponse {
 }
 
 message ListAccountsRequest {
+    string email_contains = 3;
     int32 limit = 1;
     int32 offset = 2;
 }
