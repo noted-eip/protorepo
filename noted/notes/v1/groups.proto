@@ -1,0 +1,379 @@
+syntax = "proto3";
+
+package noted.notes.v1;
+
+option go_package = "noted/notes/v1";
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+message ConversationMessage {
+    string id = 1;
+    string group_id = 2;
+    string conversation_id = 3;
+    string sender_account_id = 4;
+    string content = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp modified_at = 7;
+}
+
+message GroupConversation {
+    string id = 1;
+    string name = 2;
+    google.protobuf.Timestamp created_at = 3;
+}
+
+message GroupMember {
+    string account_id = 1;
+    bool is_admin = 2;
+    google.protobuf.Timestamp joined_at = 3;
+}
+
+message GroupInvite {
+    string id = 1;
+    string group_id = 2;
+    string sender_account_id = 3;
+    string recipient_account_id = 4;
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp valid_until = 6;
+}
+
+message GroupInviteLink {
+    string code = 1;
+    string generated_by_account_id = 2;
+    google.protobuf.Timestamp created_at = 3;
+    google.protobuf.Timestamp valid_until = 4;
+}
+
+message Group {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string workspace_account_id = 4;
+    string avatar_url = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp modified_at = 7;
+    repeated GroupMember members = 8;
+    repeated GroupConversation conversations = 9;
+    repeated GroupInvite invites = 10;
+    repeated GroupInviteLink invite_links = 11;
+}
+
+// Creation, read/update, deletion of groups of users.
+// Addition and removal of group members with roles.
+// Management of notes and folders within a group.
+service GroupsAPI {
+    // Creates a group with a single administrator member (the authenticated user).
+    // Must be authenticated.
+    rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {}
+    // Must be group member.
+    // If the caller is not a member but has been invited to the group or has
+    // an invite code link, it will access a limited view of the group.
+    rpc GetGroup(GetGroupRequest) returns (GetGroupResponse) {}
+    // Must be group administrator.
+    rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {}
+    // Must be group administrator.
+    // Deletes all the associated resources (members, notes).
+    rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
+    // Must be group member. Returns only the non-array fields of a group.
+    rpc ListGroups(ListGroupsRequest) returns (ListGroupsResponse) {}
+
+    // Must be group member.
+    rpc GetMember(GetMemberRequest) returns (GetMemberResponse) {}
+    // Must be group administrator. Can only update `role`.
+    rpc UpdateMember(UpdateMemberRequest) returns (UpdateMemberResponse) {}
+    // Must be group administrator or the authenticated user removing itself from
+    // the group.
+    rpc RemoveMember(RemoveMemberRequest) returns (RemoveMemberResponse) {}
+
+    // Must be group member.
+    rpc GetConversation(GetConversationRequest) returns (GetConversationResponse) {}
+    // Must be group admin. Can only update `title`.
+    rpc UpdateConversation(UpdateConversationRequest) returns (UpdateConversationResponse) {}
+
+    // Must be group member.
+    rpc SendConversationMessage(SendConversationMessageRequest) returns (SendConversationMessageResponse) {}
+    // Must be group member.
+    rpc GetConversationMessage(GetConversationMessageRequest) returns (GetConversationMessageResponse) {}
+    // Must be sender. Can only update `content`.
+    rpc UpdateConversationMessage(UpdateConversationMessageRequest) returns (UpdateConversationMessageResponse) {}
+    // Must be sender or group admin.
+    rpc DeleteConversationMessage(DeleteConversationMessageRequest) returns (DeleteConversationMessageResponse) {}
+    // Must be group member. Messages are sorted in reverse chronological order.
+    rpc ListConversationMessages(ListConversationMessagesRequest) returns (ListConversationMessagesResponse) {}
+
+    // Must be group member. generated_by_account_id defaults to the authenticated user.
+    rpc GenerateInviteLink(GenerateInviteLinkRequest) returns (GenerateInviteLinkResponse) {}
+    // Must be group member.
+    rpc GetInviteLink(GetInviteLinkRequest) returns (GetInviteLinkResponse) {}
+    // Must be group member.
+    rpc RevokeInviteLink(RevokeInviteLinkRequest) returns (RevokeInviteLinkResponse) {}
+    // Must not be group member. Makes the authenticated join the group on success.
+    rpc UseInviteLink(UseInviteLinkRequest) returns (UseInviteLinkResponse) {}
+
+    // The sender defaults to the authenticated user. Must be group member.
+    rpc SendInvite(SendInviteRequest) returns (SendInviteResponse) {}
+    // Must be group administrator or sender or recipient.
+    rpc GetInvite(GetInviteRequest) returns (GetInviteResponse) {}
+    // Must be recipient. Accepting an invitation automatically adds the
+    // recipient to the group and deletes the invite.
+    rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse) {}
+    // Must be recipient. Deletes the invitation without making the
+    // recipient join the group.
+    rpc DenyInvite(DenyInviteRequest) returns (DenyInviteResponse) {}
+    // Must be group administrator or sender. Deletes the invitation without
+    // making the recipient join the group.
+    rpc RevokeInvite(RevokeInviteRequest) returns (RevokeInviteResponse) {}
+    // Must be group administrator or sender or recipient.
+    rpc ListInvites(ListInvitesRequest) returns (ListInvitesResponse) {}
+}
+
+message CreateGroupRequest {
+    string name = 1;
+    string description = 2;
+}
+
+message CreateGroupResponse {
+    Group group = 1;
+}
+
+message GetGroupRequest {
+    string group_id = 1;
+    // (Optional) If the requester isn't a member of the group nor have they
+    // been invited directly, they can provide an invite_link_code that will
+    // give them a public preview of the group they wish to join.
+    string invite_link_code = 2;
+}
+
+message GetGroupResponse {
+    Group group = 1;
+}
+
+message DeleteGroupRequest {
+    string group_id = 1;
+}
+
+message DeleteGroupResponse {
+}
+
+message UpdateGroupRequest {
+    Group group = 1;
+    google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateGroupResponse {
+    Group group = 1;
+}
+
+message ListGroupsRequest {
+    string account_id = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+}
+
+message ListGroupsResponse {
+    repeated Group groups = 1;
+}
+
+message ListGroupMembersRequest {
+    string group_id = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+}
+
+message ListGroupMembersResponse {
+    repeated GroupMember members = 1;
+}
+
+message AddMemberRequest {
+    string group_id = 1;
+    string account_id = 2;
+}
+
+message AddMemberResponse {
+}
+
+message GetMemberRequest {
+    string group_id = 1;
+    string account_id = 2;
+}
+
+message GetMemberResponse {
+    GroupMember member = 1;
+}
+
+message UpdateMemberRequest {
+    string group_id = 1;
+    GroupMember member = 2;
+    google.protobuf.FieldMask update_mask = 3;
+}
+
+message UpdateMemberResponse {
+    GroupMember member = 1;
+}
+
+message RemoveMemberRequest {
+    string group_id = 1;
+    string account_id = 2;
+}
+
+message RemoveMemberResponse {
+}
+
+message GetConversationRequest {
+    string group_id = 1;
+    string conversation_id = 2;
+}
+
+message GetConversationResponse {
+    GroupConversation conversation = 1;
+}
+
+message UpdateConversationRequest {
+    string group_id = 1;
+    string conversation_id = 2;
+    string title = 3;
+}
+
+message UpdateConversationResponse {
+    GroupConversation conversation = 1;
+}
+
+message SendConversationMessageRequest {
+    string group_id = 1;
+    string conversation_id = 2;
+    string content = 3;
+}
+
+message SendConversationMessageResponse {
+    ConversationMessage message = 1;
+}
+
+message GetConversationMessageRequest {
+    string group_id = 1;
+    string conversation_id = 2;
+    string message_id = 3;
+}
+
+message GetConversationMessageResponse {
+    ConversationMessage message = 1;
+}
+
+message UpdateConversationMessageRequest {
+    string group_id = 1;
+    string conversation_id = 2;
+    string message_id = 3;
+    string content = 4;
+}
+
+message UpdateConversationMessageResponse {
+    ConversationMessage message = 1;
+}
+
+message DeleteConversationMessageRequest {
+    string group_id = 1;
+    string conversation_id = 2;
+    string message_id = 3;
+}
+
+message DeleteConversationMessageResponse {
+}
+
+message ListConversationMessagesRequest {
+    string group_id = 1;
+    string conversation_id = 2;
+    int32 limit = 3;
+    int32 offset = 4;
+}
+
+message ListConversationMessagesResponse {
+    repeated ConversationMessage messages = 1;
+}
+
+message GenerateInviteLinkRequest {
+    string group_id = 1;
+}
+
+message GenerateInviteLinkResponse {
+    GroupInviteLink invite_link = 1;
+}
+
+message GetInviteLinkRequest {
+    string group_id = 1;
+    string invite_link_code = 2;
+}
+
+message GetInviteLinkResponse {
+    GroupInviteLink invite_link = 1;    
+}
+
+message RevokeInviteLinkRequest {
+    string group_id = 1;
+    string invite_link_code = 2;
+}
+
+message RevokeInviteLinkResponse {
+}
+
+message UseInviteLinkRequest {
+    string group_id = 1;
+    string invite_link_code = 2;
+}
+
+message UseInviteLinkResponse {
+}
+
+message SendInviteRequest {
+    string group_id = 1;
+    string recipient_account_id = 2;
+}
+
+message SendInviteResponse {
+    GroupInvite invite = 1;
+}
+
+message GetInviteRequest {
+    string invite_id = 1;
+}
+
+message GetInviteResponse {
+    GroupInvite invite = 1;
+}
+
+message AcceptInviteRequest {
+    string invite_id = 1;
+}
+
+message AcceptInviteResponse {
+
+}
+
+message DenyInviteRequest {
+    string invite_id = 1;
+}
+
+message DenyInviteResponse {
+
+}
+
+message ListInvitesRequest {
+    // (Optional) Returns only invites from sender.
+    string sender_account_id = 1;
+    // (Optional) Returns only invites destined to recipient.
+    string recipient_account_id = 2;
+    // (Optional) Returns only invites for a given group.
+    string group_id = 3;
+    int32 limit = 4;
+    int32 offset = 5; 
+}
+
+message ListInvitesResponse {
+    repeated GroupInvite invites = 1;
+}
+
+message RevokeInviteRequest {
+    string invite_id = 1;
+}
+
+message RevokeInviteResponse {
+}

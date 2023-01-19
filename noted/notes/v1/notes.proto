@@ -7,23 +7,14 @@ option go_package = "noted/notes/v1";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 
-message Notes {
-    repeated Note notes = 1;
-}
-
 message Note {
     string id = 1;
-    string author_id = 2;
-    string title = 3;
-    repeated Block blocks = 4;
-    google.protobuf.Timestamp created_at = 5;
-    google.protobuf.Timestamp modified_at = 6;
-}
-
-enum NoteExportFormat {
-    NOTE_EXPORT_FORMAT_INVALID = 0;
-    NOTE_EXPORT_FORMAT_MARKDOWN = 1;
-    NOTE_EXPORT_FORMAT_PDF = 2;
+    string group_id = 2;
+    string author_id = 3;
+    string title = 4;
+    repeated Block blocks = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp modified_at = 7;
 }
 
 message Block {
@@ -66,20 +57,39 @@ message Block {
     reserved 7, 8, 9, 10, 11, 12, 13, 14;
 }
 
+enum NoteExportFormat {
+    NOTE_EXPORT_FORMAT_INVALID = 0;
+    NOTE_EXPORT_FORMAT_MARKDOWN = 1;
+    NOTE_EXPORT_FORMAT_PDF = 2;
+}
+
 service NotesAPI {
-    rpc GetNote(GetNoteRequest) returns (GetNoteResponse) {}
+    // Must be group member, author_account_id defaults to the user making
+    // the request.
     rpc CreateNote(CreateNoteRequest) returns (CreateNoteResponse) {}
+    // Must be group member or author.
+    rpc GetNote(GetNoteRequest) returns (GetNoteResponse) {}
+    // Must be author. Can only update `title`.
     rpc UpdateNote(UpdateNoteRequest) returns (UpdateNoteResponse) {}
+    // Must be author.
     rpc DeleteNote(DeleteNoteRequest) returns (DeleteNoteResponse) {}
+    // Must be group member.
     rpc ListNotes(ListNotesRequest) returns (ListNotesResponse) {}
+
+    // Must be author.
     rpc InsertBlock(InsertBlockRequest) returns (InsertBlockResponse) {}
+    // Must be author.
     rpc UpdateBlock(UpdateBlockRequest) returns (UpdateBlockResponse) {}
+    // Must be author.
     rpc DeleteBlock(DeleteBlockRequest) returns (DeleteBlockResponse) {}
+
+    // Must be group member.
     rpc ExportNote(ExportNoteRequest) returns (ExportNoteResponse) {}
 }
 
 message GetNoteRequest {
-    string id = 1;
+    string group_id = 1;
+    string note_id = 2;
 }
 
 message GetNoteResponse {
@@ -87,7 +97,9 @@ message GetNoteResponse {
 }
 
 message CreateNoteRequest {
-    Note note = 1;
+    string group_id = 1;
+    string title = 2;
+    repeated Block blocks = 3;
 }
 
 message CreateNoteResponse {
@@ -95,9 +107,10 @@ message CreateNoteResponse {
 }
 
 message UpdateNoteRequest {
-    string id = 1;
-    Note note = 2;
-    google.protobuf.FieldMask update_mask = 3;
+    string group_id = 1;
+    string note_id = 2;
+    Note note = 3;
+    google.protobuf.FieldMask update_mask = 4;
 }
 
 message UpdateNoteResponse {
@@ -113,6 +126,7 @@ message DeleteNoteResponse {
 
 message ListNotesRequest {
     string author_id = 1;
+    string group_id = 2;
 }
 
 message ListNotesResponse {
@@ -120,9 +134,10 @@ message ListNotesResponse {
 }
 
 message InsertBlockRequest {
-    Block block = 1;
-    uint32 index = 2;
-    string note_id = 3;
+    string group_id = 1;
+    string note_id = 2;
+    uint32 index = 3;
+    Block block = 4;
 }
 
 message InsertBlockResponse {
