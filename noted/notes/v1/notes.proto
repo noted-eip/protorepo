@@ -15,6 +15,7 @@ message Note {
     repeated Block blocks = 5;
     google.protobuf.Timestamp created_at = 6;
     google.protobuf.Timestamp modified_at = 7;
+    google.protobuf.Timestamp analyzed_at = 8;
 }
 
 message Block {

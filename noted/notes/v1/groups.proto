@@ -66,6 +66,9 @@ service GroupsAPI {
     // Creates a group with a single administrator member (the authenticated user).
     // Must be authenticated.
     rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {}
+    // Internal endpoint. Called upon account creation.
+    // Creates a workspace for the caller.
+    rpc CreateWorkspace(CreateWorkspaceRequest) returns (CreateWorkspaceResponse) {}
     // Must be group member.
     // If the caller is not a member but has been invited to the group or has
     // an invite code link, it will access a limited view of the group.
@@ -134,6 +137,13 @@ message CreateGroupRequest {
 }
 
 message CreateGroupResponse {
+    Group group = 1;
+}
+
+message CreateWorkspaceRequest {
+}
+
+message CreateWorkspaceResponse {
     Group group = 1;
 }
 
@@ -333,7 +343,8 @@ message SendInviteResponse {
 }
 
 message GetInviteRequest {
-    string invite_id = 1;
+    string group_id = 1;
+    string invite_id = 2;
 }
 
 message GetInviteResponse {
@@ -341,7 +352,8 @@ message GetInviteResponse {
 }
 
 message AcceptInviteRequest {
-    string invite_id = 1;
+    string group_id = 1;
+    string invite_id = 2;
 }
 
 message AcceptInviteResponse {
@@ -349,7 +361,8 @@ message AcceptInviteResponse {
 }
 
 message DenyInviteRequest {
-    string invite_id = 1;
+    string group_id = 1;
+    string invite_id = 2;
 }
 
 message DenyInviteResponse {
