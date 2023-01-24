@@ -14,15 +14,15 @@ class NotesAPIStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.GetNote = channel.unary_unary(
-                '/noted.notes.v1.NotesAPI/GetNote',
-                request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.GetNoteRequest.SerializeToString,
-                response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.GetNoteResponse.FromString,
-                )
         self.CreateNote = channel.unary_unary(
                 '/noted.notes.v1.NotesAPI/CreateNote',
                 request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.CreateNoteRequest.SerializeToString,
                 response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.CreateNoteResponse.FromString,
+                )
+        self.GetNote = channel.unary_unary(
+                '/noted.notes.v1.NotesAPI/GetNote',
+                request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.GetNoteRequest.SerializeToString,
+                response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.GetNoteResponse.FromString,
                 )
         self.UpdateNote = channel.unary_unary(
                 '/noted.notes.v1.NotesAPI/UpdateNote',
@@ -64,56 +64,66 @@ class NotesAPIStub(object):
 class NotesAPIServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def GetNote(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+    def CreateNote(self, request, context):
+        """Must be group member, author_account_id defaults to the user making
+        the request.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def CreateNote(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+    def GetNote(self, request, context):
+        """Must be group member or author.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateNote(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be author. Can only update `title`.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DeleteNote(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be author.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ListNotes(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be group member.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def InsertBlock(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be author.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateBlock(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be author.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DeleteBlock(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be author.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ExportNote(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be group member.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -121,15 +131,15 @@ class NotesAPIServicer(object):
 
 def add_NotesAPIServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'GetNote': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetNote,
-                    request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.GetNoteRequest.FromString,
-                    response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.GetNoteResponse.SerializeToString,
-            ),
             'CreateNote': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateNote,
                     request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.CreateNoteRequest.FromString,
                     response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.CreateNoteResponse.SerializeToString,
+            ),
+            'GetNote': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetNote,
+                    request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.GetNoteRequest.FromString,
+                    response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.GetNoteResponse.SerializeToString,
             ),
             'UpdateNote': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateNote,
@@ -177,23 +187,6 @@ class NotesAPI(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def GetNote(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/GetNote',
-            noted_dot_notes_dot_v1_dot_notes__pb2.GetNoteRequest.SerializeToString,
-            noted_dot_notes_dot_v1_dot_notes__pb2.GetNoteResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
     def CreateNote(request,
             target,
             options=(),
@@ -207,6 +200,23 @@ class NotesAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/CreateNote',
             noted_dot_notes_dot_v1_dot_notes__pb2.CreateNoteRequest.SerializeToString,
             noted_dot_notes_dot_v1_dot_notes__pb2.CreateNoteResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetNote(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/GetNote',
+            noted_dot_notes_dot_v1_dot_notes__pb2.GetNoteRequest.SerializeToString,
+            noted_dot_notes_dot_v1_dot_notes__pb2.GetNoteResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

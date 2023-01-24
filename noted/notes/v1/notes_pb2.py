@@ -17,7 +17,7 @@ from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mas
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1anoted/notes/v1/notes.proto\x12\x0enoted.notes.v1\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"3\n\x05Notes\x12*\n\x05notes\x18\x01 \x03(\x0b\x32\x14.noted.notes.v1.NoteR\x05notes\"\xf0\x01\n\x04Note\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n\tauthor_id\x18\x02 \x01(\tR\x08\x61uthorId\x12\x14\n\x05title\x18\x03 \x01(\tR\x05title\x12-\n\x06\x62locks\x18\x04 \x03(\x0b\x32\x15.noted.notes.v1.BlockR\x06\x62locks\x12\x39\n\ncreated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12;\n\x0bmodified_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nmodifiedAt\"\xb6\x05\n\x05\x42lock\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12.\n\x04type\x18\x02 \x01(\x0e\x32\x1a.noted.notes.v1.Block.TypeR\x04type\x12\x1a\n\x07heading\x18\x03 \x01(\tH\x00R\x07heading\x12\x1e\n\tparagraph\x18\x04 \x01(\tH\x00R\tparagraph\x12#\n\x0cnumber_point\x18\x05 \x01(\tH\x00R\x0bnumberPoint\x12#\n\x0c\x62ullet_point\x18\x06 \x01(\tH\x00R\x0b\x62ulletPoint\x12\x33\n\x05image\x18\x10 \x01(\x0b\x32\x1b.noted.notes.v1.Block.ImageH\x00R\x05image\x12\x30\n\x04\x63ode\x18\x11 \x01(\x0b\x32\x1a.noted.notes.v1.Block.CodeH\x00R\x04\x63ode\x12\x14\n\x04math\x18\x12 \x01(\tH\x00R\x04math\x1a\x34\n\x04\x43ode\x12\x18\n\x07snippet\x18\x01 \x01(\tR\x07snippet\x12\x12\n\x04lang\x18\x02 \x01(\tR\x04lang\x1a\x33\n\x05Image\x12\x10\n\x03url\x18\x01 \x01(\tR\x03url\x12\x18\n\x07\x63\x61ption\x18\x02 \x01(\tR\x07\x63\x61ption\"\xc6\x01\n\x04Type\x12\x10\n\x0cTYPE_INVALID\x10\x00\x12\x12\n\x0eTYPE_HEADING_1\x10\x01\x12\x12\n\x0eTYPE_HEADING_2\x10\x02\x12\x12\n\x0eTYPE_HEADING_3\x10\x03\x12\x12\n\x0eTYPE_PARAGRAPH\x10\x04\x12\r\n\tTYPE_MATH\x10\x05\x12\r\n\tTYPE_CODE\x10\x06\x12\x15\n\x11TYPE_BULLET_POINT\x10\x07\x12\x17\n\x13TYPE_NUMBERED_POINT\x10\x08\x12\x0e\n\nTYPE_IMAGE\x10\tB\x06\n\x04\x64\x61taJ\x04\x08\x07\x10\x08J\x04\x08\x08\x10\tJ\x04\x08\t\x10\nJ\x04\x08\n\x10\x0bJ\x04\x08\x0b\x10\x0cJ\x04\x08\x0c\x10\rJ\x04\x08\r\x10\x0eJ\x04\x08\x0e\x10\x0f\" \n\x0eGetNoteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\";\n\x0fGetNoteResponse\x12(\n\x04note\x18\x01 \x01(\x0b\x32\x14.noted.notes.v1.NoteR\x04note\"=\n\x11\x43reateNoteRequest\x12(\n\x04note\x18\x01 \x01(\x0b\x32\x14.noted.notes.v1.NoteR\x04note\">\n\x12\x43reateNoteResponse\x12(\n\x04note\x18\x01 \x01(\x0b\x32\x14.noted.notes.v1.NoteR\x04note\"\x8a\x01\n\x11UpdateNoteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12(\n\x04note\x18\x02 \x01(\x0b\x32\x14.noted.notes.v1.NoteR\x04note\x12;\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"$\n\x12UpdateNoteResponse\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"#\n\x11\x44\x65leteNoteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x14\n\x12\x44\x65leteNoteResponse\"/\n\x10ListNotesRequest\x12\x1b\n\tauthor_id\x18\x01 \x01(\tR\x08\x61uthorId\"?\n\x11ListNotesResponse\x12*\n\x05notes\x18\x01 \x03(\x0b\x32\x14.noted.notes.v1.NoteR\x05notes\"p\n\x12InsertBlockRequest\x12+\n\x05\x62lock\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.BlockR\x05\x62lock\x12\x14\n\x05index\x18\x02 \x01(\rR\x05index\x12\x17\n\x07note_id\x18\x03 \x01(\tR\x06noteId\"B\n\x13InsertBlockResponse\x12+\n\x05\x62lock\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.BlockR\x05\x62lock\"\xa4\x01\n\x12UpdateBlockRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12+\n\x05\x62lock\x18\x02 \x01(\x0b\x32\x15.noted.notes.v1.BlockR\x05\x62lock\x12\x14\n\x05index\x18\x03 \x01(\rR\x05index\x12;\n\x0bupdate_mask\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"B\n\x13UpdateBlockResponse\x12+\n\x05\x62lock\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.BlockR\x05\x62lock\"$\n\x12\x44\x65leteBlockRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x15\n\x13\x44\x65leteBlockResponse\"s\n\x11\x45xportNoteRequest\x12\x17\n\x07note_id\x18\x01 \x01(\tR\x06noteId\x12\x45\n\rexport_format\x18\x02 \x01(\x0e\x32 .noted.notes.v1.NoteExportFormatR\x0c\x65xportFormat\"(\n\x12\x45xportNoteResponse\x12\x12\n\x04\x66ile\x18\x01 \x01(\x0cR\x04\x66ile*o\n\x10NoteExportFormat\x12\x1e\n\x1aNOTE_EXPORT_FORMAT_INVALID\x10\x00\x12\x1f\n\x1bNOTE_EXPORT_FORMAT_MARKDOWN\x10\x01\x12\x1a\n\x16NOTE_EXPORT_FORMAT_PDF\x10\x02\x32\x96\x06\n\x08NotesAPI\x12L\n\x07GetNote\x12\x1e.noted.notes.v1.GetNoteRequest\x1a\x1f.noted.notes.v1.GetNoteResponse\"\x00\x12U\n\nCreateNote\x12!.noted.notes.v1.CreateNoteRequest\x1a\".noted.notes.v1.CreateNoteResponse\"\x00\x12U\n\nUpdateNote\x12!.noted.notes.v1.UpdateNoteRequest\x1a\".noted.notes.v1.UpdateNoteResponse\"\x00\x12U\n\nDeleteNote\x12!.noted.notes.v1.DeleteNoteRequest\x1a\".noted.notes.v1.DeleteNoteResponse\"\x00\x12R\n\tListNotes\x12 .noted.notes.v1.ListNotesRequest\x1a!.noted.notes.v1.ListNotesResponse\"\x00\x12X\n\x0bInsertBlock\x12\".noted.notes.v1.InsertBlockRequest\x1a#.noted.notes.v1.InsertBlockResponse\"\x00\x12X\n\x0bUpdateBlock\x12\".noted.notes.v1.UpdateBlockRequest\x1a#.noted.notes.v1.UpdateBlockResponse\"\x00\x12X\n\x0b\x44\x65leteBlock\x12\".noted.notes.v1.DeleteBlockRequest\x1a#.noted.notes.v1.DeleteBlockResponse\"\x00\x12U\n\nExportNote\x12!.noted.notes.v1.ExportNoteRequest\x1a\".noted.notes.v1.ExportNoteResponse\"\x00\x42\x10Z\x0enoted/notes/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1anoted/notes/v1/notes.proto\x12\x0enoted.notes.v1\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc8\x02\n\x04Note\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n\x08group_id\x18\x02 \x01(\tR\x07groupId\x12\x1b\n\tauthor_id\x18\x03 \x01(\tR\x08\x61uthorId\x12\x14\n\x05title\x18\x04 \x01(\tR\x05title\x12-\n\x06\x62locks\x18\x05 \x03(\x0b\x32\x15.noted.notes.v1.BlockR\x06\x62locks\x12\x39\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12;\n\x0bmodified_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nmodifiedAt\x12;\n\x0b\x61nalyzed_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nanalyzedAt\"\xb6\x05\n\x05\x42lock\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12.\n\x04type\x18\x02 \x01(\x0e\x32\x1a.noted.notes.v1.Block.TypeR\x04type\x12\x1a\n\x07heading\x18\x03 \x01(\tH\x00R\x07heading\x12\x1e\n\tparagraph\x18\x04 \x01(\tH\x00R\tparagraph\x12#\n\x0cnumber_point\x18\x05 \x01(\tH\x00R\x0bnumberPoint\x12#\n\x0c\x62ullet_point\x18\x06 \x01(\tH\x00R\x0b\x62ulletPoint\x12\x33\n\x05image\x18\x10 \x01(\x0b\x32\x1b.noted.notes.v1.Block.ImageH\x00R\x05image\x12\x30\n\x04\x63ode\x18\x11 \x01(\x0b\x32\x1a.noted.notes.v1.Block.CodeH\x00R\x04\x63ode\x12\x14\n\x04math\x18\x12 \x01(\tH\x00R\x04math\x1a\x34\n\x04\x43ode\x12\x18\n\x07snippet\x18\x01 \x01(\tR\x07snippet\x12\x12\n\x04lang\x18\x02 \x01(\tR\x04lang\x1a\x33\n\x05Image\x12\x10\n\x03url\x18\x01 \x01(\tR\x03url\x12\x18\n\x07\x63\x61ption\x18\x02 \x01(\tR\x07\x63\x61ption\"\xc6\x01\n\x04Type\x12\x10\n\x0cTYPE_INVALID\x10\x00\x12\x12\n\x0eTYPE_HEADING_1\x10\x01\x12\x12\n\x0eTYPE_HEADING_2\x10\x02\x12\x12\n\x0eTYPE_HEADING_3\x10\x03\x12\x12\n\x0eTYPE_PARAGRAPH\x10\x04\x12\r\n\tTYPE_MATH\x10\x05\x12\r\n\tTYPE_CODE\x10\x06\x12\x15\n\x11TYPE_BULLET_POINT\x10\x07\x12\x17\n\x13TYPE_NUMBERED_POINT\x10\x08\x12\x0e\n\nTYPE_IMAGE\x10\tB\x06\n\x04\x64\x61taJ\x04\x08\x07\x10\x08J\x04\x08\x08\x10\tJ\x04\x08\t\x10\nJ\x04\x08\n\x10\x0bJ\x04\x08\x0b\x10\x0cJ\x04\x08\x0c\x10\rJ\x04\x08\r\x10\x0eJ\x04\x08\x0e\x10\x0f\"D\n\x0eGetNoteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x17\n\x07note_id\x18\x02 \x01(\tR\x06noteId\";\n\x0fGetNoteResponse\x12(\n\x04note\x18\x01 \x01(\x0b\x32\x14.noted.notes.v1.NoteR\x04note\"s\n\x11\x43reateNoteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x14\n\x05title\x18\x02 \x01(\tR\x05title\x12-\n\x06\x62locks\x18\x03 \x03(\x0b\x32\x15.noted.notes.v1.BlockR\x06\x62locks\">\n\x12\x43reateNoteResponse\x12(\n\x04note\x18\x01 \x01(\x0b\x32\x14.noted.notes.v1.NoteR\x04note\"\xae\x01\n\x11UpdateNoteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x17\n\x07note_id\x18\x02 \x01(\tR\x06noteId\x12(\n\x04note\x18\x03 \x01(\x0b\x32\x14.noted.notes.v1.NoteR\x04note\x12;\n\x0bupdate_mask\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"$\n\x12UpdateNoteResponse\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"#\n\x11\x44\x65leteNoteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x14\n\x12\x44\x65leteNoteResponse\"J\n\x10ListNotesRequest\x12\x1b\n\tauthor_id\x18\x01 \x01(\tR\x08\x61uthorId\x12\x19\n\x08group_id\x18\x02 \x01(\tR\x07groupId\"?\n\x11ListNotesResponse\x12*\n\x05notes\x18\x01 \x03(\x0b\x32\x14.noted.notes.v1.NoteR\x05notes\"\x8b\x01\n\x12InsertBlockRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x17\n\x07note_id\x18\x02 \x01(\tR\x06noteId\x12\x14\n\x05index\x18\x03 \x01(\rR\x05index\x12+\n\x05\x62lock\x18\x04 \x01(\x0b\x32\x15.noted.notes.v1.BlockR\x05\x62lock\"B\n\x13InsertBlockResponse\x12+\n\x05\x62lock\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.BlockR\x05\x62lock\"\xa4\x01\n\x12UpdateBlockRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12+\n\x05\x62lock\x18\x02 \x01(\x0b\x32\x15.noted.notes.v1.BlockR\x05\x62lock\x12\x14\n\x05index\x18\x03 \x01(\rR\x05index\x12;\n\x0bupdate_mask\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"B\n\x13UpdateBlockResponse\x12+\n\x05\x62lock\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.BlockR\x05\x62lock\"$\n\x12\x44\x65leteBlockRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x15\n\x13\x44\x65leteBlockResponse\"s\n\x11\x45xportNoteRequest\x12\x17\n\x07note_id\x18\x01 \x01(\tR\x06noteId\x12\x45\n\rexport_format\x18\x02 \x01(\x0e\x32 .noted.notes.v1.NoteExportFormatR\x0c\x65xportFormat\"(\n\x12\x45xportNoteResponse\x12\x12\n\x04\x66ile\x18\x01 \x01(\x0cR\x04\x66ile*o\n\x10NoteExportFormat\x12\x1e\n\x1aNOTE_EXPORT_FORMAT_INVALID\x10\x00\x12\x1f\n\x1bNOTE_EXPORT_FORMAT_MARKDOWN\x10\x01\x12\x1a\n\x16NOTE_EXPORT_FORMAT_PDF\x10\x02\x32\x96\x06\n\x08NotesAPI\x12U\n\nCreateNote\x12!.noted.notes.v1.CreateNoteRequest\x1a\".noted.notes.v1.CreateNoteResponse\"\x00\x12L\n\x07GetNote\x12\x1e.noted.notes.v1.GetNoteRequest\x1a\x1f.noted.notes.v1.GetNoteResponse\"\x00\x12U\n\nUpdateNote\x12!.noted.notes.v1.UpdateNoteRequest\x1a\".noted.notes.v1.UpdateNoteResponse\"\x00\x12U\n\nDeleteNote\x12!.noted.notes.v1.DeleteNoteRequest\x1a\".noted.notes.v1.DeleteNoteResponse\"\x00\x12R\n\tListNotes\x12 .noted.notes.v1.ListNotesRequest\x1a!.noted.notes.v1.ListNotesResponse\"\x00\x12X\n\x0bInsertBlock\x12\".noted.notes.v1.InsertBlockRequest\x1a#.noted.notes.v1.InsertBlockResponse\"\x00\x12X\n\x0bUpdateBlock\x12\".noted.notes.v1.UpdateBlockRequest\x1a#.noted.notes.v1.UpdateBlockResponse\"\x00\x12X\n\x0b\x44\x65leteBlock\x12\".noted.notes.v1.DeleteBlockRequest\x1a#.noted.notes.v1.DeleteBlockResponse\"\x00\x12U\n\nExportNote\x12!.noted.notes.v1.ExportNoteRequest\x1a\".noted.notes.v1.ExportNoteResponse\"\x00\x42\x10Z\x0enoted/notes/v1b\x06proto3')
 
 _NOTEEXPORTFORMAT = DESCRIPTOR.enum_types_by_name['NoteExportFormat']
 NoteExportFormat = enum_type_wrapper.EnumTypeWrapper(_NOTEEXPORTFORMAT)
@@ -26,7 +26,6 @@ NOTE_EXPORT_FORMAT_MARKDOWN = 1
 NOTE_EXPORT_FORMAT_PDF = 2
 
 
-_NOTES = DESCRIPTOR.message_types_by_name['Notes']
 _NOTE = DESCRIPTOR.message_types_by_name['Note']
 _BLOCK = DESCRIPTOR.message_types_by_name['Block']
 _BLOCK_CODE = _BLOCK.nested_types_by_name['Code']
@@ -50,13 +49,6 @@ _DELETEBLOCKRESPONSE = DESCRIPTOR.message_types_by_name['DeleteBlockResponse']
 _EXPORTNOTEREQUEST = DESCRIPTOR.message_types_by_name['ExportNoteRequest']
 _EXPORTNOTERESPONSE = DESCRIPTOR.message_types_by_name['ExportNoteResponse']
 _BLOCK_TYPE = _BLOCK.enum_types_by_name['Type']
-Notes = _reflection.GeneratedProtocolMessageType('Notes', (_message.Message,), {
-  'DESCRIPTOR' : _NOTES,
-  '__module__' : 'noted.notes.v1.notes_pb2'
-  # @@protoc_insertion_point(class_scope:noted.notes.v1.Notes)
-  })
-_sym_db.RegisterMessage(Notes)
-
 Note = _reflection.GeneratedProtocolMessageType('Note', (_message.Message,), {
   'DESCRIPTOR' : _NOTE,
   '__module__' : 'noted.notes.v1.notes_pb2'
@@ -218,56 +210,54 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z\016noted/notes/v1'
-  _NOTEEXPORTFORMAT._serialized_start=2317
-  _NOTEEXPORTFORMAT._serialized_end=2428
-  _NOTES._serialized_start=113
-  _NOTES._serialized_end=164
-  _NOTE._serialized_start=167
-  _NOTE._serialized_end=407
-  _BLOCK._serialized_start=410
-  _BLOCK._serialized_end=1104
-  _BLOCK_CODE._serialized_start=742
-  _BLOCK_CODE._serialized_end=794
-  _BLOCK_IMAGE._serialized_start=796
-  _BLOCK_IMAGE._serialized_end=847
-  _BLOCK_TYPE._serialized_start=850
-  _BLOCK_TYPE._serialized_end=1048
-  _GETNOTEREQUEST._serialized_start=1106
-  _GETNOTEREQUEST._serialized_end=1138
-  _GETNOTERESPONSE._serialized_start=1140
-  _GETNOTERESPONSE._serialized_end=1199
-  _CREATENOTEREQUEST._serialized_start=1201
-  _CREATENOTEREQUEST._serialized_end=1262
-  _CREATENOTERESPONSE._serialized_start=1264
-  _CREATENOTERESPONSE._serialized_end=1326
-  _UPDATENOTEREQUEST._serialized_start=1329
-  _UPDATENOTEREQUEST._serialized_end=1467
-  _UPDATENOTERESPONSE._serialized_start=1469
-  _UPDATENOTERESPONSE._serialized_end=1505
-  _DELETENOTEREQUEST._serialized_start=1507
-  _DELETENOTEREQUEST._serialized_end=1542
-  _DELETENOTERESPONSE._serialized_start=1544
-  _DELETENOTERESPONSE._serialized_end=1564
-  _LISTNOTESREQUEST._serialized_start=1566
-  _LISTNOTESREQUEST._serialized_end=1613
-  _LISTNOTESRESPONSE._serialized_start=1615
-  _LISTNOTESRESPONSE._serialized_end=1678
-  _INSERTBLOCKREQUEST._serialized_start=1680
-  _INSERTBLOCKREQUEST._serialized_end=1792
-  _INSERTBLOCKRESPONSE._serialized_start=1794
-  _INSERTBLOCKRESPONSE._serialized_end=1860
-  _UPDATEBLOCKREQUEST._serialized_start=1863
-  _UPDATEBLOCKREQUEST._serialized_end=2027
-  _UPDATEBLOCKRESPONSE._serialized_start=2029
-  _UPDATEBLOCKRESPONSE._serialized_end=2095
-  _DELETEBLOCKREQUEST._serialized_start=2097
-  _DELETEBLOCKREQUEST._serialized_end=2133
-  _DELETEBLOCKRESPONSE._serialized_start=2135
-  _DELETEBLOCKRESPONSE._serialized_end=2156
-  _EXPORTNOTEREQUEST._serialized_start=2158
-  _EXPORTNOTEREQUEST._serialized_end=2273
-  _EXPORTNOTERESPONSE._serialized_start=2275
-  _EXPORTNOTERESPONSE._serialized_end=2315
-  _NOTESAPI._serialized_start=2431
-  _NOTESAPI._serialized_end=3221
+  _NOTEEXPORTFORMAT._serialized_start=2533
+  _NOTEEXPORTFORMAT._serialized_end=2644
+  _NOTE._serialized_start=114
+  _NOTE._serialized_end=442
+  _BLOCK._serialized_start=445
+  _BLOCK._serialized_end=1139
+  _BLOCK_CODE._serialized_start=777
+  _BLOCK_CODE._serialized_end=829
+  _BLOCK_IMAGE._serialized_start=831
+  _BLOCK_IMAGE._serialized_end=882
+  _BLOCK_TYPE._serialized_start=885
+  _BLOCK_TYPE._serialized_end=1083
+  _GETNOTEREQUEST._serialized_start=1141
+  _GETNOTEREQUEST._serialized_end=1209
+  _GETNOTERESPONSE._serialized_start=1211
+  _GETNOTERESPONSE._serialized_end=1270
+  _CREATENOTEREQUEST._serialized_start=1272
+  _CREATENOTEREQUEST._serialized_end=1387
+  _CREATENOTERESPONSE._serialized_start=1389
+  _CREATENOTERESPONSE._serialized_end=1451
+  _UPDATENOTEREQUEST._serialized_start=1454
+  _UPDATENOTEREQUEST._serialized_end=1628
+  _UPDATENOTERESPONSE._serialized_start=1630
+  _UPDATENOTERESPONSE._serialized_end=1666
+  _DELETENOTEREQUEST._serialized_start=1668
+  _DELETENOTEREQUEST._serialized_end=1703
+  _DELETENOTERESPONSE._serialized_start=1705
+  _DELETENOTERESPONSE._serialized_end=1725
+  _LISTNOTESREQUEST._serialized_start=1727
+  _LISTNOTESREQUEST._serialized_end=1801
+  _LISTNOTESRESPONSE._serialized_start=1803
+  _LISTNOTESRESPONSE._serialized_end=1866
+  _INSERTBLOCKREQUEST._serialized_start=1869
+  _INSERTBLOCKREQUEST._serialized_end=2008
+  _INSERTBLOCKRESPONSE._serialized_start=2010
+  _INSERTBLOCKRESPONSE._serialized_end=2076
+  _UPDATEBLOCKREQUEST._serialized_start=2079
+  _UPDATEBLOCKREQUEST._serialized_end=2243
+  _UPDATEBLOCKRESPONSE._serialized_start=2245
+  _UPDATEBLOCKRESPONSE._serialized_end=2311
+  _DELETEBLOCKREQUEST._serialized_start=2313
+  _DELETEBLOCKREQUEST._serialized_end=2349
+  _DELETEBLOCKRESPONSE._serialized_start=2351
+  _DELETEBLOCKRESPONSE._serialized_end=2372
+  _EXPORTNOTEREQUEST._serialized_start=2374
+  _EXPORTNOTEREQUEST._serialized_end=2489
+  _EXPORTNOTERESPONSE._serialized_start=2491
+  _EXPORTNOTERESPONSE._serialized_end=2531
+  _NOTESAPI._serialized_start=2647
+  _NOTESAPI._serialized_end=3437
 # @@protoc_insertion_point(module_scope)

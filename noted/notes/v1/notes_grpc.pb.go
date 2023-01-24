@@ -18,14 +18,24 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NotesAPIClient interface {
-	GetNote(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*GetNoteResponse, error)
+	// Must be group member, author_account_id defaults to the user making
+	// the request.
 	CreateNote(ctx context.Context, in *CreateNoteRequest, opts ...grpc.CallOption) (*CreateNoteResponse, error)
+	// Must be group member or author.
+	GetNote(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*GetNoteResponse, error)
+	// Must be author. Can only update `title`.
 	UpdateNote(ctx context.Context, in *UpdateNoteRequest, opts ...grpc.CallOption) (*UpdateNoteResponse, error)
+	// Must be author.
 	DeleteNote(ctx context.Context, in *DeleteNoteRequest, opts ...grpc.CallOption) (*DeleteNoteResponse, error)
+	// Must be group member.
 	ListNotes(ctx context.Context, in *ListNotesRequest, opts ...grpc.CallOption) (*ListNotesResponse, error)
+	// Must be author.
 	InsertBlock(ctx context.Context, in *InsertBlockRequest, opts ...grpc.CallOption) (*InsertBlockResponse, error)
+	// Must be author.
 	UpdateBlock(ctx context.Context, in *UpdateBlockRequest, opts ...grpc.CallOption) (*UpdateBlockResponse, error)
+	// Must be author.
 	DeleteBlock(ctx context.Context, in *DeleteBlockRequest, opts ...grpc.CallOption) (*DeleteBlockResponse, error)
+	// Must be group member.
 	ExportNote(ctx context.Context, in *ExportNoteRequest, opts ...grpc.CallOption) (*ExportNoteResponse, error)
 }
 
@@ -37,18 +47,18 @@ func NewNotesAPIClient(cc grpc.ClientConnInterface) NotesAPIClient {
 	return &notesAPIClient{cc}
 }
 
-func (c *notesAPIClient) GetNote(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*GetNoteResponse, error) {
-	out := new(GetNoteResponse)
-	err := c.cc.Invoke(ctx, "/noted.notes.v1.NotesAPI/GetNote", in, out, opts...)
+func (c *notesAPIClient) CreateNote(ctx context.Context, in *CreateNoteRequest, opts ...grpc.CallOption) (*CreateNoteResponse, error) {
+	out := new(CreateNoteResponse)
+	err := c.cc.Invoke(ctx, "/noted.notes.v1.NotesAPI/CreateNote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *notesAPIClient) CreateNote(ctx context.Context, in *CreateNoteRequest, opts ...grpc.CallOption) (*CreateNoteResponse, error) {
-	out := new(CreateNoteResponse)
-	err := c.cc.Invoke(ctx, "/noted.notes.v1.NotesAPI/CreateNote", in, out, opts...)
+func (c *notesAPIClient) GetNote(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*GetNoteResponse, error) {
+	out := new(GetNoteResponse)
+	err := c.cc.Invoke(ctx, "/noted.notes.v1.NotesAPI/GetNote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -122,14 +132,24 @@ func (c *notesAPIClient) ExportNote(ctx context.Context, in *ExportNoteRequest, 
 // All implementations must embed UnimplementedNotesAPIServer
 // for forward compatibility
 type NotesAPIServer interface {
-	GetNote(context.Context, *GetNoteRequest) (*GetNoteResponse, error)
+	// Must be group member, author_account_id defaults to the user making
+	// the request.
 	CreateNote(context.Context, *CreateNoteRequest) (*CreateNoteResponse, error)
+	// Must be group member or author.
+	GetNote(context.Context, *GetNoteRequest) (*GetNoteResponse, error)
+	// Must be author. Can only update `title`.
 	UpdateNote(context.Context, *UpdateNoteRequest) (*UpdateNoteResponse, error)
+	// Must be author.
 	DeleteNote(context.Context, *DeleteNoteRequest) (*DeleteNoteResponse, error)
+	// Must be group member.
 	ListNotes(context.Context, *ListNotesRequest) (*ListNotesResponse, error)
+	// Must be author.
 	InsertBlock(context.Context, *InsertBlockRequest) (*InsertBlockResponse, error)
+	// Must be author.
 	UpdateBlock(context.Context, *UpdateBlockRequest) (*UpdateBlockResponse, error)
+	// Must be author.
 	DeleteBlock(context.Context, *DeleteBlockRequest) (*DeleteBlockResponse, error)
+	// Must be group member.
 	ExportNote(context.Context, *ExportNoteRequest) (*ExportNoteResponse, error)
 	mustEmbedUnimplementedNotesAPIServer()
 }
@@ -138,11 +158,11 @@ type NotesAPIServer interface {
 type UnimplementedNotesAPIServer struct {
 }
 
-func (UnimplementedNotesAPIServer) GetNote(context.Context, *GetNoteRequest) (*GetNoteResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNote not implemented")
-}
 func (UnimplementedNotesAPIServer) CreateNote(context.Context, *CreateNoteRequest) (*CreateNoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateNote not implemented")
+}
+func (UnimplementedNotesAPIServer) GetNote(context.Context, *GetNoteRequest) (*GetNoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNote not implemented")
 }
 func (UnimplementedNotesAPIServer) UpdateNote(context.Context, *UpdateNoteRequest) (*UpdateNoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateNote not implemented")
@@ -178,24 +198,6 @@ func RegisterNotesAPIServer(s grpc.ServiceRegistrar, srv NotesAPIServer) {
 	s.RegisterService(&NotesAPI_ServiceDesc, srv)
 }
 
-func _NotesAPI_GetNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNoteRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NotesAPIServer).GetNote(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/noted.notes.v1.NotesAPI/GetNote",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NotesAPIServer).GetNote(ctx, req.(*GetNoteRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _NotesAPI_CreateNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateNoteRequest)
 	if err := dec(in); err != nil {
@@ -210,6 +212,24 @@ func _NotesAPI_CreateNote_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NotesAPIServer).CreateNote(ctx, req.(*CreateNoteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NotesAPI_GetNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetNoteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotesAPIServer).GetNote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.notes.v1.NotesAPI/GetNote",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotesAPIServer).GetNote(ctx, req.(*GetNoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -348,12 +368,12 @@ var NotesAPI_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*NotesAPIServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetNote",
-			Handler:    _NotesAPI_GetNote_Handler,
-		},
-		{
 			MethodName: "CreateNote",
 			Handler:    _NotesAPI_CreateNote_Handler,
+		},
+		{
+			MethodName: "GetNote",
+			Handler:    _NotesAPI_GetNote_Handler,
 		},
 		{
 			MethodName: "UpdateNote",
