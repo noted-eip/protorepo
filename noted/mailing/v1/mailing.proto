@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package noted.mailing.v1;
+
+option go_package = "noted/mailing/v1";
+
+message Recipient {
+    string accountID = 1;
+}
+
+service MailingAPI {
+    // Send email to accounts with markdown content.
+    rpc SendEmail(SendEmailRequest) returns (SendEmailResponse) {}
+}
+
+message SendEmailRequest {
+    repeated Recipient recipients = 1;
+    string subject = 2;
+    string markdown_body = 3;
+}
+
+message SendEmailResponse {
+}
