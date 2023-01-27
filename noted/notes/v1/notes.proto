@@ -158,11 +158,12 @@ message UpdateBlockResponse {
 }
 
 message DeleteBlockRequest {
-    string id = 1;
+    string group_id = 1;
+    string note_id = 2;
+    string block_id = 3;
 }
 
 message DeleteBlockResponse {
-
 }
 
 message ExportNoteRequest {
