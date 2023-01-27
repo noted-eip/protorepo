@@ -115,11 +115,12 @@ message UpdateNoteRequest {
 }
 
 message UpdateNoteResponse {
-    string id = 1;
+    Note note = 1;
 }
 
 message DeleteNoteRequest {
-    string id = 1;
+    string group_id = 1;
+    string note_id = 2;
 }
 
 message DeleteNoteResponse {
@@ -146,10 +147,10 @@ message InsertBlockResponse {
 }
 
 message UpdateBlockRequest {
-    string id = 1;
-    Block block = 2;
-    uint32 index = 3;
-    google.protobuf.FieldMask update_mask = 4;
+    string group_id = 1;
+    string note_id = 2;
+    string block_id = 3;
+    Block block = 4;
 }
 
 message UpdateBlockResponse {
