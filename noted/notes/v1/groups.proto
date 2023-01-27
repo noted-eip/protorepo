@@ -167,8 +167,9 @@ message DeleteGroupResponse {
 }
 
 message UpdateGroupRequest {
-    string name = 1;
-    string description = 2;
+    string group_id = 1;
+    string name = 2;
+    string description = 3;
 }
 
 message UpdateGroupResponse {
