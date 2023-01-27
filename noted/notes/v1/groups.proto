@@ -170,7 +170,6 @@ message UpdateGroupRequest {
     string group_id = 1;
     string name = 2;
     string description = 3;
-    string avatar_url = 4;
 }
 
 message UpdateGroupResponse {
