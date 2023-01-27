@@ -16,7 +16,7 @@ from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mas
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1bnoted/notes/v1/groups.proto\x12\x0enoted.notes.v1\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa7\x02\n\x13\x43onversationMessage\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n\x08group_id\x18\x02 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x03 \x01(\tR\x0e\x63onversationId\x12*\n\x11sender_account_id\x18\x04 \x01(\tR\x0fsenderAccountId\x12\x18\n\x07\x63ontent\x18\x05 \x01(\tR\x07\x63ontent\x12\x39\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12;\n\x0bmodified_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nmodifiedAt\"r\n\x11GroupConversation\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12\x39\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\"\x80\x01\n\x0bGroupMember\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x19\n\x08is_admin\x18\x02 \x01(\x08R\x07isAdmin\x12\x37\n\tjoined_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x08joinedAt\"\x8e\x02\n\x0bGroupInvite\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n\x08group_id\x18\x02 \x01(\tR\x07groupId\x12*\n\x11sender_account_id\x18\x03 \x01(\tR\x0fsenderAccountId\x12\x30\n\x14recipient_account_id\x18\x04 \x01(\tR\x12recipientAccountId\x12\x39\n\ncreated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12;\n\x0bvalid_until\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nvalidUntil\"\xd4\x01\n\x0fGroupInviteLink\x12\x12\n\x04\x63ode\x18\x01 \x01(\tR\x04\x63ode\x12\x35\n\x17generated_by_account_id\x18\x02 \x01(\tR\x14generatedByAccountId\x12\x39\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12;\n\x0bvalid_until\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nvalidUntil\"\x91\x04\n\x05Group\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x03 \x01(\tR\x0b\x64\x65scription\x12\x30\n\x14workspace_account_id\x18\x04 \x01(\tR\x12workspaceAccountId\x12\x1d\n\navatar_url\x18\x05 \x01(\tR\tavatarUrl\x12\x39\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12;\n\x0bmodified_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nmodifiedAt\x12\x35\n\x07members\x18\x08 \x03(\x0b\x32\x1b.noted.notes.v1.GroupMemberR\x07members\x12G\n\rconversations\x18\t \x03(\x0b\x32!.noted.notes.v1.GroupConversationR\rconversations\x12\x35\n\x07invites\x18\n \x03(\x0b\x32\x1b.noted.notes.v1.GroupInviteR\x07invites\x12\x42\n\x0cinvite_links\x18\x0b \x03(\x0b\x32\x1f.noted.notes.v1.GroupInviteLinkR\x0binviteLinks\"J\n\x12\x43reateGroupRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x02 \x01(\tR\x0b\x64\x65scription\"B\n\x13\x43reateGroupResponse\x12+\n\x05group\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.GroupR\x05group\"\x18\n\x16\x43reateWorkspaceRequest\"F\n\x17\x43reateWorkspaceResponse\x12+\n\x05group\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.GroupR\x05group\"V\n\x0fGetGroupRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12(\n\x10invite_link_code\x18\x02 \x01(\tR\x0einviteLinkCode\"?\n\x10GetGroupResponse\x12+\n\x05group\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.GroupR\x05group\"/\n\x12\x44\x65leteGroupRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\"\x15\n\x13\x44\x65leteGroupResponse\"~\n\x12UpdateGroupRequest\x12+\n\x05group\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.GroupR\x05group\x12;\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"B\n\x13UpdateGroupResponse\x12+\n\x05group\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.GroupR\x05group\"`\n\x11ListGroupsRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x14\n\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x03 \x01(\x05R\x06offset\"C\n\x12ListGroupsResponse\x12-\n\x06groups\x18\x01 \x03(\x0b\x32\x15.noted.notes.v1.GroupR\x06groups\"b\n\x17ListGroupMembersRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x14\n\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x03 \x01(\x05R\x06offset\"Q\n\x18ListGroupMembersResponse\x12\x35\n\x07members\x18\x01 \x03(\x0b\x32\x1b.noted.notes.v1.GroupMemberR\x07members\"L\n\x10\x41\x64\x64MemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"\x13\n\x11\x41\x64\x64MemberResponse\"L\n\x10GetMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"H\n\x11GetMemberResponse\x12\x33\n\x06member\x18\x01 \x01(\x0b\x32\x1b.noted.notes.v1.GroupMemberR\x06member\"\xa2\x01\n\x13UpdateMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x33\n\x06member\x18\x02 \x01(\x0b\x32\x1b.noted.notes.v1.GroupMemberR\x06member\x12;\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"K\n\x14UpdateMemberResponse\x12\x33\n\x06member\x18\x01 \x01(\x0b\x32\x1b.noted.notes.v1.GroupMemberR\x06member\"O\n\x13RemoveMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"\x16\n\x14RemoveMemberResponse\"\\\n\x16GetConversationRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\"`\n\x17GetConversationResponse\x12\x45\n\x0c\x63onversation\x18\x01 \x01(\x0b\x32!.noted.notes.v1.GroupConversationR\x0c\x63onversation\"u\n\x19UpdateConversationRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\x12\x14\n\x05title\x18\x03 \x01(\tR\x05title\"c\n\x1aUpdateConversationResponse\x12\x45\n\x0c\x63onversation\x18\x01 \x01(\x0b\x32!.noted.notes.v1.GroupConversationR\x0c\x63onversation\"~\n\x1eSendConversationMessageRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\x12\x18\n\x07\x63ontent\x18\x03 \x01(\tR\x07\x63ontent\"`\n\x1fSendConversationMessageResponse\x12=\n\x07message\x18\x01 \x01(\x0b\x32#.noted.notes.v1.ConversationMessageR\x07message\"\x82\x01\n\x1dGetConversationMessageRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\x12\x1d\n\nmessage_id\x18\x03 \x01(\tR\tmessageId\"_\n\x1eGetConversationMessageResponse\x12=\n\x07message\x18\x01 \x01(\x0b\x32#.noted.notes.v1.ConversationMessageR\x07message\"\x9f\x01\n UpdateConversationMessageRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\x12\x1d\n\nmessage_id\x18\x03 \x01(\tR\tmessageId\x12\x18\n\x07\x63ontent\x18\x04 \x01(\tR\x07\x63ontent\"b\n!UpdateConversationMessageResponse\x12=\n\x07message\x18\x01 \x01(\x0b\x32#.noted.notes.v1.ConversationMessageR\x07message\"\x85\x01\n DeleteConversationMessageRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\x12\x1d\n\nmessage_id\x18\x03 \x01(\tR\tmessageId\"#\n!DeleteConversationMessageResponse\"\x93\x01\n\x1fListConversationMessagesRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\x12\x14\n\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x04 \x01(\x05R\x06offset\"c\n ListConversationMessagesResponse\x12?\n\x08messages\x18\x01 \x03(\x0b\x32#.noted.notes.v1.ConversationMessageR\x08messages\"6\n\x19GenerateInviteLinkRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\"^\n\x1aGenerateInviteLinkResponse\x12@\n\x0binvite_link\x18\x01 \x01(\x0b\x32\x1f.noted.notes.v1.GroupInviteLinkR\ninviteLink\"[\n\x14GetInviteLinkRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12(\n\x10invite_link_code\x18\x02 \x01(\tR\x0einviteLinkCode\"Y\n\x15GetInviteLinkResponse\x12@\n\x0binvite_link\x18\x01 \x01(\x0b\x32\x1f.noted.notes.v1.GroupInviteLinkR\ninviteLink\"^\n\x17RevokeInviteLinkRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12(\n\x10invite_link_code\x18\x02 \x01(\tR\x0einviteLinkCode\"\x1a\n\x18RevokeInviteLinkResponse\"[\n\x14UseInviteLinkRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12(\n\x10invite_link_code\x18\x02 \x01(\tR\x0einviteLinkCode\"\x17\n\x15UseInviteLinkResponse\"`\n\x11SendInviteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x30\n\x14recipient_account_id\x18\x02 \x01(\tR\x12recipientAccountId\"I\n\x12SendInviteResponse\x12\x33\n\x06invite\x18\x01 \x01(\x0b\x32\x1b.noted.notes.v1.GroupInviteR\x06invite\"J\n\x10GetInviteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1b\n\tinvite_id\x18\x02 \x01(\tR\x08inviteId\"H\n\x11GetInviteResponse\x12\x33\n\x06invite\x18\x01 \x01(\x0b\x32\x1b.noted.notes.v1.GroupInviteR\x06invite\"M\n\x13\x41\x63\x63\x65ptInviteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1b\n\tinvite_id\x18\x02 \x01(\tR\x08inviteId\"\x16\n\x14\x41\x63\x63\x65ptInviteResponse\"K\n\x11\x44\x65nyInviteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1b\n\tinvite_id\x18\x02 \x01(\tR\x08inviteId\"\x14\n\x12\x44\x65nyInviteResponse\"\xbb\x01\n\x12ListInvitesRequest\x12*\n\x11sender_account_id\x18\x01 \x01(\tR\x0fsenderAccountId\x12\x30\n\x14recipient_account_id\x18\x02 \x01(\tR\x12recipientAccountId\x12\x19\n\x08group_id\x18\x03 \x01(\tR\x07groupId\x12\x14\n\x05limit\x18\x04 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x05 \x01(\x05R\x06offset\"L\n\x13ListInvitesResponse\x12\x35\n\x07invites\x18\x01 \x03(\x0b\x32\x1b.noted.notes.v1.GroupInviteR\x07invites\"2\n\x13RevokeInviteRequest\x12\x1b\n\tinvite_id\x18\x01 \x01(\tR\x08inviteId\"\x16\n\x14RevokeInviteResponse2\xbc\x14\n\tGroupsAPI\x12X\n\x0b\x43reateGroup\x12\".noted.notes.v1.CreateGroupRequest\x1a#.noted.notes.v1.CreateGroupResponse\"\x00\x12\x64\n\x0f\x43reateWorkspace\x12&.noted.notes.v1.CreateWorkspaceRequest\x1a\'.noted.notes.v1.CreateWorkspaceResponse\"\x00\x12O\n\x08GetGroup\x12\x1f.noted.notes.v1.GetGroupRequest\x1a .noted.notes.v1.GetGroupResponse\"\x00\x12X\n\x0bUpdateGroup\x12\".noted.notes.v1.UpdateGroupRequest\x1a#.noted.notes.v1.UpdateGroupResponse\"\x00\x12X\n\x0b\x44\x65leteGroup\x12\".noted.notes.v1.DeleteGroupRequest\x1a#.noted.notes.v1.DeleteGroupResponse\"\x00\x12U\n\nListGroups\x12!.noted.notes.v1.ListGroupsRequest\x1a\".noted.notes.v1.ListGroupsResponse\"\x00\x12R\n\tGetMember\x12 .noted.notes.v1.GetMemberRequest\x1a!.noted.notes.v1.GetMemberResponse\"\x00\x12[\n\x0cUpdateMember\x12#.noted.notes.v1.UpdateMemberRequest\x1a$.noted.notes.v1.UpdateMemberResponse\"\x00\x12[\n\x0cRemoveMember\x12#.noted.notes.v1.RemoveMemberRequest\x1a$.noted.notes.v1.RemoveMemberResponse\"\x00\x12\x64\n\x0fGetConversation\x12&.noted.notes.v1.GetConversationRequest\x1a\'.noted.notes.v1.GetConversationResponse\"\x00\x12m\n\x12UpdateConversation\x12).noted.notes.v1.UpdateConversationRequest\x1a*.noted.notes.v1.UpdateConversationResponse\"\x00\x12|\n\x17SendConversationMessage\x12..noted.notes.v1.SendConversationMessageRequest\x1a/.noted.notes.v1.SendConversationMessageResponse\"\x00\x12y\n\x16GetConversationMessage\x12-.noted.notes.v1.GetConversationMessageRequest\x1a..noted.notes.v1.GetConversationMessageResponse\"\x00\x12\x82\x01\n\x19UpdateConversationMessage\x12\x30.noted.notes.v1.UpdateConversationMessageRequest\x1a\x31.noted.notes.v1.UpdateConversationMessageResponse\"\x00\x12\x82\x01\n\x19\x44\x65leteConversationMessage\x12\x30.noted.notes.v1.DeleteConversationMessageRequest\x1a\x31.noted.notes.v1.DeleteConversationMessageResponse\"\x00\x12\x7f\n\x18ListConversationMessages\x12/.noted.notes.v1.ListConversationMessagesRequest\x1a\x30.noted.notes.v1.ListConversationMessagesResponse\"\x00\x12m\n\x12GenerateInviteLink\x12).noted.notes.v1.GenerateInviteLinkRequest\x1a*.noted.notes.v1.GenerateInviteLinkResponse\"\x00\x12^\n\rGetInviteLink\x12$.noted.notes.v1.GetInviteLinkRequest\x1a%.noted.notes.v1.GetInviteLinkResponse\"\x00\x12g\n\x10RevokeInviteLink\x12\'.noted.notes.v1.RevokeInviteLinkRequest\x1a(.noted.notes.v1.RevokeInviteLinkResponse\"\x00\x12^\n\rUseInviteLink\x12$.noted.notes.v1.UseInviteLinkRequest\x1a%.noted.notes.v1.UseInviteLinkResponse\"\x00\x12U\n\nSendInvite\x12!.noted.notes.v1.SendInviteRequest\x1a\".noted.notes.v1.SendInviteResponse\"\x00\x12R\n\tGetInvite\x12 .noted.notes.v1.GetInviteRequest\x1a!.noted.notes.v1.GetInviteResponse\"\x00\x12[\n\x0c\x41\x63\x63\x65ptInvite\x12#.noted.notes.v1.AcceptInviteRequest\x1a$.noted.notes.v1.AcceptInviteResponse\"\x00\x12U\n\nDenyInvite\x12!.noted.notes.v1.DenyInviteRequest\x1a\".noted.notes.v1.DenyInviteResponse\"\x00\x12[\n\x0cRevokeInvite\x12#.noted.notes.v1.RevokeInviteRequest\x1a$.noted.notes.v1.RevokeInviteResponse\"\x00\x12X\n\x0bListInvites\x12\".noted.notes.v1.ListInvitesRequest\x1a#.noted.notes.v1.ListInvitesResponse\"\x00\x42\x10Z\x0enoted/notes/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1bnoted/notes/v1/groups.proto\x12\x0enoted.notes.v1\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa7\x02\n\x13\x43onversationMessage\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n\x08group_id\x18\x02 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x03 \x01(\tR\x0e\x63onversationId\x12*\n\x11sender_account_id\x18\x04 \x01(\tR\x0fsenderAccountId\x12\x18\n\x07\x63ontent\x18\x05 \x01(\tR\x07\x63ontent\x12\x39\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12;\n\x0bmodified_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nmodifiedAt\"r\n\x11GroupConversation\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12\x39\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\"\x80\x01\n\x0bGroupMember\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x19\n\x08is_admin\x18\x02 \x01(\x08R\x07isAdmin\x12\x37\n\tjoined_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x08joinedAt\"\x8e\x02\n\x0bGroupInvite\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n\x08group_id\x18\x02 \x01(\tR\x07groupId\x12*\n\x11sender_account_id\x18\x03 \x01(\tR\x0fsenderAccountId\x12\x30\n\x14recipient_account_id\x18\x04 \x01(\tR\x12recipientAccountId\x12\x39\n\ncreated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12;\n\x0bvalid_until\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nvalidUntil\"\xd4\x01\n\x0fGroupInviteLink\x12\x12\n\x04\x63ode\x18\x01 \x01(\tR\x04\x63ode\x12\x35\n\x17generated_by_account_id\x18\x02 \x01(\tR\x14generatedByAccountId\x12\x39\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12;\n\x0bvalid_until\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nvalidUntil\"\x91\x04\n\x05Group\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x03 \x01(\tR\x0b\x64\x65scription\x12\x30\n\x14workspace_account_id\x18\x04 \x01(\tR\x12workspaceAccountId\x12\x1d\n\navatar_url\x18\x05 \x01(\tR\tavatarUrl\x12\x39\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12;\n\x0bmodified_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nmodifiedAt\x12\x35\n\x07members\x18\x08 \x03(\x0b\x32\x1b.noted.notes.v1.GroupMemberR\x07members\x12G\n\rconversations\x18\t \x03(\x0b\x32!.noted.notes.v1.GroupConversationR\rconversations\x12\x35\n\x07invites\x18\n \x03(\x0b\x32\x1b.noted.notes.v1.GroupInviteR\x07invites\x12\x42\n\x0cinvite_links\x18\x0b \x03(\x0b\x32\x1f.noted.notes.v1.GroupInviteLinkR\x0binviteLinks\"J\n\x12\x43reateGroupRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x02 \x01(\tR\x0b\x64\x65scription\"B\n\x13\x43reateGroupResponse\x12+\n\x05group\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.GroupR\x05group\"\x18\n\x16\x43reateWorkspaceRequest\"F\n\x17\x43reateWorkspaceResponse\x12+\n\x05group\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.GroupR\x05group\"V\n\x0fGetGroupRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12(\n\x10invite_link_code\x18\x02 \x01(\tR\x0einviteLinkCode\"?\n\x10GetGroupResponse\x12+\n\x05group\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.GroupR\x05group\"/\n\x12\x44\x65leteGroupRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\"\x15\n\x13\x44\x65leteGroupResponse\"J\n\x12UpdateGroupRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x02 \x01(\tR\x0b\x64\x65scription\"B\n\x13UpdateGroupResponse\x12+\n\x05group\x18\x01 \x01(\x0b\x32\x15.noted.notes.v1.GroupR\x05group\"2\n\x11ListGroupsRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\"C\n\x12ListGroupsResponse\x12-\n\x06groups\x18\x01 \x03(\x0b\x32\x15.noted.notes.v1.GroupR\x06groups\"L\n\x10GetMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"H\n\x11GetMemberResponse\x12\x33\n\x06member\x18\x01 \x01(\x0b\x32\x1b.noted.notes.v1.GroupMemberR\x06member\"\xa2\x01\n\x13UpdateMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x33\n\x06member\x18\x02 \x01(\x0b\x32\x1b.noted.notes.v1.GroupMemberR\x06member\x12;\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"K\n\x14UpdateMemberResponse\x12\x33\n\x06member\x18\x01 \x01(\x0b\x32\x1b.noted.notes.v1.GroupMemberR\x06member\"O\n\x13RemoveMemberRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1d\n\naccount_id\x18\x02 \x01(\tR\taccountId\"\x16\n\x14RemoveMemberResponse\"\\\n\x16GetConversationRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\"`\n\x17GetConversationResponse\x12\x45\n\x0c\x63onversation\x18\x01 \x01(\x0b\x32!.noted.notes.v1.GroupConversationR\x0c\x63onversation\"u\n\x19UpdateConversationRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\x12\x14\n\x05title\x18\x03 \x01(\tR\x05title\"c\n\x1aUpdateConversationResponse\x12\x45\n\x0c\x63onversation\x18\x01 \x01(\x0b\x32!.noted.notes.v1.GroupConversationR\x0c\x63onversation\"~\n\x1eSendConversationMessageRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\x12\x18\n\x07\x63ontent\x18\x03 \x01(\tR\x07\x63ontent\"`\n\x1fSendConversationMessageResponse\x12=\n\x07message\x18\x01 \x01(\x0b\x32#.noted.notes.v1.ConversationMessageR\x07message\"\x82\x01\n\x1dGetConversationMessageRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\x12\x1d\n\nmessage_id\x18\x03 \x01(\tR\tmessageId\"_\n\x1eGetConversationMessageResponse\x12=\n\x07message\x18\x01 \x01(\x0b\x32#.noted.notes.v1.ConversationMessageR\x07message\"\x9f\x01\n UpdateConversationMessageRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\x12\x1d\n\nmessage_id\x18\x03 \x01(\tR\tmessageId\x12\x18\n\x07\x63ontent\x18\x04 \x01(\tR\x07\x63ontent\"b\n!UpdateConversationMessageResponse\x12=\n\x07message\x18\x01 \x01(\x0b\x32#.noted.notes.v1.ConversationMessageR\x07message\"\x85\x01\n DeleteConversationMessageRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\x12\x1d\n\nmessage_id\x18\x03 \x01(\tR\tmessageId\"#\n!DeleteConversationMessageResponse\"\x93\x01\n\x1fListConversationMessagesRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\'\n\x0f\x63onversation_id\x18\x02 \x01(\tR\x0e\x63onversationId\x12\x14\n\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x04 \x01(\x05R\x06offset\"c\n ListConversationMessagesResponse\x12?\n\x08messages\x18\x01 \x03(\x0b\x32#.noted.notes.v1.ConversationMessageR\x08messages\"6\n\x19GenerateInviteLinkRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\"^\n\x1aGenerateInviteLinkResponse\x12@\n\x0binvite_link\x18\x01 \x01(\x0b\x32\x1f.noted.notes.v1.GroupInviteLinkR\ninviteLink\"[\n\x14GetInviteLinkRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12(\n\x10invite_link_code\x18\x02 \x01(\tR\x0einviteLinkCode\"Y\n\x15GetInviteLinkResponse\x12@\n\x0binvite_link\x18\x01 \x01(\x0b\x32\x1f.noted.notes.v1.GroupInviteLinkR\ninviteLink\"^\n\x17RevokeInviteLinkRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12(\n\x10invite_link_code\x18\x02 \x01(\tR\x0einviteLinkCode\"\x1a\n\x18RevokeInviteLinkResponse\"[\n\x14UseInviteLinkRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12(\n\x10invite_link_code\x18\x02 \x01(\tR\x0einviteLinkCode\"\x17\n\x15UseInviteLinkResponse\"`\n\x11SendInviteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x30\n\x14recipient_account_id\x18\x02 \x01(\tR\x12recipientAccountId\"I\n\x12SendInviteResponse\x12\x33\n\x06invite\x18\x01 \x01(\x0b\x32\x1b.noted.notes.v1.GroupInviteR\x06invite\"J\n\x10GetInviteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1b\n\tinvite_id\x18\x02 \x01(\tR\x08inviteId\"H\n\x11GetInviteResponse\x12\x33\n\x06invite\x18\x01 \x01(\x0b\x32\x1b.noted.notes.v1.GroupInviteR\x06invite\"M\n\x13\x41\x63\x63\x65ptInviteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1b\n\tinvite_id\x18\x02 \x01(\tR\x08inviteId\"\x16\n\x14\x41\x63\x63\x65ptInviteResponse\"K\n\x11\x44\x65nyInviteRequest\x12\x19\n\x08group_id\x18\x01 \x01(\tR\x07groupId\x12\x1b\n\tinvite_id\x18\x02 \x01(\tR\x08inviteId\"\x14\n\x12\x44\x65nyInviteResponse\"\xbb\x01\n\x12ListInvitesRequest\x12*\n\x11sender_account_id\x18\x01 \x01(\tR\x0fsenderAccountId\x12\x30\n\x14recipient_account_id\x18\x02 \x01(\tR\x12recipientAccountId\x12\x19\n\x08group_id\x18\x03 \x01(\tR\x07groupId\x12\x14\n\x05limit\x18\x04 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x05 \x01(\x05R\x06offset\"L\n\x13ListInvitesResponse\x12\x35\n\x07invites\x18\x01 \x03(\x0b\x32\x1b.noted.notes.v1.GroupInviteR\x07invites\"2\n\x13RevokeInviteRequest\x12\x1b\n\tinvite_id\x18\x01 \x01(\tR\x08inviteId\"\x16\n\x14RevokeInviteResponse2\xbc\x14\n\tGroupsAPI\x12X\n\x0b\x43reateGroup\x12\".noted.notes.v1.CreateGroupRequest\x1a#.noted.notes.v1.CreateGroupResponse\"\x00\x12\x64\n\x0f\x43reateWorkspace\x12&.noted.notes.v1.CreateWorkspaceRequest\x1a\'.noted.notes.v1.CreateWorkspaceResponse\"\x00\x12O\n\x08GetGroup\x12\x1f.noted.notes.v1.GetGroupRequest\x1a .noted.notes.v1.GetGroupResponse\"\x00\x12X\n\x0bUpdateGroup\x12\".noted.notes.v1.UpdateGroupRequest\x1a#.noted.notes.v1.UpdateGroupResponse\"\x00\x12X\n\x0b\x44\x65leteGroup\x12\".noted.notes.v1.DeleteGroupRequest\x1a#.noted.notes.v1.DeleteGroupResponse\"\x00\x12U\n\nListGroups\x12!.noted.notes.v1.ListGroupsRequest\x1a\".noted.notes.v1.ListGroupsResponse\"\x00\x12R\n\tGetMember\x12 .noted.notes.v1.GetMemberRequest\x1a!.noted.notes.v1.GetMemberResponse\"\x00\x12[\n\x0cUpdateMember\x12#.noted.notes.v1.UpdateMemberRequest\x1a$.noted.notes.v1.UpdateMemberResponse\"\x00\x12[\n\x0cRemoveMember\x12#.noted.notes.v1.RemoveMemberRequest\x1a$.noted.notes.v1.RemoveMemberResponse\"\x00\x12\x64\n\x0fGetConversation\x12&.noted.notes.v1.GetConversationRequest\x1a\'.noted.notes.v1.GetConversationResponse\"\x00\x12m\n\x12UpdateConversation\x12).noted.notes.v1.UpdateConversationRequest\x1a*.noted.notes.v1.UpdateConversationResponse\"\x00\x12|\n\x17SendConversationMessage\x12..noted.notes.v1.SendConversationMessageRequest\x1a/.noted.notes.v1.SendConversationMessageResponse\"\x00\x12y\n\x16GetConversationMessage\x12-.noted.notes.v1.GetConversationMessageRequest\x1a..noted.notes.v1.GetConversationMessageResponse\"\x00\x12\x82\x01\n\x19UpdateConversationMessage\x12\x30.noted.notes.v1.UpdateConversationMessageRequest\x1a\x31.noted.notes.v1.UpdateConversationMessageResponse\"\x00\x12\x82\x01\n\x19\x44\x65leteConversationMessage\x12\x30.noted.notes.v1.DeleteConversationMessageRequest\x1a\x31.noted.notes.v1.DeleteConversationMessageResponse\"\x00\x12\x7f\n\x18ListConversationMessages\x12/.noted.notes.v1.ListConversationMessagesRequest\x1a\x30.noted.notes.v1.ListConversationMessagesResponse\"\x00\x12m\n\x12GenerateInviteLink\x12).noted.notes.v1.GenerateInviteLinkRequest\x1a*.noted.notes.v1.GenerateInviteLinkResponse\"\x00\x12^\n\rGetInviteLink\x12$.noted.notes.v1.GetInviteLinkRequest\x1a%.noted.notes.v1.GetInviteLinkResponse\"\x00\x12g\n\x10RevokeInviteLink\x12\'.noted.notes.v1.RevokeInviteLinkRequest\x1a(.noted.notes.v1.RevokeInviteLinkResponse\"\x00\x12^\n\rUseInviteLink\x12$.noted.notes.v1.UseInviteLinkRequest\x1a%.noted.notes.v1.UseInviteLinkResponse\"\x00\x12U\n\nSendInvite\x12!.noted.notes.v1.SendInviteRequest\x1a\".noted.notes.v1.SendInviteResponse\"\x00\x12R\n\tGetInvite\x12 .noted.notes.v1.GetInviteRequest\x1a!.noted.notes.v1.GetInviteResponse\"\x00\x12[\n\x0c\x41\x63\x63\x65ptInvite\x12#.noted.notes.v1.AcceptInviteRequest\x1a$.noted.notes.v1.AcceptInviteResponse\"\x00\x12U\n\nDenyInvite\x12!.noted.notes.v1.DenyInviteRequest\x1a\".noted.notes.v1.DenyInviteResponse\"\x00\x12[\n\x0cRevokeInvite\x12#.noted.notes.v1.RevokeInviteRequest\x1a$.noted.notes.v1.RevokeInviteResponse\"\x00\x12X\n\x0bListInvites\x12\".noted.notes.v1.ListInvitesRequest\x1a#.noted.notes.v1.ListInvitesResponse\"\x00\x42\x10Z\x0enoted/notes/v1b\x06proto3')
 
 
 
@@ -38,10 +38,6 @@ _UPDATEGROUPREQUEST = DESCRIPTOR.message_types_by_name['UpdateGroupRequest']
 _UPDATEGROUPRESPONSE = DESCRIPTOR.message_types_by_name['UpdateGroupResponse']
 _LISTGROUPSREQUEST = DESCRIPTOR.message_types_by_name['ListGroupsRequest']
 _LISTGROUPSRESPONSE = DESCRIPTOR.message_types_by_name['ListGroupsResponse']
-_LISTGROUPMEMBERSREQUEST = DESCRIPTOR.message_types_by_name['ListGroupMembersRequest']
-_LISTGROUPMEMBERSRESPONSE = DESCRIPTOR.message_types_by_name['ListGroupMembersResponse']
-_ADDMEMBERREQUEST = DESCRIPTOR.message_types_by_name['AddMemberRequest']
-_ADDMEMBERRESPONSE = DESCRIPTOR.message_types_by_name['AddMemberResponse']
 _GETMEMBERREQUEST = DESCRIPTOR.message_types_by_name['GetMemberRequest']
 _GETMEMBERRESPONSE = DESCRIPTOR.message_types_by_name['GetMemberResponse']
 _UPDATEMEMBERREQUEST = DESCRIPTOR.message_types_by_name['UpdateMemberRequest']
@@ -207,34 +203,6 @@ ListGroupsResponse = _reflection.GeneratedProtocolMessageType('ListGroupsRespons
   # @@protoc_insertion_point(class_scope:noted.notes.v1.ListGroupsResponse)
   })
 _sym_db.RegisterMessage(ListGroupsResponse)
-
-ListGroupMembersRequest = _reflection.GeneratedProtocolMessageType('ListGroupMembersRequest', (_message.Message,), {
-  'DESCRIPTOR' : _LISTGROUPMEMBERSREQUEST,
-  '__module__' : 'noted.notes.v1.groups_pb2'
-  # @@protoc_insertion_point(class_scope:noted.notes.v1.ListGroupMembersRequest)
-  })
-_sym_db.RegisterMessage(ListGroupMembersRequest)
-
-ListGroupMembersResponse = _reflection.GeneratedProtocolMessageType('ListGroupMembersResponse', (_message.Message,), {
-  'DESCRIPTOR' : _LISTGROUPMEMBERSRESPONSE,
-  '__module__' : 'noted.notes.v1.groups_pb2'
-  # @@protoc_insertion_point(class_scope:noted.notes.v1.ListGroupMembersResponse)
-  })
-_sym_db.RegisterMessage(ListGroupMembersResponse)
-
-AddMemberRequest = _reflection.GeneratedProtocolMessageType('AddMemberRequest', (_message.Message,), {
-  'DESCRIPTOR' : _ADDMEMBERREQUEST,
-  '__module__' : 'noted.notes.v1.groups_pb2'
-  # @@protoc_insertion_point(class_scope:noted.notes.v1.AddMemberRequest)
-  })
-_sym_db.RegisterMessage(AddMemberRequest)
-
-AddMemberResponse = _reflection.GeneratedProtocolMessageType('AddMemberResponse', (_message.Message,), {
-  'DESCRIPTOR' : _ADDMEMBERRESPONSE,
-  '__module__' : 'noted.notes.v1.groups_pb2'
-  # @@protoc_insertion_point(class_scope:noted.notes.v1.AddMemberResponse)
-  })
-_sym_db.RegisterMessage(AddMemberResponse)
 
 GetMemberRequest = _reflection.GeneratedProtocolMessageType('GetMemberRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETMEMBERREQUEST,
@@ -550,101 +518,93 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _DELETEGROUPRESPONSE._serialized_start=2123
   _DELETEGROUPRESPONSE._serialized_end=2144
   _UPDATEGROUPREQUEST._serialized_start=2146
-  _UPDATEGROUPREQUEST._serialized_end=2272
-  _UPDATEGROUPRESPONSE._serialized_start=2274
-  _UPDATEGROUPRESPONSE._serialized_end=2340
-  _LISTGROUPSREQUEST._serialized_start=2342
-  _LISTGROUPSREQUEST._serialized_end=2438
-  _LISTGROUPSRESPONSE._serialized_start=2440
-  _LISTGROUPSRESPONSE._serialized_end=2507
-  _LISTGROUPMEMBERSREQUEST._serialized_start=2509
-  _LISTGROUPMEMBERSREQUEST._serialized_end=2607
-  _LISTGROUPMEMBERSRESPONSE._serialized_start=2609
-  _LISTGROUPMEMBERSRESPONSE._serialized_end=2690
-  _ADDMEMBERREQUEST._serialized_start=2692
-  _ADDMEMBERREQUEST._serialized_end=2768
-  _ADDMEMBERRESPONSE._serialized_start=2770
-  _ADDMEMBERRESPONSE._serialized_end=2789
-  _GETMEMBERREQUEST._serialized_start=2791
-  _GETMEMBERREQUEST._serialized_end=2867
-  _GETMEMBERRESPONSE._serialized_start=2869
-  _GETMEMBERRESPONSE._serialized_end=2941
-  _UPDATEMEMBERREQUEST._serialized_start=2944
-  _UPDATEMEMBERREQUEST._serialized_end=3106
-  _UPDATEMEMBERRESPONSE._serialized_start=3108
-  _UPDATEMEMBERRESPONSE._serialized_end=3183
-  _REMOVEMEMBERREQUEST._serialized_start=3185
-  _REMOVEMEMBERREQUEST._serialized_end=3264
-  _REMOVEMEMBERRESPONSE._serialized_start=3266
-  _REMOVEMEMBERRESPONSE._serialized_end=3288
-  _GETCONVERSATIONREQUEST._serialized_start=3290
-  _GETCONVERSATIONREQUEST._serialized_end=3382
-  _GETCONVERSATIONRESPONSE._serialized_start=3384
-  _GETCONVERSATIONRESPONSE._serialized_end=3480
-  _UPDATECONVERSATIONREQUEST._serialized_start=3482
-  _UPDATECONVERSATIONREQUEST._serialized_end=3599
-  _UPDATECONVERSATIONRESPONSE._serialized_start=3601
-  _UPDATECONVERSATIONRESPONSE._serialized_end=3700
-  _SENDCONVERSATIONMESSAGEREQUEST._serialized_start=3702
-  _SENDCONVERSATIONMESSAGEREQUEST._serialized_end=3828
-  _SENDCONVERSATIONMESSAGERESPONSE._serialized_start=3830
-  _SENDCONVERSATIONMESSAGERESPONSE._serialized_end=3926
-  _GETCONVERSATIONMESSAGEREQUEST._serialized_start=3929
-  _GETCONVERSATIONMESSAGEREQUEST._serialized_end=4059
-  _GETCONVERSATIONMESSAGERESPONSE._serialized_start=4061
-  _GETCONVERSATIONMESSAGERESPONSE._serialized_end=4156
-  _UPDATECONVERSATIONMESSAGEREQUEST._serialized_start=4159
-  _UPDATECONVERSATIONMESSAGEREQUEST._serialized_end=4318
-  _UPDATECONVERSATIONMESSAGERESPONSE._serialized_start=4320
-  _UPDATECONVERSATIONMESSAGERESPONSE._serialized_end=4418
-  _DELETECONVERSATIONMESSAGEREQUEST._serialized_start=4421
-  _DELETECONVERSATIONMESSAGEREQUEST._serialized_end=4554
-  _DELETECONVERSATIONMESSAGERESPONSE._serialized_start=4556
-  _DELETECONVERSATIONMESSAGERESPONSE._serialized_end=4591
-  _LISTCONVERSATIONMESSAGESREQUEST._serialized_start=4594
-  _LISTCONVERSATIONMESSAGESREQUEST._serialized_end=4741
-  _LISTCONVERSATIONMESSAGESRESPONSE._serialized_start=4743
-  _LISTCONVERSATIONMESSAGESRESPONSE._serialized_end=4842
-  _GENERATEINVITELINKREQUEST._serialized_start=4844
-  _GENERATEINVITELINKREQUEST._serialized_end=4898
-  _GENERATEINVITELINKRESPONSE._serialized_start=4900
-  _GENERATEINVITELINKRESPONSE._serialized_end=4994
-  _GETINVITELINKREQUEST._serialized_start=4996
-  _GETINVITELINKREQUEST._serialized_end=5087
-  _GETINVITELINKRESPONSE._serialized_start=5089
-  _GETINVITELINKRESPONSE._serialized_end=5178
-  _REVOKEINVITELINKREQUEST._serialized_start=5180
-  _REVOKEINVITELINKREQUEST._serialized_end=5274
-  _REVOKEINVITELINKRESPONSE._serialized_start=5276
-  _REVOKEINVITELINKRESPONSE._serialized_end=5302
-  _USEINVITELINKREQUEST._serialized_start=5304
-  _USEINVITELINKREQUEST._serialized_end=5395
-  _USEINVITELINKRESPONSE._serialized_start=5397
-  _USEINVITELINKRESPONSE._serialized_end=5420
-  _SENDINVITEREQUEST._serialized_start=5422
-  _SENDINVITEREQUEST._serialized_end=5518
-  _SENDINVITERESPONSE._serialized_start=5520
-  _SENDINVITERESPONSE._serialized_end=5593
-  _GETINVITEREQUEST._serialized_start=5595
-  _GETINVITEREQUEST._serialized_end=5669
-  _GETINVITERESPONSE._serialized_start=5671
-  _GETINVITERESPONSE._serialized_end=5743
-  _ACCEPTINVITEREQUEST._serialized_start=5745
-  _ACCEPTINVITEREQUEST._serialized_end=5822
-  _ACCEPTINVITERESPONSE._serialized_start=5824
-  _ACCEPTINVITERESPONSE._serialized_end=5846
-  _DENYINVITEREQUEST._serialized_start=5848
-  _DENYINVITEREQUEST._serialized_end=5923
-  _DENYINVITERESPONSE._serialized_start=5925
-  _DENYINVITERESPONSE._serialized_end=5945
-  _LISTINVITESREQUEST._serialized_start=5948
-  _LISTINVITESREQUEST._serialized_end=6135
-  _LISTINVITESRESPONSE._serialized_start=6137
-  _LISTINVITESRESPONSE._serialized_end=6213
-  _REVOKEINVITEREQUEST._serialized_start=6215
-  _REVOKEINVITEREQUEST._serialized_end=6265
-  _REVOKEINVITERESPONSE._serialized_start=6267
-  _REVOKEINVITERESPONSE._serialized_end=6289
-  _GROUPSAPI._serialized_start=6292
-  _GROUPSAPI._serialized_end=8912
+  _UPDATEGROUPREQUEST._serialized_end=2220
+  _UPDATEGROUPRESPONSE._serialized_start=2222
+  _UPDATEGROUPRESPONSE._serialized_end=2288
+  _LISTGROUPSREQUEST._serialized_start=2290
+  _LISTGROUPSREQUEST._serialized_end=2340
+  _LISTGROUPSRESPONSE._serialized_start=2342
+  _LISTGROUPSRESPONSE._serialized_end=2409
+  _GETMEMBERREQUEST._serialized_start=2411
+  _GETMEMBERREQUEST._serialized_end=2487
+  _GETMEMBERRESPONSE._serialized_start=2489
+  _GETMEMBERRESPONSE._serialized_end=2561
+  _UPDATEMEMBERREQUEST._serialized_start=2564
+  _UPDATEMEMBERREQUEST._serialized_end=2726
+  _UPDATEMEMBERRESPONSE._serialized_start=2728
+  _UPDATEMEMBERRESPONSE._serialized_end=2803
+  _REMOVEMEMBERREQUEST._serialized_start=2805
+  _REMOVEMEMBERREQUEST._serialized_end=2884
+  _REMOVEMEMBERRESPONSE._serialized_start=2886
+  _REMOVEMEMBERRESPONSE._serialized_end=2908
+  _GETCONVERSATIONREQUEST._serialized_start=2910
+  _GETCONVERSATIONREQUEST._serialized_end=3002
+  _GETCONVERSATIONRESPONSE._serialized_start=3004
+  _GETCONVERSATIONRESPONSE._serialized_end=3100
+  _UPDATECONVERSATIONREQUEST._serialized_start=3102
+  _UPDATECONVERSATIONREQUEST._serialized_end=3219
+  _UPDATECONVERSATIONRESPONSE._serialized_start=3221
+  _UPDATECONVERSATIONRESPONSE._serialized_end=3320
+  _SENDCONVERSATIONMESSAGEREQUEST._serialized_start=3322
+  _SENDCONVERSATIONMESSAGEREQUEST._serialized_end=3448
+  _SENDCONVERSATIONMESSAGERESPONSE._serialized_start=3450
+  _SENDCONVERSATIONMESSAGERESPONSE._serialized_end=3546
+  _GETCONVERSATIONMESSAGEREQUEST._serialized_start=3549
+  _GETCONVERSATIONMESSAGEREQUEST._serialized_end=3679
+  _GETCONVERSATIONMESSAGERESPONSE._serialized_start=3681
+  _GETCONVERSATIONMESSAGERESPONSE._serialized_end=3776
+  _UPDATECONVERSATIONMESSAGEREQUEST._serialized_start=3779
+  _UPDATECONVERSATIONMESSAGEREQUEST._serialized_end=3938
+  _UPDATECONVERSATIONMESSAGERESPONSE._serialized_start=3940
+  _UPDATECONVERSATIONMESSAGERESPONSE._serialized_end=4038
+  _DELETECONVERSATIONMESSAGEREQUEST._serialized_start=4041
+  _DELETECONVERSATIONMESSAGEREQUEST._serialized_end=4174
+  _DELETECONVERSATIONMESSAGERESPONSE._serialized_start=4176
+  _DELETECONVERSATIONMESSAGERESPONSE._serialized_end=4211
+  _LISTCONVERSATIONMESSAGESREQUEST._serialized_start=4214
+  _LISTCONVERSATIONMESSAGESREQUEST._serialized_end=4361
+  _LISTCONVERSATIONMESSAGESRESPONSE._serialized_start=4363
+  _LISTCONVERSATIONMESSAGESRESPONSE._serialized_end=4462
+  _GENERATEINVITELINKREQUEST._serialized_start=4464
+  _GENERATEINVITELINKREQUEST._serialized_end=4518
+  _GENERATEINVITELINKRESPONSE._serialized_start=4520
+  _GENERATEINVITELINKRESPONSE._serialized_end=4614
+  _GETINVITELINKREQUEST._serialized_start=4616
+  _GETINVITELINKREQUEST._serialized_end=4707
+  _GETINVITELINKRESPONSE._serialized_start=4709
+  _GETINVITELINKRESPONSE._serialized_end=4798
+  _REVOKEINVITELINKREQUEST._serialized_start=4800
+  _REVOKEINVITELINKREQUEST._serialized_end=4894
+  _REVOKEINVITELINKRESPONSE._serialized_start=4896
+  _REVOKEINVITELINKRESPONSE._serialized_end=4922
+  _USEINVITELINKREQUEST._serialized_start=4924
+  _USEINVITELINKREQUEST._serialized_end=5015
+  _USEINVITELINKRESPONSE._serialized_start=5017
+  _USEINVITELINKRESPONSE._serialized_end=5040
+  _SENDINVITEREQUEST._serialized_start=5042
+  _SENDINVITEREQUEST._serialized_end=5138
+  _SENDINVITERESPONSE._serialized_start=5140
+  _SENDINVITERESPONSE._serialized_end=5213
+  _GETINVITEREQUEST._serialized_start=5215
+  _GETINVITEREQUEST._serialized_end=5289
+  _GETINVITERESPONSE._serialized_start=5291
+  _GETINVITERESPONSE._serialized_end=5363
+  _ACCEPTINVITEREQUEST._serialized_start=5365
+  _ACCEPTINVITEREQUEST._serialized_end=5442
+  _ACCEPTINVITERESPONSE._serialized_start=5444
+  _ACCEPTINVITERESPONSE._serialized_end=5466
+  _DENYINVITEREQUEST._serialized_start=5468
+  _DENYINVITEREQUEST._serialized_end=5543
+  _DENYINVITERESPONSE._serialized_start=5545
+  _DENYINVITERESPONSE._serialized_end=5565
+  _LISTINVITESREQUEST._serialized_start=5568
+  _LISTINVITESREQUEST._serialized_end=5755
+  _LISTINVITESRESPONSE._serialized_start=5757
+  _LISTINVITESRESPONSE._serialized_end=5833
+  _REVOKEINVITEREQUEST._serialized_start=5835
+  _REVOKEINVITEREQUEST._serialized_end=5885
+  _REVOKEINVITERESPONSE._serialized_start=5887
+  _REVOKEINVITERESPONSE._serialized_end=5909
+  _GROUPSAPI._serialized_start=5912
+  _GROUPSAPI._serialized_end=8532
 # @@protoc_insertion_point(module_scope)
