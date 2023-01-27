@@ -30,7 +30,7 @@ message Block {
         TYPE_MATH = 5;
         TYPE_CODE = 6;
         TYPE_BULLET_POINT = 7;
-        TYPE_NUMBERED_POINT = 8;
+        TYPE_NUMBER_POINT = 8;
         TYPE_IMAGE = 9;
     }
     Type type = 2;
