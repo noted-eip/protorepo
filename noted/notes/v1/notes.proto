@@ -10,7 +10,7 @@ import "google/protobuf/timestamp.proto";
 message Note {
     string id = 1;
     string group_id = 2;
-    string author_id = 3;
+    string author_account_id = 3;
     string title = 4;
     repeated Block blocks = 5;
     google.protobuf.Timestamp created_at = 6;
@@ -127,7 +127,7 @@ message DeleteNoteResponse {
 }
 
 message ListNotesRequest {
-    string author_id = 1;
+    string author_account_id = 1;
     string group_id = 2;
 }
 
