@@ -338,7 +338,7 @@ message AcceptInviteRequest {
 }
 
 message AcceptInviteResponse {
-
+    GroupMember member = 1;
 }
 
 message DenyInviteRequest {
