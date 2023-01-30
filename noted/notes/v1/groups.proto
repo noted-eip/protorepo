@@ -4,6 +4,7 @@ package noted.notes.v1;
 
 option go_package = "noted/notes/v1";
 
+import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 
 message ConversationMessage {
@@ -195,7 +196,8 @@ message GetMemberResponse {
 message UpdateMemberRequest {
     string group_id = 1;
     string account_id = 2;
-    bool is_admin = 3;
+    GroupMember member = 3;
+    google.protobuf.FieldMask update_mask = 4;
 }
 
 message UpdateMemberResponse {
