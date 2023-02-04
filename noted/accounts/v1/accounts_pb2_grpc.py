@@ -78,8 +78,6 @@ class AccountsAPIServicer(object):
 
     def DeleteAccount(self, request, context):
         """Must be account owner.
-        TODO: Delete all associated resources (notes, transfer group ownership,
-        etc).
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

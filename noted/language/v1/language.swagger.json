@@ -1,0 +1,79 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "noted/language/v1/language.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "LanguageAPI"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1ExtractKeywordsBatchResponse": {
+      "type": "object",
+      "properties": {
+        "keywordsArray": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ExtractKeywordsResponse"
+          }
+        }
+      }
+    },
+    "v1ExtractKeywordsResponse": {
+      "type": "object",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1SummarizeResponse": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "Small text output which summarizes the original entry."
+        }
+      }
+    }
+  }
+}

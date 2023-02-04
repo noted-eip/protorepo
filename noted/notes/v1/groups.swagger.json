@@ -1,0 +1,384 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "noted/notes/v1/groups.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "GroupsAPI"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1AcceptInviteResponse": {
+      "type": "object",
+      "properties": {
+        "member": {
+          "$ref": "#/definitions/v1GroupMember"
+        }
+      }
+    },
+    "v1ConversationMessage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "groupId": {
+          "type": "string"
+        },
+        "conversationId": {
+          "type": "string"
+        },
+        "senderAccountId": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modifiedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1CreateGroupResponse": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "$ref": "#/definitions/v1Group"
+        }
+      }
+    },
+    "v1CreateWorkspaceResponse": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "$ref": "#/definitions/v1Group"
+        }
+      }
+    },
+    "v1DeleteConversationMessageResponse": {
+      "type": "object"
+    },
+    "v1DeleteGroupResponse": {
+      "type": "object"
+    },
+    "v1DenyInviteResponse": {
+      "type": "object"
+    },
+    "v1GenerateInviteLinkResponse": {
+      "type": "object",
+      "properties": {
+        "inviteLink": {
+          "$ref": "#/definitions/v1GroupInviteLink"
+        }
+      }
+    },
+    "v1GetConversationMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "$ref": "#/definitions/v1ConversationMessage"
+        }
+      }
+    },
+    "v1GetConversationResponse": {
+      "type": "object",
+      "properties": {
+        "conversation": {
+          "$ref": "#/definitions/v1GroupConversation"
+        }
+      }
+    },
+    "v1GetGroupResponse": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "$ref": "#/definitions/v1Group"
+        }
+      }
+    },
+    "v1GetInviteLinkResponse": {
+      "type": "object",
+      "properties": {
+        "inviteLink": {
+          "$ref": "#/definitions/v1GroupInviteLink"
+        }
+      }
+    },
+    "v1GetInviteResponse": {
+      "type": "object",
+      "properties": {
+        "invite": {
+          "$ref": "#/definitions/v1GroupInvite"
+        }
+      }
+    },
+    "v1GetMemberResponse": {
+      "type": "object",
+      "properties": {
+        "member": {
+          "$ref": "#/definitions/v1GroupMember"
+        }
+      }
+    },
+    "v1Group": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "workspaceAccountId": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modifiedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GroupMember"
+          }
+        },
+        "conversations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GroupConversation"
+          }
+        },
+        "invites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GroupInvite"
+          }
+        },
+        "inviteLinks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GroupInviteLink"
+          }
+        }
+      }
+    },
+    "v1GroupConversation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1GroupInvite": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "groupId": {
+          "type": "string"
+        },
+        "senderAccountId": {
+          "type": "string"
+        },
+        "recipientAccountId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1GroupInviteLink": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "generatedByAccountId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1GroupMember": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "isAdmin": {
+          "type": "boolean"
+        },
+        "joinedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1ListConversationMessagesResponse": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ConversationMessage"
+          }
+        }
+      }
+    },
+    "v1ListGroupsResponse": {
+      "type": "object",
+      "properties": {
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Group"
+          }
+        }
+      }
+    },
+    "v1ListInvitesResponse": {
+      "type": "object",
+      "properties": {
+        "invites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GroupInvite"
+          }
+        }
+      }
+    },
+    "v1RemoveMemberResponse": {
+      "type": "object"
+    },
+    "v1RevokeInviteLinkResponse": {
+      "type": "object"
+    },
+    "v1RevokeInviteResponse": {
+      "type": "object"
+    },
+    "v1SendConversationMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "$ref": "#/definitions/v1ConversationMessage"
+        }
+      }
+    },
+    "v1SendInviteResponse": {
+      "type": "object",
+      "properties": {
+        "invite": {
+          "$ref": "#/definitions/v1GroupInvite"
+        }
+      }
+    },
+    "v1UpdateConversationMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "$ref": "#/definitions/v1ConversationMessage"
+        }
+      }
+    },
+    "v1UpdateConversationResponse": {
+      "type": "object",
+      "properties": {
+        "conversation": {
+          "$ref": "#/definitions/v1GroupConversation"
+        }
+      }
+    },
+    "v1UpdateGroupResponse": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "$ref": "#/definitions/v1Group"
+        }
+      }
+    },
+    "v1UpdateMemberResponse": {
+      "type": "object",
+      "properties": {
+        "member": {
+          "$ref": "#/definitions/v1GroupMember"
+        }
+      }
+    },
+    "v1UseInviteLinkResponse": {
+      "type": "object"
+    }
+  }
+}
