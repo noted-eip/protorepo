@@ -1,10 +1,14 @@
 version: v1
 plugins:
-  - remote: buf.build/protocolbuffers/plugins/go:v1.27.1-1
+  - plugin: buf.build/protocolbuffers/go
     out: .
-  - remote: buf.build/grpc/plugins/go:v1.1.0-1
+  - plugin: buf.build/grpc/go
     out: .
-  - remote: buf.build/protocolbuffers/plugins/python:v3.19.1-1
+  - plugin: buf.build/protocolbuffers/python
     out: .
-  - remote: buf.build/grpc/plugins/python:v1.41.1-1
+  - plugin: buf.build/grpc/python
+    out: .
+  - plugin: buf.build/grpc-ecosystem/gateway
+    out: .
+  - plugin: buf.build/grpc-ecosystem/openapiv2
     out: .

@@ -5,6 +5,7 @@ package noted.accounts.v1;
 option go_package = "noted/accounts/v1";
 
 import "google/protobuf/field_mask.proto";
+import "google/api/annotations.proto";
 
 message Account {
     string id = 1;
@@ -17,20 +18,49 @@ message Account {
 // Manages password recovery.
 service AccountsAPI {
     // Create an account using the email and password flow.
-    rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
+    rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {
+        option (google.api.http) = {
+            post: "/accounts",
+            body: "*",
+        };
+    }
+
     // Must be authenticated.
-    rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {}
+    rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {
+        option (google.api.http) = {
+            get: "/accounts/{account_id}",
+        };
+    }
+
     // Must be account owner. Can only update `account.name`.
-    rpc UpdateAccount(UpdateAccountRequest) returns (UpdateAccountResponse) {}
+    rpc UpdateAccount(UpdateAccountRequest) returns (UpdateAccountResponse) {
+        option (google.api.http) = {
+            patch: "/accounts/{account_id}",
+            body: "*",
+        };
+    }
+
     // Must be account owner.
-    // TODO: Delete all associated resources (notes, transfer group ownership,
-    // etc).
-    rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
+    rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {
+        option (google.api.http) = {
+            delete: "/accounts/{account_id}",
+        };
+    }
+
     // List users based on email regex.
-    rpc ListAccounts(ListAccountsRequest) returns (ListAccountsResponse) {}
+    rpc ListAccounts(ListAccountsRequest) returns (ListAccountsResponse) {
+        option (google.api.http) = {
+            get: "/accounts",
+        };
+    }
 
     // Authenticate using the email and password flow.
-    rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse) {}
+    rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse) {
+        option (google.api.http) = {
+            post: "/authenticate",
+            body: "*",
+        };
+    }
 }
 
 message CreateAccountRequest {
@@ -45,7 +75,7 @@ message CreateAccountResponse {
 
 message GetAccountRequest {
     string email = 1;
-    string id = 2;
+    string account_id = 2;
 }
 
 message GetAccountResponse {
@@ -53,8 +83,9 @@ message GetAccountResponse {
 }
 
 message UpdateAccountRequest {
-    Account account = 1;
-    google.protobuf.FieldMask update_mask = 2;
+    string account_id = 1;
+    Account account = 2;
+    google.protobuf.FieldMask update_mask = 3;
 }
 
 message UpdateAccountResponse {
@@ -62,7 +93,7 @@ message UpdateAccountResponse {
 }
 
 message DeleteAccountRequest {
-    string id = 1;
+    string account_id = 1;
 }
 
 message DeleteAccountResponse {

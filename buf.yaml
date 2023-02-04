@@ -7,3 +7,6 @@ lint:
     - DEFAULT
   enum_zero_value_suffix: _INVALID
   service_suffix: API
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/grpc-ecosystem/grpc-gateway

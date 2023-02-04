@@ -20,7 +20,7 @@ jobs:
       - name: Setup buf
         uses: bufbuild/buf-setup-action@v1
         with:
-          version: "1.6.0"
+          version: "1.13.1"
       - name: Generate
         run: |
           find noted -name "*.go" -type f -delete
