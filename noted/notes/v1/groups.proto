@@ -6,6 +6,7 @@ option go_package = "noted/notes/v1";
 
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
 
 message ConversationMessage {
     string id = 1;
@@ -65,21 +66,48 @@ message Group {
 service GroupsAPI {
     // Creates a group with a single administrator member (the authenticated user).
     // Must be authenticated.
-    rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {}
+    rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {
+        option (google.api.http) = {
+            post: "/groups",
+            body: "*",
+        };
+    }
+
     // Internal endpoint. Called upon account creation.
     // Creates a workspace for the caller.
     rpc CreateWorkspace(CreateWorkspaceRequest) returns (CreateWorkspaceResponse) {}
+
     // Must be group member.
     // If the caller is not a member but has been invited to the group or has
     // an invite code link, it will access a limited view of the group.
-    rpc GetGroup(GetGroupRequest) returns (GetGroupResponse) {}
+    rpc GetGroup(GetGroupRequest) returns (GetGroupResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}",
+        };
+    }
+
     // Must be group administrator.
-    rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {}
+    rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {
+        option (google.api.http) = {
+            patch: "/groups/{group_id}",
+            body: "*",
+        };
+    }
+
     // Must be group administrator.
     // Deletes all the associated resources (members, notes).
-    rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {}
+    rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {
+        option (google.api.http) = {
+            delete: "/groups/{group_id}",
+        };
+    }
+
     // Must be group member. Returns only the non-array fields of a group.
-    rpc ListGroups(ListGroupsRequest) returns (ListGroupsResponse) {}
+    rpc ListGroups(ListGroupsRequest) returns (ListGroupsResponse) {
+        option (google.api.http) = {
+            get: "/groups",
+        };
+    }
 
     // Must be group member.
     rpc GetMember(GetMemberRequest) returns (GetMemberResponse) {}
