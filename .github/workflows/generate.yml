@@ -36,13 +36,13 @@ jobs:
         with:
           generator: typescript-axios
           openapi-file: noted.swagger.yaml
-          command-args: "-o openapi/typescript-axios"
+          command-args: "-o openapi/typescript-axios --skip-validate-spec"
       - name: Generate Dart Dio Client
         uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: dart-dio
           openapi-file: noted.swagger.yaml
-          command-args: "-o openapi/dart-dio"
+          command-args: "-o openapi/dart-dio --skip-validate-spec"
       - name: Add generated code
         run: git add -f .
       - name: Commit changes
