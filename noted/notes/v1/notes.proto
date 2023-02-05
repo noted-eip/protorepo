@@ -122,8 +122,8 @@ service NotesAPI {
 }
 
 message GetNoteRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string note_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string note_id = 2;
 }
 
 message GetNoteResponse {
@@ -131,7 +131,7 @@ message GetNoteResponse {
 }
 
 message CreateNoteRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
     string title = 2;
     repeated Block blocks = 3;
 }
@@ -141,8 +141,8 @@ message CreateNoteResponse {
 }
 
 message UpdateNoteRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string note_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string note_id = 2;
     Note note = 3 [(google.api.field_behavior) = REQUIRED];
     google.protobuf.FieldMask update_mask = 4;
 }
@@ -152,8 +152,8 @@ message UpdateNoteResponse {
 }
 
 message DeleteNoteRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string note_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string note_id = 2;
 }
 
 message DeleteNoteResponse {
@@ -169,8 +169,8 @@ message ListNotesResponse {
 }
 
 message InsertBlockRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string note_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string note_id = 2;
     uint32 index = 3 [(google.api.field_behavior) = REQUIRED];
     Block block = 4 [(google.api.field_behavior) = REQUIRED];
 }
@@ -180,9 +180,9 @@ message InsertBlockResponse {
 }
 
 message UpdateBlockRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string note_id = 2 [(google.api.field_behavior) = REQUIRED];
-    string block_id = 3 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string note_id = 2;
+    string block_id = 3;
     Block block = 4 [(google.api.field_behavior) = REQUIRED];
 }
 
@@ -191,17 +191,17 @@ message UpdateBlockResponse {
 }
 
 message DeleteBlockRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string note_id = 2 [(google.api.field_behavior) = REQUIRED];
-    string block_id = 3 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string note_id = 2;
+    string block_id = 3;
 }
 
 message DeleteBlockResponse {
 }
 
 message ExportNoteRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string note_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string note_id = 2;
     NoteExportFormat export_format = 3 [(google.api.field_behavior) = REQUIRED];
 }
 

@@ -202,7 +202,7 @@ message CreateWorkspaceResponse {
 }
 
 message GetGroupRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
     // If the requester isn't a member of the group nor have they
     // been invited directly, they can provide an invite_link_code that will
     // give them a public preview of the group they wish to join.
@@ -214,14 +214,14 @@ message GetGroupResponse {
 }
 
 message DeleteGroupRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
 }
 
 message DeleteGroupResponse {
 }
 
 message UpdateGroupRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
     string name = 2;
     string description = 3;
 }
@@ -239,8 +239,8 @@ message ListGroupsResponse {
 }
 
 message GetMemberRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string account_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string account_id = 2;
 }
 
 message GetMemberResponse {
@@ -248,8 +248,8 @@ message GetMemberResponse {
 }
 
 message UpdateMemberRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string account_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string account_id = 2;
     GroupMember member = 3 [(google.api.field_behavior) = REQUIRED];
     google.protobuf.FieldMask update_mask = 4;
 }
@@ -259,16 +259,16 @@ message UpdateMemberResponse {
 }
 
 message RemoveMemberRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string account_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string account_id = 2;
 }
 
 message RemoveMemberResponse {
 }
 
 message GetConversationRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string conversation_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string conversation_id = 2;
 }
 
 message GetConversationResponse {
@@ -276,8 +276,8 @@ message GetConversationResponse {
 }
 
 message UpdateConversationRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string conversation_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string conversation_id = 2;
     string title = 3;
 }
 
@@ -286,8 +286,8 @@ message UpdateConversationResponse {
 }
 
 message SendConversationMessageRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string conversation_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string conversation_id = 2;
     string content = 3 [(google.api.field_behavior) = REQUIRED];
 }
 
@@ -296,9 +296,9 @@ message SendConversationMessageResponse {
 }
 
 message GetConversationMessageRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string conversation_id = 2 [(google.api.field_behavior) = REQUIRED];
-    string message_id = 3 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string conversation_id = 2;
+    string message_id = 3;
 }
 
 message GetConversationMessageResponse {
@@ -306,9 +306,9 @@ message GetConversationMessageResponse {
 }
 
 message UpdateConversationMessageRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string conversation_id = 2 [(google.api.field_behavior) = REQUIRED];
-    string message_id = 3 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string conversation_id = 2;
+    string message_id = 3;
     string content = 4;
 }
 
@@ -317,17 +317,17 @@ message UpdateConversationMessageResponse {
 }
 
 message DeleteConversationMessageRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string conversation_id = 2 [(google.api.field_behavior) = REQUIRED];
-    string message_id = 3 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string conversation_id = 2;
+    string message_id = 3;
 }
 
 message DeleteConversationMessageResponse {
 }
 
 message ListConversationMessagesRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string conversation_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string conversation_id = 2;
     int32 limit = 3;
     int32 offset = 4;
 }
@@ -337,7 +337,7 @@ message ListConversationMessagesResponse {
 }
 
 message GenerateInviteLinkRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
 }
 
 message GenerateInviteLinkResponse {
@@ -345,8 +345,8 @@ message GenerateInviteLinkResponse {
 }
 
 message GetInviteLinkRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string invite_link_code = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string invite_link_code = 2;
 }
 
 message GetInviteLinkResponse {
@@ -354,23 +354,23 @@ message GetInviteLinkResponse {
 }
 
 message RevokeInviteLinkRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string invite_link_code = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string invite_link_code = 2;
 }
 
 message RevokeInviteLinkResponse {
 }
 
 message UseInviteLinkRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string invite_link_code = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string invite_link_code = 2;
 }
 
 message UseInviteLinkResponse {
 }
 
 message SendInviteRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
     string recipient_account_id = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
@@ -379,8 +379,8 @@ message SendInviteResponse {
 }
 
 message GetInviteRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string invite_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string invite_id = 2;
 }
 
 message GetInviteResponse {
@@ -388,8 +388,8 @@ message GetInviteResponse {
 }
 
 message AcceptInviteRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string invite_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string invite_id = 2;
 }
 
 message AcceptInviteResponse {
@@ -397,8 +397,8 @@ message AcceptInviteResponse {
 }
 
 message DenyInviteRequest {
-    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
-    string invite_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 1;
+    string invite_id = 2;
 }
 
 message DenyInviteResponse {
@@ -420,7 +420,7 @@ message ListInvitesResponse {
 }
 
 message RevokeInviteRequest {
-    string invite_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string invite_id = 1;
 }
 
 message RevokeInviteResponse {

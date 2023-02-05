@@ -100,7 +100,7 @@ message CreateAccountResponse {
 }
 
 message GetAccountRequest {
-    string account_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string account_id = 1;
     string email = 2;
 }
 
@@ -109,7 +109,7 @@ message GetAccountResponse {
 }
 
 message UpdateAccountRequest {
-    string account_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string account_id = 1;
     Account account = 2 [(google.api.field_behavior) = REQUIRED];
     google.protobuf.FieldMask update_mask = 3;
 }
@@ -119,7 +119,7 @@ message UpdateAccountResponse {
 }
 
 message DeleteAccountRequest {
-    string account_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string account_id = 1;
 }
 
 message DeleteAccountResponse {
