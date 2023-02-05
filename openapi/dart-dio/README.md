@@ -80,7 +80,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [AccountsAPIUpdateAccountRequest](doc/AccountsAPIUpdateAccountRequest.md)
  - [BlockCode](doc/BlockCode.md)
  - [BlockImage](doc/BlockImage.md)
  - [GroupsAPIUpdateGroupRequest](doc/GroupsAPIUpdateGroupRequest.md)

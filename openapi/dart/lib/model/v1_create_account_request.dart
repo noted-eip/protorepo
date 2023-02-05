@@ -13,34 +13,16 @@ part of openapi.api;
 class V1CreateAccountRequest {
   /// Returns a new [V1CreateAccountRequest] instance.
   V1CreateAccountRequest({
-    this.password,
-    this.email,
-    this.name,
+    required this.password,
+    required this.email,
+    required this.name,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? password;
+  String password;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? email;
+  String email;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? name;
+  String name;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is V1CreateAccountRequest &&
@@ -51,30 +33,18 @@ class V1CreateAccountRequest {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (password == null ? 0 : password!.hashCode) +
-    (email == null ? 0 : email!.hashCode) +
-    (name == null ? 0 : name!.hashCode);
+    (password.hashCode) +
+    (email.hashCode) +
+    (name.hashCode);
 
   @override
   String toString() => 'V1CreateAccountRequest[password=$password, email=$email, name=$name]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.password != null) {
       json[r'password'] = this.password;
-    } else {
-      json[r'password'] = null;
-    }
-    if (this.email != null) {
       json[r'email'] = this.email;
-    } else {
-      json[r'email'] = null;
-    }
-    if (this.name != null) {
       json[r'name'] = this.name;
-    } else {
-      json[r'name'] = null;
-    }
     return json;
   }
 
@@ -97,9 +67,9 @@ class V1CreateAccountRequest {
       }());
 
       return V1CreateAccountRequest(
-        password: mapValueOfType<String>(json, r'password'),
-        email: mapValueOfType<String>(json, r'email'),
-        name: mapValueOfType<String>(json, r'name'),
+        password: mapValueOfType<String>(json, r'password')!,
+        email: mapValueOfType<String>(json, r'email')!,
+        name: mapValueOfType<String>(json, r'name')!,
       );
     }
     return null;
@@ -149,6 +119,9 @@ class V1CreateAccountRequest {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'password',
+    'email',
+    'name',
   };
 }
 

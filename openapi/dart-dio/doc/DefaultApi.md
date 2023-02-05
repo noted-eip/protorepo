@@ -235,7 +235,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **accountsAPIUpdateAccount**
-> V1UpdateAccountResponse accountsAPIUpdateAccount(accountId, body)
+> V1UpdateAccountResponse accountsAPIUpdateAccount(accountId, account, updateMask)
 
 Must be account owner. Can only update `account.name`.
 
@@ -245,10 +245,11 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String accountId = accountId_example; // String | 
-final AccountsAPIUpdateAccountRequest body = ; // AccountsAPIUpdateAccountRequest | 
+final V1Account account = ; // V1Account | 
+final String updateMask = updateMask_example; // String | 
 
 try {
-    final response = api.accountsAPIUpdateAccount(accountId, body);
+    final response = api.accountsAPIUpdateAccount(accountId, account, updateMask);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling DefaultApi->accountsAPIUpdateAccount: $e\n');
@@ -260,7 +261,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accountId** | **String**|  | 
- **body** | [**AccountsAPIUpdateAccountRequest**](AccountsAPIUpdateAccountRequest.md)|  | 
+ **account** | [**V1Account**](V1Account.md)|  | 
+ **updateMask** | **String**|  | [optional] 
 
 ### Return type
 

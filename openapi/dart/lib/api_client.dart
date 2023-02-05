@@ -181,8 +181,6 @@ class ApiClient {
           return valueString == 'true' || valueString == '1';
         case 'DateTime':
           return value is DateTime ? value : DateTime.tryParse(value);
-        case 'AccountsAPIUpdateAccountRequest':
-          return AccountsAPIUpdateAccountRequest.fromJson(value);
         case 'BlockCode':
           return BlockCode.fromJson(value);
         case 'BlockImage':

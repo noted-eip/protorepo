@@ -11,7 +11,6 @@ export 'package:openapi/src/model/date.dart';
 
 export 'package:openapi/src/api/default_api.dart';
 
-export 'package:openapi/src/model/accounts_api_update_account_request.dart';
 export 'package:openapi/src/model/block_code.dart';
 export 'package:openapi/src/model/block_image.dart';
 export 'package:openapi/src/model/groups_api_update_group_request.dart';

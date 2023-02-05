@@ -29,7 +29,6 @@ part 'auth/http_bearer_auth.dart';
 
 part 'api/default_api.dart';
 
-part 'model/accounts_api_update_account_request.dart';
 part 'model/block_code.dart';
 part 'model/block_image.dart';
 part 'model/groups_api_update_group_request.dart';

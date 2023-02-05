@@ -109,16 +109,15 @@ paths:
           in: path
           required: true
           type: string
-        - name: body
+        - name: account
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              account:
-                $ref: '#/definitions/v1Account'
-              updateMask:
-                type: string
+            $ref: '#/definitions/v1Account'
+        - name: updateMask
+          in: query
+          required: false
+          type: string
   /authenticate:
     post:
       summary: Authenticate using the email and password flow.
@@ -312,6 +311,10 @@ definitions:
         type: string
       email:
         type: string
+    required:
+      - id
+      - name
+      - email
   v1AuthenticateRequest:
     type: object
     properties:
@@ -385,11 +388,17 @@ definitions:
         type: string
       name:
         type: string
+    required:
+      - password
+      - email
+      - name
   v1CreateAccountResponse:
     type: object
     properties:
       account:
         $ref: '#/definitions/v1Account'
+    required:
+      - account
   v1CreateGroupRequest:
     type: object
     properties:

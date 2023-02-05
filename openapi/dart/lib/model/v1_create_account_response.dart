@@ -13,16 +13,10 @@ part of openapi.api;
 class V1CreateAccountResponse {
   /// Returns a new [V1CreateAccountResponse] instance.
   V1CreateAccountResponse({
-    this.account,
+    required this.account,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  V1Account? account;
+  V1Account account;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is V1CreateAccountResponse &&
@@ -31,18 +25,14 @@ class V1CreateAccountResponse {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (account == null ? 0 : account!.hashCode);
+    (account.hashCode);
 
   @override
   String toString() => 'V1CreateAccountResponse[account=$account]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.account != null) {
       json[r'account'] = this.account;
-    } else {
-      json[r'account'] = null;
-    }
     return json;
   }
 
@@ -65,7 +55,7 @@ class V1CreateAccountResponse {
       }());
 
       return V1CreateAccountResponse(
-        account: V1Account.fromJson(json[r'account']),
+        account: V1Account.fromJson(json[r'account'])!,
       );
     }
     return null;
@@ -115,6 +105,7 @@ class V1CreateAccountResponse {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'account',
   };
 }
 

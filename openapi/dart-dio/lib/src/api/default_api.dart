@@ -9,9 +9,9 @@ import 'package:dio/dio.dart';
 
 import 'package:built_value/json_object.dart';
 import 'package:openapi/src/api_util.dart';
-import 'package:openapi/src/model/accounts_api_update_account_request.dart';
 import 'package:openapi/src/model/groups_api_update_group_request.dart';
 import 'package:openapi/src/model/notes_api_create_note_request.dart';
+import 'package:openapi/src/model/v1_account.dart';
 import 'package:openapi/src/model/v1_authenticate_request.dart';
 import 'package:openapi/src/model/v1_authenticate_response.dart';
 import 'package:openapi/src/model/v1_create_account_request.dart';
@@ -466,7 +466,8 @@ class DefaultApi {
   ///
   /// Parameters:
   /// * [accountId] 
-  /// * [body] 
+  /// * [account] 
+  /// * [updateMask] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -478,7 +479,8 @@ class DefaultApi {
   /// Throws [DioError] if API call or serialization fails
   Future<Response<V1UpdateAccountResponse>> accountsAPIUpdateAccount({ 
     required String accountId,
-    required AccountsAPIUpdateAccountRequest body,
+    required V1Account account,
+    String? updateMask,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -500,17 +502,22 @@ class DefaultApi {
       validateStatus: validateStatus,
     );
 
+    final _queryParameters = <String, dynamic>{
+      if (updateMask != null) r'updateMask': encodeQueryParameter(_serializers, updateMask, const FullType(String)),
+    };
+
     dynamic _bodyData;
 
     try {
-      const _type = FullType(AccountsAPIUpdateAccountRequest);
-      _bodyData = _serializers.serialize(body, specifiedType: _type);
+      const _type = FullType(V1Account);
+      _bodyData = _serializers.serialize(account, specifiedType: _type);
 
     } catch(error, stackTrace) {
       throw DioError(
          requestOptions: _options.compose(
           _dio.options,
           _path,
+          queryParameters: _queryParameters,
         ),
         type: DioErrorType.other,
         error: error,
@@ -521,6 +528,7 @@ class DefaultApi {
       _path,
       data: _bodyData,
       options: _options,
+      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,

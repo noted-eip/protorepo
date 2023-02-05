@@ -312,18 +312,24 @@ class DefaultApi {
   ///
   /// * [String] accountId (required):
   ///
-  /// * [AccountsAPIUpdateAccountRequest] body (required):
-  Future<Response> accountsAPIUpdateAccountWithHttpInfo(String accountId, AccountsAPIUpdateAccountRequest body,) async {
+  /// * [V1Account] account (required):
+  ///
+  /// * [String] updateMask:
+  Future<Response> accountsAPIUpdateAccountWithHttpInfo(String accountId, V1Account account, { String? updateMask, }) async {
     // ignore: prefer_const_declarations
     final path = r'/accounts/{accountId}'
       .replaceAll('{accountId}', accountId);
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = account;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
+
+    if (updateMask != null) {
+      queryParams.addAll(_queryParams('', 'updateMask', updateMask));
+    }
 
     const contentTypes = <String>['application/json'];
 
@@ -345,9 +351,11 @@ class DefaultApi {
   ///
   /// * [String] accountId (required):
   ///
-  /// * [AccountsAPIUpdateAccountRequest] body (required):
-  Future<V1UpdateAccountResponse?> accountsAPIUpdateAccount(String accountId, AccountsAPIUpdateAccountRequest body,) async {
-    final response = await accountsAPIUpdateAccountWithHttpInfo(accountId, body,);
+  /// * [V1Account] account (required):
+  ///
+  /// * [String] updateMask:
+  Future<V1UpdateAccountResponse?> accountsAPIUpdateAccount(String accountId, V1Account account, { String? updateMask, }) async {
+    final response = await accountsAPIUpdateAccountWithHttpInfo(accountId, account,  updateMask: updateMask, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

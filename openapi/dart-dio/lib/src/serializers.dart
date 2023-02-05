@@ -14,7 +14,6 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:openapi/src/date_serializer.dart';
 import 'package:openapi/src/model/date.dart';
 
-import 'package:openapi/src/model/accounts_api_update_account_request.dart';
 import 'package:openapi/src/model/block_code.dart';
 import 'package:openapi/src/model/block_image.dart';
 import 'package:openapi/src/model/groups_api_update_group_request.dart';
@@ -78,7 +77,6 @@ import 'package:openapi/src/model/v1_widget.dart';
 part 'serializers.g.dart';
 
 @SerializersFor([
-  AccountsAPIUpdateAccountRequest,
   BlockCode,
   BlockImage,
   GroupsAPIUpdateGroupRequest,

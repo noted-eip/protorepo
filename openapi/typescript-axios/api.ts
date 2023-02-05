@@ -26,25 +26,6 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
 /**
  * 
  * @export
- * @interface AccountsAPIUpdateAccountRequest
- */
-export interface AccountsAPIUpdateAccountRequest {
-    /**
-     * 
-     * @type {V1Account}
-     * @memberof AccountsAPIUpdateAccountRequest
-     */
-    'account'?: V1Account;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsAPIUpdateAccountRequest
-     */
-    'updateMask'?: string;
-}
-/**
- * 
- * @export
  * @interface BlockCode
  */
 export interface BlockCode {
@@ -142,19 +123,19 @@ export interface V1Account {
      * @type {string}
      * @memberof V1Account
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof V1Account
      */
-    'name'?: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof V1Account
      */
-    'email'?: string;
+    'email': string;
 }
 /**
  * 
@@ -332,19 +313,19 @@ export interface V1CreateAccountRequest {
      * @type {string}
      * @memberof V1CreateAccountRequest
      */
-    'password'?: string;
+    'password': string;
     /**
      * 
      * @type {string}
      * @memberof V1CreateAccountRequest
      */
-    'email'?: string;
+    'email': string;
     /**
      * 
      * @type {string}
      * @memberof V1CreateAccountRequest
      */
-    'name'?: string;
+    'name': string;
 }
 /**
  * 
@@ -357,7 +338,7 @@ export interface V1CreateAccountResponse {
      * @type {V1Account}
      * @memberof V1CreateAccountResponse
      */
-    'account'?: V1Account;
+    'account': V1Account;
 }
 /**
  * 
@@ -1393,15 +1374,16 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary Must be account owner. Can only update `account.name`.
          * @param {string} accountId 
-         * @param {AccountsAPIUpdateAccountRequest} body 
+         * @param {V1Account} account 
+         * @param {string} [updateMask] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIUpdateAccount: async (accountId: string, body: AccountsAPIUpdateAccountRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsAPIUpdateAccount: async (accountId: string, account: V1Account, updateMask?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('accountsAPIUpdateAccount', 'accountId', accountId)
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('accountsAPIUpdateAccount', 'body', body)
+            // verify required parameter 'account' is not null or undefined
+            assertParamExists('accountsAPIUpdateAccount', 'account', account)
             const localVarPath = `/accounts/{accountId}`
                 .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -1415,6 +1397,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            if (updateMask !== undefined) {
+                localVarQueryParameter['updateMask'] = updateMask;
+            }
+
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -1422,7 +1408,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(account, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1725,12 +1711,13 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * 
          * @summary Must be account owner. Can only update `account.name`.
          * @param {string} accountId 
-         * @param {AccountsAPIUpdateAccountRequest} body 
+         * @param {V1Account} account 
+         * @param {string} [updateMask] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsAPIUpdateAccount(accountId: string, body: AccountsAPIUpdateAccountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUpdateAccount(accountId, body, options);
+        async accountsAPIUpdateAccount(accountId: string, account: V1Account, updateMask?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUpdateAccount(accountId, account, updateMask, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1869,12 +1856,13 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary Must be account owner. Can only update `account.name`.
          * @param {string} accountId 
-         * @param {AccountsAPIUpdateAccountRequest} body 
+         * @param {V1Account} account 
+         * @param {string} [updateMask] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIUpdateAccount(accountId: string, body: AccountsAPIUpdateAccountRequest, options?: any): AxiosPromise<V1UpdateAccountResponse> {
-            return localVarFp.accountsAPIUpdateAccount(accountId, body, options).then((request) => request(axios, basePath));
+        accountsAPIUpdateAccount(accountId: string, account: V1Account, updateMask?: string, options?: any): AxiosPromise<V1UpdateAccountResponse> {
+            return localVarFp.accountsAPIUpdateAccount(accountId, account, updateMask, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2016,13 +2004,14 @@ export class DefaultApi extends BaseAPI {
      * 
      * @summary Must be account owner. Can only update `account.name`.
      * @param {string} accountId 
-     * @param {AccountsAPIUpdateAccountRequest} body 
+     * @param {V1Account} account 
+     * @param {string} [updateMask] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public accountsAPIUpdateAccount(accountId: string, body: AccountsAPIUpdateAccountRequest, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).accountsAPIUpdateAccount(accountId, body, options).then((request) => request(this.axios, this.basePath));
+    public accountsAPIUpdateAccount(accountId: string, account: V1Account, updateMask?: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIUpdateAccount(accountId, account, updateMask, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
