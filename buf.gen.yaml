@@ -12,3 +12,7 @@ plugins:
     out: .
   - plugin: buf.build/grpc-ecosystem/openapiv2
     out: .
+  - plugin: buf.build/bufbuild/es
+    out: .
+  - plugin: buf.build/protocolbuffers/dart
+    out: .
