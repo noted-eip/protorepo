@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package noted.common.v1;
+
+option go_package = "noted/common/v1";
+
+message HttpError {
+    string error = 1;
+}

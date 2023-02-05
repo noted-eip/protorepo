@@ -1,12 +1,2 @@
-# Ignore everything
-*
-
-# Except
-LICENSE
-!*.proto
-!buf.*
-!README.md
-!.gitignore
-!/docs/
-!/.github/
-!noted.swagger.yaml
+# MacOS
+.DS_Store
