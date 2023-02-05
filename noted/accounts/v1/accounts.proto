@@ -33,9 +33,9 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 };
 
 message Account {
-    string id = 1;
-    string name = 2;
-    string email = 3;
+    string id = 1 [(google.api.field_behavior) = REQUIRED];
+    string name = 2 [(google.api.field_behavior) = REQUIRED];
+    string email = 3 [(google.api.field_behavior) = REQUIRED];
 }
 
 // Creation, read, update and deletion of accounts.
@@ -61,7 +61,7 @@ service AccountsAPI {
     rpc UpdateAccount(UpdateAccountRequest) returns (UpdateAccountResponse) {
         option (google.api.http) = {
             patch: "/accounts/{account_id}",
-            body: "*",
+            body: "account",
         };
     }
 
@@ -89,18 +89,18 @@ service AccountsAPI {
 }
 
 message CreateAccountRequest {
-    string password = 1;
-    string email = 2;
-    string name = 3;
+    string password = 1 [(google.api.field_behavior) = REQUIRED];;
+    string email = 2 [(google.api.field_behavior) = REQUIRED];;
+    string name = 3 [(google.api.field_behavior) = REQUIRED];;
 }
 
 message CreateAccountResponse {
-    Account account = 1;
+    Account account = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message GetAccountRequest {
-    string email = 1;
-    string account_id = 2;
+    string account_id = 1;
+    string email = 2;
 }
 
 message GetAccountResponse {
