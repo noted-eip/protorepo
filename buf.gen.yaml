@@ -12,3 +12,4 @@ plugins:
     out: .
   - plugin: buf.build/grpc-ecosystem/openapiv2
     out: .
+    opt: allow_merge=true,merge_file_name=noted,omit_enum_default_value=true,output_format=yaml,disable_service_tags=true,disable_default_errors=true

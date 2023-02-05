@@ -9,3 +9,4 @@ LICENSE
 !.gitignore
 !/docs/
 !/.github/
+!noted.swagger.yaml

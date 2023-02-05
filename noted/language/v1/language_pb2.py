@@ -11,28 +11,30 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
+from protoc_gen_openapiv2.options import annotations_pb2 as protoc__gen__openapiv2_dot_options_dot_annotations__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n noted/language/v1/language.proto\x12\x11noted.language.v1\"2\n\x16\x45xtractKeywordsRequest\x12\x18\n\x07\x63ontent\x18\x01 \x01(\tR\x07\x63ontent\"5\n\x17\x45xtractKeywordsResponse\x12\x1a\n\x08keywords\x18\x01 \x03(\tR\x08keywords\"9\n\x1b\x45xtractKeywordsBatchRequest\x12\x1a\n\x08\x63ontents\x18\x01 \x03(\tR\x08\x63ontents\"q\n\x1c\x45xtractKeywordsBatchResponse\x12Q\n\x0ekeywords_array\x18\x01 \x03(\x0b\x32*.noted.language.v1.ExtractKeywordsResponseR\rkeywordsArray\",\n\x10SummarizeRequest\x12\x18\n\x07\x63ontent\x18\x01 \x01(\tR\x07\x63ontent\"-\n\x11SummarizeResponse\x12\x18\n\x07summary\x18\x01 \x01(\tR\x07summary2\xce\x02\n\x0bLanguageAPI\x12j\n\x0f\x45xtractKeywords\x12).noted.language.v1.ExtractKeywordsRequest\x1a*.noted.language.v1.ExtractKeywordsResponse\"\x00\x12y\n\x14\x45xtractKeywordsBatch\x12..noted.language.v1.ExtractKeywordsBatchRequest\x1a/.noted.language.v1.ExtractKeywordsBatchResponse\"\x00\x12X\n\tSummarize\x12#.noted.language.v1.SummarizeRequest\x1a$.noted.language.v1.SummarizeResponse\"\x00\x42\x13Z\x11noted/language/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n noted/language/v1/language.proto\x12\x11noted.language.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"2\n\x16\x45xtractKeywordsRequest\x12\x18\n\x07\x63ontent\x18\x01 \x01(\tR\x07\x63ontent\"5\n\x17\x45xtractKeywordsResponse\x12\x1a\n\x08keywords\x18\x01 \x03(\tR\x08keywords\"9\n\x1b\x45xtractKeywordsBatchRequest\x12\x1a\n\x08\x63ontents\x18\x01 \x03(\tR\x08\x63ontents\"q\n\x1c\x45xtractKeywordsBatchResponse\x12Q\n\x0ekeywords_array\x18\x01 \x03(\x0b\x32*.noted.language.v1.ExtractKeywordsResponseR\rkeywordsArray\",\n\x10SummarizeRequest\x12\x18\n\x07\x63ontent\x18\x01 \x01(\tR\x07\x63ontent\"-\n\x11SummarizeResponse\x12\x18\n\x07summary\x18\x01 \x01(\tR\x07summary2\xce\x02\n\x0bLanguageAPI\x12j\n\x0f\x45xtractKeywords\x12).noted.language.v1.ExtractKeywordsRequest\x1a*.noted.language.v1.ExtractKeywordsResponse\"\x00\x12y\n\x14\x45xtractKeywordsBatch\x12..noted.language.v1.ExtractKeywordsBatchRequest\x1a/.noted.language.v1.ExtractKeywordsBatchResponse\"\x00\x12X\n\tSummarize\x12#.noted.language.v1.SummarizeRequest\x1a$.noted.language.v1.SummarizeResponse\"\x00\x42\xb5\x01Z\x11noted/language/v1\x92\x41\x9e\x01\x12\x1e\n\x17Noted API Documentation2\x03\x31.0Rj\n\x03\x34\x30\x34\x12\x63\nAResource not found or lacking permissions to access the resource.\x12\x1e\n\x1c\x1a\x1a.noted.common.v1.HttpErrorb\x10\n\x0e\n\nbearerAuth\x12\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'noted.language.v1.language_pb2', globals())
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  DESCRIPTOR._serialized_options = b'Z\021noted/language/v1'
-  _EXTRACTKEYWORDSREQUEST._serialized_start=55
-  _EXTRACTKEYWORDSREQUEST._serialized_end=105
-  _EXTRACTKEYWORDSRESPONSE._serialized_start=107
-  _EXTRACTKEYWORDSRESPONSE._serialized_end=160
-  _EXTRACTKEYWORDSBATCHREQUEST._serialized_start=162
-  _EXTRACTKEYWORDSBATCHREQUEST._serialized_end=219
-  _EXTRACTKEYWORDSBATCHRESPONSE._serialized_start=221
-  _EXTRACTKEYWORDSBATCHRESPONSE._serialized_end=334
-  _SUMMARIZEREQUEST._serialized_start=336
-  _SUMMARIZEREQUEST._serialized_end=380
-  _SUMMARIZERESPONSE._serialized_start=382
-  _SUMMARIZERESPONSE._serialized_end=427
-  _LANGUAGEAPI._serialized_start=430
-  _LANGUAGEAPI._serialized_end=764
+  DESCRIPTOR._serialized_options = b'Z\021noted/language/v1\222A\236\001\022\036\n\027Noted API Documentation2\0031.0Rj\n\003404\022c\nAResource not found or lacking permissions to access the resource.\022\036\n\034\032\032.noted.common.v1.HttpErrorb\020\n\016\n\nbearerAuth\022\000'
+  _EXTRACTKEYWORDSREQUEST._serialized_start=133
+  _EXTRACTKEYWORDSREQUEST._serialized_end=183
+  _EXTRACTKEYWORDSRESPONSE._serialized_start=185
+  _EXTRACTKEYWORDSRESPONSE._serialized_end=238
+  _EXTRACTKEYWORDSBATCHREQUEST._serialized_start=240
+  _EXTRACTKEYWORDSBATCHREQUEST._serialized_end=297
+  _EXTRACTKEYWORDSBATCHRESPONSE._serialized_start=299
+  _EXTRACTKEYWORDSBATCHRESPONSE._serialized_end=412
+  _SUMMARIZEREQUEST._serialized_start=414
+  _SUMMARIZEREQUEST._serialized_end=458
+  _SUMMARIZERESPONSE._serialized_start=460
+  _SUMMARIZERESPONSE._serialized_end=505
+  _LANGUAGEAPI._serialized_start=508
+  _LANGUAGEAPI._serialized_end=842
 # @@protoc_insertion_point(module_scope)

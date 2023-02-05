@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from protorepo.noted.mailing.v1 import mailing_pb2 as noted_dot_mailing_dot_v1_dot_mailing__pb2
+from noted.mailing.v1 import mailing_pb2 as noted_dot_mailing_dot_v1_dot_mailing__pb2
 
 
 class MailingAPIStub(object):

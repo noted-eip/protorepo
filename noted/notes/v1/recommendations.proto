@@ -4,6 +4,33 @@ package noted.notes.v1;
 
 option go_package = "noted/notes/v1";
 
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+    info: {
+        title: "Noted API Documentation";
+        version: "1.0";
+    }
+    security: {
+		security_requirement: {
+			key: "bearerAuth";
+			value: {};
+		}
+	}
+    responses: {
+		key: "404";
+		value: {
+			description: "Resource not found or lacking permissions to access the resource.";
+			schema: {
+				json_schema: {
+                    ref: ".noted.common.v1.HttpError"
+				}
+			}
+		}
+	}
+};
+
 message Widget {
     oneof type {
         WebsiteWidget website_widget = 1;
