@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from protorepo.noted.language.v1 import language_pb2 as noted_dot_language_dot_v1_dot_language__pb2
+from noted.language.v1 import language_pb2 as noted_dot_language_dot_v1_dot_language__pb2
 
 
 class LanguageAPIStub(object):
