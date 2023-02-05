@@ -17,7 +17,7 @@ from protoc_gen_openapiv2.options import annotations_pb2 as protoc__gen__openapi
 from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n noted/accounts/v1/accounts.proto\x12\x11noted.accounts.v1\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\"R\n\x07\x41\x63\x63ount\x12\x13\n\x02id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x02id\x12\x17\n\x04name\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x04name\x12\x19\n\x05\x65mail\x18\x03 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\"k\n\x14\x43reateAccountRequest\x12\x1f\n\x08password\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x08password\x12\x19\n\x05\x65mail\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\x12\x17\n\x04name\x18\x03 \x01(\tB\x03\xe0\x41\x02R\x04name\"R\n\x15\x43reateAccountResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"H\n\x11GetAccountRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x14\n\x05\x65mail\x18\x02 \x01(\tR\x05\x65mail\"J\n\x12GetAccountResponse\x12\x34\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountR\x07\x61\x63\x63ount\"\xa8\x01\n\x14UpdateAccountRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x34\n\x07\x61\x63\x63ount\x18\x02 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountR\x07\x61\x63\x63ount\x12;\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"M\n\x15UpdateAccountResponse\x12\x34\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountR\x07\x61\x63\x63ount\"5\n\x14\x44\x65leteAccountRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\"\x17\n\x15\x44\x65leteAccountResponse\"G\n\x13\x41uthenticateRequest\x12\x14\n\x05\x65mail\x18\x01 \x01(\tR\x05\x65mail\x12\x1a\n\x08password\x18\x02 \x01(\tR\x08password\",\n\x14\x41uthenticateResponse\x12\x14\n\x05token\x18\x01 \x01(\tR\x05token\"j\n\x13ListAccountsRequest\x12%\n\x0e\x65mail_contains\x18\x03 \x01(\tR\remailContains\x12\x14\n\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x02 \x01(\x05R\x06offset\"N\n\x14ListAccountsResponse\x12\x36\n\x08\x61\x63\x63ounts\x18\x01 \x03(\x0b\x32\x1a.noted.accounts.v1.AccountR\x08\x61\x63\x63ounts2\x84\x06\n\x0b\x41\x63\x63ountsAPI\x12x\n\rCreateAccount\x12\'.noted.accounts.v1.CreateAccountRequest\x1a(.noted.accounts.v1.CreateAccountResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/accounts\x12y\n\nGetAccount\x12$.noted.accounts.v1.GetAccountRequest\x1a%.noted.accounts.v1.GetAccountResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/accounts/{account_id}\x12\x8b\x01\n\rUpdateAccount\x12\'.noted.accounts.v1.UpdateAccountRequest\x1a(.noted.accounts.v1.UpdateAccountResponse\"\'\x82\xd3\xe4\x93\x02!:\x07\x61\x63\x63ount2\x16/accounts/{account_id}\x12\x82\x01\n\rDeleteAccount\x12\'.noted.accounts.v1.DeleteAccountRequest\x1a(.noted.accounts.v1.DeleteAccountResponse\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/accounts/{account_id}\x12r\n\x0cListAccounts\x12&.noted.accounts.v1.ListAccountsRequest\x1a\'.noted.accounts.v1.ListAccountsResponse\"\x11\x82\xd3\xe4\x93\x02\x0b\x12\t/accounts\x12y\n\x0c\x41uthenticate\x12&.noted.accounts.v1.AuthenticateRequest\x1a\'.noted.accounts.v1.AuthenticateResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/authenticateB\xb5\x01Z\x11noted/accounts/v1\x92\x41\x9e\x01\x12\x1e\n\x17Noted API Documentation2\x03\x31.0Rj\n\x03\x34\x30\x34\x12\x63\nAResource not found or lacking permissions to access the resource.\x12\x1e\n\x1c\x1a\x1a.noted.common.v1.HttpErrorb\x10\n\x0e\n\nbearerAuth\x12\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n noted/accounts/v1/accounts.proto\x12\x11noted.accounts.v1\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\"R\n\x07\x41\x63\x63ount\x12\x13\n\x02id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x02id\x12\x17\n\x04name\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x04name\x12\x19\n\x05\x65mail\x18\x03 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\"k\n\x14\x43reateAccountRequest\x12\x1f\n\x08password\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x08password\x12\x19\n\x05\x65mail\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\x12\x17\n\x04name\x18\x03 \x01(\tB\x03\xe0\x41\x02R\x04name\"R\n\x15\x43reateAccountResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"H\n\x11GetAccountRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x14\n\x05\x65mail\x18\x02 \x01(\tR\x05\x65mail\"O\n\x12GetAccountResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"\xad\x01\n\x14UpdateAccountRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x39\n\x07\x61\x63\x63ount\x18\x02 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\x12;\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"R\n\x15UpdateAccountResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"5\n\x14\x44\x65leteAccountRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\"\x17\n\x15\x44\x65leteAccountResponse\"Q\n\x13\x41uthenticateRequest\x12\x19\n\x05\x65mail\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\x12\x1f\n\x08password\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x08password\"1\n\x14\x41uthenticateResponse\x12\x19\n\x05token\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x05token\"o\n\x13ListAccountsRequest\x12*\n\x0e\x65mail_contains\x18\x03 \x01(\tB\x03\xe0\x41\x02R\remailContains\x12\x14\n\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x02 \x01(\x05R\x06offset\"N\n\x14ListAccountsResponse\x12\x36\n\x08\x61\x63\x63ounts\x18\x01 \x03(\x0b\x32\x1a.noted.accounts.v1.AccountR\x08\x61\x63\x63ounts2\x84\x06\n\x0b\x41\x63\x63ountsAPI\x12x\n\rCreateAccount\x12\'.noted.accounts.v1.CreateAccountRequest\x1a(.noted.accounts.v1.CreateAccountResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/accounts\x12y\n\nGetAccount\x12$.noted.accounts.v1.GetAccountRequest\x1a%.noted.accounts.v1.GetAccountResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/accounts/{account_id}\x12\x8b\x01\n\rUpdateAccount\x12\'.noted.accounts.v1.UpdateAccountRequest\x1a(.noted.accounts.v1.UpdateAccountResponse\"\'\x82\xd3\xe4\x93\x02!:\x07\x61\x63\x63ount2\x16/accounts/{account_id}\x12\x82\x01\n\rDeleteAccount\x12\'.noted.accounts.v1.DeleteAccountRequest\x1a(.noted.accounts.v1.DeleteAccountResponse\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/accounts/{account_id}\x12r\n\x0cListAccounts\x12&.noted.accounts.v1.ListAccountsRequest\x1a\'.noted.accounts.v1.ListAccountsResponse\"\x11\x82\xd3\xe4\x93\x02\x0b\x12\t/accounts\x12y\n\x0c\x41uthenticate\x12&.noted.accounts.v1.AuthenticateRequest\x1a\'.noted.accounts.v1.AuthenticateResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/authenticateB\xb5\x01Z\x11noted/accounts/v1\x92\x41\x9e\x01\x12\x1e\n\x17Noted API Documentation2\x03\x31.0Rj\n\x03\x34\x30\x34\x12\x63\nAResource not found or lacking permissions to access the resource.\x12\x1e\n\x1c\x1a\x1a.noted.common.v1.HttpErrorb\x10\n\x0e\n\nbearerAuth\x12\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'noted.accounts.v1.accounts_pb2', globals())
@@ -39,6 +39,20 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _CREATEACCOUNTREQUEST.fields_by_name['name']._serialized_options = b'\340A\002'
   _CREATEACCOUNTRESPONSE.fields_by_name['account']._options = None
   _CREATEACCOUNTRESPONSE.fields_by_name['account']._serialized_options = b'\340A\002'
+  _GETACCOUNTRESPONSE.fields_by_name['account']._options = None
+  _GETACCOUNTRESPONSE.fields_by_name['account']._serialized_options = b'\340A\002'
+  _UPDATEACCOUNTREQUEST.fields_by_name['account']._options = None
+  _UPDATEACCOUNTREQUEST.fields_by_name['account']._serialized_options = b'\340A\002'
+  _UPDATEACCOUNTRESPONSE.fields_by_name['account']._options = None
+  _UPDATEACCOUNTRESPONSE.fields_by_name['account']._serialized_options = b'\340A\002'
+  _AUTHENTICATEREQUEST.fields_by_name['email']._options = None
+  _AUTHENTICATEREQUEST.fields_by_name['email']._serialized_options = b'\340A\002'
+  _AUTHENTICATEREQUEST.fields_by_name['password']._options = None
+  _AUTHENTICATEREQUEST.fields_by_name['password']._serialized_options = b'\340A\002'
+  _AUTHENTICATERESPONSE.fields_by_name['token']._options = None
+  _AUTHENTICATERESPONSE.fields_by_name['token']._serialized_options = b'\340A\002'
+  _LISTACCOUNTSREQUEST.fields_by_name['email_contains']._options = None
+  _LISTACCOUNTSREQUEST.fields_by_name['email_contains']._serialized_options = b'\340A\002'
   _ACCOUNTSAPI.methods_by_name['CreateAccount']._options = None
   _ACCOUNTSAPI.methods_by_name['CreateAccount']._serialized_options = b'\202\323\344\223\002\016:\001*\"\t/accounts'
   _ACCOUNTSAPI.methods_by_name['GetAccount']._options = None
@@ -60,23 +74,23 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _GETACCOUNTREQUEST._serialized_start=477
   _GETACCOUNTREQUEST._serialized_end=549
   _GETACCOUNTRESPONSE._serialized_start=551
-  _GETACCOUNTRESPONSE._serialized_end=625
-  _UPDATEACCOUNTREQUEST._serialized_start=628
-  _UPDATEACCOUNTREQUEST._serialized_end=796
-  _UPDATEACCOUNTRESPONSE._serialized_start=798
-  _UPDATEACCOUNTRESPONSE._serialized_end=875
-  _DELETEACCOUNTREQUEST._serialized_start=877
-  _DELETEACCOUNTREQUEST._serialized_end=930
-  _DELETEACCOUNTRESPONSE._serialized_start=932
-  _DELETEACCOUNTRESPONSE._serialized_end=955
-  _AUTHENTICATEREQUEST._serialized_start=957
-  _AUTHENTICATEREQUEST._serialized_end=1028
-  _AUTHENTICATERESPONSE._serialized_start=1030
-  _AUTHENTICATERESPONSE._serialized_end=1074
-  _LISTACCOUNTSREQUEST._serialized_start=1076
-  _LISTACCOUNTSREQUEST._serialized_end=1182
-  _LISTACCOUNTSRESPONSE._serialized_start=1184
-  _LISTACCOUNTSRESPONSE._serialized_end=1262
-  _ACCOUNTSAPI._serialized_start=1265
-  _ACCOUNTSAPI._serialized_end=2037
+  _GETACCOUNTRESPONSE._serialized_end=630
+  _UPDATEACCOUNTREQUEST._serialized_start=633
+  _UPDATEACCOUNTREQUEST._serialized_end=806
+  _UPDATEACCOUNTRESPONSE._serialized_start=808
+  _UPDATEACCOUNTRESPONSE._serialized_end=890
+  _DELETEACCOUNTREQUEST._serialized_start=892
+  _DELETEACCOUNTREQUEST._serialized_end=945
+  _DELETEACCOUNTRESPONSE._serialized_start=947
+  _DELETEACCOUNTRESPONSE._serialized_end=970
+  _AUTHENTICATEREQUEST._serialized_start=972
+  _AUTHENTICATEREQUEST._serialized_end=1053
+  _AUTHENTICATERESPONSE._serialized_start=1055
+  _AUTHENTICATERESPONSE._serialized_end=1104
+  _LISTACCOUNTSREQUEST._serialized_start=1106
+  _LISTACCOUNTSREQUEST._serialized_end=1217
+  _LISTACCOUNTSRESPONSE._serialized_start=1219
+  _LISTACCOUNTSRESPONSE._serialized_end=1297
+  _ACCOUNTSAPI._serialized_start=1300
+  _ACCOUNTSAPI._serialized_end=2072
 # @@protoc_insertion_point(module_scope)

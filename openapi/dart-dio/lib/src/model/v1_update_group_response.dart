@@ -16,7 +16,7 @@ part 'v1_update_group_response.g.dart';
 @BuiltValue()
 abstract class V1UpdateGroupResponse implements Built<V1UpdateGroupResponse, V1UpdateGroupResponseBuilder> {
   @BuiltValueField(wireName: r'group')
-  V1Group? get group;
+  V1Group get group;
 
   V1UpdateGroupResponse._();
 
@@ -41,13 +41,11 @@ class _$V1UpdateGroupResponseSerializer implements PrimitiveSerializer<V1UpdateG
     V1UpdateGroupResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.group != null) {
-      yield r'group';
-      yield serializers.serialize(
-        object.group,
-        specifiedType: const FullType(V1Group),
-      );
-    }
+    yield r'group';
+    yield serializers.serialize(
+      object.group,
+      specifiedType: const FullType(V1Group),
+    );
   }
 
   @override

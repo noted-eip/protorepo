@@ -37,14 +37,14 @@ void main() {
 
     // List users based on email regex.
     //
-    //Future<V1ListAccountsResponse> accountsAPIListAccounts({ String emailContains, int limit, int offset }) async
+    //Future<V1ListAccountsResponse> accountsAPIListAccounts(String emailContains, { int limit, int offset }) async
     test('test accountsAPIListAccounts', () async {
       // TODO
     });
 
     // Must be account owner. Can only update `account.name`.
     //
-    //Future<V1UpdateAccountResponse> accountsAPIUpdateAccount(String accountId, AccountsAPIUpdateAccountRequest body) async
+    //Future<V1UpdateAccountResponse> accountsAPIUpdateAccount(String accountId, V1Account account, { String updateMask }) async
     test('test accountsAPIUpdateAccount', () async {
       // TODO
     });
@@ -72,7 +72,7 @@ void main() {
 
     // Must be group member. Returns only the non-array fields of a group.
     //
-    //Future<V1ListGroupsResponse> groupsAPIListGroups({ String accountId }) async
+    //Future<V1ListGroupsResponse> groupsAPIListGroups(String accountId) async
     test('test groupsAPIListGroups', () async {
       // TODO
     });

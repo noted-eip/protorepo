@@ -8,12 +8,12 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [optional] 
+**id** | **String** |  | 
 **groupId** | **String** |  | [optional] 
-**senderAccountId** | **String** |  | [optional] 
-**recipientAccountId** | **String** |  | [optional] 
-**createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
-**validUntil** | [**DateTime**](DateTime.md) |  | [optional] 
+**senderAccountId** | **String** |  | 
+**recipientAccountId** | **String** |  | 
+**createdAt** | [**DateTime**](DateTime.md) |  | 
+**validUntil** | [**DateTime**](DateTime.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

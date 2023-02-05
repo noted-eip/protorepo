@@ -16,7 +16,7 @@ part 'v1_get_conversation_response.g.dart';
 @BuiltValue()
 abstract class V1GetConversationResponse implements Built<V1GetConversationResponse, V1GetConversationResponseBuilder> {
   @BuiltValueField(wireName: r'conversation')
-  V1GroupConversation? get conversation;
+  V1GroupConversation get conversation;
 
   V1GetConversationResponse._();
 
@@ -41,13 +41,11 @@ class _$V1GetConversationResponseSerializer implements PrimitiveSerializer<V1Get
     V1GetConversationResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.conversation != null) {
-      yield r'conversation';
-      yield serializers.serialize(
-        object.conversation,
-        specifiedType: const FullType(V1GroupConversation),
-      );
-    }
+    yield r'conversation';
+    yield serializers.serialize(
+      object.conversation,
+      specifiedType: const FullType(V1GroupConversation),
+    );
   }
 
   @override

@@ -26,10 +26,10 @@ part 'v1_block.g.dart';
 @BuiltValue()
 abstract class V1Block implements Built<V1Block, V1BlockBuilder> {
   @BuiltValueField(wireName: r'id')
-  String? get id;
+  String get id;
 
   @BuiltValueField(wireName: r'type')
-  V1BlockType? get type;
+  V1BlockType get type;
   // enum typeEnum {  TYPE_HEADING_1,  TYPE_HEADING_2,  TYPE_HEADING_3,  TYPE_PARAGRAPH,  TYPE_MATH,  TYPE_CODE,  TYPE_BULLET_POINT,  TYPE_NUMBER_POINT,  TYPE_IMAGE,  };
 
   @BuiltValueField(wireName: r'heading')
@@ -76,20 +76,16 @@ class _$V1BlockSerializer implements PrimitiveSerializer<V1Block> {
     V1Block object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(V1BlockType),
-      );
-    }
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(String),
+    );
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(V1BlockType),
+    );
     if (object.heading != null) {
       yield r'heading';
       yield serializers.serialize(

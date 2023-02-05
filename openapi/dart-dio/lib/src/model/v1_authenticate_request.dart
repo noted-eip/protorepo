@@ -16,10 +16,10 @@ part 'v1_authenticate_request.g.dart';
 @BuiltValue()
 abstract class V1AuthenticateRequest implements Built<V1AuthenticateRequest, V1AuthenticateRequestBuilder> {
   @BuiltValueField(wireName: r'email')
-  String? get email;
+  String get email;
 
   @BuiltValueField(wireName: r'password')
-  String? get password;
+  String get password;
 
   V1AuthenticateRequest._();
 
@@ -44,20 +44,16 @@ class _$V1AuthenticateRequestSerializer implements PrimitiveSerializer<V1Authent
     V1AuthenticateRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.email != null) {
-      yield r'email';
-      yield serializers.serialize(
-        object.email,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.password != null) {
-      yield r'password';
-      yield serializers.serialize(
-        object.password,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'email';
+    yield serializers.serialize(
+      object.email,
+      specifiedType: const FullType(String),
+    );
+    yield r'password';
+    yield serializers.serialize(
+      object.password,
+      specifiedType: const FullType(String),
+    );
   }
 
   @override

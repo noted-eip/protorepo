@@ -17,13 +17,13 @@ part 'v1_group_member.g.dart';
 @BuiltValue()
 abstract class V1GroupMember implements Built<V1GroupMember, V1GroupMemberBuilder> {
   @BuiltValueField(wireName: r'accountId')
-  String? get accountId;
+  String get accountId;
 
   @BuiltValueField(wireName: r'isAdmin')
-  bool? get isAdmin;
+  bool get isAdmin;
 
   @BuiltValueField(wireName: r'joinedAt')
-  DateTime? get joinedAt;
+  DateTime get joinedAt;
 
   V1GroupMember._();
 
@@ -48,27 +48,21 @@ class _$V1GroupMemberSerializer implements PrimitiveSerializer<V1GroupMember> {
     V1GroupMember object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.accountId != null) {
-      yield r'accountId';
-      yield serializers.serialize(
-        object.accountId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.isAdmin != null) {
-      yield r'isAdmin';
-      yield serializers.serialize(
-        object.isAdmin,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.joinedAt != null) {
-      yield r'joinedAt';
-      yield serializers.serialize(
-        object.joinedAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
+    yield r'accountId';
+    yield serializers.serialize(
+      object.accountId,
+      specifiedType: const FullType(String),
+    );
+    yield r'isAdmin';
+    yield serializers.serialize(
+      object.isAdmin,
+      specifiedType: const FullType(bool),
+    );
+    yield r'joinedAt';
+    yield serializers.serialize(
+      object.joinedAt,
+      specifiedType: const FullType(DateTime),
+    );
   }
 
   @override

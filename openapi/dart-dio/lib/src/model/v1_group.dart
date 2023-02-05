@@ -30,22 +30,22 @@ part 'v1_group.g.dart';
 @BuiltValue()
 abstract class V1Group implements Built<V1Group, V1GroupBuilder> {
   @BuiltValueField(wireName: r'id')
-  String? get id;
+  String get id;
 
   @BuiltValueField(wireName: r'name')
-  String? get name;
+  String get name;
 
   @BuiltValueField(wireName: r'description')
-  String? get description;
+  String get description;
 
   @BuiltValueField(wireName: r'workspaceAccountId')
   String? get workspaceAccountId;
 
   @BuiltValueField(wireName: r'avatarUrl')
-  String? get avatarUrl;
+  String get avatarUrl;
 
   @BuiltValueField(wireName: r'createdAt')
-  DateTime? get createdAt;
+  DateTime get createdAt;
 
   @BuiltValueField(wireName: r'modifiedAt')
   DateTime? get modifiedAt;
@@ -85,27 +85,21 @@ class _$V1GroupSerializer implements PrimitiveSerializer<V1Group> {
     V1Group object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.description != null) {
-      yield r'description';
-      yield serializers.serialize(
-        object.description,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(String),
+    );
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
+    yield r'description';
+    yield serializers.serialize(
+      object.description,
+      specifiedType: const FullType(String),
+    );
     if (object.workspaceAccountId != null) {
       yield r'workspaceAccountId';
       yield serializers.serialize(
@@ -113,20 +107,16 @@ class _$V1GroupSerializer implements PrimitiveSerializer<V1Group> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.avatarUrl != null) {
-      yield r'avatarUrl';
-      yield serializers.serialize(
-        object.avatarUrl,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.createdAt != null) {
-      yield r'createdAt';
-      yield serializers.serialize(
-        object.createdAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
+    yield r'avatarUrl';
+    yield serializers.serialize(
+      object.avatarUrl,
+      specifiedType: const FullType(String),
+    );
+    yield r'createdAt';
+    yield serializers.serialize(
+      object.createdAt,
+      specifiedType: const FullType(DateTime),
+    );
     if (object.modifiedAt != null) {
       yield r'modifiedAt';
       yield serializers.serialize(

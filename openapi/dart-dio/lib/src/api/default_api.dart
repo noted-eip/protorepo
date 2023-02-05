@@ -393,7 +393,7 @@ class DefaultApi {
   /// Returns a [Future] containing a [Response] with a [V1ListAccountsResponse] as data
   /// Throws [DioError] if API call or serialization fails
   Future<Response<V1ListAccountsResponse>> accountsAPIListAccounts({ 
-    String? emailContains,
+    required String emailContains,
     int? limit,
     int? offset,
     CancelToken? cancelToken,
@@ -417,7 +417,7 @@ class DefaultApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (emailContains != null) r'emailContains': encodeQueryParameter(_serializers, emailContains, const FullType(String)),
+      r'emailContains': encodeQueryParameter(_serializers, emailContains, const FullType(String)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
@@ -736,7 +736,7 @@ class DefaultApi {
   ///
   /// Parameters:
   /// * [groupId] 
-  /// * [inviteLinkCode] - (Optional) If the requester isn't a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
+  /// * [inviteLinkCode] - If the requester isn't a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -827,7 +827,7 @@ class DefaultApi {
   /// Returns a [Future] containing a [Response] with a [V1ListGroupsResponse] as data
   /// Throws [DioError] if API call or serialization fails
   Future<Response<V1ListGroupsResponse>> groupsAPIListGroups({ 
-    String? accountId,
+    required String accountId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -849,7 +849,7 @@ class DefaultApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (accountId != null) r'accountId': encodeQueryParameter(_serializers, accountId, const FullType(String)),
+      r'accountId': encodeQueryParameter(_serializers, accountId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

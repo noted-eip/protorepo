@@ -16,7 +16,7 @@ part 'v1_insert_block_response.g.dart';
 @BuiltValue()
 abstract class V1InsertBlockResponse implements Built<V1InsertBlockResponse, V1InsertBlockResponseBuilder> {
   @BuiltValueField(wireName: r'block')
-  V1Block? get block;
+  V1Block get block;
 
   V1InsertBlockResponse._();
 
@@ -41,13 +41,11 @@ class _$V1InsertBlockResponseSerializer implements PrimitiveSerializer<V1InsertB
     V1InsertBlockResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.block != null) {
-      yield r'block';
-      yield serializers.serialize(
-        object.block,
-        specifiedType: const FullType(V1Block),
-      );
-    }
+    yield r'block';
+    yield serializers.serialize(
+      object.block,
+      specifiedType: const FullType(V1Block),
+    );
   }
 
   @override

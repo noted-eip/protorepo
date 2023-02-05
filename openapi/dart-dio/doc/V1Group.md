@@ -8,12 +8,12 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [optional] 
-**name** | **String** |  | [optional] 
-**description** | **String** |  | [optional] 
+**id** | **String** |  | 
+**name** | **String** |  | 
+**description** | **String** |  | 
 **workspaceAccountId** | **String** |  | [optional] 
-**avatarUrl** | **String** |  | [optional] 
-**createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
+**avatarUrl** | **String** |  | 
+**createdAt** | [**DateTime**](DateTime.md) |  | 
 **modifiedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **members** | [**BuiltList&lt;V1GroupMember&gt;**](V1GroupMember.md) |  | [optional] 
 **conversations** | [**BuiltList&lt;V1GroupConversation&gt;**](V1GroupConversation.md) |  | [optional] 

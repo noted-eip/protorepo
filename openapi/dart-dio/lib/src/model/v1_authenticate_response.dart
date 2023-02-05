@@ -15,7 +15,7 @@ part 'v1_authenticate_response.g.dart';
 @BuiltValue()
 abstract class V1AuthenticateResponse implements Built<V1AuthenticateResponse, V1AuthenticateResponseBuilder> {
   @BuiltValueField(wireName: r'token')
-  String? get token;
+  String get token;
 
   V1AuthenticateResponse._();
 
@@ -40,13 +40,11 @@ class _$V1AuthenticateResponseSerializer implements PrimitiveSerializer<V1Authen
     V1AuthenticateResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.token != null) {
-      yield r'token';
-      yield serializers.serialize(
-        object.token,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'token';
+    yield serializers.serialize(
+      object.token,
+      specifiedType: const FullType(String),
+    );
   }
 
   @override

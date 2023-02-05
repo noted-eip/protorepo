@@ -8,12 +8,12 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [optional] 
-**groupId** | **String** |  | [optional] 
-**authorAccountId** | **String** |  | [optional] 
-**title** | **String** |  | [optional] 
+**id** | **String** |  | 
+**groupId** | **String** |  | 
+**authorAccountId** | **String** |  | 
+**title** | **String** |  | 
 **blocks** | [**BuiltList&lt;V1Block&gt;**](V1Block.md) |  | [optional] 
-**createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
+**createdAt** | [**DateTime**](DateTime.md) |  | 
 **modifiedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **analyzedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 

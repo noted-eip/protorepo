@@ -16,7 +16,7 @@ part 'v1_get_invite_link_response.g.dart';
 @BuiltValue()
 abstract class V1GetInviteLinkResponse implements Built<V1GetInviteLinkResponse, V1GetInviteLinkResponseBuilder> {
   @BuiltValueField(wireName: r'inviteLink')
-  V1GroupInviteLink? get inviteLink;
+  V1GroupInviteLink get inviteLink;
 
   V1GetInviteLinkResponse._();
 
@@ -41,13 +41,11 @@ class _$V1GetInviteLinkResponseSerializer implements PrimitiveSerializer<V1GetIn
     V1GetInviteLinkResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.inviteLink != null) {
-      yield r'inviteLink';
-      yield serializers.serialize(
-        object.inviteLink,
-        specifiedType: const FullType(V1GroupInviteLink),
-      );
-    }
+    yield r'inviteLink';
+    yield serializers.serialize(
+      object.inviteLink,
+      specifiedType: const FullType(V1GroupInviteLink),
+    );
   }
 
   @override

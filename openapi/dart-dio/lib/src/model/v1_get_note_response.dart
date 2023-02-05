@@ -16,7 +16,7 @@ part 'v1_get_note_response.g.dart';
 @BuiltValue()
 abstract class V1GetNoteResponse implements Built<V1GetNoteResponse, V1GetNoteResponseBuilder> {
   @BuiltValueField(wireName: r'note')
-  V1Note? get note;
+  V1Note get note;
 
   V1GetNoteResponse._();
 
@@ -41,13 +41,11 @@ class _$V1GetNoteResponseSerializer implements PrimitiveSerializer<V1GetNoteResp
     V1GetNoteResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.note != null) {
-      yield r'note';
-      yield serializers.serialize(
-        object.note,
-        specifiedType: const FullType(V1Note),
-      );
-    }
+    yield r'note';
+    yield serializers.serialize(
+      object.note,
+      specifiedType: const FullType(V1Note),
+    );
   }
 
   @override

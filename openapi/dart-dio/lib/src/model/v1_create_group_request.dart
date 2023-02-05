@@ -16,10 +16,10 @@ part 'v1_create_group_request.g.dart';
 @BuiltValue()
 abstract class V1CreateGroupRequest implements Built<V1CreateGroupRequest, V1CreateGroupRequestBuilder> {
   @BuiltValueField(wireName: r'name')
-  String? get name;
+  String get name;
 
   @BuiltValueField(wireName: r'description')
-  String? get description;
+  String get description;
 
   V1CreateGroupRequest._();
 
@@ -44,20 +44,16 @@ class _$V1CreateGroupRequestSerializer implements PrimitiveSerializer<V1CreateGr
     V1CreateGroupRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.description != null) {
-      yield r'description';
-      yield serializers.serialize(
-        object.description,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
+    yield r'description';
+    yield serializers.serialize(
+      object.description,
+      specifiedType: const FullType(String),
+    );
   }
 
   @override

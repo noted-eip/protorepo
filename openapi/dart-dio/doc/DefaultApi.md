@@ -215,7 +215,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailContains** | **String**|  | [optional] 
+ **emailContains** | **String**|  | 
  **limit** | **int**|  | [optional] 
  **offset** | **int**|  | [optional] 
 
@@ -372,7 +372,7 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
-final String inviteLinkCode = inviteLinkCode_example; // String | (Optional) If the requester isn't a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
+final String inviteLinkCode = inviteLinkCode_example; // String | If the requester isn't a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
 
 try {
     final response = api.groupsAPIGetGroup(groupId, inviteLinkCode);
@@ -387,7 +387,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **String**|  | 
- **inviteLinkCode** | **String**| (Optional) If the requester isn't a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join. | [optional] 
+ **inviteLinkCode** | **String**| If the requester isn't a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join. | [optional] 
 
 ### Return type
 
@@ -428,7 +428,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **String**|  | [optional] 
+ **accountId** | **String**|  | 
 
 ### Return type
 

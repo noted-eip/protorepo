@@ -8,8 +8,8 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [optional] 
-**type** | [**V1BlockType**](V1BlockType.md) |  | [optional] 
+**id** | **String** |  | 
+**type** | [**V1BlockType**](V1BlockType.md) |  | 
 **heading** | **String** |  | [optional] 
 **paragraph** | **String** |  | [optional] 
 **numberPoint** | **String** |  | [optional] 

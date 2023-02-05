@@ -15,7 +15,7 @@ part 'v1_export_note_response.g.dart';
 @BuiltValue()
 abstract class V1ExportNoteResponse implements Built<V1ExportNoteResponse, V1ExportNoteResponseBuilder> {
   @BuiltValueField(wireName: r'file')
-  String? get file;
+  String get file;
 
   V1ExportNoteResponse._();
 
@@ -40,13 +40,11 @@ class _$V1ExportNoteResponseSerializer implements PrimitiveSerializer<V1ExportNo
     V1ExportNoteResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.file != null) {
-      yield r'file';
-      yield serializers.serialize(
-        object.file,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'file';
+    yield serializers.serialize(
+      object.file,
+      specifiedType: const FullType(String),
+    );
   }
 
   @override

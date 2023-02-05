@@ -18,16 +18,16 @@ part 'v1_group_invite_link.g.dart';
 @BuiltValue()
 abstract class V1GroupInviteLink implements Built<V1GroupInviteLink, V1GroupInviteLinkBuilder> {
   @BuiltValueField(wireName: r'code')
-  String? get code;
+  String get code;
 
   @BuiltValueField(wireName: r'generatedByAccountId')
-  String? get generatedByAccountId;
+  String get generatedByAccountId;
 
   @BuiltValueField(wireName: r'createdAt')
-  DateTime? get createdAt;
+  DateTime get createdAt;
 
   @BuiltValueField(wireName: r'validUntil')
-  DateTime? get validUntil;
+  DateTime get validUntil;
 
   V1GroupInviteLink._();
 
@@ -52,34 +52,26 @@ class _$V1GroupInviteLinkSerializer implements PrimitiveSerializer<V1GroupInvite
     V1GroupInviteLink object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.code != null) {
-      yield r'code';
-      yield serializers.serialize(
-        object.code,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.generatedByAccountId != null) {
-      yield r'generatedByAccountId';
-      yield serializers.serialize(
-        object.generatedByAccountId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.createdAt != null) {
-      yield r'createdAt';
-      yield serializers.serialize(
-        object.createdAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
-    if (object.validUntil != null) {
-      yield r'validUntil';
-      yield serializers.serialize(
-        object.validUntil,
-        specifiedType: const FullType(DateTime),
-      );
-    }
+    yield r'code';
+    yield serializers.serialize(
+      object.code,
+      specifiedType: const FullType(String),
+    );
+    yield r'generatedByAccountId';
+    yield serializers.serialize(
+      object.generatedByAccountId,
+      specifiedType: const FullType(String),
+    );
+    yield r'createdAt';
+    yield serializers.serialize(
+      object.createdAt,
+      specifiedType: const FullType(DateTime),
+    );
+    yield r'validUntil';
+    yield serializers.serialize(
+      object.validUntil,
+      specifiedType: const FullType(DateTime),
+    );
   }
 
   @override

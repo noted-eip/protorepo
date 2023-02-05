@@ -23,7 +23,7 @@ paths:
       parameters:
         - name: emailContains
           in: query
-          required: false
+          required: true
           type: string
         - name: limit
           in: query
@@ -114,6 +114,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/v1Account'
+            required:
+              - account
         - name: updateMask
           in: query
           required: false
@@ -153,7 +155,7 @@ paths:
       parameters:
         - name: accountId
           in: query
-          required: false
+          required: true
           type: string
     post:
       summary: |-
@@ -198,7 +200,7 @@ paths:
           type: string
         - name: inviteLinkCode
           description: |-
-            (Optional) If the requester isn't a member of the group nor have they
+            If the requester isn't a member of the group nor have they
             been invited directly, they can provide an invite_link_code that will
             give them a public preview of the group they wish to join.
           in: query
@@ -302,6 +304,8 @@ definitions:
     properties:
       member:
         $ref: '#/definitions/v1GroupMember'
+    required:
+      - member
   v1Account:
     type: object
     properties:
@@ -322,11 +326,16 @@ definitions:
         type: string
       password:
         type: string
+    required:
+      - email
+      - password
   v1AuthenticateResponse:
     type: object
     properties:
       token:
         type: string
+    required:
+      - token
   v1Block:
     type: object
     properties:
@@ -348,6 +357,9 @@ definitions:
         $ref: '#/definitions/BlockCode'
       math:
         type: string
+    required:
+      - id
+      - type
   v1BlockType:
     type: string
     enum:
@@ -379,6 +391,13 @@ definitions:
       modifiedAt:
         type: string
         format: date-time
+    required:
+      - id
+      - groupId
+      - conversationId
+      - senderAccountId
+      - content
+      - createdAt
   v1CreateAccountRequest:
     type: object
     properties:
@@ -406,21 +425,30 @@ definitions:
         type: string
       description:
         type: string
+    required:
+      - name
+      - description
   v1CreateGroupResponse:
     type: object
     properties:
       group:
         $ref: '#/definitions/v1Group'
+    required:
+      - group
   v1CreateNoteResponse:
     type: object
     properties:
       note:
         $ref: '#/definitions/v1Note'
+    required:
+      - note
   v1CreateWorkspaceResponse:
     type: object
     properties:
       group:
         $ref: '#/definitions/v1Group'
+    required:
+      - group
   v1DefinitionWidget:
     type: object
     properties:
@@ -450,6 +478,8 @@ definitions:
       file:
         type: string
         format: byte
+    required:
+      - file
   v1ExtractKeywordsBatchResponse:
     type: object
     properties:
@@ -469,6 +499,8 @@ definitions:
     properties:
       inviteLink:
         $ref: '#/definitions/v1GroupInviteLink'
+    required:
+      - inviteLink
   v1GenerateWidgetsResponse:
     type: object
     properties:
@@ -481,41 +513,57 @@ definitions:
     properties:
       account:
         $ref: '#/definitions/v1Account'
+    required:
+      - account
   v1GetConversationMessageResponse:
     type: object
     properties:
       message:
         $ref: '#/definitions/v1ConversationMessage'
+    required:
+      - message
   v1GetConversationResponse:
     type: object
     properties:
       conversation:
         $ref: '#/definitions/v1GroupConversation'
+    required:
+      - conversation
   v1GetGroupResponse:
     type: object
     properties:
       group:
         $ref: '#/definitions/v1Group'
+    required:
+      - group
   v1GetInviteLinkResponse:
     type: object
     properties:
       inviteLink:
         $ref: '#/definitions/v1GroupInviteLink'
+    required:
+      - inviteLink
   v1GetInviteResponse:
     type: object
     properties:
       invite:
         $ref: '#/definitions/v1GroupInvite'
+    required:
+      - invite
   v1GetMemberResponse:
     type: object
     properties:
       member:
         $ref: '#/definitions/v1GroupMember'
+    required:
+      - member
   v1GetNoteResponse:
     type: object
     properties:
       note:
         $ref: '#/definitions/v1Note'
+    required:
+      - note
   v1Group:
     type: object
     properties:
@@ -551,6 +599,12 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/v1GroupInviteLink'
+    required:
+      - id
+      - name
+      - description
+      - avatarUrl
+      - createdAt
   v1GroupConversation:
     type: object
     properties:
@@ -561,6 +615,10 @@ definitions:
       createdAt:
         type: string
         format: date-time
+    required:
+      - id
+      - name
+      - createdAt
   v1GroupInvite:
     type: object
     properties:
@@ -578,6 +636,12 @@ definitions:
       validUntil:
         type: string
         format: date-time
+    required:
+      - id
+      - senderAccountId
+      - recipientAccountId
+      - createdAt
+      - validUntil
   v1GroupInviteLink:
     type: object
     properties:
@@ -591,6 +655,11 @@ definitions:
       validUntil:
         type: string
         format: date-time
+    required:
+      - code
+      - generatedByAccountId
+      - createdAt
+      - validUntil
   v1GroupMember:
     type: object
     properties:
@@ -601,6 +670,10 @@ definitions:
       joinedAt:
         type: string
         format: date-time
+    required:
+      - accountId
+      - isAdmin
+      - joinedAt
   v1HttpError:
     type: object
     properties:
@@ -620,6 +693,8 @@ definitions:
     properties:
       block:
         $ref: '#/definitions/v1Block'
+    required:
+      - block
   v1ListAccountsResponse:
     type: object
     properties:
@@ -679,6 +754,12 @@ definitions:
       analyzedAt:
         type: string
         format: date-time
+    required:
+      - id
+      - groupId
+      - authorAccountId
+      - title
+      - createdAt
   v1NoteExportFormat:
     type: string
     enum:
@@ -700,6 +781,8 @@ definitions:
     properties:
       message:
         $ref: '#/definitions/v1ConversationMessage'
+    required:
+      - message
   v1SendEmailResponse:
     type: object
   v1SendInviteResponse:
@@ -707,6 +790,8 @@ definitions:
     properties:
       invite:
         $ref: '#/definitions/v1GroupInvite'
+    required:
+      - invite
   v1SummarizeResponse:
     type: object
     properties:
@@ -718,36 +803,50 @@ definitions:
     properties:
       account:
         $ref: '#/definitions/v1Account'
+    required:
+      - account
   v1UpdateBlockResponse:
     type: object
     properties:
       block:
         $ref: '#/definitions/v1Block'
+    required:
+      - block
   v1UpdateConversationMessageResponse:
     type: object
     properties:
       message:
         $ref: '#/definitions/v1ConversationMessage'
+    required:
+      - message
   v1UpdateConversationResponse:
     type: object
     properties:
       conversation:
         $ref: '#/definitions/v1GroupConversation'
+    required:
+      - conversation
   v1UpdateGroupResponse:
     type: object
     properties:
       group:
         $ref: '#/definitions/v1Group'
+    required:
+      - group
   v1UpdateMemberResponse:
     type: object
     properties:
       member:
         $ref: '#/definitions/v1GroupMember'
+    required:
+      - member
   v1UpdateNoteResponse:
     type: object
     properties:
       note:
         $ref: '#/definitions/v1Note'
+    required:
+      - note
   v1UseInviteLinkResponse:
     type: object
   v1WebsiteWidget:

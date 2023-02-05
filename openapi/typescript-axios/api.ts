@@ -110,7 +110,7 @@ export interface V1AcceptInviteResponse {
      * @type {V1GroupMember}
      * @memberof V1AcceptInviteResponse
      */
-    'member'?: V1GroupMember;
+    'member': V1GroupMember;
 }
 /**
  * 
@@ -148,13 +148,13 @@ export interface V1AuthenticateRequest {
      * @type {string}
      * @memberof V1AuthenticateRequest
      */
-    'email'?: string;
+    'email': string;
     /**
      * 
      * @type {string}
      * @memberof V1AuthenticateRequest
      */
-    'password'?: string;
+    'password': string;
 }
 /**
  * 
@@ -167,7 +167,7 @@ export interface V1AuthenticateResponse {
      * @type {string}
      * @memberof V1AuthenticateResponse
      */
-    'token'?: string;
+    'token': string;
 }
 /**
  * 
@@ -180,13 +180,13 @@ export interface V1Block {
      * @type {string}
      * @memberof V1Block
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {V1BlockType}
      * @memberof V1Block
      */
-    'type'?: V1BlockType;
+    'type': V1BlockType;
     /**
      * 
      * @type {string}
@@ -264,37 +264,37 @@ export interface V1ConversationMessage {
      * @type {string}
      * @memberof V1ConversationMessage
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof V1ConversationMessage
      */
-    'groupId'?: string;
+    'groupId': string;
     /**
      * 
      * @type {string}
      * @memberof V1ConversationMessage
      */
-    'conversationId'?: string;
+    'conversationId': string;
     /**
      * 
      * @type {string}
      * @memberof V1ConversationMessage
      */
-    'senderAccountId'?: string;
+    'senderAccountId': string;
     /**
      * 
      * @type {string}
      * @memberof V1ConversationMessage
      */
-    'content'?: string;
+    'content': string;
     /**
      * 
      * @type {string}
      * @memberof V1ConversationMessage
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * 
      * @type {string}
@@ -351,13 +351,13 @@ export interface V1CreateGroupRequest {
      * @type {string}
      * @memberof V1CreateGroupRequest
      */
-    'name'?: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof V1CreateGroupRequest
      */
-    'description'?: string;
+    'description': string;
 }
 /**
  * 
@@ -370,7 +370,7 @@ export interface V1CreateGroupResponse {
      * @type {V1Group}
      * @memberof V1CreateGroupResponse
      */
-    'group'?: V1Group;
+    'group': V1Group;
 }
 /**
  * 
@@ -383,7 +383,7 @@ export interface V1CreateNoteResponse {
      * @type {V1Note}
      * @memberof V1CreateNoteResponse
      */
-    'note'?: V1Note;
+    'note': V1Note;
 }
 /**
  * 
@@ -396,7 +396,7 @@ export interface V1CreateWorkspaceResponse {
      * @type {V1Group}
      * @memberof V1CreateWorkspaceResponse
      */
-    'group'?: V1Group;
+    'group': V1Group;
 }
 /**
  * 
@@ -440,7 +440,7 @@ export interface V1ExportNoteResponse {
      * @type {string}
      * @memberof V1ExportNoteResponse
      */
-    'file'?: string;
+    'file': string;
 }
 /**
  * 
@@ -479,7 +479,7 @@ export interface V1GenerateInviteLinkResponse {
      * @type {V1GroupInviteLink}
      * @memberof V1GenerateInviteLinkResponse
      */
-    'inviteLink'?: V1GroupInviteLink;
+    'inviteLink': V1GroupInviteLink;
 }
 /**
  * 
@@ -505,7 +505,7 @@ export interface V1GetAccountResponse {
      * @type {V1Account}
      * @memberof V1GetAccountResponse
      */
-    'account'?: V1Account;
+    'account': V1Account;
 }
 /**
  * 
@@ -518,7 +518,7 @@ export interface V1GetConversationMessageResponse {
      * @type {V1ConversationMessage}
      * @memberof V1GetConversationMessageResponse
      */
-    'message'?: V1ConversationMessage;
+    'message': V1ConversationMessage;
 }
 /**
  * 
@@ -531,7 +531,7 @@ export interface V1GetConversationResponse {
      * @type {V1GroupConversation}
      * @memberof V1GetConversationResponse
      */
-    'conversation'?: V1GroupConversation;
+    'conversation': V1GroupConversation;
 }
 /**
  * 
@@ -544,7 +544,7 @@ export interface V1GetGroupResponse {
      * @type {V1Group}
      * @memberof V1GetGroupResponse
      */
-    'group'?: V1Group;
+    'group': V1Group;
 }
 /**
  * 
@@ -557,7 +557,7 @@ export interface V1GetInviteLinkResponse {
      * @type {V1GroupInviteLink}
      * @memberof V1GetInviteLinkResponse
      */
-    'inviteLink'?: V1GroupInviteLink;
+    'inviteLink': V1GroupInviteLink;
 }
 /**
  * 
@@ -570,7 +570,7 @@ export interface V1GetInviteResponse {
      * @type {V1GroupInvite}
      * @memberof V1GetInviteResponse
      */
-    'invite'?: V1GroupInvite;
+    'invite': V1GroupInvite;
 }
 /**
  * 
@@ -583,7 +583,7 @@ export interface V1GetMemberResponse {
      * @type {V1GroupMember}
      * @memberof V1GetMemberResponse
      */
-    'member'?: V1GroupMember;
+    'member': V1GroupMember;
 }
 /**
  * 
@@ -596,7 +596,7 @@ export interface V1GetNoteResponse {
      * @type {V1Note}
      * @memberof V1GetNoteResponse
      */
-    'note'?: V1Note;
+    'note': V1Note;
 }
 /**
  * 
@@ -609,19 +609,19 @@ export interface V1Group {
      * @type {string}
      * @memberof V1Group
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof V1Group
      */
-    'name'?: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof V1Group
      */
-    'description'?: string;
+    'description': string;
     /**
      * 
      * @type {string}
@@ -633,13 +633,13 @@ export interface V1Group {
      * @type {string}
      * @memberof V1Group
      */
-    'avatarUrl'?: string;
+    'avatarUrl': string;
     /**
      * 
      * @type {string}
      * @memberof V1Group
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * 
      * @type {string}
@@ -682,19 +682,19 @@ export interface V1GroupConversation {
      * @type {string}
      * @memberof V1GroupConversation
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof V1GroupConversation
      */
-    'name'?: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof V1GroupConversation
      */
-    'createdAt'?: string;
+    'createdAt': string;
 }
 /**
  * 
@@ -707,7 +707,7 @@ export interface V1GroupInvite {
      * @type {string}
      * @memberof V1GroupInvite
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {string}
@@ -719,25 +719,25 @@ export interface V1GroupInvite {
      * @type {string}
      * @memberof V1GroupInvite
      */
-    'senderAccountId'?: string;
+    'senderAccountId': string;
     /**
      * 
      * @type {string}
      * @memberof V1GroupInvite
      */
-    'recipientAccountId'?: string;
+    'recipientAccountId': string;
     /**
      * 
      * @type {string}
      * @memberof V1GroupInvite
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * 
      * @type {string}
      * @memberof V1GroupInvite
      */
-    'validUntil'?: string;
+    'validUntil': string;
 }
 /**
  * 
@@ -750,25 +750,25 @@ export interface V1GroupInviteLink {
      * @type {string}
      * @memberof V1GroupInviteLink
      */
-    'code'?: string;
+    'code': string;
     /**
      * 
      * @type {string}
      * @memberof V1GroupInviteLink
      */
-    'generatedByAccountId'?: string;
+    'generatedByAccountId': string;
     /**
      * 
      * @type {string}
      * @memberof V1GroupInviteLink
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * 
      * @type {string}
      * @memberof V1GroupInviteLink
      */
-    'validUntil'?: string;
+    'validUntil': string;
 }
 /**
  * 
@@ -781,19 +781,19 @@ export interface V1GroupMember {
      * @type {string}
      * @memberof V1GroupMember
      */
-    'accountId'?: string;
+    'accountId': string;
     /**
      * 
      * @type {boolean}
      * @memberof V1GroupMember
      */
-    'isAdmin'?: boolean;
+    'isAdmin': boolean;
     /**
      * 
      * @type {string}
      * @memberof V1GroupMember
      */
-    'joinedAt'?: string;
+    'joinedAt': string;
 }
 /**
  * 
@@ -844,7 +844,7 @@ export interface V1InsertBlockResponse {
      * @type {V1Block}
      * @memberof V1InsertBlockResponse
      */
-    'block'?: V1Block;
+    'block': V1Block;
 }
 /**
  * 
@@ -922,25 +922,25 @@ export interface V1Note {
      * @type {string}
      * @memberof V1Note
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {string}
      * @memberof V1Note
      */
-    'groupId'?: string;
+    'groupId': string;
     /**
      * 
      * @type {string}
      * @memberof V1Note
      */
-    'authorAccountId'?: string;
+    'authorAccountId': string;
     /**
      * 
      * @type {string}
      * @memberof V1Note
      */
-    'title'?: string;
+    'title': string;
     /**
      * 
      * @type {Array<V1Block>}
@@ -952,7 +952,7 @@ export interface V1Note {
      * @type {string}
      * @memberof V1Note
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * 
      * @type {string}
@@ -1004,7 +1004,7 @@ export interface V1SendConversationMessageResponse {
      * @type {V1ConversationMessage}
      * @memberof V1SendConversationMessageResponse
      */
-    'message'?: V1ConversationMessage;
+    'message': V1ConversationMessage;
 }
 /**
  * 
@@ -1017,7 +1017,7 @@ export interface V1SendInviteResponse {
      * @type {V1GroupInvite}
      * @memberof V1SendInviteResponse
      */
-    'invite'?: V1GroupInvite;
+    'invite': V1GroupInvite;
 }
 /**
  * 
@@ -1043,7 +1043,7 @@ export interface V1UpdateAccountResponse {
      * @type {V1Account}
      * @memberof V1UpdateAccountResponse
      */
-    'account'?: V1Account;
+    'account': V1Account;
 }
 /**
  * 
@@ -1056,7 +1056,7 @@ export interface V1UpdateBlockResponse {
      * @type {V1Block}
      * @memberof V1UpdateBlockResponse
      */
-    'block'?: V1Block;
+    'block': V1Block;
 }
 /**
  * 
@@ -1069,7 +1069,7 @@ export interface V1UpdateConversationMessageResponse {
      * @type {V1ConversationMessage}
      * @memberof V1UpdateConversationMessageResponse
      */
-    'message'?: V1ConversationMessage;
+    'message': V1ConversationMessage;
 }
 /**
  * 
@@ -1082,7 +1082,7 @@ export interface V1UpdateConversationResponse {
      * @type {V1GroupConversation}
      * @memberof V1UpdateConversationResponse
      */
-    'conversation'?: V1GroupConversation;
+    'conversation': V1GroupConversation;
 }
 /**
  * 
@@ -1095,7 +1095,7 @@ export interface V1UpdateGroupResponse {
      * @type {V1Group}
      * @memberof V1UpdateGroupResponse
      */
-    'group'?: V1Group;
+    'group': V1Group;
 }
 /**
  * 
@@ -1108,7 +1108,7 @@ export interface V1UpdateMemberResponse {
      * @type {V1GroupMember}
      * @memberof V1UpdateMemberResponse
      */
-    'member'?: V1GroupMember;
+    'member': V1GroupMember;
 }
 /**
  * 
@@ -1121,7 +1121,7 @@ export interface V1UpdateNoteResponse {
      * @type {V1Note}
      * @memberof V1UpdateNoteResponse
      */
-    'note'?: V1Note;
+    'note': V1Note;
 }
 /**
  * 
@@ -1328,13 +1328,15 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @summary List users based on email regex.
-         * @param {string} [emailContains] 
+         * @param {string} emailContains 
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIListAccounts: async (emailContains?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsAPIListAccounts: async (emailContains: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'emailContains' is not null or undefined
+            assertParamExists('accountsAPIListAccounts', 'emailContains', emailContains)
             const localVarPath = `/accounts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1489,7 +1491,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
          * @param {string} groupId 
-         * @param {string} [inviteLinkCode] (Optional) If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
+         * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1527,11 +1529,13 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @summary Must be group member. Returns only the non-array fields of a group.
-         * @param {string} [accountId] 
+         * @param {string} accountId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIListGroups: async (accountId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsAPIListGroups: async (accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('groupsAPIListGroups', 'accountId', accountId)
             const localVarPath = `/groups`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1697,13 +1701,13 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary List users based on email regex.
-         * @param {string} [emailContains] 
+         * @param {string} emailContains 
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsAPIListAccounts(emailContains?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListAccountsResponse>> {
+        async accountsAPIListAccounts(emailContains: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListAccountsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIListAccounts(emailContains, limit, offset, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1746,7 +1750,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * 
          * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
          * @param {string} groupId 
-         * @param {string} [inviteLinkCode] (Optional) If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
+         * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1757,11 +1761,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Must be group member. Returns only the non-array fields of a group.
-         * @param {string} [accountId] 
+         * @param {string} accountId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsAPIListGroups(accountId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListGroupsResponse>> {
+        async groupsAPIListGroups(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListGroupsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListGroups(accountId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1843,13 +1847,13 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @summary List users based on email regex.
-         * @param {string} [emailContains] 
+         * @param {string} emailContains 
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIListAccounts(emailContains?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListAccountsResponse> {
+        accountsAPIListAccounts(emailContains: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListAccountsResponse> {
             return localVarFp.accountsAPIListAccounts(emailContains, limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1888,7 +1892,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
          * @param {string} groupId 
-         * @param {string} [inviteLinkCode] (Optional) If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
+         * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1898,11 +1902,11 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @summary Must be group member. Returns only the non-array fields of a group.
-         * @param {string} [accountId] 
+         * @param {string} accountId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIListGroups(accountId?: string, options?: any): AxiosPromise<V1ListGroupsResponse> {
+        groupsAPIListGroups(accountId: string, options?: any): AxiosPromise<V1ListGroupsResponse> {
             return localVarFp.groupsAPIListGroups(accountId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1989,14 +1993,14 @@ export class DefaultApi extends BaseAPI {
     /**
      * 
      * @summary List users based on email regex.
-     * @param {string} [emailContains] 
+     * @param {string} emailContains 
      * @param {number} [limit] 
      * @param {number} [offset] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public accountsAPIListAccounts(emailContains?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+    public accountsAPIListAccounts(emailContains: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).accountsAPIListAccounts(emailContains, limit, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2042,7 +2046,7 @@ export class DefaultApi extends BaseAPI {
      * 
      * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
      * @param {string} groupId 
-     * @param {string} [inviteLinkCode] (Optional) If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
+     * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
@@ -2054,12 +2058,12 @@ export class DefaultApi extends BaseAPI {
     /**
      * 
      * @summary Must be group member. Returns only the non-array fields of a group.
-     * @param {string} [accountId] 
+     * @param {string} accountId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public groupsAPIListGroups(accountId?: string, options?: AxiosRequestConfig) {
+    public groupsAPIListGroups(accountId: string, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).groupsAPIListGroups(accountId, options).then((request) => request(this.axios, this.basePath));
     }
 

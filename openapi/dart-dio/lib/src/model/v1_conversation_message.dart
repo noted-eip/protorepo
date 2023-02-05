@@ -21,22 +21,22 @@ part 'v1_conversation_message.g.dart';
 @BuiltValue()
 abstract class V1ConversationMessage implements Built<V1ConversationMessage, V1ConversationMessageBuilder> {
   @BuiltValueField(wireName: r'id')
-  String? get id;
+  String get id;
 
   @BuiltValueField(wireName: r'groupId')
-  String? get groupId;
+  String get groupId;
 
   @BuiltValueField(wireName: r'conversationId')
-  String? get conversationId;
+  String get conversationId;
 
   @BuiltValueField(wireName: r'senderAccountId')
-  String? get senderAccountId;
+  String get senderAccountId;
 
   @BuiltValueField(wireName: r'content')
-  String? get content;
+  String get content;
 
   @BuiltValueField(wireName: r'createdAt')
-  DateTime? get createdAt;
+  DateTime get createdAt;
 
   @BuiltValueField(wireName: r'modifiedAt')
   DateTime? get modifiedAt;
@@ -64,48 +64,36 @@ class _$V1ConversationMessageSerializer implements PrimitiveSerializer<V1Convers
     V1ConversationMessage object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.groupId != null) {
-      yield r'groupId';
-      yield serializers.serialize(
-        object.groupId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.conversationId != null) {
-      yield r'conversationId';
-      yield serializers.serialize(
-        object.conversationId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.senderAccountId != null) {
-      yield r'senderAccountId';
-      yield serializers.serialize(
-        object.senderAccountId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.content != null) {
-      yield r'content';
-      yield serializers.serialize(
-        object.content,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.createdAt != null) {
-      yield r'createdAt';
-      yield serializers.serialize(
-        object.createdAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(String),
+    );
+    yield r'groupId';
+    yield serializers.serialize(
+      object.groupId,
+      specifiedType: const FullType(String),
+    );
+    yield r'conversationId';
+    yield serializers.serialize(
+      object.conversationId,
+      specifiedType: const FullType(String),
+    );
+    yield r'senderAccountId';
+    yield serializers.serialize(
+      object.senderAccountId,
+      specifiedType: const FullType(String),
+    );
+    yield r'content';
+    yield serializers.serialize(
+      object.content,
+      specifiedType: const FullType(String),
+    );
+    yield r'createdAt';
+    yield serializers.serialize(
+      object.createdAt,
+      specifiedType: const FullType(DateTime),
+    );
     if (object.modifiedAt != null) {
       yield r'modifiedAt';
       yield serializers.serialize(

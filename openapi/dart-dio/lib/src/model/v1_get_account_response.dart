@@ -16,7 +16,7 @@ part 'v1_get_account_response.g.dart';
 @BuiltValue()
 abstract class V1GetAccountResponse implements Built<V1GetAccountResponse, V1GetAccountResponseBuilder> {
   @BuiltValueField(wireName: r'account')
-  V1Account? get account;
+  V1Account get account;
 
   V1GetAccountResponse._();
 
@@ -41,13 +41,11 @@ class _$V1GetAccountResponseSerializer implements PrimitiveSerializer<V1GetAccou
     V1GetAccountResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.account != null) {
-      yield r'account';
-      yield serializers.serialize(
-        object.account,
-        specifiedType: const FullType(V1Account),
-      );
-    }
+    yield r'account';
+    yield serializers.serialize(
+      object.account,
+      specifiedType: const FullType(V1Account),
+    );
   }
 
   @override

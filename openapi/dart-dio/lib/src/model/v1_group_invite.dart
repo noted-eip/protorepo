@@ -20,22 +20,22 @@ part 'v1_group_invite.g.dart';
 @BuiltValue()
 abstract class V1GroupInvite implements Built<V1GroupInvite, V1GroupInviteBuilder> {
   @BuiltValueField(wireName: r'id')
-  String? get id;
+  String get id;
 
   @BuiltValueField(wireName: r'groupId')
   String? get groupId;
 
   @BuiltValueField(wireName: r'senderAccountId')
-  String? get senderAccountId;
+  String get senderAccountId;
 
   @BuiltValueField(wireName: r'recipientAccountId')
-  String? get recipientAccountId;
+  String get recipientAccountId;
 
   @BuiltValueField(wireName: r'createdAt')
-  DateTime? get createdAt;
+  DateTime get createdAt;
 
   @BuiltValueField(wireName: r'validUntil')
-  DateTime? get validUntil;
+  DateTime get validUntil;
 
   V1GroupInvite._();
 
@@ -60,13 +60,11 @@ class _$V1GroupInviteSerializer implements PrimitiveSerializer<V1GroupInvite> {
     V1GroupInvite object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(String),
+    );
     if (object.groupId != null) {
       yield r'groupId';
       yield serializers.serialize(
@@ -74,34 +72,26 @@ class _$V1GroupInviteSerializer implements PrimitiveSerializer<V1GroupInvite> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.senderAccountId != null) {
-      yield r'senderAccountId';
-      yield serializers.serialize(
-        object.senderAccountId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.recipientAccountId != null) {
-      yield r'recipientAccountId';
-      yield serializers.serialize(
-        object.recipientAccountId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.createdAt != null) {
-      yield r'createdAt';
-      yield serializers.serialize(
-        object.createdAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
-    if (object.validUntil != null) {
-      yield r'validUntil';
-      yield serializers.serialize(
-        object.validUntil,
-        specifiedType: const FullType(DateTime),
-      );
-    }
+    yield r'senderAccountId';
+    yield serializers.serialize(
+      object.senderAccountId,
+      specifiedType: const FullType(String),
+    );
+    yield r'recipientAccountId';
+    yield serializers.serialize(
+      object.recipientAccountId,
+      specifiedType: const FullType(String),
+    );
+    yield r'createdAt';
+    yield serializers.serialize(
+      object.createdAt,
+      specifiedType: const FullType(DateTime),
+    );
+    yield r'validUntil';
+    yield serializers.serialize(
+      object.validUntil,
+      specifiedType: const FullType(DateTime),
+    );
   }
 
   @override

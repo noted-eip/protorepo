@@ -24,22 +24,22 @@ part 'v1_note.g.dart';
 @BuiltValue()
 abstract class V1Note implements Built<V1Note, V1NoteBuilder> {
   @BuiltValueField(wireName: r'id')
-  String? get id;
+  String get id;
 
   @BuiltValueField(wireName: r'groupId')
-  String? get groupId;
+  String get groupId;
 
   @BuiltValueField(wireName: r'authorAccountId')
-  String? get authorAccountId;
+  String get authorAccountId;
 
   @BuiltValueField(wireName: r'title')
-  String? get title;
+  String get title;
 
   @BuiltValueField(wireName: r'blocks')
   BuiltList<V1Block>? get blocks;
 
   @BuiltValueField(wireName: r'createdAt')
-  DateTime? get createdAt;
+  DateTime get createdAt;
 
   @BuiltValueField(wireName: r'modifiedAt')
   DateTime? get modifiedAt;
@@ -70,34 +70,26 @@ class _$V1NoteSerializer implements PrimitiveSerializer<V1Note> {
     V1Note object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.groupId != null) {
-      yield r'groupId';
-      yield serializers.serialize(
-        object.groupId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.authorAccountId != null) {
-      yield r'authorAccountId';
-      yield serializers.serialize(
-        object.authorAccountId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.title != null) {
-      yield r'title';
-      yield serializers.serialize(
-        object.title,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(String),
+    );
+    yield r'groupId';
+    yield serializers.serialize(
+      object.groupId,
+      specifiedType: const FullType(String),
+    );
+    yield r'authorAccountId';
+    yield serializers.serialize(
+      object.authorAccountId,
+      specifiedType: const FullType(String),
+    );
+    yield r'title';
+    yield serializers.serialize(
+      object.title,
+      specifiedType: const FullType(String),
+    );
     if (object.blocks != null) {
       yield r'blocks';
       yield serializers.serialize(
@@ -105,13 +97,11 @@ class _$V1NoteSerializer implements PrimitiveSerializer<V1Note> {
         specifiedType: const FullType(BuiltList, [FullType(V1Block)]),
       );
     }
-    if (object.createdAt != null) {
-      yield r'createdAt';
-      yield serializers.serialize(
-        object.createdAt,
-        specifiedType: const FullType(DateTime),
-      );
-    }
+    yield r'createdAt';
+    yield serializers.serialize(
+      object.createdAt,
+      specifiedType: const FullType(DateTime),
+    );
     if (object.modifiedAt != null) {
       yield r'modifiedAt';
       yield serializers.serialize(
