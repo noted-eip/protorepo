@@ -30,6 +30,24 @@ jobs:
         shell: bash
         run: |
           .github/workflows/scripts/python-sed.sh
+      - name: Generate Typescript Axios Client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+          generator: typescript-axios
+          openapi-file: noted.swagger.yaml
+          command-args: "-o openapi/typescript-axios"
+      - name: Generate Dart Client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+          generator: dart
+          openapi-file: noted.swagger.yaml
+          command-args: "-o openapi/dart"
+      - name: Generate Dart Dio Client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+          generator: dart-dio
+          openapi-file: noted.swagger.yaml
+          command-args: "-o openapi/dart-dio"
       - name: Add generated code
         run: git add -f .
       - name: Commit changes
