@@ -25,6 +25,7 @@ jobs:
         run: |
           find noted -name "*.go" -type f -delete
           find noted -name "*.py" -type f -delete
+          rm -rf openapi
           buf generate
       - name: Rewrite Python imports
         shell: bash
@@ -36,12 +37,6 @@ jobs:
           generator: typescript-axios
           openapi-file: noted.swagger.yaml
           command-args: "-o openapi/typescript-axios"
-      - name: Generate Dart Client
-        uses: openapi-generators/openapitools-generator-action@v1
-        with:
-          generator: dart
-          openapi-file: noted.swagger.yaml
-          command-args: "-o openapi/dart"
       - name: Generate Dart Dio Client
         uses: openapi-generators/openapitools-generator-action@v1
         with:

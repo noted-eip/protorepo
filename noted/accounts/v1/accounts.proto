@@ -100,42 +100,42 @@ message CreateAccountResponse {
 }
 
 message GetAccountRequest {
-    string account_id = 1;
+    string account_id = 1 [(google.api.field_behavior) = REQUIRED];
     string email = 2;
 }
 
 message GetAccountResponse {
-    Account account = 1;
+    Account account = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message UpdateAccountRequest {
-    string account_id = 1;
-    Account account = 2;
+    string account_id = 1 [(google.api.field_behavior) = REQUIRED];
+    Account account = 2 [(google.api.field_behavior) = REQUIRED];
     google.protobuf.FieldMask update_mask = 3;
 }
 
 message UpdateAccountResponse {
-    Account account = 1;
+    Account account = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message DeleteAccountRequest {
-    string account_id = 1;
+    string account_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message DeleteAccountResponse {
 }
 
 message AuthenticateRequest {
-    string email = 1;
-    string password = 2;
+    string email = 1 [(google.api.field_behavior) = REQUIRED];
+    string password = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 message AuthenticateResponse {
-    string token = 1;
+    string token = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message ListAccountsRequest {
-    string email_contains = 3;
+    string email_contains = 3 [(google.api.field_behavior) = REQUIRED];
     int32 limit = 1;
     int32 offset = 2;
 }
