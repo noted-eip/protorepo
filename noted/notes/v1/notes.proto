@@ -93,7 +93,13 @@ enum NoteExportFormat {
 service NotesAPI {
     // Must be group member, author_account_id defaults to the user making
     // the request.
-    rpc CreateNote(CreateNoteRequest) returns (CreateNoteResponse) {}
+    rpc CreateNote(CreateNoteRequest) returns (CreateNoteResponse) {
+        option (google.api.http) = {
+            post: "/groups/{group_id}/notes",
+            body: "*",
+        };
+    }
+
     // Must be group member or author.
     rpc GetNote(GetNoteRequest) returns (GetNoteResponse) {}
     // Must be author. Can only update `title`.

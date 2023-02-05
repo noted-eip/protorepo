@@ -11,11 +11,10 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from protoc_gen_openapiv2.options import annotations_pb2 as protoc__gen__openapiv2_dot_options_dot_annotations__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$noted/notes/v1/recommendations.proto\x12\x0enoted.notes.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\xeb\x01\n\x06Widget\x12\x46\n\x0ewebsite_widget\x18\x01 \x01(\x0b\x32\x1d.noted.notes.v1.WebsiteWidgetH\x00R\rwebsiteWidget\x12@\n\x0cimage_widget\x18\x02 \x01(\x0b\x32\x1b.noted.notes.v1.ImageWidgetH\x00R\x0bimageWidget\x12O\n\x11\x64\x65\x66inition_widget\x18\x03 \x01(\x0b\x32 .noted.notes.v1.DefinitionWidgetH\x00R\x10\x64\x65\x66initionWidgetB\x06\n\x04type\"Y\n\rWebsiteWidget\x12\x14\n\x05title\x18\x01 \x01(\tR\x05title\x12\x10\n\x03url\x18\x02 \x01(\tR\x03url\x12 \n\x0b\x64\x65scription\x18\x03 \x01(\tR\x0b\x64\x65scription\"O\n\x0bImageWidget\x12\x14\n\x05title\x18\x01 \x01(\tR\x05title\x12\x10\n\x03url\x18\x02 \x01(\tR\x03url\x12\x18\n\x07\x63\x61ption\x18\x03 \x01(\tR\x07\x63\x61ption\"l\n\x10\x44\x65\x66initionWidget\x12\x12\n\x04word\x18\x01 \x01(\tR\x04word\x12\x16\n\x06gender\x18\x02 \x01(\tR\x06gender\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12\x18\n\x07\x63ontent\x18\x04 \x01(\tR\x07\x63ontent\"1\n\x16GenerateWidgetsRequest\x12\x17\n\x07note_id\x18\x01 \x01(\tR\x06noteId\"K\n\x17GenerateWidgetsResponse\x12\x30\n\x07widgets\x18\x01 \x03(\x0b\x32\x16.noted.notes.v1.WidgetR\x07widgets2z\n\x12RecommendationsAPI\x12\x64\n\x0fGenerateWidgets\x12&.noted.notes.v1.GenerateWidgetsRequest\x1a\'.noted.notes.v1.GenerateWidgetsResponse\"\x00\x42\xb2\x01Z\x0enoted/notes/v1\x92\x41\x9e\x01\x12\x1e\n\x17Noted API Documentation2\x03\x31.0Rj\n\x03\x34\x30\x34\x12\x63\nAResource not found or lacking permissions to access the resource.\x12\x1e\n\x1c\x1a\x1a.noted.common.v1.HttpErrorb\x10\n\x0e\n\nbearerAuth\x12\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$noted/notes/v1/recommendations.proto\x12\x0enoted.notes.v1\x1a.protoc-gen-openapiv2/options/annotations.proto\"\xeb\x01\n\x06Widget\x12\x46\n\x0ewebsite_widget\x18\x01 \x01(\x0b\x32\x1d.noted.notes.v1.WebsiteWidgetH\x00R\rwebsiteWidget\x12@\n\x0cimage_widget\x18\x02 \x01(\x0b\x32\x1b.noted.notes.v1.ImageWidgetH\x00R\x0bimageWidget\x12O\n\x11\x64\x65\x66inition_widget\x18\x03 \x01(\x0b\x32 .noted.notes.v1.DefinitionWidgetH\x00R\x10\x64\x65\x66initionWidgetB\x06\n\x04type\"Y\n\rWebsiteWidget\x12\x14\n\x05title\x18\x01 \x01(\tR\x05title\x12\x10\n\x03url\x18\x02 \x01(\tR\x03url\x12 \n\x0b\x64\x65scription\x18\x03 \x01(\tR\x0b\x64\x65scription\"O\n\x0bImageWidget\x12\x14\n\x05title\x18\x01 \x01(\tR\x05title\x12\x10\n\x03url\x18\x02 \x01(\tR\x03url\x12\x18\n\x07\x63\x61ption\x18\x03 \x01(\tR\x07\x63\x61ption\"l\n\x10\x44\x65\x66initionWidget\x12\x12\n\x04word\x18\x01 \x01(\tR\x04word\x12\x16\n\x06gender\x18\x02 \x01(\tR\x06gender\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12\x18\n\x07\x63ontent\x18\x04 \x01(\tR\x07\x63ontent\"1\n\x16GenerateWidgetsRequest\x12\x17\n\x07note_id\x18\x01 \x01(\tR\x06noteId\"K\n\x17GenerateWidgetsResponse\x12\x30\n\x07widgets\x18\x01 \x03(\x0b\x32\x16.noted.notes.v1.WidgetR\x07widgets2z\n\x12RecommendationsAPI\x12\x64\n\x0fGenerateWidgets\x12&.noted.notes.v1.GenerateWidgetsRequest\x1a\'.noted.notes.v1.GenerateWidgetsResponse\"\x00\x42\xb2\x01Z\x0enoted/notes/v1\x92\x41\x9e\x01\x12\x1e\n\x17Noted API Documentation2\x03\x31.0Rj\n\x03\x34\x30\x34\x12\x63\nAResource not found or lacking permissions to access the resource.\x12\x1e\n\x1c\x1a\x1a.noted.common.v1.HttpErrorb\x10\n\x0e\n\nbearerAuth\x12\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'noted.notes.v1.recommendations_pb2', globals())
@@ -23,18 +22,18 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z\016noted/notes/v1\222A\236\001\022\036\n\027Noted API Documentation2\0031.0Rj\n\003404\022c\nAResource not found or lacking permissions to access the resource.\022\036\n\034\032\032.noted.common.v1.HttpErrorb\020\n\016\n\nbearerAuth\022\000'
-  _WIDGET._serialized_start=135
-  _WIDGET._serialized_end=370
-  _WEBSITEWIDGET._serialized_start=372
-  _WEBSITEWIDGET._serialized_end=461
-  _IMAGEWIDGET._serialized_start=463
-  _IMAGEWIDGET._serialized_end=542
-  _DEFINITIONWIDGET._serialized_start=544
-  _DEFINITIONWIDGET._serialized_end=652
-  _GENERATEWIDGETSREQUEST._serialized_start=654
-  _GENERATEWIDGETSREQUEST._serialized_end=703
-  _GENERATEWIDGETSRESPONSE._serialized_start=705
-  _GENERATEWIDGETSRESPONSE._serialized_end=780
-  _RECOMMENDATIONSAPI._serialized_start=782
-  _RECOMMENDATIONSAPI._serialized_end=904
+  _WIDGET._serialized_start=105
+  _WIDGET._serialized_end=340
+  _WEBSITEWIDGET._serialized_start=342
+  _WEBSITEWIDGET._serialized_end=431
+  _IMAGEWIDGET._serialized_start=433
+  _IMAGEWIDGET._serialized_end=512
+  _DEFINITIONWIDGET._serialized_start=514
+  _DEFINITIONWIDGET._serialized_end=622
+  _GENERATEWIDGETSREQUEST._serialized_start=624
+  _GENERATEWIDGETSREQUEST._serialized_end=673
+  _GENERATEWIDGETSRESPONSE._serialized_start=675
+  _GENERATEWIDGETSRESPONSE._serialized_end=750
+  _RECOMMENDATIONSAPI._serialized_start=752
+  _RECOMMENDATIONSAPI._serialized_end=874
 # @@protoc_insertion_point(module_scope)

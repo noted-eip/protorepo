@@ -19,7 +19,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: .noted.common.v1.HttpError
+            $ref: '#/definitions/v1HttpError'
       parameters:
         - name: emailContains
           in: query
@@ -46,7 +46,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: .noted.common.v1.HttpError
+            $ref: '#/definitions/v1HttpError'
       parameters:
         - name: body
           in: body
@@ -65,7 +65,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: .noted.common.v1.HttpError
+            $ref: '#/definitions/v1HttpError'
       parameters:
         - name: accountId
           in: path
@@ -86,7 +86,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: .noted.common.v1.HttpError
+            $ref: '#/definitions/v1HttpError'
       parameters:
         - name: accountId
           in: path
@@ -103,7 +103,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: .noted.common.v1.HttpError
+            $ref: '#/definitions/v1HttpError'
       parameters:
         - name: accountId
           in: path
@@ -131,7 +131,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: .noted.common.v1.HttpError
+            $ref: '#/definitions/v1HttpError'
       parameters:
         - name: body
           in: body
@@ -150,7 +150,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: .noted.common.v1.HttpError
+            $ref: '#/definitions/v1HttpError'
       parameters:
         - name: accountId
           in: query
@@ -169,7 +169,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: .noted.common.v1.HttpError
+            $ref: '#/definitions/v1HttpError'
       parameters:
         - name: body
           in: body
@@ -191,7 +191,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: .noted.common.v1.HttpError
+            $ref: '#/definitions/v1HttpError'
       parameters:
         - name: groupId
           in: path
@@ -218,7 +218,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: .noted.common.v1.HttpError
+            $ref: '#/definitions/v1HttpError'
       parameters:
         - name: groupId
           in: path
@@ -235,7 +235,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: .noted.common.v1.HttpError
+            $ref: '#/definitions/v1HttpError'
       parameters:
         - name: groupId
           in: path
@@ -251,6 +251,38 @@ paths:
                 type: string
               description:
                 type: string
+  /groups/{groupId}/notes:
+    post:
+      summary: |-
+        Must be group member, author_account_id defaults to the user making
+        the request.
+      operationId: NotesAPI_CreateNote
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1CreateNoteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              blocks:
+                type: array
+                items:
+                  $ref: '#/definitions/v1Block'
 definitions:
   BlockCode:
     type: object
@@ -560,6 +592,11 @@ definitions:
       joinedAt:
         type: string
         format: date-time
+  v1HttpError:
+    type: object
+    properties:
+      error:
+        type: string
   v1ImageWidget:
     type: object
     properties:
