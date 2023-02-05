@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from noted.accounts.v1 import accounts_pb2 as noted_dot_accounts_dot_v1_dot_accounts__pb2
+from protorepo.noted.accounts.v1 import accounts_pb2 as noted_dot_accounts_dot_v1_dot_accounts__pb2
 
 
 class AccountsAPIStub(object):

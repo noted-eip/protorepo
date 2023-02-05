@@ -19,7 +19,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: '#/definitions/v1HttpError'
+            $ref: .noted.common.v1.HttpError
       parameters:
         - name: emailContains
           in: query
@@ -46,7 +46,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: '#/definitions/v1HttpError'
+            $ref: .noted.common.v1.HttpError
       parameters:
         - name: body
           in: body
@@ -65,7 +65,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: '#/definitions/v1HttpError'
+            $ref: .noted.common.v1.HttpError
       parameters:
         - name: accountId
           in: path
@@ -86,7 +86,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: '#/definitions/v1HttpError'
+            $ref: .noted.common.v1.HttpError
       parameters:
         - name: accountId
           in: path
@@ -103,7 +103,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: '#/definitions/v1HttpError'
+            $ref: .noted.common.v1.HttpError
       parameters:
         - name: accountId
           in: path
@@ -131,7 +131,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: '#/definitions/v1HttpError'
+            $ref: .noted.common.v1.HttpError
       parameters:
         - name: body
           in: body
@@ -150,7 +150,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: '#/definitions/v1HttpError'
+            $ref: .noted.common.v1.HttpError
       parameters:
         - name: accountId
           in: query
@@ -169,7 +169,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: '#/definitions/v1HttpError'
+            $ref: .noted.common.v1.HttpError
       parameters:
         - name: body
           in: body
@@ -191,7 +191,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: '#/definitions/v1HttpError'
+            $ref: .noted.common.v1.HttpError
       parameters:
         - name: groupId
           in: path
@@ -218,7 +218,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: '#/definitions/v1HttpError'
+            $ref: .noted.common.v1.HttpError
       parameters:
         - name: groupId
           in: path
@@ -235,7 +235,7 @@ paths:
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
-            $ref: '#/definitions/v1HttpError'
+            $ref: .noted.common.v1.HttpError
       parameters:
         - name: groupId
           in: path
@@ -560,11 +560,6 @@ definitions:
       joinedAt:
         type: string
         format: date-time
-  v1HttpError:
-    type: object
-    properties:
-      error:
-        type: string
   v1ImageWidget:
     type: object
     properties:

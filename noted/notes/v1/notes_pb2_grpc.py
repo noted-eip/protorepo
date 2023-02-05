@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from noted.notes.v1 import notes_pb2 as noted_dot_notes_dot_v1_dot_notes__pb2
+from protorepo.noted.notes.v1 import notes_pb2 as noted_dot_notes_dot_v1_dot_notes__pb2
 
 
 class NotesAPIStub(object):
