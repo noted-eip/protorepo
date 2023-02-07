@@ -211,7 +211,7 @@ service GroupsAPI {
     // recipient join the group.
     rpc DenyInvite(DenyInviteRequest) returns (DenyInviteResponse) {
         option (google.api.http) = {
-            post: "/invites/{invite_id}/deny",
+            post: "/groups/{group_id}/invites/{invite_id}/deny",
             body: "*",
         };
     }
