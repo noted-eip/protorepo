@@ -189,7 +189,7 @@ service GroupsAPI {
     // The sender defaults to the authenticated user. Must be group member.
     rpc SendInvite(SendInviteRequest) returns (SendInviteResponse) {
         option (google.api.http) = {
-            post: "/invite_id",
+            post: "/groups/{group_id}/invites",
             body: "*"
         };
     }
