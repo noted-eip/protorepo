@@ -138,22 +138,23 @@ service GroupsAPI {
     // Must be group member.
     rpc GetMember(GetMemberRequest) returns (GetMemberResponse) {
         option (google.api.http) = {
-            get: "/groups/{group_id}/members/{member_id}",
+            get: "/groups/{group_id}/members/{account_id}",
         };
     }
 
     // Must be group administrator. Can only update `role`.
     rpc UpdateMember(UpdateMemberRequest) returns (UpdateMemberResponse) {
         option (google.api.http) = {
-            patch: "/groups/{group_id}/members/{member_id}",
-            body: "GroupMember"
+            patch: "/groups/{group_id}/members/{account_id}",
+            body: "member"
         };
     }
+
     // Must be group administrator or the authenticated user removing itself from
     // the group.
     rpc RemoveMember(RemoveMemberRequest) returns (RemoveMemberResponse) {
         option (google.api.http) = {
-            delete: "/groups/{group_id}/members/{member_id}",
+            delete: "/groups/{group_id}/members/{account_id}",
         };
     }
 
@@ -185,6 +186,7 @@ service GroupsAPI {
             get: "/groups/{group_id}/inviteLinks/{invite_link_code}",
         };
     }
+
     // Must be group member.
     rpc RevokeInviteLink(RevokeInviteLinkRequest) returns (RevokeInviteLinkResponse) {
         option (google.api.http) = {
@@ -205,6 +207,7 @@ service GroupsAPI {
             body: "*"
         };
     }
+
     // Must be group administrator or sender or recipient.
     rpc GetInvite(GetInviteRequest) returns (GetInviteResponse) {
         option (google.api.http) = {
@@ -235,8 +238,7 @@ service GroupsAPI {
     // Must be group administrator or sender or recipient.
     rpc ListInvites(ListInvitesRequest) returns (ListInvitesResponse) {
         option (google.api.http) = {
-            get: "/groups/{group_id}/invites",
-            body: "*"
+            get: "/invites",
         };
     }
 }

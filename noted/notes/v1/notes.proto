@@ -162,6 +162,8 @@ message DeleteNoteResponse {
 message ListNotesRequest {
     string author_account_id = 1;
     string group_id = 2;
+    int64 limit = 3;
+    int64 offset = 4;
 }
 
 message ListNotesResponse {
