@@ -196,7 +196,7 @@ service GroupsAPI {
     // Must be group administrator or sender or recipient.
     rpc GetInvite(GetInviteRequest) returns (GetInviteResponse) {
         option (google.api.http) = {
-            get: "/invites/{invite_id}",
+            get: "/groups/{group_id}/invites/{invite_id}",
         };
     }
     // Must be recipient. Accepting an invitation automatically adds the
