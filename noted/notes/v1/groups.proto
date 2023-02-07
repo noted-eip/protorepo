@@ -136,12 +136,26 @@ service GroupsAPI {
     }
 
     // Must be group member.
-    rpc GetMember(GetMemberRequest) returns (GetMemberResponse) {}
+    rpc GetMember(GetMemberRequest) returns (GetMemberResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/members/{member_id}",
+        };
+    }
+
     // Must be group administrator. Can only update `role`.
-    rpc UpdateMember(UpdateMemberRequest) returns (UpdateMemberResponse) {}
+    rpc UpdateMember(UpdateMemberRequest) returns (UpdateMemberResponse) {
+        option (google.api.http) = {
+            patch: "/groups/{group_id}/members/{member_id}",
+            body: "GroupMember"
+        };
+    }
     // Must be group administrator or the authenticated user removing itself from
     // the group.
-    rpc RemoveMember(RemoveMemberRequest) returns (RemoveMemberResponse) {}
+    rpc RemoveMember(RemoveMemberRequest) returns (RemoveMemberResponse) {
+        option (google.api.http) = {
+            delete: "/groups/{group_id}/members/{member_id}",
+        };
+    }
 
     // Must be group member.
     rpc GetConversation(GetConversationRequest) returns (GetConversationResponse) {}
@@ -162,27 +176,54 @@ service GroupsAPI {
     // Must be group member. generated_by_account_id defaults to the authenticated user.
     rpc GenerateInviteLink(GenerateInviteLinkRequest) returns (GenerateInviteLinkResponse) {}
     // Must be group member.
-    rpc GetInviteLink(GetInviteLinkRequest) returns (GetInviteLinkResponse) {}
+    rpc GetInviteLink(GetInviteLinkRequest) returns (GetInviteLinkResponse) {
+        option (google.api.http) = {
+            get: "/accounts/{invite_id}",
+        };
+    }
     // Must be group member.
     rpc RevokeInviteLink(RevokeInviteLinkRequest) returns (RevokeInviteLinkResponse) {}
     // Must not be group member. Makes the authenticated join the group on success.
     rpc UseInviteLink(UseInviteLinkRequest) returns (UseInviteLinkResponse) {}
 
     // The sender defaults to the authenticated user. Must be group member.
-    rpc SendInvite(SendInviteRequest) returns (SendInviteResponse) {}
+    rpc SendInvite(SendInviteRequest) returns (SendInviteResponse) {
+        option (google.api.http) = {
+            post: "/invite_id",
+            body: "*"
+        };
+    }
     // Must be group administrator or sender or recipient.
-    rpc GetInvite(GetInviteRequest) returns (GetInviteResponse) {}
+    rpc GetInvite(GetInviteRequest) returns (GetInviteResponse) {
+        option (google.api.http) = {
+            get: "/invites/{invite_id}",
+        };
+    }
     // Must be recipient. Accepting an invitation automatically adds the
     // recipient to the group and deletes the invite.
-    rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse) {}
+    rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse) {
+        option (google.api.http) = {
+            post: "/invites/{invite_id}/accept",
+            body: "*",
+        };
+    }
     // Must be recipient. Deletes the invitation without making the
     // recipient join the group.
-    rpc DenyInvite(DenyInviteRequest) returns (DenyInviteResponse) {}
+    rpc DenyInvite(DenyInviteRequest) returns (DenyInviteResponse) {
+        option (google.api.http) = {
+            post: "/invites/{invite_id}/deny",
+            body: "*",
+        };
+    }
     // Must be group administrator or sender. Deletes the invitation without
     // making the recipient join the group.
     rpc RevokeInvite(RevokeInviteRequest) returns (RevokeInviteResponse) {}
     // Must be group administrator or sender or recipient.
-    rpc ListInvites(ListInvitesRequest) returns (ListInvitesResponse) {}
+    rpc ListInvites(ListInvitesRequest) returns (ListInvitesResponse) {
+        option (google.api.http) = {
+            get: "/invites",
+        };
+    }
 }
 
 message CreateGroupRequest {
@@ -412,7 +453,7 @@ message ListInvitesRequest {
     // Returns only invites for a given group.
     string group_id = 3;
     int32 limit = 4;
-    int32 offset = 5; 
+    int32 offset = 5;
 }
 
 message ListInvitesResponse {
