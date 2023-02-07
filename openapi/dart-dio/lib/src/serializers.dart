@@ -16,6 +16,7 @@ import 'package:openapi/src/model/date.dart';
 
 import 'package:openapi/src/model/block_code.dart';
 import 'package:openapi/src/model/block_image.dart';
+import 'package:openapi/src/model/groups_api_send_invite_request.dart';
 import 'package:openapi/src/model/groups_api_update_group_request.dart';
 import 'package:openapi/src/model/notes_api_create_note_request.dart';
 import 'package:openapi/src/model/v1_accept_invite_response.dart';
@@ -79,6 +80,7 @@ part 'serializers.g.dart';
 @SerializersFor([
   BlockCode,
   BlockImage,
+  GroupsAPISendInviteRequest,
   GroupsAPIUpdateGroupRequest,
   NotesAPICreateNoteRequest,
   V1AcceptInviteResponse,

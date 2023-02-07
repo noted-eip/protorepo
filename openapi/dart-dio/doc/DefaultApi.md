@@ -15,11 +15,24 @@ Method | HTTP request | Description
 [**accountsAPIGetAccount**](DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Must be authenticated.
 [**accountsAPIListAccounts**](DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [**accountsAPIUpdateAccount**](DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
+[**groupsAPIAcceptInvite**](DefaultApi.md#groupsapiacceptinvite) | **POST** /groups/{groupId}/invites/{inviteId}/accept | Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
 [**groupsAPICreateGroup**](DefaultApi.md#groupsapicreategroup) | **POST** /groups | Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 [**groupsAPIDeleteGroup**](DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
+[**groupsAPIDenyInvite**](DefaultApi.md#groupsapidenyinvite) | **POST** /groups/{groupId}/invites/{inviteId}/deny | Must be recipient. Deletes the invitation without making the recipient join the group.
+[**groupsAPIGenerateInviteLink**](DefaultApi.md#groupsapigenerateinvitelink) | **POST** /groups/{groupId}/inviteLinks | Must be group member. generated_by_account_id defaults to the authenticated user.
 [**groupsAPIGetGroup**](DefaultApi.md#groupsapigetgroup) | **GET** /groups/{groupId} | Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
+[**groupsAPIGetInvite**](DefaultApi.md#groupsapigetinvite) | **GET** /groups/{groupId}/invites/{inviteId} | Must be group administrator or sender or recipient.
+[**groupsAPIGetInviteLink**](DefaultApi.md#groupsapigetinvitelink) | **GET** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
+[**groupsAPIGetMember**](DefaultApi.md#groupsapigetmember) | **GET** /groups/{groupId}/members/{accountId} | Must be group member.
 [**groupsAPIListGroups**](DefaultApi.md#groupsapilistgroups) | **GET** /groups | Must be group member. Returns only the non-array fields of a group.
+[**groupsAPIListInvites**](DefaultApi.md#groupsapilistinvites) | **GET** /invites | Must be group administrator or sender or recipient.
+[**groupsAPIRemoveMember**](DefaultApi.md#groupsapiremovemember) | **DELETE** /groups/{groupId}/members/{accountId} | Must be group administrator or the authenticated user removing itself from the group.
+[**groupsAPIRevokeInvite**](DefaultApi.md#groupsapirevokeinvite) | **DELETE** /groups/{groupId}/invites/{inviteId} | Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
+[**groupsAPIRevokeInviteLink**](DefaultApi.md#groupsapirevokeinvitelink) | **DELETE** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
+[**groupsAPISendInvite**](DefaultApi.md#groupsapisendinvite) | **POST** /groups/{groupId}/invites | The sender defaults to the authenticated user. Must be group member.
 [**groupsAPIUpdateGroup**](DefaultApi.md#groupsapiupdategroup) | **PATCH** /groups/{groupId} | Must be group administrator.
+[**groupsAPIUpdateMember**](DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
+[**groupsAPIUseInviteLink**](DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
 [**notesAPICreateNote**](DefaultApi.md#notesapicreatenote) | **POST** /groups/{groupId}/notes | Must be group member, author_account_id defaults to the user making the request.
 
 
@@ -279,6 +292,49 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **groupsAPIAcceptInvite**
+> V1AcceptInviteResponse groupsAPIAcceptInvite(groupId, inviteId)
+
+Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String inviteId = inviteId_example; // String | 
+
+try {
+    final response = api.groupsAPIAcceptInvite(groupId, inviteId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIAcceptInvite: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **inviteId** | **String**|  | 
+
+### Return type
+
+[**V1AcceptInviteResponse**](V1AcceptInviteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **groupsAPICreateGroup**
 > V1CreateGroupResponse groupsAPICreateGroup(body)
 
@@ -361,6 +417,90 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **groupsAPIDenyInvite**
+> JsonObject groupsAPIDenyInvite(groupId, inviteId)
+
+Must be recipient. Deletes the invitation without making the recipient join the group.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String inviteId = inviteId_example; // String | 
+
+try {
+    final response = api.groupsAPIDenyInvite(groupId, inviteId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIDenyInvite: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **inviteId** | **String**|  | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **groupsAPIGenerateInviteLink**
+> V1GenerateInviteLinkResponse groupsAPIGenerateInviteLink(groupId)
+
+Must be group member. generated_by_account_id defaults to the authenticated user.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+
+try {
+    final response = api.groupsAPIGenerateInviteLink(groupId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIGenerateInviteLink: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+
+### Return type
+
+[**V1GenerateInviteLinkResponse**](V1GenerateInviteLinkResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **groupsAPIGetGroup**
 > V1GetGroupResponse groupsAPIGetGroup(groupId, inviteLinkCode)
 
@@ -392,6 +532,135 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1GetGroupResponse**](V1GetGroupResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **groupsAPIGetInvite**
+> V1GetInviteResponse groupsAPIGetInvite(groupId, inviteId)
+
+Must be group administrator or sender or recipient.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String inviteId = inviteId_example; // String | 
+
+try {
+    final response = api.groupsAPIGetInvite(groupId, inviteId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIGetInvite: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **inviteId** | **String**|  | 
+
+### Return type
+
+[**V1GetInviteResponse**](V1GetInviteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **groupsAPIGetInviteLink**
+> V1GetInviteLinkResponse groupsAPIGetInviteLink(groupId, inviteLinkCode)
+
+Must be group member.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String inviteLinkCode = inviteLinkCode_example; // String | 
+
+try {
+    final response = api.groupsAPIGetInviteLink(groupId, inviteLinkCode);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIGetInviteLink: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **inviteLinkCode** | **String**|  | 
+
+### Return type
+
+[**V1GetInviteLinkResponse**](V1GetInviteLinkResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **groupsAPIGetMember**
+> V1GetMemberResponse groupsAPIGetMember(groupId, accountId)
+
+Must be group member.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String accountId = accountId_example; // String | 
+
+try {
+    final response = api.groupsAPIGetMember(groupId, accountId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIGetMember: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **accountId** | **String**|  | 
+
+### Return type
+
+[**V1GetMemberResponse**](V1GetMemberResponse.md)
 
 ### Authorization
 
@@ -445,6 +714,227 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **groupsAPIListInvites**
+> V1ListInvitesResponse groupsAPIListInvites(senderAccountId, recipientAccountId, groupId, limit, offset)
+
+Must be group administrator or sender or recipient.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String senderAccountId = senderAccountId_example; // String | Returns only invites from sender.
+final String recipientAccountId = recipientAccountId_example; // String | Returns only invites destined to recipient.
+final String groupId = groupId_example; // String | Returns only invites for a given group.
+final int limit = 56; // int | 
+final int offset = 56; // int | 
+
+try {
+    final response = api.groupsAPIListInvites(senderAccountId, recipientAccountId, groupId, limit, offset);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIListInvites: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **senderAccountId** | **String**| Returns only invites from sender. | [optional] 
+ **recipientAccountId** | **String**| Returns only invites destined to recipient. | [optional] 
+ **groupId** | **String**| Returns only invites for a given group. | [optional] 
+ **limit** | **int**|  | [optional] 
+ **offset** | **int**|  | [optional] 
+
+### Return type
+
+[**V1ListInvitesResponse**](V1ListInvitesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **groupsAPIRemoveMember**
+> JsonObject groupsAPIRemoveMember(groupId, accountId)
+
+Must be group administrator or the authenticated user removing itself from the group.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String accountId = accountId_example; // String | 
+
+try {
+    final response = api.groupsAPIRemoveMember(groupId, accountId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIRemoveMember: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **accountId** | **String**|  | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **groupsAPIRevokeInvite**
+> JsonObject groupsAPIRevokeInvite(groupId, inviteId)
+
+Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String inviteId = inviteId_example; // String | 
+
+try {
+    final response = api.groupsAPIRevokeInvite(groupId, inviteId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIRevokeInvite: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **inviteId** | **String**|  | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **groupsAPIRevokeInviteLink**
+> JsonObject groupsAPIRevokeInviteLink(groupId, inviteLinkCode)
+
+Must be group member.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String inviteLinkCode = inviteLinkCode_example; // String | 
+
+try {
+    final response = api.groupsAPIRevokeInviteLink(groupId, inviteLinkCode);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIRevokeInviteLink: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **inviteLinkCode** | **String**|  | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **groupsAPISendInvite**
+> V1SendInviteResponse groupsAPISendInvite(groupId, body)
+
+The sender defaults to the authenticated user. Must be group member.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final GroupsAPISendInviteRequest body = ; // GroupsAPISendInviteRequest | 
+
+try {
+    final response = api.groupsAPISendInvite(groupId, body);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPISendInvite: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **body** | [**GroupsAPISendInviteRequest**](GroupsAPISendInviteRequest.md)|  | 
+
+### Return type
+
+[**V1SendInviteResponse**](V1SendInviteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **groupsAPIUpdateGroup**
 > V1UpdateGroupResponse groupsAPIUpdateGroup(groupId, body)
 
@@ -484,6 +974,96 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **groupsAPIUpdateMember**
+> V1UpdateMemberResponse groupsAPIUpdateMember(groupId, accountId, member, updateMask)
+
+Must be group administrator. Can only update `role`.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String accountId = accountId_example; // String | 
+final V1GroupMember member = ; // V1GroupMember | 
+final String updateMask = updateMask_example; // String | 
+
+try {
+    final response = api.groupsAPIUpdateMember(groupId, accountId, member, updateMask);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIUpdateMember: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **accountId** | **String**|  | 
+ **member** | [**V1GroupMember**](V1GroupMember.md)|  | 
+ **updateMask** | **String**|  | [optional] 
+
+### Return type
+
+[**V1UpdateMemberResponse**](V1UpdateMemberResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **groupsAPIUseInviteLink**
+> JsonObject groupsAPIUseInviteLink(groupId, inviteLinkCode)
+
+Must not be group member. Makes the authenticated join the group on success.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String inviteLinkCode = inviteLinkCode_example; // String | 
+
+try {
+    final response = api.groupsAPIUseInviteLink(groupId, inviteLinkCode);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIUseInviteLink: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **inviteLinkCode** | **String**|  | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -64,6 +64,19 @@ export interface BlockImage {
 /**
  * 
  * @export
+ * @interface GroupsAPISendInviteRequest
+ */
+export interface GroupsAPISendInviteRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupsAPISendInviteRequest
+     */
+    'recipientAccountId': string;
+}
+/**
+ * 
+ * @export
  * @interface GroupsAPIUpdateGroupRequest
  */
 export interface GroupsAPIUpdateGroupRequest {
@@ -1419,6 +1432,44 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIAcceptInvite: async (groupId: string, inviteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIAcceptInvite', 'groupId', groupId)
+            // verify required parameter 'inviteId' is not null or undefined
+            assertParamExists('groupsAPIAcceptInvite', 'inviteId', inviteId)
+            const localVarPath = `/groups/{groupId}/invites/{inviteId}/accept`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteId"}}`, encodeURIComponent(String(inviteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Creates a group with a single administrator member (the authenticated user). Must be authenticated.
          * @param {V1CreateGroupRequest} body 
          * @param {*} [options] Override http request option.
@@ -1489,6 +1540,78 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Must be recipient. Deletes the invitation without making the recipient join the group.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIDenyInvite: async (groupId: string, inviteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIDenyInvite', 'groupId', groupId)
+            // verify required parameter 'inviteId' is not null or undefined
+            assertParamExists('groupsAPIDenyInvite', 'inviteId', inviteId)
+            const localVarPath = `/groups/{groupId}/invites/{inviteId}/deny`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteId"}}`, encodeURIComponent(String(inviteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member. generated_by_account_id defaults to the authenticated user.
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGenerateInviteLink: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIGenerateInviteLink', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/inviteLinks`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
          * @param {string} groupId 
          * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
@@ -1514,6 +1637,120 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             if (inviteLinkCode !== undefined) {
                 localVarQueryParameter['inviteLinkCode'] = inviteLinkCode;
             }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetInvite: async (groupId: string, inviteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIGetInvite', 'groupId', groupId)
+            // verify required parameter 'inviteId' is not null or undefined
+            assertParamExists('groupsAPIGetInvite', 'inviteId', inviteId)
+            const localVarPath = `/groups/{groupId}/invites/{inviteId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteId"}}`, encodeURIComponent(String(inviteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetInviteLink: async (groupId: string, inviteLinkCode: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIGetInviteLink', 'groupId', groupId)
+            // verify required parameter 'inviteLinkCode' is not null or undefined
+            assertParamExists('groupsAPIGetInviteLink', 'inviteLinkCode', inviteLinkCode)
+            const localVarPath = `/groups/{groupId}/inviteLinks/{inviteLinkCode}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteLinkCode"}}`, encodeURIComponent(String(inviteLinkCode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetMember: async (groupId: string, accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIGetMember', 'groupId', groupId)
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('groupsAPIGetMember', 'accountId', accountId)
+            const localVarPath = `/groups/{groupId}/members/{accountId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
 
     
@@ -1565,6 +1802,215 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} [senderAccountId] Returns only invites from sender.
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {string} [groupId] Returns only invites for a given group.
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListInvites: async (senderAccountId?: string, recipientAccountId?: string, groupId?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/invites`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (senderAccountId !== undefined) {
+                localVarQueryParameter['senderAccountId'] = senderAccountId;
+            }
+
+            if (recipientAccountId !== undefined) {
+                localVarQueryParameter['recipientAccountId'] = recipientAccountId;
+            }
+
+            if (groupId !== undefined) {
+                localVarQueryParameter['groupId'] = groupId;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group administrator or the authenticated user removing itself from the group.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIRemoveMember: async (groupId: string, accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIRemoveMember', 'groupId', groupId)
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('groupsAPIRemoveMember', 'accountId', accountId)
+            const localVarPath = `/groups/{groupId}/members/{accountId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIRevokeInvite: async (groupId: string, inviteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIRevokeInvite', 'groupId', groupId)
+            // verify required parameter 'inviteId' is not null or undefined
+            assertParamExists('groupsAPIRevokeInvite', 'inviteId', inviteId)
+            const localVarPath = `/groups/{groupId}/invites/{inviteId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteId"}}`, encodeURIComponent(String(inviteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIRevokeInviteLink: async (groupId: string, inviteLinkCode: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIRevokeInviteLink', 'groupId', groupId)
+            // verify required parameter 'inviteLinkCode' is not null or undefined
+            assertParamExists('groupsAPIRevokeInviteLink', 'inviteLinkCode', inviteLinkCode)
+            const localVarPath = `/groups/{groupId}/inviteLinks/{inviteLinkCode}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteLinkCode"}}`, encodeURIComponent(String(inviteLinkCode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary The sender defaults to the authenticated user. Must be group member.
+         * @param {string} groupId 
+         * @param {GroupsAPISendInviteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPISendInvite: async (groupId: string, body: GroupsAPISendInviteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPISendInvite', 'groupId', groupId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('groupsAPISendInvite', 'body', body)
+            const localVarPath = `/groups/{groupId}/invites`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be group administrator.
          * @param {string} groupId 
          * @param {GroupsAPIUpdateGroupRequest} body 
@@ -1597,6 +2043,93 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group administrator. Can only update `role`.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {V1GroupMember} member 
+         * @param {string} [updateMask] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIUpdateMember: async (groupId: string, accountId: string, member: V1GroupMember, updateMask?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIUpdateMember', 'groupId', groupId)
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('groupsAPIUpdateMember', 'accountId', accountId)
+            // verify required parameter 'member' is not null or undefined
+            assertParamExists('groupsAPIUpdateMember', 'member', member)
+            const localVarPath = `/groups/{groupId}/members/{accountId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (updateMask !== undefined) {
+                localVarQueryParameter['updateMask'] = updateMask;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(member, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must not be group member. Makes the authenticated join the group on success.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIUseInviteLink: async (groupId: string, inviteLinkCode: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIUseInviteLink', 'groupId', groupId)
+            // verify required parameter 'inviteLinkCode' is not null or undefined
+            assertParamExists('groupsAPIUseInviteLink', 'inviteLinkCode', inviteLinkCode)
+            const localVarPath = `/groups/{groupId}/inviteLinks/{inviteLinkCode}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteLinkCode"}}`, encodeURIComponent(String(inviteLinkCode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1726,6 +2259,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIAcceptInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1AcceptInviteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIAcceptInvite(groupId, inviteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Creates a group with a single administrator member (the authenticated user). Must be authenticated.
          * @param {V1CreateGroupRequest} body 
          * @param {*} [options] Override http request option.
@@ -1748,6 +2293,29 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Must be recipient. Deletes the invitation without making the recipient join the group.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIDenyInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIDenyInvite(groupId, inviteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member. generated_by_account_id defaults to the authenticated user.
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIGenerateInviteLink(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GenerateInviteLinkResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGenerateInviteLink(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
          * @param {string} groupId 
          * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
@@ -1756,6 +2324,42 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIGetGroup(groupId: string, inviteLinkCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetGroupResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetGroup(groupId, inviteLinkCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIGetInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetInviteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetInvite(groupId, inviteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIGetInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetInviteLinkResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetInviteLink(groupId, inviteLinkCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIGetMember(groupId: string, accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetMemberResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetMember(groupId, accountId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1771,6 +2375,69 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} [senderAccountId] Returns only invites from sender.
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {string} [groupId] Returns only invites for a given group.
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIListInvites(senderAccountId?: string, recipientAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListInvitesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListInvites(senderAccountId, recipientAccountId, groupId, limit, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group administrator or the authenticated user removing itself from the group.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIRemoveMember(groupId: string, accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIRemoveMember(groupId, accountId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIRevokeInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIRevokeInvite(groupId, inviteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIRevokeInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIRevokeInviteLink(groupId, inviteLinkCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary The sender defaults to the authenticated user. Must be group member.
+         * @param {string} groupId 
+         * @param {GroupsAPISendInviteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1SendInviteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPISendInvite(groupId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Must be group administrator.
          * @param {string} groupId 
          * @param {GroupsAPIUpdateGroupRequest} body 
@@ -1779,6 +2446,32 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateGroupResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIUpdateGroup(groupId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group administrator. Can only update `role`.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {V1GroupMember} member 
+         * @param {string} [updateMask] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, updateMask?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateMemberResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIUpdateMember(groupId, accountId, member, updateMask, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must not be group member. Makes the authenticated join the group on success.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIUseInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIUseInviteLink(groupId, inviteLinkCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1870,6 +2563,17 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIAcceptInvite(groupId: string, inviteId: string, options?: any): AxiosPromise<V1AcceptInviteResponse> {
+            return localVarFp.groupsAPIAcceptInvite(groupId, inviteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Creates a group with a single administrator member (the authenticated user). Must be authenticated.
          * @param {V1CreateGroupRequest} body 
          * @param {*} [options] Override http request option.
@@ -1890,6 +2594,27 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Must be recipient. Deletes the invitation without making the recipient join the group.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIDenyInvite(groupId: string, inviteId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.groupsAPIDenyInvite(groupId, inviteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member. generated_by_account_id defaults to the authenticated user.
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGenerateInviteLink(groupId: string, options?: any): AxiosPromise<V1GenerateInviteLinkResponse> {
+            return localVarFp.groupsAPIGenerateInviteLink(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
          * @param {string} groupId 
          * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
@@ -1898,6 +2623,39 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         groupsAPIGetGroup(groupId: string, inviteLinkCode?: string, options?: any): AxiosPromise<V1GetGroupResponse> {
             return localVarFp.groupsAPIGetGroup(groupId, inviteLinkCode, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetInvite(groupId: string, inviteId: string, options?: any): AxiosPromise<V1GetInviteResponse> {
+            return localVarFp.groupsAPIGetInvite(groupId, inviteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetInviteLink(groupId: string, inviteLinkCode: string, options?: any): AxiosPromise<V1GetInviteLinkResponse> {
+            return localVarFp.groupsAPIGetInviteLink(groupId, inviteLinkCode, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetMember(groupId: string, accountId: string, options?: any): AxiosPromise<V1GetMemberResponse> {
+            return localVarFp.groupsAPIGetMember(groupId, accountId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1911,6 +2669,64 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} [senderAccountId] Returns only invites from sender.
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {string} [groupId] Returns only invites for a given group.
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListInvites(senderAccountId?: string, recipientAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListInvitesResponse> {
+            return localVarFp.groupsAPIListInvites(senderAccountId, recipientAccountId, groupId, limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group administrator or the authenticated user removing itself from the group.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIRemoveMember(groupId: string, accountId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.groupsAPIRemoveMember(groupId, accountId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIRevokeInvite(groupId: string, inviteId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.groupsAPIRevokeInvite(groupId, inviteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIRevokeInviteLink(groupId: string, inviteLinkCode: string, options?: any): AxiosPromise<object> {
+            return localVarFp.groupsAPIRevokeInviteLink(groupId, inviteLinkCode, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary The sender defaults to the authenticated user. Must be group member.
+         * @param {string} groupId 
+         * @param {GroupsAPISendInviteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteRequest, options?: any): AxiosPromise<V1SendInviteResponse> {
+            return localVarFp.groupsAPISendInvite(groupId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Must be group administrator.
          * @param {string} groupId 
          * @param {GroupsAPIUpdateGroupRequest} body 
@@ -1919,6 +2735,30 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupRequest, options?: any): AxiosPromise<V1UpdateGroupResponse> {
             return localVarFp.groupsAPIUpdateGroup(groupId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group administrator. Can only update `role`.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {V1GroupMember} member 
+         * @param {string} [updateMask] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, updateMask?: string, options?: any): AxiosPromise<V1UpdateMemberResponse> {
+            return localVarFp.groupsAPIUpdateMember(groupId, accountId, member, updateMask, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must not be group member. Makes the authenticated join the group on success.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIUseInviteLink(groupId: string, inviteLinkCode: string, options?: any): AxiosPromise<object> {
+            return localVarFp.groupsAPIUseInviteLink(groupId, inviteLinkCode, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2020,6 +2860,19 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @summary Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
+     * @param {string} groupId 
+     * @param {string} inviteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIAcceptInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIAcceptInvite(groupId, inviteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Creates a group with a single administrator member (the authenticated user). Must be authenticated.
      * @param {V1CreateGroupRequest} body 
      * @param {*} [options] Override http request option.
@@ -2044,6 +2897,31 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @summary Must be recipient. Deletes the invitation without making the recipient join the group.
+     * @param {string} groupId 
+     * @param {string} inviteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIDenyInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIDenyInvite(groupId, inviteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member. generated_by_account_id defaults to the authenticated user.
+     * @param {string} groupId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIGenerateInviteLink(groupId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIGenerateInviteLink(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
      * @param {string} groupId 
      * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
@@ -2053,6 +2931,45 @@ export class DefaultApi extends BaseAPI {
      */
     public groupsAPIGetGroup(groupId: string, inviteLinkCode?: string, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).groupsAPIGetGroup(groupId, inviteLinkCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group administrator or sender or recipient.
+     * @param {string} groupId 
+     * @param {string} inviteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIGetInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIGetInvite(groupId, inviteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member.
+     * @param {string} groupId 
+     * @param {string} inviteLinkCode 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIGetInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIGetInviteLink(groupId, inviteLinkCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member.
+     * @param {string} groupId 
+     * @param {string} accountId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIGetMember(groupId: string, accountId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIGetMember(groupId, accountId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2069,6 +2986,74 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @summary Must be group administrator or sender or recipient.
+     * @param {string} [senderAccountId] Returns only invites from sender.
+     * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+     * @param {string} [groupId] Returns only invites for a given group.
+     * @param {number} [limit] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIListInvites(senderAccountId?: string, recipientAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIListInvites(senderAccountId, recipientAccountId, groupId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group administrator or the authenticated user removing itself from the group.
+     * @param {string} groupId 
+     * @param {string} accountId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIRemoveMember(groupId: string, accountId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIRemoveMember(groupId, accountId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
+     * @param {string} groupId 
+     * @param {string} inviteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIRevokeInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIRevokeInvite(groupId, inviteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member.
+     * @param {string} groupId 
+     * @param {string} inviteLinkCode 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIRevokeInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIRevokeInviteLink(groupId, inviteLinkCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary The sender defaults to the authenticated user. Must be group member.
+     * @param {string} groupId 
+     * @param {GroupsAPISendInviteRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPISendInvite(groupId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Must be group administrator.
      * @param {string} groupId 
      * @param {GroupsAPIUpdateGroupRequest} body 
@@ -2078,6 +3063,34 @@ export class DefaultApi extends BaseAPI {
      */
     public groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).groupsAPIUpdateGroup(groupId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group administrator. Can only update `role`.
+     * @param {string} groupId 
+     * @param {string} accountId 
+     * @param {V1GroupMember} member 
+     * @param {string} [updateMask] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, updateMask?: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIUpdateMember(groupId, accountId, member, updateMask, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must not be group member. Makes the authenticated join the group on success.
+     * @param {string} groupId 
+     * @param {string} inviteLinkCode 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIUseInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIUseInviteLink(groupId, inviteLinkCode, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

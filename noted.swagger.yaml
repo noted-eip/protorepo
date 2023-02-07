@@ -252,6 +252,286 @@ paths:
                 type: string
               description:
                 type: string
+  /groups/{groupId}/inviteLinks:
+    post:
+      summary: Must be group member. generated_by_account_id defaults to the authenticated user.
+      operationId: GroupsAPI_GenerateInviteLink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GenerateInviteLinkResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/inviteLinks/{inviteLinkCode}:
+    get:
+      summary: Must be group member.
+      operationId: GroupsAPI_GetInviteLink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetInviteLinkResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteLinkCode
+          in: path
+          required: true
+          type: string
+    delete:
+      summary: Must be group member.
+      operationId: GroupsAPI_RevokeInviteLink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1RevokeInviteLinkResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteLinkCode
+          in: path
+          required: true
+          type: string
+    post:
+      summary: Must not be group member. Makes the authenticated join the group on success.
+      operationId: GroupsAPI_UseInviteLink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UseInviteLinkResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteLinkCode
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/invites:
+    post:
+      summary: The sender defaults to the authenticated user. Must be group member.
+      operationId: GroupsAPI_SendInvite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1SendInviteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              recipientAccountId:
+                type: string
+            required:
+              - recipientAccountId
+  /groups/{groupId}/invites/{inviteId}:
+    get:
+      summary: Must be group administrator or sender or recipient.
+      operationId: GroupsAPI_GetInvite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetInviteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteId
+          in: path
+          required: true
+          type: string
+    delete:
+      summary: |-
+        Must be group administrator or sender. Deletes the invitation without
+        making the recipient join the group.
+      operationId: GroupsAPI_RevokeInvite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1RevokeInviteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/invites/{inviteId}/accept:
+    post:
+      summary: |-
+        Must be recipient. Accepting an invitation automatically adds the
+        recipient to the group and deletes the invite.
+      operationId: GroupsAPI_AcceptInvite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1AcceptInviteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/invites/{inviteId}/deny:
+    post:
+      summary: |-
+        Must be recipient. Deletes the invitation without making the
+        recipient join the group.
+      operationId: GroupsAPI_DenyInvite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DenyInviteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/members/{accountId}:
+    get:
+      summary: Must be group member.
+      operationId: GroupsAPI_GetMember
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetMemberResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: accountId
+          in: path
+          required: true
+          type: string
+    delete:
+      summary: |-
+        Must be group administrator or the authenticated user removing itself from
+        the group.
+      operationId: GroupsAPI_RemoveMember
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1RemoveMemberResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: accountId
+          in: path
+          required: true
+          type: string
+    patch:
+      summary: Must be group administrator. Can only update `role`.
+      operationId: GroupsAPI_UpdateMember
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UpdateMemberResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: member
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1GroupMember'
+            required:
+              - member
+        - name: updateMask
+          in: query
+          required: false
+          type: string
   /groups/{groupId}/notes:
     post:
       summary: |-
@@ -284,6 +564,45 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/v1Block'
+  /invites:
+    get:
+      summary: Must be group administrator or sender or recipient.
+      operationId: GroupsAPI_ListInvites
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListInvitesResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: senderAccountId
+          description: Returns only invites from sender.
+          in: query
+          required: false
+          type: string
+        - name: recipientAccountId
+          description: Returns only invites destined to recipient.
+          in: query
+          required: false
+          type: string
+        - name: groupId
+          description: Returns only invites for a given group.
+          in: query
+          required: false
+          type: string
+        - name: limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int32
 definitions:
   BlockCode:
     type: object
