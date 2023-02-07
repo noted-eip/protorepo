@@ -136,12 +136,26 @@ service GroupsAPI {
     }
 
     // Must be group member.
-    rpc GetMember(GetMemberRequest) returns (GetMemberResponse) {}
+    rpc GetMember(GetMemberRequest) returns (GetMemberResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/members/{member_id}",
+        };
+    }
+
     // Must be group administrator. Can only update `role`.
-    rpc UpdateMember(UpdateMemberRequest) returns (UpdateMemberResponse) {}
+    rpc UpdateMember(UpdateMemberRequest) returns (UpdateMemberResponse) {
+        option (google.api.http) = {
+            patch: "/groups/{group_id}/members/{member_id}",
+            body: "GroupMember"
+        };
+    }
     // Must be group administrator or the authenticated user removing itself from
     // the group.
-    rpc RemoveMember(RemoveMemberRequest) returns (RemoveMemberResponse) {}
+    rpc RemoveMember(RemoveMemberRequest) returns (RemoveMemberResponse) {
+        option (google.api.http) = {
+            delete: "/groups/{group_id}/members/{member_id}",
+        };
+    }
 
     // Must be group member.
     rpc GetConversation(GetConversationRequest) returns (GetConversationResponse) {}
@@ -160,29 +174,71 @@ service GroupsAPI {
     rpc ListConversationMessages(ListConversationMessagesRequest) returns (ListConversationMessagesResponse) {}
 
     // Must be group member. generated_by_account_id defaults to the authenticated user.
-    rpc GenerateInviteLink(GenerateInviteLinkRequest) returns (GenerateInviteLinkResponse) {}
+    rpc GenerateInviteLink(GenerateInviteLinkRequest) returns (GenerateInviteLinkResponse) {
+        option (google.api.http) = {
+            post: "/groups/{group_id}/inviteLinks",
+        };
+    }
     // Must be group member.
-    rpc GetInviteLink(GetInviteLinkRequest) returns (GetInviteLinkResponse) {}
+    rpc GetInviteLink(GetInviteLinkRequest) returns (GetInviteLinkResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/inviteLinks/{invite_link_code}",
+        };
+    }
     // Must be group member.
-    rpc RevokeInviteLink(RevokeInviteLinkRequest) returns (RevokeInviteLinkResponse) {}
+    rpc RevokeInviteLink(RevokeInviteLinkRequest) returns (RevokeInviteLinkResponse) {
+        option (google.api.http) = {
+            delete: "/groups/{group_id}/inviteLinks/{invite_link_code}",
+        };
+    }
     // Must not be group member. Makes the authenticated join the group on success.
-    rpc UseInviteLink(UseInviteLinkRequest) returns (UseInviteLinkResponse) {}
+    rpc UseInviteLink(UseInviteLinkRequest) returns (UseInviteLinkResponse) {
+        option (google.api.http) = {
+            post: "/groups/{group_id}/inviteLinks/{invite_link_code}",
+        };
+    }
 
     // The sender defaults to the authenticated user. Must be group member.
-    rpc SendInvite(SendInviteRequest) returns (SendInviteResponse) {}
+    rpc SendInvite(SendInviteRequest) returns (SendInviteResponse) {
+        option (google.api.http) = {
+            post: "/groups/{group_id}/invites",
+            body: "*"
+        };
+    }
     // Must be group administrator or sender or recipient.
-    rpc GetInvite(GetInviteRequest) returns (GetInviteResponse) {}
+    rpc GetInvite(GetInviteRequest) returns (GetInviteResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/invites/{invite_id}",
+        };
+    }
     // Must be recipient. Accepting an invitation automatically adds the
     // recipient to the group and deletes the invite.
-    rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse) {}
+    rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse) {
+        option (google.api.http) = {
+            post: "/groups/{group_id}/invites/{invite_id}/accept",
+        };
+    }
     // Must be recipient. Deletes the invitation without making the
     // recipient join the group.
-    rpc DenyInvite(DenyInviteRequest) returns (DenyInviteResponse) {}
+    rpc DenyInvite(DenyInviteRequest) returns (DenyInviteResponse) {
+        option (google.api.http) = {
+            post: "/groups/{group_id}/invites/{invite_id}/deny",
+        };
+    }
     // Must be group administrator or sender. Deletes the invitation without
     // making the recipient join the group.
-    rpc RevokeInvite(RevokeInviteRequest) returns (RevokeInviteResponse) {}
+    rpc RevokeInvite(RevokeInviteRequest) returns (RevokeInviteResponse) {
+        option (google.api.http) = {
+            delete: "/groups/{group_id}/invites/{invite_id}",
+        };
+    }
     // Must be group administrator or sender or recipient.
-    rpc ListInvites(ListInvitesRequest) returns (ListInvitesResponse) {}
+    rpc ListInvites(ListInvitesRequest) returns (ListInvitesResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/invites",
+            body: "*"
+        };
+    }
 }
 
 message CreateGroupRequest {
@@ -412,7 +468,7 @@ message ListInvitesRequest {
     // Returns only invites for a given group.
     string group_id = 3;
     int32 limit = 4;
-    int32 offset = 5; 
+    int32 offset = 5;
 }
 
 message ListInvitesResponse {
@@ -420,7 +476,8 @@ message ListInvitesResponse {
 }
 
 message RevokeInviteRequest {
-    string invite_id = 1;
+    string group_id = 1;
+    string invite_id = 2;
 }
 
 message RevokeInviteResponse {
