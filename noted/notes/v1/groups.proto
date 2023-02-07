@@ -178,7 +178,7 @@ service GroupsAPI {
     // Must be group member.
     rpc GetInviteLink(GetInviteLinkRequest) returns (GetInviteLinkResponse) {
         option (google.api.http) = {
-            get: "/accounts/{invite_id}",
+            get: "/groups/{group_id}/inviteLinks/{invite_link_code}",
         };
     }
     // Must be group member.
