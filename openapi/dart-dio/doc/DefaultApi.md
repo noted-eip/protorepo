@@ -674,7 +674,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **groupsAPIListGroups**
-> V1ListGroupsResponse groupsAPIListGroups(accountId)
+> V1ListGroupsResponse groupsAPIListGroups(accountId, limit, offset)
 
 Must be group member. Returns only the non-array fields of a group.
 
@@ -684,9 +684,11 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String accountId = accountId_example; // String | 
+final String limit = limit_example; // String | 
+final String offset = offset_example; // String | 
 
 try {
-    final response = api.groupsAPIListGroups(accountId);
+    final response = api.groupsAPIListGroups(accountId, limit, offset);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling DefaultApi->groupsAPIListGroups: $e\n');
@@ -698,6 +700,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accountId** | **String**|  | 
+ **limit** | **String**|  | [optional] 
+ **offset** | **String**|  | [optional] 
 
 ### Return type
 

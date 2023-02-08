@@ -1281,6 +1281,8 @@ class DefaultApi {
   ///
   /// Parameters:
   /// * [accountId] 
+  /// * [limit] 
+  /// * [offset] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1292,6 +1294,8 @@ class DefaultApi {
   /// Throws [DioError] if API call or serialization fails
   Future<Response<V1ListGroupsResponse>> groupsAPIListGroups({ 
     required String accountId,
+    String? limit,
+    String? offset,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1314,6 +1318,8 @@ class DefaultApi {
 
     final _queryParameters = <String, dynamic>{
       r'accountId': encodeQueryParameter(_serializers, accountId, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(String)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

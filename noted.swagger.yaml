@@ -157,6 +157,16 @@ paths:
           in: query
           required: true
           type: string
+        - name: limit
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: offset
+          in: query
+          required: false
+          type: string
+          format: int64
     post:
       summary: |-
         Creates a group with a single administrator member (the authenticated user).

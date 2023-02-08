@@ -114,7 +114,7 @@ void main() {
 
     // Must be group member. Returns only the non-array fields of a group.
     //
-    //Future<V1ListGroupsResponse> groupsAPIListGroups(String accountId) async
+    //Future<V1ListGroupsResponse> groupsAPIListGroups(String accountId, { String limit, String offset }) async
     test('test groupsAPIListGroups', () async {
       // TODO
     });

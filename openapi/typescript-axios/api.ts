@@ -1767,10 +1767,12 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary Must be group member. Returns only the non-array fields of a group.
          * @param {string} accountId 
+         * @param {string} [limit] 
+         * @param {string} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIListGroups: async (accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsAPIListGroups: async (accountId: string, limit?: string, offset?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('groupsAPIListGroups', 'accountId', accountId)
             const localVarPath = `/groups`;
@@ -1787,6 +1789,14 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 
             if (accountId !== undefined) {
                 localVarQueryParameter['accountId'] = accountId;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
             }
 
 
@@ -2366,11 +2376,13 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * 
          * @summary Must be group member. Returns only the non-array fields of a group.
          * @param {string} accountId 
+         * @param {string} [limit] 
+         * @param {string} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsAPIListGroups(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListGroupsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListGroups(accountId, options);
+        async groupsAPIListGroups(accountId: string, limit?: string, offset?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListGroupsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListGroups(accountId, limit, offset, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2661,11 +2673,13 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary Must be group member. Returns only the non-array fields of a group.
          * @param {string} accountId 
+         * @param {string} [limit] 
+         * @param {string} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIListGroups(accountId: string, options?: any): AxiosPromise<V1ListGroupsResponse> {
-            return localVarFp.groupsAPIListGroups(accountId, options).then((request) => request(axios, basePath));
+        groupsAPIListGroups(accountId: string, limit?: string, offset?: string, options?: any): AxiosPromise<V1ListGroupsResponse> {
+            return localVarFp.groupsAPIListGroups(accountId, limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2976,12 +2990,14 @@ export class DefaultApi extends BaseAPI {
      * 
      * @summary Must be group member. Returns only the non-array fields of a group.
      * @param {string} accountId 
+     * @param {string} [limit] 
+     * @param {string} [offset] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public groupsAPIListGroups(accountId: string, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).groupsAPIListGroups(accountId, options).then((request) => request(this.axios, this.basePath));
+    public groupsAPIListGroups(accountId: string, limit?: string, offset?: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIListGroups(accountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
