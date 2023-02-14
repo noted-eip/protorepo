@@ -51,10 +51,16 @@ service AccountsAPI {
         };
     }
 
-    // Must be authenticated.
+    // Allows getting an account by ID or searching for one through email.
     rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {
         option (google.api.http) = {
             get: "/accounts/{account_id}",
+            additional_bindings: [
+                {
+                    post: "/search/accounts"
+                    body: "*"
+                }
+            ]
         };
     }
 
