@@ -63,7 +63,7 @@ class AccountsAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetAccount(self, request, context):
-        """Must be authenticated.
+        """Allows getting an account by ID or searching for one through email.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

@@ -27,6 +27,7 @@ doc/V1ExtractKeywordsBatchResponse.md
 doc/V1ExtractKeywordsResponse.md
 doc/V1GenerateInviteLinkResponse.md
 doc/V1GenerateWidgetsResponse.md
+doc/V1GetAccountRequest.md
 doc/V1GetAccountResponse.md
 doc/V1GetConversationMessageResponse.md
 doc/V1GetConversationResponse.md
@@ -98,6 +99,7 @@ lib/src/model/v1_extract_keywords_batch_response.dart
 lib/src/model/v1_extract_keywords_response.dart
 lib/src/model/v1_generate_invite_link_response.dart
 lib/src/model/v1_generate_widgets_response.dart
+lib/src/model/v1_get_account_request.dart
 lib/src/model/v1_get_account_response.dart
 lib/src/model/v1_get_conversation_message_response.dart
 lib/src/model/v1_get_conversation_response.dart
@@ -161,6 +163,7 @@ test/v1_extract_keywords_batch_response_test.dart
 test/v1_extract_keywords_response_test.dart
 test/v1_generate_invite_link_response_test.dart
 test/v1_generate_widgets_response_test.dart
+test/v1_get_account_request_test.dart
 test/v1_get_account_response_test.dart
 test/v1_get_conversation_message_response_test.dart
 test/v1_get_conversation_response_test.dart

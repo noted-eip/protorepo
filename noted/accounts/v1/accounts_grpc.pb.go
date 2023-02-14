@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type AccountsAPIClient interface {
 	// Create an account using the email and password flow.
 	CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...grpc.CallOption) (*CreateAccountResponse, error)
-	// Must be authenticated.
+	// Allows getting an account by ID or searching for one through email.
 	GetAccount(ctx context.Context, in *GetAccountRequest, opts ...grpc.CallOption) (*GetAccountResponse, error)
 	// Must be account owner. Can only update `account.name`.
 	UpdateAccount(ctx context.Context, in *UpdateAccountRequest, opts ...grpc.CallOption) (*UpdateAccountResponse, error)
@@ -104,7 +104,7 @@ func (c *accountsAPIClient) Authenticate(ctx context.Context, in *AuthenticateRe
 type AccountsAPIServer interface {
 	// Create an account using the email and password flow.
 	CreateAccount(context.Context, *CreateAccountRequest) (*CreateAccountResponse, error)
-	// Must be authenticated.
+	// Allows getting an account by ID or searching for one through email.
 	GetAccount(context.Context, *GetAccountRequest) (*GetAccountResponse, error)
 	// Must be account owner. Can only update `account.name`.
 	UpdateAccount(context.Context, *UpdateAccountRequest) (*UpdateAccountResponse, error)

@@ -38,6 +38,7 @@ import 'package:openapi/src/model/v1_extract_keywords_batch_response.dart';
 import 'package:openapi/src/model/v1_extract_keywords_response.dart';
 import 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 import 'package:openapi/src/model/v1_generate_widgets_response.dart';
+import 'package:openapi/src/model/v1_get_account_request.dart';
 import 'package:openapi/src/model/v1_get_account_response.dart';
 import 'package:openapi/src/model/v1_get_conversation_message_response.dart';
 import 'package:openapi/src/model/v1_get_conversation_response.dart';
@@ -102,6 +103,7 @@ part 'serializers.g.dart';
   V1ExtractKeywordsResponse,
   V1GenerateInviteLinkResponse,
   V1GenerateWidgetsResponse,
+  V1GetAccountRequest,
   V1GetAccountResponse,
   V1GetConversationMessageResponse,
   V1GetConversationResponse,

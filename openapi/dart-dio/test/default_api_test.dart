@@ -28,10 +28,17 @@ void main() {
       // TODO
     });
 
-    // Must be authenticated.
+    // Allows getting an account by ID or searching for one through email.
     //
     //Future<V1GetAccountResponse> accountsAPIGetAccount(String accountId, { String email }) async
     test('test accountsAPIGetAccount', () async {
+      // TODO
+    });
+
+    // Allows getting an account by ID or searching for one through email.
+    //
+    //Future<V1GetAccountResponse> accountsAPIGetAccount2(V1GetAccountRequest body) async
+    test('test accountsAPIGetAccount2', () async {
       // TODO
     });
 

@@ -67,7 +67,8 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIAuthenticate**](doc/DefaultApi.md#accountsapiauthenticate) | **POST** /authenticate | Authenticate using the email and password flow.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPICreateAccount**](doc/DefaultApi.md#accountsapicreateaccount) | **POST** /accounts | Create an account using the email and password flow.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIDeleteAccount**](doc/DefaultApi.md#accountsapideleteaccount) | **DELETE** /accounts/{accountId} | Must be account owner.
-[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount**](doc/DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Must be authenticated.
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount**](doc/DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Allows getting an account by ID or searching for one through email.
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount2**](doc/DefaultApi.md#accountsapigetaccount2) | **POST** /search/accounts | Allows getting an account by ID or searching for one through email.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIListAccounts**](doc/DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIUpdateAccount**](doc/DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIAcceptInvite**](doc/DefaultApi.md#groupsapiacceptinvite) | **POST** /groups/{groupId}/invites/{inviteId}/accept | Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
@@ -117,6 +118,7 @@ Class | Method | HTTP request | Description
  - [V1ExtractKeywordsResponse](doc/V1ExtractKeywordsResponse.md)
  - [V1GenerateInviteLinkResponse](doc/V1GenerateInviteLinkResponse.md)
  - [V1GenerateWidgetsResponse](doc/V1GenerateWidgetsResponse.md)
+ - [V1GetAccountRequest](doc/V1GetAccountRequest.md)
  - [V1GetAccountResponse](doc/V1GetAccountResponse.md)
  - [V1GetConversationMessageResponse](doc/V1GetConversationMessageResponse.md)
  - [V1GetConversationResponse](doc/V1GetConversationResponse.md)

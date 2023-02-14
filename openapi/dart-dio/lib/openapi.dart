@@ -35,6 +35,7 @@ export 'package:openapi/src/model/v1_extract_keywords_batch_response.dart';
 export 'package:openapi/src/model/v1_extract_keywords_response.dart';
 export 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 export 'package:openapi/src/model/v1_generate_widgets_response.dart';
+export 'package:openapi/src/model/v1_get_account_request.dart';
 export 'package:openapi/src/model/v1_get_account_response.dart';
 export 'package:openapi/src/model/v1_get_conversation_message_response.dart';
 export 'package:openapi/src/model/v1_get_conversation_response.dart';
