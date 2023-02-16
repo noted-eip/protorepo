@@ -119,6 +119,10 @@ service NotesAPI {
 
     // Must be group member.
     rpc ExportNote(ExportNoteRequest) returns (ExportNoteResponse) {}
+
+    // Must be account owner.
+    rpc OnAccountDelete(OnAccountDeleteRequest) returns (OnAccountDeleteResponse) {}
+
 }
 
 message GetNoteRequest {
@@ -210,3 +214,7 @@ message ExportNoteRequest {
 message ExportNoteResponse {
     bytes file = 1 [(google.api.field_behavior) = REQUIRED];
 }
+
+message OnAccountDeleteRequest {}
+
+message OnAccountDeleteResponse {}
