@@ -1120,6 +1120,8 @@ definitions:
     enum:
       - NOTE_EXPORT_FORMAT_MARKDOWN
       - NOTE_EXPORT_FORMAT_PDF
+  v1OnAccountDeleteResponse:
+    type: object
   v1Recipient:
     type: object
     properties:

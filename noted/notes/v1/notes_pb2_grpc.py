@@ -59,6 +59,11 @@ class NotesAPIStub(object):
                 request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteRequest.SerializeToString,
                 response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteResponse.FromString,
                 )
+        self.OnAccountDelete = channel.unary_unary(
+                '/noted.notes.v1.NotesAPI/OnAccountDelete',
+                request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.OnAccountDeleteRequest.SerializeToString,
+                response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.OnAccountDeleteResponse.FromString,
+                )
 
 
 class NotesAPIServicer(object):
@@ -128,6 +133,13 @@ class NotesAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def OnAccountDelete(self, request, context):
+        """Must be account owner.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_NotesAPIServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -175,6 +187,11 @@ def add_NotesAPIServicer_to_server(servicer, server):
                     servicer.ExportNote,
                     request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteRequest.FromString,
                     response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteResponse.SerializeToString,
+            ),
+            'OnAccountDelete': grpc.unary_unary_rpc_method_handler(
+                    servicer.OnAccountDelete,
+                    request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.OnAccountDeleteRequest.FromString,
+                    response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.OnAccountDeleteResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -336,5 +353,22 @@ class NotesAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/ExportNote',
             noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteRequest.SerializeToString,
             noted_dot_notes_dot_v1_dot_notes__pb2.ExportNoteResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def OnAccountDelete(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/OnAccountDelete',
+            noted_dot_notes_dot_v1_dot_notes__pb2.OnAccountDeleteRequest.SerializeToString,
+            noted_dot_notes_dot_v1_dot_notes__pb2.OnAccountDeleteResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
