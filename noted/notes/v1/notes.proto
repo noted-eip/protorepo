@@ -110,7 +110,7 @@ service NotesAPI {
     rpc UpdateNote(UpdateNoteRequest) returns (UpdateNoteResponse) {
         option (google.api.http) = {
             patch: "/groups/{group_id}/notes/{note_id}",
-            body: "*",
+            body: "note",
         };
     }
     // Must be author.
@@ -137,7 +137,7 @@ service NotesAPI {
     rpc UpdateBlock(UpdateBlockRequest) returns (UpdateBlockResponse) {
         option (google.api.http) = {
             patch: "/groups/{group_id}/notes/{note_id}/blocks/{block_id}",
-            body: "*",
+            body: "block",
         };
     }
     // Must be author.
