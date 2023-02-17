@@ -543,6 +543,37 @@ paths:
           required: false
           type: string
   /groups/{groupId}/notes:
+    get:
+      summary: Must be group member.
+      operationId: NotesAPI_ListNotes
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListNotesResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: authorAccountId
+          in: query
+          required: false
+          type: string
+        - name: limit
+          in: query
+          required: false
+          type: string
+          format: int64
+        - name: offset
+          in: query
+          required: false
+          type: string
+          format: int64
     post:
       summary: |-
         Must be group member, author_account_id defaults to the user making
@@ -574,6 +605,175 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/v1Block'
+  /groups/{groupId}/notes/{noteId}:
+    get:
+      summary: Must be group member or author.
+      operationId: NotesAPI_GetNote
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetNoteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+    delete:
+      summary: Must be author.
+      operationId: NotesAPI_DeleteNote
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DeleteNoteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+    patch:
+      summary: Must be author. Can only update `title`.
+      operationId: NotesAPI_UpdateNote
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UpdateNoteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: note
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Note'
+            required:
+              - note
+        - name: updateMask
+          in: query
+          required: false
+          type: string
+  /groups/{groupId}/notes/{noteId}/blocks:
+    post:
+      summary: Must be author.
+      operationId: NotesAPI_InsertBlock
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1InsertBlockResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              index:
+                type: integer
+                format: int64
+              block:
+                $ref: '#/definitions/v1Block'
+            required:
+              - index
+              - block
+  /groups/{groupId}/notes/{noteId}/blocks/{blockId}:
+    delete:
+      summary: Must be author.
+      operationId: NotesAPI_DeleteBlock
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DeleteBlockResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
+          in: path
+          required: true
+          type: string
+    patch:
+      summary: Must be author.
+      operationId: NotesAPI_UpdateBlock
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UpdateBlockResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
+          in: path
+          required: true
+          type: string
+        - name: block
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Block'
+            required:
+              - block
   /invites:
     get:
       summary: Must be group administrator or sender or recipient.

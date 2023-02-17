@@ -189,5 +189,54 @@ void main() {
       // TODO
     });
 
+    // Must be author.
+    //
+    //Future<JsonObject> notesAPIDeleteBlock(String groupId, String noteId, String blockId) async
+    test('test notesAPIDeleteBlock', () async {
+      // TODO
+    });
+
+    // Must be author.
+    //
+    //Future<JsonObject> notesAPIDeleteNote(String groupId, String noteId) async
+    test('test notesAPIDeleteNote', () async {
+      // TODO
+    });
+
+    // Must be group member or author.
+    //
+    //Future<V1GetNoteResponse> notesAPIGetNote(String groupId, String noteId) async
+    test('test notesAPIGetNote', () async {
+      // TODO
+    });
+
+    // Must be author.
+    //
+    //Future<V1InsertBlockResponse> notesAPIInsertBlock(String groupId, String noteId, NotesAPIInsertBlockRequest body) async
+    test('test notesAPIInsertBlock', () async {
+      // TODO
+    });
+
+    // Must be group member.
+    //
+    //Future<V1ListNotesResponse> notesAPIListNotes(String groupId, { String authorAccountId, String limit, String offset }) async
+    test('test notesAPIListNotes', () async {
+      // TODO
+    });
+
+    // Must be author.
+    //
+    //Future<V1UpdateBlockResponse> notesAPIUpdateBlock(String groupId, String noteId, String blockId, V1Block block) async
+    test('test notesAPIUpdateBlock', () async {
+      // TODO
+    });
+
+    // Must be author. Can only update `title`.
+    //
+    //Future<V1UpdateNoteResponse> notesAPIUpdateNote(String groupId, String noteId, V1Note note, { String updateMask }) async
+    test('test notesAPIUpdateNote', () async {
+      // TODO
+    });
+
   });
 }

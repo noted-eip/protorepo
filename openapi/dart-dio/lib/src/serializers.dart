@@ -19,6 +19,7 @@ import 'package:openapi/src/model/block_image.dart';
 import 'package:openapi/src/model/groups_api_send_invite_request.dart';
 import 'package:openapi/src/model/groups_api_update_group_request.dart';
 import 'package:openapi/src/model/notes_api_create_note_request.dart';
+import 'package:openapi/src/model/notes_api_insert_block_request.dart';
 import 'package:openapi/src/model/v1_accept_invite_response.dart';
 import 'package:openapi/src/model/v1_account.dart';
 import 'package:openapi/src/model/v1_authenticate_request.dart';
@@ -84,6 +85,7 @@ part 'serializers.g.dart';
   GroupsAPISendInviteRequest,
   GroupsAPIUpdateGroupRequest,
   NotesAPICreateNoteRequest,
+  NotesAPIInsertBlockRequest,
   V1AcceptInviteResponse,
   V1Account,
   V1AuthenticateRequest,

@@ -115,6 +115,25 @@ export interface NotesAPICreateNoteRequest {
 /**
  * 
  * @export
+ * @interface NotesAPIInsertBlockRequest
+ */
+export interface NotesAPIInsertBlockRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof NotesAPIInsertBlockRequest
+     */
+    'index': number;
+    /**
+     * 
+     * @type {V1Block}
+     * @memberof NotesAPIInsertBlockRequest
+     */
+    'block': V1Block;
+}
+/**
+ * 
+ * @export
  * @interface V1AcceptInviteResponse
  */
 export interface V1AcceptInviteResponse {
@@ -2241,6 +2260,314 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIDeleteBlock: async (groupId: string, noteId: string, blockId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIDeleteBlock', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIDeleteBlock', 'noteId', noteId)
+            // verify required parameter 'blockId' is not null or undefined
+            assertParamExists('notesAPIDeleteBlock', 'blockId', blockId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/blocks/{blockId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)))
+                .replace(`{${"blockId"}}`, encodeURIComponent(String(blockId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIDeleteNote: async (groupId: string, noteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIDeleteNote', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIDeleteNote', 'noteId', noteId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member or author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIGetNote: async (groupId: string, noteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIGetNote', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIGetNote', 'noteId', noteId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {NotesAPIInsertBlockRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIInsertBlock: async (groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIInsertBlock', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIInsertBlock', 'noteId', noteId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('notesAPIInsertBlock', 'body', body)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/blocks`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} [authorAccountId] 
+         * @param {string} [limit] 
+         * @param {string} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListNotes: async (groupId: string, authorAccountId?: string, limit?: string, offset?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIListNotes', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/notes`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (authorAccountId !== undefined) {
+                localVarQueryParameter['authorAccountId'] = authorAccountId;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {V1Block} block 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIUpdateBlock: async (groupId: string, noteId: string, blockId: string, block: V1Block, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIUpdateBlock', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIUpdateBlock', 'noteId', noteId)
+            // verify required parameter 'blockId' is not null or undefined
+            assertParamExists('notesAPIUpdateBlock', 'blockId', blockId)
+            // verify required parameter 'block' is not null or undefined
+            assertParamExists('notesAPIUpdateBlock', 'block', block)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/blocks/{blockId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)))
+                .replace(`{${"blockId"}}`, encodeURIComponent(String(blockId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(block, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be author. Can only update `title`.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {V1Note} note 
+         * @param {string} [updateMask] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIUpdateNote: async (groupId: string, noteId: string, note: V1Note, updateMask?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIUpdateNote', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIUpdateNote', 'noteId', noteId)
+            // verify required parameter 'note' is not null or undefined
+            assertParamExists('notesAPIUpdateNote', 'note', note)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (updateMask !== undefined) {
+                localVarQueryParameter['updateMask'] = updateMask;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(note, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -2564,6 +2891,98 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPICreateNote(groupId, body, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIDeleteBlock(groupId: string, noteId: string, blockId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIDeleteBlock(groupId, noteId, blockId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIDeleteNote(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIDeleteNote(groupId, noteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member or author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIGetNote(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetNoteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIGetNote(groupId, noteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {NotesAPIInsertBlockRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1InsertBlockResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIInsertBlock(groupId, noteId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} [authorAccountId] 
+         * @param {string} [limit] 
+         * @param {string} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIListNotes(groupId: string, authorAccountId?: string, limit?: string, offset?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListNotesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListNotes(groupId, authorAccountId, limit, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {V1Block} block 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIUpdateBlock(groupId: string, noteId: string, blockId: string, block: V1Block, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateBlockResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateBlock(groupId, noteId, blockId, block, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be author. Can only update `title`.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {V1Note} note 
+         * @param {string} [updateMask] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, updateMask?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateNoteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateNote(groupId, noteId, note, updateMask, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -2860,6 +3279,91 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         notesAPICreateNote(groupId: string, body: NotesAPICreateNoteRequest, options?: any): AxiosPromise<V1CreateNoteResponse> {
             return localVarFp.notesAPICreateNote(groupId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIDeleteBlock(groupId: string, noteId: string, blockId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.notesAPIDeleteBlock(groupId, noteId, blockId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIDeleteNote(groupId: string, noteId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.notesAPIDeleteNote(groupId, noteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member or author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIGetNote(groupId: string, noteId: string, options?: any): AxiosPromise<V1GetNoteResponse> {
+            return localVarFp.notesAPIGetNote(groupId, noteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {NotesAPIInsertBlockRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options?: any): AxiosPromise<V1InsertBlockResponse> {
+            return localVarFp.notesAPIInsertBlock(groupId, noteId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} [authorAccountId] 
+         * @param {string} [limit] 
+         * @param {string} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListNotes(groupId: string, authorAccountId?: string, limit?: string, offset?: string, options?: any): AxiosPromise<V1ListNotesResponse> {
+            return localVarFp.notesAPIListNotes(groupId, authorAccountId, limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {V1Block} block 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIUpdateBlock(groupId: string, noteId: string, blockId: string, block: V1Block, options?: any): AxiosPromise<V1UpdateBlockResponse> {
+            return localVarFp.notesAPIUpdateBlock(groupId, noteId, blockId, block, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be author. Can only update `title`.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {V1Note} note 
+         * @param {string} [updateMask] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, updateMask?: string, options?: any): AxiosPromise<V1UpdateNoteResponse> {
+            return localVarFp.notesAPIUpdateNote(groupId, noteId, note, updateMask, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3208,6 +3712,105 @@ export class DefaultApi extends BaseAPI {
      */
     public notesAPICreateNote(groupId: string, body: NotesAPICreateNoteRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPICreateNote(groupId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be author.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {string} blockId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIDeleteBlock(groupId: string, noteId: string, blockId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIDeleteBlock(groupId, noteId, blockId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be author.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIDeleteNote(groupId: string, noteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIDeleteNote(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member or author.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIGetNote(groupId: string, noteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIGetNote(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be author.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {NotesAPIInsertBlockRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIInsertBlock(groupId, noteId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member.
+     * @param {string} groupId 
+     * @param {string} [authorAccountId] 
+     * @param {string} [limit] 
+     * @param {string} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIListNotes(groupId: string, authorAccountId?: string, limit?: string, offset?: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIListNotes(groupId, authorAccountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be author.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {string} blockId 
+     * @param {V1Block} block 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIUpdateBlock(groupId: string, noteId: string, blockId: string, block: V1Block, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIUpdateBlock(groupId, noteId, blockId, block, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be author. Can only update `title`.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {V1Note} note 
+     * @param {string} [updateMask] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, updateMask?: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIUpdateNote(groupId, noteId, note, updateMask, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

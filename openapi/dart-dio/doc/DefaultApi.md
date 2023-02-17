@@ -35,6 +35,13 @@ Method | HTTP request | Description
 [**groupsAPIUpdateMember**](DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
 [**groupsAPIUseInviteLink**](DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
 [**notesAPICreateNote**](DefaultApi.md#notesapicreatenote) | **POST** /groups/{groupId}/notes | Must be group member, author_account_id defaults to the user making the request.
+[**notesAPIDeleteBlock**](DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
+[**notesAPIDeleteNote**](DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author.
+[**notesAPIGetNote**](DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author.
+[**notesAPIInsertBlock**](DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author.
+[**notesAPIListNotes**](DefaultApi.md#notesapilistnotes) | **GET** /groups/{groupId}/notes | Must be group member.
+[**notesAPIUpdateBlock**](DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
+[**notesAPIUpdateNote**](DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60;.
 
 
 # **accountsAPIAuthenticate**
@@ -1145,6 +1152,323 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1CreateNoteResponse**](V1CreateNoteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIDeleteBlock**
+> JsonObject notesAPIDeleteBlock(groupId, noteId, blockId)
+
+Must be author.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+final String blockId = blockId_example; // String | 
+
+try {
+    final response = api.notesAPIDeleteBlock(groupId, noteId, blockId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->notesAPIDeleteBlock: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+ **blockId** | **String**|  | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIDeleteNote**
+> JsonObject notesAPIDeleteNote(groupId, noteId)
+
+Must be author.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+
+try {
+    final response = api.notesAPIDeleteNote(groupId, noteId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->notesAPIDeleteNote: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIGetNote**
+> V1GetNoteResponse notesAPIGetNote(groupId, noteId)
+
+Must be group member or author.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+
+try {
+    final response = api.notesAPIGetNote(groupId, noteId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->notesAPIGetNote: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+
+### Return type
+
+[**V1GetNoteResponse**](V1GetNoteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIInsertBlock**
+> V1InsertBlockResponse notesAPIInsertBlock(groupId, noteId, body)
+
+Must be author.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+final NotesAPIInsertBlockRequest body = ; // NotesAPIInsertBlockRequest | 
+
+try {
+    final response = api.notesAPIInsertBlock(groupId, noteId, body);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->notesAPIInsertBlock: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+ **body** | [**NotesAPIInsertBlockRequest**](NotesAPIInsertBlockRequest.md)|  | 
+
+### Return type
+
+[**V1InsertBlockResponse**](V1InsertBlockResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIListNotes**
+> V1ListNotesResponse notesAPIListNotes(groupId, authorAccountId, limit, offset)
+
+Must be group member.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String authorAccountId = authorAccountId_example; // String | 
+final String limit = limit_example; // String | 
+final String offset = offset_example; // String | 
+
+try {
+    final response = api.notesAPIListNotes(groupId, authorAccountId, limit, offset);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->notesAPIListNotes: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **authorAccountId** | **String**|  | [optional] 
+ **limit** | **String**|  | [optional] 
+ **offset** | **String**|  | [optional] 
+
+### Return type
+
+[**V1ListNotesResponse**](V1ListNotesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIUpdateBlock**
+> V1UpdateBlockResponse notesAPIUpdateBlock(groupId, noteId, blockId, block)
+
+Must be author.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+final String blockId = blockId_example; // String | 
+final V1Block block = ; // V1Block | 
+
+try {
+    final response = api.notesAPIUpdateBlock(groupId, noteId, blockId, block);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->notesAPIUpdateBlock: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+ **blockId** | **String**|  | 
+ **block** | [**V1Block**](V1Block.md)|  | 
+
+### Return type
+
+[**V1UpdateBlockResponse**](V1UpdateBlockResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIUpdateNote**
+> V1UpdateNoteResponse notesAPIUpdateNote(groupId, noteId, note, updateMask)
+
+Must be author. Can only update `title`.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+final V1Note note = ; // V1Note | 
+final String updateMask = updateMask_example; // String | 
+
+try {
+    final response = api.notesAPIUpdateNote(groupId, noteId, note, updateMask);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->notesAPIUpdateNote: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+ **note** | [**V1Note**](V1Note.md)|  | 
+ **updateMask** | **String**|  | [optional] 
+
+### Return type
+
+[**V1UpdateNoteResponse**](V1UpdateNoteResponse.md)
 
 ### Authorization
 
