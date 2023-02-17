@@ -116,7 +116,7 @@ service NotesAPI {
     // Must be author.
     rpc DeleteNote(DeleteNoteRequest) returns (DeleteNoteResponse) {
         option (google.api.http) = {
-            dalete: "/groups/{group_id}/notes/{note_id}"
+            delete: "/groups/{group_id}/notes/{note_id}"
         };
     }
     // Must be group member.
