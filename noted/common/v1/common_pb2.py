@@ -15,12 +15,13 @@ _sym_db = _symbol_database.Default()
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1cnoted/common/v1/common.proto\x12\x0fnoted.common.v1\"!\n\tHttpError\x12\x14\n\x05\x65rror\x18\x01 \x01(\tR\x05\x65rrorB\x11Z\x0fnoted/common/v1b\x06proto3')
 
-_builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'noted.common.v1.common_pb2', globals())
+_globals = globals()
+_builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'noted.common.v1.common_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z\017noted/common/v1'
-  _HTTPERROR._serialized_start=49
-  _HTTPERROR._serialized_end=82
+  _globals['_HTTPERROR']._serialized_start=49
+  _globals['_HTTPERROR']._serialized_end=82
 # @@protoc_insertion_point(module_scope)

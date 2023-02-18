@@ -160,13 +160,13 @@ paths:
         - name: limit
           in: query
           required: false
-          type: string
-          format: int64
+          type: integer
+          format: int32
         - name: offset
           in: query
           required: false
-          type: string
-          format: int64
+          type: integer
+          format: int32
     post:
       summary: |-
         Creates a group with a single administrator member (the authenticated user).
@@ -567,13 +567,13 @@ paths:
         - name: limit
           in: query
           required: false
-          type: string
-          format: int64
+          type: integer
+          format: int32
         - name: offset
           in: query
           required: false
-          type: string
-          format: int64
+          type: integer
+          format: int32
     post:
       summary: |-
         Must be group member, author_account_id defaults to the user making

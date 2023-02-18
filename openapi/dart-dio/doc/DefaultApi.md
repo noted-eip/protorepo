@@ -733,8 +733,8 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String accountId = accountId_example; // String | 
-final String limit = limit_example; // String | 
-final String offset = offset_example; // String | 
+final int limit = 56; // int | 
+final int offset = 56; // int | 
 
 try {
     final response = api.groupsAPIListGroups(accountId, limit, offset);
@@ -749,8 +749,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accountId** | **String**|  | 
- **limit** | **String**|  | [optional] 
- **offset** | **String**|  | [optional] 
+ **limit** | **int**|  | [optional] 
+ **offset** | **int**|  | [optional] 
 
 ### Return type
 
@@ -1352,8 +1352,8 @@ import 'package:openapi/api.dart';
 final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
 final String authorAccountId = authorAccountId_example; // String | 
-final String limit = limit_example; // String | 
-final String offset = offset_example; // String | 
+final int limit = 56; // int | 
+final int offset = 56; // int | 
 
 try {
     final response = api.notesAPIListNotes(groupId, authorAccountId, limit, offset);
@@ -1369,8 +1369,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **String**|  | 
  **authorAccountId** | **String**|  | [optional] 
- **limit** | **String**|  | [optional] 
- **offset** | **String**|  | [optional] 
+ **limit** | **int**|  | [optional] 
+ **offset** | **int**|  | [optional] 
 
 ### Return type
 

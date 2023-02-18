@@ -1417,8 +1417,8 @@ class DefaultApi {
   /// Throws [DioError] if API call or serialization fails
   Future<Response<V1ListGroupsResponse>> groupsAPIListGroups({ 
     required String accountId,
-    String? limit,
-    String? offset,
+    int? limit,
+    int? offset,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1441,8 +1441,8 @@ class DefaultApi {
 
     final _queryParameters = <String, dynamic>{
       r'accountId': encodeQueryParameter(_serializers, accountId, const FullType(String)),
-      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(String)),
-      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -2635,8 +2635,8 @@ class DefaultApi {
   Future<Response<V1ListNotesResponse>> notesAPIListNotes({ 
     required String groupId,
     String? authorAccountId,
-    String? limit,
-    String? offset,
+    int? limit,
+    int? offset,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -2659,8 +2659,8 @@ class DefaultApi {
 
     final _queryParameters = <String, dynamic>{
       if (authorAccountId != null) r'authorAccountId': encodeQueryParameter(_serializers, authorAccountId, const FullType(String)),
-      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(String)),
-      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(

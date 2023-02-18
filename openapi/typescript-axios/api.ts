@@ -1841,12 +1841,12 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary Must be group member. Returns only the non-array fields of a group.
          * @param {string} accountId 
-         * @param {string} [limit] 
-         * @param {string} [offset] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIListGroups: async (accountId: string, limit?: string, offset?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsAPIListGroups: async (accountId: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('groupsAPIListGroups', 'accountId', accountId)
             const localVarPath = `/groups`;
@@ -2427,12 +2427,12 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Must be group member.
          * @param {string} groupId 
          * @param {string} [authorAccountId] 
-         * @param {string} [limit] 
-         * @param {string} [offset] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPIListNotes: async (groupId: string, authorAccountId?: string, limit?: string, offset?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notesAPIListNotes: async (groupId: string, authorAccountId?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('notesAPIListNotes', 'groupId', groupId)
             const localVarPath = `/groups/{groupId}/notes`
@@ -2769,12 +2769,12 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * 
          * @summary Must be group member. Returns only the non-array fields of a group.
          * @param {string} accountId 
-         * @param {string} [limit] 
-         * @param {string} [offset] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsAPIListGroups(accountId: string, limit?: string, offset?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListGroupsResponse>> {
+        async groupsAPIListGroups(accountId: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListGroupsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListGroups(accountId, limit, offset, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2946,12 +2946,12 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @summary Must be group member.
          * @param {string} groupId 
          * @param {string} [authorAccountId] 
-         * @param {string} [limit] 
-         * @param {string} [offset] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notesAPIListNotes(groupId: string, authorAccountId?: string, limit?: string, offset?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListNotesResponse>> {
+        async notesAPIListNotes(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListNotesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListNotes(groupId, authorAccountId, limit, offset, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3168,12 +3168,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary Must be group member. Returns only the non-array fields of a group.
          * @param {string} accountId 
-         * @param {string} [limit] 
-         * @param {string} [offset] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIListGroups(accountId: string, limit?: string, offset?: string, options?: any): AxiosPromise<V1ListGroupsResponse> {
+        groupsAPIListGroups(accountId: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListGroupsResponse> {
             return localVarFp.groupsAPIListGroups(accountId, limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3331,12 +3331,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @summary Must be group member.
          * @param {string} groupId 
          * @param {string} [authorAccountId] 
-         * @param {string} [limit] 
-         * @param {string} [offset] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPIListNotes(groupId: string, authorAccountId?: string, limit?: string, offset?: string, options?: any): AxiosPromise<V1ListNotesResponse> {
+        notesAPIListNotes(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListNotesResponse> {
             return localVarFp.notesAPIListNotes(groupId, authorAccountId, limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3582,13 +3582,13 @@ export class DefaultApi extends BaseAPI {
      * 
      * @summary Must be group member. Returns only the non-array fields of a group.
      * @param {string} accountId 
-     * @param {string} [limit] 
-     * @param {string} [offset] 
+     * @param {number} [limit] 
+     * @param {number} [offset] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public groupsAPIListGroups(accountId: string, limit?: string, offset?: string, options?: AxiosRequestConfig) {
+    public groupsAPIListGroups(accountId: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).groupsAPIListGroups(accountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -3773,13 +3773,13 @@ export class DefaultApi extends BaseAPI {
      * @summary Must be group member.
      * @param {string} groupId 
      * @param {string} [authorAccountId] 
-     * @param {string} [limit] 
-     * @param {string} [offset] 
+     * @param {number} [limit] 
+     * @param {number} [offset] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public notesAPIListNotes(groupId: string, authorAccountId?: string, limit?: string, offset?: string, options?: AxiosRequestConfig) {
+    public notesAPIListNotes(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPIListNotes(groupId, authorAccountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
