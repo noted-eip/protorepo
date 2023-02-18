@@ -113,16 +113,24 @@ service NotesAPI {
             body: "note",
         };
     }
+
     // Must be author.
     rpc DeleteNote(DeleteNoteRequest) returns (DeleteNoteResponse) {
         option (google.api.http) = {
             delete: "/groups/{group_id}/notes/{note_id}"
         };
     }
-    // Must be group member.
+
+    // List notes in a group, authored by a user or both. Must have
+    // read access to the notes.
     rpc ListNotes(ListNotesRequest) returns (ListNotesResponse) {
         option (google.api.http) = {
-            get: "/groups/{group_id}/notes"
+            get: "/notes",
+            additional_bindings: [
+                {
+                    get: "/groups/{group_id}/notes"
+                }
+            ]
         };
     }
 

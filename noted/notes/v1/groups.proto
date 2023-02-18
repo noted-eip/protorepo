@@ -239,6 +239,11 @@ service GroupsAPI {
     rpc ListInvites(ListInvitesRequest) returns (ListInvitesResponse) {
         option (google.api.http) = {
             get: "/invites",
+            additional_bindings: [
+                {
+                    get: "/groups/{group_id}/invites"
+                }
+            ]
         };
     }
 }
