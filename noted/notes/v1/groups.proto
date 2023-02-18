@@ -290,8 +290,8 @@ message UpdateGroupResponse {
 
 message ListGroupsRequest {
     string account_id = 1 [(google.api.field_behavior) = REQUIRED];
-    int64 limit = 2;
-    int64 offset = 3;
+    int32 limit = 4;
+    int32 offset = 5;
 }
 
 message ListGroupsResponse {
