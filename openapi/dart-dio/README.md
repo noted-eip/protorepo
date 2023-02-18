@@ -82,6 +82,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGetMember**](doc/DefaultApi.md#groupsapigetmember) | **GET** /groups/{groupId}/members/{accountId} | Must be group member.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIListGroups**](doc/DefaultApi.md#groupsapilistgroups) | **GET** /groups | Must be group member. Returns only the non-array fields of a group.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIListInvites**](doc/DefaultApi.md#groupsapilistinvites) | **GET** /invites | Must be group administrator or sender or recipient.
+[*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIListInvites2**](doc/DefaultApi.md#groupsapilistinvites2) | **GET** /groups/{groupId}/invites | Must be group administrator or sender or recipient.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIRemoveMember**](doc/DefaultApi.md#groupsapiremovemember) | **DELETE** /groups/{groupId}/members/{accountId} | Must be group administrator or the authenticated user removing itself from the group.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIRevokeInvite**](doc/DefaultApi.md#groupsapirevokeinvite) | **DELETE** /groups/{groupId}/invites/{inviteId} | Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIRevokeInviteLink**](doc/DefaultApi.md#groupsapirevokeinvitelink) | **DELETE** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
@@ -94,7 +95,8 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteNote**](doc/DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGetNote**](doc/DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIInsertBlock**](doc/DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author.
-[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes**](doc/DefaultApi.md#notesapilistnotes) | **GET** /groups/{groupId}/notes | Must be group member.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes**](doc/DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes2**](doc/DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlock**](doc/DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateNote**](doc/DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60;.
 

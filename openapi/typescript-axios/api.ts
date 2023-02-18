@@ -1941,6 +1941,60 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} groupId Returns only invites for a given group.
+         * @param {string} [senderAccountId] Returns only invites from sender.
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListInvites2: async (groupId: string, senderAccountId?: string, recipientAccountId?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIListInvites2', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/invites`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (senderAccountId !== undefined) {
+                localVarQueryParameter['senderAccountId'] = senderAccountId;
+            }
+
+            if (recipientAccountId !== undefined) {
+                localVarQueryParameter['recipientAccountId'] = recipientAccountId;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be group administrator or the authenticated user removing itself from the group.
          * @param {string} groupId 
          * @param {string} accountId 
@@ -2424,7 +2478,57 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Must be group member.
+         * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
+         * @param {string} [authorAccountId] 
+         * @param {string} [groupId] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListNotes: async (authorAccountId?: string, groupId?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/notes`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (authorAccountId !== undefined) {
+                localVarQueryParameter['authorAccountId'] = authorAccountId;
+            }
+
+            if (groupId !== undefined) {
+                localVarQueryParameter['groupId'] = groupId;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
          * @param {string} groupId 
          * @param {string} [authorAccountId] 
          * @param {number} [limit] 
@@ -2432,9 +2536,9 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPIListNotes: async (groupId: string, authorAccountId?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notesAPIListNotes2: async (groupId: string, authorAccountId?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
-            assertParamExists('notesAPIListNotes', 'groupId', groupId)
+            assertParamExists('notesAPIListNotes2', 'groupId', groupId)
             const localVarPath = `/groups/{groupId}/notes`
                 .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2795,6 +2899,21 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} groupId Returns only invites for a given group.
+         * @param {string} [senderAccountId] Returns only invites from sender.
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIListInvites2(groupId: string, senderAccountId?: string, recipientAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListInvitesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListInvites2(groupId, senderAccountId, recipientAccountId, limit, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Must be group administrator or the authenticated user removing itself from the group.
          * @param {string} groupId 
          * @param {string} accountId 
@@ -2943,7 +3062,21 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Must be group member.
+         * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
+         * @param {string} [authorAccountId] 
+         * @param {string} [groupId] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIListNotes(authorAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListNotesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListNotes(authorAccountId, groupId, limit, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
          * @param {string} groupId 
          * @param {string} [authorAccountId] 
          * @param {number} [limit] 
@@ -2951,8 +3084,8 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notesAPIListNotes(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListNotesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListNotes(groupId, authorAccountId, limit, offset, options);
+        async notesAPIListNotes2(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListNotesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListNotes2(groupId, authorAccountId, limit, offset, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3192,6 +3325,20 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} groupId Returns only invites for a given group.
+         * @param {string} [senderAccountId] Returns only invites from sender.
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListInvites2(groupId: string, senderAccountId?: string, recipientAccountId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListInvitesResponse> {
+            return localVarFp.groupsAPIListInvites2(groupId, senderAccountId, recipientAccountId, limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Must be group administrator or the authenticated user removing itself from the group.
          * @param {string} groupId 
          * @param {string} accountId 
@@ -3328,7 +3475,20 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary Must be group member.
+         * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
+         * @param {string} [authorAccountId] 
+         * @param {string} [groupId] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListNotes(authorAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListNotesResponse> {
+            return localVarFp.notesAPIListNotes(authorAccountId, groupId, limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
          * @param {string} groupId 
          * @param {string} [authorAccountId] 
          * @param {number} [limit] 
@@ -3336,8 +3496,8 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPIListNotes(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListNotesResponse> {
-            return localVarFp.notesAPIListNotes(groupId, authorAccountId, limit, offset, options).then((request) => request(axios, basePath));
+        notesAPIListNotes2(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListNotesResponse> {
+            return localVarFp.notesAPIListNotes2(groupId, authorAccountId, limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3610,6 +3770,22 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @summary Must be group administrator or sender or recipient.
+     * @param {string} groupId Returns only invites for a given group.
+     * @param {string} [senderAccountId] Returns only invites from sender.
+     * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+     * @param {number} [limit] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIListInvites2(groupId: string, senderAccountId?: string, recipientAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIListInvites2(groupId, senderAccountId, recipientAccountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Must be group administrator or the authenticated user removing itself from the group.
      * @param {string} groupId 
      * @param {string} accountId 
@@ -3770,7 +3946,22 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @summary Must be group member.
+     * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
+     * @param {string} [authorAccountId] 
+     * @param {string} [groupId] 
+     * @param {number} [limit] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIListNotes(authorAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIListNotes(authorAccountId, groupId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
      * @param {string} groupId 
      * @param {string} [authorAccountId] 
      * @param {number} [limit] 
@@ -3779,8 +3970,8 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public notesAPIListNotes(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).notesAPIListNotes(groupId, authorAccountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public notesAPIListNotes2(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIListNotes2(groupId, authorAccountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -133,6 +133,13 @@ void main() {
       // TODO
     });
 
+    // Must be group administrator or sender or recipient.
+    //
+    //Future<V1ListInvitesResponse> groupsAPIListInvites2(String groupId, { String senderAccountId, String recipientAccountId, int limit, int offset }) async
+    test('test groupsAPIListInvites2', () async {
+      // TODO
+    });
+
     // Must be group administrator or the authenticated user removing itself from the group.
     //
     //Future<JsonObject> groupsAPIRemoveMember(String groupId, String accountId) async
@@ -217,10 +224,17 @@ void main() {
       // TODO
     });
 
-    // Must be group member.
+    // List notes in a group, authored by a user or both. Must have read access to the notes.
     //
-    //Future<V1ListNotesResponse> notesAPIListNotes(String groupId, { String authorAccountId, int limit, int offset }) async
+    //Future<V1ListNotesResponse> notesAPIListNotes({ String authorAccountId, String groupId, int limit, int offset }) async
     test('test notesAPIListNotes', () async {
+      // TODO
+    });
+
+    // List notes in a group, authored by a user or both. Must have read access to the notes.
+    //
+    //Future<V1ListNotesResponse> notesAPIListNotes2(String groupId, { String authorAccountId, int limit, int offset }) async
+    test('test notesAPIListNotes2', () async {
       // TODO
     });
 

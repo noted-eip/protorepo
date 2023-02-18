@@ -31,7 +31,8 @@ type NotesAPIClient interface {
 	UpdateNote(ctx context.Context, in *UpdateNoteRequest, opts ...grpc.CallOption) (*UpdateNoteResponse, error)
 	// Must be author.
 	DeleteNote(ctx context.Context, in *DeleteNoteRequest, opts ...grpc.CallOption) (*DeleteNoteResponse, error)
-	// Must be group member.
+	// List notes in a group, authored by a user or both. Must have
+	// read access to the notes.
 	ListNotes(ctx context.Context, in *ListNotesRequest, opts ...grpc.CallOption) (*ListNotesResponse, error)
 	// Must be author.
 	InsertBlock(ctx context.Context, in *InsertBlockRequest, opts ...grpc.CallOption) (*InsertBlockResponse, error)
@@ -156,7 +157,8 @@ type NotesAPIServer interface {
 	UpdateNote(context.Context, *UpdateNoteRequest) (*UpdateNoteResponse, error)
 	// Must be author.
 	DeleteNote(context.Context, *DeleteNoteRequest) (*DeleteNoteResponse, error)
-	// Must be group member.
+	// List notes in a group, authored by a user or both. Must have
+	// read access to the notes.
 	ListNotes(context.Context, *ListNotesRequest) (*ListNotesResponse, error)
 	// Must be author.
 	InsertBlock(context.Context, *InsertBlockRequest) (*InsertBlockResponse, error)

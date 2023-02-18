@@ -1577,6 +1577,97 @@ class DefaultApi {
     );
   }
 
+  /// Must be group administrator or sender or recipient.
+  /// 
+  ///
+  /// Parameters:
+  /// * [groupId] - Returns only invites for a given group.
+  /// * [senderAccountId] - Returns only invites from sender.
+  /// * [recipientAccountId] - Returns only invites destined to recipient.
+  /// * [limit] 
+  /// * [offset] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [V1ListInvitesResponse] as data
+  /// Throws [DioError] if API call or serialization fails
+  Future<Response<V1ListInvitesResponse>> groupsAPIListInvites2({ 
+    required String groupId,
+    String? senderAccountId,
+    String? recipientAccountId,
+    int? limit,
+    int? offset,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/groups/{groupId}/invites'.replaceAll('{' r'groupId' '}', groupId.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (senderAccountId != null) r'senderAccountId': encodeQueryParameter(_serializers, senderAccountId, const FullType(String)),
+      if (recipientAccountId != null) r'recipientAccountId': encodeQueryParameter(_serializers, recipientAccountId, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    V1ListInvitesResponse _responseData;
+
+    try {
+      const _responseType = FullType(V1ListInvitesResponse);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as V1ListInvitesResponse;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<V1ListInvitesResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Must be group administrator or the authenticated user removing itself from the group.
   /// 
   ///
@@ -2615,7 +2706,96 @@ class DefaultApi {
     );
   }
 
-  /// Must be group member.
+  /// List notes in a group, authored by a user or both. Must have read access to the notes.
+  /// 
+  ///
+  /// Parameters:
+  /// * [authorAccountId] 
+  /// * [groupId] 
+  /// * [limit] 
+  /// * [offset] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [V1ListNotesResponse] as data
+  /// Throws [DioError] if API call or serialization fails
+  Future<Response<V1ListNotesResponse>> notesAPIListNotes({ 
+    String? authorAccountId,
+    String? groupId,
+    int? limit,
+    int? offset,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/notes';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (authorAccountId != null) r'authorAccountId': encodeQueryParameter(_serializers, authorAccountId, const FullType(String)),
+      if (groupId != null) r'groupId': encodeQueryParameter(_serializers, groupId, const FullType(String)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    V1ListNotesResponse _responseData;
+
+    try {
+      const _responseType = FullType(V1ListNotesResponse);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as V1ListNotesResponse;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<V1ListNotesResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// List notes in a group, authored by a user or both. Must have read access to the notes.
   /// 
   ///
   /// Parameters:
@@ -2632,7 +2812,7 @@ class DefaultApi {
   ///
   /// Returns a [Future] containing a [Response] with a [V1ListNotesResponse] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<V1ListNotesResponse>> notesAPIListNotes({ 
+  Future<Response<V1ListNotesResponse>> notesAPIListNotes2({ 
     required String groupId,
     String? authorAccountId,
     int? limit,

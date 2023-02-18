@@ -99,7 +99,8 @@ class NotesAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def ListNotes(self, request, context):
-        """Must be group member.
+        """List notes in a group, authored by a user or both. Must have
+        read access to the notes.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

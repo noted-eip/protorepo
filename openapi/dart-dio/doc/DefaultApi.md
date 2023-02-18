@@ -27,6 +27,7 @@ Method | HTTP request | Description
 [**groupsAPIGetMember**](DefaultApi.md#groupsapigetmember) | **GET** /groups/{groupId}/members/{accountId} | Must be group member.
 [**groupsAPIListGroups**](DefaultApi.md#groupsapilistgroups) | **GET** /groups | Must be group member. Returns only the non-array fields of a group.
 [**groupsAPIListInvites**](DefaultApi.md#groupsapilistinvites) | **GET** /invites | Must be group administrator or sender or recipient.
+[**groupsAPIListInvites2**](DefaultApi.md#groupsapilistinvites2) | **GET** /groups/{groupId}/invites | Must be group administrator or sender or recipient.
 [**groupsAPIRemoveMember**](DefaultApi.md#groupsapiremovemember) | **DELETE** /groups/{groupId}/members/{accountId} | Must be group administrator or the authenticated user removing itself from the group.
 [**groupsAPIRevokeInvite**](DefaultApi.md#groupsapirevokeinvite) | **DELETE** /groups/{groupId}/invites/{inviteId} | Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
 [**groupsAPIRevokeInviteLink**](DefaultApi.md#groupsapirevokeinvitelink) | **DELETE** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
@@ -39,7 +40,8 @@ Method | HTTP request | Description
 [**notesAPIDeleteNote**](DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author.
 [**notesAPIGetNote**](DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author.
 [**notesAPIInsertBlock**](DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author.
-[**notesAPIListNotes**](DefaultApi.md#notesapilistnotes) | **GET** /groups/{groupId}/notes | Must be group member.
+[**notesAPIListNotes**](DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
+[**notesAPIListNotes2**](DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIUpdateBlock**](DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
 [**notesAPIUpdateNote**](DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60;.
 
@@ -816,6 +818,55 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **groupsAPIListInvites2**
+> V1ListInvitesResponse groupsAPIListInvites2(groupId, senderAccountId, recipientAccountId, limit, offset)
+
+Must be group administrator or sender or recipient.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | Returns only invites for a given group.
+final String senderAccountId = senderAccountId_example; // String | Returns only invites from sender.
+final String recipientAccountId = recipientAccountId_example; // String | Returns only invites destined to recipient.
+final int limit = 56; // int | 
+final int offset = 56; // int | 
+
+try {
+    final response = api.groupsAPIListInvites2(groupId, senderAccountId, recipientAccountId, limit, offset);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIListInvites2: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**| Returns only invites for a given group. | 
+ **senderAccountId** | **String**| Returns only invites from sender. | [optional] 
+ **recipientAccountId** | **String**| Returns only invites destined to recipient. | [optional] 
+ **limit** | **int**|  | [optional] 
+ **offset** | **int**|  | [optional] 
+
+### Return type
+
+[**V1ListInvitesResponse**](V1ListInvitesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **groupsAPIRemoveMember**
 > JsonObject groupsAPIRemoveMember(groupId, accountId)
 
@@ -1341,9 +1392,56 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **notesAPIListNotes**
-> V1ListNotesResponse notesAPIListNotes(groupId, authorAccountId, limit, offset)
+> V1ListNotesResponse notesAPIListNotes(authorAccountId, groupId, limit, offset)
 
-Must be group member.
+List notes in a group, authored by a user or both. Must have read access to the notes.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String authorAccountId = authorAccountId_example; // String | 
+final String groupId = groupId_example; // String | 
+final int limit = 56; // int | 
+final int offset = 56; // int | 
+
+try {
+    final response = api.notesAPIListNotes(authorAccountId, groupId, limit, offset);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->notesAPIListNotes: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorAccountId** | **String**|  | [optional] 
+ **groupId** | **String**|  | [optional] 
+ **limit** | **int**|  | [optional] 
+ **offset** | **int**|  | [optional] 
+
+### Return type
+
+[**V1ListNotesResponse**](V1ListNotesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIListNotes2**
+> V1ListNotesResponse notesAPIListNotes2(groupId, authorAccountId, limit, offset)
+
+List notes in a group, authored by a user or both. Must have read access to the notes.
 
 ### Example
 ```dart
@@ -1356,10 +1454,10 @@ final int limit = 56; // int |
 final int offset = 56; // int | 
 
 try {
-    final response = api.notesAPIListNotes(groupId, authorAccountId, limit, offset);
+    final response = api.notesAPIListNotes2(groupId, authorAccountId, limit, offset);
     print(response);
 } catch on DioError (e) {
-    print('Exception when calling DefaultApi->notesAPIListNotes: $e\n');
+    print('Exception when calling DefaultApi->notesAPIListNotes2: $e\n');
 }
 ```
 
