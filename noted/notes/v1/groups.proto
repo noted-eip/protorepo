@@ -84,9 +84,10 @@ message Group {
     repeated GroupConversation conversations = 9;
     repeated GroupInvite invites = 10;
     repeated GroupInviteLink invite_links = 11;
+    repeated GroupActivity activities = 12;
 }
 
-message Activity {
+message GroupActivity {
     string id = 1 [(google.api.field_behavior) = REQUIRED];
     string group_id = 2 [(google.api.field_behavior) = REQUIRED];
     string type = 3 [(google.api.field_behavior) = REQUIRED];
@@ -517,7 +518,7 @@ message ListActivitiesRequest {
 }
 
 message ListActivitiesResponse {
-    repeated Activity activities = 1 [(google.api.field_behavior) = REQUIRED];
+    repeated GroupActivity activities = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message GetActivityRequest {
@@ -526,5 +527,5 @@ message GetActivityRequest {
 }
 
 message GetActivityResponse {
-    Activity activity = 1 [(google.api.field_behavior) = REQUIRED];
+    GroupActivity activity = 1 [(google.api.field_behavior) = REQUIRED];
 }
