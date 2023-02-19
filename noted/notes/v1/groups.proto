@@ -260,7 +260,7 @@ service GroupsAPI {
             get: "/groups/{group_id}/activity",
         };
     }
-    rpc GetActivity(GetActivitiesRequest) returns (GetActivitiesResponse) {
+    rpc GetActivity(GetActivityRequest) returns (GetActivityResponse) {
         option (google.api.http) = {
             get: "/groups/{group_id}/activity/{activity_id}",
         };
@@ -520,11 +520,11 @@ message ListActivitiesResponse {
     repeated Activity activities = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
-message GetActivitiesRequest {
+message GetActivityRequest {
     string group_id = 1;
     string activity_id = 2;
 }
 
-message GetActivitiesResponse {
+message GetActivityResponse {
     Activity activity = 1 [(google.api.field_behavior) = REQUIRED];
 }
