@@ -1946,10 +1946,12 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {string} groupId 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIListActivities: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsAPIListActivities: async (groupId: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('groupsAPIListActivities', 'groupId', groupId)
             const localVarPath = `/groups/{groupId}/activity`
@@ -1964,6 +1966,14 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
 
 
     
@@ -3022,11 +3032,13 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} groupId 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsAPIListActivities(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListActivitiesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListActivities(groupId, options);
+        async groupsAPIListActivities(groupId: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListActivitiesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListActivities(groupId, limit, offset, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3470,11 +3482,13 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {string} groupId 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIListActivities(groupId: string, options?: any): AxiosPromise<V1ListActivitiesResponse> {
-            return localVarFp.groupsAPIListActivities(groupId, options).then((request) => request(axios, basePath));
+        groupsAPIListActivities(groupId: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListActivitiesResponse> {
+            return localVarFp.groupsAPIListActivities(groupId, limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3932,12 +3946,14 @@ export class DefaultApi extends BaseAPI {
     /**
      * 
      * @param {string} groupId 
+     * @param {number} [limit] 
+     * @param {number} [offset] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public groupsAPIListActivities(groupId: string, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).groupsAPIListActivities(groupId, options).then((request) => request(this.axios, this.basePath));
+    public groupsAPIListActivities(groupId: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIListActivities(groupId, limit, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

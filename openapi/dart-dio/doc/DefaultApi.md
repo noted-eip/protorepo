@@ -770,7 +770,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **groupsAPIListActivities**
-> V1ListActivitiesResponse groupsAPIListActivities(groupId)
+> V1ListActivitiesResponse groupsAPIListActivities(groupId, limit, offset)
 
 
 
@@ -780,9 +780,11 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
+final int limit = 56; // int | 
+final int offset = 56; // int | 
 
 try {
-    final response = api.groupsAPIListActivities(groupId);
+    final response = api.groupsAPIListActivities(groupId, limit, offset);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling DefaultApi->groupsAPIListActivities: $e\n');
@@ -794,6 +796,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **String**|  | 
+ **limit** | **int**|  | [optional] 
+ **offset** | **int**|  | [optional] 
 
 ### Return type
 

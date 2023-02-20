@@ -124,7 +124,7 @@ void main() {
       // TODO
     });
 
-    //Future<V1ListActivitiesResponse> groupsAPIListActivities(String groupId) async
+    //Future<V1ListActivitiesResponse> groupsAPIListActivities(String groupId, { int limit, int offset }) async
     test('test groupsAPIListActivities', () async {
       // TODO
     });
