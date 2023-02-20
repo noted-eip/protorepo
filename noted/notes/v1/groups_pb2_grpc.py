@@ -147,6 +147,16 @@ class GroupsAPIStub(object):
                 request_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.ListInvitesRequest.SerializeToString,
                 response_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.ListInvitesResponse.FromString,
                 )
+        self.ListActivities = channel.unary_unary(
+                '/noted.notes.v1.GroupsAPI/ListActivities',
+                request_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.ListActivitiesRequest.SerializeToString,
+                response_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.ListActivitiesResponse.FromString,
+                )
+        self.GetActivity = channel.unary_unary(
+                '/noted.notes.v1.GroupsAPI/GetActivity',
+                request_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.GetActivityRequest.SerializeToString,
+                response_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.GetActivityResponse.FromString,
+                )
 
 
 class GroupsAPIServicer(object):
@@ -346,6 +356,18 @@ class GroupsAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListActivities(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetActivity(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_GroupsAPIServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -478,6 +500,16 @@ def add_GroupsAPIServicer_to_server(servicer, server):
                     servicer.ListInvites,
                     request_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.ListInvitesRequest.FromString,
                     response_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.ListInvitesResponse.SerializeToString,
+            ),
+            'ListActivities': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListActivities,
+                    request_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.ListActivitiesRequest.FromString,
+                    response_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.ListActivitiesResponse.SerializeToString,
+            ),
+            'GetActivity': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetActivity,
+                    request_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.GetActivityRequest.FromString,
+                    response_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.GetActivityResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -931,5 +963,39 @@ class GroupsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.GroupsAPI/ListInvites',
             noted_dot_notes_dot_v1_dot_groups__pb2.ListInvitesRequest.SerializeToString,
             noted_dot_notes_dot_v1_dot_groups__pb2.ListInvitesResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListActivities(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.GroupsAPI/ListActivities',
+            noted_dot_notes_dot_v1_dot_groups__pb2.ListActivitiesRequest.SerializeToString,
+            noted_dot_notes_dot_v1_dot_groups__pb2.ListActivitiesResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetActivity(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.GroupsAPI/GetActivity',
+            noted_dot_notes_dot_v1_dot_groups__pb2.GetActivityRequest.SerializeToString,
+            noted_dot_notes_dot_v1_dot_groups__pb2.GetActivityResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

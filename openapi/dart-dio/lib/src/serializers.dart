@@ -41,6 +41,7 @@ import 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 import 'package:openapi/src/model/v1_generate_widgets_response.dart';
 import 'package:openapi/src/model/v1_get_account_request.dart';
 import 'package:openapi/src/model/v1_get_account_response.dart';
+import 'package:openapi/src/model/v1_get_activity_response.dart';
 import 'package:openapi/src/model/v1_get_conversation_message_response.dart';
 import 'package:openapi/src/model/v1_get_conversation_response.dart';
 import 'package:openapi/src/model/v1_get_group_response.dart';
@@ -49,6 +50,7 @@ import 'package:openapi/src/model/v1_get_invite_response.dart';
 import 'package:openapi/src/model/v1_get_member_response.dart';
 import 'package:openapi/src/model/v1_get_note_response.dart';
 import 'package:openapi/src/model/v1_group.dart';
+import 'package:openapi/src/model/v1_group_activity.dart';
 import 'package:openapi/src/model/v1_group_conversation.dart';
 import 'package:openapi/src/model/v1_group_invite.dart';
 import 'package:openapi/src/model/v1_group_invite_link.dart';
@@ -57,6 +59,7 @@ import 'package:openapi/src/model/v1_http_error.dart';
 import 'package:openapi/src/model/v1_image_widget.dart';
 import 'package:openapi/src/model/v1_insert_block_response.dart';
 import 'package:openapi/src/model/v1_list_accounts_response.dart';
+import 'package:openapi/src/model/v1_list_activities_response.dart';
 import 'package:openapi/src/model/v1_list_conversation_messages_response.dart';
 import 'package:openapi/src/model/v1_list_groups_response.dart';
 import 'package:openapi/src/model/v1_list_invites_response.dart';
@@ -107,6 +110,7 @@ part 'serializers.g.dart';
   V1GenerateWidgetsResponse,
   V1GetAccountRequest,
   V1GetAccountResponse,
+  V1GetActivityResponse,
   V1GetConversationMessageResponse,
   V1GetConversationResponse,
   V1GetGroupResponse,
@@ -115,6 +119,7 @@ part 'serializers.g.dart';
   V1GetMemberResponse,
   V1GetNoteResponse,
   V1Group,
+  V1GroupActivity,
   V1GroupConversation,
   V1GroupInvite,
   V1GroupInviteLink,
@@ -123,6 +128,7 @@ part 'serializers.g.dart';
   V1ImageWidget,
   V1InsertBlockResponse,
   V1ListAccountsResponse,
+  V1ListActivitiesResponse,
   V1ListConversationMessagesResponse,
   V1ListGroupsResponse,
   V1ListInvitesResponse,

@@ -91,6 +91,11 @@ void main() {
       // TODO
     });
 
+    //Future<V1GetActivityResponse> groupsAPIGetActivity(String groupId, String activityId) async
+    test('test groupsAPIGetActivity', () async {
+      // TODO
+    });
+
     // Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
     //
     //Future<V1GetGroupResponse> groupsAPIGetGroup(String groupId, { String inviteLinkCode }) async
@@ -116,6 +121,11 @@ void main() {
     //
     //Future<V1GetMemberResponse> groupsAPIGetMember(String groupId, String accountId) async
     test('test groupsAPIGetMember', () async {
+      // TODO
+    });
+
+    //Future<V1ListActivitiesResponse> groupsAPIListActivities(String groupId) async
+    test('test groupsAPIListActivities', () async {
       // TODO
     });
 

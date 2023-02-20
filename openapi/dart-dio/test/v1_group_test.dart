@@ -62,5 +62,10 @@ void main() {
       // TODO
     });
 
+    // BuiltList<V1GroupActivity> activities
+    test('to test the property `activities`', () async {
+      // TODO
+    });
+
   });
 }

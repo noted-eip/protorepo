@@ -76,10 +76,12 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIDeleteGroup**](doc/DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIDenyInvite**](doc/DefaultApi.md#groupsapidenyinvite) | **POST** /groups/{groupId}/invites/{inviteId}/deny | Must be recipient. Deletes the invitation without making the recipient join the group.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGenerateInviteLink**](doc/DefaultApi.md#groupsapigenerateinvitelink) | **POST** /groups/{groupId}/inviteLinks | Must be group member. generated_by_account_id defaults to the authenticated user.
+[*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGetActivity**](doc/DefaultApi.md#groupsapigetactivity) | **GET** /groups/{groupId}/activity/{activityId} | 
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGetGroup**](doc/DefaultApi.md#groupsapigetgroup) | **GET** /groups/{groupId} | Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGetInvite**](doc/DefaultApi.md#groupsapigetinvite) | **GET** /groups/{groupId}/invites/{inviteId} | Must be group administrator or sender or recipient.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGetInviteLink**](doc/DefaultApi.md#groupsapigetinvitelink) | **GET** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGetMember**](doc/DefaultApi.md#groupsapigetmember) | **GET** /groups/{groupId}/members/{accountId} | Must be group member.
+[*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIListActivities**](doc/DefaultApi.md#groupsapilistactivities) | **GET** /groups/{groupId}/activity | 
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIListGroups**](doc/DefaultApi.md#groupsapilistgroups) | **GET** /groups | Must be group member. Returns only the non-array fields of a group.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIListInvites**](doc/DefaultApi.md#groupsapilistinvites) | **GET** /invites | Must be group administrator or sender or recipient.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIListInvites2**](doc/DefaultApi.md#groupsapilistinvites2) | **GET** /groups/{groupId}/invites | Must be group administrator or sender or recipient.
@@ -130,6 +132,7 @@ Class | Method | HTTP request | Description
  - [V1GenerateWidgetsResponse](doc/V1GenerateWidgetsResponse.md)
  - [V1GetAccountRequest](doc/V1GetAccountRequest.md)
  - [V1GetAccountResponse](doc/V1GetAccountResponse.md)
+ - [V1GetActivityResponse](doc/V1GetActivityResponse.md)
  - [V1GetConversationMessageResponse](doc/V1GetConversationMessageResponse.md)
  - [V1GetConversationResponse](doc/V1GetConversationResponse.md)
  - [V1GetGroupResponse](doc/V1GetGroupResponse.md)
@@ -138,6 +141,7 @@ Class | Method | HTTP request | Description
  - [V1GetMemberResponse](doc/V1GetMemberResponse.md)
  - [V1GetNoteResponse](doc/V1GetNoteResponse.md)
  - [V1Group](doc/V1Group.md)
+ - [V1GroupActivity](doc/V1GroupActivity.md)
  - [V1GroupConversation](doc/V1GroupConversation.md)
  - [V1GroupInvite](doc/V1GroupInvite.md)
  - [V1GroupInviteLink](doc/V1GroupInviteLink.md)
@@ -146,6 +150,7 @@ Class | Method | HTTP request | Description
  - [V1ImageWidget](doc/V1ImageWidget.md)
  - [V1InsertBlockResponse](doc/V1InsertBlockResponse.md)
  - [V1ListAccountsResponse](doc/V1ListAccountsResponse.md)
+ - [V1ListActivitiesResponse](doc/V1ListActivitiesResponse.md)
  - [V1ListConversationMessagesResponse](doc/V1ListConversationMessagesResponse.md)
  - [V1ListGroupsResponse](doc/V1ListGroupsResponse.md)
  - [V1ListInvitesResponse](doc/V1ListInvitesResponse.md)

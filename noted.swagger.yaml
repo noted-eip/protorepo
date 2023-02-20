@@ -262,6 +262,44 @@ paths:
                 type: string
               description:
                 type: string
+  /groups/{groupId}/activity:
+    get:
+      operationId: GroupsAPI_ListActivities
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListActivitiesResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/activity/{activityId}:
+    get:
+      operationId: GroupsAPI_GetActivity
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetActivityResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: activityId
+          in: path
+          required: true
+          type: string
   /groups/{groupId}/inviteLinks:
     post:
       summary: Must be group member. generated_by_account_id defaults to the authenticated user.
@@ -1144,6 +1182,13 @@ definitions:
         $ref: '#/definitions/v1Account'
     required:
       - account
+  v1GetActivityResponse:
+    type: object
+    properties:
+      activity:
+        $ref: '#/definitions/v1GroupActivity'
+    required:
+      - activity
   v1GetConversationMessageResponse:
     type: object
     properties:
@@ -1228,11 +1273,35 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/v1GroupInviteLink'
+      activities:
+        type: array
+        items:
+          $ref: '#/definitions/v1GroupActivity'
     required:
       - id
       - name
       - description
       - avatarUrl
+      - createdAt
+  v1GroupActivity:
+    type: object
+    properties:
+      id:
+        type: string
+      groupId:
+        type: string
+      type:
+        type: string
+      event:
+        type: string
+      createdAt:
+        type: string
+        format: date-time
+    required:
+      - id
+      - groupId
+      - type
+      - event
       - createdAt
   v1GroupConversation:
     type: object
@@ -1331,6 +1400,15 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/v1Account'
+  v1ListActivitiesResponse:
+    type: object
+    properties:
+      activities:
+        type: array
+        items:
+          $ref: '#/definitions/v1GroupActivity'
+    required:
+      - activities
   v1ListConversationMessagesResponse:
     type: object
     properties:

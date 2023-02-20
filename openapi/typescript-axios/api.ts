@@ -561,6 +561,19 @@ export interface V1GetAccountResponse {
 /**
  * 
  * @export
+ * @interface V1GetActivityResponse
+ */
+export interface V1GetActivityResponse {
+    /**
+     * 
+     * @type {V1GroupActivity}
+     * @memberof V1GetActivityResponse
+     */
+    'activity': V1GroupActivity;
+}
+/**
+ * 
+ * @export
  * @interface V1GetConversationMessageResponse
  */
 export interface V1GetConversationMessageResponse {
@@ -721,6 +734,49 @@ export interface V1Group {
      * @memberof V1Group
      */
     'inviteLinks'?: Array<V1GroupInviteLink>;
+    /**
+     * 
+     * @type {Array<V1GroupActivity>}
+     * @memberof V1Group
+     */
+    'activities'?: Array<V1GroupActivity>;
+}
+/**
+ * 
+ * @export
+ * @interface V1GroupActivity
+ */
+export interface V1GroupActivity {
+    /**
+     * 
+     * @type {string}
+     * @memberof V1GroupActivity
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1GroupActivity
+     */
+    'groupId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1GroupActivity
+     */
+    'type': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1GroupActivity
+     */
+    'event': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1GroupActivity
+     */
+    'createdAt': string;
 }
 /**
  * 
@@ -909,6 +965,19 @@ export interface V1ListAccountsResponse {
      * @memberof V1ListAccountsResponse
      */
     'accounts'?: Array<V1Account>;
+}
+/**
+ * 
+ * @export
+ * @interface V1ListActivitiesResponse
+ */
+export interface V1ListActivitiesResponse {
+    /**
+     * 
+     * @type {Array<V1GroupActivity>}
+     * @memberof V1ListActivitiesResponse
+     */
+    'activities': Array<V1GroupActivity>;
 }
 /**
  * 
@@ -1686,6 +1755,43 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} activityId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetActivity: async (groupId: string, activityId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIGetActivity', 'groupId', groupId)
+            // verify required parameter 'activityId' is not null or undefined
+            assertParamExists('groupsAPIGetActivity', 'activityId', activityId)
+            const localVarPath = `/groups/{groupId}/activity/{activityId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"activityId"}}`, encodeURIComponent(String(activityId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
          * @param {string} groupId 
          * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
@@ -1815,6 +1921,39 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarPath = `/groups/{groupId}/members/{accountId}`
                 .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
                 .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListActivities: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIListActivities', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/activity`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2823,6 +2962,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} activityId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIGetActivity(groupId: string, activityId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetActivityResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetActivity(groupId, activityId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
          * @param {string} groupId 
          * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
@@ -2867,6 +3017,16 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIGetMember(groupId: string, accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetMemberResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetMember(groupId, accountId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIListActivities(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListActivitiesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListActivities(groupId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3255,6 +3415,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} activityId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetActivity(groupId: string, activityId: string, options?: any): AxiosPromise<V1GetActivityResponse> {
+            return localVarFp.groupsAPIGetActivity(groupId, activityId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
          * @param {string} groupId 
          * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
@@ -3296,6 +3466,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         groupsAPIGetMember(groupId: string, accountId: string, options?: any): AxiosPromise<V1GetMemberResponse> {
             return localVarFp.groupsAPIGetMember(groupId, accountId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListActivities(groupId: string, options?: any): AxiosPromise<V1ListActivitiesResponse> {
+            return localVarFp.groupsAPIListActivities(groupId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3688,6 +3867,18 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} groupId 
+     * @param {string} activityId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIGetActivity(groupId: string, activityId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIGetActivity(groupId, activityId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
      * @param {string} groupId 
      * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
@@ -3736,6 +3927,17 @@ export class DefaultApi extends BaseAPI {
      */
     public groupsAPIGetMember(groupId: string, accountId: string, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).groupsAPIGetMember(groupId, accountId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} groupId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIListActivities(groupId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIListActivities(groupId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

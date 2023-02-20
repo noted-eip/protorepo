@@ -21,10 +21,12 @@ Method | HTTP request | Description
 [**groupsAPIDeleteGroup**](DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
 [**groupsAPIDenyInvite**](DefaultApi.md#groupsapidenyinvite) | **POST** /groups/{groupId}/invites/{inviteId}/deny | Must be recipient. Deletes the invitation without making the recipient join the group.
 [**groupsAPIGenerateInviteLink**](DefaultApi.md#groupsapigenerateinvitelink) | **POST** /groups/{groupId}/inviteLinks | Must be group member. generated_by_account_id defaults to the authenticated user.
+[**groupsAPIGetActivity**](DefaultApi.md#groupsapigetactivity) | **GET** /groups/{groupId}/activity/{activityId} | 
 [**groupsAPIGetGroup**](DefaultApi.md#groupsapigetgroup) | **GET** /groups/{groupId} | Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
 [**groupsAPIGetInvite**](DefaultApi.md#groupsapigetinvite) | **GET** /groups/{groupId}/invites/{inviteId} | Must be group administrator or sender or recipient.
 [**groupsAPIGetInviteLink**](DefaultApi.md#groupsapigetinvitelink) | **GET** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
 [**groupsAPIGetMember**](DefaultApi.md#groupsapigetmember) | **GET** /groups/{groupId}/members/{accountId} | Must be group member.
+[**groupsAPIListActivities**](DefaultApi.md#groupsapilistactivities) | **GET** /groups/{groupId}/activity | 
 [**groupsAPIListGroups**](DefaultApi.md#groupsapilistgroups) | **GET** /groups | Must be group member. Returns only the non-array fields of a group.
 [**groupsAPIListInvites**](DefaultApi.md#groupsapilistinvites) | **GET** /invites | Must be group administrator or sender or recipient.
 [**groupsAPIListInvites2**](DefaultApi.md#groupsapilistinvites2) | **GET** /groups/{groupId}/invites | Must be group administrator or sender or recipient.
@@ -552,6 +554,49 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **groupsAPIGetActivity**
+> V1GetActivityResponse groupsAPIGetActivity(groupId, activityId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String activityId = activityId_example; // String | 
+
+try {
+    final response = api.groupsAPIGetActivity(groupId, activityId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIGetActivity: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **activityId** | **String**|  | 
+
+### Return type
+
+[**V1GetActivityResponse**](V1GetActivityResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **groupsAPIGetGroup**
 > V1GetGroupResponse groupsAPIGetGroup(groupId, inviteLinkCode)
 
@@ -712,6 +757,47 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1GetMemberResponse**](V1GetMemberResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **groupsAPIListActivities**
+> V1ListActivitiesResponse groupsAPIListActivities(groupId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+
+try {
+    final response = api.groupsAPIListActivities(groupId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->groupsAPIListActivities: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+
+### Return type
+
+[**V1ListActivitiesResponse**](V1ListActivitiesResponse.md)
 
 ### Authorization
 

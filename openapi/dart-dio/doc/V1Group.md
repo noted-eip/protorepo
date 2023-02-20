@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **conversations** | [**BuiltList&lt;V1GroupConversation&gt;**](V1GroupConversation.md) |  | [optional] 
 **invites** | [**BuiltList&lt;V1GroupInvite&gt;**](V1GroupInvite.md) |  | [optional] 
 **inviteLinks** | [**BuiltList&lt;V1GroupInviteLink&gt;**](V1GroupInviteLink.md) |  | [optional] 
+**activities** | [**BuiltList&lt;V1GroupActivity&gt;**](V1GroupActivity.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

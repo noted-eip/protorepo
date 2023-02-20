@@ -7,6 +7,7 @@ import 'package:openapi/src/model/v1_group_member.dart';
 import 'package:openapi/src/model/v1_group_conversation.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/v1_group_invite.dart';
+import 'package:openapi/src/model/v1_group_activity.dart';
 import 'package:openapi/src/model/v1_group_invite_link.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -27,6 +28,7 @@ part 'v1_group.g.dart';
 /// * [conversations] 
 /// * [invites] 
 /// * [inviteLinks] 
+/// * [activities] 
 @BuiltValue()
 abstract class V1Group implements Built<V1Group, V1GroupBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -61,6 +63,9 @@ abstract class V1Group implements Built<V1Group, V1GroupBuilder> {
 
   @BuiltValueField(wireName: r'inviteLinks')
   BuiltList<V1GroupInviteLink>? get inviteLinks;
+
+  @BuiltValueField(wireName: r'activities')
+  BuiltList<V1GroupActivity>? get activities;
 
   V1Group._();
 
@@ -150,6 +155,13 @@ class _$V1GroupSerializer implements PrimitiveSerializer<V1Group> {
       yield serializers.serialize(
         object.inviteLinks,
         specifiedType: const FullType(BuiltList, [FullType(V1GroupInviteLink)]),
+      );
+    }
+    if (object.activities != null) {
+      yield r'activities';
+      yield serializers.serialize(
+        object.activities,
+        specifiedType: const FullType(BuiltList, [FullType(V1GroupActivity)]),
       );
     }
   }
@@ -251,6 +263,13 @@ class _$V1GroupSerializer implements PrimitiveSerializer<V1Group> {
             specifiedType: const FullType(BuiltList, [FullType(V1GroupInviteLink)]),
           ) as BuiltList<V1GroupInviteLink>;
           result.inviteLinks.replace(valueDes);
+          break;
+        case r'activities':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(V1GroupActivity)]),
+          ) as BuiltList<V1GroupActivity>;
+          result.activities.replace(valueDes);
           break;
         default:
           unhandled.add(key);

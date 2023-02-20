@@ -83,6 +83,8 @@ type GroupsAPIClient interface {
 	RevokeInvite(ctx context.Context, in *RevokeInviteRequest, opts ...grpc.CallOption) (*RevokeInviteResponse, error)
 	// Must be group administrator or sender or recipient.
 	ListInvites(ctx context.Context, in *ListInvitesRequest, opts ...grpc.CallOption) (*ListInvitesResponse, error)
+	ListActivities(ctx context.Context, in *ListActivitiesRequest, opts ...grpc.CallOption) (*ListActivitiesResponse, error)
+	GetActivity(ctx context.Context, in *GetActivityRequest, opts ...grpc.CallOption) (*GetActivityResponse, error)
 }
 
 type groupsAPIClient struct {
@@ -327,6 +329,24 @@ func (c *groupsAPIClient) ListInvites(ctx context.Context, in *ListInvitesReques
 	return out, nil
 }
 
+func (c *groupsAPIClient) ListActivities(ctx context.Context, in *ListActivitiesRequest, opts ...grpc.CallOption) (*ListActivitiesResponse, error) {
+	out := new(ListActivitiesResponse)
+	err := c.cc.Invoke(ctx, "/noted.notes.v1.GroupsAPI/ListActivities", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *groupsAPIClient) GetActivity(ctx context.Context, in *GetActivityRequest, opts ...grpc.CallOption) (*GetActivityResponse, error) {
+	out := new(GetActivityResponse)
+	err := c.cc.Invoke(ctx, "/noted.notes.v1.GroupsAPI/GetActivity", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GroupsAPIServer is the server API for GroupsAPI service.
 // All implementations must embed UnimplementedGroupsAPIServer
 // for forward compatibility
@@ -392,6 +412,8 @@ type GroupsAPIServer interface {
 	RevokeInvite(context.Context, *RevokeInviteRequest) (*RevokeInviteResponse, error)
 	// Must be group administrator or sender or recipient.
 	ListInvites(context.Context, *ListInvitesRequest) (*ListInvitesResponse, error)
+	ListActivities(context.Context, *ListActivitiesRequest) (*ListActivitiesResponse, error)
+	GetActivity(context.Context, *GetActivityRequest) (*GetActivityResponse, error)
 	mustEmbedUnimplementedGroupsAPIServer()
 }
 
@@ -476,6 +498,12 @@ func (UnimplementedGroupsAPIServer) RevokeInvite(context.Context, *RevokeInviteR
 }
 func (UnimplementedGroupsAPIServer) ListInvites(context.Context, *ListInvitesRequest) (*ListInvitesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListInvites not implemented")
+}
+func (UnimplementedGroupsAPIServer) ListActivities(context.Context, *ListActivitiesRequest) (*ListActivitiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListActivities not implemented")
+}
+func (UnimplementedGroupsAPIServer) GetActivity(context.Context, *GetActivityRequest) (*GetActivityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetActivity not implemented")
 }
 func (UnimplementedGroupsAPIServer) mustEmbedUnimplementedGroupsAPIServer() {}
 
@@ -958,6 +986,42 @@ func _GroupsAPI_ListInvites_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GroupsAPI_ListActivities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListActivitiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).ListActivities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.notes.v1.GroupsAPI/ListActivities",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).ListActivities(ctx, req.(*ListActivitiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GroupsAPI_GetActivity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetActivityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).GetActivity(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/noted.notes.v1.GroupsAPI/GetActivity",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).GetActivity(ctx, req.(*GetActivityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GroupsAPI_ServiceDesc is the grpc.ServiceDesc for GroupsAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1068,6 +1132,14 @@ var GroupsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListInvites",
 			Handler:    _GroupsAPI_ListInvites_Handler,
+		},
+		{
+			MethodName: "ListActivities",
+			Handler:    _GroupsAPI_ListActivities_Handler,
+		},
+		{
+			MethodName: "GetActivity",
+			Handler:    _GroupsAPI_GetActivity_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

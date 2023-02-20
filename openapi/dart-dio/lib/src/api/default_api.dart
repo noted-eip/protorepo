@@ -26,6 +26,7 @@ import 'package:openapi/src/model/v1_create_note_response.dart';
 import 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 import 'package:openapi/src/model/v1_get_account_request.dart';
 import 'package:openapi/src/model/v1_get_account_response.dart';
+import 'package:openapi/src/model/v1_get_activity_response.dart';
 import 'package:openapi/src/model/v1_get_group_response.dart';
 import 'package:openapi/src/model/v1_get_invite_link_response.dart';
 import 'package:openapi/src/model/v1_get_invite_response.dart';
@@ -35,6 +36,7 @@ import 'package:openapi/src/model/v1_group_member.dart';
 import 'package:openapi/src/model/v1_http_error.dart';
 import 'package:openapi/src/model/v1_insert_block_response.dart';
 import 'package:openapi/src/model/v1_list_accounts_response.dart';
+import 'package:openapi/src/model/v1_list_activities_response.dart';
 import 'package:openapi/src/model/v1_list_groups_response.dart';
 import 'package:openapi/src/model/v1_list_invites_response.dart';
 import 'package:openapi/src/model/v1_list_notes_response.dart';
@@ -1086,6 +1088,83 @@ class DefaultApi {
     );
   }
 
+  /// groupsAPIGetActivity
+  /// 
+  ///
+  /// Parameters:
+  /// * [groupId] 
+  /// * [activityId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [V1GetActivityResponse] as data
+  /// Throws [DioError] if API call or serialization fails
+  Future<Response<V1GetActivityResponse>> groupsAPIGetActivity({ 
+    required String groupId,
+    required String activityId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/groups/{groupId}/activity/{activityId}'.replaceAll('{' r'groupId' '}', groupId.toString()).replaceAll('{' r'activityId' '}', activityId.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    V1GetActivityResponse _responseData;
+
+    try {
+      const _responseType = FullType(V1GetActivityResponse);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as V1GetActivityResponse;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<V1GetActivityResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
   /// 
   ///
@@ -1388,6 +1467,81 @@ class DefaultApi {
     }
 
     return Response<V1GetMemberResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// groupsAPIListActivities
+  /// 
+  ///
+  /// Parameters:
+  /// * [groupId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [V1ListActivitiesResponse] as data
+  /// Throws [DioError] if API call or serialization fails
+  Future<Response<V1ListActivitiesResponse>> groupsAPIListActivities({ 
+    required String groupId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/groups/{groupId}/activity'.replaceAll('{' r'groupId' '}', groupId.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    V1ListActivitiesResponse _responseData;
+
+    try {
+      const _responseType = FullType(V1ListActivitiesResponse);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as V1ListActivitiesResponse;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<V1ListActivitiesResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
