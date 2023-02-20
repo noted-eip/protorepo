@@ -84,6 +84,15 @@ message Group {
     repeated GroupConversation conversations = 9;
     repeated GroupInvite invites = 10;
     repeated GroupInviteLink invite_links = 11;
+    repeated GroupActivity activities = 12;
+}
+
+message GroupActivity {
+    string id = 1 [(google.api.field_behavior) = REQUIRED];
+    string group_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string type = 3 [(google.api.field_behavior) = REQUIRED];
+    string event = 4 [(google.api.field_behavior) = REQUIRED];
+    google.protobuf.Timestamp created_at = 5 [(google.api.field_behavior) = REQUIRED];
 }
 
 // Creation, read/update, deletion of groups of users.
@@ -244,6 +253,17 @@ service GroupsAPI {
                     get: "/groups/{group_id}/invites"
                 }
             ]
+        };
+    }
+
+    rpc ListActivities(ListActivitiesRequest) returns (ListActivitiesResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/activity",
+        };
+    }
+    rpc GetActivity(GetActivityRequest) returns (GetActivityResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/activity/{activity_id}",
         };
     }
 }
@@ -490,4 +510,22 @@ message RevokeInviteRequest {
 }
 
 message RevokeInviteResponse {
+}
+
+
+message ListActivitiesRequest {
+    string group_id = 1;
+}
+
+message ListActivitiesResponse {
+    repeated GroupActivity activities = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetActivityRequest {
+    string group_id = 1;
+    string activity_id = 2;
+}
+
+message GetActivityResponse {
+    GroupActivity activity = 1 [(google.api.field_behavior) = REQUIRED];
 }
