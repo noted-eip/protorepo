@@ -283,12 +283,12 @@ paths:
           in: query
           required: false
           type: integer
-          format: int32
+          format: int64
         - name: offset
           in: query
           required: false
           type: integer
-          format: int32
+          format: int64
   /groups/{groupId}/activity/{activityId}:
     get:
       operationId: GroupsAPI_GetActivity

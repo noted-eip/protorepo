@@ -780,8 +780,8 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
-final int limit = 56; // int | 
-final int offset = 56; // int | 
+final int limit = 789; // int | 
+final int offset = 789; // int | 
 
 try {
     final response = api.groupsAPIListActivities(groupId, limit, offset);
