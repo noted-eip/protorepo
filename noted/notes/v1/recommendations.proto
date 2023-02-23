@@ -4,7 +4,9 @@ package noted.notes.v1;
 
 option go_package = "noted/notes/v1";
 
+import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/api/field_behavior.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
     info: {
@@ -39,32 +41,37 @@ message Widget {
 }
 
 message WebsiteWidget {
-    string title = 1;
-    string url = 2;
+    string title = 1 [(google.api.field_behavior) = REQUIRED];
+    string url = 2 [(google.api.field_behavior) = REQUIRED];
     string description = 3;
 }
 
 message ImageWidget {
-    string title = 1;
-    string url = 2;
+    string title = 1 [(google.api.field_behavior) = REQUIRED];
+    string url = 2 [(google.api.field_behavior) = REQUIRED];
     string caption = 3;
 }
 
 message DefinitionWidget {
-    string word = 1;
+    string word = 1 [(google.api.field_behavior) = REQUIRED];
     string gender = 2;
     string type = 3;
-    string content = 4;
+    string content = 4 [(google.api.field_behavior) = REQUIRED];
 }
 
 service RecommendationsAPI {
-    rpc GenerateWidgets(GenerateWidgetsRequest) returns (GenerateWidgetsResponse) {}
+    rpc GenerateWidgets(GenerateWidgetsRequest) returns (GenerateWidgetsResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/notes/{note_id}/widgets"
+        };
+    }
 }
 
 message GenerateWidgetsRequest {
-    string note_id = 1;
+    string group_id = 1;
+    string note_id = 2;
 }
 
 message GenerateWidgetsResponse {
-    repeated Widget widgets = 1;
+    repeated Widget widgets = 1 [(google.api.field_behavior) = REQUIRED];
 }
