@@ -315,8 +315,8 @@ message UpdateGroupResponse {
 
 message ListGroupsRequest {
     string account_id = 1 [(google.api.field_behavior) = REQUIRED];
-    int32 limit = 4;
-    int32 offset = 5;
+    uint32 limit = 4;
+    uint32 offset = 5;
 }
 
 message ListGroupsResponse {
@@ -413,8 +413,8 @@ message DeleteConversationMessageResponse {
 message ListConversationMessagesRequest {
     string group_id = 1;
     string conversation_id = 2;
-    int32 limit = 3;
-    int32 offset = 4;
+    uint32 limit = 3;
+    uint32 offset = 4;
 }
 
 message ListConversationMessagesResponse {
@@ -496,8 +496,8 @@ message ListInvitesRequest {
     string recipient_account_id = 2;
     // Returns only invites for a given group.
     string group_id = 3;
-    int32 limit = 4;
-    int32 offset = 5;
+    uint32 limit = 4;
+    uint32 offset = 5;
 }
 
 message ListInvitesResponse {
