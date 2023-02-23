@@ -17,10 +17,10 @@ part 'v1_image_widget.g.dart';
 @BuiltValue()
 abstract class V1ImageWidget implements Built<V1ImageWidget, V1ImageWidgetBuilder> {
   @BuiltValueField(wireName: r'title')
-  String? get title;
+  String get title;
 
   @BuiltValueField(wireName: r'url')
-  String? get url;
+  String get url;
 
   @BuiltValueField(wireName: r'caption')
   String? get caption;
@@ -48,20 +48,16 @@ class _$V1ImageWidgetSerializer implements PrimitiveSerializer<V1ImageWidget> {
     V1ImageWidget object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.title != null) {
-      yield r'title';
-      yield serializers.serialize(
-        object.title,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.url != null) {
-      yield r'url';
-      yield serializers.serialize(
-        object.url,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'title';
+    yield serializers.serialize(
+      object.title,
+      specifiedType: const FullType(String),
+    );
+    yield r'url';
+    yield serializers.serialize(
+      object.url,
+      specifiedType: const FullType(String),
+    );
     if (object.caption != null) {
       yield r'caption';
       yield serializers.serialize(

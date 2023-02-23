@@ -262,5 +262,10 @@ void main() {
       // TODO
     });
 
+    //Future<V1GenerateWidgetsResponse> recommendationsAPIGenerateWidgets(String groupId, String noteId) async
+    test('test recommendationsAPIGenerateWidgets', () async {
+      // TODO
+    });
+
   });
 }

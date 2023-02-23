@@ -101,6 +101,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes2**](doc/DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlock**](doc/DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateNote**](doc/DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60;.
+[*DefaultApi*](doc/DefaultApi.md) | [**recommendationsAPIGenerateWidgets**](doc/DefaultApi.md#recommendationsapigeneratewidgets) | **GET** /groups/{groupId}/notes/{noteId}/widgets | 
 
 
 ## Documentation For Models

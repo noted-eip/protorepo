@@ -46,6 +46,7 @@ Method | HTTP request | Description
 [**notesAPIListNotes2**](DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIUpdateBlock**](DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
 [**notesAPIUpdateNote**](DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60;.
+[**recommendationsAPIGenerateWidgets**](DefaultApi.md#recommendationsapigeneratewidgets) | **GET** /groups/{groupId}/notes/{noteId}/widgets | 
 
 
 # **accountsAPIAuthenticate**
@@ -1665,6 +1666,49 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **recommendationsAPIGenerateWidgets**
+> V1GenerateWidgetsResponse recommendationsAPIGenerateWidgets(groupId, noteId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+
+try {
+    final response = api.recommendationsAPIGenerateWidgets(groupId, noteId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->recommendationsAPIGenerateWidgets: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+
+### Return type
+
+[**V1GenerateWidgetsResponse**](V1GenerateWidgetsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

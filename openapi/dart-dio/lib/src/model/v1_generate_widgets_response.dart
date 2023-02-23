@@ -17,7 +17,7 @@ part 'v1_generate_widgets_response.g.dart';
 @BuiltValue()
 abstract class V1GenerateWidgetsResponse implements Built<V1GenerateWidgetsResponse, V1GenerateWidgetsResponseBuilder> {
   @BuiltValueField(wireName: r'widgets')
-  BuiltList<V1Widget>? get widgets;
+  BuiltList<V1Widget> get widgets;
 
   V1GenerateWidgetsResponse._();
 
@@ -42,13 +42,11 @@ class _$V1GenerateWidgetsResponseSerializer implements PrimitiveSerializer<V1Gen
     V1GenerateWidgetsResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.widgets != null) {
-      yield r'widgets';
-      yield serializers.serialize(
-        object.widgets,
-        specifiedType: const FullType(BuiltList, [FullType(V1Widget)]),
-      );
-    }
+    yield r'widgets';
+    yield serializers.serialize(
+      object.widgets,
+      specifiedType: const FullType(BuiltList, [FullType(V1Widget)]),
+    );
   }
 
   @override

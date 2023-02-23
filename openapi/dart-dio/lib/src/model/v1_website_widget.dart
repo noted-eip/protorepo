@@ -17,10 +17,10 @@ part 'v1_website_widget.g.dart';
 @BuiltValue()
 abstract class V1WebsiteWidget implements Built<V1WebsiteWidget, V1WebsiteWidgetBuilder> {
   @BuiltValueField(wireName: r'title')
-  String? get title;
+  String get title;
 
   @BuiltValueField(wireName: r'url')
-  String? get url;
+  String get url;
 
   @BuiltValueField(wireName: r'description')
   String? get description;
@@ -48,20 +48,16 @@ class _$V1WebsiteWidgetSerializer implements PrimitiveSerializer<V1WebsiteWidget
     V1WebsiteWidget object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.title != null) {
-      yield r'title';
-      yield serializers.serialize(
-        object.title,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.url != null) {
-      yield r'url';
-      yield serializers.serialize(
-        object.url,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'title';
+    yield serializers.serialize(
+      object.title,
+      specifiedType: const FullType(String),
+    );
+    yield r'url';
+    yield serializers.serialize(
+      object.url,
+      specifiedType: const FullType(String),
+    );
     if (object.description != null) {
       yield r'description';
       yield serializers.serialize(

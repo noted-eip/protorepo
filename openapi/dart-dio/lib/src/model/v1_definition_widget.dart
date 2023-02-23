@@ -18,7 +18,7 @@ part 'v1_definition_widget.g.dart';
 @BuiltValue()
 abstract class V1DefinitionWidget implements Built<V1DefinitionWidget, V1DefinitionWidgetBuilder> {
   @BuiltValueField(wireName: r'word')
-  String? get word;
+  String get word;
 
   @BuiltValueField(wireName: r'gender')
   String? get gender;
@@ -27,7 +27,7 @@ abstract class V1DefinitionWidget implements Built<V1DefinitionWidget, V1Definit
   String? get type;
 
   @BuiltValueField(wireName: r'content')
-  String? get content;
+  String get content;
 
   V1DefinitionWidget._();
 
@@ -52,13 +52,11 @@ class _$V1DefinitionWidgetSerializer implements PrimitiveSerializer<V1Definition
     V1DefinitionWidget object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.word != null) {
-      yield r'word';
-      yield serializers.serialize(
-        object.word,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'word';
+    yield serializers.serialize(
+      object.word,
+      specifiedType: const FullType(String),
+    );
     if (object.gender != null) {
       yield r'gender';
       yield serializers.serialize(
@@ -73,13 +71,11 @@ class _$V1DefinitionWidgetSerializer implements PrimitiveSerializer<V1Definition
         specifiedType: const FullType(String),
       );
     }
-    if (object.content != null) {
-      yield r'content';
-      yield serializers.serialize(
-        object.content,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'content';
+    yield serializers.serialize(
+      object.content,
+      specifiedType: const FullType(String),
+    );
   }
 
   @override

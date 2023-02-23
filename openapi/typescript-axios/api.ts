@@ -441,7 +441,7 @@ export interface V1DefinitionWidget {
      * @type {string}
      * @memberof V1DefinitionWidget
      */
-    'word'?: string;
+    'word': string;
     /**
      * 
      * @type {string}
@@ -459,7 +459,7 @@ export interface V1DefinitionWidget {
      * @type {string}
      * @memberof V1DefinitionWidget
      */
-    'content'?: string;
+    'content': string;
 }
 /**
  * 
@@ -524,7 +524,7 @@ export interface V1GenerateWidgetsResponse {
      * @type {Array<V1Widget>}
      * @memberof V1GenerateWidgetsResponse
      */
-    'widgets'?: Array<V1Widget>;
+    'widgets': Array<V1Widget>;
 }
 /**
  * 
@@ -926,13 +926,13 @@ export interface V1ImageWidget {
      * @type {string}
      * @memberof V1ImageWidget
      */
-    'title'?: string;
+    'title': string;
     /**
      * 
      * @type {string}
      * @memberof V1ImageWidget
      */
-    'url'?: string;
+    'url': string;
     /**
      * 
      * @type {string}
@@ -1254,13 +1254,13 @@ export interface V1WebsiteWidget {
      * @type {string}
      * @memberof V1WebsiteWidget
      */
-    'title'?: string;
+    'title': string;
     /**
      * 
      * @type {string}
      * @memberof V1WebsiteWidget
      */
-    'url'?: string;
+    'url': string;
     /**
      * 
      * @type {string}
@@ -2821,6 +2821,43 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        recommendationsAPIGenerateWidgets: async (groupId: string, noteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('recommendationsAPIGenerateWidgets', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('recommendationsAPIGenerateWidgets', 'noteId', noteId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/widgets`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -3288,6 +3325,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateNote(groupId, noteId, note, updateMask, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async recommendationsAPIGenerateWidgets(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GenerateWidgetsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.recommendationsAPIGenerateWidgets(groupId, noteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -3717,6 +3765,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, updateMask?: string, options?: any): AxiosPromise<V1UpdateNoteResponse> {
             return localVarFp.notesAPIUpdateNote(groupId, noteId, note, updateMask, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        recommendationsAPIGenerateWidgets(groupId: string, noteId: string, options?: any): AxiosPromise<V1GenerateWidgetsResponse> {
+            return localVarFp.recommendationsAPIGenerateWidgets(groupId, noteId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -4220,6 +4278,18 @@ export class DefaultApi extends BaseAPI {
      */
     public notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, updateMask?: string, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPIUpdateNote(groupId, noteId, note, updateMask, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public recommendationsAPIGenerateWidgets(groupId: string, noteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).recommendationsAPIGenerateWidgets(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
