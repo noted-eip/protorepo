@@ -106,7 +106,7 @@ service NotesAPI {
             get: "/groups/{group_id}/notes/{note_id}"
         };
     }
-    // Must be author. Can only update `title`.
+    // Must be author. Can only update `title` or `blocks`.
     rpc UpdateNote(UpdateNoteRequest) returns (UpdateNoteResponse) {
         option (google.api.http) = {
             patch: "/groups/{group_id}/notes/{note_id}",
