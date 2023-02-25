@@ -1533,11 +1533,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Must be account owner. Can only update `account.name`.
          * @param {string} accountId 
          * @param {V1Account} account 
-         * @param {string} [updateMask] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIUpdateAccount: async (accountId: string, account: V1Account, updateMask?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsAPIUpdateAccount: async (accountId: string, account: V1Account, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('accountsAPIUpdateAccount', 'accountId', accountId)
             // verify required parameter 'account' is not null or undefined
@@ -1554,10 +1553,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            if (updateMask !== undefined) {
-                localVarQueryParameter['updateMask'] = updateMask;
-            }
 
 
     
@@ -2342,11 +2337,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} groupId 
          * @param {string} accountId 
          * @param {V1GroupMember} member 
-         * @param {string} [updateMask] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIUpdateMember: async (groupId: string, accountId: string, member: V1GroupMember, updateMask?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsAPIUpdateMember: async (groupId: string, accountId: string, member: V1GroupMember, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('groupsAPIUpdateMember', 'groupId', groupId)
             // verify required parameter 'accountId' is not null or undefined
@@ -2366,10 +2360,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            if (updateMask !== undefined) {
-                localVarQueryParameter['updateMask'] = updateMask;
-            }
 
 
     
@@ -2774,15 +2764,14 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Must be author. Can only update `title`.
+         * @summary Must be author. Can only update `title` or `blocks`.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {V1Note} note 
-         * @param {string} [updateMask] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPIUpdateNote: async (groupId: string, noteId: string, note: V1Note, updateMask?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notesAPIUpdateNote: async (groupId: string, noteId: string, note: V1Note, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('notesAPIUpdateNote', 'groupId', groupId)
             // verify required parameter 'noteId' is not null or undefined
@@ -2802,10 +2791,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            if (updateMask !== undefined) {
-                localVarQueryParameter['updateMask'] = updateMask;
-            }
 
 
     
@@ -2942,12 +2927,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @summary Must be account owner. Can only update `account.name`.
          * @param {string} accountId 
          * @param {V1Account} account 
-         * @param {string} [updateMask] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsAPIUpdateAccount(accountId: string, account: V1Account, updateMask?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUpdateAccount(accountId, account, updateMask, options);
+        async accountsAPIUpdateAccount(accountId: string, account: V1Account, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUpdateAccount(accountId, account, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3187,12 +3171,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {string} groupId 
          * @param {string} accountId 
          * @param {V1GroupMember} member 
-         * @param {string} [updateMask] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, updateMask?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateMemberResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIUpdateMember(groupId, accountId, member, updateMask, options);
+        async groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateMemberResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIUpdateMember(groupId, accountId, member, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3313,16 +3296,15 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Must be author. Can only update `title`.
+         * @summary Must be author. Can only update `title` or `blocks`.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {V1Note} note 
-         * @param {string} [updateMask] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, updateMask?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateNoteResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateNote(groupId, noteId, note, updateMask, options);
+        async notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateNoteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateNote(groupId, noteId, note, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3414,12 +3396,11 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @summary Must be account owner. Can only update `account.name`.
          * @param {string} accountId 
          * @param {V1Account} account 
-         * @param {string} [updateMask] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIUpdateAccount(accountId: string, account: V1Account, updateMask?: string, options?: any): AxiosPromise<V1UpdateAccountResponse> {
-            return localVarFp.accountsAPIUpdateAccount(accountId, account, updateMask, options).then((request) => request(axios, basePath));
+        accountsAPIUpdateAccount(accountId: string, account: V1Account, options?: any): AxiosPromise<V1UpdateAccountResponse> {
+            return localVarFp.accountsAPIUpdateAccount(accountId, account, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3639,12 +3620,11 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {string} groupId 
          * @param {string} accountId 
          * @param {V1GroupMember} member 
-         * @param {string} [updateMask] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, updateMask?: string, options?: any): AxiosPromise<V1UpdateMemberResponse> {
-            return localVarFp.groupsAPIUpdateMember(groupId, accountId, member, updateMask, options).then((request) => request(axios, basePath));
+        groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, options?: any): AxiosPromise<V1UpdateMemberResponse> {
+            return localVarFp.groupsAPIUpdateMember(groupId, accountId, member, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3755,16 +3735,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary Must be author. Can only update `title`.
+         * @summary Must be author. Can only update `title` or `blocks`.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {V1Note} note 
-         * @param {string} [updateMask] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, updateMask?: string, options?: any): AxiosPromise<V1UpdateNoteResponse> {
-            return localVarFp.notesAPIUpdateNote(groupId, noteId, note, updateMask, options).then((request) => request(axios, basePath));
+        notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, options?: any): AxiosPromise<V1UpdateNoteResponse> {
+            return localVarFp.notesAPIUpdateNote(groupId, noteId, note, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3866,13 +3845,12 @@ export class DefaultApi extends BaseAPI {
      * @summary Must be account owner. Can only update `account.name`.
      * @param {string} accountId 
      * @param {V1Account} account 
-     * @param {string} [updateMask] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public accountsAPIUpdateAccount(accountId: string, account: V1Account, updateMask?: string, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).accountsAPIUpdateAccount(accountId, account, updateMask, options).then((request) => request(this.axios, this.basePath));
+    public accountsAPIUpdateAccount(accountId: string, account: V1Account, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIUpdateAccount(accountId, account, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4131,13 +4109,12 @@ export class DefaultApi extends BaseAPI {
      * @param {string} groupId 
      * @param {string} accountId 
      * @param {V1GroupMember} member 
-     * @param {string} [updateMask] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, updateMask?: string, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).groupsAPIUpdateMember(groupId, accountId, member, updateMask, options).then((request) => request(this.axios, this.basePath));
+    public groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIUpdateMember(groupId, accountId, member, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4267,17 +4244,16 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @summary Must be author. Can only update `title`.
+     * @summary Must be author. Can only update `title` or `blocks`.
      * @param {string} groupId 
      * @param {string} noteId 
      * @param {V1Note} note 
-     * @param {string} [updateMask] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, updateMask?: string, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).notesAPIUpdateNote(groupId, noteId, note, updateMask, options).then((request) => request(this.axios, this.basePath));
+    public notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIUpdateNote(groupId, noteId, note, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

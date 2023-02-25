@@ -591,7 +591,6 @@ class DefaultApi {
   /// Parameters:
   /// * [accountId] 
   /// * [account] 
-  /// * [updateMask] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -604,7 +603,6 @@ class DefaultApi {
   Future<Response<V1UpdateAccountResponse>> accountsAPIUpdateAccount({ 
     required String accountId,
     required V1Account account,
-    String? updateMask,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -626,10 +624,6 @@ class DefaultApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-      if (updateMask != null) r'updateMask': encodeQueryParameter(_serializers, updateMask, const FullType(String)),
-    };
-
     dynamic _bodyData;
 
     try {
@@ -641,7 +635,6 @@ class DefaultApi {
          requestOptions: _options.compose(
           _dio.options,
           _path,
-          queryParameters: _queryParameters,
         ),
         type: DioErrorType.unknown,
         error: error,
@@ -653,7 +646,6 @@ class DefaultApi {
       _path,
       data: _bodyData,
       options: _options,
-      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
@@ -2265,7 +2257,6 @@ class DefaultApi {
   /// * [groupId] 
   /// * [accountId] 
   /// * [member] 
-  /// * [updateMask] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -2279,7 +2270,6 @@ class DefaultApi {
     required String groupId,
     required String accountId,
     required V1GroupMember member,
-    String? updateMask,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -2301,10 +2291,6 @@ class DefaultApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-      if (updateMask != null) r'updateMask': encodeQueryParameter(_serializers, updateMask, const FullType(String)),
-    };
-
     dynamic _bodyData;
 
     try {
@@ -2316,7 +2302,6 @@ class DefaultApi {
          requestOptions: _options.compose(
           _dio.options,
           _path,
-          queryParameters: _queryParameters,
         ),
         type: DioErrorType.unknown,
         error: error,
@@ -2328,7 +2313,6 @@ class DefaultApi {
       _path,
       data: _bodyData,
       options: _options,
-      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
@@ -3149,14 +3133,13 @@ class DefaultApi {
     );
   }
 
-  /// Must be author. Can only update &#x60;title&#x60;.
+  /// Must be author. Can only update &#x60;title&#x60; or &#x60;blocks&#x60;.
   /// 
   ///
   /// Parameters:
   /// * [groupId] 
   /// * [noteId] 
   /// * [note] 
-  /// * [updateMask] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -3170,7 +3153,6 @@ class DefaultApi {
     required String groupId,
     required String noteId,
     required V1Note note,
-    String? updateMask,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -3192,10 +3174,6 @@ class DefaultApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-      if (updateMask != null) r'updateMask': encodeQueryParameter(_serializers, updateMask, const FullType(String)),
-    };
-
     dynamic _bodyData;
 
     try {
@@ -3207,7 +3185,6 @@ class DefaultApi {
          requestOptions: _options.compose(
           _dio.options,
           _path,
-          queryParameters: _queryParameters,
         ),
         type: DioErrorType.unknown,
         error: error,
@@ -3219,7 +3196,6 @@ class DefaultApi {
       _path,
       data: _bodyData,
       options: _options,
-      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,

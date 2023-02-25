@@ -27,7 +27,7 @@ type NotesAPIClient interface {
 	CreateNote(ctx context.Context, in *CreateNoteRequest, opts ...grpc.CallOption) (*CreateNoteResponse, error)
 	// Must be group member or author.
 	GetNote(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*GetNoteResponse, error)
-	// Must be author. Can only update `title`.
+	// Must be author. Can only update `title` or `blocks`.
 	UpdateNote(ctx context.Context, in *UpdateNoteRequest, opts ...grpc.CallOption) (*UpdateNoteResponse, error)
 	// Must be author.
 	DeleteNote(ctx context.Context, in *DeleteNoteRequest, opts ...grpc.CallOption) (*DeleteNoteResponse, error)
@@ -153,7 +153,7 @@ type NotesAPIServer interface {
 	CreateNote(context.Context, *CreateNoteRequest) (*CreateNoteResponse, error)
 	// Must be group member or author.
 	GetNote(context.Context, *GetNoteRequest) (*GetNoteResponse, error)
-	// Must be author. Can only update `title`.
+	// Must be author. Can only update `title` or `blocks`.
 	UpdateNote(context.Context, *UpdateNoteRequest) (*UpdateNoteResponse, error)
 	// Must be author.
 	DeleteNote(context.Context, *DeleteNoteRequest) (*DeleteNoteResponse, error)

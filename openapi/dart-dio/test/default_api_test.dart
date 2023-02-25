@@ -51,7 +51,7 @@ void main() {
 
     // Must be account owner. Can only update `account.name`.
     //
-    //Future<V1UpdateAccountResponse> accountsAPIUpdateAccount(String accountId, V1Account account, { String updateMask }) async
+    //Future<V1UpdateAccountResponse> accountsAPIUpdateAccount(String accountId, V1Account account) async
     test('test accountsAPIUpdateAccount', () async {
       // TODO
     });
@@ -187,7 +187,7 @@ void main() {
 
     // Must be group administrator. Can only update `role`.
     //
-    //Future<V1UpdateMemberResponse> groupsAPIUpdateMember(String groupId, String accountId, V1GroupMember member, { String updateMask }) async
+    //Future<V1UpdateMemberResponse> groupsAPIUpdateMember(String groupId, String accountId, V1GroupMember member) async
     test('test groupsAPIUpdateMember', () async {
       // TODO
     });
@@ -255,9 +255,9 @@ void main() {
       // TODO
     });
 
-    // Must be author. Can only update `title`.
+    // Must be author. Can only update `title` or `blocks`.
     //
-    //Future<V1UpdateNoteResponse> notesAPIUpdateNote(String groupId, String noteId, V1Note note, { String updateMask }) async
+    //Future<V1UpdateNoteResponse> notesAPIUpdateNote(String groupId, String noteId, V1Note note) async
     test('test notesAPIUpdateNote', () async {
       // TODO
     });

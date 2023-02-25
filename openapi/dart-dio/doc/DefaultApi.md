@@ -45,7 +45,7 @@ Method | HTTP request | Description
 [**notesAPIListNotes**](DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIListNotes2**](DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIUpdateBlock**](DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
-[**notesAPIUpdateNote**](DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60;.
+[**notesAPIUpdateNote**](DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60; or &#x60;blocks&#x60;.
 [**recommendationsAPIGenerateWidgets**](DefaultApi.md#recommendationsapigeneratewidgets) | **GET** /groups/{groupId}/notes/{noteId}/widgets | 
 
 
@@ -302,7 +302,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **accountsAPIUpdateAccount**
-> V1UpdateAccountResponse accountsAPIUpdateAccount(accountId, account, updateMask)
+> V1UpdateAccountResponse accountsAPIUpdateAccount(accountId, account)
 
 Must be account owner. Can only update `account.name`.
 
@@ -313,10 +313,9 @@ import 'package:openapi/api.dart';
 final api = Openapi().getDefaultApi();
 final String accountId = accountId_example; // String | 
 final V1Account account = ; // V1Account | 
-final String updateMask = updateMask_example; // String | 
 
 try {
-    final response = api.accountsAPIUpdateAccount(accountId, account, updateMask);
+    final response = api.accountsAPIUpdateAccount(accountId, account);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling DefaultApi->accountsAPIUpdateAccount: $e\n');
@@ -329,7 +328,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accountId** | **String**|  | 
  **account** | [**V1Account**](V1Account.md)|  | 
- **updateMask** | **String**|  | [optional] 
 
 ### Return type
 
@@ -1174,7 +1172,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **groupsAPIUpdateMember**
-> V1UpdateMemberResponse groupsAPIUpdateMember(groupId, accountId, member, updateMask)
+> V1UpdateMemberResponse groupsAPIUpdateMember(groupId, accountId, member)
 
 Must be group administrator. Can only update `role`.
 
@@ -1186,10 +1184,9 @@ final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
 final String accountId = accountId_example; // String | 
 final V1GroupMember member = ; // V1GroupMember | 
-final String updateMask = updateMask_example; // String | 
 
 try {
-    final response = api.groupsAPIUpdateMember(groupId, accountId, member, updateMask);
+    final response = api.groupsAPIUpdateMember(groupId, accountId, member);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling DefaultApi->groupsAPIUpdateMember: $e\n');
@@ -1203,7 +1200,6 @@ Name | Type | Description  | Notes
  **groupId** | **String**|  | 
  **accountId** | **String**|  | 
  **member** | [**V1GroupMember**](V1GroupMember.md)|  | 
- **updateMask** | **String**|  | [optional] 
 
 ### Return type
 
@@ -1624,9 +1620,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **notesAPIUpdateNote**
-> V1UpdateNoteResponse notesAPIUpdateNote(groupId, noteId, note, updateMask)
+> V1UpdateNoteResponse notesAPIUpdateNote(groupId, noteId, note)
 
-Must be author. Can only update `title`.
+Must be author. Can only update `title` or `blocks`.
 
 ### Example
 ```dart
@@ -1636,10 +1632,9 @@ final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
 final String noteId = noteId_example; // String | 
 final V1Note note = ; // V1Note | 
-final String updateMask = updateMask_example; // String | 
 
 try {
-    final response = api.notesAPIUpdateNote(groupId, noteId, note, updateMask);
+    final response = api.notesAPIUpdateNote(groupId, noteId, note);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling DefaultApi->notesAPIUpdateNote: $e\n');
@@ -1653,7 +1648,6 @@ Name | Type | Description  | Notes
  **groupId** | **String**|  | 
  **noteId** | **String**|  | 
  **note** | [**V1Note**](V1Note.md)|  | 
- **updateMask** | **String**|  | [optional] 
 
 ### Return type
 

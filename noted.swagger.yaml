@@ -116,10 +116,6 @@ paths:
             $ref: '#/definitions/v1Account'
             required:
               - account
-        - name: updateMask
-          in: query
-          required: false
-          type: string
   /authenticate:
     post:
       summary: Authenticate using the email and password flow.
@@ -624,10 +620,6 @@ paths:
             $ref: '#/definitions/v1GroupMember'
             required:
               - member
-        - name: updateMask
-          in: query
-          required: false
-          type: string
   /groups/{groupId}/notes:
     get:
       summary: |-
@@ -692,6 +684,7 @@ paths:
               blocks:
                 type: array
                 items:
+                  type: object
                   $ref: '#/definitions/v1Block'
   /groups/{groupId}/notes/{noteId}:
     get:
@@ -737,7 +730,7 @@ paths:
           required: true
           type: string
     patch:
-      summary: Must be author. Can only update `title`.
+      summary: Must be author. Can only update `title` or `blocks`.
       operationId: NotesAPI_UpdateNote
       responses:
         "200":
@@ -764,10 +757,6 @@ paths:
             $ref: '#/definitions/v1Note'
             required:
               - note
-        - name: updateMask
-          in: query
-          required: false
-          type: string
   /groups/{groupId}/notes/{noteId}/blocks:
     post:
       summary: Must be author.
@@ -1180,6 +1169,7 @@ definitions:
       keywordsArray:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1ExtractKeywordsResponse'
   v1ExtractKeywordsResponse:
     type: object
@@ -1201,6 +1191,7 @@ definitions:
       widgets:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1Widget'
     required:
       - widgets
@@ -1296,22 +1287,27 @@ definitions:
       members:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1GroupMember'
       conversations:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1GroupConversation'
       invites:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1GroupInvite'
       inviteLinks:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1GroupInviteLink'
       activities:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1GroupActivity'
     required:
       - id
@@ -1438,6 +1434,7 @@ definitions:
       accounts:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1Account'
   v1ListActivitiesResponse:
     type: object
@@ -1445,6 +1442,7 @@ definitions:
       activities:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1GroupActivity'
     required:
       - activities
@@ -1454,6 +1452,7 @@ definitions:
       messages:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1ConversationMessage'
   v1ListGroupsResponse:
     type: object
@@ -1461,6 +1460,7 @@ definitions:
       groups:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1Group'
   v1ListInvitesResponse:
     type: object
@@ -1468,6 +1468,7 @@ definitions:
       invites:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1GroupInvite'
   v1ListNotesResponse:
     type: object
@@ -1475,6 +1476,7 @@ definitions:
       notes:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1Note'
   v1Note:
     type: object
@@ -1490,6 +1492,7 @@ definitions:
       blocks:
         type: array
         items:
+          type: object
           $ref: '#/definitions/v1Block'
       createdAt:
         type: string

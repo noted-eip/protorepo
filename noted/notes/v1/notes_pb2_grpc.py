@@ -85,7 +85,7 @@ class NotesAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def UpdateNote(self, request, context):
-        """Must be author. Can only update `title`.
+        """Must be author. Can only update `title` or `blocks`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
