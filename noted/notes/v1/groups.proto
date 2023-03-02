@@ -253,6 +253,7 @@ message CreateGroupResponse {
 }
 
 message CreateWorkspaceRequest {
+    string account_id = 1;
 }
 
 message CreateWorkspaceResponse {
