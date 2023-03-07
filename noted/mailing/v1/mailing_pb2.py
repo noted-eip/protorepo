@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1enoted/mailing/v1/mailing.proto\x12\x10noted.mailing.v1\"*\n\tRecipient\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\"\x8e\x01\n\x10SendEmailRequest\x12;\n\nrecipients\x18\x01 \x03(\x0b\x32\x1b.noted.mailing.v1.RecipientR\nrecipients\x12\x18\n\x07subject\x18\x02 \x01(\tR\x07subject\x12#\n\rmarkdown_body\x18\x03 \x01(\tR\x0cmarkdownBody\"\x13\n\x11SendEmailResponse2d\n\nMailingAPI\x12V\n\tSendEmail\x12\".noted.mailing.v1.SendEmailRequest\x1a#.noted.mailing.v1.SendEmailResponse\"\x00\x42\x12Z\x10noted/mailing/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1enoted/mailing/v1/mailing.proto\x12\x10noted.mailing.v1\"*\n\tRecipient\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\"\xa4\x01\n\x10SendEmailRequest\x12;\n\nrecipients\x18\x01 \x03(\x0b\x32\x1b.noted.mailing.v1.RecipientR\nrecipients\x12\x18\n\x07subject\x18\x02 \x01(\tR\x07subject\x12\x14\n\x05title\x18\x03 \x01(\tR\x05title\x12#\n\rmarkdown_body\x18\x04 \x01(\tR\x0cmarkdownBody\"\x13\n\x11SendEmailResponse2d\n\nMailingAPI\x12V\n\tSendEmail\x12\".noted.mailing.v1.SendEmailRequest\x1a#.noted.mailing.v1.SendEmailResponse\"\x00\x42\x12Z\x10noted/mailing/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -25,9 +25,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_RECIPIENT']._serialized_start=52
   _globals['_RECIPIENT']._serialized_end=94
   _globals['_SENDEMAILREQUEST']._serialized_start=97
-  _globals['_SENDEMAILREQUEST']._serialized_end=239
-  _globals['_SENDEMAILRESPONSE']._serialized_start=241
-  _globals['_SENDEMAILRESPONSE']._serialized_end=260
-  _globals['_MAILINGAPI']._serialized_start=262
-  _globals['_MAILINGAPI']._serialized_end=362
+  _globals['_SENDEMAILREQUEST']._serialized_end=261
+  _globals['_SENDEMAILRESPONSE']._serialized_start=263
+  _globals['_SENDEMAILRESPONSE']._serialized_end=282
+  _globals['_MAILINGAPI']._serialized_start=284
+  _globals['_MAILINGAPI']._serialized_end=384
 # @@protoc_insertion_point(module_scope)
