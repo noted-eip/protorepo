@@ -10,15 +10,15 @@ message Recipient {
 
 service MailingAPI {
     // Send email to accounts with markdown content.
-    rpc SendEmail(SendEmailRequest) returns (SendEmailResponse) {}
+    rpc SendEmails(SendEmailsRequest) returns (SendEmailsResponse) {}
 }
 
-message SendEmailRequest {
+message SendEmailsRequest {
     repeated Recipient recipients = 1;
     string subject = 2;
     string title = 3;
     string markdown_body = 4;
 }
 
-message SendEmailResponse {
+message SendEmailsResponse {
 }
