@@ -14,17 +14,17 @@ class MailingAPIStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SendEmail = channel.unary_unary(
-                '/noted.mailing.v1.MailingAPI/SendEmail',
-                request_serializer=noted_dot_mailing_dot_v1_dot_mailing__pb2.SendEmailRequest.SerializeToString,
-                response_deserializer=noted_dot_mailing_dot_v1_dot_mailing__pb2.SendEmailResponse.FromString,
+        self.SendEmails = channel.unary_unary(
+                '/noted.mailing.v1.MailingAPI/SendEmails',
+                request_serializer=noted_dot_mailing_dot_v1_dot_mailing__pb2.SendEmailsRequest.SerializeToString,
+                response_deserializer=noted_dot_mailing_dot_v1_dot_mailing__pb2.SendEmailsResponse.FromString,
                 )
 
 
 class MailingAPIServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def SendEmail(self, request, context):
+    def SendEmails(self, request, context):
         """Send email to accounts with markdown content.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -34,10 +34,10 @@ class MailingAPIServicer(object):
 
 def add_MailingAPIServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SendEmail': grpc.unary_unary_rpc_method_handler(
-                    servicer.SendEmail,
-                    request_deserializer=noted_dot_mailing_dot_v1_dot_mailing__pb2.SendEmailRequest.FromString,
-                    response_serializer=noted_dot_mailing_dot_v1_dot_mailing__pb2.SendEmailResponse.SerializeToString,
+            'SendEmails': grpc.unary_unary_rpc_method_handler(
+                    servicer.SendEmails,
+                    request_deserializer=noted_dot_mailing_dot_v1_dot_mailing__pb2.SendEmailsRequest.FromString,
+                    response_serializer=noted_dot_mailing_dot_v1_dot_mailing__pb2.SendEmailsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -50,7 +50,7 @@ class MailingAPI(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SendEmail(request,
+    def SendEmails(request,
             target,
             options=(),
             channel_credentials=None,
@@ -60,8 +60,8 @@ class MailingAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/noted.mailing.v1.MailingAPI/SendEmail',
-            noted_dot_mailing_dot_v1_dot_mailing__pb2.SendEmailRequest.SerializeToString,
-            noted_dot_mailing_dot_v1_dot_mailing__pb2.SendEmailResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/noted.mailing.v1.MailingAPI/SendEmails',
+            noted_dot_mailing_dot_v1_dot_mailing__pb2.SendEmailsRequest.SerializeToString,
+            noted_dot_mailing_dot_v1_dot_mailing__pb2.SendEmailsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MailingAPI_SendEmail_FullMethodName = "/noted.mailing.v1.MailingAPI/SendEmail"
+	MailingAPI_SendEmails_FullMethodName = "/noted.mailing.v1.MailingAPI/SendEmails"
 )
 
 // MailingAPIClient is the client API for MailingAPI service.
@@ -27,7 +27,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MailingAPIClient interface {
 	// Send email to accounts with markdown content.
-	SendEmail(ctx context.Context, in *SendEmailRequest, opts ...grpc.CallOption) (*SendEmailResponse, error)
+	SendEmails(ctx context.Context, in *SendEmailsRequest, opts ...grpc.CallOption) (*SendEmailsResponse, error)
 }
 
 type mailingAPIClient struct {
@@ -38,9 +38,9 @@ func NewMailingAPIClient(cc grpc.ClientConnInterface) MailingAPIClient {
 	return &mailingAPIClient{cc}
 }
 
-func (c *mailingAPIClient) SendEmail(ctx context.Context, in *SendEmailRequest, opts ...grpc.CallOption) (*SendEmailResponse, error) {
-	out := new(SendEmailResponse)
-	err := c.cc.Invoke(ctx, MailingAPI_SendEmail_FullMethodName, in, out, opts...)
+func (c *mailingAPIClient) SendEmails(ctx context.Context, in *SendEmailsRequest, opts ...grpc.CallOption) (*SendEmailsResponse, error) {
+	out := new(SendEmailsResponse)
+	err := c.cc.Invoke(ctx, MailingAPI_SendEmails_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -52,7 +52,7 @@ func (c *mailingAPIClient) SendEmail(ctx context.Context, in *SendEmailRequest, 
 // for forward compatibility
 type MailingAPIServer interface {
 	// Send email to accounts with markdown content.
-	SendEmail(context.Context, *SendEmailRequest) (*SendEmailResponse, error)
+	SendEmails(context.Context, *SendEmailsRequest) (*SendEmailsResponse, error)
 	mustEmbedUnimplementedMailingAPIServer()
 }
 
@@ -60,8 +60,8 @@ type MailingAPIServer interface {
 type UnimplementedMailingAPIServer struct {
 }
 
-func (UnimplementedMailingAPIServer) SendEmail(context.Context, *SendEmailRequest) (*SendEmailResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendEmail not implemented")
+func (UnimplementedMailingAPIServer) SendEmails(context.Context, *SendEmailsRequest) (*SendEmailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendEmails not implemented")
 }
 func (UnimplementedMailingAPIServer) mustEmbedUnimplementedMailingAPIServer() {}
 
@@ -76,20 +76,20 @@ func RegisterMailingAPIServer(s grpc.ServiceRegistrar, srv MailingAPIServer) {
 	s.RegisterService(&MailingAPI_ServiceDesc, srv)
 }
 
-func _MailingAPI_SendEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendEmailRequest)
+func _MailingAPI_SendEmails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendEmailsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MailingAPIServer).SendEmail(ctx, in)
+		return srv.(MailingAPIServer).SendEmails(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MailingAPI_SendEmail_FullMethodName,
+		FullMethod: MailingAPI_SendEmails_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MailingAPIServer).SendEmail(ctx, req.(*SendEmailRequest))
+		return srv.(MailingAPIServer).SendEmails(ctx, req.(*SendEmailsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -102,8 +102,8 @@ var MailingAPI_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MailingAPIServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SendEmail",
-			Handler:    _MailingAPI_SendEmail_Handler,
+			MethodName: "SendEmails",
+			Handler:    _MailingAPI_SendEmails_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
