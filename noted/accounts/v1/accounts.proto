@@ -87,7 +87,7 @@ service AccountsAPI {
     }
 
     // Send email to account containing code to create a new password.
-    rpc ForgetPassword(ForgetAccountPasswordRequest) returns (ForgetAccountPasswordResponse) {
+    rpc ForgetAccountPassword(ForgetAccountPasswordRequest) returns (ForgetAccountPasswordResponse) {
         option (google.api.http) = {
             post: "/accounts/forget",
             body: "*",
