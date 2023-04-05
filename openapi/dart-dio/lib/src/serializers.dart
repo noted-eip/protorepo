@@ -14,6 +14,7 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:openapi/src/date_serializer.dart';
 import 'package:openapi/src/model/date.dart';
 
+import 'package:openapi/src/model/accounts_api_update_account_password_request.dart';
 import 'package:openapi/src/model/block_code.dart';
 import 'package:openapi/src/model/block_image.dart';
 import 'package:openapi/src/model/groups_api_send_invite_request.dart';
@@ -37,6 +38,8 @@ import 'package:openapi/src/model/v1_definition_widget.dart';
 import 'package:openapi/src/model/v1_export_note_response.dart';
 import 'package:openapi/src/model/v1_extract_keywords_batch_response.dart';
 import 'package:openapi/src/model/v1_extract_keywords_response.dart';
+import 'package:openapi/src/model/v1_forget_account_password_request.dart';
+import 'package:openapi/src/model/v1_forget_account_password_response.dart';
 import 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 import 'package:openapi/src/model/v1_generate_widgets_response.dart';
 import 'package:openapi/src/model/v1_get_account_request.dart';
@@ -70,6 +73,7 @@ import 'package:openapi/src/model/v1_recipient.dart';
 import 'package:openapi/src/model/v1_send_conversation_message_response.dart';
 import 'package:openapi/src/model/v1_send_invite_response.dart';
 import 'package:openapi/src/model/v1_summarize_response.dart';
+import 'package:openapi/src/model/v1_update_account_password_response.dart';
 import 'package:openapi/src/model/v1_update_account_response.dart';
 import 'package:openapi/src/model/v1_update_block_response.dart';
 import 'package:openapi/src/model/v1_update_conversation_message_response.dart';
@@ -83,6 +87,7 @@ import 'package:openapi/src/model/v1_widget.dart';
 part 'serializers.g.dart';
 
 @SerializersFor([
+  AccountsAPIUpdateAccountPasswordRequest,
   BlockCode,
   BlockImage,
   GroupsAPISendInviteRequest,
@@ -106,6 +111,8 @@ part 'serializers.g.dart';
   V1ExportNoteResponse,
   V1ExtractKeywordsBatchResponse,
   V1ExtractKeywordsResponse,
+  V1ForgetAccountPasswordRequest,
+  V1ForgetAccountPasswordResponse,
   V1GenerateInviteLinkResponse,
   V1GenerateWidgetsResponse,
   V1GetAccountRequest,
@@ -139,6 +146,7 @@ part 'serializers.g.dart';
   V1SendConversationMessageResponse,
   V1SendInviteResponse,
   V1SummarizeResponse,
+  V1UpdateAccountPasswordResponse,
   V1UpdateAccountResponse,
   V1UpdateBlockResponse,
   V1UpdateConversationMessageResponse,

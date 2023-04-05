@@ -116,6 +116,59 @@ paths:
             $ref: '#/definitions/v1Account'
             required:
               - account
+  /accounts/{accountId}/password:
+    patch:
+      summary: Update account password.
+      operationId: AccountsAPI_UpdateAccountPassword
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UpdateAccountPasswordResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              password:
+                type: string
+              token:
+                type: string
+                title: Token from the reset email password if forgot password
+              oldPassword:
+                type: string
+                title: Old password if the account is already log-in
+            required:
+              - password
+  /accounts/forget:
+    post:
+      summary: Send email to account containing code to create a new password.
+      operationId: AccountsAPI_ForgetAccountPassword
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ForgetAccountPasswordResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1ForgetAccountPasswordRequest'
   /authenticate:
     post:
       summary: Authenticate using the email and password flow.
@@ -1178,6 +1231,26 @@ definitions:
         type: array
         items:
           type: string
+  v1ForgetAccountPasswordRequest:
+    type: object
+    properties:
+      email:
+        type: string
+    required:
+      - email
+  v1ForgetAccountPasswordResponse:
+    type: object
+    properties:
+      accountId:
+        type: string
+      token:
+        type: string
+      validUntil:
+        type: string
+    required:
+      - accountId
+      - token
+      - validUntil
   v1GenerateInviteLinkResponse:
     type: object
     properties:
@@ -1549,6 +1622,13 @@ definitions:
       summary:
         type: string
         description: Small text output which summarizes the original entry.
+  v1UpdateAccountPasswordResponse:
+    type: object
+    properties:
+      account:
+        $ref: '#/definitions/v1Account'
+    required:
+      - account
   v1UpdateAccountResponse:
     type: object
     properties:

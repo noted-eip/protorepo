@@ -26,6 +26,31 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
 /**
  * 
  * @export
+ * @interface AccountsAPIUpdateAccountPasswordRequest
+ */
+export interface AccountsAPIUpdateAccountPasswordRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsAPIUpdateAccountPasswordRequest
+     */
+    'password': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsAPIUpdateAccountPasswordRequest
+     */
+    'token'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsAPIUpdateAccountPasswordRequest
+     */
+    'oldPassword'?: string;
+}
+/**
+ * 
+ * @export
  * @interface BlockCode
  */
 export interface BlockCode {
@@ -499,6 +524,44 @@ export interface V1ExtractKeywordsResponse {
      * @memberof V1ExtractKeywordsResponse
      */
     'keywords'?: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface V1ForgetAccountPasswordRequest
+ */
+export interface V1ForgetAccountPasswordRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof V1ForgetAccountPasswordRequest
+     */
+    'email': string;
+}
+/**
+ * 
+ * @export
+ * @interface V1ForgetAccountPasswordResponse
+ */
+export interface V1ForgetAccountPasswordResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof V1ForgetAccountPasswordResponse
+     */
+    'accountId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1ForgetAccountPasswordResponse
+     */
+    'token': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1ForgetAccountPasswordResponse
+     */
+    'validUntil': string;
 }
 /**
  * 
@@ -1155,6 +1218,19 @@ export interface V1SummarizeResponse {
 /**
  * 
  * @export
+ * @interface V1UpdateAccountPasswordResponse
+ */
+export interface V1UpdateAccountPasswordResponse {
+    /**
+     * 
+     * @type {V1Account}
+     * @memberof V1UpdateAccountPasswordResponse
+     */
+    'account': V1Account;
+}
+/**
+ * 
+ * @export
  * @interface V1UpdateAccountResponse
  */
 export interface V1UpdateAccountResponse {
@@ -1408,6 +1484,42 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Send email to account containing code to create a new password.
+         * @param {V1ForgetAccountPasswordRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIForgetAccountPassword: async (body: V1ForgetAccountPasswordRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIForgetAccountPassword', 'body', body)
+            const localVarPath = `/accounts/forget`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Allows getting an account by ID or searching for one through email.
          * @param {string} accountId 
          * @param {string} [email] 
@@ -1562,6 +1674,46 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(account, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Update account password.
+         * @param {string} accountId 
+         * @param {AccountsAPIUpdateAccountPasswordRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIUpdateAccountPassword: async (accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsAPIUpdateAccountPassword', 'accountId', accountId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIUpdateAccountPassword', 'body', body)
+            const localVarPath = `/accounts/{accountId}/password`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2888,6 +3040,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Send email to account containing code to create a new password.
+         * @param {V1ForgetAccountPasswordRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIForgetAccountPassword(body: V1ForgetAccountPasswordRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ForgetAccountPasswordResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIForgetAccountPassword(body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Allows getting an account by ID or searching for one through email.
          * @param {string} accountId 
          * @param {string} [email] 
@@ -2932,6 +3095,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIUpdateAccount(accountId: string, account: V1Account, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUpdateAccount(accountId, account, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Update account password.
+         * @param {string} accountId 
+         * @param {AccountsAPIUpdateAccountPasswordRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountPasswordResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUpdateAccountPassword(accountId, body, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3360,6 +3535,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Send email to account containing code to create a new password.
+         * @param {V1ForgetAccountPasswordRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIForgetAccountPassword(body: V1ForgetAccountPasswordRequest, options?: any): AxiosPromise<V1ForgetAccountPasswordResponse> {
+            return localVarFp.accountsAPIForgetAccountPassword(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Allows getting an account by ID or searching for one through email.
          * @param {string} accountId 
          * @param {string} [email] 
@@ -3401,6 +3586,17 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         accountsAPIUpdateAccount(accountId: string, account: V1Account, options?: any): AxiosPromise<V1UpdateAccountResponse> {
             return localVarFp.accountsAPIUpdateAccount(accountId, account, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update account password.
+         * @param {string} accountId 
+         * @param {AccountsAPIUpdateAccountPasswordRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: any): AxiosPromise<V1UpdateAccountPasswordResponse> {
+            return localVarFp.accountsAPIUpdateAccountPassword(accountId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3803,6 +3999,18 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @summary Send email to account containing code to create a new password.
+     * @param {V1ForgetAccountPasswordRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIForgetAccountPassword(body: V1ForgetAccountPasswordRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIForgetAccountPassword(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Allows getting an account by ID or searching for one through email.
      * @param {string} accountId 
      * @param {string} [email] 
@@ -3851,6 +4059,19 @@ export class DefaultApi extends BaseAPI {
      */
     public accountsAPIUpdateAccount(accountId: string, account: V1Account, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).accountsAPIUpdateAccount(accountId, account, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update account password.
+     * @param {string} accountId 
+     * @param {AccountsAPIUpdateAccountPasswordRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIUpdateAccountPassword(accountId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

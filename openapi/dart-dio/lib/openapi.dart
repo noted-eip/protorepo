@@ -11,6 +11,7 @@ export 'package:openapi/src/model/date.dart';
 
 export 'package:openapi/src/api/default_api.dart';
 
+export 'package:openapi/src/model/accounts_api_update_account_password_request.dart';
 export 'package:openapi/src/model/block_code.dart';
 export 'package:openapi/src/model/block_image.dart';
 export 'package:openapi/src/model/groups_api_send_invite_request.dart';
@@ -34,6 +35,8 @@ export 'package:openapi/src/model/v1_definition_widget.dart';
 export 'package:openapi/src/model/v1_export_note_response.dart';
 export 'package:openapi/src/model/v1_extract_keywords_batch_response.dart';
 export 'package:openapi/src/model/v1_extract_keywords_response.dart';
+export 'package:openapi/src/model/v1_forget_account_password_request.dart';
+export 'package:openapi/src/model/v1_forget_account_password_response.dart';
 export 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 export 'package:openapi/src/model/v1_generate_widgets_response.dart';
 export 'package:openapi/src/model/v1_get_account_request.dart';
@@ -67,6 +70,7 @@ export 'package:openapi/src/model/v1_recipient.dart';
 export 'package:openapi/src/model/v1_send_conversation_message_response.dart';
 export 'package:openapi/src/model/v1_send_invite_response.dart';
 export 'package:openapi/src/model/v1_summarize_response.dart';
+export 'package:openapi/src/model/v1_update_account_password_response.dart';
 export 'package:openapi/src/model/v1_update_account_response.dart';
 export 'package:openapi/src/model/v1_update_block_response.dart';
 export 'package:openapi/src/model/v1_update_conversation_message_response.dart';

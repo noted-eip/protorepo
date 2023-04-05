@@ -2,6 +2,7 @@
 .openapi-generator-ignore
 README.md
 analysis_options.yaml
+doc/AccountsAPIUpdateAccountPasswordRequest.md
 doc/BlockCode.md
 doc/BlockImage.md
 doc/DefaultApi.md
@@ -26,6 +27,8 @@ doc/V1DefinitionWidget.md
 doc/V1ExportNoteResponse.md
 doc/V1ExtractKeywordsBatchResponse.md
 doc/V1ExtractKeywordsResponse.md
+doc/V1ForgetAccountPasswordRequest.md
+doc/V1ForgetAccountPasswordResponse.md
 doc/V1GenerateInviteLinkResponse.md
 doc/V1GenerateWidgetsResponse.md
 doc/V1GetAccountRequest.md
@@ -59,6 +62,7 @@ doc/V1Recipient.md
 doc/V1SendConversationMessageResponse.md
 doc/V1SendInviteResponse.md
 doc/V1SummarizeResponse.md
+doc/V1UpdateAccountPasswordResponse.md
 doc/V1UpdateAccountResponse.md
 doc/V1UpdateBlockResponse.md
 doc/V1UpdateConversationMessageResponse.md
@@ -78,6 +82,7 @@ lib/src/auth/basic_auth.dart
 lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
+lib/src/model/accounts_api_update_account_password_request.dart
 lib/src/model/block_code.dart
 lib/src/model/block_image.dart
 lib/src/model/date.dart
@@ -102,6 +107,8 @@ lib/src/model/v1_definition_widget.dart
 lib/src/model/v1_export_note_response.dart
 lib/src/model/v1_extract_keywords_batch_response.dart
 lib/src/model/v1_extract_keywords_response.dart
+lib/src/model/v1_forget_account_password_request.dart
+lib/src/model/v1_forget_account_password_response.dart
 lib/src/model/v1_generate_invite_link_response.dart
 lib/src/model/v1_generate_widgets_response.dart
 lib/src/model/v1_get_account_request.dart
@@ -135,6 +142,7 @@ lib/src/model/v1_recipient.dart
 lib/src/model/v1_send_conversation_message_response.dart
 lib/src/model/v1_send_invite_response.dart
 lib/src/model/v1_summarize_response.dart
+lib/src/model/v1_update_account_password_response.dart
 lib/src/model/v1_update_account_response.dart
 lib/src/model/v1_update_block_response.dart
 lib/src/model/v1_update_conversation_message_response.dart
@@ -146,6 +154,7 @@ lib/src/model/v1_website_widget.dart
 lib/src/model/v1_widget.dart
 lib/src/serializers.dart
 pubspec.yaml
+test/accounts_api_update_account_password_request_test.dart
 test/block_code_test.dart
 test/block_image_test.dart
 test/default_api_test.dart
@@ -170,6 +179,8 @@ test/v1_definition_widget_test.dart
 test/v1_export_note_response_test.dart
 test/v1_extract_keywords_batch_response_test.dart
 test/v1_extract_keywords_response_test.dart
+test/v1_forget_account_password_request_test.dart
+test/v1_forget_account_password_response_test.dart
 test/v1_generate_invite_link_response_test.dart
 test/v1_generate_widgets_response_test.dart
 test/v1_get_account_request_test.dart
@@ -203,6 +214,7 @@ test/v1_recipient_test.dart
 test/v1_send_conversation_message_response_test.dart
 test/v1_send_invite_response_test.dart
 test/v1_summarize_response_test.dart
+test/v1_update_account_password_response_test.dart
 test/v1_update_account_response_test.dart
 test/v1_update_block_response_test.dart
 test/v1_update_conversation_message_response_test.dart

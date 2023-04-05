@@ -12,10 +12,12 @@ Method | HTTP request | Description
 [**accountsAPIAuthenticate**](DefaultApi.md#accountsapiauthenticate) | **POST** /authenticate | Authenticate using the email and password flow.
 [**accountsAPICreateAccount**](DefaultApi.md#accountsapicreateaccount) | **POST** /accounts | Create an account using the email and password flow.
 [**accountsAPIDeleteAccount**](DefaultApi.md#accountsapideleteaccount) | **DELETE** /accounts/{accountId} | Must be account owner.
+[**accountsAPIForgetAccountPassword**](DefaultApi.md#accountsapiforgetaccountpassword) | **POST** /accounts/forget | Send email to account containing code to create a new password.
 [**accountsAPIGetAccount**](DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Allows getting an account by ID or searching for one through email.
 [**accountsAPIGetAccount2**](DefaultApi.md#accountsapigetaccount2) | **POST** /search/accounts | Allows getting an account by ID or searching for one through email.
 [**accountsAPIListAccounts**](DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [**accountsAPIUpdateAccount**](DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
+[**accountsAPIUpdateAccountPassword**](DefaultApi.md#accountsapiupdateaccountpassword) | **PATCH** /accounts/{accountId}/password | Update account password.
 [**groupsAPIAcceptInvite**](DefaultApi.md#groupsapiacceptinvite) | **POST** /groups/{groupId}/invites/{inviteId}/accept | Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
 [**groupsAPICreateGroup**](DefaultApi.md#groupsapicreategroup) | **POST** /groups | Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 [**groupsAPIDeleteGroup**](DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
@@ -168,6 +170,47 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **accountsAPIForgetAccountPassword**
+> V1ForgetAccountPasswordResponse accountsAPIForgetAccountPassword(body)
+
+Send email to account containing code to create a new password.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final V1ForgetAccountPasswordRequest body = ; // V1ForgetAccountPasswordRequest | 
+
+try {
+    final response = api.accountsAPIForgetAccountPassword(body);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->accountsAPIForgetAccountPassword: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**V1ForgetAccountPasswordRequest**](V1ForgetAccountPasswordRequest.md)|  | 
+
+### Return type
+
+[**V1ForgetAccountPasswordResponse**](V1ForgetAccountPasswordResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -332,6 +375,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1UpdateAccountResponse**](V1UpdateAccountResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **accountsAPIUpdateAccountPassword**
+> V1UpdateAccountPasswordResponse accountsAPIUpdateAccountPassword(accountId, body)
+
+Update account password.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String accountId = accountId_example; // String | 
+final AccountsAPIUpdateAccountPasswordRequest body = ; // AccountsAPIUpdateAccountPasswordRequest | 
+
+try {
+    final response = api.accountsAPIUpdateAccountPassword(accountId, body);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->accountsAPIUpdateAccountPassword: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountId** | **String**|  | 
+ **body** | [**AccountsAPIUpdateAccountPasswordRequest**](AccountsAPIUpdateAccountPasswordRequest.md)|  | 
+
+### Return type
+
+[**V1UpdateAccountPasswordResponse**](V1UpdateAccountPasswordResponse.md)
 
 ### Authorization
 

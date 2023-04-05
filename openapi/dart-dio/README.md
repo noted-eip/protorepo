@@ -67,10 +67,12 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIAuthenticate**](doc/DefaultApi.md#accountsapiauthenticate) | **POST** /authenticate | Authenticate using the email and password flow.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPICreateAccount**](doc/DefaultApi.md#accountsapicreateaccount) | **POST** /accounts | Create an account using the email and password flow.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIDeleteAccount**](doc/DefaultApi.md#accountsapideleteaccount) | **DELETE** /accounts/{accountId} | Must be account owner.
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIForgetAccountPassword**](doc/DefaultApi.md#accountsapiforgetaccountpassword) | **POST** /accounts/forget | Send email to account containing code to create a new password.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount**](doc/DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Allows getting an account by ID or searching for one through email.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount2**](doc/DefaultApi.md#accountsapigetaccount2) | **POST** /search/accounts | Allows getting an account by ID or searching for one through email.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIListAccounts**](doc/DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIUpdateAccount**](doc/DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIUpdateAccountPassword**](doc/DefaultApi.md#accountsapiupdateaccountpassword) | **PATCH** /accounts/{accountId}/password | Update account password.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIAcceptInvite**](doc/DefaultApi.md#groupsapiacceptinvite) | **POST** /groups/{groupId}/invites/{inviteId}/accept | Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPICreateGroup**](doc/DefaultApi.md#groupsapicreategroup) | **POST** /groups | Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIDeleteGroup**](doc/DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
@@ -106,6 +108,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AccountsAPIUpdateAccountPasswordRequest](doc/AccountsAPIUpdateAccountPasswordRequest.md)
  - [BlockCode](doc/BlockCode.md)
  - [BlockImage](doc/BlockImage.md)
  - [GroupsAPISendInviteRequest](doc/GroupsAPISendInviteRequest.md)
@@ -129,6 +132,8 @@ Class | Method | HTTP request | Description
  - [V1ExportNoteResponse](doc/V1ExportNoteResponse.md)
  - [V1ExtractKeywordsBatchResponse](doc/V1ExtractKeywordsBatchResponse.md)
  - [V1ExtractKeywordsResponse](doc/V1ExtractKeywordsResponse.md)
+ - [V1ForgetAccountPasswordRequest](doc/V1ForgetAccountPasswordRequest.md)
+ - [V1ForgetAccountPasswordResponse](doc/V1ForgetAccountPasswordResponse.md)
  - [V1GenerateInviteLinkResponse](doc/V1GenerateInviteLinkResponse.md)
  - [V1GenerateWidgetsResponse](doc/V1GenerateWidgetsResponse.md)
  - [V1GetAccountRequest](doc/V1GetAccountRequest.md)
@@ -162,6 +167,7 @@ Class | Method | HTTP request | Description
  - [V1SendConversationMessageResponse](doc/V1SendConversationMessageResponse.md)
  - [V1SendInviteResponse](doc/V1SendInviteResponse.md)
  - [V1SummarizeResponse](doc/V1SummarizeResponse.md)
+ - [V1UpdateAccountPasswordResponse](doc/V1UpdateAccountPasswordResponse.md)
  - [V1UpdateAccountResponse](doc/V1UpdateAccountResponse.md)
  - [V1UpdateBlockResponse](doc/V1UpdateBlockResponse.md)
  - [V1UpdateConversationMessageResponse](doc/V1UpdateConversationMessageResponse.md)

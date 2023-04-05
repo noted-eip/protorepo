@@ -42,6 +42,16 @@ class AccountsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountsRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountsResponse.FromString,
                 )
+        self.ForgetAccountPassword = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/ForgetAccountPassword',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordResponse.FromString,
+                )
+        self.UpdateAccountPassword = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/UpdateAccountPassword',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordResponse.FromString,
+                )
         self.Authenticate = channel.unary_unary(
                 '/noted.accounts.v1.AccountsAPI/Authenticate',
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateRequest.SerializeToString,
@@ -90,6 +100,20 @@ class AccountsAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ForgetAccountPassword(self, request, context):
+        """Send email to account containing code to create a new password.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateAccountPassword(self, request, context):
+        """Update account password.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def Authenticate(self, request, context):
         """Authenticate using the email and password flow.
         """
@@ -124,6 +148,16 @@ def add_AccountsAPIServicer_to_server(servicer, server):
                     servicer.ListAccounts,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountsRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountsResponse.SerializeToString,
+            ),
+            'ForgetAccountPassword': grpc.unary_unary_rpc_method_handler(
+                    servicer.ForgetAccountPassword,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordResponse.SerializeToString,
+            ),
+            'UpdateAccountPassword': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateAccountPassword,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordResponse.SerializeToString,
             ),
             'Authenticate': grpc.unary_unary_rpc_method_handler(
                     servicer.Authenticate,
@@ -225,6 +259,40 @@ class AccountsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/ListAccounts',
             noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountsRequest.SerializeToString,
             noted_dot_accounts_dot_v1_dot_accounts__pb2.ListAccountsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ForgetAccountPassword(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/ForgetAccountPassword',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateAccountPassword(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/UpdateAccountPassword',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

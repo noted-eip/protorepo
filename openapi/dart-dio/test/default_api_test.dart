@@ -28,6 +28,13 @@ void main() {
       // TODO
     });
 
+    // Send email to account containing code to create a new password.
+    //
+    //Future<V1ForgetAccountPasswordResponse> accountsAPIForgetAccountPassword(V1ForgetAccountPasswordRequest body) async
+    test('test accountsAPIForgetAccountPassword', () async {
+      // TODO
+    });
+
     // Allows getting an account by ID or searching for one through email.
     //
     //Future<V1GetAccountResponse> accountsAPIGetAccount(String accountId, { String email }) async
@@ -53,6 +60,13 @@ void main() {
     //
     //Future<V1UpdateAccountResponse> accountsAPIUpdateAccount(String accountId, V1Account account) async
     test('test accountsAPIUpdateAccount', () async {
+      // TODO
+    });
+
+    // Update account password.
+    //
+    //Future<V1UpdateAccountPasswordResponse> accountsAPIUpdateAccountPassword(String accountId, AccountsAPIUpdateAccountPasswordRequest body) async
+    test('test accountsAPIUpdateAccountPassword', () async {
       // TODO
     });
 
