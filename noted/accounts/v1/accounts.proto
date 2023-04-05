@@ -86,6 +86,22 @@ service AccountsAPI {
         };
     }
 
+    // Send email to account containing code to create a new password.
+    rpc ForgetAccountPassword(ForgetAccountPasswordRequest) returns (ForgetAccountPasswordResponse) {
+        option (google.api.http) = {
+            post: "/accounts/forget",
+            body: "*",
+        };
+    }
+
+    // Update account password.
+    rpc UpdateAccountPassword(UpdateAccountPasswordRequest) returns (UpdateAccountPasswordResponse) {
+        option (google.api.http) = {
+            patch: "/accounts/{account_id}/password/",
+            body: "*",
+        };
+    }
+
     // Authenticate using the email and password flow.
     rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse) {
         option (google.api.http) = {
@@ -148,4 +164,27 @@ message ListAccountsRequest {
 
 message ListAccountsResponse {
     repeated Account accounts = 1;
+}
+
+message ForgetAccountPasswordRequest {
+    string email = 1  [(google.api.field_behavior) = REQUIRED];
+}
+
+message ForgetAccountPasswordResponse {
+    string account_id = 1  [(google.api.field_behavior) = REQUIRED];
+    string token = 2  [(google.api.field_behavior) = REQUIRED];
+    string valid_until = 3  [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateAccountPasswordRequest {
+    string password = 1 [(google.api.field_behavior) = REQUIRED];
+
+    //Token from the reset email password if forgot password
+    string token = 2 [(google.api.field_behavior) = OPTIONAL];
+    //Old password if the account is already log-in
+    string old_password = 3 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message UpdateAccountPasswordResponse {
+    Account account = 1 [(google.api.field_behavior) = REQUIRED];
 }
