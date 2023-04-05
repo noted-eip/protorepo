@@ -97,7 +97,7 @@ service AccountsAPI {
     // Update account password.
     rpc UpdateAccountPassword(UpdateAccountPasswordRequest) returns (UpdateAccountPasswordResponse) {
         option (google.api.http) = {
-            patch: "/accounts/{account_id}/password/",
+            patch: "/accounts/{account_id}/password",
             body: "*",
         };
     }
