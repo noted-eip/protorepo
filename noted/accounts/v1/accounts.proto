@@ -177,12 +177,13 @@ message ForgetAccountPasswordResponse {
 }
 
 message UpdateAccountPasswordRequest {
-    string password = 1 [(google.api.field_behavior) = REQUIRED];
+    string account_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string password = 2 [(google.api.field_behavior) = REQUIRED];
 
     //Token from the reset email password if forgot password
-    string token = 2 [(google.api.field_behavior) = OPTIONAL];
+    string token = 3 [(google.api.field_behavior) = OPTIONAL];
     //Old password if the account is already log-in
-    string old_password = 3 [(google.api.field_behavior) = OPTIONAL];
+    string old_password = 4 [(google.api.field_behavior) = OPTIONAL];
 }
 
 message UpdateAccountPasswordResponse {
