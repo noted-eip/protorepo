@@ -94,6 +94,14 @@ service AccountsAPI {
         };
     }
 
+    // Compare forgot password token provided by user with the one store in db.
+    rpc ForgetAccountPasswordValidateToken(ForgetAccountPasswordValidateTokenRequest) returns (ForgetAccountPasswordValidateTokenResponse) {
+        option (google.api.http) = {
+            post: "/accounts/forget/validate",
+            body: "*",
+        };
+    }
+
     // Update account password.
     rpc UpdateAccountPassword(UpdateAccountPasswordRequest) returns (UpdateAccountPasswordResponse) {
         option (google.api.http) = {
@@ -172,8 +180,17 @@ message ForgetAccountPasswordRequest {
 
 message ForgetAccountPasswordResponse {
     string account_id = 1  [(google.api.field_behavior) = REQUIRED];
+    string valid_until = 2  [(google.api.field_behavior) = REQUIRED];
+}
+
+message ForgetAccountPasswordValidateTokenRequest {
+    string account_id = 1  [(google.api.field_behavior) = REQUIRED];
     string token = 2  [(google.api.field_behavior) = REQUIRED];
-    string valid_until = 3  [(google.api.field_behavior) = REQUIRED];
+}
+
+message ForgetAccountPasswordValidateTokenResponse {
+    Account account = 1 [(google.api.field_behavior) = REQUIRED];
+    string token = 2  [(google.api.field_behavior) = REQUIRED];
 }
 
 message UpdateAccountPasswordRequest {
