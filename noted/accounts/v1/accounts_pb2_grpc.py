@@ -47,6 +47,11 @@ class AccountsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordResponse.FromString,
                 )
+        self.ForgetAccountPasswordValidateToken = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/ForgetAccountPasswordValidateToken',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordValidateTokenRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordValidateTokenResponse.FromString,
+                )
         self.UpdateAccountPassword = channel.unary_unary(
                 '/noted.accounts.v1.AccountsAPI/UpdateAccountPassword',
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordRequest.SerializeToString,
@@ -107,6 +112,13 @@ class AccountsAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ForgetAccountPasswordValidateToken(self, request, context):
+        """Compare forgot password token provided by user with the one store in db.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def UpdateAccountPassword(self, request, context):
         """Update account password.
         """
@@ -153,6 +165,11 @@ def add_AccountsAPIServicer_to_server(servicer, server):
                     servicer.ForgetAccountPassword,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordResponse.SerializeToString,
+            ),
+            'ForgetAccountPasswordValidateToken': grpc.unary_unary_rpc_method_handler(
+                    servicer.ForgetAccountPasswordValidateToken,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordValidateTokenRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordValidateTokenResponse.SerializeToString,
             ),
             'UpdateAccountPassword': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateAccountPassword,
@@ -276,6 +293,23 @@ class AccountsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/ForgetAccountPassword',
             noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordRequest.SerializeToString,
             noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ForgetAccountPasswordValidateToken(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/ForgetAccountPasswordValidateToken',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordValidateTokenRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.ForgetAccountPasswordValidateTokenResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

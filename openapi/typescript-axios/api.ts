@@ -555,13 +555,45 @@ export interface V1ForgetAccountPasswordResponse {
      * @type {string}
      * @memberof V1ForgetAccountPasswordResponse
      */
-    'token': string;
+    'validUntil': string;
+}
+/**
+ * 
+ * @export
+ * @interface V1ForgetAccountPasswordValidateTokenRequest
+ */
+export interface V1ForgetAccountPasswordValidateTokenRequest {
     /**
      * 
      * @type {string}
-     * @memberof V1ForgetAccountPasswordResponse
+     * @memberof V1ForgetAccountPasswordValidateTokenRequest
      */
-    'validUntil': string;
+    'accountId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1ForgetAccountPasswordValidateTokenRequest
+     */
+    'token': string;
+}
+/**
+ * 
+ * @export
+ * @interface V1ForgetAccountPasswordValidateTokenResponse
+ */
+export interface V1ForgetAccountPasswordValidateTokenResponse {
+    /**
+     * 
+     * @type {V1Account}
+     * @memberof V1ForgetAccountPasswordValidateTokenResponse
+     */
+    'account': V1Account;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1ForgetAccountPasswordValidateTokenResponse
+     */
+    'token': string;
 }
 /**
  * 
@@ -1493,6 +1525,42 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'body' is not null or undefined
             assertParamExists('accountsAPIForgetAccountPassword', 'body', body)
             const localVarPath = `/accounts/forget`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Compare forgot password token provided by user with the one store in db.
+         * @param {V1ForgetAccountPasswordValidateTokenRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIForgetAccountPasswordValidateToken: async (body: V1ForgetAccountPasswordValidateTokenRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIForgetAccountPasswordValidateToken', 'body', body)
+            const localVarPath = `/accounts/forget/validate`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3051,6 +3119,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Compare forgot password token provided by user with the one store in db.
+         * @param {V1ForgetAccountPasswordValidateTokenRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIForgetAccountPasswordValidateToken(body: V1ForgetAccountPasswordValidateTokenRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ForgetAccountPasswordValidateTokenResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIForgetAccountPasswordValidateToken(body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Allows getting an account by ID or searching for one through email.
          * @param {string} accountId 
          * @param {string} [email] 
@@ -3545,6 +3624,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Compare forgot password token provided by user with the one store in db.
+         * @param {V1ForgetAccountPasswordValidateTokenRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIForgetAccountPasswordValidateToken(body: V1ForgetAccountPasswordValidateTokenRequest, options?: any): AxiosPromise<V1ForgetAccountPasswordValidateTokenResponse> {
+            return localVarFp.accountsAPIForgetAccountPasswordValidateToken(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Allows getting an account by ID or searching for one through email.
          * @param {string} accountId 
          * @param {string} [email] 
@@ -4007,6 +4096,18 @@ export class DefaultApi extends BaseAPI {
      */
     public accountsAPIForgetAccountPassword(body: V1ForgetAccountPasswordRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).accountsAPIForgetAccountPassword(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Compare forgot password token provided by user with the one store in db.
+     * @param {V1ForgetAccountPasswordValidateTokenRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIForgetAccountPasswordValidateToken(body: V1ForgetAccountPasswordValidateTokenRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIForgetAccountPasswordValidateToken(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

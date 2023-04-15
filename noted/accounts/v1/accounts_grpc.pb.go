@@ -19,14 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	AccountsAPI_CreateAccount_FullMethodName         = "/noted.accounts.v1.AccountsAPI/CreateAccount"
-	AccountsAPI_GetAccount_FullMethodName            = "/noted.accounts.v1.AccountsAPI/GetAccount"
-	AccountsAPI_UpdateAccount_FullMethodName         = "/noted.accounts.v1.AccountsAPI/UpdateAccount"
-	AccountsAPI_DeleteAccount_FullMethodName         = "/noted.accounts.v1.AccountsAPI/DeleteAccount"
-	AccountsAPI_ListAccounts_FullMethodName          = "/noted.accounts.v1.AccountsAPI/ListAccounts"
-	AccountsAPI_ForgetAccountPassword_FullMethodName = "/noted.accounts.v1.AccountsAPI/ForgetAccountPassword"
-	AccountsAPI_UpdateAccountPassword_FullMethodName = "/noted.accounts.v1.AccountsAPI/UpdateAccountPassword"
-	AccountsAPI_Authenticate_FullMethodName          = "/noted.accounts.v1.AccountsAPI/Authenticate"
+	AccountsAPI_CreateAccount_FullMethodName                      = "/noted.accounts.v1.AccountsAPI/CreateAccount"
+	AccountsAPI_GetAccount_FullMethodName                         = "/noted.accounts.v1.AccountsAPI/GetAccount"
+	AccountsAPI_UpdateAccount_FullMethodName                      = "/noted.accounts.v1.AccountsAPI/UpdateAccount"
+	AccountsAPI_DeleteAccount_FullMethodName                      = "/noted.accounts.v1.AccountsAPI/DeleteAccount"
+	AccountsAPI_ListAccounts_FullMethodName                       = "/noted.accounts.v1.AccountsAPI/ListAccounts"
+	AccountsAPI_ForgetAccountPassword_FullMethodName              = "/noted.accounts.v1.AccountsAPI/ForgetAccountPassword"
+	AccountsAPI_ForgetAccountPasswordValidateToken_FullMethodName = "/noted.accounts.v1.AccountsAPI/ForgetAccountPasswordValidateToken"
+	AccountsAPI_UpdateAccountPassword_FullMethodName              = "/noted.accounts.v1.AccountsAPI/UpdateAccountPassword"
+	AccountsAPI_Authenticate_FullMethodName                       = "/noted.accounts.v1.AccountsAPI/Authenticate"
 )
 
 // AccountsAPIClient is the client API for AccountsAPI service.
@@ -45,6 +46,8 @@ type AccountsAPIClient interface {
 	ListAccounts(ctx context.Context, in *ListAccountsRequest, opts ...grpc.CallOption) (*ListAccountsResponse, error)
 	// Send email to account containing code to create a new password.
 	ForgetAccountPassword(ctx context.Context, in *ForgetAccountPasswordRequest, opts ...grpc.CallOption) (*ForgetAccountPasswordResponse, error)
+	// Compare forgot password token provided by user with the one store in db.
+	ForgetAccountPasswordValidateToken(ctx context.Context, in *ForgetAccountPasswordValidateTokenRequest, opts ...grpc.CallOption) (*ForgetAccountPasswordValidateTokenResponse, error)
 	// Update account password.
 	UpdateAccountPassword(ctx context.Context, in *UpdateAccountPasswordRequest, opts ...grpc.CallOption) (*UpdateAccountPasswordResponse, error)
 	// Authenticate using the email and password flow.
@@ -113,6 +116,15 @@ func (c *accountsAPIClient) ForgetAccountPassword(ctx context.Context, in *Forge
 	return out, nil
 }
 
+func (c *accountsAPIClient) ForgetAccountPasswordValidateToken(ctx context.Context, in *ForgetAccountPasswordValidateTokenRequest, opts ...grpc.CallOption) (*ForgetAccountPasswordValidateTokenResponse, error) {
+	out := new(ForgetAccountPasswordValidateTokenResponse)
+	err := c.cc.Invoke(ctx, AccountsAPI_ForgetAccountPasswordValidateToken_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountsAPIClient) UpdateAccountPassword(ctx context.Context, in *UpdateAccountPasswordRequest, opts ...grpc.CallOption) (*UpdateAccountPasswordResponse, error) {
 	out := new(UpdateAccountPasswordResponse)
 	err := c.cc.Invoke(ctx, AccountsAPI_UpdateAccountPassword_FullMethodName, in, out, opts...)
@@ -147,6 +159,8 @@ type AccountsAPIServer interface {
 	ListAccounts(context.Context, *ListAccountsRequest) (*ListAccountsResponse, error)
 	// Send email to account containing code to create a new password.
 	ForgetAccountPassword(context.Context, *ForgetAccountPasswordRequest) (*ForgetAccountPasswordResponse, error)
+	// Compare forgot password token provided by user with the one store in db.
+	ForgetAccountPasswordValidateToken(context.Context, *ForgetAccountPasswordValidateTokenRequest) (*ForgetAccountPasswordValidateTokenResponse, error)
 	// Update account password.
 	UpdateAccountPassword(context.Context, *UpdateAccountPasswordRequest) (*UpdateAccountPasswordResponse, error)
 	// Authenticate using the email and password flow.
@@ -175,6 +189,9 @@ func (UnimplementedAccountsAPIServer) ListAccounts(context.Context, *ListAccount
 }
 func (UnimplementedAccountsAPIServer) ForgetAccountPassword(context.Context, *ForgetAccountPasswordRequest) (*ForgetAccountPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ForgetAccountPassword not implemented")
+}
+func (UnimplementedAccountsAPIServer) ForgetAccountPasswordValidateToken(context.Context, *ForgetAccountPasswordValidateTokenRequest) (*ForgetAccountPasswordValidateTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ForgetAccountPasswordValidateToken not implemented")
 }
 func (UnimplementedAccountsAPIServer) UpdateAccountPassword(context.Context, *UpdateAccountPasswordRequest) (*UpdateAccountPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAccountPassword not implemented")
@@ -303,6 +320,24 @@ func _AccountsAPI_ForgetAccountPassword_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountsAPI_ForgetAccountPasswordValidateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ForgetAccountPasswordValidateTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountsAPIServer).ForgetAccountPasswordValidateToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountsAPI_ForgetAccountPasswordValidateToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountsAPIServer).ForgetAccountPasswordValidateToken(ctx, req.(*ForgetAccountPasswordValidateTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AccountsAPI_UpdateAccountPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateAccountPasswordRequest)
 	if err := dec(in); err != nil {
@@ -369,6 +404,10 @@ var AccountsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ForgetAccountPassword",
 			Handler:    _AccountsAPI_ForgetAccountPassword_Handler,
+		},
+		{
+			MethodName: "ForgetAccountPasswordValidateToken",
+			Handler:    _AccountsAPI_ForgetAccountPasswordValidateToken_Handler,
 		},
 		{
 			MethodName: "UpdateAccountPassword",

@@ -68,6 +68,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPICreateAccount**](doc/DefaultApi.md#accountsapicreateaccount) | **POST** /accounts | Create an account using the email and password flow.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIDeleteAccount**](doc/DefaultApi.md#accountsapideleteaccount) | **DELETE** /accounts/{accountId} | Must be account owner.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIForgetAccountPassword**](doc/DefaultApi.md#accountsapiforgetaccountpassword) | **POST** /accounts/forget | Send email to account containing code to create a new password.
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIForgetAccountPasswordValidateToken**](doc/DefaultApi.md#accountsapiforgetaccountpasswordvalidatetoken) | **POST** /accounts/forget/validate | Compare forgot password token provided by user with the one store in db.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount**](doc/DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Allows getting an account by ID or searching for one through email.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount2**](doc/DefaultApi.md#accountsapigetaccount2) | **POST** /search/accounts | Allows getting an account by ID or searching for one through email.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIListAccounts**](doc/DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
@@ -134,6 +135,8 @@ Class | Method | HTTP request | Description
  - [V1ExtractKeywordsResponse](doc/V1ExtractKeywordsResponse.md)
  - [V1ForgetAccountPasswordRequest](doc/V1ForgetAccountPasswordRequest.md)
  - [V1ForgetAccountPasswordResponse](doc/V1ForgetAccountPasswordResponse.md)
+ - [V1ForgetAccountPasswordValidateTokenRequest](doc/V1ForgetAccountPasswordValidateTokenRequest.md)
+ - [V1ForgetAccountPasswordValidateTokenResponse](doc/V1ForgetAccountPasswordValidateTokenResponse.md)
  - [V1GenerateInviteLinkResponse](doc/V1GenerateInviteLinkResponse.md)
  - [V1GenerateWidgetsResponse](doc/V1GenerateWidgetsResponse.md)
  - [V1GetAccountRequest](doc/V1GetAccountRequest.md)

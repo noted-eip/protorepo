@@ -35,6 +35,13 @@ void main() {
       // TODO
     });
 
+    // Compare forgot password token provided by user with the one store in db.
+    //
+    //Future<V1ForgetAccountPasswordValidateTokenResponse> accountsAPIForgetAccountPasswordValidateToken(V1ForgetAccountPasswordValidateTokenRequest body) async
+    test('test accountsAPIForgetAccountPasswordValidateToken', () async {
+      // TODO
+    });
+
     // Allows getting an account by ID or searching for one through email.
     //
     //Future<V1GetAccountResponse> accountsAPIGetAccount(String accountId, { String email }) async

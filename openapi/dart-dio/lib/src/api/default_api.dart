@@ -26,6 +26,8 @@ import 'package:openapi/src/model/v1_create_group_response.dart';
 import 'package:openapi/src/model/v1_create_note_response.dart';
 import 'package:openapi/src/model/v1_forget_account_password_request.dart';
 import 'package:openapi/src/model/v1_forget_account_password_response.dart';
+import 'package:openapi/src/model/v1_forget_account_password_validate_token_request.dart';
+import 'package:openapi/src/model/v1_forget_account_password_validate_token_response.dart';
 import 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 import 'package:openapi/src/model/v1_generate_widgets_response.dart';
 import 'package:openapi/src/model/v1_get_account_request.dart';
@@ -410,6 +412,101 @@ class DefaultApi {
     }
 
     return Response<V1ForgetAccountPasswordResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Compare forgot password token provided by user with the one store in db.
+  /// 
+  ///
+  /// Parameters:
+  /// * [body] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [V1ForgetAccountPasswordValidateTokenResponse] as data
+  /// Throws [DioError] if API call or serialization fails
+  Future<Response<V1ForgetAccountPasswordValidateTokenResponse>> accountsAPIForgetAccountPasswordValidateToken({ 
+    required V1ForgetAccountPasswordValidateTokenRequest body,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/accounts/forget/validate';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(V1ForgetAccountPasswordValidateTokenRequest);
+      _bodyData = _serializers.serialize(body, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioError(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    V1ForgetAccountPasswordValidateTokenResponse _responseData;
+
+    try {
+      const _responseType = FullType(V1ForgetAccountPasswordValidateTokenResponse);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as V1ForgetAccountPasswordValidateTokenResponse;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<V1ForgetAccountPasswordValidateTokenResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

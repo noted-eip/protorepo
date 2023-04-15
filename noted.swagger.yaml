@@ -169,6 +169,25 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/v1ForgetAccountPasswordRequest'
+  /accounts/forget/validate:
+    post:
+      summary: Compare forgot password token provided by user with the one store in db.
+      operationId: AccountsAPI_ForgetAccountPasswordValidateToken
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ForgetAccountPasswordValidateTokenResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1ForgetAccountPasswordValidateTokenRequest'
   /authenticate:
     post:
       summary: Authenticate using the email and password flow.
@@ -1243,14 +1262,31 @@ definitions:
     properties:
       accountId:
         type: string
-      token:
-        type: string
       validUntil:
         type: string
     required:
       - accountId
-      - token
       - validUntil
+  v1ForgetAccountPasswordValidateTokenRequest:
+    type: object
+    properties:
+      accountId:
+        type: string
+      token:
+        type: string
+    required:
+      - accountId
+      - token
+  v1ForgetAccountPasswordValidateTokenResponse:
+    type: object
+    properties:
+      account:
+        $ref: '#/definitions/v1Account'
+      token:
+        type: string
+    required:
+      - account
+      - token
   v1GenerateInviteLinkResponse:
     type: object
     properties:

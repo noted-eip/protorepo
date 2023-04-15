@@ -3,55 +3,56 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:openapi/src/model/v1_account.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'v1_forget_account_password_response.g.dart';
+part 'v1_forget_account_password_validate_token_response.g.dart';
 
-/// V1ForgetAccountPasswordResponse
+/// V1ForgetAccountPasswordValidateTokenResponse
 ///
 /// Properties:
-/// * [accountId] 
-/// * [validUntil] 
+/// * [account] 
+/// * [token] 
 @BuiltValue()
-abstract class V1ForgetAccountPasswordResponse implements Built<V1ForgetAccountPasswordResponse, V1ForgetAccountPasswordResponseBuilder> {
-  @BuiltValueField(wireName: r'accountId')
-  String get accountId;
+abstract class V1ForgetAccountPasswordValidateTokenResponse implements Built<V1ForgetAccountPasswordValidateTokenResponse, V1ForgetAccountPasswordValidateTokenResponseBuilder> {
+  @BuiltValueField(wireName: r'account')
+  V1Account get account;
 
-  @BuiltValueField(wireName: r'validUntil')
-  String get validUntil;
+  @BuiltValueField(wireName: r'token')
+  String get token;
 
-  V1ForgetAccountPasswordResponse._();
+  V1ForgetAccountPasswordValidateTokenResponse._();
 
-  factory V1ForgetAccountPasswordResponse([void updates(V1ForgetAccountPasswordResponseBuilder b)]) = _$V1ForgetAccountPasswordResponse;
+  factory V1ForgetAccountPasswordValidateTokenResponse([void updates(V1ForgetAccountPasswordValidateTokenResponseBuilder b)]) = _$V1ForgetAccountPasswordValidateTokenResponse;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(V1ForgetAccountPasswordResponseBuilder b) => b;
+  static void _defaults(V1ForgetAccountPasswordValidateTokenResponseBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<V1ForgetAccountPasswordResponse> get serializer => _$V1ForgetAccountPasswordResponseSerializer();
+  static Serializer<V1ForgetAccountPasswordValidateTokenResponse> get serializer => _$V1ForgetAccountPasswordValidateTokenResponseSerializer();
 }
 
-class _$V1ForgetAccountPasswordResponseSerializer implements PrimitiveSerializer<V1ForgetAccountPasswordResponse> {
+class _$V1ForgetAccountPasswordValidateTokenResponseSerializer implements PrimitiveSerializer<V1ForgetAccountPasswordValidateTokenResponse> {
   @override
-  final Iterable<Type> types = const [V1ForgetAccountPasswordResponse, _$V1ForgetAccountPasswordResponse];
+  final Iterable<Type> types = const [V1ForgetAccountPasswordValidateTokenResponse, _$V1ForgetAccountPasswordValidateTokenResponse];
 
   @override
-  final String wireName = r'V1ForgetAccountPasswordResponse';
+  final String wireName = r'V1ForgetAccountPasswordValidateTokenResponse';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    V1ForgetAccountPasswordResponse object, {
+    V1ForgetAccountPasswordValidateTokenResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'accountId';
+    yield r'account';
     yield serializers.serialize(
-      object.accountId,
-      specifiedType: const FullType(String),
+      object.account,
+      specifiedType: const FullType(V1Account),
     );
-    yield r'validUntil';
+    yield r'token';
     yield serializers.serialize(
-      object.validUntil,
+      object.token,
       specifiedType: const FullType(String),
     );
   }
@@ -59,7 +60,7 @@ class _$V1ForgetAccountPasswordResponseSerializer implements PrimitiveSerializer
   @override
   Object serialize(
     Serializers serializers,
-    V1ForgetAccountPasswordResponse object, {
+    V1ForgetAccountPasswordValidateTokenResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -70,26 +71,26 @@ class _$V1ForgetAccountPasswordResponseSerializer implements PrimitiveSerializer
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required V1ForgetAccountPasswordResponseBuilder result,
+    required V1ForgetAccountPasswordValidateTokenResponseBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'accountId':
+        case r'account':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.accountId = valueDes;
+            specifiedType: const FullType(V1Account),
+          ) as V1Account;
+          result.account.replace(valueDes);
           break;
-        case r'validUntil':
+        case r'token':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.validUntil = valueDes;
+          result.token = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -100,12 +101,12 @@ class _$V1ForgetAccountPasswordResponseSerializer implements PrimitiveSerializer
   }
 
   @override
-  V1ForgetAccountPasswordResponse deserialize(
+  V1ForgetAccountPasswordValidateTokenResponse deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = V1ForgetAccountPasswordResponseBuilder();
+    final result = V1ForgetAccountPasswordValidateTokenResponseBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

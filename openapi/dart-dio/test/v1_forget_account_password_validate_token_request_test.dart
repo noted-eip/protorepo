@@ -1,19 +1,19 @@
 import 'package:test/test.dart';
 import 'package:openapi/openapi.dart';
 
-// tests for V1ForgetAccountPasswordResponse
+// tests for V1ForgetAccountPasswordValidateTokenRequest
 void main() {
-  final instance = V1ForgetAccountPasswordResponseBuilder();
+  final instance = V1ForgetAccountPasswordValidateTokenRequestBuilder();
   // TODO add properties to the builder and call build()
 
-  group(V1ForgetAccountPasswordResponse, () {
+  group(V1ForgetAccountPasswordValidateTokenRequest, () {
     // String accountId
     test('to test the property `accountId`', () async {
       // TODO
     });
 
-    // String validUntil
-    test('to test the property `validUntil`', () async {
+    // String token
+    test('to test the property `token`', () async {
       // TODO
     });
 

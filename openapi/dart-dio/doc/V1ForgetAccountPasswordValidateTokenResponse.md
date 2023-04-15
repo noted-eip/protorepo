@@ -1,4 +1,4 @@
-# openapi.model.V1ForgetAccountPasswordResponse
+# openapi.model.V1ForgetAccountPasswordValidateTokenResponse
 
 ## Load the model package
 ```dart
@@ -8,8 +8,8 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**accountId** | **String** |  | 
-**validUntil** | **String** |  | 
+**account** | [**V1Account**](V1Account.md) |  | 
+**token** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

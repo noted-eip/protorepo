@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**accountsAPICreateAccount**](DefaultApi.md#accountsapicreateaccount) | **POST** /accounts | Create an account using the email and password flow.
 [**accountsAPIDeleteAccount**](DefaultApi.md#accountsapideleteaccount) | **DELETE** /accounts/{accountId} | Must be account owner.
 [**accountsAPIForgetAccountPassword**](DefaultApi.md#accountsapiforgetaccountpassword) | **POST** /accounts/forget | Send email to account containing code to create a new password.
+[**accountsAPIForgetAccountPasswordValidateToken**](DefaultApi.md#accountsapiforgetaccountpasswordvalidatetoken) | **POST** /accounts/forget/validate | Compare forgot password token provided by user with the one store in db.
 [**accountsAPIGetAccount**](DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Allows getting an account by ID or searching for one through email.
 [**accountsAPIGetAccount2**](DefaultApi.md#accountsapigetaccount2) | **POST** /search/accounts | Allows getting an account by ID or searching for one through email.
 [**accountsAPIListAccounts**](DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
@@ -203,6 +204,47 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1ForgetAccountPasswordResponse**](V1ForgetAccountPasswordResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **accountsAPIForgetAccountPasswordValidateToken**
+> V1ForgetAccountPasswordValidateTokenResponse accountsAPIForgetAccountPasswordValidateToken(body)
+
+Compare forgot password token provided by user with the one store in db.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final V1ForgetAccountPasswordValidateTokenRequest body = ; // V1ForgetAccountPasswordValidateTokenRequest | 
+
+try {
+    final response = api.accountsAPIForgetAccountPasswordValidateToken(body);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->accountsAPIForgetAccountPasswordValidateToken: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**V1ForgetAccountPasswordValidateTokenRequest**](V1ForgetAccountPasswordValidateTokenRequest.md)|  | 
+
+### Return type
+
+[**V1ForgetAccountPasswordValidateTokenResponse**](V1ForgetAccountPasswordValidateTokenResponse.md)
 
 ### Authorization
 

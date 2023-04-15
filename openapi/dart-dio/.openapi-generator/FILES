@@ -29,6 +29,8 @@ doc/V1ExtractKeywordsBatchResponse.md
 doc/V1ExtractKeywordsResponse.md
 doc/V1ForgetAccountPasswordRequest.md
 doc/V1ForgetAccountPasswordResponse.md
+doc/V1ForgetAccountPasswordValidateTokenRequest.md
+doc/V1ForgetAccountPasswordValidateTokenResponse.md
 doc/V1GenerateInviteLinkResponse.md
 doc/V1GenerateWidgetsResponse.md
 doc/V1GetAccountRequest.md
@@ -109,6 +111,8 @@ lib/src/model/v1_extract_keywords_batch_response.dart
 lib/src/model/v1_extract_keywords_response.dart
 lib/src/model/v1_forget_account_password_request.dart
 lib/src/model/v1_forget_account_password_response.dart
+lib/src/model/v1_forget_account_password_validate_token_request.dart
+lib/src/model/v1_forget_account_password_validate_token_response.dart
 lib/src/model/v1_generate_invite_link_response.dart
 lib/src/model/v1_generate_widgets_response.dart
 lib/src/model/v1_get_account_request.dart
@@ -181,6 +185,8 @@ test/v1_extract_keywords_batch_response_test.dart
 test/v1_extract_keywords_response_test.dart
 test/v1_forget_account_password_request_test.dart
 test/v1_forget_account_password_response_test.dart
+test/v1_forget_account_password_validate_token_request_test.dart
+test/v1_forget_account_password_validate_token_response_test.dart
 test/v1_generate_invite_link_response_test.dart
 test/v1_generate_widgets_response_test.dart
 test/v1_get_account_request_test.dart
