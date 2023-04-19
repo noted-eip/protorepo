@@ -593,7 +593,13 @@ export interface V1ForgetAccountPasswordValidateTokenResponse {
      * @type {string}
      * @memberof V1ForgetAccountPasswordValidateTokenResponse
      */
-    'token': string;
+    'resetToken': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1ForgetAccountPasswordValidateTokenResponse
+     */
+    'authToken': string;
 }
 /**
  * 

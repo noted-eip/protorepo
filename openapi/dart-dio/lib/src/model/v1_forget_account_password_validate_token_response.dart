@@ -13,14 +13,18 @@ part 'v1_forget_account_password_validate_token_response.g.dart';
 ///
 /// Properties:
 /// * [account] 
-/// * [token] 
+/// * [resetToken] 
+/// * [authToken] 
 @BuiltValue()
 abstract class V1ForgetAccountPasswordValidateTokenResponse implements Built<V1ForgetAccountPasswordValidateTokenResponse, V1ForgetAccountPasswordValidateTokenResponseBuilder> {
   @BuiltValueField(wireName: r'account')
   V1Account get account;
 
-  @BuiltValueField(wireName: r'token')
-  String get token;
+  @BuiltValueField(wireName: r'resetToken')
+  String get resetToken;
+
+  @BuiltValueField(wireName: r'authToken')
+  String get authToken;
 
   V1ForgetAccountPasswordValidateTokenResponse._();
 
@@ -50,9 +54,14 @@ class _$V1ForgetAccountPasswordValidateTokenResponseSerializer implements Primit
       object.account,
       specifiedType: const FullType(V1Account),
     );
-    yield r'token';
+    yield r'resetToken';
     yield serializers.serialize(
-      object.token,
+      object.resetToken,
+      specifiedType: const FullType(String),
+    );
+    yield r'authToken';
+    yield serializers.serialize(
+      object.authToken,
       specifiedType: const FullType(String),
     );
   }
@@ -85,12 +94,19 @@ class _$V1ForgetAccountPasswordValidateTokenResponseSerializer implements Primit
           ) as V1Account;
           result.account.replace(valueDes);
           break;
-        case r'token':
+        case r'resetToken':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.token = valueDes;
+          result.resetToken = valueDes;
+          break;
+        case r'authToken':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.authToken = valueDes;
           break;
         default:
           unhandled.add(key);

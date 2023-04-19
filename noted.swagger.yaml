@@ -1282,11 +1282,14 @@ definitions:
     properties:
       account:
         $ref: '#/definitions/v1Account'
-      token:
+      resetToken:
+        type: string
+      authToken:
         type: string
     required:
       - account
-      - token
+      - resetToken
+      - authToken
   v1GenerateInviteLinkResponse:
     type: object
     properties:

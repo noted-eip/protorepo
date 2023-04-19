@@ -12,8 +12,13 @@ void main() {
       // TODO
     });
 
-    // String token
-    test('to test the property `token`', () async {
+    // String resetToken
+    test('to test the property `resetToken`', () async {
+      // TODO
+    });
+
+    // String authToken
+    test('to test the property `authToken`', () async {
       // TODO
     });
 
