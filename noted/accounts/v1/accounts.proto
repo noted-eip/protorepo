@@ -190,7 +190,8 @@ message ForgetAccountPasswordValidateTokenRequest {
 
 message ForgetAccountPasswordValidateTokenResponse {
     Account account = 1 [(google.api.field_behavior) = REQUIRED];
-    string token = 2  [(google.api.field_behavior) = REQUIRED];
+    string reset_token = 2  [(google.api.field_behavior) = REQUIRED];
+    string auth_token = 3  [(google.api.field_behavior) = REQUIRED];
 }
 
 message UpdateAccountPasswordRequest {
