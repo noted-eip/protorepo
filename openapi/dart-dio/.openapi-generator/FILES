@@ -12,7 +12,6 @@ doc/NotesAPICreateNoteRequest.md
 doc/NotesAPIInsertBlockRequest.md
 doc/V1AcceptInviteResponse.md
 doc/V1Account.md
-doc/V1AuthenticateGoogleRequest.md
 doc/V1AuthenticateRequest.md
 doc/V1AuthenticateResponse.md
 doc/V1Block.md
@@ -95,7 +94,6 @@ lib/src/model/notes_api_create_note_request.dart
 lib/src/model/notes_api_insert_block_request.dart
 lib/src/model/v1_accept_invite_response.dart
 lib/src/model/v1_account.dart
-lib/src/model/v1_authenticate_google_request.dart
 lib/src/model/v1_authenticate_request.dart
 lib/src/model/v1_authenticate_response.dart
 lib/src/model/v1_block.dart
@@ -170,7 +168,6 @@ test/notes_api_create_note_request_test.dart
 test/notes_api_insert_block_request_test.dart
 test/v1_accept_invite_response_test.dart
 test/v1_account_test.dart
-test/v1_authenticate_google_request_test.dart
 test/v1_authenticate_request_test.dart
 test/v1_authenticate_response_test.dart
 test/v1_block_test.dart

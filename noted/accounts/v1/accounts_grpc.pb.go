@@ -28,7 +28,6 @@ const (
 	AccountsAPI_ForgetAccountPasswordValidateToken_FullMethodName = "/noted.accounts.v1.AccountsAPI/ForgetAccountPasswordValidateToken"
 	AccountsAPI_UpdateAccountPassword_FullMethodName              = "/noted.accounts.v1.AccountsAPI/UpdateAccountPassword"
 	AccountsAPI_Authenticate_FullMethodName                       = "/noted.accounts.v1.AccountsAPI/Authenticate"
-	AccountsAPI_AuthenticateGoogle_FullMethodName                 = "/noted.accounts.v1.AccountsAPI/AuthenticateGoogle"
 )
 
 // AccountsAPIClient is the client API for AccountsAPI service.
@@ -53,8 +52,6 @@ type AccountsAPIClient interface {
 	UpdateAccountPassword(ctx context.Context, in *UpdateAccountPasswordRequest, opts ...grpc.CallOption) (*UpdateAccountPasswordResponse, error)
 	// Authenticate using the email and password flow.
 	Authenticate(ctx context.Context, in *AuthenticateRequest, opts ...grpc.CallOption) (*AuthenticateResponse, error)
-	// Authenticate using the Google OAuth flow.
-	AuthenticateGoogle(ctx context.Context, in *AuthenticateGoogleRequest, opts ...grpc.CallOption) (*CreateAccountResponse, error)
 }
 
 type accountsAPIClient struct {
@@ -146,15 +143,6 @@ func (c *accountsAPIClient) Authenticate(ctx context.Context, in *AuthenticateRe
 	return out, nil
 }
 
-func (c *accountsAPIClient) AuthenticateGoogle(ctx context.Context, in *AuthenticateGoogleRequest, opts ...grpc.CallOption) (*CreateAccountResponse, error) {
-	out := new(CreateAccountResponse)
-	err := c.cc.Invoke(ctx, AccountsAPI_AuthenticateGoogle_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // AccountsAPIServer is the server API for AccountsAPI service.
 // All implementations must embed UnimplementedAccountsAPIServer
 // for forward compatibility
@@ -177,8 +165,6 @@ type AccountsAPIServer interface {
 	UpdateAccountPassword(context.Context, *UpdateAccountPasswordRequest) (*UpdateAccountPasswordResponse, error)
 	// Authenticate using the email and password flow.
 	Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error)
-	// Authenticate using the Google OAuth flow.
-	AuthenticateGoogle(context.Context, *AuthenticateGoogleRequest) (*CreateAccountResponse, error)
 	mustEmbedUnimplementedAccountsAPIServer()
 }
 
@@ -212,9 +198,6 @@ func (UnimplementedAccountsAPIServer) UpdateAccountPassword(context.Context, *Up
 }
 func (UnimplementedAccountsAPIServer) Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Authenticate not implemented")
-}
-func (UnimplementedAccountsAPIServer) AuthenticateGoogle(context.Context, *AuthenticateGoogleRequest) (*CreateAccountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AuthenticateGoogle not implemented")
 }
 func (UnimplementedAccountsAPIServer) mustEmbedUnimplementedAccountsAPIServer() {}
 
@@ -391,24 +374,6 @@ func _AccountsAPI_Authenticate_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AccountsAPI_AuthenticateGoogle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AuthenticateGoogleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AccountsAPIServer).AuthenticateGoogle(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AccountsAPI_AuthenticateGoogle_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AccountsAPIServer).AuthenticateGoogle(ctx, req.(*AuthenticateGoogleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // AccountsAPI_ServiceDesc is the grpc.ServiceDesc for AccountsAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -451,10 +416,6 @@ var AccountsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Authenticate",
 			Handler:    _AccountsAPI_Authenticate_Handler,
-		},
-		{
-			MethodName: "AuthenticateGoogle",
-			Handler:    _AccountsAPI_AuthenticateGoogle_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

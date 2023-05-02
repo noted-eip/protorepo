@@ -14,13 +14,6 @@ void main() {
       // TODO
     });
 
-    // Authenticate using the Google OAuth flow.
-    //
-    //Future<V1CreateAccountResponse> accountsAPIAuthenticateGoogle(V1AuthenticateGoogleRequest body) async
-    test('test accountsAPIAuthenticateGoogle', () async {
-      // TODO
-    });
-
     // Create an account using the email and password flow.
     //
     //Future<V1CreateAccountResponse> accountsAPICreateAccount(V1CreateAccountRequest body) async
