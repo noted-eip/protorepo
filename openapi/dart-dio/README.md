@@ -65,6 +65,7 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIAuthenticate**](doc/DefaultApi.md#accountsapiauthenticate) | **POST** /authenticate | Authenticate using the email and password flow.
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIAuthenticateGoogle**](doc/DefaultApi.md#accountsapiauthenticategoogle) | **POST** /authenticate/google | Authenticate using the Google OAuth flow.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPICreateAccount**](doc/DefaultApi.md#accountsapicreateaccount) | **POST** /accounts | Create an account using the email and password flow.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIDeleteAccount**](doc/DefaultApi.md#accountsapideleteaccount) | **DELETE** /accounts/{accountId} | Must be account owner.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIForgetAccountPassword**](doc/DefaultApi.md#accountsapiforgetaccountpassword) | **POST** /accounts/forget | Send email to account containing code to create a new password.
@@ -118,6 +119,7 @@ Class | Method | HTTP request | Description
  - [NotesAPIInsertBlockRequest](doc/NotesAPIInsertBlockRequest.md)
  - [V1AcceptInviteResponse](doc/V1AcceptInviteResponse.md)
  - [V1Account](doc/V1Account.md)
+ - [V1AuthenticateGoogleRequest](doc/V1AuthenticateGoogleRequest.md)
  - [V1AuthenticateRequest](doc/V1AuthenticateRequest.md)
  - [V1AuthenticateResponse](doc/V1AuthenticateResponse.md)
  - [V1Block](doc/V1Block.md)

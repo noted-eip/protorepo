@@ -20,6 +20,7 @@ export 'package:openapi/src/model/notes_api_create_note_request.dart';
 export 'package:openapi/src/model/notes_api_insert_block_request.dart';
 export 'package:openapi/src/model/v1_accept_invite_response.dart';
 export 'package:openapi/src/model/v1_account.dart';
+export 'package:openapi/src/model/v1_authenticate_google_request.dart';
 export 'package:openapi/src/model/v1_authenticate_request.dart';
 export 'package:openapi/src/model/v1_authenticate_response.dart';
 export 'package:openapi/src/model/v1_block.dart';

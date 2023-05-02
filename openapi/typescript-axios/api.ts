@@ -197,6 +197,19 @@ export interface V1Account {
 /**
  * 
  * @export
+ * @interface V1AuthenticateGoogleRequest
+ */
+export interface V1AuthenticateGoogleRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof V1AuthenticateGoogleRequest
+     */
+    'code': string;
+}
+/**
+ * 
+ * @export
  * @interface V1AuthenticateRequest
  */
 export interface V1AuthenticateRequest {
@@ -1425,6 +1438,42 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'body' is not null or undefined
             assertParamExists('accountsAPIAuthenticate', 'body', body)
             const localVarPath = `/authenticate`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Authenticate using the Google OAuth flow.
+         * @param {V1AuthenticateGoogleRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIAuthenticateGoogle: async (body: V1AuthenticateGoogleRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIAuthenticateGoogle', 'body', body)
+            const localVarPath = `/authenticate/google`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3092,6 +3141,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Authenticate using the Google OAuth flow.
+         * @param {V1AuthenticateGoogleRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIAuthenticateGoogle(body: V1AuthenticateGoogleRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateAccountResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIAuthenticateGoogle(body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Create an account using the email and password flow.
          * @param {V1CreateAccountRequest} body 
          * @param {*} [options] Override http request option.
@@ -3600,6 +3660,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Authenticate using the Google OAuth flow.
+         * @param {V1AuthenticateGoogleRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIAuthenticateGoogle(body: V1AuthenticateGoogleRequest, options?: any): AxiosPromise<V1CreateAccountResponse> {
+            return localVarFp.accountsAPIAuthenticateGoogle(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Create an account using the email and password flow.
          * @param {V1CreateAccountRequest} body 
          * @param {*} [options] Override http request option.
@@ -4066,6 +4136,18 @@ export class DefaultApi extends BaseAPI {
      */
     public accountsAPIAuthenticate(body: V1AuthenticateRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).accountsAPIAuthenticate(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Authenticate using the Google OAuth flow.
+     * @param {V1AuthenticateGoogleRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIAuthenticateGoogle(body: V1AuthenticateGoogleRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIAuthenticateGoogle(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

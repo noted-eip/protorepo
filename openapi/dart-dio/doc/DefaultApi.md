@@ -10,6 +10,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**accountsAPIAuthenticate**](DefaultApi.md#accountsapiauthenticate) | **POST** /authenticate | Authenticate using the email and password flow.
+[**accountsAPIAuthenticateGoogle**](DefaultApi.md#accountsapiauthenticategoogle) | **POST** /authenticate/google | Authenticate using the Google OAuth flow.
 [**accountsAPICreateAccount**](DefaultApi.md#accountsapicreateaccount) | **POST** /accounts | Create an account using the email and password flow.
 [**accountsAPIDeleteAccount**](DefaultApi.md#accountsapideleteaccount) | **DELETE** /accounts/{accountId} | Must be account owner.
 [**accountsAPIForgetAccountPassword**](DefaultApi.md#accountsapiforgetaccountpassword) | **POST** /accounts/forget | Send email to account containing code to create a new password.
@@ -81,6 +82,47 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1AuthenticateResponse**](V1AuthenticateResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **accountsAPIAuthenticateGoogle**
+> V1CreateAccountResponse accountsAPIAuthenticateGoogle(body)
+
+Authenticate using the Google OAuth flow.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final V1AuthenticateGoogleRequest body = ; // V1AuthenticateGoogleRequest | 
+
+try {
+    final response = api.accountsAPIAuthenticateGoogle(body);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->accountsAPIAuthenticateGoogle: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**V1AuthenticateGoogleRequest**](V1AuthenticateGoogleRequest.md)|  | 
+
+### Return type
+
+[**V1CreateAccountResponse**](V1CreateAccountResponse.md)
 
 ### Authorization
 

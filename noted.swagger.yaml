@@ -207,6 +207,25 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/v1AuthenticateRequest'
+  /authenticate/google:
+    post:
+      summary: Authenticate using the Google OAuth flow.
+      operationId: AccountsAPI_AuthenticateGoogle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1CreateAccountResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1AuthenticateGoogleRequest'
   /groups:
     get:
       summary: Must be group member. Returns only the non-array fields of a group.
@@ -1071,6 +1090,13 @@ definitions:
       - id
       - name
       - email
+  v1AuthenticateGoogleRequest:
+    type: object
+    properties:
+      code:
+        type: string
+    required:
+      - code
   v1AuthenticateRequest:
     type: object
     properties:
