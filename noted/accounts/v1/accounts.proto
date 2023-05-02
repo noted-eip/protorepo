@@ -116,7 +116,15 @@ service AccountsAPI {
             post: "/authenticate",
             body: "*",
         };
-    }    
+    }
+    // Authenticate using the Google OAuth flow.
+    rpc AuthenticateGoogle(AuthenticateGoogleRequest) returns (AuthenticateGoogleResponse) {
+        option (google.api.http) = {
+            post: "/authenticate/google",
+            body: "*",
+        };
+    }
+    
 }
 
 message CreateAccountRequest {
@@ -206,4 +214,13 @@ message UpdateAccountPasswordRequest {
 
 message UpdateAccountPasswordResponse {
     Account account = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+
+message AuthenticateGoogleRequest {
+    string code = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message AuthenticateGoogleResponse {
+    string token = 1 [(google.api.field_behavior) = REQUIRED];
 }
