@@ -222,7 +222,5 @@ message AuthenticateGoogleRequest {
 }
 
 message AuthenticateGoogleResponse {
-    string password = 1 [(google.api.field_behavior) = REQUIRED];;
-    string email = 2 [(google.api.field_behavior) = REQUIRED];;
-    string name = 3 [(google.api.field_behavior) = REQUIRED];;
+    string token = 1 [(google.api.field_behavior) = REQUIRED];
 }
