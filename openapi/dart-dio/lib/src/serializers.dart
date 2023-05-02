@@ -23,6 +23,8 @@ import 'package:openapi/src/model/notes_api_create_note_request.dart';
 import 'package:openapi/src/model/notes_api_insert_block_request.dart';
 import 'package:openapi/src/model/v1_accept_invite_response.dart';
 import 'package:openapi/src/model/v1_account.dart';
+import 'package:openapi/src/model/v1_authenticate_google_request.dart';
+import 'package:openapi/src/model/v1_authenticate_google_response.dart';
 import 'package:openapi/src/model/v1_authenticate_request.dart';
 import 'package:openapi/src/model/v1_authenticate_response.dart';
 import 'package:openapi/src/model/v1_block.dart';
@@ -98,6 +100,8 @@ part 'serializers.g.dart';
   NotesAPIInsertBlockRequest,
   V1AcceptInviteResponse,
   V1Account,
+  V1AuthenticateGoogleRequest,
+  V1AuthenticateGoogleResponse,
   V1AuthenticateRequest,
   V1AuthenticateResponse,
   V1Block,

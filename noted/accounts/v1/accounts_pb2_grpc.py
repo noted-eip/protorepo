@@ -62,6 +62,11 @@ class AccountsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateResponse.FromString,
                 )
+        self.AuthenticateGoogle = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/AuthenticateGoogle',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateGoogleRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateGoogleResponse.FromString,
+                )
 
 
 class AccountsAPIServicer(object):
@@ -133,6 +138,13 @@ class AccountsAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AuthenticateGoogle(self, request, context):
+        """Authenticate using the Google OAuth flow.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_AccountsAPIServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -180,6 +192,11 @@ def add_AccountsAPIServicer_to_server(servicer, server):
                     servicer.Authenticate,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateResponse.SerializeToString,
+            ),
+            'AuthenticateGoogle': grpc.unary_unary_rpc_method_handler(
+                    servicer.AuthenticateGoogle,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateGoogleRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateGoogleResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -344,5 +361,22 @@ class AccountsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/Authenticate',
             noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateRequest.SerializeToString,
             noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AuthenticateGoogle(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/AuthenticateGoogle',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateGoogleRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateGoogleResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
