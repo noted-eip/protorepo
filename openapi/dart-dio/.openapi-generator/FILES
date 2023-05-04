@@ -3,6 +3,7 @@
 README.md
 analysis_options.yaml
 doc/AccountsAPIUpdateAccountPasswordRequest.md
+doc/AccountsAPIValidateAccountRequest.md
 doc/BlockCode.md
 doc/BlockImage.md
 doc/DefaultApi.md
@@ -74,6 +75,7 @@ doc/V1UpdateConversationResponse.md
 doc/V1UpdateGroupResponse.md
 doc/V1UpdateMemberResponse.md
 doc/V1UpdateNoteResponse.md
+doc/V1ValidateAccountResponse.md
 doc/V1WebsiteWidget.md
 doc/V1Widget.md
 lib/openapi.dart
@@ -87,6 +89,7 @@ lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
 lib/src/model/accounts_api_update_account_password_request.dart
+lib/src/model/accounts_api_validate_account_request.dart
 lib/src/model/block_code.dart
 lib/src/model/block_image.dart
 lib/src/model/date.dart
@@ -158,11 +161,13 @@ lib/src/model/v1_update_conversation_response.dart
 lib/src/model/v1_update_group_response.dart
 lib/src/model/v1_update_member_response.dart
 lib/src/model/v1_update_note_response.dart
+lib/src/model/v1_validate_account_response.dart
 lib/src/model/v1_website_widget.dart
 lib/src/model/v1_widget.dart
 lib/src/serializers.dart
 pubspec.yaml
 test/accounts_api_update_account_password_request_test.dart
+test/accounts_api_validate_account_request_test.dart
 test/block_code_test.dart
 test/block_image_test.dart
 test/default_api_test.dart
@@ -234,5 +239,6 @@ test/v1_update_conversation_response_test.dart
 test/v1_update_group_response_test.dart
 test/v1_update_member_response_test.dart
 test/v1_update_note_response_test.dart
+test/v1_validate_account_response_test.dart
 test/v1_website_widget_test.dart
 test/v1_widget_test.dart

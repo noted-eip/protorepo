@@ -84,6 +84,13 @@ void main() {
       // TODO
     });
 
+    // Validate account email.
+    //
+    //Future<V1ValidateAccountResponse> accountsAPIValidateAccount(String accountId, AccountsAPIValidateAccountRequest body) async
+    test('test accountsAPIValidateAccount', () async {
+      // TODO
+    });
+
     // Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
     //
     //Future<V1AcceptInviteResponse> groupsAPIAcceptInvite(String groupId, String inviteId) async

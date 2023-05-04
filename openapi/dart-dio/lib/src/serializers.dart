@@ -15,6 +15,7 @@ import 'package:openapi/src/date_serializer.dart';
 import 'package:openapi/src/model/date.dart';
 
 import 'package:openapi/src/model/accounts_api_update_account_password_request.dart';
+import 'package:openapi/src/model/accounts_api_validate_account_request.dart';
 import 'package:openapi/src/model/block_code.dart';
 import 'package:openapi/src/model/block_image.dart';
 import 'package:openapi/src/model/groups_api_send_invite_request.dart';
@@ -85,6 +86,7 @@ import 'package:openapi/src/model/v1_update_conversation_response.dart';
 import 'package:openapi/src/model/v1_update_group_response.dart';
 import 'package:openapi/src/model/v1_update_member_response.dart';
 import 'package:openapi/src/model/v1_update_note_response.dart';
+import 'package:openapi/src/model/v1_validate_account_response.dart';
 import 'package:openapi/src/model/v1_website_widget.dart';
 import 'package:openapi/src/model/v1_widget.dart';
 
@@ -92,6 +94,7 @@ part 'serializers.g.dart';
 
 @SerializersFor([
   AccountsAPIUpdateAccountPasswordRequest,
+  AccountsAPIValidateAccountRequest,
   BlockCode,
   BlockImage,
   GroupsAPISendInviteRequest,
@@ -162,6 +165,7 @@ part 'serializers.g.dart';
   V1UpdateGroupResponse,
   V1UpdateMemberResponse,
   V1UpdateNoteResponse,
+  V1ValidateAccountResponse,
   V1WebsiteWidget,
   V1Widget,
 ])

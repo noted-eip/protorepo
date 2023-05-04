@@ -27,6 +27,7 @@ const (
 	AccountsAPI_ForgetAccountPassword_FullMethodName              = "/noted.accounts.v1.AccountsAPI/ForgetAccountPassword"
 	AccountsAPI_ForgetAccountPasswordValidateToken_FullMethodName = "/noted.accounts.v1.AccountsAPI/ForgetAccountPasswordValidateToken"
 	AccountsAPI_UpdateAccountPassword_FullMethodName              = "/noted.accounts.v1.AccountsAPI/UpdateAccountPassword"
+	AccountsAPI_ValidateAccount_FullMethodName                    = "/noted.accounts.v1.AccountsAPI/ValidateAccount"
 	AccountsAPI_Authenticate_FullMethodName                       = "/noted.accounts.v1.AccountsAPI/Authenticate"
 	AccountsAPI_AuthenticateGoogle_FullMethodName                 = "/noted.accounts.v1.AccountsAPI/AuthenticateGoogle"
 )
@@ -51,6 +52,8 @@ type AccountsAPIClient interface {
 	ForgetAccountPasswordValidateToken(ctx context.Context, in *ForgetAccountPasswordValidateTokenRequest, opts ...grpc.CallOption) (*ForgetAccountPasswordValidateTokenResponse, error)
 	// Update account password.
 	UpdateAccountPassword(ctx context.Context, in *UpdateAccountPasswordRequest, opts ...grpc.CallOption) (*UpdateAccountPasswordResponse, error)
+	// Validate account email.
+	ValidateAccount(ctx context.Context, in *ValidateAccountRequest, opts ...grpc.CallOption) (*ValidateAccountResponse, error)
 	// Authenticate using the email and password flow.
 	Authenticate(ctx context.Context, in *AuthenticateRequest, opts ...grpc.CallOption) (*AuthenticateResponse, error)
 	// Authenticate using the Google OAuth flow.
@@ -137,6 +140,15 @@ func (c *accountsAPIClient) UpdateAccountPassword(ctx context.Context, in *Updat
 	return out, nil
 }
 
+func (c *accountsAPIClient) ValidateAccount(ctx context.Context, in *ValidateAccountRequest, opts ...grpc.CallOption) (*ValidateAccountResponse, error) {
+	out := new(ValidateAccountResponse)
+	err := c.cc.Invoke(ctx, AccountsAPI_ValidateAccount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountsAPIClient) Authenticate(ctx context.Context, in *AuthenticateRequest, opts ...grpc.CallOption) (*AuthenticateResponse, error) {
 	out := new(AuthenticateResponse)
 	err := c.cc.Invoke(ctx, AccountsAPI_Authenticate_FullMethodName, in, out, opts...)
@@ -175,6 +187,8 @@ type AccountsAPIServer interface {
 	ForgetAccountPasswordValidateToken(context.Context, *ForgetAccountPasswordValidateTokenRequest) (*ForgetAccountPasswordValidateTokenResponse, error)
 	// Update account password.
 	UpdateAccountPassword(context.Context, *UpdateAccountPasswordRequest) (*UpdateAccountPasswordResponse, error)
+	// Validate account email.
+	ValidateAccount(context.Context, *ValidateAccountRequest) (*ValidateAccountResponse, error)
 	// Authenticate using the email and password flow.
 	Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error)
 	// Authenticate using the Google OAuth flow.
@@ -209,6 +223,9 @@ func (UnimplementedAccountsAPIServer) ForgetAccountPasswordValidateToken(context
 }
 func (UnimplementedAccountsAPIServer) UpdateAccountPassword(context.Context, *UpdateAccountPasswordRequest) (*UpdateAccountPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAccountPassword not implemented")
+}
+func (UnimplementedAccountsAPIServer) ValidateAccount(context.Context, *ValidateAccountRequest) (*ValidateAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateAccount not implemented")
 }
 func (UnimplementedAccountsAPIServer) Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Authenticate not implemented")
@@ -373,6 +390,24 @@ func _AccountsAPI_UpdateAccountPassword_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountsAPI_ValidateAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateAccountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountsAPIServer).ValidateAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountsAPI_ValidateAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountsAPIServer).ValidateAccount(ctx, req.(*ValidateAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AccountsAPI_Authenticate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AuthenticateRequest)
 	if err := dec(in); err != nil {
@@ -447,6 +482,10 @@ var AccountsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateAccountPassword",
 			Handler:    _AccountsAPI_UpdateAccountPassword_Handler,
+		},
+		{
+			MethodName: "ValidateAccount",
+			Handler:    _AccountsAPI_ValidateAccount_Handler,
 		},
 		{
 			MethodName: "Authenticate",

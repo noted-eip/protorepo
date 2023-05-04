@@ -20,6 +20,7 @@ Method | HTTP request | Description
 [**accountsAPIListAccounts**](DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [**accountsAPIUpdateAccount**](DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
 [**accountsAPIUpdateAccountPassword**](DefaultApi.md#accountsapiupdateaccountpassword) | **PATCH** /accounts/{accountId}/password | Update account password.
+[**accountsAPIValidateAccount**](DefaultApi.md#accountsapivalidateaccount) | **PATCH** /accounts/{accountId}/validate | Validate account email.
 [**groupsAPIAcceptInvite**](DefaultApi.md#groupsapiacceptinvite) | **POST** /groups/{groupId}/invites/{inviteId}/accept | Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
 [**groupsAPICreateGroup**](DefaultApi.md#groupsapicreategroup) | **POST** /groups | Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 [**groupsAPIDeleteGroup**](DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
@@ -502,6 +503,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1UpdateAccountPasswordResponse**](V1UpdateAccountPasswordResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **accountsAPIValidateAccount**
+> V1ValidateAccountResponse accountsAPIValidateAccount(accountId, body)
+
+Validate account email.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String accountId = accountId_example; // String | 
+final AccountsAPIValidateAccountRequest body = ; // AccountsAPIValidateAccountRequest | 
+
+try {
+    final response = api.accountsAPIValidateAccount(accountId, body);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->accountsAPIValidateAccount: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountId** | **String**|  | 
+ **body** | [**AccountsAPIValidateAccountRequest**](AccountsAPIValidateAccountRequest.md)|  | 
+
+### Return type
+
+[**V1ValidateAccountResponse**](V1ValidateAccountResponse.md)
 
 ### Authorization
 

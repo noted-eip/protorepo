@@ -75,6 +75,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIListAccounts**](doc/DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIUpdateAccount**](doc/DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIUpdateAccountPassword**](doc/DefaultApi.md#accountsapiupdateaccountpassword) | **PATCH** /accounts/{accountId}/password | Update account password.
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIValidateAccount**](doc/DefaultApi.md#accountsapivalidateaccount) | **PATCH** /accounts/{accountId}/validate | Validate account email.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIAcceptInvite**](doc/DefaultApi.md#groupsapiacceptinvite) | **POST** /groups/{groupId}/invites/{inviteId}/accept | Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPICreateGroup**](doc/DefaultApi.md#groupsapicreategroup) | **POST** /groups | Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIDeleteGroup**](doc/DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
@@ -111,6 +112,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AccountsAPIUpdateAccountPasswordRequest](doc/AccountsAPIUpdateAccountPasswordRequest.md)
+ - [AccountsAPIValidateAccountRequest](doc/AccountsAPIValidateAccountRequest.md)
  - [BlockCode](doc/BlockCode.md)
  - [BlockImage](doc/BlockImage.md)
  - [GroupsAPISendInviteRequest](doc/GroupsAPISendInviteRequest.md)
@@ -181,6 +183,7 @@ Class | Method | HTTP request | Description
  - [V1UpdateGroupResponse](doc/V1UpdateGroupResponse.md)
  - [V1UpdateMemberResponse](doc/V1UpdateMemberResponse.md)
  - [V1UpdateNoteResponse](doc/V1UpdateNoteResponse.md)
+ - [V1ValidateAccountResponse](doc/V1ValidateAccountResponse.md)
  - [V1WebsiteWidget](doc/V1WebsiteWidget.md)
  - [V1Widget](doc/V1Widget.md)
 

@@ -57,6 +57,11 @@ class AccountsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordResponse.FromString,
                 )
+        self.ValidateAccount = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/ValidateAccount',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountResponse.FromString,
+                )
         self.Authenticate = channel.unary_unary(
                 '/noted.accounts.v1.AccountsAPI/Authenticate',
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateRequest.SerializeToString,
@@ -131,6 +136,13 @@ class AccountsAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ValidateAccount(self, request, context):
+        """Validate account email.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def Authenticate(self, request, context):
         """Authenticate using the email and password flow.
         """
@@ -187,6 +199,11 @@ def add_AccountsAPIServicer_to_server(servicer, server):
                     servicer.UpdateAccountPassword,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordResponse.SerializeToString,
+            ),
+            'ValidateAccount': grpc.unary_unary_rpc_method_handler(
+                    servicer.ValidateAccount,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountResponse.SerializeToString,
             ),
             'Authenticate': grpc.unary_unary_rpc_method_handler(
                     servicer.Authenticate,
@@ -344,6 +361,23 @@ class AccountsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/UpdateAccountPassword',
             noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordRequest.SerializeToString,
             noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ValidateAccount(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/ValidateAccount',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

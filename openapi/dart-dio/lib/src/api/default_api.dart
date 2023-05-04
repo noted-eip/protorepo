@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:built_value/json_object.dart';
 import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/accounts_api_update_account_password_request.dart';
+import 'package:openapi/src/model/accounts_api_validate_account_request.dart';
 import 'package:openapi/src/model/groups_api_send_invite_request.dart';
 import 'package:openapi/src/model/groups_api_update_group_request.dart';
 import 'package:openapi/src/model/notes_api_create_note_request.dart';
@@ -56,6 +57,7 @@ import 'package:openapi/src/model/v1_update_block_response.dart';
 import 'package:openapi/src/model/v1_update_group_response.dart';
 import 'package:openapi/src/model/v1_update_member_response.dart';
 import 'package:openapi/src/model/v1_update_note_response.dart';
+import 'package:openapi/src/model/v1_validate_account_response.dart';
 
 class DefaultApi {
 
@@ -1061,6 +1063,103 @@ class DefaultApi {
     }
 
     return Response<V1UpdateAccountPasswordResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Validate account email.
+  /// 
+  ///
+  /// Parameters:
+  /// * [accountId] 
+  /// * [body] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [V1ValidateAccountResponse] as data
+  /// Throws [DioError] if API call or serialization fails
+  Future<Response<V1ValidateAccountResponse>> accountsAPIValidateAccount({ 
+    required String accountId,
+    required AccountsAPIValidateAccountRequest body,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/accounts/{accountId}/validate'.replaceAll('{' r'accountId' '}', accountId.toString());
+    final _options = Options(
+      method: r'PATCH',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(AccountsAPIValidateAccountRequest);
+      _bodyData = _serializers.serialize(body, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioError(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    V1ValidateAccountResponse _responseData;
+
+    try {
+      const _responseType = FullType(V1ValidateAccountResponse);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as V1ValidateAccountResponse;
+
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<V1ValidateAccountResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

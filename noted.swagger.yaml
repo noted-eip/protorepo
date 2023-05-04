@@ -150,6 +150,34 @@ paths:
                 title: Old password if the account is already log-in
             required:
               - password
+  /accounts/{accountId}/validate:
+    patch:
+      summary: Validate account email.
+      operationId: AccountsAPI_ValidateAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ValidateAccountResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              validationToken:
+                type: string
+            required:
+              - validationToken
   /accounts/forget:
     post:
       summary: Send email to account containing code to create a new password.
@@ -1752,6 +1780,13 @@ definitions:
       - note
   v1UseInviteLinkResponse:
     type: object
+  v1ValidateAccountResponse:
+    type: object
+    properties:
+      account:
+        $ref: '#/definitions/v1Account'
+    required:
+      - account
   v1WebsiteWidget:
     type: object
     properties:
