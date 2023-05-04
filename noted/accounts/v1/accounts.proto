@@ -110,7 +110,7 @@ service AccountsAPI {
         };
     }
 
-    // Validate account.
+    // Validate account email.
     rpc ValidateAccount(ValidateAccountRequest) returns (ValidateAccountResponse) {
         option (google.api.http) = {
             patch: "/accounts/{account_id}/validate",
@@ -125,6 +125,14 @@ service AccountsAPI {
             body: "*",
         };
     }
+    // Authenticate using the Google OAuth flow.
+    rpc AuthenticateGoogle(AuthenticateGoogleRequest) returns (AuthenticateGoogleResponse) {
+        option (google.api.http) = {
+            post: "/authenticate/google",
+            body: "*",
+        };
+    }
+    
 }
 
 message CreateAccountRequest {
@@ -223,4 +231,12 @@ message ValidateAccountRequest {
 
 message ValidateAccountResponse {
     Account account = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message AuthenticateGoogleRequest {
+    string code = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message AuthenticateGoogleResponse {
+    string token = 1 [(google.api.field_behavior) = REQUIRED];
 }
