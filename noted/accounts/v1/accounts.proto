@@ -5,6 +5,7 @@ package noted.accounts.v1;
 option go_package = "noted/accounts/v1";
 
 import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 import "google/api/field_behavior.proto";
@@ -118,6 +119,9 @@ service AccountsAPI {
         };
     }
 
+    // Send Email to recipient account to notify group invitation.
+    rpc SendGroupInviteMail(SendGroupInviteMailRequest) returns (SendGroupInviteMailResponse) {}
+
     // Authenticate using the email and password flow.
     rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse) {
         option (google.api.http) = {
@@ -132,7 +136,7 @@ service AccountsAPI {
             body: "*",
         };
     }
-    
+
 }
 
 message CreateAccountRequest {
@@ -239,4 +243,14 @@ message AuthenticateGoogleRequest {
 
 message AuthenticateGoogleResponse {
     string token = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message SendGroupInviteMailRequest {
+    string recipient_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string sender_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string group_name = 3 [(google.api.field_behavior) = REQUIRED];
+    google.protobuf.Timestamp valid_until = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
+message SendGroupInviteMailResponse {
 }
