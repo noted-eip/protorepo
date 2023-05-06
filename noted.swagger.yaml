@@ -1709,6 +1709,8 @@ definitions:
       - message
   v1SendEmailsResponse:
     type: object
+  v1SendGroupInviteMailResponse:
+    type: object
   v1SendInviteResponse:
     type: object
     properties:

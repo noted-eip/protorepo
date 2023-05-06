@@ -12,12 +12,13 @@ _sym_db = _symbol_database.Default()
 
 
 from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mask__pb2
+from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from protoc_gen_openapiv2.options import annotations_pb2 as protoc__gen__openapiv2_dot_options_dot_annotations__pb2
 from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n noted/accounts/v1/accounts.proto\x12\x11noted.accounts.v1\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\"R\n\x07\x41\x63\x63ount\x12\x13\n\x02id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x02id\x12\x17\n\x04name\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x04name\x12\x19\n\x05\x65mail\x18\x03 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\"k\n\x14\x43reateAccountRequest\x12\x1f\n\x08password\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x08password\x12\x19\n\x05\x65mail\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\x12\x17\n\x04name\x18\x03 \x01(\tB\x03\xe0\x41\x02R\x04name\"R\n\x15\x43reateAccountResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"H\n\x11GetAccountRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x14\n\x05\x65mail\x18\x02 \x01(\tR\x05\x65mail\"O\n\x12GetAccountResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"\xad\x01\n\x14UpdateAccountRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x39\n\x07\x61\x63\x63ount\x18\x02 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\x12;\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"R\n\x15UpdateAccountResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"5\n\x14\x44\x65leteAccountRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\"\x17\n\x15\x44\x65leteAccountResponse\"Q\n\x13\x41uthenticateRequest\x12\x19\n\x05\x65mail\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\x12\x1f\n\x08password\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x08password\"1\n\x14\x41uthenticateResponse\x12\x19\n\x05token\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x05token\"o\n\x13ListAccountsRequest\x12*\n\x0e\x65mail_contains\x18\x03 \x01(\tB\x03\xe0\x41\x02R\remailContains\x12\x14\n\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x02 \x01(\x05R\x06offset\"N\n\x14ListAccountsResponse\x12\x36\n\x08\x61\x63\x63ounts\x18\x01 \x03(\x0b\x32\x1a.noted.accounts.v1.AccountR\x08\x61\x63\x63ounts\"9\n\x1c\x46orgetAccountPasswordRequest\x12\x19\n\x05\x65mail\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\"i\n\x1d\x46orgetAccountPasswordResponse\x12\"\n\naccount_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\taccountId\x12$\n\x0bvalid_until\x18\x02 \x01(\tB\x03\xe0\x41\x02R\nvalidUntil\"j\n)ForgetAccountPasswordValidateTokenRequest\x12\"\n\naccount_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\taccountId\x12\x19\n\x05token\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x05token\"\xb1\x01\n*ForgetAccountPasswordValidateTokenResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\x12$\n\x0breset_token\x18\x02 \x01(\tB\x03\xe0\x41\x02R\nresetToken\x12\"\n\nauth_token\x18\x03 \x01(\tB\x03\xe0\x41\x02R\tauthToken\"\xa6\x01\n\x1cUpdateAccountPasswordRequest\x12\"\n\naccount_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\taccountId\x12\x1f\n\x08password\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x08password\x12\x19\n\x05token\x18\x03 \x01(\tB\x03\xe0\x41\x01R\x05token\x12&\n\x0cold_password\x18\x04 \x01(\tB\x03\xe0\x41\x01R\x0boldPassword\"Z\n\x1dUpdateAccountPasswordResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"l\n\x16ValidateAccountRequest\x12\"\n\naccount_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\taccountId\x12.\n\x10validation_token\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x0fvalidationToken\"T\n\x17ValidateAccountResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"4\n\x19\x41uthenticateGoogleRequest\x12\x17\n\x04\x63ode\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x04\x63ode\"7\n\x1a\x41uthenticateGoogleResponse\x12\x19\n\x05token\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x05token2\xd5\x0c\n\x0b\x41\x63\x63ountsAPI\x12x\n\rCreateAccount\x12\'.noted.accounts.v1.CreateAccountRequest\x1a(.noted.accounts.v1.CreateAccountResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/accounts\x12\x90\x01\n\nGetAccount\x12$.noted.accounts.v1.GetAccountRequest\x1a%.noted.accounts.v1.GetAccountResponse\"5\x82\xd3\xe4\x93\x02/Z\x15:\x01*\"\x10/search/accounts\x12\x16/accounts/{account_id}\x12\x8b\x01\n\rUpdateAccount\x12\'.noted.accounts.v1.UpdateAccountRequest\x1a(.noted.accounts.v1.UpdateAccountResponse\"\'\x82\xd3\xe4\x93\x02!:\x07\x61\x63\x63ount2\x16/accounts/{account_id}\x12\x82\x01\n\rDeleteAccount\x12\'.noted.accounts.v1.DeleteAccountRequest\x1a(.noted.accounts.v1.DeleteAccountResponse\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/accounts/{account_id}\x12r\n\x0cListAccounts\x12&.noted.accounts.v1.ListAccountsRequest\x1a\'.noted.accounts.v1.ListAccountsResponse\"\x11\x82\xd3\xe4\x93\x02\x0b\x12\t/accounts\x12\x97\x01\n\x15\x46orgetAccountPassword\x12/.noted.accounts.v1.ForgetAccountPasswordRequest\x1a\x30.noted.accounts.v1.ForgetAccountPasswordResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/accounts/forget\x12\xc7\x01\n\"ForgetAccountPasswordValidateToken\x12<.noted.accounts.v1.ForgetAccountPasswordValidateTokenRequest\x1a=.noted.accounts.v1.ForgetAccountPasswordValidateTokenResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/accounts/forget/validate\x12\xa6\x01\n\x15UpdateAccountPassword\x12/.noted.accounts.v1.UpdateAccountPasswordRequest\x1a\x30.noted.accounts.v1.UpdateAccountPasswordResponse\"*\x82\xd3\xe4\x93\x02$:\x01*2\x1f/accounts/{account_id}/password\x12\x94\x01\n\x0fValidateAccount\x12).noted.accounts.v1.ValidateAccountRequest\x1a*.noted.accounts.v1.ValidateAccountResponse\"*\x82\xd3\xe4\x93\x02$:\x01*2\x1f/accounts/{account_id}/validate\x12y\n\x0c\x41uthenticate\x12&.noted.accounts.v1.AuthenticateRequest\x1a\'.noted.accounts.v1.AuthenticateResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/authenticate\x12\x92\x01\n\x12\x41uthenticateGoogle\x12,.noted.accounts.v1.AuthenticateGoogleRequest\x1a-.noted.accounts.v1.AuthenticateGoogleResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/authenticate/googleB\xb5\x01Z\x11noted/accounts/v1\x92\x41\x9e\x01\x12\x1e\n\x17Noted API Documentation2\x03\x31.0Rj\n\x03\x34\x30\x34\x12\x63\nAResource not found or lacking permissions to access the resource.\x12\x1e\n\x1c\x1a\x1a.noted.common.v1.HttpErrorb\x10\n\x0e\n\nbearerAuth\x12\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n noted/accounts/v1/accounts.proto\x12\x11noted.accounts.v1\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\"R\n\x07\x41\x63\x63ount\x12\x13\n\x02id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x02id\x12\x17\n\x04name\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x04name\x12\x19\n\x05\x65mail\x18\x03 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\"k\n\x14\x43reateAccountRequest\x12\x1f\n\x08password\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x08password\x12\x19\n\x05\x65mail\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\x12\x17\n\x04name\x18\x03 \x01(\tB\x03\xe0\x41\x02R\x04name\"R\n\x15\x43reateAccountResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"H\n\x11GetAccountRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x14\n\x05\x65mail\x18\x02 \x01(\tR\x05\x65mail\"O\n\x12GetAccountResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"\xad\x01\n\x14UpdateAccountRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\x12\x39\n\x07\x61\x63\x63ount\x18\x02 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\x12;\n\x0bupdate_mask\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskR\nupdateMask\"R\n\x15UpdateAccountResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"5\n\x14\x44\x65leteAccountRequest\x12\x1d\n\naccount_id\x18\x01 \x01(\tR\taccountId\"\x17\n\x15\x44\x65leteAccountResponse\"Q\n\x13\x41uthenticateRequest\x12\x19\n\x05\x65mail\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\x12\x1f\n\x08password\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x08password\"1\n\x14\x41uthenticateResponse\x12\x19\n\x05token\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x05token\"o\n\x13ListAccountsRequest\x12*\n\x0e\x65mail_contains\x18\x03 \x01(\tB\x03\xe0\x41\x02R\remailContains\x12\x14\n\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x02 \x01(\x05R\x06offset\"N\n\x14ListAccountsResponse\x12\x36\n\x08\x61\x63\x63ounts\x18\x01 \x03(\x0b\x32\x1a.noted.accounts.v1.AccountR\x08\x61\x63\x63ounts\"9\n\x1c\x46orgetAccountPasswordRequest\x12\x19\n\x05\x65mail\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x05\x65mail\"i\n\x1d\x46orgetAccountPasswordResponse\x12\"\n\naccount_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\taccountId\x12$\n\x0bvalid_until\x18\x02 \x01(\tB\x03\xe0\x41\x02R\nvalidUntil\"j\n)ForgetAccountPasswordValidateTokenRequest\x12\"\n\naccount_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\taccountId\x12\x19\n\x05token\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x05token\"\xb1\x01\n*ForgetAccountPasswordValidateTokenResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\x12$\n\x0breset_token\x18\x02 \x01(\tB\x03\xe0\x41\x02R\nresetToken\x12\"\n\nauth_token\x18\x03 \x01(\tB\x03\xe0\x41\x02R\tauthToken\"\xa6\x01\n\x1cUpdateAccountPasswordRequest\x12\"\n\naccount_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\taccountId\x12\x1f\n\x08password\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x08password\x12\x19\n\x05token\x18\x03 \x01(\tB\x03\xe0\x41\x01R\x05token\x12&\n\x0cold_password\x18\x04 \x01(\tB\x03\xe0\x41\x01R\x0boldPassword\"Z\n\x1dUpdateAccountPasswordResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"l\n\x16ValidateAccountRequest\x12\"\n\naccount_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\taccountId\x12.\n\x10validation_token\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x0fvalidationToken\"T\n\x17ValidateAccountResponse\x12\x39\n\x07\x61\x63\x63ount\x18\x01 \x01(\x0b\x32\x1a.noted.accounts.v1.AccountB\x03\xe0\x41\x02R\x07\x61\x63\x63ount\"4\n\x19\x41uthenticateGoogleRequest\x12\x17\n\x04\x63ode\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x04\x63ode\"7\n\x1a\x41uthenticateGoogleResponse\x12\x19\n\x05token\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x05token\"\xcc\x01\n\x1aSendGroupInviteMailRequest\x12&\n\x0crecipient_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x0brecipientId\x12 \n\tsender_id\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x08senderId\x12\"\n\ngroup_name\x18\x03 \x01(\tB\x03\xe0\x41\x02R\tgroupName\x12@\n\x0bvalid_until\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x02R\nvalidUntil\"\x1d\n\x1bSendGroupInviteMailResponse2\xcd\r\n\x0b\x41\x63\x63ountsAPI\x12x\n\rCreateAccount\x12\'.noted.accounts.v1.CreateAccountRequest\x1a(.noted.accounts.v1.CreateAccountResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/accounts\x12\x90\x01\n\nGetAccount\x12$.noted.accounts.v1.GetAccountRequest\x1a%.noted.accounts.v1.GetAccountResponse\"5\x82\xd3\xe4\x93\x02/Z\x15:\x01*\"\x10/search/accounts\x12\x16/accounts/{account_id}\x12\x8b\x01\n\rUpdateAccount\x12\'.noted.accounts.v1.UpdateAccountRequest\x1a(.noted.accounts.v1.UpdateAccountResponse\"\'\x82\xd3\xe4\x93\x02!:\x07\x61\x63\x63ount2\x16/accounts/{account_id}\x12\x82\x01\n\rDeleteAccount\x12\'.noted.accounts.v1.DeleteAccountRequest\x1a(.noted.accounts.v1.DeleteAccountResponse\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/accounts/{account_id}\x12r\n\x0cListAccounts\x12&.noted.accounts.v1.ListAccountsRequest\x1a\'.noted.accounts.v1.ListAccountsResponse\"\x11\x82\xd3\xe4\x93\x02\x0b\x12\t/accounts\x12\x97\x01\n\x15\x46orgetAccountPassword\x12/.noted.accounts.v1.ForgetAccountPasswordRequest\x1a\x30.noted.accounts.v1.ForgetAccountPasswordResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/accounts/forget\x12\xc7\x01\n\"ForgetAccountPasswordValidateToken\x12<.noted.accounts.v1.ForgetAccountPasswordValidateTokenRequest\x1a=.noted.accounts.v1.ForgetAccountPasswordValidateTokenResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/accounts/forget/validate\x12\xa6\x01\n\x15UpdateAccountPassword\x12/.noted.accounts.v1.UpdateAccountPasswordRequest\x1a\x30.noted.accounts.v1.UpdateAccountPasswordResponse\"*\x82\xd3\xe4\x93\x02$:\x01*2\x1f/accounts/{account_id}/password\x12\x94\x01\n\x0fValidateAccount\x12).noted.accounts.v1.ValidateAccountRequest\x1a*.noted.accounts.v1.ValidateAccountResponse\"*\x82\xd3\xe4\x93\x02$:\x01*2\x1f/accounts/{account_id}/validate\x12v\n\x13SendGroupInviteMail\x12-.noted.accounts.v1.SendGroupInviteMailRequest\x1a..noted.accounts.v1.SendGroupInviteMailResponse\"\x00\x12y\n\x0c\x41uthenticate\x12&.noted.accounts.v1.AuthenticateRequest\x1a\'.noted.accounts.v1.AuthenticateResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/authenticate\x12\x92\x01\n\x12\x41uthenticateGoogle\x12,.noted.accounts.v1.AuthenticateGoogleRequest\x1a-.noted.accounts.v1.AuthenticateGoogleResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/authenticate/googleB\xb5\x01Z\x11noted/accounts/v1\x92\x41\x9e\x01\x12\x1e\n\x17Noted API Documentation2\x03\x31.0Rj\n\x03\x34\x30\x34\x12\x63\nAResource not found or lacking permissions to access the resource.\x12\x1e\n\x1c\x1a\x1a.noted.common.v1.HttpErrorb\x10\n\x0e\n\nbearerAuth\x12\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -90,6 +91,14 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _AUTHENTICATEGOOGLEREQUEST.fields_by_name['code']._serialized_options = b'\340A\002'
   _AUTHENTICATEGOOGLERESPONSE.fields_by_name['token']._options = None
   _AUTHENTICATEGOOGLERESPONSE.fields_by_name['token']._serialized_options = b'\340A\002'
+  _SENDGROUPINVITEMAILREQUEST.fields_by_name['recipient_id']._options = None
+  _SENDGROUPINVITEMAILREQUEST.fields_by_name['recipient_id']._serialized_options = b'\340A\002'
+  _SENDGROUPINVITEMAILREQUEST.fields_by_name['sender_id']._options = None
+  _SENDGROUPINVITEMAILREQUEST.fields_by_name['sender_id']._serialized_options = b'\340A\002'
+  _SENDGROUPINVITEMAILREQUEST.fields_by_name['group_name']._options = None
+  _SENDGROUPINVITEMAILREQUEST.fields_by_name['group_name']._serialized_options = b'\340A\002'
+  _SENDGROUPINVITEMAILREQUEST.fields_by_name['valid_until']._options = None
+  _SENDGROUPINVITEMAILREQUEST.fields_by_name['valid_until']._serialized_options = b'\340A\002'
   _ACCOUNTSAPI.methods_by_name['CreateAccount']._options = None
   _ACCOUNTSAPI.methods_by_name['CreateAccount']._serialized_options = b'\202\323\344\223\002\016:\001*\"\t/accounts'
   _ACCOUNTSAPI.methods_by_name['GetAccount']._options = None
@@ -112,52 +121,56 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _ACCOUNTSAPI.methods_by_name['Authenticate']._serialized_options = b'\202\323\344\223\002\022:\001*\"\r/authenticate'
   _ACCOUNTSAPI.methods_by_name['AuthenticateGoogle']._options = None
   _ACCOUNTSAPI.methods_by_name['AuthenticateGoogle']._serialized_options = b'\202\323\344\223\002\031:\001*\"\024/authenticate/google'
-  _globals['_ACCOUNT']._serialized_start=200
-  _globals['_ACCOUNT']._serialized_end=282
-  _globals['_CREATEACCOUNTREQUEST']._serialized_start=284
-  _globals['_CREATEACCOUNTREQUEST']._serialized_end=391
-  _globals['_CREATEACCOUNTRESPONSE']._serialized_start=393
-  _globals['_CREATEACCOUNTRESPONSE']._serialized_end=475
-  _globals['_GETACCOUNTREQUEST']._serialized_start=477
-  _globals['_GETACCOUNTREQUEST']._serialized_end=549
-  _globals['_GETACCOUNTRESPONSE']._serialized_start=551
-  _globals['_GETACCOUNTRESPONSE']._serialized_end=630
-  _globals['_UPDATEACCOUNTREQUEST']._serialized_start=633
-  _globals['_UPDATEACCOUNTREQUEST']._serialized_end=806
-  _globals['_UPDATEACCOUNTRESPONSE']._serialized_start=808
-  _globals['_UPDATEACCOUNTRESPONSE']._serialized_end=890
-  _globals['_DELETEACCOUNTREQUEST']._serialized_start=892
-  _globals['_DELETEACCOUNTREQUEST']._serialized_end=945
-  _globals['_DELETEACCOUNTRESPONSE']._serialized_start=947
-  _globals['_DELETEACCOUNTRESPONSE']._serialized_end=970
-  _globals['_AUTHENTICATEREQUEST']._serialized_start=972
-  _globals['_AUTHENTICATEREQUEST']._serialized_end=1053
-  _globals['_AUTHENTICATERESPONSE']._serialized_start=1055
-  _globals['_AUTHENTICATERESPONSE']._serialized_end=1104
-  _globals['_LISTACCOUNTSREQUEST']._serialized_start=1106
-  _globals['_LISTACCOUNTSREQUEST']._serialized_end=1217
-  _globals['_LISTACCOUNTSRESPONSE']._serialized_start=1219
-  _globals['_LISTACCOUNTSRESPONSE']._serialized_end=1297
-  _globals['_FORGETACCOUNTPASSWORDREQUEST']._serialized_start=1299
-  _globals['_FORGETACCOUNTPASSWORDREQUEST']._serialized_end=1356
-  _globals['_FORGETACCOUNTPASSWORDRESPONSE']._serialized_start=1358
-  _globals['_FORGETACCOUNTPASSWORDRESPONSE']._serialized_end=1463
-  _globals['_FORGETACCOUNTPASSWORDVALIDATETOKENREQUEST']._serialized_start=1465
-  _globals['_FORGETACCOUNTPASSWORDVALIDATETOKENREQUEST']._serialized_end=1571
-  _globals['_FORGETACCOUNTPASSWORDVALIDATETOKENRESPONSE']._serialized_start=1574
-  _globals['_FORGETACCOUNTPASSWORDVALIDATETOKENRESPONSE']._serialized_end=1751
-  _globals['_UPDATEACCOUNTPASSWORDREQUEST']._serialized_start=1754
-  _globals['_UPDATEACCOUNTPASSWORDREQUEST']._serialized_end=1920
-  _globals['_UPDATEACCOUNTPASSWORDRESPONSE']._serialized_start=1922
-  _globals['_UPDATEACCOUNTPASSWORDRESPONSE']._serialized_end=2012
-  _globals['_VALIDATEACCOUNTREQUEST']._serialized_start=2014
-  _globals['_VALIDATEACCOUNTREQUEST']._serialized_end=2122
-  _globals['_VALIDATEACCOUNTRESPONSE']._serialized_start=2124
-  _globals['_VALIDATEACCOUNTRESPONSE']._serialized_end=2208
-  _globals['_AUTHENTICATEGOOGLEREQUEST']._serialized_start=2210
-  _globals['_AUTHENTICATEGOOGLEREQUEST']._serialized_end=2262
-  _globals['_AUTHENTICATEGOOGLERESPONSE']._serialized_start=2264
-  _globals['_AUTHENTICATEGOOGLERESPONSE']._serialized_end=2319
-  _globals['_ACCOUNTSAPI']._serialized_start=2322
-  _globals['_ACCOUNTSAPI']._serialized_end=3943
+  _globals['_ACCOUNT']._serialized_start=233
+  _globals['_ACCOUNT']._serialized_end=315
+  _globals['_CREATEACCOUNTREQUEST']._serialized_start=317
+  _globals['_CREATEACCOUNTREQUEST']._serialized_end=424
+  _globals['_CREATEACCOUNTRESPONSE']._serialized_start=426
+  _globals['_CREATEACCOUNTRESPONSE']._serialized_end=508
+  _globals['_GETACCOUNTREQUEST']._serialized_start=510
+  _globals['_GETACCOUNTREQUEST']._serialized_end=582
+  _globals['_GETACCOUNTRESPONSE']._serialized_start=584
+  _globals['_GETACCOUNTRESPONSE']._serialized_end=663
+  _globals['_UPDATEACCOUNTREQUEST']._serialized_start=666
+  _globals['_UPDATEACCOUNTREQUEST']._serialized_end=839
+  _globals['_UPDATEACCOUNTRESPONSE']._serialized_start=841
+  _globals['_UPDATEACCOUNTRESPONSE']._serialized_end=923
+  _globals['_DELETEACCOUNTREQUEST']._serialized_start=925
+  _globals['_DELETEACCOUNTREQUEST']._serialized_end=978
+  _globals['_DELETEACCOUNTRESPONSE']._serialized_start=980
+  _globals['_DELETEACCOUNTRESPONSE']._serialized_end=1003
+  _globals['_AUTHENTICATEREQUEST']._serialized_start=1005
+  _globals['_AUTHENTICATEREQUEST']._serialized_end=1086
+  _globals['_AUTHENTICATERESPONSE']._serialized_start=1088
+  _globals['_AUTHENTICATERESPONSE']._serialized_end=1137
+  _globals['_LISTACCOUNTSREQUEST']._serialized_start=1139
+  _globals['_LISTACCOUNTSREQUEST']._serialized_end=1250
+  _globals['_LISTACCOUNTSRESPONSE']._serialized_start=1252
+  _globals['_LISTACCOUNTSRESPONSE']._serialized_end=1330
+  _globals['_FORGETACCOUNTPASSWORDREQUEST']._serialized_start=1332
+  _globals['_FORGETACCOUNTPASSWORDREQUEST']._serialized_end=1389
+  _globals['_FORGETACCOUNTPASSWORDRESPONSE']._serialized_start=1391
+  _globals['_FORGETACCOUNTPASSWORDRESPONSE']._serialized_end=1496
+  _globals['_FORGETACCOUNTPASSWORDVALIDATETOKENREQUEST']._serialized_start=1498
+  _globals['_FORGETACCOUNTPASSWORDVALIDATETOKENREQUEST']._serialized_end=1604
+  _globals['_FORGETACCOUNTPASSWORDVALIDATETOKENRESPONSE']._serialized_start=1607
+  _globals['_FORGETACCOUNTPASSWORDVALIDATETOKENRESPONSE']._serialized_end=1784
+  _globals['_UPDATEACCOUNTPASSWORDREQUEST']._serialized_start=1787
+  _globals['_UPDATEACCOUNTPASSWORDREQUEST']._serialized_end=1953
+  _globals['_UPDATEACCOUNTPASSWORDRESPONSE']._serialized_start=1955
+  _globals['_UPDATEACCOUNTPASSWORDRESPONSE']._serialized_end=2045
+  _globals['_VALIDATEACCOUNTREQUEST']._serialized_start=2047
+  _globals['_VALIDATEACCOUNTREQUEST']._serialized_end=2155
+  _globals['_VALIDATEACCOUNTRESPONSE']._serialized_start=2157
+  _globals['_VALIDATEACCOUNTRESPONSE']._serialized_end=2241
+  _globals['_AUTHENTICATEGOOGLEREQUEST']._serialized_start=2243
+  _globals['_AUTHENTICATEGOOGLEREQUEST']._serialized_end=2295
+  _globals['_AUTHENTICATEGOOGLERESPONSE']._serialized_start=2297
+  _globals['_AUTHENTICATEGOOGLERESPONSE']._serialized_end=2352
+  _globals['_SENDGROUPINVITEMAILREQUEST']._serialized_start=2355
+  _globals['_SENDGROUPINVITEMAILREQUEST']._serialized_end=2559
+  _globals['_SENDGROUPINVITEMAILRESPONSE']._serialized_start=2561
+  _globals['_SENDGROUPINVITEMAILRESPONSE']._serialized_end=2590
+  _globals['_ACCOUNTSAPI']._serialized_start=2593
+  _globals['_ACCOUNTSAPI']._serialized_end=4334
 # @@protoc_insertion_point(module_scope)

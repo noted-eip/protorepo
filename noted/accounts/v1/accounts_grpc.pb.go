@@ -28,6 +28,7 @@ const (
 	AccountsAPI_ForgetAccountPasswordValidateToken_FullMethodName = "/noted.accounts.v1.AccountsAPI/ForgetAccountPasswordValidateToken"
 	AccountsAPI_UpdateAccountPassword_FullMethodName              = "/noted.accounts.v1.AccountsAPI/UpdateAccountPassword"
 	AccountsAPI_ValidateAccount_FullMethodName                    = "/noted.accounts.v1.AccountsAPI/ValidateAccount"
+	AccountsAPI_SendGroupInviteMail_FullMethodName                = "/noted.accounts.v1.AccountsAPI/SendGroupInviteMail"
 	AccountsAPI_Authenticate_FullMethodName                       = "/noted.accounts.v1.AccountsAPI/Authenticate"
 	AccountsAPI_AuthenticateGoogle_FullMethodName                 = "/noted.accounts.v1.AccountsAPI/AuthenticateGoogle"
 )
@@ -54,6 +55,8 @@ type AccountsAPIClient interface {
 	UpdateAccountPassword(ctx context.Context, in *UpdateAccountPasswordRequest, opts ...grpc.CallOption) (*UpdateAccountPasswordResponse, error)
 	// Validate account email.
 	ValidateAccount(ctx context.Context, in *ValidateAccountRequest, opts ...grpc.CallOption) (*ValidateAccountResponse, error)
+	// Send Email to recipient account to notify group invitation.
+	SendGroupInviteMail(ctx context.Context, in *SendGroupInviteMailRequest, opts ...grpc.CallOption) (*SendGroupInviteMailResponse, error)
 	// Authenticate using the email and password flow.
 	Authenticate(ctx context.Context, in *AuthenticateRequest, opts ...grpc.CallOption) (*AuthenticateResponse, error)
 	// Authenticate using the Google OAuth flow.
@@ -149,6 +152,15 @@ func (c *accountsAPIClient) ValidateAccount(ctx context.Context, in *ValidateAcc
 	return out, nil
 }
 
+func (c *accountsAPIClient) SendGroupInviteMail(ctx context.Context, in *SendGroupInviteMailRequest, opts ...grpc.CallOption) (*SendGroupInviteMailResponse, error) {
+	out := new(SendGroupInviteMailResponse)
+	err := c.cc.Invoke(ctx, AccountsAPI_SendGroupInviteMail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountsAPIClient) Authenticate(ctx context.Context, in *AuthenticateRequest, opts ...grpc.CallOption) (*AuthenticateResponse, error) {
 	out := new(AuthenticateResponse)
 	err := c.cc.Invoke(ctx, AccountsAPI_Authenticate_FullMethodName, in, out, opts...)
@@ -189,6 +201,8 @@ type AccountsAPIServer interface {
 	UpdateAccountPassword(context.Context, *UpdateAccountPasswordRequest) (*UpdateAccountPasswordResponse, error)
 	// Validate account email.
 	ValidateAccount(context.Context, *ValidateAccountRequest) (*ValidateAccountResponse, error)
+	// Send Email to recipient account to notify group invitation.
+	SendGroupInviteMail(context.Context, *SendGroupInviteMailRequest) (*SendGroupInviteMailResponse, error)
 	// Authenticate using the email and password flow.
 	Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error)
 	// Authenticate using the Google OAuth flow.
@@ -226,6 +240,9 @@ func (UnimplementedAccountsAPIServer) UpdateAccountPassword(context.Context, *Up
 }
 func (UnimplementedAccountsAPIServer) ValidateAccount(context.Context, *ValidateAccountRequest) (*ValidateAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateAccount not implemented")
+}
+func (UnimplementedAccountsAPIServer) SendGroupInviteMail(context.Context, *SendGroupInviteMailRequest) (*SendGroupInviteMailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendGroupInviteMail not implemented")
 }
 func (UnimplementedAccountsAPIServer) Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Authenticate not implemented")
@@ -408,6 +425,24 @@ func _AccountsAPI_ValidateAccount_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountsAPI_SendGroupInviteMail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendGroupInviteMailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountsAPIServer).SendGroupInviteMail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountsAPI_SendGroupInviteMail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountsAPIServer).SendGroupInviteMail(ctx, req.(*SendGroupInviteMailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AccountsAPI_Authenticate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AuthenticateRequest)
 	if err := dec(in); err != nil {
@@ -486,6 +521,10 @@ var AccountsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ValidateAccount",
 			Handler:    _AccountsAPI_ValidateAccount_Handler,
+		},
+		{
+			MethodName: "SendGroupInviteMail",
+			Handler:    _AccountsAPI_SendGroupInviteMail_Handler,
 		},
 		{
 			MethodName: "Authenticate",
