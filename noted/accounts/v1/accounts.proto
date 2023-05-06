@@ -119,6 +119,9 @@ service AccountsAPI {
         };
     }
 
+    // Send Email to recipient account to notify group invitation.
+    rpc SendGroupInviteMail(SendGroupInviteMailRequest) returns (SendGroupInviteMailResponse) {}
+
     // Authenticate using the email and password flow.
     rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse) {
         option (google.api.http) = {
@@ -133,7 +136,7 @@ service AccountsAPI {
             body: "*",
         };
     }
-    
+
 }
 
 message CreateAccountRequest {
