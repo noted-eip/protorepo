@@ -253,4 +253,6 @@ message SendGroupInviteMailRequest {
 }
 
 message SendGroupInviteMailResponse {
+    string account_id = 1  [(google.api.field_behavior) = REQUIRED];
+    string valid_until = 2  [(google.api.field_behavior) = REQUIRED];
 }
