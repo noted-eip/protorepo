@@ -173,6 +173,7 @@ Class | Method | HTTP request | Description
  - [V1NoteExportFormat](doc/V1NoteExportFormat.md)
  - [V1Recipient](doc/V1Recipient.md)
  - [V1SendConversationMessageResponse](doc/V1SendConversationMessageResponse.md)
+ - [V1SendGroupInviteMailResponse](doc/V1SendGroupInviteMailResponse.md)
  - [V1SendInviteResponse](doc/V1SendInviteResponse.md)
  - [V1SummarizeResponse](doc/V1SummarizeResponse.md)
  - [V1UpdateAccountPasswordResponse](doc/V1UpdateAccountPasswordResponse.md)

@@ -65,6 +65,7 @@ doc/V1Note.md
 doc/V1NoteExportFormat.md
 doc/V1Recipient.md
 doc/V1SendConversationMessageResponse.md
+doc/V1SendGroupInviteMailResponse.md
 doc/V1SendInviteResponse.md
 doc/V1SummarizeResponse.md
 doc/V1UpdateAccountPasswordResponse.md
@@ -151,6 +152,7 @@ lib/src/model/v1_note.dart
 lib/src/model/v1_note_export_format.dart
 lib/src/model/v1_recipient.dart
 lib/src/model/v1_send_conversation_message_response.dart
+lib/src/model/v1_send_group_invite_mail_response.dart
 lib/src/model/v1_send_invite_response.dart
 lib/src/model/v1_summarize_response.dart
 lib/src/model/v1_update_account_password_response.dart
@@ -229,6 +231,7 @@ test/v1_note_export_format_test.dart
 test/v1_note_test.dart
 test/v1_recipient_test.dart
 test/v1_send_conversation_message_response_test.dart
+test/v1_send_group_invite_mail_response_test.dart
 test/v1_send_invite_response_test.dart
 test/v1_summarize_response_test.dart
 test/v1_update_account_password_response_test.dart

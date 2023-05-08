@@ -1711,6 +1711,14 @@ definitions:
     type: object
   v1SendGroupInviteMailResponse:
     type: object
+    properties:
+      accountId:
+        type: string
+      validUntil:
+        type: string
+    required:
+      - accountId
+      - validUntil
   v1SendInviteResponse:
     type: object
     properties:

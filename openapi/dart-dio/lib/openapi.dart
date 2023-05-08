@@ -73,6 +73,7 @@ export 'package:openapi/src/model/v1_note.dart';
 export 'package:openapi/src/model/v1_note_export_format.dart';
 export 'package:openapi/src/model/v1_recipient.dart';
 export 'package:openapi/src/model/v1_send_conversation_message_response.dart';
+export 'package:openapi/src/model/v1_send_group_invite_mail_response.dart';
 export 'package:openapi/src/model/v1_send_invite_response.dart';
 export 'package:openapi/src/model/v1_summarize_response.dart';
 export 'package:openapi/src/model/v1_update_account_password_response.dart';
