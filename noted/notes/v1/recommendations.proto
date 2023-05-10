@@ -41,9 +41,11 @@ message Widget {
 }
 
 message WebsiteWidget {
-    string title = 1 [(google.api.field_behavior) = REQUIRED];
-    string url = 2 [(google.api.field_behavior) = REQUIRED];
-    string description = 3;
+    string keyword = 1 [(google.api.field_behavior) = REQUIRED];
+    string type = 2 [(google.api.field_behavior) = REQUIRED];
+    string url = 3 [(google.api.field_behavior) = REQUIRED];
+    string summary = 4;
+    string image_url = 5;
 }
 
 message ImageWidget {
