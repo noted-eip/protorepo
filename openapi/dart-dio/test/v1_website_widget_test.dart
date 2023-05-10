@@ -7,8 +7,13 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(V1WebsiteWidget, () {
-    // String title
-    test('to test the property `title`', () async {
+    // String keyword
+    test('to test the property `keyword`', () async {
+      // TODO
+    });
+
+    // String type
+    test('to test the property `type`', () async {
       // TODO
     });
 
@@ -17,8 +22,13 @@ void main() {
       // TODO
     });
 
-    // String description
-    test('to test the property `description`', () async {
+    // String summary
+    test('to test the property `summary`', () async {
+      // TODO
+    });
+
+    // String imageUrl
+    test('to test the property `imageUrl`', () async {
       // TODO
     });
 

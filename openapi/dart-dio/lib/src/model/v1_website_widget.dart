@@ -11,19 +11,27 @@ part 'v1_website_widget.g.dart';
 /// V1WebsiteWidget
 ///
 /// Properties:
-/// * [title] 
+/// * [keyword] 
+/// * [type] 
 /// * [url] 
-/// * [description] 
+/// * [summary] 
+/// * [imageUrl] 
 @BuiltValue()
 abstract class V1WebsiteWidget implements Built<V1WebsiteWidget, V1WebsiteWidgetBuilder> {
-  @BuiltValueField(wireName: r'title')
-  String get title;
+  @BuiltValueField(wireName: r'keyword')
+  String get keyword;
+
+  @BuiltValueField(wireName: r'type')
+  String get type;
 
   @BuiltValueField(wireName: r'url')
   String get url;
 
-  @BuiltValueField(wireName: r'description')
-  String? get description;
+  @BuiltValueField(wireName: r'summary')
+  String? get summary;
+
+  @BuiltValueField(wireName: r'imageUrl')
+  String? get imageUrl;
 
   V1WebsiteWidget._();
 
@@ -48,9 +56,14 @@ class _$V1WebsiteWidgetSerializer implements PrimitiveSerializer<V1WebsiteWidget
     V1WebsiteWidget object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'title';
+    yield r'keyword';
     yield serializers.serialize(
-      object.title,
+      object.keyword,
+      specifiedType: const FullType(String),
+    );
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
       specifiedType: const FullType(String),
     );
     yield r'url';
@@ -58,10 +71,17 @@ class _$V1WebsiteWidgetSerializer implements PrimitiveSerializer<V1WebsiteWidget
       object.url,
       specifiedType: const FullType(String),
     );
-    if (object.description != null) {
-      yield r'description';
+    if (object.summary != null) {
+      yield r'summary';
       yield serializers.serialize(
-        object.description,
+        object.summary,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.imageUrl != null) {
+      yield r'imageUrl';
+      yield serializers.serialize(
+        object.imageUrl,
         specifiedType: const FullType(String),
       );
     }
@@ -88,12 +108,19 @@ class _$V1WebsiteWidgetSerializer implements PrimitiveSerializer<V1WebsiteWidget
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'title':
+        case r'keyword':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.title = valueDes;
+          result.keyword = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'url':
           final valueDes = serializers.deserialize(
@@ -102,12 +129,19 @@ class _$V1WebsiteWidgetSerializer implements PrimitiveSerializer<V1WebsiteWidget
           ) as String;
           result.url = valueDes;
           break;
-        case r'description':
+        case r'summary':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.description = valueDes;
+          result.summary = valueDes;
+          break;
+        case r'imageUrl':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.imageUrl = valueDes;
           break;
         default:
           unhandled.add(key);

@@ -131,13 +131,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1AuthenticateResponse _responseData;
+    V1AuthenticateResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1AuthenticateResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1AuthenticateResponse),
       ) as V1AuthenticateResponse;
 
     } catch (error, stackTrace) {
@@ -226,13 +226,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1AuthenticateGoogleResponse _responseData;
+    V1AuthenticateGoogleResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1AuthenticateGoogleResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1AuthenticateGoogleResponse),
       ) as V1AuthenticateGoogleResponse;
 
     } catch (error, stackTrace) {
@@ -321,13 +321,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1CreateAccountResponse _responseData;
+    V1CreateAccountResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1CreateAccountResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1CreateAccountResponse),
       ) as V1CreateAccountResponse;
 
     } catch (error, stackTrace) {
@@ -396,13 +396,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonObject _responseData;
+    JsonObject? _responseData;
 
     try {
-      const _responseType = FullType(JsonObject);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonObject),
       ) as JsonObject;
 
     } catch (error, stackTrace) {
@@ -491,13 +491,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1ForgetAccountPasswordResponse _responseData;
+    V1ForgetAccountPasswordResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1ForgetAccountPasswordResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1ForgetAccountPasswordResponse),
       ) as V1ForgetAccountPasswordResponse;
 
     } catch (error, stackTrace) {
@@ -586,13 +586,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1ForgetAccountPasswordValidateTokenResponse _responseData;
+    V1ForgetAccountPasswordValidateTokenResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1ForgetAccountPasswordValidateTokenResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1ForgetAccountPasswordValidateTokenResponse),
       ) as V1ForgetAccountPasswordValidateTokenResponse;
 
     } catch (error, stackTrace) {
@@ -668,13 +668,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1GetAccountResponse _responseData;
+    V1GetAccountResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1GetAccountResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1GetAccountResponse),
       ) as V1GetAccountResponse;
 
     } catch (error, stackTrace) {
@@ -763,13 +763,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1GetAccountResponse _responseData;
+    V1GetAccountResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1GetAccountResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1GetAccountResponse),
       ) as V1GetAccountResponse;
 
     } catch (error, stackTrace) {
@@ -849,13 +849,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1ListAccountsResponse _responseData;
+    V1ListAccountsResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1ListAccountsResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1ListAccountsResponse),
       ) as V1ListAccountsResponse;
 
     } catch (error, stackTrace) {
@@ -946,13 +946,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1UpdateAccountResponse _responseData;
+    V1UpdateAccountResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1UpdateAccountResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1UpdateAccountResponse),
       ) as V1UpdateAccountResponse;
 
     } catch (error, stackTrace) {
@@ -1043,13 +1043,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1UpdateAccountPasswordResponse _responseData;
+    V1UpdateAccountPasswordResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1UpdateAccountPasswordResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1UpdateAccountPasswordResponse),
       ) as V1UpdateAccountPasswordResponse;
 
     } catch (error, stackTrace) {
@@ -1140,13 +1140,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1ValidateAccountResponse _responseData;
+    V1ValidateAccountResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1ValidateAccountResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1ValidateAccountResponse),
       ) as V1ValidateAccountResponse;
 
     } catch (error, stackTrace) {
@@ -1217,13 +1217,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1AcceptInviteResponse _responseData;
+    V1AcceptInviteResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1AcceptInviteResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1AcceptInviteResponse),
       ) as V1AcceptInviteResponse;
 
     } catch (error, stackTrace) {
@@ -1312,13 +1312,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1CreateGroupResponse _responseData;
+    V1CreateGroupResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1CreateGroupResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1CreateGroupResponse),
       ) as V1CreateGroupResponse;
 
     } catch (error, stackTrace) {
@@ -1387,13 +1387,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonObject _responseData;
+    JsonObject? _responseData;
 
     try {
-      const _responseType = FullType(JsonObject);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonObject),
       ) as JsonObject;
 
     } catch (error, stackTrace) {
@@ -1464,13 +1464,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonObject _responseData;
+    JsonObject? _responseData;
 
     try {
-      const _responseType = FullType(JsonObject);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonObject),
       ) as JsonObject;
 
     } catch (error, stackTrace) {
@@ -1539,13 +1539,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1GenerateInviteLinkResponse _responseData;
+    V1GenerateInviteLinkResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1GenerateInviteLinkResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1GenerateInviteLinkResponse),
       ) as V1GenerateInviteLinkResponse;
 
     } catch (error, stackTrace) {
@@ -1616,13 +1616,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1GetActivityResponse _responseData;
+    V1GetActivityResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1GetActivityResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1GetActivityResponse),
       ) as V1GetActivityResponse;
 
     } catch (error, stackTrace) {
@@ -1698,13 +1698,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1GetGroupResponse _responseData;
+    V1GetGroupResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1GetGroupResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1GetGroupResponse),
       ) as V1GetGroupResponse;
 
     } catch (error, stackTrace) {
@@ -1775,13 +1775,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1GetInviteResponse _responseData;
+    V1GetInviteResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1GetInviteResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1GetInviteResponse),
       ) as V1GetInviteResponse;
 
     } catch (error, stackTrace) {
@@ -1852,13 +1852,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1GetInviteLinkResponse _responseData;
+    V1GetInviteLinkResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1GetInviteLinkResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1GetInviteLinkResponse),
       ) as V1GetInviteLinkResponse;
 
     } catch (error, stackTrace) {
@@ -1929,13 +1929,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1GetMemberResponse _responseData;
+    V1GetMemberResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1GetMemberResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1GetMemberResponse),
       ) as V1GetMemberResponse;
 
     } catch (error, stackTrace) {
@@ -2014,13 +2014,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1ListActivitiesResponse _responseData;
+    V1ListActivitiesResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1ListActivitiesResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1ListActivitiesResponse),
       ) as V1ListActivitiesResponse;
 
     } catch (error, stackTrace) {
@@ -2100,13 +2100,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1ListGroupsResponse _responseData;
+    V1ListGroupsResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1ListGroupsResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1ListGroupsResponse),
       ) as V1ListGroupsResponse;
 
     } catch (error, stackTrace) {
@@ -2192,13 +2192,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1ListInvitesResponse _responseData;
+    V1ListInvitesResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1ListInvitesResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1ListInvitesResponse),
       ) as V1ListInvitesResponse;
 
     } catch (error, stackTrace) {
@@ -2283,13 +2283,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1ListInvitesResponse _responseData;
+    V1ListInvitesResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1ListInvitesResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1ListInvitesResponse),
       ) as V1ListInvitesResponse;
 
     } catch (error, stackTrace) {
@@ -2360,13 +2360,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonObject _responseData;
+    JsonObject? _responseData;
 
     try {
-      const _responseType = FullType(JsonObject);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonObject),
       ) as JsonObject;
 
     } catch (error, stackTrace) {
@@ -2437,13 +2437,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonObject _responseData;
+    JsonObject? _responseData;
 
     try {
-      const _responseType = FullType(JsonObject);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonObject),
       ) as JsonObject;
 
     } catch (error, stackTrace) {
@@ -2514,13 +2514,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonObject _responseData;
+    JsonObject? _responseData;
 
     try {
-      const _responseType = FullType(JsonObject);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonObject),
       ) as JsonObject;
 
     } catch (error, stackTrace) {
@@ -2611,13 +2611,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1SendInviteResponse _responseData;
+    V1SendInviteResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1SendInviteResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1SendInviteResponse),
       ) as V1SendInviteResponse;
 
     } catch (error, stackTrace) {
@@ -2708,13 +2708,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1UpdateGroupResponse _responseData;
+    V1UpdateGroupResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1UpdateGroupResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1UpdateGroupResponse),
       ) as V1UpdateGroupResponse;
 
     } catch (error, stackTrace) {
@@ -2807,13 +2807,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1UpdateMemberResponse _responseData;
+    V1UpdateMemberResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1UpdateMemberResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1UpdateMemberResponse),
       ) as V1UpdateMemberResponse;
 
     } catch (error, stackTrace) {
@@ -2884,13 +2884,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonObject _responseData;
+    JsonObject? _responseData;
 
     try {
-      const _responseType = FullType(JsonObject);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonObject),
       ) as JsonObject;
 
     } catch (error, stackTrace) {
@@ -2981,13 +2981,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1CreateNoteResponse _responseData;
+    V1CreateNoteResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1CreateNoteResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1CreateNoteResponse),
       ) as V1CreateNoteResponse;
 
     } catch (error, stackTrace) {
@@ -3060,13 +3060,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonObject _responseData;
+    JsonObject? _responseData;
 
     try {
-      const _responseType = FullType(JsonObject);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonObject),
       ) as JsonObject;
 
     } catch (error, stackTrace) {
@@ -3137,13 +3137,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JsonObject _responseData;
+    JsonObject? _responseData;
 
     try {
-      const _responseType = FullType(JsonObject);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonObject),
       ) as JsonObject;
 
     } catch (error, stackTrace) {
@@ -3214,13 +3214,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1GetNoteResponse _responseData;
+    V1GetNoteResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1GetNoteResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1GetNoteResponse),
       ) as V1GetNoteResponse;
 
     } catch (error, stackTrace) {
@@ -3313,13 +3313,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1InsertBlockResponse _responseData;
+    V1InsertBlockResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1InsertBlockResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1InsertBlockResponse),
       ) as V1InsertBlockResponse;
 
     } catch (error, stackTrace) {
@@ -3402,13 +3402,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1ListNotesResponse _responseData;
+    V1ListNotesResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1ListNotesResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1ListNotesResponse),
       ) as V1ListNotesResponse;
 
     } catch (error, stackTrace) {
@@ -3490,13 +3490,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1ListNotesResponse _responseData;
+    V1ListNotesResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1ListNotesResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1ListNotesResponse),
       ) as V1ListNotesResponse;
 
     } catch (error, stackTrace) {
@@ -3591,13 +3591,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1UpdateBlockResponse _responseData;
+    V1UpdateBlockResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1UpdateBlockResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1UpdateBlockResponse),
       ) as V1UpdateBlockResponse;
 
     } catch (error, stackTrace) {
@@ -3690,13 +3690,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1UpdateNoteResponse _responseData;
+    V1UpdateNoteResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1UpdateNoteResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1UpdateNoteResponse),
       ) as V1UpdateNoteResponse;
 
     } catch (error, stackTrace) {
@@ -3767,13 +3767,13 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1GenerateWidgetsResponse _responseData;
+    V1GenerateWidgetsResponse? _responseData;
 
     try {
-      const _responseType = FullType(V1GenerateWidgetsResponse);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1GenerateWidgetsResponse),
       ) as V1GenerateWidgetsResponse;
 
     } catch (error, stackTrace) {

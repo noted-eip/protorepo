@@ -1800,14 +1800,19 @@ definitions:
   v1WebsiteWidget:
     type: object
     properties:
-      title:
+      keyword:
+        type: string
+      type:
         type: string
       url:
         type: string
-      description:
+      summary:
+        type: string
+      imageUrl:
         type: string
     required:
-      - title
+      - keyword
+      - type
       - url
   v1Widget:
     type: object

@@ -1439,7 +1439,13 @@ export interface V1WebsiteWidget {
      * @type {string}
      * @memberof V1WebsiteWidget
      */
-    'title': string;
+    'keyword': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1WebsiteWidget
+     */
+    'type': string;
     /**
      * 
      * @type {string}
@@ -1451,7 +1457,13 @@ export interface V1WebsiteWidget {
      * @type {string}
      * @memberof V1WebsiteWidget
      */
-    'description'?: string;
+    'summary'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1WebsiteWidget
+     */
+    'imageUrl'?: string;
 }
 /**
  * 
