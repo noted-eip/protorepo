@@ -250,6 +250,7 @@ message SendGroupInviteMailRequest {
     string sender_id = 2 [(google.api.field_behavior) = REQUIRED];
     string group_name = 3 [(google.api.field_behavior) = REQUIRED];
     google.protobuf.Timestamp valid_until = 4 [(google.api.field_behavior) = REQUIRED];
+    string invite_link = 5 [(google.api.field_behavior) = REQUIRED];
 }
 
 message SendGroupInviteMailResponse {
