@@ -238,7 +238,7 @@ message ValidateAccountResponse {
 }
 
 message AuthenticateGoogleRequest {
-    string code = 1 [(google.api.field_behavior) = REQUIRED];
+    string client_access_token = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message AuthenticateGoogleResponse {
