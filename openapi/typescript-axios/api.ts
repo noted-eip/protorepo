@@ -1269,25 +1269,6 @@ export interface V1SendConversationMessageResponse {
 /**
  * 
  * @export
- * @interface V1SendGroupInviteMailResponse
- */
-export interface V1SendGroupInviteMailResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof V1SendGroupInviteMailResponse
-     */
-    'accountId': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof V1SendGroupInviteMailResponse
-     */
-    'validUntil': string;
-}
-/**
- * 
- * @export
  * @interface V1SendInviteResponse
  */
 export interface V1SendInviteResponse {

@@ -76,7 +76,6 @@ import 'package:openapi/src/model/v1_note.dart';
 import 'package:openapi/src/model/v1_note_export_format.dart';
 import 'package:openapi/src/model/v1_recipient.dart';
 import 'package:openapi/src/model/v1_send_conversation_message_response.dart';
-import 'package:openapi/src/model/v1_send_group_invite_mail_response.dart';
 import 'package:openapi/src/model/v1_send_invite_response.dart';
 import 'package:openapi/src/model/v1_summarize_response.dart';
 import 'package:openapi/src/model/v1_update_account_password_response.dart';
@@ -156,7 +155,6 @@ part 'serializers.g.dart';
   V1NoteExportFormat,
   V1Recipient,
   V1SendConversationMessageResponse,
-  V1SendGroupInviteMailResponse,
   V1SendInviteResponse,
   V1SummarizeResponse,
   V1UpdateAccountPasswordResponse,
