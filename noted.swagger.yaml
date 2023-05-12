@@ -1121,10 +1121,10 @@ definitions:
   v1AuthenticateGoogleRequest:
     type: object
     properties:
-      code:
+      clientAccessToken:
         type: string
     required:
-      - code
+      - clientAccessToken
   v1AuthenticateGoogleResponse:
     type: object
     properties:

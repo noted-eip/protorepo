@@ -218,7 +218,7 @@ export interface V1AuthenticateGoogleRequest {
      * @type {string}
      * @memberof V1AuthenticateGoogleRequest
      */
-    'code': string;
+    'clientAccessToken': string;
 }
 /**
  * 
@@ -4824,5 +4824,6 @@ export class DefaultApi extends BaseAPI {
         return DefaultApiFp(this.configuration).recommendationsAPIGenerateWidgets(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
 
 

@@ -7,8 +7,8 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(V1AuthenticateGoogleRequest, () {
-    // String code
-    test('to test the property `code`', () async {
+    // String clientAccessToken
+    test('to test the property `clientAccessToken`', () async {
       // TODO
     });
 

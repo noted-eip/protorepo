@@ -11,11 +11,11 @@ part 'v1_authenticate_google_request.g.dart';
 /// V1AuthenticateGoogleRequest
 ///
 /// Properties:
-/// * [code] 
+/// * [clientAccessToken] 
 @BuiltValue()
 abstract class V1AuthenticateGoogleRequest implements Built<V1AuthenticateGoogleRequest, V1AuthenticateGoogleRequestBuilder> {
-  @BuiltValueField(wireName: r'code')
-  String get code;
+  @BuiltValueField(wireName: r'clientAccessToken')
+  String get clientAccessToken;
 
   V1AuthenticateGoogleRequest._();
 
@@ -40,9 +40,9 @@ class _$V1AuthenticateGoogleRequestSerializer implements PrimitiveSerializer<V1A
     V1AuthenticateGoogleRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'code';
+    yield r'clientAccessToken';
     yield serializers.serialize(
-      object.code,
+      object.clientAccessToken,
       specifiedType: const FullType(String),
     );
   }
@@ -68,12 +68,12 @@ class _$V1AuthenticateGoogleRequestSerializer implements PrimitiveSerializer<V1A
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'code':
+        case r'clientAccessToken':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.code = valueDes;
+          result.clientAccessToken = valueDes;
           break;
         default:
           unhandled.add(key);
