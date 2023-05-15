@@ -4,7 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:openapi/src/model/block_code.dart';
-import 'package:openapi/src/model/block_image.dart';
+import 'package:openapi/src/model/v1_block_image.dart';
 import 'package:openapi/src/model/v1_block_type.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -45,7 +45,7 @@ abstract class V1Block implements Built<V1Block, V1BlockBuilder> {
   String? get bulletPoint;
 
   @BuiltValueField(wireName: r'image')
-  BlockImage? get image;
+  V1BlockImage? get image;
 
   @BuiltValueField(wireName: r'code')
   BlockCode? get code;
@@ -118,7 +118,7 @@ class _$V1BlockSerializer implements PrimitiveSerializer<V1Block> {
       yield r'image';
       yield serializers.serialize(
         object.image,
-        specifiedType: const FullType(BlockImage),
+        specifiedType: const FullType(V1BlockImage),
       );
     }
     if (object.code != null) {
@@ -203,8 +203,8 @@ class _$V1BlockSerializer implements PrimitiveSerializer<V1Block> {
         case r'image':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BlockImage),
-          ) as BlockImage;
+            specifiedType: const FullType(V1BlockImage),
+          ) as V1BlockImage;
           result.image.replace(valueDes);
           break;
         case r'code':

@@ -1091,13 +1091,6 @@ definitions:
         type: string
       lang:
         type: string
-  BlockImage:
-    type: object
-    properties:
-      url:
-        type: string
-      caption:
-        type: string
   v1AcceptInviteResponse:
     type: object
     properties:
@@ -1165,7 +1158,7 @@ definitions:
       bulletPoint:
         type: string
       image:
-        $ref: '#/definitions/BlockImage'
+        $ref: '#/definitions/v1BlockImage'
       code:
         $ref: '#/definitions/BlockCode'
       math:
@@ -1173,6 +1166,13 @@ definitions:
     required:
       - id
       - type
+  v1BlockImage:
+    type: object
+    properties:
+      url:
+        type: string
+      caption:
+        type: string
   v1BlockType:
     type: string
     enum:

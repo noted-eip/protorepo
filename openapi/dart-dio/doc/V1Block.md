@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **paragraph** | **String** |  | [optional] 
 **numberPoint** | **String** |  | [optional] 
 **bulletPoint** | **String** |  | [optional] 
-**image** | [**BlockImage**](BlockImage.md) |  | [optional] 
+**image** | [**V1BlockImage**](V1BlockImage.md) |  | [optional] 
 **code** | [**BlockCode**](BlockCode.md) |  | [optional] 
 **math** | **String** |  | [optional] 
 

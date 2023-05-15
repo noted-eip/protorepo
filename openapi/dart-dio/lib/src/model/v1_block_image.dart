@@ -6,42 +6,42 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'block_image.g.dart';
+part 'v1_block_image.g.dart';
 
-/// BlockImage
+/// V1BlockImage
 ///
 /// Properties:
 /// * [url] 
 /// * [caption] 
 @BuiltValue()
-abstract class BlockImage implements Built<BlockImage, BlockImageBuilder> {
+abstract class V1BlockImage implements Built<V1BlockImage, V1BlockImageBuilder> {
   @BuiltValueField(wireName: r'url')
   String? get url;
 
   @BuiltValueField(wireName: r'caption')
   String? get caption;
 
-  BlockImage._();
+  V1BlockImage._();
 
-  factory BlockImage([void updates(BlockImageBuilder b)]) = _$BlockImage;
+  factory V1BlockImage([void updates(V1BlockImageBuilder b)]) = _$V1BlockImage;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(BlockImageBuilder b) => b;
+  static void _defaults(V1BlockImageBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<BlockImage> get serializer => _$BlockImageSerializer();
+  static Serializer<V1BlockImage> get serializer => _$V1BlockImageSerializer();
 }
 
-class _$BlockImageSerializer implements PrimitiveSerializer<BlockImage> {
+class _$V1BlockImageSerializer implements PrimitiveSerializer<V1BlockImage> {
   @override
-  final Iterable<Type> types = const [BlockImage, _$BlockImage];
+  final Iterable<Type> types = const [V1BlockImage, _$V1BlockImage];
 
   @override
-  final String wireName = r'BlockImage';
+  final String wireName = r'V1BlockImage';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    BlockImage object, {
+    V1BlockImage object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
     if (object.url != null) {
@@ -63,7 +63,7 @@ class _$BlockImageSerializer implements PrimitiveSerializer<BlockImage> {
   @override
   Object serialize(
     Serializers serializers,
-    BlockImage object, {
+    V1BlockImage object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -74,7 +74,7 @@ class _$BlockImageSerializer implements PrimitiveSerializer<BlockImage> {
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required BlockImageBuilder result,
+    required V1BlockImageBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
@@ -104,12 +104,12 @@ class _$BlockImageSerializer implements PrimitiveSerializer<BlockImage> {
   }
 
   @override
-  BlockImage deserialize(
+  V1BlockImage deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = BlockImageBuilder();
+    final result = V1BlockImageBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

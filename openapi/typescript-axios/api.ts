@@ -83,25 +83,6 @@ export interface BlockCode {
 /**
  * 
  * @export
- * @interface BlockImage
- */
-export interface BlockImage {
-    /**
-     * 
-     * @type {string}
-     * @memberof BlockImage
-     */
-    'url'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof BlockImage
-     */
-    'caption'?: string;
-}
-/**
- * 
- * @export
  * @interface GroupsAPISendInviteRequest
  */
 export interface GroupsAPISendInviteRequest {
@@ -309,10 +290,10 @@ export interface V1Block {
     'bulletPoint'?: string;
     /**
      * 
-     * @type {BlockImage}
+     * @type {V1BlockImage}
      * @memberof V1Block
      */
-    'image'?: BlockImage;
+    'image'?: V1BlockImage;
     /**
      * 
      * @type {BlockCode}
@@ -328,6 +309,25 @@ export interface V1Block {
 }
 
 
+/**
+ * 
+ * @export
+ * @interface V1BlockImage
+ */
+export interface V1BlockImage {
+    /**
+     * 
+     * @type {string}
+     * @memberof V1BlockImage
+     */
+    'url'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1BlockImage
+     */
+    'caption'?: string;
+}
 /**
  * 
  * @export

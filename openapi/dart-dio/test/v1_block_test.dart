@@ -37,7 +37,7 @@ void main() {
       // TODO
     });
 
-    // BlockImage image
+    // V1BlockImage image
     test('to test the property `image`', () async {
       // TODO
     });

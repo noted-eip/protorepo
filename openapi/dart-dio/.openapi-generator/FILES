@@ -5,7 +5,6 @@ analysis_options.yaml
 doc/AccountsAPIUpdateAccountPasswordRequest.md
 doc/AccountsAPIValidateAccountRequest.md
 doc/BlockCode.md
-doc/BlockImage.md
 doc/DefaultApi.md
 doc/GroupsAPISendInviteRequest.md
 doc/GroupsAPIUpdateGroupRequest.md
@@ -18,6 +17,7 @@ doc/V1AuthenticateGoogleResponse.md
 doc/V1AuthenticateRequest.md
 doc/V1AuthenticateResponse.md
 doc/V1Block.md
+doc/V1BlockImage.md
 doc/V1BlockType.md
 doc/V1ConversationMessage.md
 doc/V1CreateAccountRequest.md
@@ -91,7 +91,6 @@ lib/src/date_serializer.dart
 lib/src/model/accounts_api_update_account_password_request.dart
 lib/src/model/accounts_api_validate_account_request.dart
 lib/src/model/block_code.dart
-lib/src/model/block_image.dart
 lib/src/model/date.dart
 lib/src/model/groups_api_send_invite_request.dart
 lib/src/model/groups_api_update_group_request.dart
@@ -104,6 +103,7 @@ lib/src/model/v1_authenticate_google_response.dart
 lib/src/model/v1_authenticate_request.dart
 lib/src/model/v1_authenticate_response.dart
 lib/src/model/v1_block.dart
+lib/src/model/v1_block_image.dart
 lib/src/model/v1_block_type.dart
 lib/src/model/v1_conversation_message.dart
 lib/src/model/v1_create_account_request.dart
@@ -169,7 +169,6 @@ pubspec.yaml
 test/accounts_api_update_account_password_request_test.dart
 test/accounts_api_validate_account_request_test.dart
 test/block_code_test.dart
-test/block_image_test.dart
 test/default_api_test.dart
 test/groups_api_send_invite_request_test.dart
 test/groups_api_update_group_request_test.dart
@@ -181,6 +180,7 @@ test/v1_authenticate_google_request_test.dart
 test/v1_authenticate_google_response_test.dart
 test/v1_authenticate_request_test.dart
 test/v1_authenticate_response_test.dart
+test/v1_block_image_test.dart
 test/v1_block_test.dart
 test/v1_block_type_test.dart
 test/v1_conversation_message_test.dart

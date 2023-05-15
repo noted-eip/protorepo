@@ -1,12 +1,12 @@
 import 'package:test/test.dart';
 import 'package:openapi/openapi.dart';
 
-// tests for BlockImage
+// tests for V1BlockImage
 void main() {
-  final instance = BlockImageBuilder();
+  final instance = V1BlockImageBuilder();
   // TODO add properties to the builder and call build()
 
-  group(BlockImage, () {
+  group(V1BlockImage, () {
     // String url
     test('to test the property `url`', () async {
       // TODO

@@ -1,4 +1,4 @@
-# openapi.model.BlockImage
+# openapi.model.V1BlockImage
 
 ## Load the model package
 ```dart
