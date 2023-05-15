@@ -44,8 +44,9 @@ message Image {
     bytes image = 1 [(google.api.field_behavior) = REQUIRED];
 
     enum Type {
-        JPEG = 0;
-        PNG = 1;
+        TYPE_INVALID = 0;
+        TYPE_JPEG = 1;
+        TYPE_PNG = 2;
     }
     Type type = 2 [(google.api.field_behavior) = REQUIRED];
 }
