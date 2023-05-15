@@ -63,6 +63,11 @@ void main() {
       // TODO
     });
 
+    //Future<V1GetAccountProfilePictureResponse> accountsAPIGetAccountProfilePicture(String accountId) async
+    test('test accountsAPIGetAccountProfilePicture', () async {
+      // TODO
+    });
+
     // List users based on email regex.
     //
     //Future<V1ListAccountsResponse> accountsAPIListAccounts(String emailContains, { int limit, int offset }) async
@@ -81,6 +86,11 @@ void main() {
     //
     //Future<V1UpdateAccountPasswordResponse> accountsAPIUpdateAccountPassword(String accountId, AccountsAPIUpdateAccountPasswordRequest body) async
     test('test accountsAPIUpdateAccountPassword', () async {
+      // TODO
+    });
+
+    //Future<JsonObject> accountsAPIUploadAccountProfilePicture(String accountId, AccountsAPIUploadAccountProfilePictureRequest body) async
+    test('test accountsAPIUploadAccountProfilePicture', () async {
       // TODO
     });
 

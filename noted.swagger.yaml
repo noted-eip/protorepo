@@ -150,6 +150,49 @@ paths:
                 title: Old password if the account is already log-in
             required:
               - password
+  /accounts/{accountId}/picture:
+    get:
+      operationId: AccountsAPI_GetAccountProfilePicture
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetAccountProfilePictureResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+    post:
+      operationId: AccountsAPI_UploadAccountProfilePicture
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UploadAccountProfilePictureResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              image:
+                $ref: '#/definitions/accountsv1Image'
+            required:
+              - image
   /accounts/{accountId}/validate:
     patch:
       summary: Validate account email.
@@ -1091,6 +1134,17 @@ definitions:
         type: string
       lang:
         type: string
+  accountsv1Image:
+    type: object
+    properties:
+      image:
+        type: string
+        format: byte
+      type:
+        $ref: '#/definitions/v1ImageType'
+    required:
+      - image
+      - type
   v1AcceptInviteResponse:
     type: object
     properties:
@@ -1368,6 +1422,16 @@ definitions:
           $ref: '#/definitions/v1Widget'
     required:
       - widgets
+  v1GetAccountProfilePictureResponse:
+    type: object
+    properties:
+      accountId:
+        type: string
+      image:
+        $ref: '#/definitions/accountsv1Image'
+    required:
+      - accountId
+      - image
   v1GetAccountRequest:
     type: object
     properties:
@@ -1582,6 +1646,11 @@ definitions:
     properties:
       error:
         type: string
+  v1ImageType:
+    type: string
+    enum:
+      - TYPE_JPEG
+      - TYPE_PNG
   v1ImageWidget:
     type: object
     properties:
@@ -1780,6 +1849,8 @@ definitions:
         $ref: '#/definitions/v1Note'
     required:
       - note
+  v1UploadAccountProfilePictureResponse:
+    type: object
   v1UseInviteLinkResponse:
     type: object
   v1ValidateAccountResponse:

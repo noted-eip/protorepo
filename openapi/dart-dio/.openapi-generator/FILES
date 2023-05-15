@@ -3,7 +3,9 @@
 README.md
 analysis_options.yaml
 doc/AccountsAPIUpdateAccountPasswordRequest.md
+doc/AccountsAPIUploadAccountProfilePictureRequest.md
 doc/AccountsAPIValidateAccountRequest.md
+doc/Accountsv1Image.md
 doc/BlockCode.md
 doc/DefaultApi.md
 doc/GroupsAPISendInviteRequest.md
@@ -36,6 +38,7 @@ doc/V1ForgetAccountPasswordValidateTokenRequest.md
 doc/V1ForgetAccountPasswordValidateTokenResponse.md
 doc/V1GenerateInviteLinkResponse.md
 doc/V1GenerateWidgetsResponse.md
+doc/V1GetAccountProfilePictureResponse.md
 doc/V1GetAccountRequest.md
 doc/V1GetAccountResponse.md
 doc/V1GetActivityResponse.md
@@ -53,6 +56,7 @@ doc/V1GroupInvite.md
 doc/V1GroupInviteLink.md
 doc/V1GroupMember.md
 doc/V1HttpError.md
+doc/V1ImageType.md
 doc/V1ImageWidget.md
 doc/V1InsertBlockResponse.md
 doc/V1ListAccountsResponse.md
@@ -89,7 +93,9 @@ lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
 lib/src/model/accounts_api_update_account_password_request.dart
+lib/src/model/accounts_api_upload_account_profile_picture_request.dart
 lib/src/model/accounts_api_validate_account_request.dart
+lib/src/model/accountsv1_image.dart
 lib/src/model/block_code.dart
 lib/src/model/date.dart
 lib/src/model/groups_api_send_invite_request.dart
@@ -122,6 +128,7 @@ lib/src/model/v1_forget_account_password_validate_token_request.dart
 lib/src/model/v1_forget_account_password_validate_token_response.dart
 lib/src/model/v1_generate_invite_link_response.dart
 lib/src/model/v1_generate_widgets_response.dart
+lib/src/model/v1_get_account_profile_picture_response.dart
 lib/src/model/v1_get_account_request.dart
 lib/src/model/v1_get_account_response.dart
 lib/src/model/v1_get_activity_response.dart
@@ -139,6 +146,7 @@ lib/src/model/v1_group_invite.dart
 lib/src/model/v1_group_invite_link.dart
 lib/src/model/v1_group_member.dart
 lib/src/model/v1_http_error.dart
+lib/src/model/v1_image_type.dart
 lib/src/model/v1_image_widget.dart
 lib/src/model/v1_insert_block_response.dart
 lib/src/model/v1_list_accounts_response.dart
@@ -167,7 +175,9 @@ lib/src/model/v1_widget.dart
 lib/src/serializers.dart
 pubspec.yaml
 test/accounts_api_update_account_password_request_test.dart
+test/accounts_api_upload_account_profile_picture_request_test.dart
 test/accounts_api_validate_account_request_test.dart
+test/accountsv1_image_test.dart
 test/block_code_test.dart
 test/default_api_test.dart
 test/groups_api_send_invite_request_test.dart
@@ -200,6 +210,7 @@ test/v1_forget_account_password_validate_token_request_test.dart
 test/v1_forget_account_password_validate_token_response_test.dart
 test/v1_generate_invite_link_response_test.dart
 test/v1_generate_widgets_response_test.dart
+test/v1_get_account_profile_picture_response_test.dart
 test/v1_get_account_request_test.dart
 test/v1_get_account_response_test.dart
 test/v1_get_activity_response_test.dart
@@ -217,6 +228,7 @@ test/v1_group_invite_test.dart
 test/v1_group_member_test.dart
 test/v1_group_test.dart
 test/v1_http_error_test.dart
+test/v1_image_type_test.dart
 test/v1_image_widget_test.dart
 test/v1_insert_block_response_test.dart
 test/v1_list_accounts_response_test.dart

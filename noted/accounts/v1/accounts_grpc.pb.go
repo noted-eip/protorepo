@@ -27,6 +27,8 @@ const (
 	AccountsAPI_ForgetAccountPassword_FullMethodName              = "/noted.accounts.v1.AccountsAPI/ForgetAccountPassword"
 	AccountsAPI_ForgetAccountPasswordValidateToken_FullMethodName = "/noted.accounts.v1.AccountsAPI/ForgetAccountPasswordValidateToken"
 	AccountsAPI_UpdateAccountPassword_FullMethodName              = "/noted.accounts.v1.AccountsAPI/UpdateAccountPassword"
+	AccountsAPI_UploadAccountProfilePicture_FullMethodName        = "/noted.accounts.v1.AccountsAPI/UploadAccountProfilePicture"
+	AccountsAPI_GetAccountProfilePicture_FullMethodName           = "/noted.accounts.v1.AccountsAPI/GetAccountProfilePicture"
 	AccountsAPI_ValidateAccount_FullMethodName                    = "/noted.accounts.v1.AccountsAPI/ValidateAccount"
 	AccountsAPI_SendGroupInviteMail_FullMethodName                = "/noted.accounts.v1.AccountsAPI/SendGroupInviteMail"
 	AccountsAPI_Authenticate_FullMethodName                       = "/noted.accounts.v1.AccountsAPI/Authenticate"
@@ -53,6 +55,8 @@ type AccountsAPIClient interface {
 	ForgetAccountPasswordValidateToken(ctx context.Context, in *ForgetAccountPasswordValidateTokenRequest, opts ...grpc.CallOption) (*ForgetAccountPasswordValidateTokenResponse, error)
 	// Update account password.
 	UpdateAccountPassword(ctx context.Context, in *UpdateAccountPasswordRequest, opts ...grpc.CallOption) (*UpdateAccountPasswordResponse, error)
+	UploadAccountProfilePicture(ctx context.Context, in *UploadAccountProfilePictureRequest, opts ...grpc.CallOption) (*UploadAccountProfilePictureResponse, error)
+	GetAccountProfilePicture(ctx context.Context, in *GetAccountProfilePictureRequest, opts ...grpc.CallOption) (*GetAccountProfilePictureResponse, error)
 	// Validate account email.
 	ValidateAccount(ctx context.Context, in *ValidateAccountRequest, opts ...grpc.CallOption) (*ValidateAccountResponse, error)
 	// Send Email to recipient account to notify group invitation.
@@ -143,6 +147,24 @@ func (c *accountsAPIClient) UpdateAccountPassword(ctx context.Context, in *Updat
 	return out, nil
 }
 
+func (c *accountsAPIClient) UploadAccountProfilePicture(ctx context.Context, in *UploadAccountProfilePictureRequest, opts ...grpc.CallOption) (*UploadAccountProfilePictureResponse, error) {
+	out := new(UploadAccountProfilePictureResponse)
+	err := c.cc.Invoke(ctx, AccountsAPI_UploadAccountProfilePicture_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountsAPIClient) GetAccountProfilePicture(ctx context.Context, in *GetAccountProfilePictureRequest, opts ...grpc.CallOption) (*GetAccountProfilePictureResponse, error) {
+	out := new(GetAccountProfilePictureResponse)
+	err := c.cc.Invoke(ctx, AccountsAPI_GetAccountProfilePicture_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountsAPIClient) ValidateAccount(ctx context.Context, in *ValidateAccountRequest, opts ...grpc.CallOption) (*ValidateAccountResponse, error) {
 	out := new(ValidateAccountResponse)
 	err := c.cc.Invoke(ctx, AccountsAPI_ValidateAccount_FullMethodName, in, out, opts...)
@@ -199,6 +221,8 @@ type AccountsAPIServer interface {
 	ForgetAccountPasswordValidateToken(context.Context, *ForgetAccountPasswordValidateTokenRequest) (*ForgetAccountPasswordValidateTokenResponse, error)
 	// Update account password.
 	UpdateAccountPassword(context.Context, *UpdateAccountPasswordRequest) (*UpdateAccountPasswordResponse, error)
+	UploadAccountProfilePicture(context.Context, *UploadAccountProfilePictureRequest) (*UploadAccountProfilePictureResponse, error)
+	GetAccountProfilePicture(context.Context, *GetAccountProfilePictureRequest) (*GetAccountProfilePictureResponse, error)
 	// Validate account email.
 	ValidateAccount(context.Context, *ValidateAccountRequest) (*ValidateAccountResponse, error)
 	// Send Email to recipient account to notify group invitation.
@@ -237,6 +261,12 @@ func (UnimplementedAccountsAPIServer) ForgetAccountPasswordValidateToken(context
 }
 func (UnimplementedAccountsAPIServer) UpdateAccountPassword(context.Context, *UpdateAccountPasswordRequest) (*UpdateAccountPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAccountPassword not implemented")
+}
+func (UnimplementedAccountsAPIServer) UploadAccountProfilePicture(context.Context, *UploadAccountProfilePictureRequest) (*UploadAccountProfilePictureResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadAccountProfilePicture not implemented")
+}
+func (UnimplementedAccountsAPIServer) GetAccountProfilePicture(context.Context, *GetAccountProfilePictureRequest) (*GetAccountProfilePictureResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAccountProfilePicture not implemented")
 }
 func (UnimplementedAccountsAPIServer) ValidateAccount(context.Context, *ValidateAccountRequest) (*ValidateAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateAccount not implemented")
@@ -407,6 +437,42 @@ func _AccountsAPI_UpdateAccountPassword_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountsAPI_UploadAccountProfilePicture_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadAccountProfilePictureRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountsAPIServer).UploadAccountProfilePicture(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountsAPI_UploadAccountProfilePicture_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountsAPIServer).UploadAccountProfilePicture(ctx, req.(*UploadAccountProfilePictureRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountsAPI_GetAccountProfilePicture_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAccountProfilePictureRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountsAPIServer).GetAccountProfilePicture(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountsAPI_GetAccountProfilePicture_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountsAPIServer).GetAccountProfilePicture(ctx, req.(*GetAccountProfilePictureRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AccountsAPI_ValidateAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ValidateAccountRequest)
 	if err := dec(in); err != nil {
@@ -517,6 +583,14 @@ var AccountsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateAccountPassword",
 			Handler:    _AccountsAPI_UpdateAccountPassword_Handler,
+		},
+		{
+			MethodName: "UploadAccountProfilePicture",
+			Handler:    _AccountsAPI_UploadAccountProfilePicture_Handler,
+		},
+		{
+			MethodName: "GetAccountProfilePicture",
+			Handler:    _AccountsAPI_GetAccountProfilePicture_Handler,
 		},
 		{
 			MethodName: "ValidateAccount",

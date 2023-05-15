@@ -51,6 +51,19 @@ export interface AccountsAPIUpdateAccountPasswordRequest {
 /**
  * 
  * @export
+ * @interface AccountsAPIUploadAccountProfilePictureRequest
+ */
+export interface AccountsAPIUploadAccountProfilePictureRequest {
+    /**
+     * 
+     * @type {Accountsv1Image}
+     * @memberof AccountsAPIUploadAccountProfilePictureRequest
+     */
+    'image': Accountsv1Image;
+}
+/**
+ * 
+ * @export
  * @interface AccountsAPIValidateAccountRequest
  */
 export interface AccountsAPIValidateAccountRequest {
@@ -61,6 +74,27 @@ export interface AccountsAPIValidateAccountRequest {
      */
     'validationToken': string;
 }
+/**
+ * 
+ * @export
+ * @interface Accountsv1Image
+ */
+export interface Accountsv1Image {
+    /**
+     * 
+     * @type {string}
+     * @memberof Accountsv1Image
+     */
+    'image': string;
+    /**
+     * 
+     * @type {V1ImageType}
+     * @memberof Accountsv1Image
+     */
+    'type': V1ImageType;
+}
+
+
 /**
  * 
  * @export
@@ -669,6 +703,25 @@ export interface V1GenerateWidgetsResponse {
 /**
  * 
  * @export
+ * @interface V1GetAccountProfilePictureResponse
+ */
+export interface V1GetAccountProfilePictureResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof V1GetAccountProfilePictureResponse
+     */
+    'accountId': string;
+    /**
+     * 
+     * @type {Accountsv1Image}
+     * @memberof V1GetAccountProfilePictureResponse
+     */
+    'image': Accountsv1Image;
+}
+/**
+ * 
+ * @export
  * @interface V1GetAccountRequest
  */
 export interface V1GetAccountRequest {
@@ -1055,6 +1108,20 @@ export interface V1HttpError {
      */
     'error'?: string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const V1ImageType = {
+    Jpeg: 'TYPE_JPEG',
+    Png: 'TYPE_PNG'
+} as const;
+
+export type V1ImageType = typeof V1ImageType[keyof typeof V1ImageType];
+
+
 /**
  * 
  * @export
@@ -1769,6 +1836,39 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIGetAccountProfilePicture: async (accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsAPIGetAccountProfilePicture', 'accountId', accountId)
+            const localVarPath = `/accounts/{accountId}/picture`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary List users based on email regex.
          * @param {string} emailContains 
          * @param {number} [limit] 
@@ -1877,6 +1977,45 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             }
 
             const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} accountId 
+         * @param {AccountsAPIUploadAccountProfilePictureRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIUploadAccountProfilePicture: async (accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsAPIUploadAccountProfilePicture', 'accountId', accountId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIUploadAccountProfilePicture', 'body', body)
+            const localVarPath = `/accounts/{accountId}/picture`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -3310,6 +3449,16 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIGetAccountProfilePicture(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetAccountProfilePictureResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIGetAccountProfilePicture(accountId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary List users based on email regex.
          * @param {string} emailContains 
          * @param {number} [limit] 
@@ -3343,6 +3492,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountPasswordResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUpdateAccountPassword(accountId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} accountId 
+         * @param {AccountsAPIUploadAccountProfilePictureRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUploadAccountProfilePicture(accountId, body, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3834,6 +3994,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIGetAccountProfilePicture(accountId: string, options?: any): AxiosPromise<V1GetAccountProfilePictureResponse> {
+            return localVarFp.accountsAPIGetAccountProfilePicture(accountId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary List users based on email regex.
          * @param {string} emailContains 
          * @param {number} [limit] 
@@ -3865,6 +4034,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: any): AxiosPromise<V1UpdateAccountPasswordResponse> {
             return localVarFp.accountsAPIUpdateAccountPassword(accountId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} accountId 
+         * @param {AccountsAPIUploadAccountProfilePictureRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options?: any): AxiosPromise<object> {
+            return localVarFp.accountsAPIUploadAccountProfilePicture(accountId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4339,6 +4518,17 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} accountId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIGetAccountProfilePicture(accountId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIGetAccountProfilePicture(accountId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary List users based on email regex.
      * @param {string} emailContains 
      * @param {number} [limit] 
@@ -4375,6 +4565,18 @@ export class DefaultApi extends BaseAPI {
      */
     public accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).accountsAPIUpdateAccountPassword(accountId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} accountId 
+     * @param {AccountsAPIUploadAccountProfilePictureRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIUploadAccountProfilePicture(accountId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

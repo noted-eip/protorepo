@@ -57,6 +57,16 @@ class AccountsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordResponse.FromString,
                 )
+        self.UploadAccountProfilePicture = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/UploadAccountProfilePicture',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UploadAccountProfilePictureRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UploadAccountProfilePictureResponse.FromString,
+                )
+        self.GetAccountProfilePicture = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/GetAccountProfilePicture',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccountProfilePictureRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccountProfilePictureResponse.FromString,
+                )
         self.ValidateAccount = channel.unary_unary(
                 '/noted.accounts.v1.AccountsAPI/ValidateAccount',
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountRequest.SerializeToString,
@@ -141,6 +151,18 @@ class AccountsAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UploadAccountProfilePicture(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetAccountProfilePicture(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ValidateAccount(self, request, context):
         """Validate account email.
         """
@@ -211,6 +233,16 @@ def add_AccountsAPIServicer_to_server(servicer, server):
                     servicer.UpdateAccountPassword,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordResponse.SerializeToString,
+            ),
+            'UploadAccountProfilePicture': grpc.unary_unary_rpc_method_handler(
+                    servicer.UploadAccountProfilePicture,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UploadAccountProfilePictureRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UploadAccountProfilePictureResponse.SerializeToString,
+            ),
+            'GetAccountProfilePicture': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAccountProfilePicture,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccountProfilePictureRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccountProfilePictureResponse.SerializeToString,
             ),
             'ValidateAccount': grpc.unary_unary_rpc_method_handler(
                     servicer.ValidateAccount,
@@ -378,6 +410,40 @@ class AccountsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/UpdateAccountPassword',
             noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordRequest.SerializeToString,
             noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountPasswordResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UploadAccountProfilePicture(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/UploadAccountProfilePicture',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.UploadAccountProfilePictureRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.UploadAccountProfilePictureResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAccountProfilePicture(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/GetAccountProfilePicture',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccountProfilePictureRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccountProfilePictureResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

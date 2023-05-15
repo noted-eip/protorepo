@@ -17,9 +17,11 @@ Method | HTTP request | Description
 [**accountsAPIForgetAccountPasswordValidateToken**](DefaultApi.md#accountsapiforgetaccountpasswordvalidatetoken) | **POST** /accounts/forget/validate | Compare forgot password token provided by user with the one store in db.
 [**accountsAPIGetAccount**](DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Allows getting an account by ID or searching for one through email.
 [**accountsAPIGetAccount2**](DefaultApi.md#accountsapigetaccount2) | **POST** /search/accounts | Allows getting an account by ID or searching for one through email.
+[**accountsAPIGetAccountProfilePicture**](DefaultApi.md#accountsapigetaccountprofilepicture) | **GET** /accounts/{accountId}/picture | 
 [**accountsAPIListAccounts**](DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [**accountsAPIUpdateAccount**](DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
 [**accountsAPIUpdateAccountPassword**](DefaultApi.md#accountsapiupdateaccountpassword) | **PATCH** /accounts/{accountId}/password | Update account password.
+[**accountsAPIUploadAccountProfilePicture**](DefaultApi.md#accountsapiuploadaccountprofilepicture) | **POST** /accounts/{accountId}/picture | 
 [**accountsAPIValidateAccount**](DefaultApi.md#accountsapivalidateaccount) | **PATCH** /accounts/{accountId}/validate | Validate account email.
 [**groupsAPIAcceptInvite**](DefaultApi.md#groupsapiacceptinvite) | **POST** /groups/{groupId}/invites/{inviteId}/accept | Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
 [**groupsAPICreateGroup**](DefaultApi.md#groupsapicreategroup) | **POST** /groups | Creates a group with a single administrator member (the authenticated user). Must be authenticated.
@@ -384,6 +386,47 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **accountsAPIGetAccountProfilePicture**
+> V1GetAccountProfilePictureResponse accountsAPIGetAccountProfilePicture(accountId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String accountId = accountId_example; // String | 
+
+try {
+    final response = api.accountsAPIGetAccountProfilePicture(accountId);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->accountsAPIGetAccountProfilePicture: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountId** | **String**|  | 
+
+### Return type
+
+[**V1GetAccountProfilePictureResponse**](V1GetAccountProfilePictureResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **accountsAPIListAccounts**
 > V1ListAccountsResponse accountsAPIListAccounts(emailContains, limit, offset)
 
@@ -503,6 +546,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1UpdateAccountPasswordResponse**](V1UpdateAccountPasswordResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **accountsAPIUploadAccountProfilePicture**
+> JsonObject accountsAPIUploadAccountProfilePicture(accountId, body)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String accountId = accountId_example; // String | 
+final AccountsAPIUploadAccountProfilePictureRequest body = ; // AccountsAPIUploadAccountProfilePictureRequest | 
+
+try {
+    final response = api.accountsAPIUploadAccountProfilePicture(accountId, body);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->accountsAPIUploadAccountProfilePicture: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountId** | **String**|  | 
+ **body** | [**AccountsAPIUploadAccountProfilePictureRequest**](AccountsAPIUploadAccountProfilePictureRequest.md)|  | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
 
 ### Authorization
 

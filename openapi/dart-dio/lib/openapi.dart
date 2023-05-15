@@ -12,7 +12,9 @@ export 'package:openapi/src/model/date.dart';
 export 'package:openapi/src/api/default_api.dart';
 
 export 'package:openapi/src/model/accounts_api_update_account_password_request.dart';
+export 'package:openapi/src/model/accounts_api_upload_account_profile_picture_request.dart';
 export 'package:openapi/src/model/accounts_api_validate_account_request.dart';
+export 'package:openapi/src/model/accountsv1_image.dart';
 export 'package:openapi/src/model/block_code.dart';
 export 'package:openapi/src/model/groups_api_send_invite_request.dart';
 export 'package:openapi/src/model/groups_api_update_group_request.dart';
@@ -44,6 +46,7 @@ export 'package:openapi/src/model/v1_forget_account_password_validate_token_requ
 export 'package:openapi/src/model/v1_forget_account_password_validate_token_response.dart';
 export 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 export 'package:openapi/src/model/v1_generate_widgets_response.dart';
+export 'package:openapi/src/model/v1_get_account_profile_picture_response.dart';
 export 'package:openapi/src/model/v1_get_account_request.dart';
 export 'package:openapi/src/model/v1_get_account_response.dart';
 export 'package:openapi/src/model/v1_get_activity_response.dart';
@@ -61,6 +64,7 @@ export 'package:openapi/src/model/v1_group_invite.dart';
 export 'package:openapi/src/model/v1_group_invite_link.dart';
 export 'package:openapi/src/model/v1_group_member.dart';
 export 'package:openapi/src/model/v1_http_error.dart';
+export 'package:openapi/src/model/v1_image_type.dart';
 export 'package:openapi/src/model/v1_image_widget.dart';
 export 'package:openapi/src/model/v1_insert_block_response.dart';
 export 'package:openapi/src/model/v1_list_accounts_response.dart';

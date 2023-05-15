@@ -15,7 +15,9 @@ import 'package:openapi/src/date_serializer.dart';
 import 'package:openapi/src/model/date.dart';
 
 import 'package:openapi/src/model/accounts_api_update_account_password_request.dart';
+import 'package:openapi/src/model/accounts_api_upload_account_profile_picture_request.dart';
 import 'package:openapi/src/model/accounts_api_validate_account_request.dart';
+import 'package:openapi/src/model/accountsv1_image.dart';
 import 'package:openapi/src/model/block_code.dart';
 import 'package:openapi/src/model/groups_api_send_invite_request.dart';
 import 'package:openapi/src/model/groups_api_update_group_request.dart';
@@ -47,6 +49,7 @@ import 'package:openapi/src/model/v1_forget_account_password_validate_token_requ
 import 'package:openapi/src/model/v1_forget_account_password_validate_token_response.dart';
 import 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 import 'package:openapi/src/model/v1_generate_widgets_response.dart';
+import 'package:openapi/src/model/v1_get_account_profile_picture_response.dart';
 import 'package:openapi/src/model/v1_get_account_request.dart';
 import 'package:openapi/src/model/v1_get_account_response.dart';
 import 'package:openapi/src/model/v1_get_activity_response.dart';
@@ -64,6 +67,7 @@ import 'package:openapi/src/model/v1_group_invite.dart';
 import 'package:openapi/src/model/v1_group_invite_link.dart';
 import 'package:openapi/src/model/v1_group_member.dart';
 import 'package:openapi/src/model/v1_http_error.dart';
+import 'package:openapi/src/model/v1_image_type.dart';
 import 'package:openapi/src/model/v1_image_widget.dart';
 import 'package:openapi/src/model/v1_insert_block_response.dart';
 import 'package:openapi/src/model/v1_list_accounts_response.dart';
@@ -94,7 +98,9 @@ part 'serializers.g.dart';
 
 @SerializersFor([
   AccountsAPIUpdateAccountPasswordRequest,
+  AccountsAPIUploadAccountProfilePictureRequest,
   AccountsAPIValidateAccountRequest,
+  Accountsv1Image,
   BlockCode,
   GroupsAPISendInviteRequest,
   GroupsAPIUpdateGroupRequest,
@@ -126,6 +132,7 @@ part 'serializers.g.dart';
   V1ForgetAccountPasswordValidateTokenResponse,
   V1GenerateInviteLinkResponse,
   V1GenerateWidgetsResponse,
+  V1GetAccountProfilePictureResponse,
   V1GetAccountRequest,
   V1GetAccountResponse,
   V1GetActivityResponse,
@@ -143,6 +150,7 @@ part 'serializers.g.dart';
   V1GroupInviteLink,
   V1GroupMember,
   V1HttpError,
+  V1ImageType,
   V1ImageWidget,
   V1InsertBlockResponse,
   V1ListAccountsResponse,
