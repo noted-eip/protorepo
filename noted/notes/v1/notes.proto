@@ -163,7 +163,7 @@ service NotesAPI {
 
     rpc GrantNoteEditPermission(GrantNoteEditPermissionRequest) returns (GrantNoteEditPermissionResponse) {
         option (google.api.http) = {
-            post: "/groups/{group_id}/notes/{note_id}"
+            post: "/groups/{group_id}/notes/{note_id}/permission",
             body: "note"
         };
     }
@@ -266,9 +266,7 @@ message OnAccountDeleteResponse {}
 
 
 message GrantNoteEditPermissionRequest {
-    string email = 1; 
+    string recipient_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
 
-}
-message GrantNoteEditPermissionResponse {
-    Note note = 1 [(google.api.field_behavior) = REQUIRED];
-}
+message GrantNoteEditPermissionResponse {}
