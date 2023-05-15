@@ -132,7 +132,6 @@ service AccountsAPI {
     rpc GetAccountProfilePicture(GetAccountProfilePictureRequest) returns (GetAccountProfilePictureResponse) {
         option (google.api.http) = {
             get: "/accounts/{account_id}/picture",
-            body: "*",
         };
     }
 
