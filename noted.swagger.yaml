@@ -1013,6 +1013,37 @@ paths:
             $ref: '#/definitions/v1Block'
             required:
               - block
+  /groups/{groupId}/notes/{noteId}/permission:
+    post:
+      operationId: NotesAPI_GrantNoteEditPermission
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GrantNoteEditPermissionResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              recipientAccountId:
+                type: string
+            required:
+              - recipientAccountId
   /groups/{groupId}/notes/{noteId}/widgets:
     get:
       operationId: RecommendationsAPI_GenerateWidgets
@@ -1502,6 +1533,8 @@ definitions:
         $ref: '#/definitions/v1Note'
     required:
       - note
+  v1GrantNoteEditPermissionResponse:
+    type: object
   v1Group:
     type: object
     properties:

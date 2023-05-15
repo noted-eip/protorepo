@@ -48,6 +48,7 @@ Method | HTTP request | Description
 [**notesAPIDeleteBlock**](DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
 [**notesAPIDeleteNote**](DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author.
 [**notesAPIGetNote**](DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author.
+[**notesAPIGrantNoteEditPermission**](DefaultApi.md#notesapigrantnoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
 [**notesAPIInsertBlock**](DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author.
 [**notesAPIListNotes**](DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIListNotes2**](DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
@@ -1729,6 +1730,51 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIGrantNoteEditPermission**
+> JsonObject notesAPIGrantNoteEditPermission(groupId, noteId, body)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+final GroupsAPISendInviteRequest body = ; // GroupsAPISendInviteRequest | 
+
+try {
+    final response = api.notesAPIGrantNoteEditPermission(groupId, noteId, body);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->notesAPIGrantNoteEditPermission: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+ **body** | [**GroupsAPISendInviteRequest**](GroupsAPISendInviteRequest.md)|  | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

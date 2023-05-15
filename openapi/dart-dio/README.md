@@ -103,6 +103,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteBlock**](doc/DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteNote**](doc/DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGetNote**](doc/DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGrantNoteEditPermission**](doc/DefaultApi.md#notesapigrantnoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIInsertBlock**](doc/DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes**](doc/DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes2**](doc/DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.

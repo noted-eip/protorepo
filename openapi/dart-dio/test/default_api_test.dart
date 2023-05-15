@@ -272,6 +272,11 @@ void main() {
       // TODO
     });
 
+    //Future<JsonObject> notesAPIGrantNoteEditPermission(String groupId, String noteId, GroupsAPISendInviteRequest body) async
+    test('test notesAPIGrantNoteEditPermission', () async {
+      // TODO
+    });
+
     // Must be author.
     //
     //Future<V1InsertBlockResponse> notesAPIInsertBlock(String groupId, String noteId, NotesAPIInsertBlockRequest body) async

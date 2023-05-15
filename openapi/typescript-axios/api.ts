@@ -3078,6 +3078,49 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {GroupsAPISendInviteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIGrantNoteEditPermission: async (groupId: string, noteId: string, body: GroupsAPISendInviteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIGrantNoteEditPermission', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIGrantNoteEditPermission', 'noteId', noteId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('notesAPIGrantNoteEditPermission', 'body', body)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/permission`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be author.
          * @param {string} groupId 
          * @param {string} noteId 
@@ -3824,6 +3867,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {GroupsAPISendInviteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIGrantNoteEditPermission(groupId: string, noteId: string, body: GroupsAPISendInviteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIGrantNoteEditPermission(groupId, noteId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Must be author.
          * @param {string} groupId 
          * @param {string} noteId 
@@ -4335,6 +4390,17 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         notesAPIGetNote(groupId: string, noteId: string, options?: any): AxiosPromise<V1GetNoteResponse> {
             return localVarFp.notesAPIGetNote(groupId, noteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {GroupsAPISendInviteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIGrantNoteEditPermission(groupId: string, noteId: string, body: GroupsAPISendInviteRequest, options?: any): AxiosPromise<object> {
+            return localVarFp.notesAPIGrantNoteEditPermission(groupId, noteId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4920,6 +4986,19 @@ export class DefaultApi extends BaseAPI {
      */
     public notesAPIGetNote(groupId: string, noteId: string, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPIGetNote(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {GroupsAPISendInviteRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIGrantNoteEditPermission(groupId: string, noteId: string, body: GroupsAPISendInviteRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIGrantNoteEditPermission(groupId, noteId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -19,16 +19,17 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	NotesAPI_CreateNote_FullMethodName      = "/noted.notes.v1.NotesAPI/CreateNote"
-	NotesAPI_GetNote_FullMethodName         = "/noted.notes.v1.NotesAPI/GetNote"
-	NotesAPI_UpdateNote_FullMethodName      = "/noted.notes.v1.NotesAPI/UpdateNote"
-	NotesAPI_DeleteNote_FullMethodName      = "/noted.notes.v1.NotesAPI/DeleteNote"
-	NotesAPI_ListNotes_FullMethodName       = "/noted.notes.v1.NotesAPI/ListNotes"
-	NotesAPI_InsertBlock_FullMethodName     = "/noted.notes.v1.NotesAPI/InsertBlock"
-	NotesAPI_UpdateBlock_FullMethodName     = "/noted.notes.v1.NotesAPI/UpdateBlock"
-	NotesAPI_DeleteBlock_FullMethodName     = "/noted.notes.v1.NotesAPI/DeleteBlock"
-	NotesAPI_ExportNote_FullMethodName      = "/noted.notes.v1.NotesAPI/ExportNote"
-	NotesAPI_OnAccountDelete_FullMethodName = "/noted.notes.v1.NotesAPI/OnAccountDelete"
+	NotesAPI_CreateNote_FullMethodName              = "/noted.notes.v1.NotesAPI/CreateNote"
+	NotesAPI_GetNote_FullMethodName                 = "/noted.notes.v1.NotesAPI/GetNote"
+	NotesAPI_UpdateNote_FullMethodName              = "/noted.notes.v1.NotesAPI/UpdateNote"
+	NotesAPI_DeleteNote_FullMethodName              = "/noted.notes.v1.NotesAPI/DeleteNote"
+	NotesAPI_ListNotes_FullMethodName               = "/noted.notes.v1.NotesAPI/ListNotes"
+	NotesAPI_InsertBlock_FullMethodName             = "/noted.notes.v1.NotesAPI/InsertBlock"
+	NotesAPI_UpdateBlock_FullMethodName             = "/noted.notes.v1.NotesAPI/UpdateBlock"
+	NotesAPI_DeleteBlock_FullMethodName             = "/noted.notes.v1.NotesAPI/DeleteBlock"
+	NotesAPI_ExportNote_FullMethodName              = "/noted.notes.v1.NotesAPI/ExportNote"
+	NotesAPI_OnAccountDelete_FullMethodName         = "/noted.notes.v1.NotesAPI/OnAccountDelete"
+	NotesAPI_GrantNoteEditPermission_FullMethodName = "/noted.notes.v1.NotesAPI/GrantNoteEditPermission"
 )
 
 // NotesAPIClient is the client API for NotesAPI service.
@@ -57,6 +58,7 @@ type NotesAPIClient interface {
 	ExportNote(ctx context.Context, in *ExportNoteRequest, opts ...grpc.CallOption) (*ExportNoteResponse, error)
 	// Must be account owner.
 	OnAccountDelete(ctx context.Context, in *OnAccountDeleteRequest, opts ...grpc.CallOption) (*OnAccountDeleteResponse, error)
+	GrantNoteEditPermission(ctx context.Context, in *GrantNoteEditPermissionRequest, opts ...grpc.CallOption) (*GrantNoteEditPermissionResponse, error)
 }
 
 type notesAPIClient struct {
@@ -157,6 +159,15 @@ func (c *notesAPIClient) OnAccountDelete(ctx context.Context, in *OnAccountDelet
 	return out, nil
 }
 
+func (c *notesAPIClient) GrantNoteEditPermission(ctx context.Context, in *GrantNoteEditPermissionRequest, opts ...grpc.CallOption) (*GrantNoteEditPermissionResponse, error) {
+	out := new(GrantNoteEditPermissionResponse)
+	err := c.cc.Invoke(ctx, NotesAPI_GrantNoteEditPermission_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NotesAPIServer is the server API for NotesAPI service.
 // All implementations must embed UnimplementedNotesAPIServer
 // for forward compatibility
@@ -183,6 +194,7 @@ type NotesAPIServer interface {
 	ExportNote(context.Context, *ExportNoteRequest) (*ExportNoteResponse, error)
 	// Must be account owner.
 	OnAccountDelete(context.Context, *OnAccountDeleteRequest) (*OnAccountDeleteResponse, error)
+	GrantNoteEditPermission(context.Context, *GrantNoteEditPermissionRequest) (*GrantNoteEditPermissionResponse, error)
 	mustEmbedUnimplementedNotesAPIServer()
 }
 
@@ -219,6 +231,9 @@ func (UnimplementedNotesAPIServer) ExportNote(context.Context, *ExportNoteReques
 }
 func (UnimplementedNotesAPIServer) OnAccountDelete(context.Context, *OnAccountDeleteRequest) (*OnAccountDeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method OnAccountDelete not implemented")
+}
+func (UnimplementedNotesAPIServer) GrantNoteEditPermission(context.Context, *GrantNoteEditPermissionRequest) (*GrantNoteEditPermissionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GrantNoteEditPermission not implemented")
 }
 func (UnimplementedNotesAPIServer) mustEmbedUnimplementedNotesAPIServer() {}
 
@@ -413,6 +428,24 @@ func _NotesAPI_OnAccountDelete_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NotesAPI_GrantNoteEditPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GrantNoteEditPermissionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotesAPIServer).GrantNoteEditPermission(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NotesAPI_GrantNoteEditPermission_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotesAPIServer).GrantNoteEditPermission(ctx, req.(*GrantNoteEditPermissionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NotesAPI_ServiceDesc is the grpc.ServiceDesc for NotesAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -459,6 +492,10 @@ var NotesAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "OnAccountDelete",
 			Handler:    _NotesAPI_OnAccountDelete_Handler,
+		},
+		{
+			MethodName: "GrantNoteEditPermission",
+			Handler:    _NotesAPI_GrantNoteEditPermission_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
