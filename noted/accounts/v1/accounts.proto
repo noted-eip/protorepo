@@ -122,6 +122,20 @@ service AccountsAPI {
         };
     }
 
+    rpc UploadAccountProfilePicture(UploadAccountProfilePictureRequest) returns (UploadAccountProfilePictureResponse) {
+        option (google.api.http) = {
+            post: "/accounts/{account_id}/picture",
+            body: "*",
+        };
+    }
+
+    rpc GetAccountProfilePicture(GetAccountProfilePictureRequest) returns (GetAccountProfilePictureResponse) {
+        option (google.api.http) = {
+            get: "/accounts/{account_id}/picture",
+            body: "*",
+        };
+    }
+
     // Validate account email.
     rpc ValidateAccount(ValidateAccountRequest) returns (ValidateAccountResponse) {
         option (google.api.http) = {
