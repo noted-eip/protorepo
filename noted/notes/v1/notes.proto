@@ -161,6 +161,13 @@ service NotesAPI {
     // Must be account owner.
     rpc OnAccountDelete(OnAccountDeleteRequest) returns (OnAccountDeleteResponse) {}
 
+    rpc GrantNoteEditPermission(GrantNoteEditPermissionRequest) returns (GrantNoteEditPermissionResponse) {
+        option (google.api.http) = {
+            post: "/groups/{group_id}/notes/{note_id}/permission",
+            body: "note"
+        };
+    }
+
 }
 
 message GetNoteRequest {
@@ -256,3 +263,9 @@ message ExportNoteResponse {
 message OnAccountDeleteRequest {}
 
 message OnAccountDeleteResponse {}
+
+message GrantNoteEditPermissionRequest {
+    string recipient_account_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GrantNoteEditPermissionResponse {}
