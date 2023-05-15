@@ -264,9 +264,8 @@ message OnAccountDeleteRequest {}
 
 message OnAccountDeleteResponse {}
 
-
 message GrantNoteEditPermissionRequest {
-    string recipient_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string recipient_account_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message GrantNoteEditPermissionResponse {}
