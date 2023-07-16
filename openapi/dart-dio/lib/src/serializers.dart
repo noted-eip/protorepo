@@ -58,6 +58,7 @@ import 'package:openapi/src/model/v1_get_conversation_response.dart';
 import 'package:openapi/src/model/v1_get_group_response.dart';
 import 'package:openapi/src/model/v1_get_invite_link_response.dart';
 import 'package:openapi/src/model/v1_get_invite_response.dart';
+import 'package:openapi/src/model/v1_get_mails_from_ids_response.dart';
 import 'package:openapi/src/model/v1_get_member_response.dart';
 import 'package:openapi/src/model/v1_get_note_response.dart';
 import 'package:openapi/src/model/v1_group.dart';
@@ -141,6 +142,7 @@ part 'serializers.g.dart';
   V1GetGroupResponse,
   V1GetInviteLinkResponse,
   V1GetInviteResponse,
+  V1GetMailsFromIDsResponse,
   V1GetMemberResponse,
   V1GetNoteResponse,
   V1Group,

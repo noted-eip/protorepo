@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	AccountsAPI_CreateAccount_FullMethodName                      = "/noted.accounts.v1.AccountsAPI/CreateAccount"
 	AccountsAPI_GetAccount_FullMethodName                         = "/noted.accounts.v1.AccountsAPI/GetAccount"
+	AccountsAPI_GetMailsFromIDs_FullMethodName                    = "/noted.accounts.v1.AccountsAPI/GetMailsFromIDs"
 	AccountsAPI_UpdateAccount_FullMethodName                      = "/noted.accounts.v1.AccountsAPI/UpdateAccount"
 	AccountsAPI_DeleteAccount_FullMethodName                      = "/noted.accounts.v1.AccountsAPI/DeleteAccount"
 	AccountsAPI_ListAccounts_FullMethodName                       = "/noted.accounts.v1.AccountsAPI/ListAccounts"
@@ -43,6 +44,8 @@ type AccountsAPIClient interface {
 	CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...grpc.CallOption) (*CreateAccountResponse, error)
 	// Allows getting an account by ID or searching for one through email.
 	GetAccount(ctx context.Context, in *GetAccountRequest, opts ...grpc.CallOption) (*GetAccountResponse, error)
+	// Must be called by services only
+	GetMailsFromIDs(ctx context.Context, in *GetMailsFromIDsRequest, opts ...grpc.CallOption) (*GetMailsFromIDsResponse, error)
 	// Must be account owner. Can only update `account.name`.
 	UpdateAccount(ctx context.Context, in *UpdateAccountRequest, opts ...grpc.CallOption) (*UpdateAccountResponse, error)
 	// Must be account owner.
@@ -87,6 +90,15 @@ func (c *accountsAPIClient) CreateAccount(ctx context.Context, in *CreateAccount
 func (c *accountsAPIClient) GetAccount(ctx context.Context, in *GetAccountRequest, opts ...grpc.CallOption) (*GetAccountResponse, error) {
 	out := new(GetAccountResponse)
 	err := c.cc.Invoke(ctx, AccountsAPI_GetAccount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountsAPIClient) GetMailsFromIDs(ctx context.Context, in *GetMailsFromIDsRequest, opts ...grpc.CallOption) (*GetMailsFromIDsResponse, error) {
+	out := new(GetMailsFromIDsResponse)
+	err := c.cc.Invoke(ctx, AccountsAPI_GetMailsFromIDs_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -209,6 +221,8 @@ type AccountsAPIServer interface {
 	CreateAccount(context.Context, *CreateAccountRequest) (*CreateAccountResponse, error)
 	// Allows getting an account by ID or searching for one through email.
 	GetAccount(context.Context, *GetAccountRequest) (*GetAccountResponse, error)
+	// Must be called by services only
+	GetMailsFromIDs(context.Context, *GetMailsFromIDsRequest) (*GetMailsFromIDsResponse, error)
 	// Must be account owner. Can only update `account.name`.
 	UpdateAccount(context.Context, *UpdateAccountRequest) (*UpdateAccountResponse, error)
 	// Must be account owner.
@@ -243,6 +257,9 @@ func (UnimplementedAccountsAPIServer) CreateAccount(context.Context, *CreateAcco
 }
 func (UnimplementedAccountsAPIServer) GetAccount(context.Context, *GetAccountRequest) (*GetAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAccount not implemented")
+}
+func (UnimplementedAccountsAPIServer) GetMailsFromIDs(context.Context, *GetMailsFromIDsRequest) (*GetMailsFromIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMailsFromIDs not implemented")
 }
 func (UnimplementedAccountsAPIServer) UpdateAccount(context.Context, *UpdateAccountRequest) (*UpdateAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAccount not implemented")
@@ -325,6 +342,24 @@ func _AccountsAPI_GetAccount_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AccountsAPIServer).GetAccount(ctx, req.(*GetAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountsAPI_GetMailsFromIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMailsFromIDsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountsAPIServer).GetMailsFromIDs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountsAPI_GetMailsFromIDs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountsAPIServer).GetMailsFromIDs(ctx, req.(*GetMailsFromIDsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -559,6 +594,10 @@ var AccountsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAccount",
 			Handler:    _AccountsAPI_GetAccount_Handler,
+		},
+		{
+			MethodName: "GetMailsFromIDs",
+			Handler:    _AccountsAPI_GetMailsFromIDs_Handler,
 		},
 		{
 			MethodName: "UpdateAccount",
