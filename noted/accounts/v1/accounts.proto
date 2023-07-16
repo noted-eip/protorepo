@@ -76,6 +76,9 @@ service AccountsAPI {
         };
     }
 
+    // Must be called by services only
+    rpc GetMailsFromIDs(GetMailsFromIDsRequest) returns (GetMailsFromIDsResponse) {}
+
     // Must be account owner. Can only update `account.name`.
     rpc UpdateAccount(UpdateAccountRequest) returns (UpdateAccountResponse) {
         option (google.api.http) = {
@@ -180,6 +183,14 @@ message GetAccountRequest {
 
 message GetAccountResponse {
     Account account = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetMailsFromIDsRequest {
+    repeated string accounts_id = 1;
+}
+
+message GetMailsFromIDsResponse {
+    repeated string emails = 1;
 }
 
 message UpdateAccountRequest {
