@@ -55,6 +55,7 @@ export 'package:openapi/src/model/v1_get_conversation_response.dart';
 export 'package:openapi/src/model/v1_get_group_response.dart';
 export 'package:openapi/src/model/v1_get_invite_link_response.dart';
 export 'package:openapi/src/model/v1_get_invite_response.dart';
+export 'package:openapi/src/model/v1_get_mails_from_ids_response.dart';
 export 'package:openapi/src/model/v1_get_member_response.dart';
 export 'package:openapi/src/model/v1_get_note_response.dart';
 export 'package:openapi/src/model/v1_group.dart';

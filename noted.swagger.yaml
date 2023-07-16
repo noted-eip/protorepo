@@ -1519,6 +1519,13 @@ definitions:
         $ref: '#/definitions/v1GroupInvite'
     required:
       - invite
+  v1GetMailsFromIDsResponse:
+    type: object
+    properties:
+      emails:
+        type: array
+        items:
+          type: string
   v1GetMemberResponse:
     type: object
     properties:

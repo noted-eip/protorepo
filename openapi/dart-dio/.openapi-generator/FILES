@@ -47,6 +47,7 @@ doc/V1GetConversationResponse.md
 doc/V1GetGroupResponse.md
 doc/V1GetInviteLinkResponse.md
 doc/V1GetInviteResponse.md
+doc/V1GetMailsFromIDsResponse.md
 doc/V1GetMemberResponse.md
 doc/V1GetNoteResponse.md
 doc/V1Group.md
@@ -137,6 +138,7 @@ lib/src/model/v1_get_conversation_response.dart
 lib/src/model/v1_get_group_response.dart
 lib/src/model/v1_get_invite_link_response.dart
 lib/src/model/v1_get_invite_response.dart
+lib/src/model/v1_get_mails_from_ids_response.dart
 lib/src/model/v1_get_member_response.dart
 lib/src/model/v1_get_note_response.dart
 lib/src/model/v1_group.dart
@@ -219,6 +221,7 @@ test/v1_get_conversation_response_test.dart
 test/v1_get_group_response_test.dart
 test/v1_get_invite_link_response_test.dart
 test/v1_get_invite_response_test.dart
+test/v1_get_mails_from_ids_response_test.dart
 test/v1_get_member_response_test.dart
 test/v1_get_note_response_test.dart
 test/v1_group_activity_test.dart

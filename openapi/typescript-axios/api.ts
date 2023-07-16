@@ -832,6 +832,19 @@ export interface V1GetInviteResponse {
 /**
  * 
  * @export
+ * @interface V1GetMailsFromIDsResponse
+ */
+export interface V1GetMailsFromIDsResponse {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof V1GetMailsFromIDsResponse
+     */
+    'emails'?: Array<string>;
+}
+/**
+ * 
+ * @export
  * @interface V1GetMemberResponse
  */
 export interface V1GetMemberResponse {

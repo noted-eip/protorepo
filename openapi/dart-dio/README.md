@@ -52,7 +52,7 @@ final V1AuthenticateRequest body = ; // V1AuthenticateRequest |
 try {
     final response = await api.accountsAPIAuthenticate(body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print("Exception when calling DefaultApi->accountsAPIAuthenticate: $e\n");
 }
 
@@ -158,6 +158,7 @@ Class | Method | HTTP request | Description
  - [V1GetGroupResponse](doc/V1GetGroupResponse.md)
  - [V1GetInviteLinkResponse](doc/V1GetInviteLinkResponse.md)
  - [V1GetInviteResponse](doc/V1GetInviteResponse.md)
+ - [V1GetMailsFromIDsResponse](doc/V1GetMailsFromIDsResponse.md)
  - [V1GetMemberResponse](doc/V1GetMemberResponse.md)
  - [V1GetNoteResponse](doc/V1GetNoteResponse.md)
  - [V1Group](doc/V1Group.md)

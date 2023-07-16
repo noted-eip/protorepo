@@ -27,6 +27,11 @@ class AccountsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccountRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccountResponse.FromString,
                 )
+        self.GetMailsFromIDs = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/GetMailsFromIDs',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetMailsFromIDsRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetMailsFromIDsResponse.FromString,
+                )
         self.UpdateAccount = channel.unary_unary(
                 '/noted.accounts.v1.AccountsAPI/UpdateAccount',
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.UpdateAccountRequest.SerializeToString,
@@ -104,6 +109,13 @@ class AccountsAPIServicer(object):
 
     def GetAccount(self, request, context):
         """Allows getting an account by ID or searching for one through email.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMailsFromIDs(self, request, context):
+        """Must be called by services only
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -203,6 +215,11 @@ def add_AccountsAPIServicer_to_server(servicer, server):
                     servicer.GetAccount,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccountRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccountResponse.SerializeToString,
+            ),
+            'GetMailsFromIDs': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMailsFromIDs,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetMailsFromIDsRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetMailsFromIDsResponse.SerializeToString,
             ),
             'UpdateAccount': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateAccount,
@@ -308,6 +325,23 @@ class AccountsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/GetAccount',
             noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccountRequest.SerializeToString,
             noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccountResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetMailsFromIDs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/GetMailsFromIDs',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.GetMailsFromIDsRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.GetMailsFromIDsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

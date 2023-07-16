@@ -72,7 +72,7 @@ final V1AuthenticateRequest body = ; // V1AuthenticateRequest |
 try {
     final response = api.accountsAPIAuthenticate(body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIAuthenticate: $e\n');
 }
 ```
@@ -113,7 +113,7 @@ final V1AuthenticateGoogleRequest body = ; // V1AuthenticateGoogleRequest |
 try {
     final response = api.accountsAPIAuthenticateGoogle(body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIAuthenticateGoogle: $e\n');
 }
 ```
@@ -154,7 +154,7 @@ final V1CreateAccountRequest body = ; // V1CreateAccountRequest |
 try {
     final response = api.accountsAPICreateAccount(body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPICreateAccount: $e\n');
 }
 ```
@@ -195,7 +195,7 @@ final String accountId = accountId_example; // String |
 try {
     final response = api.accountsAPIDeleteAccount(accountId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIDeleteAccount: $e\n');
 }
 ```
@@ -236,7 +236,7 @@ final V1ForgetAccountPasswordRequest body = ; // V1ForgetAccountPasswordRequest 
 try {
     final response = api.accountsAPIForgetAccountPassword(body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIForgetAccountPassword: $e\n');
 }
 ```
@@ -277,7 +277,7 @@ final V1ForgetAccountPasswordValidateTokenRequest body = ; // V1ForgetAccountPas
 try {
     final response = api.accountsAPIForgetAccountPasswordValidateToken(body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIForgetAccountPasswordValidateToken: $e\n');
 }
 ```
@@ -319,7 +319,7 @@ final String email = email_example; // String |
 try {
     final response = api.accountsAPIGetAccount(accountId, email);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIGetAccount: $e\n');
 }
 ```
@@ -361,7 +361,7 @@ final V1GetAccountRequest body = ; // V1GetAccountRequest |
 try {
     final response = api.accountsAPIGetAccount2(body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIGetAccount2: $e\n');
 }
 ```
@@ -402,7 +402,7 @@ final String accountId = accountId_example; // String |
 try {
     final response = api.accountsAPIGetAccountProfilePicture(accountId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIGetAccountProfilePicture: $e\n');
 }
 ```
@@ -445,7 +445,7 @@ final int offset = 56; // int |
 try {
     final response = api.accountsAPIListAccounts(emailContains, limit, offset);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIListAccounts: $e\n');
 }
 ```
@@ -489,7 +489,7 @@ final V1Account account = ; // V1Account |
 try {
     final response = api.accountsAPIUpdateAccount(accountId, account);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIUpdateAccount: $e\n');
 }
 ```
@@ -532,7 +532,7 @@ final AccountsAPIUpdateAccountPasswordRequest body = ; // AccountsAPIUpdateAccou
 try {
     final response = api.accountsAPIUpdateAccountPassword(accountId, body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIUpdateAccountPassword: $e\n');
 }
 ```
@@ -575,7 +575,7 @@ final AccountsAPIUploadAccountProfilePictureRequest body = ; // AccountsAPIUploa
 try {
     final response = api.accountsAPIUploadAccountProfilePicture(accountId, body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIUploadAccountProfilePicture: $e\n');
 }
 ```
@@ -618,7 +618,7 @@ final AccountsAPIValidateAccountRequest body = ; // AccountsAPIValidateAccountRe
 try {
     final response = api.accountsAPIValidateAccount(accountId, body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIValidateAccount: $e\n');
 }
 ```
@@ -661,7 +661,7 @@ final String inviteId = inviteId_example; // String |
 try {
     final response = api.groupsAPIAcceptInvite(groupId, inviteId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIAcceptInvite: $e\n');
 }
 ```
@@ -703,7 +703,7 @@ final V1CreateGroupRequest body = ; // V1CreateGroupRequest |
 try {
     final response = api.groupsAPICreateGroup(body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPICreateGroup: $e\n');
 }
 ```
@@ -744,7 +744,7 @@ final String groupId = groupId_example; // String |
 try {
     final response = api.groupsAPIDeleteGroup(groupId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIDeleteGroup: $e\n');
 }
 ```
@@ -786,7 +786,7 @@ final String inviteId = inviteId_example; // String |
 try {
     final response = api.groupsAPIDenyInvite(groupId, inviteId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIDenyInvite: $e\n');
 }
 ```
@@ -828,7 +828,7 @@ final String groupId = groupId_example; // String |
 try {
     final response = api.groupsAPIGenerateInviteLink(groupId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIGenerateInviteLink: $e\n');
 }
 ```
@@ -870,7 +870,7 @@ final String activityId = activityId_example; // String |
 try {
     final response = api.groupsAPIGetActivity(groupId, activityId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIGetActivity: $e\n');
 }
 ```
@@ -913,7 +913,7 @@ final String inviteLinkCode = inviteLinkCode_example; // String | If the request
 try {
     final response = api.groupsAPIGetGroup(groupId, inviteLinkCode);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIGetGroup: $e\n');
 }
 ```
@@ -956,7 +956,7 @@ final String inviteId = inviteId_example; // String |
 try {
     final response = api.groupsAPIGetInvite(groupId, inviteId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIGetInvite: $e\n');
 }
 ```
@@ -999,7 +999,7 @@ final String inviteLinkCode = inviteLinkCode_example; // String |
 try {
     final response = api.groupsAPIGetInviteLink(groupId, inviteLinkCode);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIGetInviteLink: $e\n');
 }
 ```
@@ -1042,7 +1042,7 @@ final String accountId = accountId_example; // String |
 try {
     final response = api.groupsAPIGetMember(groupId, accountId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIGetMember: $e\n');
 }
 ```
@@ -1086,7 +1086,7 @@ final int offset = 789; // int |
 try {
     final response = api.groupsAPIListActivities(groupId, limit, offset);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIListActivities: $e\n');
 }
 ```
@@ -1131,7 +1131,7 @@ final int offset = 56; // int |
 try {
     final response = api.groupsAPIListGroups(accountId, limit, offset);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIListGroups: $e\n');
 }
 ```
@@ -1178,7 +1178,7 @@ final int offset = 56; // int |
 try {
     final response = api.groupsAPIListInvites(senderAccountId, recipientAccountId, groupId, limit, offset);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIListInvites: $e\n');
 }
 ```
@@ -1227,7 +1227,7 @@ final int offset = 56; // int |
 try {
     final response = api.groupsAPIListInvites2(groupId, senderAccountId, recipientAccountId, limit, offset);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIListInvites2: $e\n');
 }
 ```
@@ -1273,7 +1273,7 @@ final String accountId = accountId_example; // String |
 try {
     final response = api.groupsAPIRemoveMember(groupId, accountId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIRemoveMember: $e\n');
 }
 ```
@@ -1316,7 +1316,7 @@ final String inviteId = inviteId_example; // String |
 try {
     final response = api.groupsAPIRevokeInvite(groupId, inviteId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIRevokeInvite: $e\n');
 }
 ```
@@ -1359,7 +1359,7 @@ final String inviteLinkCode = inviteLinkCode_example; // String |
 try {
     final response = api.groupsAPIRevokeInviteLink(groupId, inviteLinkCode);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIRevokeInviteLink: $e\n');
 }
 ```
@@ -1402,7 +1402,7 @@ final GroupsAPISendInviteRequest body = ; // GroupsAPISendInviteRequest |
 try {
     final response = api.groupsAPISendInvite(groupId, body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPISendInvite: $e\n');
 }
 ```
@@ -1445,7 +1445,7 @@ final GroupsAPIUpdateGroupRequest body = ; // GroupsAPIUpdateGroupRequest |
 try {
     final response = api.groupsAPIUpdateGroup(groupId, body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIUpdateGroup: $e\n');
 }
 ```
@@ -1489,7 +1489,7 @@ final V1GroupMember member = ; // V1GroupMember |
 try {
     final response = api.groupsAPIUpdateMember(groupId, accountId, member);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIUpdateMember: $e\n');
 }
 ```
@@ -1533,7 +1533,7 @@ final String inviteLinkCode = inviteLinkCode_example; // String |
 try {
     final response = api.groupsAPIUseInviteLink(groupId, inviteLinkCode);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIUseInviteLink: $e\n');
 }
 ```
@@ -1576,7 +1576,7 @@ final NotesAPICreateNoteRequest body = ; // NotesAPICreateNoteRequest |
 try {
     final response = api.notesAPICreateNote(groupId, body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->notesAPICreateNote: $e\n');
 }
 ```
@@ -1620,7 +1620,7 @@ final String blockId = blockId_example; // String |
 try {
     final response = api.notesAPIDeleteBlock(groupId, noteId, blockId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->notesAPIDeleteBlock: $e\n');
 }
 ```
@@ -1664,7 +1664,7 @@ final String noteId = noteId_example; // String |
 try {
     final response = api.notesAPIDeleteNote(groupId, noteId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->notesAPIDeleteNote: $e\n');
 }
 ```
@@ -1707,7 +1707,7 @@ final String noteId = noteId_example; // String |
 try {
     final response = api.notesAPIGetNote(groupId, noteId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->notesAPIGetNote: $e\n');
 }
 ```
@@ -1751,7 +1751,7 @@ final GroupsAPISendInviteRequest body = ; // GroupsAPISendInviteRequest |
 try {
     final response = api.notesAPIGrantNoteEditPermission(groupId, noteId, body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->notesAPIGrantNoteEditPermission: $e\n');
 }
 ```
@@ -1796,7 +1796,7 @@ final NotesAPIInsertBlockRequest body = ; // NotesAPIInsertBlockRequest |
 try {
     final response = api.notesAPIInsertBlock(groupId, noteId, body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->notesAPIInsertBlock: $e\n');
 }
 ```
@@ -1842,7 +1842,7 @@ final int offset = 56; // int |
 try {
     final response = api.notesAPIListNotes(authorAccountId, groupId, limit, offset);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->notesAPIListNotes: $e\n');
 }
 ```
@@ -1889,7 +1889,7 @@ final int offset = 56; // int |
 try {
     final response = api.notesAPIListNotes2(groupId, authorAccountId, limit, offset);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->notesAPIListNotes2: $e\n');
 }
 ```
@@ -1936,7 +1936,7 @@ final V1Block block = ; // V1Block |
 try {
     final response = api.notesAPIUpdateBlock(groupId, noteId, blockId, block);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->notesAPIUpdateBlock: $e\n');
 }
 ```
@@ -1982,7 +1982,7 @@ final V1Note note = ; // V1Note |
 try {
     final response = api.notesAPIUpdateNote(groupId, noteId, note);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->notesAPIUpdateNote: $e\n');
 }
 ```
@@ -2026,7 +2026,7 @@ final String noteId = noteId_example; // String |
 try {
     final response = api.recommendationsAPIGenerateWidgets(groupId, noteId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling DefaultApi->recommendationsAPIGenerateWidgets: $e\n');
 }
 ```
