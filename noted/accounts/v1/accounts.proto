@@ -162,7 +162,7 @@ message GetAccountResponse {
 }
 
 message GetMailsFromIDsRequest {
-    repeated string accountsId = 1;
+    repeated string account_ids = 1;
 }
 
 message GetMailsFromIDsResponse {
