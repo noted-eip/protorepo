@@ -82,8 +82,6 @@ message Block {
         string math = 18;
     }
 
-    uint32 index = 19;
-
     reserved 7, 8, 9, 10, 11, 12, 13, 14;
 }
 
@@ -148,6 +146,13 @@ service NotesAPI {
         option (google.api.http) = {
             patch: "/groups/{group_id}/notes/{note_id}/blocks/{block_id}",
             body: "block",
+        };
+    }
+    // Must be author.
+    rpc UpdateBlockIndex(UpdateBlockIndexRequest) returns (UpdateBlockIndexResponse) {
+        option (google.api.http) = {
+            post: "/groups/{group_id}/notes/{note_id}/blocks/{block_id}/index",
+            body: "*",
         };
     }
     // Must be author.
@@ -240,6 +245,17 @@ message UpdateBlockRequest {
 }
 
 message UpdateBlockResponse {
+    Block block = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateBlockIndexRequest {
+    string group_id = 1;
+    string note_id = 2;
+    string block_id = 3;
+    uint32 index = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateBlockIndexResponse {
     Block block = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
