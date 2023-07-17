@@ -187,6 +187,19 @@ export interface NotesAPIInsertBlockRequest {
 /**
  * 
  * @export
+ * @interface NotesAPIUpdateBlockIndexRequest
+ */
+export interface NotesAPIUpdateBlockIndexRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof NotesAPIUpdateBlockIndexRequest
+     */
+    'index': number;
+}
+/**
+ * 
+ * @export
  * @interface V1AcceptInviteResponse
  */
 export interface V1AcceptInviteResponse {
@@ -340,12 +353,6 @@ export interface V1Block {
      * @memberof V1Block
      */
     'math'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof V1Block
-     */
-    'index'?: number;
 }
 
 
@@ -1403,6 +1410,19 @@ export interface V1UpdateAccountResponse {
      * @memberof V1UpdateAccountResponse
      */
     'account': V1Account;
+}
+/**
+ * 
+ * @export
+ * @interface V1UpdateBlockIndexResponse
+ */
+export interface V1UpdateBlockIndexResponse {
+    /**
+     * 
+     * @type {V1Block}
+     * @memberof V1UpdateBlockIndexResponse
+     */
+    'block': V1Block;
 }
 /**
  * 
@@ -3331,6 +3351,54 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {NotesAPIUpdateBlockIndexRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIUpdateBlockIndex: async (groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIUpdateBlockIndex', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIUpdateBlockIndex', 'noteId', noteId)
+            // verify required parameter 'blockId' is not null or undefined
+            assertParamExists('notesAPIUpdateBlockIndex', 'blockId', blockId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('notesAPIUpdateBlockIndex', 'body', body)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/blocks/{blockId}/index`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)))
+                .replace(`{${"blockId"}}`, encodeURIComponent(String(blockId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be author. Can only update `title` or `blocks`.
          * @param {string} groupId 
          * @param {string} noteId 
@@ -3953,6 +4021,20 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {NotesAPIUpdateBlockIndexRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateBlockIndexResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateBlockIndex(groupId, noteId, blockId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Must be author. Can only update `title` or `blocks`.
          * @param {string} groupId 
          * @param {string} noteId 
@@ -4471,6 +4553,19 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         notesAPIUpdateBlock(groupId: string, noteId: string, blockId: string, block: V1Block, options?: any): AxiosPromise<V1UpdateBlockResponse> {
             return localVarFp.notesAPIUpdateBlock(groupId, noteId, blockId, block, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be author.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {NotesAPIUpdateBlockIndexRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options?: any): AxiosPromise<V1UpdateBlockIndexResponse> {
+            return localVarFp.notesAPIUpdateBlockIndex(groupId, noteId, blockId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5077,6 +5172,21 @@ export class DefaultApi extends BaseAPI {
      */
     public notesAPIUpdateBlock(groupId: string, noteId: string, blockId: string, block: V1Block, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPIUpdateBlock(groupId, noteId, blockId, block, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be author.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {string} blockId 
+     * @param {NotesAPIUpdateBlockIndexRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIUpdateBlockIndex(groupId, noteId, blockId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

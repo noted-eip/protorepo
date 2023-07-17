@@ -23,6 +23,7 @@ import 'package:openapi/src/model/groups_api_send_invite_request.dart';
 import 'package:openapi/src/model/groups_api_update_group_request.dart';
 import 'package:openapi/src/model/notes_api_create_note_request.dart';
 import 'package:openapi/src/model/notes_api_insert_block_request.dart';
+import 'package:openapi/src/model/notes_api_update_block_index_request.dart';
 import 'package:openapi/src/model/v1_accept_invite_response.dart';
 import 'package:openapi/src/model/v1_account.dart';
 import 'package:openapi/src/model/v1_authenticate_google_request.dart';
@@ -85,6 +86,7 @@ import 'package:openapi/src/model/v1_send_invite_response.dart';
 import 'package:openapi/src/model/v1_summarize_response.dart';
 import 'package:openapi/src/model/v1_update_account_password_response.dart';
 import 'package:openapi/src/model/v1_update_account_response.dart';
+import 'package:openapi/src/model/v1_update_block_index_response.dart';
 import 'package:openapi/src/model/v1_update_block_response.dart';
 import 'package:openapi/src/model/v1_update_conversation_message_response.dart';
 import 'package:openapi/src/model/v1_update_conversation_response.dart';
@@ -107,6 +109,7 @@ part 'serializers.g.dart';
   GroupsAPIUpdateGroupRequest,
   NotesAPICreateNoteRequest,
   NotesAPIInsertBlockRequest,
+  NotesAPIUpdateBlockIndexRequest,
   V1AcceptInviteResponse,
   V1Account,
   V1AuthenticateGoogleRequest,
@@ -169,6 +172,7 @@ part 'serializers.g.dart';
   V1SummarizeResponse,
   V1UpdateAccountPasswordResponse,
   V1UpdateAccountResponse,
+  V1UpdateBlockIndexResponse,
   V1UpdateBlockResponse,
   V1UpdateConversationMessageResponse,
   V1UpdateConversationResponse,

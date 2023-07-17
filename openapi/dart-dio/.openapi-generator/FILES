@@ -12,6 +12,7 @@ doc/GroupsAPISendInviteRequest.md
 doc/GroupsAPIUpdateGroupRequest.md
 doc/NotesAPICreateNoteRequest.md
 doc/NotesAPIInsertBlockRequest.md
+doc/NotesAPIUpdateBlockIndexRequest.md
 doc/V1AcceptInviteResponse.md
 doc/V1Account.md
 doc/V1AuthenticateGoogleRequest.md
@@ -74,6 +75,7 @@ doc/V1SendInviteResponse.md
 doc/V1SummarizeResponse.md
 doc/V1UpdateAccountPasswordResponse.md
 doc/V1UpdateAccountResponse.md
+doc/V1UpdateBlockIndexResponse.md
 doc/V1UpdateBlockResponse.md
 doc/V1UpdateConversationMessageResponse.md
 doc/V1UpdateConversationResponse.md
@@ -103,6 +105,7 @@ lib/src/model/groups_api_send_invite_request.dart
 lib/src/model/groups_api_update_group_request.dart
 lib/src/model/notes_api_create_note_request.dart
 lib/src/model/notes_api_insert_block_request.dart
+lib/src/model/notes_api_update_block_index_request.dart
 lib/src/model/v1_accept_invite_response.dart
 lib/src/model/v1_account.dart
 lib/src/model/v1_authenticate_google_request.dart
@@ -165,6 +168,7 @@ lib/src/model/v1_send_invite_response.dart
 lib/src/model/v1_summarize_response.dart
 lib/src/model/v1_update_account_password_response.dart
 lib/src/model/v1_update_account_response.dart
+lib/src/model/v1_update_block_index_response.dart
 lib/src/model/v1_update_block_response.dart
 lib/src/model/v1_update_conversation_message_response.dart
 lib/src/model/v1_update_conversation_response.dart
@@ -186,6 +190,7 @@ test/groups_api_send_invite_request_test.dart
 test/groups_api_update_group_request_test.dart
 test/notes_api_create_note_request_test.dart
 test/notes_api_insert_block_request_test.dart
+test/notes_api_update_block_index_request_test.dart
 test/v1_accept_invite_response_test.dart
 test/v1_account_test.dart
 test/v1_authenticate_google_request_test.dart
@@ -248,6 +253,7 @@ test/v1_send_invite_response_test.dart
 test/v1_summarize_response_test.dart
 test/v1_update_account_password_response_test.dart
 test/v1_update_account_response_test.dart
+test/v1_update_block_index_response_test.dart
 test/v1_update_block_response_test.dart
 test/v1_update_conversation_message_response_test.dart
 test/v1_update_conversation_response_test.dart

@@ -52,10 +52,5 @@ void main() {
       // TODO
     });
 
-    // int index
-    test('to test the property `index`', () async {
-      // TODO
-    });
-
   });
 }

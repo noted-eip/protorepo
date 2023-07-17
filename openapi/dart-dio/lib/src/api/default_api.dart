@@ -16,6 +16,7 @@ import 'package:openapi/src/model/groups_api_send_invite_request.dart';
 import 'package:openapi/src/model/groups_api_update_group_request.dart';
 import 'package:openapi/src/model/notes_api_create_note_request.dart';
 import 'package:openapi/src/model/notes_api_insert_block_request.dart';
+import 'package:openapi/src/model/notes_api_update_block_index_request.dart';
 import 'package:openapi/src/model/v1_accept_invite_response.dart';
 import 'package:openapi/src/model/v1_account.dart';
 import 'package:openapi/src/model/v1_authenticate_google_request.dart';
@@ -55,6 +56,7 @@ import 'package:openapi/src/model/v1_note.dart';
 import 'package:openapi/src/model/v1_send_invite_response.dart';
 import 'package:openapi/src/model/v1_update_account_password_response.dart';
 import 'package:openapi/src/model/v1_update_account_response.dart';
+import 'package:openapi/src/model/v1_update_block_index_response.dart';
 import 'package:openapi/src/model/v1_update_block_response.dart';
 import 'package:openapi/src/model/v1_update_group_response.dart';
 import 'package:openapi/src/model/v1_update_member_response.dart';
@@ -3884,6 +3886,107 @@ class DefaultApi {
     }
 
     return Response<V1UpdateBlockResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Must be author.
+  /// 
+  ///
+  /// Parameters:
+  /// * [groupId] 
+  /// * [noteId] 
+  /// * [blockId] 
+  /// * [body] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [V1UpdateBlockIndexResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<V1UpdateBlockIndexResponse>> notesAPIUpdateBlockIndex({ 
+    required String groupId,
+    required String noteId,
+    required String blockId,
+    required NotesAPIUpdateBlockIndexRequest body,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/groups/{groupId}/notes/{noteId}/blocks/{blockId}/index'.replaceAll('{' r'groupId' '}', encodeQueryParameter(_serializers, groupId, const FullType(String)).toString()).replaceAll('{' r'noteId' '}', encodeQueryParameter(_serializers, noteId, const FullType(String)).toString()).replaceAll('{' r'blockId' '}', encodeQueryParameter(_serializers, blockId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(NotesAPIUpdateBlockIndexRequest);
+      _bodyData = _serializers.serialize(body, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    V1UpdateBlockIndexResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1UpdateBlockIndexResponse),
+      ) as V1UpdateBlockIndexResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<V1UpdateBlockIndexResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

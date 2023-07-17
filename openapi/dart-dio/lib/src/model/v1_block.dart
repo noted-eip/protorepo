@@ -23,7 +23,6 @@ part 'v1_block.g.dart';
 /// * [image] 
 /// * [code] 
 /// * [math] 
-/// * [index] 
 @BuiltValue()
 abstract class V1Block implements Built<V1Block, V1BlockBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -53,9 +52,6 @@ abstract class V1Block implements Built<V1Block, V1BlockBuilder> {
 
   @BuiltValueField(wireName: r'math')
   String? get math;
-
-  @BuiltValueField(wireName: r'index')
-  int? get index;
 
   V1Block._();
 
@@ -137,13 +133,6 @@ class _$V1BlockSerializer implements PrimitiveSerializer<V1Block> {
       yield serializers.serialize(
         object.math,
         specifiedType: const FullType(String),
-      );
-    }
-    if (object.index != null) {
-      yield r'index';
-      yield serializers.serialize(
-        object.index,
-        specifiedType: const FullType(int),
       );
     }
   }
@@ -231,13 +220,6 @@ class _$V1BlockSerializer implements PrimitiveSerializer<V1Block> {
             specifiedType: const FullType(String),
           ) as String;
           result.math = valueDes;
-          break;
-        case r'index':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.index = valueDes;
           break;
         default:
           unhandled.add(key);

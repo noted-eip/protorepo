@@ -305,6 +305,13 @@ void main() {
       // TODO
     });
 
+    // Must be author.
+    //
+    //Future<V1UpdateBlockIndexResponse> notesAPIUpdateBlockIndex(String groupId, String noteId, String blockId, NotesAPIUpdateBlockIndexRequest body) async
+    test('test notesAPIUpdateBlockIndex', () async {
+      // TODO
+    });
+
     // Must be author. Can only update `title` or `blocks`.
     //
     //Future<V1UpdateNoteResponse> notesAPIUpdateNote(String groupId, String noteId, V1Note note) async

@@ -26,6 +26,7 @@ const (
 	NotesAPI_ListNotes_FullMethodName               = "/noted.notes.v1.NotesAPI/ListNotes"
 	NotesAPI_InsertBlock_FullMethodName             = "/noted.notes.v1.NotesAPI/InsertBlock"
 	NotesAPI_UpdateBlock_FullMethodName             = "/noted.notes.v1.NotesAPI/UpdateBlock"
+	NotesAPI_UpdateBlockIndex_FullMethodName        = "/noted.notes.v1.NotesAPI/UpdateBlockIndex"
 	NotesAPI_DeleteBlock_FullMethodName             = "/noted.notes.v1.NotesAPI/DeleteBlock"
 	NotesAPI_ExportNote_FullMethodName              = "/noted.notes.v1.NotesAPI/ExportNote"
 	NotesAPI_OnAccountDelete_FullMethodName         = "/noted.notes.v1.NotesAPI/OnAccountDelete"
@@ -52,6 +53,8 @@ type NotesAPIClient interface {
 	InsertBlock(ctx context.Context, in *InsertBlockRequest, opts ...grpc.CallOption) (*InsertBlockResponse, error)
 	// Must be author.
 	UpdateBlock(ctx context.Context, in *UpdateBlockRequest, opts ...grpc.CallOption) (*UpdateBlockResponse, error)
+	// Must be author.
+	UpdateBlockIndex(ctx context.Context, in *UpdateBlockIndexRequest, opts ...grpc.CallOption) (*UpdateBlockIndexResponse, error)
 	// Must be author.
 	DeleteBlock(ctx context.Context, in *DeleteBlockRequest, opts ...grpc.CallOption) (*DeleteBlockResponse, error)
 	// Must be group member.
@@ -132,6 +135,15 @@ func (c *notesAPIClient) UpdateBlock(ctx context.Context, in *UpdateBlockRequest
 	return out, nil
 }
 
+func (c *notesAPIClient) UpdateBlockIndex(ctx context.Context, in *UpdateBlockIndexRequest, opts ...grpc.CallOption) (*UpdateBlockIndexResponse, error) {
+	out := new(UpdateBlockIndexResponse)
+	err := c.cc.Invoke(ctx, NotesAPI_UpdateBlockIndex_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *notesAPIClient) DeleteBlock(ctx context.Context, in *DeleteBlockRequest, opts ...grpc.CallOption) (*DeleteBlockResponse, error) {
 	out := new(DeleteBlockResponse)
 	err := c.cc.Invoke(ctx, NotesAPI_DeleteBlock_FullMethodName, in, out, opts...)
@@ -189,6 +201,8 @@ type NotesAPIServer interface {
 	// Must be author.
 	UpdateBlock(context.Context, *UpdateBlockRequest) (*UpdateBlockResponse, error)
 	// Must be author.
+	UpdateBlockIndex(context.Context, *UpdateBlockIndexRequest) (*UpdateBlockIndexResponse, error)
+	// Must be author.
 	DeleteBlock(context.Context, *DeleteBlockRequest) (*DeleteBlockResponse, error)
 	// Must be group member.
 	ExportNote(context.Context, *ExportNoteRequest) (*ExportNoteResponse, error)
@@ -222,6 +236,9 @@ func (UnimplementedNotesAPIServer) InsertBlock(context.Context, *InsertBlockRequ
 }
 func (UnimplementedNotesAPIServer) UpdateBlock(context.Context, *UpdateBlockRequest) (*UpdateBlockResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBlock not implemented")
+}
+func (UnimplementedNotesAPIServer) UpdateBlockIndex(context.Context, *UpdateBlockIndexRequest) (*UpdateBlockIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBlockIndex not implemented")
 }
 func (UnimplementedNotesAPIServer) DeleteBlock(context.Context, *DeleteBlockRequest) (*DeleteBlockResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBlock not implemented")
@@ -374,6 +391,24 @@ func _NotesAPI_UpdateBlock_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NotesAPI_UpdateBlockIndex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateBlockIndexRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotesAPIServer).UpdateBlockIndex(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NotesAPI_UpdateBlockIndex_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotesAPIServer).UpdateBlockIndex(ctx, req.(*UpdateBlockIndexRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _NotesAPI_DeleteBlock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteBlockRequest)
 	if err := dec(in); err != nil {
@@ -480,6 +515,10 @@ var NotesAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateBlock",
 			Handler:    _NotesAPI_UpdateBlock_Handler,
+		},
+		{
+			MethodName: "UpdateBlockIndex",
+			Handler:    _NotesAPI_UpdateBlockIndex_Handler,
 		},
 		{
 			MethodName: "DeleteBlock",

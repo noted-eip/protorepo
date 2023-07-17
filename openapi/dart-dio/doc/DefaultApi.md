@@ -53,6 +53,7 @@ Method | HTTP request | Description
 [**notesAPIListNotes**](DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIListNotes2**](DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIUpdateBlock**](DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
+[**notesAPIUpdateBlockIndex**](DefaultApi.md#notesapiupdateblockindex) | **POST** /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index | Must be author.
 [**notesAPIUpdateNote**](DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60; or &#x60;blocks&#x60;.
 [**recommendationsAPIGenerateWidgets**](DefaultApi.md#recommendationsapigeneratewidgets) | **GET** /groups/{groupId}/notes/{noteId}/widgets | 
 
@@ -1953,6 +1954,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1UpdateBlockResponse**](V1UpdateBlockResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIUpdateBlockIndex**
+> V1UpdateBlockIndexResponse notesAPIUpdateBlockIndex(groupId, noteId, blockId, body)
+
+Must be author.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+final String blockId = blockId_example; // String | 
+final NotesAPIUpdateBlockIndexRequest body = ; // NotesAPIUpdateBlockIndexRequest | 
+
+try {
+    final response = api.notesAPIUpdateBlockIndex(groupId, noteId, blockId, body);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->notesAPIUpdateBlockIndex: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+ **blockId** | **String**|  | 
+ **body** | [**NotesAPIUpdateBlockIndexRequest**](NotesAPIUpdateBlockIndexRequest.md)|  | 
+
+### Return type
+
+[**V1UpdateBlockIndexResponse**](V1UpdateBlockIndexResponse.md)
 
 ### Authorization
 

@@ -49,6 +49,11 @@ class NotesAPIStub(object):
                 request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.UpdateBlockRequest.SerializeToString,
                 response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.UpdateBlockResponse.FromString,
                 )
+        self.UpdateBlockIndex = channel.unary_unary(
+                '/noted.notes.v1.NotesAPI/UpdateBlockIndex',
+                request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.UpdateBlockIndexRequest.SerializeToString,
+                response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.UpdateBlockIndexResponse.FromString,
+                )
         self.DeleteBlock = channel.unary_unary(
                 '/noted.notes.v1.NotesAPI/DeleteBlock',
                 request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.DeleteBlockRequest.SerializeToString,
@@ -125,6 +130,13 @@ class NotesAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UpdateBlockIndex(self, request, context):
+        """Must be author.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def DeleteBlock(self, request, context):
         """Must be author.
         """
@@ -189,6 +201,11 @@ def add_NotesAPIServicer_to_server(servicer, server):
                     servicer.UpdateBlock,
                     request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.UpdateBlockRequest.FromString,
                     response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.UpdateBlockResponse.SerializeToString,
+            ),
+            'UpdateBlockIndex': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateBlockIndex,
+                    request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.UpdateBlockIndexRequest.FromString,
+                    response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.UpdateBlockIndexResponse.SerializeToString,
             ),
             'DeleteBlock': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteBlock,
@@ -336,6 +353,23 @@ class NotesAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/UpdateBlock',
             noted_dot_notes_dot_v1_dot_notes__pb2.UpdateBlockRequest.SerializeToString,
             noted_dot_notes_dot_v1_dot_notes__pb2.UpdateBlockResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateBlockIndex(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/UpdateBlockIndex',
+            noted_dot_notes_dot_v1_dot_notes__pb2.UpdateBlockIndexRequest.SerializeToString,
+            noted_dot_notes_dot_v1_dot_notes__pb2.UpdateBlockIndexResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

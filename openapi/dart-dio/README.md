@@ -108,6 +108,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes**](doc/DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes2**](doc/DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlock**](doc/DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlockIndex**](doc/DefaultApi.md#notesapiupdateblockindex) | **POST** /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index | Must be author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateNote**](doc/DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60; or &#x60;blocks&#x60;.
 [*DefaultApi*](doc/DefaultApi.md) | [**recommendationsAPIGenerateWidgets**](doc/DefaultApi.md#recommendationsapigeneratewidgets) | **GET** /groups/{groupId}/notes/{noteId}/widgets | 
 
@@ -123,6 +124,7 @@ Class | Method | HTTP request | Description
  - [GroupsAPIUpdateGroupRequest](doc/GroupsAPIUpdateGroupRequest.md)
  - [NotesAPICreateNoteRequest](doc/NotesAPICreateNoteRequest.md)
  - [NotesAPIInsertBlockRequest](doc/NotesAPIInsertBlockRequest.md)
+ - [NotesAPIUpdateBlockIndexRequest](doc/NotesAPIUpdateBlockIndexRequest.md)
  - [V1AcceptInviteResponse](doc/V1AcceptInviteResponse.md)
  - [V1Account](doc/V1Account.md)
  - [V1AuthenticateGoogleRequest](doc/V1AuthenticateGoogleRequest.md)
@@ -185,6 +187,7 @@ Class | Method | HTTP request | Description
  - [V1SummarizeResponse](doc/V1SummarizeResponse.md)
  - [V1UpdateAccountPasswordResponse](doc/V1UpdateAccountPasswordResponse.md)
  - [V1UpdateAccountResponse](doc/V1UpdateAccountResponse.md)
+ - [V1UpdateBlockIndexResponse](doc/V1UpdateBlockIndexResponse.md)
  - [V1UpdateBlockResponse](doc/V1UpdateBlockResponse.md)
  - [V1UpdateConversationMessageResponse](doc/V1UpdateConversationMessageResponse.md)
  - [V1UpdateConversationResponse](doc/V1UpdateConversationResponse.md)
