@@ -1248,6 +1248,9 @@ definitions:
         $ref: '#/definitions/BlockCode'
       math:
         type: string
+      index:
+        type: integer
+        format: int64
     required:
       - id
       - type

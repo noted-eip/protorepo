@@ -340,6 +340,12 @@ export interface V1Block {
      * @memberof V1Block
      */
     'math'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof V1Block
+     */
+    'index'?: number;
 }
 
 
