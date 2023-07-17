@@ -252,7 +252,7 @@ message UpdateBlockIndexRequest {
     string group_id = 1;
     string note_id = 2;
     string block_id = 3;
-    uint32 index = 3 [(google.api.field_behavior) = REQUIRED];
+    uint32 index = 4 [(google.api.field_behavior) = REQUIRED];
 }
 
 message UpdateBlockIndexResponse {
