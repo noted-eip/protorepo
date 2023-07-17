@@ -6,6 +6,8 @@ The accounts service is part of Noted “micro services” architecture.
 
 This service handles user-related tasks such as but not limited to accounts CRUD, authentification and listing
 
+You can find more information about how to run the service by looking at the README.md 
+
 # Data Scheme
 
 ### Account model
