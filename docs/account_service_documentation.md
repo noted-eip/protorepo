@@ -180,7 +180,7 @@ Response the function’s response structure
 
 Signature the function name
 
-Finally we are using [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/main), It reads Protobuf service definitions and generates a reverse-proxy server which translates a RESTful HTTP API into gRPC
+Finally we are using [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/main), It reads Protobuf service definitions and generates a reverse-proxy server which translates a RESTful HTTP API into gRPC [grpc-documentation](https://grpc.io/docs/languages/go/quickstart/)
 
 Endpoints are using validator package to ensure the Request is valid:
 
@@ -303,7 +303,7 @@ rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {
 
 - Authenticate the user
 - Validate ListAccountRequest
-- List accounts between the limit and the offset provided
+- return accounts array between the limit and the offset provided
 
 ```protobuf
 message ListAccountsRequest {
