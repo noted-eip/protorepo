@@ -38,6 +38,7 @@ doc/V1ForgetAccountPasswordResponse.md
 doc/V1ForgetAccountPasswordValidateTokenRequest.md
 doc/V1ForgetAccountPasswordValidateTokenResponse.md
 doc/V1GenerateInviteLinkResponse.md
+doc/V1GenerateQuizResponse.md
 doc/V1GenerateWidgetsResponse.md
 doc/V1GetAccountProfilePictureResponse.md
 doc/V1GetAccountRequest.md
@@ -69,6 +70,8 @@ doc/V1ListInvitesResponse.md
 doc/V1ListNotesResponse.md
 doc/V1Note.md
 doc/V1NoteExportFormat.md
+doc/V1Quiz.md
+doc/V1QuizQuestion.md
 doc/V1Recipient.md
 doc/V1SendConversationMessageResponse.md
 doc/V1SendInviteResponse.md
@@ -131,6 +134,7 @@ lib/src/model/v1_forget_account_password_response.dart
 lib/src/model/v1_forget_account_password_validate_token_request.dart
 lib/src/model/v1_forget_account_password_validate_token_response.dart
 lib/src/model/v1_generate_invite_link_response.dart
+lib/src/model/v1_generate_quiz_response.dart
 lib/src/model/v1_generate_widgets_response.dart
 lib/src/model/v1_get_account_profile_picture_response.dart
 lib/src/model/v1_get_account_request.dart
@@ -162,6 +166,8 @@ lib/src/model/v1_list_invites_response.dart
 lib/src/model/v1_list_notes_response.dart
 lib/src/model/v1_note.dart
 lib/src/model/v1_note_export_format.dart
+lib/src/model/v1_quiz.dart
+lib/src/model/v1_quiz_question.dart
 lib/src/model/v1_recipient.dart
 lib/src/model/v1_send_conversation_message_response.dart
 lib/src/model/v1_send_invite_response.dart
@@ -216,6 +222,7 @@ test/v1_forget_account_password_response_test.dart
 test/v1_forget_account_password_validate_token_request_test.dart
 test/v1_forget_account_password_validate_token_response_test.dart
 test/v1_generate_invite_link_response_test.dart
+test/v1_generate_quiz_response_test.dart
 test/v1_generate_widgets_response_test.dart
 test/v1_get_account_profile_picture_response_test.dart
 test/v1_get_account_request_test.dart
@@ -247,6 +254,8 @@ test/v1_list_invites_response_test.dart
 test/v1_list_notes_response_test.dart
 test/v1_note_export_format_test.dart
 test/v1_note_test.dart
+test/v1_quiz_question_test.dart
+test/v1_quiz_test.dart
 test/v1_recipient_test.dart
 test/v1_send_conversation_message_response_test.dart
 test/v1_send_invite_response_test.dart

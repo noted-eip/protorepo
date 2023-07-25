@@ -49,6 +49,7 @@ import 'package:openapi/src/model/v1_forget_account_password_response.dart';
 import 'package:openapi/src/model/v1_forget_account_password_validate_token_request.dart';
 import 'package:openapi/src/model/v1_forget_account_password_validate_token_response.dart';
 import 'package:openapi/src/model/v1_generate_invite_link_response.dart';
+import 'package:openapi/src/model/v1_generate_quiz_response.dart';
 import 'package:openapi/src/model/v1_generate_widgets_response.dart';
 import 'package:openapi/src/model/v1_get_account_profile_picture_response.dart';
 import 'package:openapi/src/model/v1_get_account_request.dart';
@@ -80,6 +81,8 @@ import 'package:openapi/src/model/v1_list_invites_response.dart';
 import 'package:openapi/src/model/v1_list_notes_response.dart';
 import 'package:openapi/src/model/v1_note.dart';
 import 'package:openapi/src/model/v1_note_export_format.dart';
+import 'package:openapi/src/model/v1_quiz.dart';
+import 'package:openapi/src/model/v1_quiz_question.dart';
 import 'package:openapi/src/model/v1_recipient.dart';
 import 'package:openapi/src/model/v1_send_conversation_message_response.dart';
 import 'package:openapi/src/model/v1_send_invite_response.dart';
@@ -135,6 +138,7 @@ part 'serializers.g.dart';
   V1ForgetAccountPasswordValidateTokenRequest,
   V1ForgetAccountPasswordValidateTokenResponse,
   V1GenerateInviteLinkResponse,
+  V1GenerateQuizResponse,
   V1GenerateWidgetsResponse,
   V1GetAccountProfilePictureResponse,
   V1GetAccountRequest,
@@ -166,6 +170,8 @@ part 'serializers.g.dart';
   V1ListNotesResponse,
   V1Note,
   V1NoteExportFormat,
+  V1Quiz,
+  V1QuizQuestion,
   V1Recipient,
   V1SendConversationMessageResponse,
   V1SendInviteResponse,

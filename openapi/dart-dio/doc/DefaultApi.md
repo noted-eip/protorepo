@@ -47,6 +47,7 @@ Method | HTTP request | Description
 [**notesAPICreateNote**](DefaultApi.md#notesapicreatenote) | **POST** /groups/{groupId}/notes | Must be group member, author_account_id defaults to the user making the request.
 [**notesAPIDeleteBlock**](DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
 [**notesAPIDeleteNote**](DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author.
+[**notesAPIGenerateQuiz**](DefaultApi.md#notesapigeneratequiz) | **GET** /groups/{groupId}/notes/{noteId}/quiz | 
 [**notesAPIGetNote**](DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author.
 [**notesAPIGrantNoteEditPermission**](DefaultApi.md#notesapigrantnoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
 [**notesAPIInsertBlock**](DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author.
@@ -1680,6 +1681,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIGenerateQuiz**
+> V1GenerateQuizResponse notesAPIGenerateQuiz(groupId, noteId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+
+try {
+    final response = api.notesAPIGenerateQuiz(groupId, noteId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->notesAPIGenerateQuiz: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+
+### Return type
+
+[**V1GenerateQuizResponse**](V1GenerateQuizResponse.md)
 
 ### Authorization
 

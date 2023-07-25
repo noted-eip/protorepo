@@ -265,6 +265,11 @@ void main() {
       // TODO
     });
 
+    //Future<V1GenerateQuizResponse> notesAPIGenerateQuiz(String groupId, String noteId) async
+    test('test notesAPIGenerateQuiz', () async {
+      // TODO
+    });
+
     // Must be group member or author.
     //
     //Future<V1GetNoteResponse> notesAPIGetNote(String groupId, String noteId) async

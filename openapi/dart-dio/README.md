@@ -102,6 +102,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPICreateNote**](doc/DefaultApi.md#notesapicreatenote) | **POST** /groups/{groupId}/notes | Must be group member, author_account_id defaults to the user making the request.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteBlock**](doc/DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteNote**](doc/DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGenerateQuiz**](doc/DefaultApi.md#notesapigeneratequiz) | **GET** /groups/{groupId}/notes/{noteId}/quiz | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGetNote**](doc/DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGrantNoteEditPermission**](doc/DefaultApi.md#notesapigrantnoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIInsertBlock**](doc/DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author.
@@ -150,6 +151,7 @@ Class | Method | HTTP request | Description
  - [V1ForgetAccountPasswordValidateTokenRequest](doc/V1ForgetAccountPasswordValidateTokenRequest.md)
  - [V1ForgetAccountPasswordValidateTokenResponse](doc/V1ForgetAccountPasswordValidateTokenResponse.md)
  - [V1GenerateInviteLinkResponse](doc/V1GenerateInviteLinkResponse.md)
+ - [V1GenerateQuizResponse](doc/V1GenerateQuizResponse.md)
  - [V1GenerateWidgetsResponse](doc/V1GenerateWidgetsResponse.md)
  - [V1GetAccountProfilePictureResponse](doc/V1GetAccountProfilePictureResponse.md)
  - [V1GetAccountRequest](doc/V1GetAccountRequest.md)
@@ -181,6 +183,8 @@ Class | Method | HTTP request | Description
  - [V1ListNotesResponse](doc/V1ListNotesResponse.md)
  - [V1Note](doc/V1Note.md)
  - [V1NoteExportFormat](doc/V1NoteExportFormat.md)
+ - [V1Quiz](doc/V1Quiz.md)
+ - [V1QuizQuestion](doc/V1QuizQuestion.md)
  - [V1Recipient](doc/V1Recipient.md)
  - [V1SendConversationMessageResponse](doc/V1SendConversationMessageResponse.md)
  - [V1SendInviteResponse](doc/V1SendInviteResponse.md)
