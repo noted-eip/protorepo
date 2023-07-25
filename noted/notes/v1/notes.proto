@@ -85,6 +85,16 @@ message Block {
     reserved 7, 8, 9, 10, 11, 12, 13, 14;
 }
 
+message QuizQuestion {
+    string question = 1;
+    repeated string answers = 2;
+    repeated string solutions = 3;
+}
+
+message Quiz {
+    repeated QuizQuestion = 1;
+}
+
 enum NoteExportFormat {
     NOTE_EXPORT_FORMAT_INVALID = 0;
     NOTE_EXPORT_FORMAT_MARKDOWN = 1;
@@ -172,6 +182,12 @@ service NotesAPI {
         option (google.api.http) = {
             post: "/groups/{group_id}/notes/{note_id}/permission",
             body: "*"
+        };
+    }
+
+    rpc GenerateQuiz(GenerateQuizRequest) returns (GenerateQuizResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/notes/{note_id}/quiz"
         };
     }
 
@@ -289,3 +305,12 @@ message GrantNoteEditPermissionRequest {
 }
 
 message GrantNoteEditPermissionResponse {}
+
+message GenerateQuizRequest {
+    string group_id = 1;
+    string note_id = 2;
+}
+
+message GenerateQuizResponse {
+    Quiz quiz = 1;
+}
