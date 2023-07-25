@@ -92,7 +92,7 @@ message QuizQuestion {
 }
 
 message Quiz {
-    repeated QuizQuestion = 1;
+    repeated QuizQuestion questions = 1;
 }
 
 enum NoteExportFormat {
