@@ -308,7 +308,7 @@ message ChangeNoteEditPermissionRequest {
         ACTION_GRANT = 1; 
         ACTION_REMOVE = 2;
     }
-    Type type = 4;
+    Action type = 4;
 }
 
 message ChangeNoteEditPermissionResponse {}
