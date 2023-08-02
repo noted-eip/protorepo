@@ -178,7 +178,7 @@ service NotesAPI {
     // Must be account owner.
     rpc OnAccountDelete(OnAccountDeleteRequest) returns (OnAccountDeleteResponse) {}
 
-    rpc GrantNoteEditPermission(GrantNoteEditPermissionRequest) returns (GrantNoteEditPermissionResponse) {
+    rpc ChangeNoteEditPermission(ChangeNoteEditPermissionRequest) returns (ChangeNoteEditPermissionResponse) {
         option (google.api.http) = {
             post: "/groups/{group_id}/notes/{note_id}/permission",
             body: "*"
@@ -298,13 +298,19 @@ message OnAccountDeleteRequest {}
 
 message OnAccountDeleteResponse {}
 
-message GrantNoteEditPermissionRequest {
+message ChangeNoteEditPermissionRequest {
     string group_id = 1;
     string note_id = 2;
     string recipient_account_id = 3 [(google.api.field_behavior) = REQUIRED];
+    
+    enum Type {
+        GRANT = 0; 
+        REMOVE = 1;
+    }
+    Type type = 4;
 }
 
-message GrantNoteEditPermissionResponse {}
+message ChangeNoteEditPermissionResponse {}
 
 message GenerateQuizRequest {
     string group_id = 1;
