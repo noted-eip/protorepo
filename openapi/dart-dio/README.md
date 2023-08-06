@@ -99,12 +99,12 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUpdateGroup**](doc/DefaultApi.md#groupsapiupdategroup) | **PATCH** /groups/{groupId} | Must be group administrator.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUpdateMember**](doc/DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUseInviteLink**](doc/DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIChangeNoteEditPermission**](doc/DefaultApi.md#notesapichangenoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPICreateNote**](doc/DefaultApi.md#notesapicreatenote) | **POST** /groups/{groupId}/notes | Must be group member, author_account_id defaults to the user making the request.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteBlock**](doc/DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteNote**](doc/DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGenerateQuiz**](doc/DefaultApi.md#notesapigeneratequiz) | **GET** /groups/{groupId}/notes/{noteId}/quiz | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGetNote**](doc/DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author.
-[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGrantNoteEditPermission**](doc/DefaultApi.md#notesapigrantnoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIInsertBlock**](doc/DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes**](doc/DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes2**](doc/DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
@@ -121,8 +121,10 @@ Class | Method | HTTP request | Description
  - [AccountsAPIValidateAccountRequest](doc/AccountsAPIValidateAccountRequest.md)
  - [Accountsv1Image](doc/Accountsv1Image.md)
  - [BlockCode](doc/BlockCode.md)
+ - [ChangeNoteEditPermissionRequestAction](doc/ChangeNoteEditPermissionRequestAction.md)
  - [GroupsAPISendInviteRequest](doc/GroupsAPISendInviteRequest.md)
  - [GroupsAPIUpdateGroupRequest](doc/GroupsAPIUpdateGroupRequest.md)
+ - [NotesAPIChangeNoteEditPermissionRequest](doc/NotesAPIChangeNoteEditPermissionRequest.md)
  - [NotesAPICreateNoteRequest](doc/NotesAPICreateNoteRequest.md)
  - [NotesAPIInsertBlockRequest](doc/NotesAPIInsertBlockRequest.md)
  - [NotesAPIUpdateBlockIndexRequest](doc/NotesAPIUpdateBlockIndexRequest.md)

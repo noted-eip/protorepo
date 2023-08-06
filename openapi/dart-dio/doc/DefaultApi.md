@@ -44,12 +44,12 @@ Method | HTTP request | Description
 [**groupsAPIUpdateGroup**](DefaultApi.md#groupsapiupdategroup) | **PATCH** /groups/{groupId} | Must be group administrator.
 [**groupsAPIUpdateMember**](DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
 [**groupsAPIUseInviteLink**](DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
+[**notesAPIChangeNoteEditPermission**](DefaultApi.md#notesapichangenoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
 [**notesAPICreateNote**](DefaultApi.md#notesapicreatenote) | **POST** /groups/{groupId}/notes | Must be group member, author_account_id defaults to the user making the request.
 [**notesAPIDeleteBlock**](DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
 [**notesAPIDeleteNote**](DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author.
 [**notesAPIGenerateQuiz**](DefaultApi.md#notesapigeneratequiz) | **GET** /groups/{groupId}/notes/{noteId}/quiz | 
 [**notesAPIGetNote**](DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author.
-[**notesAPIGrantNoteEditPermission**](DefaultApi.md#notesapigrantnoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
 [**notesAPIInsertBlock**](DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author.
 [**notesAPIListNotes**](DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIListNotes2**](DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
@@ -1562,6 +1562,51 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **notesAPIChangeNoteEditPermission**
+> JsonObject notesAPIChangeNoteEditPermission(groupId, noteId, body)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+final NotesAPIChangeNoteEditPermissionRequest body = ; // NotesAPIChangeNoteEditPermissionRequest | 
+
+try {
+    final response = api.notesAPIChangeNoteEditPermission(groupId, noteId, body);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->notesAPIChangeNoteEditPermission: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+ **body** | [**NotesAPIChangeNoteEditPermissionRequest**](NotesAPIChangeNoteEditPermissionRequest.md)|  | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **notesAPICreateNote**
 > V1CreateNoteResponse notesAPICreateNote(groupId, body)
 
@@ -1775,51 +1820,6 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **notesAPIGrantNoteEditPermission**
-> JsonObject notesAPIGrantNoteEditPermission(groupId, noteId, body)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getDefaultApi();
-final String groupId = groupId_example; // String | 
-final String noteId = noteId_example; // String | 
-final GroupsAPISendInviteRequest body = ; // GroupsAPISendInviteRequest | 
-
-try {
-    final response = api.notesAPIGrantNoteEditPermission(groupId, noteId, body);
-    print(response);
-} catch on DioException (e) {
-    print('Exception when calling DefaultApi->notesAPIGrantNoteEditPermission: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **groupId** | **String**|  | 
- **noteId** | **String**|  | 
- **body** | [**GroupsAPISendInviteRequest**](GroupsAPISendInviteRequest.md)|  | 
-
-### Return type
-
-[**JsonObject**](JsonObject.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

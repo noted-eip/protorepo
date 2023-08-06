@@ -16,8 +16,10 @@ export 'package:openapi/src/model/accounts_api_upload_account_profile_picture_re
 export 'package:openapi/src/model/accounts_api_validate_account_request.dart';
 export 'package:openapi/src/model/accountsv1_image.dart';
 export 'package:openapi/src/model/block_code.dart';
+export 'package:openapi/src/model/change_note_edit_permission_request_action.dart';
 export 'package:openapi/src/model/groups_api_send_invite_request.dart';
 export 'package:openapi/src/model/groups_api_update_group_request.dart';
+export 'package:openapi/src/model/notes_api_change_note_edit_permission_request.dart';
 export 'package:openapi/src/model/notes_api_create_note_request.dart';
 export 'package:openapi/src/model/notes_api_insert_block_request.dart';
 export 'package:openapi/src/model/notes_api_update_block_index_request.dart';

@@ -7,9 +7,11 @@ doc/AccountsAPIUploadAccountProfilePictureRequest.md
 doc/AccountsAPIValidateAccountRequest.md
 doc/Accountsv1Image.md
 doc/BlockCode.md
+doc/ChangeNoteEditPermissionRequestAction.md
 doc/DefaultApi.md
 doc/GroupsAPISendInviteRequest.md
 doc/GroupsAPIUpdateGroupRequest.md
+doc/NotesAPIChangeNoteEditPermissionRequest.md
 doc/NotesAPICreateNoteRequest.md
 doc/NotesAPIInsertBlockRequest.md
 doc/NotesAPIUpdateBlockIndexRequest.md
@@ -103,9 +105,11 @@ lib/src/model/accounts_api_upload_account_profile_picture_request.dart
 lib/src/model/accounts_api_validate_account_request.dart
 lib/src/model/accountsv1_image.dart
 lib/src/model/block_code.dart
+lib/src/model/change_note_edit_permission_request_action.dart
 lib/src/model/date.dart
 lib/src/model/groups_api_send_invite_request.dart
 lib/src/model/groups_api_update_group_request.dart
+lib/src/model/notes_api_change_note_edit_permission_request.dart
 lib/src/model/notes_api_create_note_request.dart
 lib/src/model/notes_api_insert_block_request.dart
 lib/src/model/notes_api_update_block_index_request.dart
@@ -191,9 +195,11 @@ test/accounts_api_upload_account_profile_picture_request_test.dart
 test/accounts_api_validate_account_request_test.dart
 test/accountsv1_image_test.dart
 test/block_code_test.dart
+test/change_note_edit_permission_request_action_test.dart
 test/default_api_test.dart
 test/groups_api_send_invite_request_test.dart
 test/groups_api_update_group_request_test.dart
+test/notes_api_change_note_edit_permission_request_test.dart
 test/notes_api_create_note_request_test.dart
 test/notes_api_insert_block_request_test.dart
 test/notes_api_update_block_index_request_test.dart

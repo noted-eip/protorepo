@@ -244,6 +244,11 @@ void main() {
       // TODO
     });
 
+    //Future<JsonObject> notesAPIChangeNoteEditPermission(String groupId, String noteId, NotesAPIChangeNoteEditPermissionRequest body) async
+    test('test notesAPIChangeNoteEditPermission', () async {
+      // TODO
+    });
+
     // Must be group member, author_account_id defaults to the user making the request.
     //
     //Future<V1CreateNoteResponse> notesAPICreateNote(String groupId, NotesAPICreateNoteRequest body) async
@@ -274,11 +279,6 @@ void main() {
     //
     //Future<V1GetNoteResponse> notesAPIGetNote(String groupId, String noteId) async
     test('test notesAPIGetNote', () async {
-      // TODO
-    });
-
-    //Future<JsonObject> notesAPIGrantNoteEditPermission(String groupId, String noteId, GroupsAPISendInviteRequest body) async
-    test('test notesAPIGrantNoteEditPermission', () async {
       // TODO
     });
 

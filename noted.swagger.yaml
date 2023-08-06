@@ -1052,12 +1052,12 @@ paths:
               - index
   /groups/{groupId}/notes/{noteId}/permission:
     post:
-      operationId: NotesAPI_GrantNoteEditPermission
+      operationId: NotesAPI_ChangeNoteEditPermission
       responses:
         "200":
           description: A successful response.
           schema:
-            $ref: '#/definitions/v1GrantNoteEditPermissionResponse'
+            $ref: '#/definitions/v1ChangeNoteEditPermissionResponse'
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
@@ -1079,6 +1079,8 @@ paths:
             properties:
               recipientAccountId:
                 type: string
+              type:
+                $ref: '#/definitions/ChangeNoteEditPermissionRequestAction'
             required:
               - recipientAccountId
   /groups/{groupId}/notes/{noteId}/quiz:
@@ -1223,6 +1225,11 @@ definitions:
         type: string
       lang:
         type: string
+  ChangeNoteEditPermissionRequestAction:
+    type: string
+    enum:
+      - ACTION_GRANT
+      - ACTION_REMOVE
   accountsv1Image:
     type: object
     properties:
@@ -1328,6 +1335,8 @@ definitions:
       - TYPE_BULLET_POINT
       - TYPE_NUMBER_POINT
       - TYPE_IMAGE
+  v1ChangeNoteEditPermissionResponse:
+    type: object
   v1ConversationMessage:
     type: object
     properties:
@@ -1603,8 +1612,6 @@ definitions:
         $ref: '#/definitions/v1Note'
     required:
       - note
-  v1GrantNoteEditPermissionResponse:
-    type: object
   v1Group:
     type: object
     properties:
