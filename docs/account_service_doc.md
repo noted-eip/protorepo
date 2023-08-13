@@ -6,8 +6,6 @@ The accounts service is part of Noted “micro services” architecture.
 
 This service handles user-related tasks such as but not limited to accounts CRUD, authentification and listing
 
-You can find more information about how to run the service by looking at the README.md 
-
 # Data Scheme
 
 ### Account model
@@ -182,7 +180,7 @@ Response the function’s response structure
 
 Signature the function name
 
-Finally we are using [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/main), It reads Protobuf service definitions and generates a reverse-proxy server which translates a RESTful HTTP API into gRPC [grpc-documentation](https://grpc.io/docs/languages/go/quickstart/)
+Finally we are using [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/main), It reads Protobuf service definitions and generates a reverse-proxy server which translates a RESTful HTTP API into gRPC
 
 Endpoints are using validator package to ensure the Request is valid:
 
@@ -305,7 +303,7 @@ rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {
 
 - Authenticate the user
 - Validate ListAccountRequest
-- return accounts array between the limit and the offset provided
+- List accounts between the limit and the offset provided
 
 ```protobuf
 message ListAccountsRequest {
@@ -533,6 +531,30 @@ rpc AuthenticateGoogle(AuthenticateGoogleRequest) returns (AuthenticateGoogleRes
     }
 ```
 
+# Repository Architecture
+
+![Untitled](Account%20Service%20Technical%20Documentation%2084c37f322f0743f6a695bf139ed712f9/Untitled.png)
+
+As you can see in the screenshot above, every package got his own folder:
+
+models: the interface for the database query the call and data models, with the implementation using [mongo-driver](https://github.com/mongodb/mongo-go-driver)
+
+validator: all the required request validation (if the string are nil, empty or invalid email, etc…) 
+
+auth: the authentification package
+
+communication: the inter-services communication function
+
+At root you can find the endpoints witch are part of the “main” package we have
+
+accounts.go: the main endpoint for the accounts service
+
+accounts_test.go: here we are testing the endpoint for the account function
+
+Makefile: use to build the app and to pull the protorepo folder through our services
+
+ 
+
 # Dependency
 
 Here is an overwiew of the packages we are using in Noted
@@ -543,11 +565,21 @@ We encapsulate database interaction in a package name “repository” witch dep
 
 We have a mailling package for users to receive email from noted  
 
-We use “ozzo-validation” to ensure that the request content is valid
+We use [ozzo-validation](https://pkg.go.dev/github.com/go-ozzo/ozzo-validation/v4) to ensure that the request content is valid
+
+To add your own dependency you need to add an init function in ***server.go***, in 
+
+![Untitled](Account%20Service%20Technical%20Documentation%2084c37f322f0743f6a695bf139ed712f9/Untitled%201.png)
+
+Next, you can assign your value in the accountsAPI struct,  so you can call it from anywhere in the service
+
+![Untitled](Account%20Service%20Technical%20Documentation%2084c37f322f0743f6a695bf139ed712f9/Untitled%202.png)
 
 # Testing Policy
 
-We use “testify” to create the the testing environment and to test multiple use-cases in a row
+We use [testify](https://github.com/stretchr/testify) to create the the testing environment and to test multiple use-cases in a row
+
+To add a new test you can follow testify documentation [here](https://github.com/stretchr/testify)
 
 ```go
 t.Run("create-account", func(t *testing.T) {
@@ -574,3 +606,11 @@ t.Run("create-account", func(t *testing.T) {
 		require.Nil(t, res)
 	})
 ```
+
+# ****Go Style****
+
+We are using the Go original style, documentation here 
+
+# How to run
+
+You can find how to run the project localy in the Readme.md  https://github.com/noted-eip/accounts-service
