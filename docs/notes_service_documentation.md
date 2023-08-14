@@ -1,4 +1,6 @@
-# Summary
+# Notes service Technical documentation
+
+## Summary
 
 - #Introduction (TODO : github link or pdf page)
 - #Architecture (TODO : github link or pdf page)
@@ -8,15 +10,15 @@
 - #Dependency (TODO : github link or pdf page)
 - #TestingPolicy (TODO : github link or pdf page)
 
-# Introduction
+## Introduction
 
 The notes service is part of Noted “micro services” architecture.
 This service is communicating with clients by the api-gateway, and others API like the google natural api, the graphQL google API.
-## Languages
+### Languages
 
 This service is written in Golang.
 The communication messages between the api-gateway and this service are in Grpc 2.0 script based.
-## Features
+### Features
 
 This service is managing the data logic of :
 - The notes and his inside blocks
@@ -25,7 +27,7 @@ This service is managing the data logic of :
 - The activities
 - The recommendations
 - The conversation and it inside messages (to both implement)
-## Purpose
+### Purpose
 
 This service handles user-related tasks from the listed before with CRUD principe.
 It also manage the logic and the analysis of the data it deals with.
@@ -33,30 +35,30 @@ And the storage process in the MongDB Noted database.
 
 You can find more information about how to run the service by looking at the README.md 
 
-# Architecture
+## Architecture
 
 Our project is divided in different parts located in each different folders.
-### Root directory
+#### Root directory
 The main files of the project are located here, such as :
 - `main.go` which initialize the global variables as flags. Init the server. Run the server. And close it when a signal is catch to do so.
 - `server.go` which implement all the initialization of the modules, packages, APIs and clients needed. To add a new dependency in the server go to #Dependency  (TODO: link to dependency)  
 - `utils.go` which contains some methods used in all the service which are supposed to be in a different file. Like the error logs format functions, the error status returns depending of the error catch, some structs for tests, etc.
 - All the **endpoints** of the service and their logic
 - All the **tests** of this endpoints #TestingPolicy(TODO: link to testing policy)
-### Models directory
-### Mongo directory
-### Validators directory
-### Others directories
-##### Communication directory
-##### Auth directory
-##### Export folder
-##### Language folder
+#### Models directory
+#### Mongo directory
+#### Validators directory
+#### Others directories
+###### Communication directory
+###### Auth directory
+###### Export folder
+###### Language folder
 
 
 *dans tel dossier ca, root (main, server, enndpoints), validators, models, mongo, protorepo*
-# Data Scheme
+## Data Scheme
 
-### Note model
+#### Note model
 
 ```json
 {
@@ -71,7 +73,7 @@ The main files of the project are located here, such as :
 }
 ```
 
-### Keyword model
+#### Keyword model
 
 ```json
 {
@@ -83,7 +85,7 @@ The main files of the project are located here, such as :
 }
 ```
 
-### Block model
+#### Block model
 
 ```json
 {
@@ -106,7 +108,7 @@ The main files of the project are located here, such as :
 }
 ```
 
-### Group model
+#### Group model
 
 ```json
 {
@@ -125,7 +127,7 @@ The main files of the project are located here, such as :
 }
 ```
 
-### Member model
+#### Member model
 
 ```json
 {
@@ -135,7 +137,7 @@ The main files of the project are located here, such as :
 }
 ```
 
-## Activity model
+### Activity model
 
 ```json
 {
@@ -147,7 +149,7 @@ The main files of the project are located here, such as :
 }
 ```
 
-### Invite model
+#### Invite model
 
 ```json
 {
@@ -159,7 +161,7 @@ The main files of the project are located here, such as :
     "valid_until": Timestamp()
 }
 ```
-### Conversation model
+#### Conversation model
 
 ```json
 {
@@ -169,8 +171,8 @@ The main files of the project are located here, such as :
 }
 ```
 
-### Recommendation models
-#### Widget model
+#### Recommendation models
+##### Widget model
 
 ```json
 {
@@ -180,7 +182,7 @@ The main files of the project are located here, such as :
 }
 ```
 
-#### WebsiteWidget model
+##### WebsiteWidget model
 
 ```json
 {
@@ -192,7 +194,7 @@ The main files of the project are located here, such as :
 }
 ```
 
-#### ImageWidget model
+##### ImageWidget model
 
 ```json
 {
@@ -202,7 +204,7 @@ The main files of the project are located here, such as :
 }
 ```
 
-#### DefinitionWidget model
+##### DefinitionWidget model
 
 ```json
 {
@@ -214,9 +216,9 @@ The main files of the project are located here, such as :
 ```
 
 
-# Query (TODO)
+## Query (TODO)
 
-### Note creation query
+#### Note creation query
 
 ```json
 db.notes.insertOne(
@@ -235,7 +237,7 @@ db.notes.insertOne(
 )
 ```
 
-### Note lookup query
+#### Note lookup query
 
 ```json
 db.notes.findOne(
@@ -246,7 +248,7 @@ db.notes.findOne(
 )
 ```
 
-### Note delete query
+#### Note delete query
 
 ```json
 db.notes.deleteOne(
@@ -257,7 +259,7 @@ db.notes.deleteOne(
 )
 ```
 
-### Notes listing query
+#### Notes listing query
 
 Both groupId and authourAccountId are optional and you can remove the `blocks` and `keywords` fields in the response by using [https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/#mongodb-pipeline-pipe.-project](projection).
 
@@ -270,7 +272,7 @@ db.accounts.find(
 )
 ```
 
-### Note update query
+#### Note update query
 
 ```json
 db.accounts.findOneAndUpdate(
@@ -290,10 +292,10 @@ db.accounts.findOneAndUpdate(
 )
 ```
 
-# Endpoint (TODO)
+## Endpoint (TODO)
 
-# Dependency (TODO)
+## Dependency (TODO)
 *Dependency injection exmple*
 *how to add a new dependency*
 
-# Testing Policy (TODO)
+## Testing Policy (TODO)
