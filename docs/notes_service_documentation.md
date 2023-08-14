@@ -1,5 +1,4 @@
 # Notes service Technical documentation
-
 ## Summary
 
 - Introduction 
@@ -36,7 +35,6 @@ And the storage process in the MongDB Noted database.
 You can find more information about how to run the service by looking at the README.md 
 
 ## Architecture
-
 Our project is divided in different parts located in each different folders.
 #### Root directory
 The main files of the project are located here, such as :
@@ -46,8 +44,37 @@ The main files of the project are located here, such as :
 - All the **endpoints** of the service and their logic
 - All the **tests** of this endpoints #TestingPolicy(TODO: link to testing policy)
 #### Models directory
+The Models directory is intented for :
+- Mongodb calls in mongo directory inside (look bellow)
+- Models of `notes` ,`blocks`, `keywords` , `groups`,  `members`, `activities`.
+
+All the models in the project are located here with this syntax :
+```go
+type Activity struct {
+	ID string `json:"id" bson:"_id"`
+	GroupID string `json:"groupId" bson:"groupId"`
+	Type string `json:"type" bson:"type"`
+	Event string `json:"event" bson:"event"`
+	CreatedAt time.Time `json:"createdAt" bson:"createdAt"`
+}
+```
+Here `Activity` is the model type name, all the fields are listed bellow, and the `json:"id" bson:"_id"` is for the mongodb storage data. Here the field `ID` will be named `_id` in the database.
 #### Mongo directory
+This directory (inside the models one) is for mongodb calls. All the specific methods are located here. For all the models listed upper. 
+All the queries are listed in #Query.  
+
 #### Validators directory
+In the validator directory we have all the error handling for the incoming calls of our endpoints. We are going to take the request of the client and check if the arguments are not empty, or if ids are real ids, and return a specific error with the right code.
+
+```go
+func ValidateGetActivityRequest(req *notesv1.GetActivityRequest) error {
+	return validation.ValidateStruct(req,
+		validation.Field(&req.GroupId, validation.Required),
+		validation.Field(&req.ActivityId, validation.Required),
+	)
+}
+```
+Here we are using the validation (github.com/go-ozzo/ozzo-validation/v4) golang package in order to check each required fields and return the error directly.
 #### Others directories
 ###### Communication directory
 ###### Auth directory
