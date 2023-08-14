@@ -2,13 +2,13 @@
 
 ## Summary
 
-- #Introduction (TODO : github link or pdf page)
-- #Architecture (TODO : github link or pdf page)
-- #DataSheme (TODO : github link or pdf page)
-- #Query (TODO : github link or pdf page)
-- #Endpoint (TODO : github link or pdf page)
-- #Dependency (TODO : github link or pdf page)
-- #TestingPolicy (TODO : github link or pdf page)
+- Introduction 
+- Architecture 
+- DataSheme 
+- Query 
+- Endpoint 
+- Dependency 
+- TestingPolicy 
 
 ## Introduction
 
