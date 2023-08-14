@@ -294,8 +294,98 @@ db.accounts.findOneAndUpdate(
 
 ## Endpoint (TODO)
 
-## Dependency (TODO)
-*Dependency injection exmple*
-*how to add a new dependency*
 
-## Testing Policy (TODO)
+# Dependency
+
+Here is an overwiew of the packages we are using in Noted's note-service
+
+We use the officials gRPC go libraries and use the auto-generated go files that comes from protobuf (they are accessible via the `protorepo`.)
+
+We use [zap](https://github.com/uber-go/zap) to log information related to the server execution and the error level 
+
+We use goldmark and goldmark-pdf to convert our notes to PDF.
+
+We define the models and interface definitions in `./models/*.go`. The implementation is then done with mongodb's official go package in `./models/mongo/*.go`
+
+We have a custom mailing package for users to receive email from noted.  
+We also have a custom background process services. Both can be found on Noted's official GitHub in `noted` repository.
+
+We use [ozzo-validation](https://pkg.go.dev/github.com/go-ozzo/ozzo-validation/v4) to ensure that the request content is valid
+
+To add your own dependency you need to add an init function in `./server.go` and call it in `Init`.
+Next, you can assign your value in the notesAPI struct, so you can call it from anywhere in the service
+
+Example with the language service: 
+
+```go
+type server struct {
+    ...
+    languageService   language.Service 
+    ...
+}
+```
+
+```go
+func (s *server) initLanguageService() {
+	s.languageService = &language.NotedLanguageService{}
+	err := s.languageService.Init()
+	must(err, "unable to instantiate language service")
+}
+```
+
+```go
+func (s *server) Init(opt ...grpc.ServerOption) {
+	...
+    s.initLanguageService()
+    ...
+}
+```
+
+
+
+# Testing Policy
+
+We use [testify](https://github.com/stretchr/testify) to create the the testing environment and to test multiple use-cases in a row
+
+To add a new test you can follow testify documentation [here](https://github.com/stretchr/testify)
+
+Basic unit tests initialization:
+
+```go
+func TestNotesSuite(t *testing.T) { // According name
+	tu := newTestUtilsOrDie(t) // Mandatory to get basic server functionalities
+	stranger := newTestAccount(t, tu) // Util function to create users 
+	strangerGroup := newTestGroup(t, tu, stranger) // Util function to create groups
+	note := newTestNote(t, tu, testGroup, stranger, []*notesv1.Block{}) // Util function to create note*
+
+    // You can see some other util functions in `./utils.go`.
+
+```
+
+Test example:
+```go
+	t.Run("create-note", func(t *testing.T) {
+		before := time.Now()
+		res, err := tu.notes.CreateNote(edouard.Context, &notesv1.CreateNoteRequest{
+			GroupId: edouardGroup.ID,
+			Title:   "My New Note",
+		})
+		after := time.Now()
+		require.NoError(t, err)
+		require.NotNil(t, res)
+		require.Equal(t, "My New Note", res.Note.Title)
+		require.Nil(t, res.Note.ModifiedAt)
+		require.Nil(t, res.Note.AnalyzedAt)
+		require.GreaterOrEqual(t, res.Note.CreatedAt.AsTime().Unix(), before.Unix())
+		require.LessOrEqual(t, res.Note.CreatedAt.AsTime().Unix(), after.Unix())
+	})
+```
+
+Try to test every edge case:
+```go
+	t.Run("create-note", ...
+	t.Run("stranger-cannot-create-note", ...
+	t.Run("member-can-create-note-with-blocks", ...
+	t.Run("member-can-create-note-with-all-block-types", ...
+	t.Run("member-can-create-note-with-invalid-blocks", ...
+```
