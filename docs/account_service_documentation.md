@@ -2,9 +2,9 @@
 
 # Purpose
 
-The accounts service is part of Noted “micro services” architecture.
+The Account Service is part of Noted's "microservices" architecture.
 
-This service handles user-related tasks such as but not limited to accounts CRUD, authentification and listing
+This service handles user-related tasks such as, but not limited to, account CRUD, authentication.
 
 # Data Scheme
 
@@ -86,8 +86,8 @@ db.accounts.deleteOne(
 db.accounts.find(
     {},
 		options.findOptions{
-			"limit": int64 ?? 0,
-		  "skip": int64 ?? 0,
+			"limit": int64, // default 20
+		  "skip": int64, // default 0
 		}
 )
 ```
@@ -106,7 +106,7 @@ db.accounts.findOneAndUpdate(
 			"hash": "a4",
 		}},
 		options.FindOneAndUpdateOptions().SetReturnDocument({
-			"return_document": 1,
+			"return_document": 1, //Used to return the updated document
 		**})
 )
 ```
@@ -146,7 +146,7 @@ db.accounts.findOneAndUpdate(
 			}
 		}},
 		options.FindOneAndUpdateOptions().SetReturnDocument({
-			"return_document": 1,
+			"return_document": 1, //Used to return the updated document
 		**})
 )
 ```
@@ -163,7 +163,7 @@ db.accounts.findOneAndUpdate(
 			"hash": "a2" 
 		}},
 		options.FindOneAndUpdateOptions().SetReturnDocument({
-			"return_document": 1,
+			"return_document": 1,//Used to return the updated document
 		**})
 )
 ```
@@ -172,14 +172,6 @@ db.accounts.findOneAndUpdate(
 
 We use gRPC to send information between the services, the models are store in Protobuf files.
 
-Endpoints RPC are made of :
-
-Request the function’s arguments structure 
-
-Response the function’s response structure
-
-Signature the function name
-
 Finally we are using [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/main), It reads Protobuf service definitions and generates a reverse-proxy server which translates a RESTful HTTP API into gRPC
 
 Endpoints are using validator package to ensure the Request is valid:
@@ -187,8 +179,8 @@ Endpoints are using validator package to ensure the Request is valid:
 ```go
 func ValidateCreateAccountRequest(in *accountsv1.CreateAccountRequest) error {
 	return validation.ValidateStruct(in,
-		validation.Field(&in.Name, validation.Required, validation.Length(4, 20)),
-		validation.Field(&in.Email, validation.Required, is.Email),
+		validation.Field(&in.Name, validation.Required, validation.Length(4, 20)), //check if Account name is between 4 and 20 char 
+		validation.Field(&in.Email, validation.Required, is.Email), //check if Account email is valid with @ and .something
 		validation.Field(&in.Password, validation.Required, validation.Length(4, 20)),
 	)
 }
@@ -203,9 +195,9 @@ func ValidateCreateAccountRequest(in *accountsv1.CreateAccountRequest) error {
 
 ```protobuf
 message CreateAccountRequest {
-    string password = 1 [(google.api.field_behavior) = REQUIRED];;
-    string email = 2 [(google.api.field_behavior) = REQUIRED];;
-    string name = 3 [(google.api.field_behavior) = REQUIRED];;
+    string password = 1 [(google.api.field_behavior) = REQUIRED];
+    string email = 2 [(google.api.field_behavior) = REQUIRED];
+    string name = 3 [(google.api.field_behavior) = REQUIRED];
 }
 
 message CreateAccountResponse {
@@ -327,7 +319,7 @@ rpc ListAccounts(ListAccountsRequest) returns (ListAccountsResponse) {
 
 - Validate forgetAccountPasswordRequest
 - Update the account with a token and an expiration Date
-- Send the email to the user with a password reset link
+- Send an e-mail to the user with a password reset link
 
 ```protobuf
 message ForgetAccountPasswordRequest {
@@ -484,7 +476,7 @@ rpc SendGroupInviteMail(SendGroupInviteMailRequest) returns (SendGroupInviteMail
 
 - Validate AuthenticateRequest
 - Get validate Account
-- compare both hash and password
+- Compare both hash and password
 - Sign bearer token if hash match
 
 ```protobuf
@@ -512,7 +504,7 @@ rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse) {
 - Two cases
     - if account already exist just login
     - if account don’t exist create a new one
-- return a sign token to the account
+- Return a sign token to the account
 
 ```protobuf
 message AuthenticateGoogleRequest {
@@ -567,6 +559,12 @@ We have a mailling package for users to receive email from noted
 
 We use [ozzo-validation](https://pkg.go.dev/github.com/go-ozzo/ozzo-validation/v4) to ensure that the request content is valid
 
+The accounts is a dependency of the notes service as well and vice-versa here are some exemple:
+
+During account creation we are creating a personal workspace in the notes-service
+
+when deleting an account, we have to delete all its notes 
+
 To add your own dependency you need to add an init function in ***server.go***, in 
 
 ![Untitled](Account%20Service%20Technical%20Documentation%2084c37f322f0743f6a695bf139ed712f9/Untitled%201.png)
@@ -609,7 +607,7 @@ t.Run("create-account", func(t *testing.T) {
 
 # ****Go Style****
 
-We are using the Go original style, documentation here 
+We are using the Go original style, documentation [here](https://google.github.io/styleguide/go/) 
 
 # How to run
 
