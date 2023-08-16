@@ -13,11 +13,11 @@
 ## Introduction
 
 The notes service is part of Noted “micro services” architecture.
-This service is communicating with clients by the api-gateway, and others API like the google natural api, the graphQL google API.
+This service is communicating with clients by the [api-gateway](https://github.com/noted-eip/api-gateway), and others API like the google natural api, the graphQL google API.
 ### Languages
 
-This service is written in Golang.
-The communication messages between the api-gateway and this service are in Grpc 2.0 script based.
+This service is written in [golang](https://go.dev/doc/).
+The communication messages between the api-gateway and this service are in [gRpc](https://grpc.io/docs/languages/go/quickstart/) script based.
 ### Features
 
 This service is managing the data logic of :
@@ -33,7 +33,7 @@ This service handles user-related tasks from the listed before with CRUD princip
 It also manage the logic and the analysis of the data it deals with.
 And the storage process in the MongDB Noted database.
 
-You can find more information about how to run the service by looking at the README.md 
+You can find more information about how to run the service by looking at the [README.md](https://github.com/noted-eip/notes-service#readme)
 
 ## Architecture
 Our project is divided in different parts located in each different folders.
@@ -90,8 +90,6 @@ CThe Export folder ontain specific files and methods in order to convert notes m
 
 ##### Language folder
 The Language folder contains all the calls to [google-knowledge-graph-api](https://developers.google.com/knowledge-graph) or [google-natural-api](https://cloud.google.com/natural-language?hl=fr) of google. We are using theses in order to save the most relevant keywords of our notes to create recommendation widgets. (see #Endpoints)
-
-## Data Scheme
 
 ## Database Queries
 
