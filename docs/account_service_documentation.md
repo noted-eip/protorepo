@@ -25,7 +25,7 @@ This service is managing the data logic of :
 - The accounts and their related informations
 - The authentication
 
-# Purpose
+### Purpose
 
 The Account Service is part of Noted's "microservices" architecture.
 
@@ -33,7 +33,30 @@ This service handles user-related tasks such as, but not limited to, account CRU
 
 You can find more information about how to run the service by looking at the [README.md](https://github.com/noted-eip/accounts-service#readme)
 
-# Data Scheme
+## Architecture
+
+![Untitled](Account%20Service%20Technical%20Documentation%2084c37f322f0743f6a695bf139ed712f9/Untitled.png)
+
+As you can see in the screenshot above, every package got his own folder:
+
+models: the interface for the database query the call and data models, with the implementation using [mongo-driver](https://github.com/mongodb/mongo-go-driver)
+
+validator: all the required request validation (if the string are nil, empty or invalid email, etc…) 
+
+auth: the authentification package
+
+communication: the inter-services communication function
+
+At root you can find the endpoints witch are part of the “main” package we have
+
+accounts.go: the main endpoint for the accounts service
+
+accounts_test.go: here we are testing the endpoint for the account function
+
+Makefile: use to build the app and to pull the protorepo folder through our services
+
+
+## Data Scheme
 
 ### Account model
 
@@ -68,7 +91,7 @@ You can find more information about how to run the service by looking at the [RE
 }
 ```
 
-# Query
+## Query
 
 ### Account creation query
 
@@ -195,7 +218,7 @@ db.accounts.findOneAndUpdate(
 )
 ```
 
-# Endpoint
+## Endpoint
 
 We use gRPC to send information between the services, the models are store in Protobuf files.
 
@@ -550,31 +573,7 @@ rpc AuthenticateGoogle(AuthenticateGoogleRequest) returns (AuthenticateGoogleRes
     }
 ```
 
-# Repository Architecture
-
-![Untitled](Account%20Service%20Technical%20Documentation%2084c37f322f0743f6a695bf139ed712f9/Untitled.png)
-
-As you can see in the screenshot above, every package got his own folder:
-
-models: the interface for the database query the call and data models, with the implementation using [mongo-driver](https://github.com/mongodb/mongo-go-driver)
-
-validator: all the required request validation (if the string are nil, empty or invalid email, etc…) 
-
-auth: the authentification package
-
-communication: the inter-services communication function
-
-At root you can find the endpoints witch are part of the “main” package we have
-
-accounts.go: the main endpoint for the accounts service
-
-accounts_test.go: here we are testing the endpoint for the account function
-
-Makefile: use to build the app and to pull the protorepo folder through our services
-
- 
-
-# Dependency
+## Dependency
 
 Here is an overwiew of the packages we are using in Noted
 
@@ -600,7 +599,7 @@ Next, you can assign your value in the accountsAPI struct,  so you can call it f
 
 ![Untitled](Account%20Service%20Technical%20Documentation%2084c37f322f0743f6a695bf139ed712f9/Untitled%202.png)
 
-# Testing Policy
+## Testing Policy
 
 We use [testify](https://github.com/stretchr/testify) to create the the testing environment and to test multiple use-cases in a row
 
