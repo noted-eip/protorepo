@@ -35,25 +35,23 @@ You can find more information about how to run the service by looking at the [RE
 
 ## Architecture
 
-![Untitled](Account%20Service%20Technical%20Documentation%2084c37f322f0743f6a695bf139ed712f9/Untitled.png)
+In this service every package got his own folder:
 
-As you can see in the screenshot above, every package got his own folder:
+**models**: the interface for the database query the call and data models, with the implementation using [mongo-driver](https://github.com/mongodb/mongo-go-driver)
 
-models: the interface for the database query the call and data models, with the implementation using [mongo-driver](https://github.com/mongodb/mongo-go-driver)
+**validator**: all the required request validation (if the string are nil, empty or invalid email, etc…) 
 
-validator: all the required request validation (if the string are nil, empty or invalid email, etc…) 
+**auth**: the authentification package
 
-auth: the authentification package
+**communication**: the inter-services communication function
 
-communication: the inter-services communication function
+At **root** you can find the endpoints witch are part of the “main” package we have
 
-At root you can find the endpoints witch are part of the “main” package we have
+***accounts.go***: the main endpoint for the accounts service
 
-accounts.go: the main endpoint for the accounts service
+***accounts_test.go***: here we are testing the endpoint for the account function
 
-accounts_test.go: here we are testing the endpoint for the account function
-
-Makefile: use to build the app and to pull the protorepo folder through our services
+**Makefile**: use to build the app and to pull the protorepo folder through our services
 
 
 ## Data Scheme
