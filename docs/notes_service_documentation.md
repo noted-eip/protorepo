@@ -1491,7 +1491,3 @@ Try to test every edge case:
 	t.Run("member-can-create-note-with-all-block-types", ...
 	t.Run("member-can-create-note-with-invalid-blocks", ...
 ```
-
-# How to run
-
-You can find how to run the project localy in the Readme.md  https://github.com/noted-eip/accounts-service
