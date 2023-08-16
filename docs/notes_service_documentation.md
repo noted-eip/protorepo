@@ -12,12 +12,17 @@
 
 ## Introduction
 
-The notes service is part of Noted “micro services” architecture.
-This service is communicating with clients by the api-gateway, and others API like the google natural api, the graphQL google API.
+The notes service is part of Noted “micro-services” architecture.
+
+In order to manage those micro-services and messages, we use Google's [gRPC](https://grpc.io/).
+
+This service is communicating with clients through the api-gateway, and others API like the google natural api, the graphQL google API.
+
 ### Languages
 
 This service is written in Golang.
-The communication messages between the api-gateway and this service are in Grpc 2.0 script based.
+Between the api-gateway and this service communicate with the gRPC protocol.
+
 ### Features
 
 This service is managing the data logic of :
@@ -180,6 +185,54 @@ db.accounts.findOneAndUpdate(
 </details>
 
 ## Endpoint
+
+The gRPC definition of our micro-services, models and messages can be found over at https://github.com/noted-eip/protorepo.
+
+If you wish to add a route, first read the protobuf documentations and then add the route to `protorepo`
+
+We are using [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/tree/main).
+It reads `protobuf` service definitions and generates a reverse-proxy server which translates into a RESTful API.
+
+Endpoints are using validator package to ensure the request is valid ([ozzo-validation](https://pkg.go.dev/github.com/go-ozzo/ozzo-validation/v4)):
+
+```go
+func ValidateCreateAccountRequest(in *accountsv1.CreateAccountRequest) error {
+	return validation.ValidateStruct(in,
+		validation.Field(&in.Name, validation.Required, validation.Length(4, 20)), //check if Account name is between 4 and 20 char 
+		validation.Field(&in.Email, validation.Required, is.Email), //check if Account email is valid with @ and .something
+		validation.Field(&in.Password, validation.Required, validation.Length(4, 20)),
+	)
+}
+```
+
+Example of a route implementation 
+
+```go
+// notesv1.GetMemberRequest - In auto-generated protobuf files
+// notesv1.GetMemberResponse - Same
+// groupsAPI interface definition and function definition are in the generated files as well.
+func (srv *groupsAPI) GetMember(ctx context.Context, req *notesv1.GetMemberRequest) (*notesv1.GetMemberResponse, error) {
+	token, err := srv.authenticate(ctx) // Authenticate user , can access user's ID through `token`
+	if err != nil {
+		return nil, err
+	}
+
+	// Validate request
+	err = validators.ValidateGetMemberRequest(req)
+	if err != nil {
+		return nil, status.Error(codes.InvalidArgument, err.Error())
+	}
+
+	// Call model function or do logic here
+	group, err := srv.groups.GetGroup(ctx, &models.OneGroupFilter{GroupID: req.GroupId}, token.AccountID)
+	if err != nil {
+		return nil, statusFromModelError(err)
+	}
+
+	// ...
+	return &notesv1.GetMemberResponse{Member: modelsMemberToProtobufMember(group.FindMember(req.AccountId))}, nil
+}
+```
 
 ### /authenticate
 
