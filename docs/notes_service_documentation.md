@@ -4,7 +4,6 @@
 
 - Introduction 
 - Architecture 
-- DataSheme 
 - Query 
 - Endpoint 
 - Dependency 
@@ -20,8 +19,8 @@ This service is communicating with clients through the api-gateway, and others A
 
 ### Languages
 
-This service is written in Golang.
-Between the api-gateway and this service communicate with the gRPC protocol.
+This service is written in [golang](https://go.dev/doc/).
+The communication messages between the api-gateway and this service are made with the [gRPC](https://grpc.io/docs/languages/go/quickstart/) protocol.
 
 ### Features
 
@@ -38,7 +37,7 @@ This service handles user-related tasks from the listed before with CRUD princip
 It also manage the logic and the analysis of the data it deals with.
 And the storage process in the MongDB Noted database.
 
-You can find more information about how to run the service by looking at the README.md 
+You can find more information about how to run the service by looking at the [README.md](https://github.com/noted-eip/notes-service#readme)
 
 ## Architecture
 Our project is divided in different parts located in each different folders.
@@ -95,8 +94,6 @@ CThe Export folder ontain specific files and methods in order to convert notes m
 
 ##### Language folder
 The Language folder contains all the calls to [google-knowledge-graph-api](https://developers.google.com/knowledge-graph) or [google-natural-api](https://cloud.google.com/natural-language?hl=fr) of google. We are using theses in order to save the most relevant keywords of our notes to create recommendation widgets. (see #Endpoints)
-
-## Data Scheme
 
 ## Database Queries
 
