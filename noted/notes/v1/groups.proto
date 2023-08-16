@@ -99,8 +99,7 @@ message GroupActivity {
 // Addition and removal of group members with roles.
 // Management of notes and folders within a group.
 service GroupsAPI {
-    // Creates a group with a single administrator member (the authenticated user).
-    // Must be authenticated.
+    // Creates a group with a single administrator member (the authenticated user). Must be authenticated.
     rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {
         option (google.api.http) = {
             post: "/groups",
@@ -108,13 +107,10 @@ service GroupsAPI {
         };
     }
 
-    // Internal endpoint. Called upon account creation.
-    // Creates a workspace for the caller.
+    // Internal endpoint. Called upon account creation. Creates a workspace for the caller.
     rpc CreateWorkspace(CreateWorkspaceRequest) returns (CreateWorkspaceResponse) {}
 
-    // Must be group member.
-    // If the caller is not a member but has been invited to the group or has
-    // an invite code link, it will access a limited view of the group.
+    // Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
     rpc GetGroup(GetGroupRequest) returns (GetGroupResponse) {
         option (google.api.http) = {
             get: "/groups/{group_id}",
@@ -129,8 +125,7 @@ service GroupsAPI {
         };
     }
 
-    // Must be group administrator.
-    // Deletes all the associated resources (members, notes).
+    // Must be group administrator. Deletes all the associated resources (members, notes).
     rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {
         option (google.api.http) = {
             delete: "/groups/{group_id}",
@@ -159,8 +154,7 @@ service GroupsAPI {
         };
     }
 
-    // Must be group administrator or the authenticated user removing itself from
-    // the group.
+    // Must be group administrator or the authenticated user removing itself from the group.
     rpc RemoveMember(RemoveMemberRequest) returns (RemoveMemberResponse) {
         option (google.api.http) = {
             delete: "/groups/{group_id}/members/{account_id}",
@@ -223,22 +217,19 @@ service GroupsAPI {
             get: "/groups/{group_id}/invites/{invite_id}",
         };
     }
-    // Must be recipient. Accepting an invitation automatically adds the
-    // recipient to the group and deletes the invite.
+    // Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
     rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse) {
         option (google.api.http) = {
             post: "/groups/{group_id}/invites/{invite_id}/accept",
         };
     }
-    // Must be recipient. Deletes the invitation without making the
-    // recipient join the group.
+    // Must be recipient. Deletes the invitation without making the recipient join the group.
     rpc DenyInvite(DenyInviteRequest) returns (DenyInviteResponse) {
         option (google.api.http) = {
             post: "/groups/{group_id}/invites/{invite_id}/deny",
         };
     }
-    // Must be group administrator or sender. Deletes the invitation without
-    // making the recipient join the group.
+    // Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
     rpc RevokeInvite(RevokeInviteRequest) returns (RevokeInviteResponse) {
         option (google.api.http) = {
             delete: "/groups/{group_id}/invites/{invite_id}",
@@ -256,11 +247,14 @@ service GroupsAPI {
         };
     }
 
+    // Must be a group member. List all the activities in a group.
     rpc ListActivities(ListActivitiesRequest) returns (ListActivitiesResponse) {
         option (google.api.http) = {
             get: "/groups/{group_id}/activity",
         };
     }
+
+    // Must be a group member. Returns a signle activity in a group.
     rpc GetActivity(GetActivityRequest) returns (GetActivityResponse) {
         option (google.api.http) = {
             get: "/groups/{group_id}/activity/{activity_id}",

@@ -102,15 +102,14 @@ enum NoteExportFormat {
 }
 
 service NotesAPI {
-    // Must be group member, author_account_id defaults to the user making
-    // the request.
+    // Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
     rpc CreateNote(CreateNoteRequest) returns (CreateNoteResponse) {
         option (google.api.http) = {
             post: "/groups/{group_id}/notes",
             body: "*",
         };
     }
-    // Must be group member or author.
+    // Must be group member or author. Return a note from id provided.
     rpc GetNote(GetNoteRequest) returns (GetNoteResponse) {
         option (google.api.http) = {
             get: "/groups/{group_id}/notes/{note_id}"
@@ -124,15 +123,14 @@ service NotesAPI {
         };
     }
 
-    // Must be author.
+    // Must be author. Delete a single note in database. 
     rpc DeleteNote(DeleteNoteRequest) returns (DeleteNoteResponse) {
         option (google.api.http) = {
             delete: "/groups/{group_id}/notes/{note_id}"
         };
     }
 
-    // List notes in a group, authored by a user or both. Must have
-    // read access to the notes.
+    // List notes in a group, authored by a user or both. Must have read access to the notes.
     rpc ListNotes(ListNotesRequest) returns (ListNotesResponse) {
         option (google.api.http) = {
             get: "/notes",
@@ -144,38 +142,38 @@ service NotesAPI {
         };
     }
 
-    // Must be author.
+    // Must be author. Insert a block of content in a note at a specific index.
     rpc InsertBlock(InsertBlockRequest) returns (InsertBlockResponse) {
         option (google.api.http) = {
             post: "/groups/{group_id}/notes/{note_id}/blocks",
             body: "*",
         };
     }
-    // Must be author.
+    // Must be author. Update a block content.
     rpc UpdateBlock(UpdateBlockRequest) returns (UpdateBlockResponse) {
         option (google.api.http) = {
             patch: "/groups/{group_id}/notes/{note_id}/blocks/{block_id}",
             body: "block",
         };
     }
-    // Must be author.
+    // Must be author. Update a block index.
     rpc UpdateBlockIndex(UpdateBlockIndexRequest) returns (UpdateBlockIndexResponse) {
         option (google.api.http) = {
             post: "/groups/{group_id}/notes/{note_id}/blocks/{block_id}/index",
             body: "*",
         };
     }
-    // Must be author.
+    // Must be author. Delete a block in a note and replace the indexes of the others.
     rpc DeleteBlock(DeleteBlockRequest) returns (DeleteBlockResponse) {
         option (google.api.http) = {
             delete: "/groups/{group_id}/notes/{note_id}/blocks/{block_id}"
         };
     }
 
-    // Must be group member.
+    // Must be group member. Returns a md or pdf dowloadable file.
     rpc ExportNote(ExportNoteRequest) returns (ExportNoteResponse) {}
 
-    // Must be account owner.
+    // Must be account owner. Delete the account related notes and groups.
     rpc OnAccountDelete(OnAccountDeleteRequest) returns (OnAccountDeleteResponse) {}
 
     rpc ChangeNoteEditPermission(ChangeNoteEditPermissionRequest) returns (ChangeNoteEditPermissionResponse) {
