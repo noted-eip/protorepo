@@ -74,15 +74,22 @@ func ValidateGetActivityRequest(req *notesv1.GetActivityRequest) error {
 	)
 }
 ```
-Here we are using the validation (github.com/go-ozzo/ozzo-validation/v4) golang package in order to check each required fields and return the error directly.
-#### Others directories
-###### Communication directory
-###### Auth directory
-###### Export folder
-###### Language folder
+Here we are using the [validation](https://github.com/go-ozzo/ozzo-validation/v4) golang package in order to check each required fields and return the error directly.
 
+##### Communication directory
+This directory is for client creation. It contain the struct of the client, the method to create it and fill the client in order to use it, and to close it once the server don't need it anymore.
+The only client we have now is the `accountClientAPI` which gives us the permission to call endpoints of this [service](https://github.com/noted-eip/accounts-service).
+All the client are going to be created in `server.go` file while we init all the packages, the database etc. (see #Root_directory)
 
-*dans tel dossier ca, root (main, server, enndpoints), validators, models, mongo, protorepo*
+##### Auth directory
+The auth directory contains all the token related logics and checks. Each new authenticated client is going to have a token. This token are going to be checked at each others endpoints calls. And all this methods like `TokenFromContext` methods and others are located in this folder. 
+
+##### Export folder
+CThe Export folder ontain specific files and methods in order to convert notes models into md streamfile or pdf ones.
+
+##### Language folder
+The Language folder contains all the calls to [google-knowledge-graph-api](https://developers.google.com/knowledge-graph) or [google-natural-api](https://cloud.google.com/natural-language?hl=fr) of google. We are using theses in order to save the most relevant keywords of our notes to create recommendation widgets. (see #Endpoints)
+
 ## Data Scheme
 
 #### Note model
