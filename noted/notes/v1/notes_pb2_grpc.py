@@ -85,15 +85,14 @@ class NotesAPIServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def CreateNote(self, request, context):
-        """Must be group member, author_account_id defaults to the user making
-        the request.
+        """Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetNote(self, request, context):
-        """Must be group member or author.
+        """Must be group member or author. Return a note from id provided.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -107,57 +106,56 @@ class NotesAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def DeleteNote(self, request, context):
-        """Must be author.
+        """Must be author. Delete a single note in database. 
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ListNotes(self, request, context):
-        """List notes in a group, authored by a user or both. Must have
-        read access to the notes.
+        """List notes in a group, authored by a user or both. Must have read access to the notes.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def InsertBlock(self, request, context):
-        """Must be author.
+        """Must be author. Insert a block of content in a note at a specific index.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateBlock(self, request, context):
-        """Must be author.
+        """Must be author. Update a block content.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateBlockIndex(self, request, context):
-        """Must be author.
+        """Must be author. Update a block index.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DeleteBlock(self, request, context):
-        """Must be author.
+        """Must be author. Delete a block in a note and replace the indexes of the others.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def ExportNote(self, request, context):
-        """Must be group member.
+        """Must be group member. Returns a md or pdf dowloadable file.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def OnAccountDelete(self, request, context):
-        """Must be account owner.
+        """Must be account owner. Delete the account related notes and groups.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

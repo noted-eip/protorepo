@@ -136,6 +136,8 @@ void main() {
       // TODO
     });
 
+    // Must be a group member. Returns a signle activity in a group.
+    //
     //Future<V1GetActivityResponse> groupsAPIGetActivity(String groupId, String activityId) async
     test('test groupsAPIGetActivity', () async {
       // TODO
@@ -169,6 +171,8 @@ void main() {
       // TODO
     });
 
+    // Must be a group member. List all the activities in a group.
+    //
     //Future<V1ListActivitiesResponse> groupsAPIListActivities(String groupId, { int limit, int offset }) async
     test('test groupsAPIListActivities', () async {
       // TODO
@@ -249,21 +253,21 @@ void main() {
       // TODO
     });
 
-    // Must be group member, author_account_id defaults to the user making the request.
+    // Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
     //
     //Future<V1CreateNoteResponse> notesAPICreateNote(String groupId, NotesAPICreateNoteRequest body) async
     test('test notesAPICreateNote', () async {
       // TODO
     });
 
-    // Must be author.
+    // Must be author. Delete a block in a note and replace the indexes of the others.
     //
     //Future<JsonObject> notesAPIDeleteBlock(String groupId, String noteId, String blockId) async
     test('test notesAPIDeleteBlock', () async {
       // TODO
     });
 
-    // Must be author.
+    // Must be author. Delete a single note in database.
     //
     //Future<JsonObject> notesAPIDeleteNote(String groupId, String noteId) async
     test('test notesAPIDeleteNote', () async {
@@ -275,14 +279,14 @@ void main() {
       // TODO
     });
 
-    // Must be group member or author.
+    // Must be group member or author. Return a note from id provided.
     //
     //Future<V1GetNoteResponse> notesAPIGetNote(String groupId, String noteId) async
     test('test notesAPIGetNote', () async {
       // TODO
     });
 
-    // Must be author.
+    // Must be author. Insert a block of content in a note at a specific index.
     //
     //Future<V1InsertBlockResponse> notesAPIInsertBlock(String groupId, String noteId, NotesAPIInsertBlockRequest body) async
     test('test notesAPIInsertBlock', () async {
@@ -303,14 +307,14 @@ void main() {
       // TODO
     });
 
-    // Must be author.
+    // Must be author. Update a block content.
     //
     //Future<V1UpdateBlockResponse> notesAPIUpdateBlock(String groupId, String noteId, String blockId, V1Block block) async
     test('test notesAPIUpdateBlock', () async {
       // TODO
     });
 
-    // Must be author.
+    // Must be author. Update a block index.
     //
     //Future<V1UpdateBlockIndexResponse> notesAPIUpdateBlockIndex(String groupId, String noteId, String blockId, NotesAPIUpdateBlockIndexRequest body) async
     test('test notesAPIUpdateBlockIndex', () async {
@@ -324,6 +328,8 @@ void main() {
       // TODO
     });
 
+    // Must be a group member. Returns all the relevent widgets from the given note id.
+    //
     //Future<V1GenerateWidgetsResponse> recommendationsAPIGenerateWidgets(String groupId, String noteId) async
     test('test recommendationsAPIGenerateWidgets', () async {
       // TODO

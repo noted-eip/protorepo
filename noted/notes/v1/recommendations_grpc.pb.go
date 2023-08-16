@@ -26,6 +26,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RecommendationsAPIClient interface {
+	// Must be a group member. Returns all the relevent widgets from the given note id.
 	GenerateWidgets(ctx context.Context, in *GenerateWidgetsRequest, opts ...grpc.CallOption) (*GenerateWidgetsResponse, error)
 }
 
@@ -50,6 +51,7 @@ func (c *recommendationsAPIClient) GenerateWidgets(ctx context.Context, in *Gene
 // All implementations must embed UnimplementedRecommendationsAPIServer
 // for forward compatibility
 type RecommendationsAPIServer interface {
+	// Must be a group member. Returns all the relevent widgets from the given note id.
 	GenerateWidgets(context.Context, *GenerateWidgetsRequest) (*GenerateWidgetsResponse, error)
 	mustEmbedUnimplementedRecommendationsAPIServer()
 }

@@ -1748,7 +1748,7 @@ class DefaultApi {
     );
   }
 
-  /// groupsAPIGetActivity
+  /// Must be a group member. Returns a signle activity in a group.
   /// 
   ///
   /// Parameters:
@@ -2138,7 +2138,7 @@ class DefaultApi {
     );
   }
 
-  /// groupsAPIListActivities
+  /// Must be a group member. List all the activities in a group.
   /// 
   ///
   /// Parameters:
@@ -3192,7 +3192,7 @@ class DefaultApi {
     );
   }
 
-  /// Must be group member, author_account_id defaults to the user making the request.
+  /// Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
   /// 
   ///
   /// Parameters:
@@ -3289,7 +3289,7 @@ class DefaultApi {
     );
   }
 
-  /// Must be author.
+  /// Must be author. Delete a block in a note and replace the indexes of the others.
   /// 
   ///
   /// Parameters:
@@ -3368,7 +3368,7 @@ class DefaultApi {
     );
   }
 
-  /// Must be author.
+  /// Must be author. Delete a single note in database.
   /// 
   ///
   /// Parameters:
@@ -3522,7 +3522,7 @@ class DefaultApi {
     );
   }
 
-  /// Must be group member or author.
+  /// Must be group member or author. Return a note from id provided.
   /// 
   ///
   /// Parameters:
@@ -3599,7 +3599,7 @@ class DefaultApi {
     );
   }
 
-  /// Must be author.
+  /// Must be author. Insert a block of content in a note at a specific index.
   /// 
   ///
   /// Parameters:
@@ -3875,7 +3875,7 @@ class DefaultApi {
     );
   }
 
-  /// Must be author.
+  /// Must be author. Update a block content.
   /// 
   ///
   /// Parameters:
@@ -3976,7 +3976,7 @@ class DefaultApi {
     );
   }
 
-  /// Must be author.
+  /// Must be author. Update a block index.
   /// 
   ///
   /// Parameters:
@@ -4176,7 +4176,7 @@ class DefaultApi {
     );
   }
 
-  /// recommendationsAPIGenerateWidgets
+  /// Must be a group member. Returns all the relevent widgets from the given note id.
   /// 
   ///
   /// Parameters:

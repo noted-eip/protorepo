@@ -326,9 +326,7 @@ paths:
           type: integer
           format: int32
     post:
-      summary: |-
-        Creates a group with a single administrator member (the authenticated user).
-        Must be authenticated.
+      summary: Creates a group with a single administrator member (the authenticated user). Must be authenticated.
       operationId: GroupsAPI_CreateGroup
       responses:
         "200":
@@ -347,10 +345,7 @@ paths:
             $ref: '#/definitions/v1CreateGroupRequest'
   /groups/{groupId}:
     get:
-      summary: |-
-        Must be group member.
-        If the caller is not a member but has been invited to the group or has
-        an invite code link, it will access a limited view of the group.
+      summary: Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
       operationId: GroupsAPI_GetGroup
       responses:
         "200":
@@ -375,9 +370,7 @@ paths:
           required: false
           type: string
     delete:
-      summary: |-
-        Must be group administrator.
-        Deletes all the associated resources (members, notes).
+      summary: Must be group administrator. Deletes all the associated resources (members, notes).
       operationId: GroupsAPI_DeleteGroup
       responses:
         "200":
@@ -422,6 +415,7 @@ paths:
                 type: string
   /groups/{groupId}/activity:
     get:
+      summary: Must be a group member. List all the activities in a group.
       operationId: GroupsAPI_ListActivities
       responses:
         "200":
@@ -449,6 +443,7 @@ paths:
           format: int64
   /groups/{groupId}/activity/{activityId}:
     get:
+      summary: Must be a group member. Returns a signle activity in a group.
       operationId: GroupsAPI_GetActivity
       responses:
         "200":
@@ -639,9 +634,7 @@ paths:
           required: true
           type: string
     delete:
-      summary: |-
-        Must be group administrator or sender. Deletes the invitation without
-        making the recipient join the group.
+      summary: Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
       operationId: GroupsAPI_RevokeInvite
       responses:
         "200":
@@ -663,9 +656,7 @@ paths:
           type: string
   /groups/{groupId}/invites/{inviteId}/accept:
     post:
-      summary: |-
-        Must be recipient. Accepting an invitation automatically adds the
-        recipient to the group and deletes the invite.
+      summary: Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
       operationId: GroupsAPI_AcceptInvite
       responses:
         "200":
@@ -687,9 +678,7 @@ paths:
           type: string
   /groups/{groupId}/invites/{inviteId}/deny:
     post:
-      summary: |-
-        Must be recipient. Deletes the invitation without making the
-        recipient join the group.
+      summary: Must be recipient. Deletes the invitation without making the recipient join the group.
       operationId: GroupsAPI_DenyInvite
       responses:
         "200":
@@ -732,9 +721,7 @@ paths:
           required: true
           type: string
     delete:
-      summary: |-
-        Must be group administrator or the authenticated user removing itself from
-        the group.
+      summary: Must be group administrator or the authenticated user removing itself from the group.
       operationId: GroupsAPI_RemoveMember
       responses:
         "200":
@@ -784,9 +771,7 @@ paths:
               - member
   /groups/{groupId}/notes:
     get:
-      summary: |-
-        List notes in a group, authored by a user or both. Must have
-        read access to the notes.
+      summary: List notes in a group, authored by a user or both. Must have read access to the notes.
       operationId: NotesAPI_ListNotes2
       responses:
         "200":
@@ -817,9 +802,7 @@ paths:
           type: integer
           format: int32
     post:
-      summary: |-
-        Must be group member, author_account_id defaults to the user making
-        the request.
+      summary: Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
       operationId: NotesAPI_CreateNote
       responses:
         "200":
@@ -850,7 +833,7 @@ paths:
                   $ref: '#/definitions/v1Block'
   /groups/{groupId}/notes/{noteId}:
     get:
-      summary: Must be group member or author.
+      summary: Must be group member or author. Return a note from id provided.
       operationId: NotesAPI_GetNote
       responses:
         "200":
@@ -871,7 +854,7 @@ paths:
           required: true
           type: string
     delete:
-      summary: Must be author.
+      summary: Must be author. Delete a single note in database.
       operationId: NotesAPI_DeleteNote
       responses:
         "200":
@@ -921,7 +904,7 @@ paths:
               - note
   /groups/{groupId}/notes/{noteId}/blocks:
     post:
-      summary: Must be author.
+      summary: Must be author. Insert a block of content in a note at a specific index.
       operationId: NotesAPI_InsertBlock
       responses:
         "200":
@@ -957,7 +940,7 @@ paths:
               - block
   /groups/{groupId}/notes/{noteId}/blocks/{blockId}:
     delete:
-      summary: Must be author.
+      summary: Must be author. Delete a block in a note and replace the indexes of the others.
       operationId: NotesAPI_DeleteBlock
       responses:
         "200":
@@ -982,7 +965,7 @@ paths:
           required: true
           type: string
     patch:
-      summary: Must be author.
+      summary: Must be author. Update a block content.
       operationId: NotesAPI_UpdateBlock
       responses:
         "200":
@@ -1015,7 +998,7 @@ paths:
               - block
   /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index:
     post:
-      summary: Must be author.
+      summary: Must be author. Update a block index.
       operationId: NotesAPI_UpdateBlockIndex
       responses:
         "200":
@@ -1106,6 +1089,7 @@ paths:
           type: string
   /groups/{groupId}/notes/{noteId}/widgets:
     get:
+      summary: Must be a group member. Returns all the relevent widgets from the given note id.
       operationId: RecommendationsAPI_GenerateWidgets
       responses:
         "200":
@@ -1166,9 +1150,7 @@ paths:
           format: int32
   /notes:
     get:
-      summary: |-
-        List notes in a group, authored by a user or both. Must have
-        read access to the notes.
+      summary: List notes in a group, authored by a user or both. Must have read access to the notes.
       operationId: NotesAPI_ListNotes
       responses:
         "200":
