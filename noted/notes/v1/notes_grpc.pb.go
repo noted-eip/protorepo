@@ -38,29 +38,27 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NotesAPIClient interface {
-	// Must be group member, author_account_id defaults to the user making
-	// the request.
+	// Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
 	CreateNote(ctx context.Context, in *CreateNoteRequest, opts ...grpc.CallOption) (*CreateNoteResponse, error)
-	// Must be group member or author.
+	// Must be group member or author. Return a note from id provided.
 	GetNote(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*GetNoteResponse, error)
 	// Must be author. Can only update `title` or `blocks`.
 	UpdateNote(ctx context.Context, in *UpdateNoteRequest, opts ...grpc.CallOption) (*UpdateNoteResponse, error)
-	// Must be author.
+	// Must be author. Delete a single note in database.
 	DeleteNote(ctx context.Context, in *DeleteNoteRequest, opts ...grpc.CallOption) (*DeleteNoteResponse, error)
-	// List notes in a group, authored by a user or both. Must have
-	// read access to the notes.
+	// List notes in a group, authored by a user or both. Must have read access to the notes.
 	ListNotes(ctx context.Context, in *ListNotesRequest, opts ...grpc.CallOption) (*ListNotesResponse, error)
-	// Must be author.
+	// Must be author. Insert a block of content in a note at a specific index.
 	InsertBlock(ctx context.Context, in *InsertBlockRequest, opts ...grpc.CallOption) (*InsertBlockResponse, error)
-	// Must be author.
+	// Must be author. Update a block content.
 	UpdateBlock(ctx context.Context, in *UpdateBlockRequest, opts ...grpc.CallOption) (*UpdateBlockResponse, error)
-	// Must be author.
+	// Must be author. Update a block index.
 	UpdateBlockIndex(ctx context.Context, in *UpdateBlockIndexRequest, opts ...grpc.CallOption) (*UpdateBlockIndexResponse, error)
-	// Must be author.
+	// Must be author. Delete a block in a note and replace the indexes of the others.
 	DeleteBlock(ctx context.Context, in *DeleteBlockRequest, opts ...grpc.CallOption) (*DeleteBlockResponse, error)
-	// Must be group member.
+	// Must be group member. Returns a md or pdf dowloadable file.
 	ExportNote(ctx context.Context, in *ExportNoteRequest, opts ...grpc.CallOption) (*ExportNoteResponse, error)
-	// Must be account owner.
+	// Must be account owner. Delete the account related notes and groups.
 	OnAccountDelete(ctx context.Context, in *OnAccountDeleteRequest, opts ...grpc.CallOption) (*OnAccountDeleteResponse, error)
 	ChangeNoteEditPermission(ctx context.Context, in *ChangeNoteEditPermissionRequest, opts ...grpc.CallOption) (*ChangeNoteEditPermissionResponse, error)
 	GenerateQuiz(ctx context.Context, in *GenerateQuizRequest, opts ...grpc.CallOption) (*GenerateQuizResponse, error)
@@ -195,29 +193,27 @@ func (c *notesAPIClient) GenerateQuiz(ctx context.Context, in *GenerateQuizReque
 // All implementations must embed UnimplementedNotesAPIServer
 // for forward compatibility
 type NotesAPIServer interface {
-	// Must be group member, author_account_id defaults to the user making
-	// the request.
+	// Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
 	CreateNote(context.Context, *CreateNoteRequest) (*CreateNoteResponse, error)
-	// Must be group member or author.
+	// Must be group member or author. Return a note from id provided.
 	GetNote(context.Context, *GetNoteRequest) (*GetNoteResponse, error)
 	// Must be author. Can only update `title` or `blocks`.
 	UpdateNote(context.Context, *UpdateNoteRequest) (*UpdateNoteResponse, error)
-	// Must be author.
+	// Must be author. Delete a single note in database.
 	DeleteNote(context.Context, *DeleteNoteRequest) (*DeleteNoteResponse, error)
-	// List notes in a group, authored by a user or both. Must have
-	// read access to the notes.
+	// List notes in a group, authored by a user or both. Must have read access to the notes.
 	ListNotes(context.Context, *ListNotesRequest) (*ListNotesResponse, error)
-	// Must be author.
+	// Must be author. Insert a block of content in a note at a specific index.
 	InsertBlock(context.Context, *InsertBlockRequest) (*InsertBlockResponse, error)
-	// Must be author.
+	// Must be author. Update a block content.
 	UpdateBlock(context.Context, *UpdateBlockRequest) (*UpdateBlockResponse, error)
-	// Must be author.
+	// Must be author. Update a block index.
 	UpdateBlockIndex(context.Context, *UpdateBlockIndexRequest) (*UpdateBlockIndexResponse, error)
-	// Must be author.
+	// Must be author. Delete a block in a note and replace the indexes of the others.
 	DeleteBlock(context.Context, *DeleteBlockRequest) (*DeleteBlockResponse, error)
-	// Must be group member.
+	// Must be group member. Returns a md or pdf dowloadable file.
 	ExportNote(context.Context, *ExportNoteRequest) (*ExportNoteResponse, error)
-	// Must be account owner.
+	// Must be account owner. Delete the account related notes and groups.
 	OnAccountDelete(context.Context, *OnAccountDeleteRequest) (*OnAccountDeleteResponse, error)
 	ChangeNoteEditPermission(context.Context, *ChangeNoteEditPermissionRequest) (*ChangeNoteEditPermissionResponse, error)
 	GenerateQuiz(context.Context, *GenerateQuizRequest) (*GenerateQuizResponse, error)

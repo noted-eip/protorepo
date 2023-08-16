@@ -53,20 +53,15 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GroupsAPIClient interface {
-	// Creates a group with a single administrator member (the authenticated user).
-	// Must be authenticated.
+	// Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 	CreateGroup(ctx context.Context, in *CreateGroupRequest, opts ...grpc.CallOption) (*CreateGroupResponse, error)
-	// Internal endpoint. Called upon account creation.
-	// Creates a workspace for the caller.
+	// Internal endpoint. Called upon account creation. Creates a workspace for the caller.
 	CreateWorkspace(ctx context.Context, in *CreateWorkspaceRequest, opts ...grpc.CallOption) (*CreateWorkspaceResponse, error)
-	// Must be group member.
-	// If the caller is not a member but has been invited to the group or has
-	// an invite code link, it will access a limited view of the group.
+	// Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
 	GetGroup(ctx context.Context, in *GetGroupRequest, opts ...grpc.CallOption) (*GetGroupResponse, error)
 	// Must be group administrator.
 	UpdateGroup(ctx context.Context, in *UpdateGroupRequest, opts ...grpc.CallOption) (*UpdateGroupResponse, error)
-	// Must be group administrator.
-	// Deletes all the associated resources (members, notes).
+	// Must be group administrator. Deletes all the associated resources (members, notes).
 	DeleteGroup(ctx context.Context, in *DeleteGroupRequest, opts ...grpc.CallOption) (*DeleteGroupResponse, error)
 	// Must be group member. Returns only the non-array fields of a group.
 	ListGroups(ctx context.Context, in *ListGroupsRequest, opts ...grpc.CallOption) (*ListGroupsResponse, error)
@@ -74,8 +69,7 @@ type GroupsAPIClient interface {
 	GetMember(ctx context.Context, in *GetMemberRequest, opts ...grpc.CallOption) (*GetMemberResponse, error)
 	// Must be group administrator. Can only update `role`.
 	UpdateMember(ctx context.Context, in *UpdateMemberRequest, opts ...grpc.CallOption) (*UpdateMemberResponse, error)
-	// Must be group administrator or the authenticated user removing itself from
-	// the group.
+	// Must be group administrator or the authenticated user removing itself from the group.
 	RemoveMember(ctx context.Context, in *RemoveMemberRequest, opts ...grpc.CallOption) (*RemoveMemberResponse, error)
 	// Must be group member.
 	GetConversation(ctx context.Context, in *GetConversationRequest, opts ...grpc.CallOption) (*GetConversationResponse, error)
@@ -103,18 +97,17 @@ type GroupsAPIClient interface {
 	SendInvite(ctx context.Context, in *SendInviteRequest, opts ...grpc.CallOption) (*SendInviteResponse, error)
 	// Must be group administrator or sender or recipient.
 	GetInvite(ctx context.Context, in *GetInviteRequest, opts ...grpc.CallOption) (*GetInviteResponse, error)
-	// Must be recipient. Accepting an invitation automatically adds the
-	// recipient to the group and deletes the invite.
+	// Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
 	AcceptInvite(ctx context.Context, in *AcceptInviteRequest, opts ...grpc.CallOption) (*AcceptInviteResponse, error)
-	// Must be recipient. Deletes the invitation without making the
-	// recipient join the group.
+	// Must be recipient. Deletes the invitation without making the recipient join the group.
 	DenyInvite(ctx context.Context, in *DenyInviteRequest, opts ...grpc.CallOption) (*DenyInviteResponse, error)
-	// Must be group administrator or sender. Deletes the invitation without
-	// making the recipient join the group.
+	// Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
 	RevokeInvite(ctx context.Context, in *RevokeInviteRequest, opts ...grpc.CallOption) (*RevokeInviteResponse, error)
 	// Must be group administrator or sender or recipient.
 	ListInvites(ctx context.Context, in *ListInvitesRequest, opts ...grpc.CallOption) (*ListInvitesResponse, error)
+	// Must be a group member. List all the activities in a group.
 	ListActivities(ctx context.Context, in *ListActivitiesRequest, opts ...grpc.CallOption) (*ListActivitiesResponse, error)
+	// Must be a group member. Returns a signle activity in a group.
 	GetActivity(ctx context.Context, in *GetActivityRequest, opts ...grpc.CallOption) (*GetActivityResponse, error)
 }
 
@@ -382,20 +375,15 @@ func (c *groupsAPIClient) GetActivity(ctx context.Context, in *GetActivityReques
 // All implementations must embed UnimplementedGroupsAPIServer
 // for forward compatibility
 type GroupsAPIServer interface {
-	// Creates a group with a single administrator member (the authenticated user).
-	// Must be authenticated.
+	// Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 	CreateGroup(context.Context, *CreateGroupRequest) (*CreateGroupResponse, error)
-	// Internal endpoint. Called upon account creation.
-	// Creates a workspace for the caller.
+	// Internal endpoint. Called upon account creation. Creates a workspace for the caller.
 	CreateWorkspace(context.Context, *CreateWorkspaceRequest) (*CreateWorkspaceResponse, error)
-	// Must be group member.
-	// If the caller is not a member but has been invited to the group or has
-	// an invite code link, it will access a limited view of the group.
+	// Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
 	GetGroup(context.Context, *GetGroupRequest) (*GetGroupResponse, error)
 	// Must be group administrator.
 	UpdateGroup(context.Context, *UpdateGroupRequest) (*UpdateGroupResponse, error)
-	// Must be group administrator.
-	// Deletes all the associated resources (members, notes).
+	// Must be group administrator. Deletes all the associated resources (members, notes).
 	DeleteGroup(context.Context, *DeleteGroupRequest) (*DeleteGroupResponse, error)
 	// Must be group member. Returns only the non-array fields of a group.
 	ListGroups(context.Context, *ListGroupsRequest) (*ListGroupsResponse, error)
@@ -403,8 +391,7 @@ type GroupsAPIServer interface {
 	GetMember(context.Context, *GetMemberRequest) (*GetMemberResponse, error)
 	// Must be group administrator. Can only update `role`.
 	UpdateMember(context.Context, *UpdateMemberRequest) (*UpdateMemberResponse, error)
-	// Must be group administrator or the authenticated user removing itself from
-	// the group.
+	// Must be group administrator or the authenticated user removing itself from the group.
 	RemoveMember(context.Context, *RemoveMemberRequest) (*RemoveMemberResponse, error)
 	// Must be group member.
 	GetConversation(context.Context, *GetConversationRequest) (*GetConversationResponse, error)
@@ -432,18 +419,17 @@ type GroupsAPIServer interface {
 	SendInvite(context.Context, *SendInviteRequest) (*SendInviteResponse, error)
 	// Must be group administrator or sender or recipient.
 	GetInvite(context.Context, *GetInviteRequest) (*GetInviteResponse, error)
-	// Must be recipient. Accepting an invitation automatically adds the
-	// recipient to the group and deletes the invite.
+	// Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
 	AcceptInvite(context.Context, *AcceptInviteRequest) (*AcceptInviteResponse, error)
-	// Must be recipient. Deletes the invitation without making the
-	// recipient join the group.
+	// Must be recipient. Deletes the invitation without making the recipient join the group.
 	DenyInvite(context.Context, *DenyInviteRequest) (*DenyInviteResponse, error)
-	// Must be group administrator or sender. Deletes the invitation without
-	// making the recipient join the group.
+	// Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
 	RevokeInvite(context.Context, *RevokeInviteRequest) (*RevokeInviteResponse, error)
 	// Must be group administrator or sender or recipient.
 	ListInvites(context.Context, *ListInvitesRequest) (*ListInvitesResponse, error)
+	// Must be a group member. List all the activities in a group.
 	ListActivities(context.Context, *ListActivitiesRequest) (*ListActivitiesResponse, error)
+	// Must be a group member. Returns a signle activity in a group.
 	GetActivity(context.Context, *GetActivityRequest) (*GetActivityResponse, error)
 	mustEmbedUnimplementedGroupsAPIServer()
 }

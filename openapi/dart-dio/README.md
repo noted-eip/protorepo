@@ -83,12 +83,12 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIDeleteGroup**](doc/DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIDenyInvite**](doc/DefaultApi.md#groupsapidenyinvite) | **POST** /groups/{groupId}/invites/{inviteId}/deny | Must be recipient. Deletes the invitation without making the recipient join the group.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGenerateInviteLink**](doc/DefaultApi.md#groupsapigenerateinvitelink) | **POST** /groups/{groupId}/inviteLinks | Must be group member. generated_by_account_id defaults to the authenticated user.
-[*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGetActivity**](doc/DefaultApi.md#groupsapigetactivity) | **GET** /groups/{groupId}/activity/{activityId} | 
+[*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGetActivity**](doc/DefaultApi.md#groupsapigetactivity) | **GET** /groups/{groupId}/activity/{activityId} | Must be a group member. Returns a signle activity in a group.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGetGroup**](doc/DefaultApi.md#groupsapigetgroup) | **GET** /groups/{groupId} | Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGetInvite**](doc/DefaultApi.md#groupsapigetinvite) | **GET** /groups/{groupId}/invites/{inviteId} | Must be group administrator or sender or recipient.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGetInviteLink**](doc/DefaultApi.md#groupsapigetinvitelink) | **GET** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIGetMember**](doc/DefaultApi.md#groupsapigetmember) | **GET** /groups/{groupId}/members/{accountId} | Must be group member.
-[*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIListActivities**](doc/DefaultApi.md#groupsapilistactivities) | **GET** /groups/{groupId}/activity | 
+[*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIListActivities**](doc/DefaultApi.md#groupsapilistactivities) | **GET** /groups/{groupId}/activity | Must be a group member. List all the activities in a group.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIListGroups**](doc/DefaultApi.md#groupsapilistgroups) | **GET** /groups | Must be group member. Returns only the non-array fields of a group.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIListInvites**](doc/DefaultApi.md#groupsapilistinvites) | **GET** /invites | Must be group administrator or sender or recipient.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIListInvites2**](doc/DefaultApi.md#groupsapilistinvites2) | **GET** /groups/{groupId}/invites | Must be group administrator or sender or recipient.
@@ -100,18 +100,18 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUpdateMember**](doc/DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUseInviteLink**](doc/DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIChangeNoteEditPermission**](doc/DefaultApi.md#notesapichangenoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
-[*DefaultApi*](doc/DefaultApi.md) | [**notesAPICreateNote**](doc/DefaultApi.md#notesapicreatenote) | **POST** /groups/{groupId}/notes | Must be group member, author_account_id defaults to the user making the request.
-[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteBlock**](doc/DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
-[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteNote**](doc/DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPICreateNote**](doc/DefaultApi.md#notesapicreatenote) | **POST** /groups/{groupId}/notes | Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteBlock**](doc/DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Delete a block in a note and replace the indexes of the others.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteNote**](doc/DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author. Delete a single note in database.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGenerateQuiz**](doc/DefaultApi.md#notesapigeneratequiz) | **GET** /groups/{groupId}/notes/{noteId}/quiz | 
-[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGetNote**](doc/DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author.
-[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIInsertBlock**](doc/DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGetNote**](doc/DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author. Return a note from id provided.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIInsertBlock**](doc/DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author. Insert a block of content in a note at a specific index.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes**](doc/DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes2**](doc/DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
-[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlock**](doc/DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author.
-[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlockIndex**](doc/DefaultApi.md#notesapiupdateblockindex) | **POST** /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index | Must be author.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlock**](doc/DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Update a block content.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlockIndex**](doc/DefaultApi.md#notesapiupdateblockindex) | **POST** /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index | Must be author. Update a block index.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateNote**](doc/DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60; or &#x60;blocks&#x60;.
-[*DefaultApi*](doc/DefaultApi.md) | [**recommendationsAPIGenerateWidgets**](doc/DefaultApi.md#recommendationsapigeneratewidgets) | **GET** /groups/{groupId}/notes/{noteId}/widgets | 
+[*DefaultApi*](doc/DefaultApi.md) | [**recommendationsAPIGenerateWidgets**](doc/DefaultApi.md#recommendationsapigeneratewidgets) | **GET** /groups/{groupId}/notes/{noteId}/widgets | Must be a group member. Returns all the relevent widgets from the given note id.
 
 
 ## Documentation For Models

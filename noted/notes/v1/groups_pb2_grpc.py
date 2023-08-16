@@ -166,25 +166,21 @@ class GroupsAPIServicer(object):
     """
 
     def CreateGroup(self, request, context):
-        """Creates a group with a single administrator member (the authenticated user).
-        Must be authenticated.
+        """Creates a group with a single administrator member (the authenticated user). Must be authenticated.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def CreateWorkspace(self, request, context):
-        """Internal endpoint. Called upon account creation.
-        Creates a workspace for the caller.
+        """Internal endpoint. Called upon account creation. Creates a workspace for the caller.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetGroup(self, request, context):
-        """Must be group member.
-        If the caller is not a member but has been invited to the group or has
-        an invite code link, it will access a limited view of the group.
+        """Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -198,8 +194,7 @@ class GroupsAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def DeleteGroup(self, request, context):
-        """Must be group administrator.
-        Deletes all the associated resources (members, notes).
+        """Must be group administrator. Deletes all the associated resources (members, notes).
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -227,8 +222,7 @@ class GroupsAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def RemoveMember(self, request, context):
-        """Must be group administrator or the authenticated user removing itself from
-        the group.
+        """Must be group administrator or the authenticated user removing itself from the group.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -326,24 +320,21 @@ class GroupsAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def AcceptInvite(self, request, context):
-        """Must be recipient. Accepting an invitation automatically adds the
-        recipient to the group and deletes the invite.
+        """Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DenyInvite(self, request, context):
-        """Must be recipient. Deletes the invitation without making the
-        recipient join the group.
+        """Must be recipient. Deletes the invitation without making the recipient join the group.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def RevokeInvite(self, request, context):
-        """Must be group administrator or sender. Deletes the invitation without
-        making the recipient join the group.
+        """Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -357,13 +348,15 @@ class GroupsAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def ListActivities(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be a group member. List all the activities in a group.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetActivity(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Must be a group member. Returns a signle activity in a group.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')

@@ -2380,6 +2380,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Must be a group member. Returns a signle activity in a group.
          * @param {string} groupId 
          * @param {string} activityId 
          * @param {*} [options] Override http request option.
@@ -2570,6 +2571,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Must be a group member. List all the activities in a group.
          * @param {string} groupId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -3088,7 +3090,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Must be group member, author_account_id defaults to the user making the request.
+         * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
          * @param {string} groupId 
          * @param {NotesAPICreateNoteRequest} body 
          * @param {*} [options] Override http request option.
@@ -3128,7 +3130,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Delete a block in a note and replace the indexes of the others.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
@@ -3170,7 +3172,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Delete a single note in database.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {*} [options] Override http request option.
@@ -3245,7 +3247,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Must be group member or author.
+         * @summary Must be group member or author. Return a note from id provided.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {*} [options] Override http request option.
@@ -3283,7 +3285,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Insert a block of content in a note at a specific index.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {NotesAPIInsertBlockRequest} body 
@@ -3426,7 +3428,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Update a block content.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
@@ -3474,7 +3476,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Update a block index.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
@@ -3566,6 +3568,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Must be a group member. Returns all the relevent widgets from the given note id.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {*} [options] Override http request option.
@@ -3829,6 +3832,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Must be a group member. Returns a signle activity in a group.
          * @param {string} groupId 
          * @param {string} activityId 
          * @param {*} [options] Override http request option.
@@ -3888,6 +3892,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Must be a group member. List all the activities in a group.
          * @param {string} groupId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -4040,7 +4045,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Must be group member, author_account_id defaults to the user making the request.
+         * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
          * @param {string} groupId 
          * @param {NotesAPICreateNoteRequest} body 
          * @param {*} [options] Override http request option.
@@ -4052,7 +4057,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Delete a block in a note and replace the indexes of the others.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
@@ -4065,7 +4070,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Delete a single note in database.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {*} [options] Override http request option.
@@ -4088,7 +4093,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Must be group member or author.
+         * @summary Must be group member or author. Return a note from id provided.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {*} [options] Override http request option.
@@ -4100,7 +4105,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Insert a block of content in a note at a specific index.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {NotesAPIInsertBlockRequest} body 
@@ -4141,7 +4146,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Update a block content.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
@@ -4155,7 +4160,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Update a block index.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
@@ -4182,6 +4187,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Must be a group member. Returns all the relevent widgets from the given note id.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {*} [options] Override http request option.
@@ -4400,6 +4406,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Must be a group member. Returns a signle activity in a group.
          * @param {string} groupId 
          * @param {string} activityId 
          * @param {*} [options] Override http request option.
@@ -4454,6 +4461,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Must be a group member. List all the activities in a group.
          * @param {string} groupId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -4594,7 +4602,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary Must be group member, author_account_id defaults to the user making the request.
+         * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
          * @param {string} groupId 
          * @param {NotesAPICreateNoteRequest} body 
          * @param {*} [options] Override http request option.
@@ -4605,7 +4613,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Delete a block in a note and replace the indexes of the others.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
@@ -4617,7 +4625,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Delete a single note in database.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {*} [options] Override http request option.
@@ -4638,7 +4646,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary Must be group member or author.
+         * @summary Must be group member or author. Return a note from id provided.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {*} [options] Override http request option.
@@ -4649,7 +4657,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Insert a block of content in a note at a specific index.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {NotesAPIInsertBlockRequest} body 
@@ -4687,7 +4695,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Update a block content.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
@@ -4700,7 +4708,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary Must be author.
+         * @summary Must be author. Update a block index.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
@@ -4725,6 +4733,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Must be a group member. Returns all the relevent widgets from the given note id.
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {*} [options] Override http request option.
@@ -4980,6 +4989,7 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @summary Must be a group member. Returns a signle activity in a group.
      * @param {string} groupId 
      * @param {string} activityId 
      * @param {*} [options] Override http request option.
@@ -5044,6 +5054,7 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @summary Must be a group member. List all the activities in a group.
      * @param {string} groupId 
      * @param {number} [limit] 
      * @param {number} [offset] 
@@ -5208,7 +5219,7 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @summary Must be group member, author_account_id defaults to the user making the request.
+     * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
      * @param {string} groupId 
      * @param {NotesAPICreateNoteRequest} body 
      * @param {*} [options] Override http request option.
@@ -5221,7 +5232,7 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @summary Must be author.
+     * @summary Must be author. Delete a block in a note and replace the indexes of the others.
      * @param {string} groupId 
      * @param {string} noteId 
      * @param {string} blockId 
@@ -5235,7 +5246,7 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @summary Must be author.
+     * @summary Must be author. Delete a single note in database.
      * @param {string} groupId 
      * @param {string} noteId 
      * @param {*} [options] Override http request option.
@@ -5260,7 +5271,7 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @summary Must be group member or author.
+     * @summary Must be group member or author. Return a note from id provided.
      * @param {string} groupId 
      * @param {string} noteId 
      * @param {*} [options] Override http request option.
@@ -5273,7 +5284,7 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @summary Must be author.
+     * @summary Must be author. Insert a block of content in a note at a specific index.
      * @param {string} groupId 
      * @param {string} noteId 
      * @param {NotesAPIInsertBlockRequest} body 
@@ -5317,7 +5328,7 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @summary Must be author.
+     * @summary Must be author. Update a block content.
      * @param {string} groupId 
      * @param {string} noteId 
      * @param {string} blockId 
@@ -5332,7 +5343,7 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @summary Must be author.
+     * @summary Must be author. Update a block index.
      * @param {string} groupId 
      * @param {string} noteId 
      * @param {string} blockId 
@@ -5361,6 +5372,7 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @summary Must be a group member. Returns all the relevent widgets from the given note id.
      * @param {string} groupId 
      * @param {string} noteId 
      * @param {*} [options] Override http request option.
