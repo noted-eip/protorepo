@@ -4,7 +4,6 @@
 
 - Introduction 
 - Architecture 
-- DataSheme 
 - Query 
 - Endpoint 
 - Dependency 
