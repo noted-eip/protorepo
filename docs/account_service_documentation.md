@@ -1,10 +1,37 @@
 # Account Service Technical Documentation
 
+## Summary
+
+- Introduction 
+- Architecture 
+- DataSheme 
+- Query 
+- Endpoint 
+- Dependency 
+- TestingPolicy
+
+## Introduction
+
+The notes service is part of Noted “micro services” architecture.
+This service is communicating with clients by the [api-gateway](https://github.com/noted-eip/api-gateway), and others API like the google natural api, the graphQL google API.
+### Languages
+
+This service is written in [golang](https://go.dev/doc/).
+The communication messages between the api-gateway and this service are in [gRpc](https://grpc.io/docs/languages/go/quickstart/) script based.
+
+### Features
+
+This service is managing the data logic of :
+- The accounts and their related informations
+- The authentication
+
 # Purpose
 
 The Account Service is part of Noted's "microservices" architecture.
 
 This service handles user-related tasks such as, but not limited to, account CRUD, authentication.
+
+You can find more information about how to run the service by looking at the [README.md](https://github.com/noted-eip/accounts-service#readme)
 
 # Data Scheme
 
@@ -604,11 +631,3 @@ t.Run("create-account", func(t *testing.T) {
 		require.Nil(t, res)
 	})
 ```
-
-# ****Go Style****
-
-We are using the Go original style, documentation [here](https://google.github.io/styleguide/go/) 
-
-# How to run
-
-You can find how to run the project localy in the Readme.md  https://github.com/noted-eip/accounts-service
