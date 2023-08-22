@@ -316,10 +316,10 @@ message GetAccountProfilePictureResponse {
     Image image = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
-message RegisterUserForMobileBetaRequest {
+message RegisterUserToMobileBetaRequest {
     string account_id = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
-message RegisterUserForMobileBetaResponse {
+message RegisterUserToMobileBetaResponse {
 }
 
