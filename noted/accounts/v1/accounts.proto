@@ -168,6 +168,7 @@ service AccountsAPI {
     rpc RegisterUserToMobileBeta(RegisterUserToMobileBetaRequest) returns (RegisterUserToMobileBetaResponse) {
         option (google.api.http) = {
             post: "/beta/mobile",
+            body: "*",
         };
     }
 
