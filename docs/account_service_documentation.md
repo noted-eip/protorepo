@@ -12,8 +12,12 @@
 
 ## Introduction
 
-The notes service is part of Noted “micro services” architecture.
-This service is communicating with clients by the [api-gateway](https://github.com/noted-eip/api-gateway), and others API like the google natural api, the graphQL google API.
+The Account Service is part of Noted's "microservices" architecture.
+
+This service handles user-related tasks such as, but not limited to, account CRUD, authentication.
+
+For reasons of accessibility, our documentation is written in English. If we recruit a foreign developer, we can easily include them in the process.
+
 ### Languages
 
 This service is written in [golang](https://go.dev/doc/).
@@ -609,13 +613,13 @@ t.Run("create-account", func(t *testing.T) {
 			Name:     "John Doe",
 			Password: randomPassword,
 			Email:    randomEmail,
-		})
-		require.NoError(t, err)
-		require.NotNil(t, res)
-		require.NotNil(t, res.Account)
-		require.Equal(t, "John Doe", res.Account.Name)
-		require.Equal(t, randomEmail, res.Account.Email)
-		require.NotEmpty(t, res.Account.Id)
+		}) //Testing Create Account Request 
+		require.NoError(t, err) //Testing if the function return an error 
+		require.NotNil(t, res) //is res value not empty ?
+		require.NotNil(t, res.Account) // did we return the new account?
+		require.Equal(t, "John Doe", res.Account.Name) // does the name match with the new account name
+		require.Equal(t, randomEmail, res.Account.Email) // does the email match with the new account email
+		require.NotEmpty(t, res.Account.Id) // did we assign an id to the account
 	})
 
 	t.Run("cannot-create-account-with-existing-email", func(t *testing.T) {
@@ -623,8 +627,12 @@ t.Run("create-account", func(t *testing.T) {
 			Name:     "Janet Doe",
 			Password: randomPassword,
 			Email:    randomEmail,
-		})
-		requireErrorHasGRPCCode(t, codes.AlreadyExists, err)
-		require.Nil(t, res)
+		}) // We are trying to create a new account with a already use email
+		requireErrorHasGRPCCode(t, codes.AlreadyExists, err) // does the error code match the one we are expecting
+		require.Nil(t, res) //is the result null
 	})
 ```
+
+## Go style
+
+We are using the Go original style, documentation [here](https://google.github.io/styleguide/go/)
