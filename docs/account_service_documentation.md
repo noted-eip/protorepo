@@ -9,6 +9,8 @@
 - Endpoint 
 - Dependency 
 - TestingPolicy
+- CI/CD
+- How to contribute
 
 ## Introduction
 
@@ -38,6 +40,8 @@ This service handles user-related tasks such as, but not limited to, account CRU
 You can find more information about how to run the service by looking at the [README.md](https://github.com/noted-eip/accounts-service#readme)
 
 ## Architecture
+
+![thumbnail_image PKVXA2](https://github.com/noted-eip/protorepo/assets/61683870/e0dfec13-a82e-4493-a2f5-92acc69595ca)
 
 In this service every package got his own folder:
 
@@ -636,3 +640,15 @@ t.Run("create-account", func(t *testing.T) {
 ## Go style
 
 We are using the Go original style, documentation [here](https://google.github.io/styleguide/go/)
+
+# CI/CD
+
+This service is in production on [Koyeb](https://www.koyeb.com/) is protected by 2 CIs. These are github actions, so the files are available inside `.github/workflows`. They are written in `yaml`, you can look for the documentation [here](https://docs.github.com/en/actions).
+The tests are as follows:
+- [Deploy.yaml](https://github.com/noted-eip/notes-service/blob/main/.github/workflows/deploy.yaml)
+These tests will run each time code is pushed to the `main` branch or a pull request is created to `main`. This test will launch a build of our service. If the test is successful, the new code will be pushed or mergeable from github.
+- [Testing.yaml](https://github.com/noted-eip/notes-service/blob/main/.github/workflows/test.yml)
+This test will run all unit tests on our project by executing the following command `go test -v`. If the test finishes successfully, the new code will be pushed, or will be mergeable from github.
+
+ # How to contribute
+ You can find the document for user to contribute [here](https://github.com/noted-eip/noted/blob/main/docs/CONTRIBUTING.md)
