@@ -7,7 +7,9 @@
 - Query 
 - Endpoint 
 - Dependency 
-- TestingPolicy 
+- TestingPolicy
+- Go style
+- CI/CD
 
 ## Introduction
 
@@ -16,6 +18,9 @@ The notes service is part of Noted “micro-services” architecture.
 In order to manage those micro-services and messages, we use Google's [gRPC](https://grpc.io/).
 
 This service is communicating with clients through the api-gateway, and others API like the google natural api, the graphQL google API.
+
+For reasons of accessibility, our documentation is written in English. If we recruit a foreign developer, we can easily include them in the process.
+
 
 ### Languages
 
@@ -40,6 +45,8 @@ And the storage process in the MongDB Noted database.
 You can find more information about how to run the service by looking at the [README.md](https://github.com/noted-eip/notes-service#readme)
 
 ## Architecture
+![image PKVXA2](https://github.com/noted-eip/protorepo/assets/62654705/1556967d-9b67-4cb4-806c-d2b9ea0c518e)
+
 Our project is divided in different parts located in each different folders.
 #### Root directory
 The main files of the project are located here, such as :
@@ -1543,3 +1550,14 @@ Try to test every edge case:
 	t.Run("member-can-create-note-with-all-block-types", ...
 	t.Run("member-can-create-note-with-invalid-blocks", ...
 ```
+#  Go style
+We are using the Go original style, documentation [here](https://google.github.io/styleguide/go/)
+
+# CI/CD
+This service is in production on [Koyeb](https://www.koyeb.com/) is protected by 2 CIs. These are github actions, so the files are available inside `.github/workflows`. They are written in `yaml`, you can look for the documentation [here](https://docs.github.com/en/actions).
+The tests are as follows:
+- [Deploy.yaml](https://github.com/noted-eip/notes-service/blob/main/.github/workflows/deploy.yaml)
+These tests will run each time code is pushed to the `main` branch or a pull request is created to `main`. This test will launch a build of our service. If the test is successful, the new code will be pushed or mergeable from github.
+- [Testing.yaml](https://github.com/noted-eip/notes-service/blob/main/.github/workflows/test.yml)
+This test will run all unit tests on our project by executing the following command `go test -v`. If the test finishes successfully, the new code will be pushed, or will be mergeable from github.
+
