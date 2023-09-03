@@ -10,6 +10,7 @@
 - TestingPolicy
 - Go style
 - CI/CD
+- How to contribute
 
 ## Introduction
 
@@ -1561,3 +1562,19 @@ These tests will run each time code is pushed to the `main` branch or a pull req
 - [Testing.yaml](https://github.com/noted-eip/notes-service/blob/main/.github/workflows/test.yml)
 This test will run all unit tests on our project by executing the following command `go test -v`. If the test finishes successfully, the new code will be pushed, or will be mergeable from github.
 
+# How to contribute
+
+If you want to clone and run the project (of fork it) look for the [Readme.md](https://github.com/noted-eip/notes-service/blob/main/README.md) of this service.
+
+You can find the document for developpers to contribute [here](https://github.com/noted-eip/noted/blob/main/docs/CONTRIBUTING.md)
+
+If you'd like to join our team, we organize all our meetings on our Discord Noted channel.
+
+On this channel we usually :
+- Meet in **vocals channels** to work.
+- We have a **memo** for meetings and reports and every **deadlines**.
+- We have a **discord bot** that every week on Monday morning sends a message to remind us to write a **summary** of what we did or didn't do last week.
+- We write ideas for the **next user story** to be integrated into the sprint.
+- We discuss problems and solutions on our respective channels (backend, devops, frontend, etc.).
+
+If you'd like to join this channel, send us an e-mail at noted.organisation@gmail.com.
