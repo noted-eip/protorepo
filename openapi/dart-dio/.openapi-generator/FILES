@@ -65,6 +65,7 @@ doc/V1NoteExportFormat.md
 doc/V1Quiz.md
 doc/V1QuizQuestion.md
 doc/V1Recipient.md
+doc/V1RegisterUserToMobileBetaRequest.md
 doc/V1SendConversationMessageResponse.md
 doc/V1SendInviteResponse.md
 doc/V1SummarizeResponse.md
@@ -153,6 +154,7 @@ lib/src/model/v1_note_export_format.dart
 lib/src/model/v1_quiz.dart
 lib/src/model/v1_quiz_question.dart
 lib/src/model/v1_recipient.dart
+lib/src/model/v1_register_user_to_mobile_beta_request.dart
 lib/src/model/v1_send_conversation_message_response.dart
 lib/src/model/v1_send_invite_response.dart
 lib/src/model/v1_summarize_response.dart
@@ -233,6 +235,7 @@ test/v1_note_test.dart
 test/v1_quiz_question_test.dart
 test/v1_quiz_test.dart
 test/v1_recipient_test.dart
+test/v1_register_user_to_mobile_beta_request_test.dart
 test/v1_send_conversation_message_response_test.dart
 test/v1_send_invite_response_test.dart
 test/v1_summarize_response_test.dart

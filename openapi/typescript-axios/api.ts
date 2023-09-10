@@ -114,6 +114,12 @@ export interface V1Account {
      * @memberof V1Account
      */
     'email': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof V1Account
+     */
+    'isInMobileBeta'?: boolean;
 }
 /**
  * 
@@ -1276,6 +1282,19 @@ export interface V1Recipient {
      * @memberof V1Recipient
      */
     'accountId'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface V1RegisterUserToMobileBetaRequest
+ */
+export interface V1RegisterUserToMobileBetaRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof V1RegisterUserToMobileBetaRequest
+     */
+    'accountId': string;
 }
 /**
  * 

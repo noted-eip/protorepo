@@ -73,6 +73,7 @@ export 'package:openapi/src/model/v1_note_export_format.dart';
 export 'package:openapi/src/model/v1_quiz.dart';
 export 'package:openapi/src/model/v1_quiz_question.dart';
 export 'package:openapi/src/model/v1_recipient.dart';
+export 'package:openapi/src/model/v1_register_user_to_mobile_beta_request.dart';
 export 'package:openapi/src/model/v1_send_conversation_message_response.dart';
 export 'package:openapi/src/model/v1_send_invite_response.dart';
 export 'package:openapi/src/model/v1_summarize_response.dart';

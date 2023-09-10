@@ -297,6 +297,25 @@ paths:
               required: true
               schema:
                 $ref: '#/definitions/v1AuthenticateGoogleRequest'
+  /beta/mobile: |
+    post:
+        summary: Registers the user to the mobile application beta.
+        operationId: AccountsAPI_RegisterUserToMobileBeta
+        responses:
+            "200":
+                description: A successful response.
+                schema:
+                    $ref: '#/definitions/v1RegisterUserToMobileBetaResponse'
+            "404":
+                description: Resource not found or lacking permissions to access the resource.
+                schema:
+                    $ref: '#/definitions/v1HttpError'
+        parameters:
+            - name: body
+              in: body
+              required: true
+              schema:
+                $ref: '#/definitions/v1RegisterUserToMobileBetaRequest'
   /groups: |
     get:
         summary: Must be group member. Returns only the non-array fields of a group.
@@ -1239,6 +1258,9 @@ definitions:
         type: string
       email:
         type: string
+      isInMobileBeta:
+        type: boolean
+        title: On long term, should not put this in Account but in a separate database that only stores accounts ids that are in beta (for example) (too lazy too late rn)
     required:
       - id
       - name
@@ -1876,6 +1898,15 @@ definitions:
     properties:
       accountId:
         type: string
+  v1RegisterUserToMobileBetaRequest:
+    type: object
+    properties:
+      accountId:
+        type: string
+    required:
+      - accountId
+  v1RegisterUserToMobileBetaResponse:
+    type: object
   v1RemoveMemberResponse:
     type: object
   v1RevokeInviteLinkResponse:

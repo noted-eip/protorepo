@@ -120,6 +120,7 @@ Class | Method | HTTP request | Description
  - [V1Quiz](doc/V1Quiz.md)
  - [V1QuizQuestion](doc/V1QuizQuestion.md)
  - [V1Recipient](doc/V1Recipient.md)
+ - [V1RegisterUserToMobileBetaRequest](doc/V1RegisterUserToMobileBetaRequest.md)
  - [V1SendConversationMessageResponse](doc/V1SendConversationMessageResponse.md)
  - [V1SendInviteResponse](doc/V1SendInviteResponse.md)
  - [V1SummarizeResponse](doc/V1SummarizeResponse.md)

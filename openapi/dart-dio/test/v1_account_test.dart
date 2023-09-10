@@ -22,5 +22,10 @@ void main() {
       // TODO
     });
 
+    // bool isInMobileBeta
+    test('to test the property `isInMobileBeta`', () async {
+      // TODO
+    });
+
   });
 }

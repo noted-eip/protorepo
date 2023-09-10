@@ -77,6 +77,7 @@ import 'package:openapi/src/model/v1_note_export_format.dart';
 import 'package:openapi/src/model/v1_quiz.dart';
 import 'package:openapi/src/model/v1_quiz_question.dart';
 import 'package:openapi/src/model/v1_recipient.dart';
+import 'package:openapi/src/model/v1_register_user_to_mobile_beta_request.dart';
 import 'package:openapi/src/model/v1_send_conversation_message_response.dart';
 import 'package:openapi/src/model/v1_send_invite_response.dart';
 import 'package:openapi/src/model/v1_summarize_response.dart';
@@ -159,6 +160,7 @@ part 'serializers.g.dart';
   V1Quiz,
   V1QuizQuestion,
   V1Recipient,
+  V1RegisterUserToMobileBetaRequest,
   V1SendConversationMessageResponse,
   V1SendInviteResponse,
   V1SummarizeResponse,
