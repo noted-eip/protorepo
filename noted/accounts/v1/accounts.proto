@@ -38,6 +38,8 @@ message Account {
     string id = 1 [(google.api.field_behavior) = REQUIRED];
     string name = 2 [(google.api.field_behavior) = REQUIRED];
     string email = 3 [(google.api.field_behavior) = REQUIRED];
+
+    bool is_in_mobile_beta = 4; // On long term, should not put this in Account but in a separate database that only stores accounts ids that are in beta (for example) (too lazy too late rn)
 }
 
 message Image {
