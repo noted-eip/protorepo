@@ -14,9 +14,18 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:openapi/src/date_serializer.dart';
 import 'package:openapi/src/model/date.dart';
 
+import 'package:openapi/src/model/accounts_api_update_account_password_request.dart';
+import 'package:openapi/src/model/accounts_api_upload_account_profile_picture_request.dart';
+import 'package:openapi/src/model/accounts_api_validate_account_request.dart';
 import 'package:openapi/src/model/accountsv1_image.dart';
 import 'package:openapi/src/model/block_code.dart';
 import 'package:openapi/src/model/change_note_edit_permission_request_action.dart';
+import 'package:openapi/src/model/groups_api_send_invite_request.dart';
+import 'package:openapi/src/model/groups_api_update_group_request.dart';
+import 'package:openapi/src/model/notes_api_change_note_edit_permission_request.dart';
+import 'package:openapi/src/model/notes_api_create_note_request.dart';
+import 'package:openapi/src/model/notes_api_insert_block_request.dart';
+import 'package:openapi/src/model/notes_api_update_block_index_request.dart';
 import 'package:openapi/src/model/v1_accept_invite_response.dart';
 import 'package:openapi/src/model/v1_account.dart';
 import 'package:openapi/src/model/v1_authenticate_google_request.dart';
@@ -97,9 +106,18 @@ import 'package:openapi/src/model/v1_widget.dart';
 part 'serializers.g.dart';
 
 @SerializersFor([
+  AccountsAPIUpdateAccountPasswordRequest,
+  AccountsAPIUploadAccountProfilePictureRequest,
+  AccountsAPIValidateAccountRequest,
   Accountsv1Image,
   BlockCode,
   ChangeNoteEditPermissionRequestAction,
+  GroupsAPISendInviteRequest,
+  GroupsAPIUpdateGroupRequest,
+  NotesAPIChangeNoteEditPermissionRequest,
+  NotesAPICreateNoteRequest,
+  NotesAPIInsertBlockRequest,
+  NotesAPIUpdateBlockIndexRequest,
   V1AcceptInviteResponse,
   V1Account,
   V1AuthenticateGoogleRequest,
