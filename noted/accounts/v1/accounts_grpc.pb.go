@@ -34,6 +34,7 @@ const (
 	AccountsAPI_SendGroupInviteMail_FullMethodName                = "/noted.accounts.v1.AccountsAPI/SendGroupInviteMail"
 	AccountsAPI_Authenticate_FullMethodName                       = "/noted.accounts.v1.AccountsAPI/Authenticate"
 	AccountsAPI_AuthenticateGoogle_FullMethodName                 = "/noted.accounts.v1.AccountsAPI/AuthenticateGoogle"
+	AccountsAPI_RegisterUserToMobileBeta_FullMethodName           = "/noted.accounts.v1.AccountsAPI/RegisterUserToMobileBeta"
 )
 
 // AccountsAPIClient is the client API for AccountsAPI service.
@@ -68,6 +69,8 @@ type AccountsAPIClient interface {
 	Authenticate(ctx context.Context, in *AuthenticateRequest, opts ...grpc.CallOption) (*AuthenticateResponse, error)
 	// Authenticate using the Google OAuth flow.
 	AuthenticateGoogle(ctx context.Context, in *AuthenticateGoogleRequest, opts ...grpc.CallOption) (*AuthenticateGoogleResponse, error)
+	// Registers the user to the mobile application beta.
+	RegisterUserToMobileBeta(ctx context.Context, in *RegisterUserToMobileBetaRequest, opts ...grpc.CallOption) (*RegisterUserToMobileBetaResponse, error)
 }
 
 type accountsAPIClient struct {
@@ -213,6 +216,15 @@ func (c *accountsAPIClient) AuthenticateGoogle(ctx context.Context, in *Authenti
 	return out, nil
 }
 
+func (c *accountsAPIClient) RegisterUserToMobileBeta(ctx context.Context, in *RegisterUserToMobileBetaRequest, opts ...grpc.CallOption) (*RegisterUserToMobileBetaResponse, error) {
+	out := new(RegisterUserToMobileBetaResponse)
+	err := c.cc.Invoke(ctx, AccountsAPI_RegisterUserToMobileBeta_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccountsAPIServer is the server API for AccountsAPI service.
 // All implementations must embed UnimplementedAccountsAPIServer
 // for forward compatibility
@@ -245,6 +257,8 @@ type AccountsAPIServer interface {
 	Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error)
 	// Authenticate using the Google OAuth flow.
 	AuthenticateGoogle(context.Context, *AuthenticateGoogleRequest) (*AuthenticateGoogleResponse, error)
+	// Registers the user to the mobile application beta.
+	RegisterUserToMobileBeta(context.Context, *RegisterUserToMobileBetaRequest) (*RegisterUserToMobileBetaResponse, error)
 	mustEmbedUnimplementedAccountsAPIServer()
 }
 
@@ -296,6 +310,9 @@ func (UnimplementedAccountsAPIServer) Authenticate(context.Context, *Authenticat
 }
 func (UnimplementedAccountsAPIServer) AuthenticateGoogle(context.Context, *AuthenticateGoogleRequest) (*AuthenticateGoogleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthenticateGoogle not implemented")
+}
+func (UnimplementedAccountsAPIServer) RegisterUserToMobileBeta(context.Context, *RegisterUserToMobileBetaRequest) (*RegisterUserToMobileBetaResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterUserToMobileBeta not implemented")
 }
 func (UnimplementedAccountsAPIServer) mustEmbedUnimplementedAccountsAPIServer() {}
 
@@ -580,6 +597,24 @@ func _AccountsAPI_AuthenticateGoogle_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountsAPI_RegisterUserToMobileBeta_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterUserToMobileBetaRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountsAPIServer).RegisterUserToMobileBeta(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountsAPI_RegisterUserToMobileBeta_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountsAPIServer).RegisterUserToMobileBeta(ctx, req.(*RegisterUserToMobileBetaRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AccountsAPI_ServiceDesc is the grpc.ServiceDesc for AccountsAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -646,6 +681,10 @@ var AccountsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AuthenticateGoogle",
 			Handler:    _AccountsAPI_AuthenticateGoogle_Handler,
+		},
+		{
+			MethodName: "RegisterUserToMobileBeta",
+			Handler:    _AccountsAPI_RegisterUserToMobileBeta_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

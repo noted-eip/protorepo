@@ -14,6 +14,7 @@ part 'v1_account.g.dart';
 /// * [id] 
 /// * [name] 
 /// * [email] 
+/// * [isInMobileBeta] 
 @BuiltValue()
 abstract class V1Account implements Built<V1Account, V1AccountBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -24,6 +25,9 @@ abstract class V1Account implements Built<V1Account, V1AccountBuilder> {
 
   @BuiltValueField(wireName: r'email')
   String get email;
+
+  @BuiltValueField(wireName: r'isInMobileBeta')
+  bool? get isInMobileBeta;
 
   V1Account._();
 
@@ -63,6 +67,13 @@ class _$V1AccountSerializer implements PrimitiveSerializer<V1Account> {
       object.email,
       specifiedType: const FullType(String),
     );
+    if (object.isInMobileBeta != null) {
+      yield r'isInMobileBeta';
+      yield serializers.serialize(
+        object.isInMobileBeta,
+        specifiedType: const FullType(bool),
+      );
+    }
   }
 
   @override
@@ -106,6 +117,13 @@ class _$V1AccountSerializer implements PrimitiveSerializer<V1Account> {
             specifiedType: const FullType(String),
           ) as String;
           result.email = valueDes;
+          break;
+        case r'isInMobileBeta':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.isInMobileBeta = valueDes;
           break;
         default:
           unhandled.add(key);

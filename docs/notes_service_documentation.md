@@ -7,7 +7,10 @@
 - Query 
 - Endpoint 
 - Dependency 
-- TestingPolicy 
+- TestingPolicy
+- Go style
+- CI/CD
+- How to contribute
 
 ## Introduction
 
@@ -16,6 +19,9 @@ The notes service is part of Noted “micro-services” architecture.
 In order to manage those micro-services and messages, we use Google's [gRPC](https://grpc.io/).
 
 This service is communicating with clients through the api-gateway, and others API like the google natural api, the graphQL google API.
+
+For reasons of accessibility, our documentation is written in English. If we recruit a foreign developer, we can easily include them in the process.
+
 
 ### Languages
 
@@ -40,6 +46,8 @@ And the storage process in the MongDB Noted database.
 You can find more information about how to run the service by looking at the [README.md](https://github.com/noted-eip/notes-service#readme)
 
 ## Architecture
+![image PKVXA2](https://github.com/noted-eip/protorepo/assets/62654705/1556967d-9b67-4cb4-806c-d2b9ea0c518e)
+
 Our project is divided in different parts located in each different folders.
 #### Root directory
 The main files of the project are located here, such as :
@@ -1543,3 +1551,30 @@ Try to test every edge case:
 	t.Run("member-can-create-note-with-all-block-types", ...
 	t.Run("member-can-create-note-with-invalid-blocks", ...
 ```
+#  Go style
+We are using the Go original style, documentation [here](https://google.github.io/styleguide/go/)
+
+# CI/CD
+This service is in production on [Koyeb](https://www.koyeb.com/) is protected by 2 CIs. These are github actions, so the files are available inside `.github/workflows`. They are written in `yaml`, you can look for the documentation [here](https://docs.github.com/en/actions).
+The tests are as follows:
+- [Deploy.yaml](https://github.com/noted-eip/notes-service/blob/main/.github/workflows/deploy.yaml)
+These tests will run each time code is pushed to the `main` branch or a pull request is created to `main`. This test will launch a build of our service. If the test is successful, the new code will be pushed or mergeable from github.
+- [Testing.yaml](https://github.com/noted-eip/notes-service/blob/main/.github/workflows/test.yml)
+This test will run all unit tests on our project by executing the following command `go test -v`. If the test finishes successfully, the new code will be pushed, or will be mergeable from github.
+
+# How to contribute
+
+If you want to clone and run the project (of fork it) look for the [Readme.md](https://github.com/noted-eip/notes-service/blob/main/README.md) of this service.
+
+You can find the document for developpers to contribute [here](https://github.com/noted-eip/noted/blob/main/docs/CONTRIBUTING.md)
+
+If you'd like to join our team, we organize all our meetings on our Discord Noted channel.
+
+On this channel we usually :
+- Meet in **vocals channels** to work.
+- We have a **memo** for meetings and reports and every **deadlines**.
+- We have a **discord bot** that every week on Monday morning sends a message to remind us to write a **summary** of what we did or didn't do last week.
+- We write ideas for the **next user story** to be integrated into the sprint.
+- We discuss problems and solutions on our respective channels (backend, devops, frontend, etc.).
+
+If you'd like to join this channel, send us an e-mail at noted.organisation@gmail.com.

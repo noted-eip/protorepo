@@ -9,11 +9,17 @@
 - Endpoint 
 - Dependency 
 - TestingPolicy
+- CI/CD
+- How to contribute
 
 ## Introduction
 
-The notes service is part of Noted “micro services” architecture.
-This service is communicating with clients by the [api-gateway](https://github.com/noted-eip/api-gateway), and others API like the google natural api, the graphQL google API.
+The Account Service is part of Noted's "microservices" architecture.
+
+This service handles user-related tasks such as, but not limited to, account CRUD, authentication.
+
+For reasons of accessibility, our documentation is written in English. If we recruit a foreign developer, we can easily include them in the process.
+
 ### Languages
 
 This service is written in [golang](https://go.dev/doc/).
@@ -34,6 +40,8 @@ This service handles user-related tasks such as, but not limited to, account CRU
 You can find more information about how to run the service by looking at the [README.md](https://github.com/noted-eip/accounts-service#readme)
 
 ## Architecture
+
+![thumbnail_image PKVXA2](https://github.com/noted-eip/protorepo/assets/61683870/e0dfec13-a82e-4493-a2f5-92acc69595ca)
 
 In this service every package got his own folder:
 
@@ -609,13 +617,13 @@ t.Run("create-account", func(t *testing.T) {
 			Name:     "John Doe",
 			Password: randomPassword,
 			Email:    randomEmail,
-		})
-		require.NoError(t, err)
-		require.NotNil(t, res)
-		require.NotNil(t, res.Account)
-		require.Equal(t, "John Doe", res.Account.Name)
-		require.Equal(t, randomEmail, res.Account.Email)
-		require.NotEmpty(t, res.Account.Id)
+		}) //Testing Create Account Request 
+		require.NoError(t, err) //Testing if the function return an error 
+		require.NotNil(t, res) //is res value not empty ?
+		require.NotNil(t, res.Account) // did we return the new account?
+		require.Equal(t, "John Doe", res.Account.Name) // does the name match with the new account name
+		require.Equal(t, randomEmail, res.Account.Email) // does the email match with the new account email
+		require.NotEmpty(t, res.Account.Id) // did we assign an id to the account
 	})
 
 	t.Run("cannot-create-account-with-existing-email", func(t *testing.T) {
@@ -623,8 +631,38 @@ t.Run("create-account", func(t *testing.T) {
 			Name:     "Janet Doe",
 			Password: randomPassword,
 			Email:    randomEmail,
-		})
-		requireErrorHasGRPCCode(t, codes.AlreadyExists, err)
-		require.Nil(t, res)
+		}) // We are trying to create a new account with a already use email
+		requireErrorHasGRPCCode(t, codes.AlreadyExists, err) // does the error code match the one we are expecting
+		require.Nil(t, res) //is the result null
 	})
 ```
+
+## Go style
+
+We are using the Go original style, documentation [here](https://google.github.io/styleguide/go/)
+
+# CI/CD
+
+This service is in production on [Koyeb](https://www.koyeb.com/) is protected by 2 CIs. These are github actions, so the files are available inside `.github/workflows`. They are written in `yaml`, you can look for the documentation [here](https://docs.github.com/en/actions).
+The tests are as follows:
+- [Deploy.yaml](https://github.com/noted-eip/notes-service/blob/main/.github/workflows/deploy.yaml)
+These tests will run each time code is pushed to the `main` branch or a pull request is created to `main`. This test will launch a build of our service. If the test is successful, the new code will be pushed or mergeable from github.
+- [Testing.yaml](https://github.com/noted-eip/notes-service/blob/main/.github/workflows/test.yml)
+This test will run all unit tests on our project by executing the following command `go test -v`. If the test finishes successfully, the new code will be pushed, or will be mergeable from github.
+
+ # How to contribute
+
+If you want to clone and run the project (of fork it) look for the [Readme.md](https://github.com/noted-eip/account-service/blob/main/README.md) of this service.
+
+You can find the document for developpers to contribute [here](https://github.com/noted-eip/noted/blob/main/docs/CONTRIBUTING.md)
+
+If you'd like to join our team, we organize all our meetings on our Discord Noted channel.
+
+On this channel we usually :
+- Meet in **vocals channels** to work.
+- We have a **memo** for meetings and reports and every **deadlines**.
+- We have a **discord bot** that every week on Monday morning sends a message to remind us to write a **summary** of what we did or didn't do last week.
+- We write ideas for the **next user story** to be integrated into the sprint.
+- We discuss problems and solutions on our respective channels (backend, devops, frontend, etc.).
+
+If you'd like to join this channel, send us an e-mail at noted.organisation@gmail.com.

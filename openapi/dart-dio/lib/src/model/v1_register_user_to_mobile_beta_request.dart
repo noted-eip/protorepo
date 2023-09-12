@@ -6,51 +6,51 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'notes_api_update_block_index_request.g.dart';
+part 'v1_register_user_to_mobile_beta_request.g.dart';
 
-/// NotesAPIUpdateBlockIndexRequest
+/// V1RegisterUserToMobileBetaRequest
 ///
 /// Properties:
-/// * [index] 
+/// * [accountId] 
 @BuiltValue()
-abstract class NotesAPIUpdateBlockIndexRequest implements Built<NotesAPIUpdateBlockIndexRequest, NotesAPIUpdateBlockIndexRequestBuilder> {
-  @BuiltValueField(wireName: r'index')
-  int get index;
+abstract class V1RegisterUserToMobileBetaRequest implements Built<V1RegisterUserToMobileBetaRequest, V1RegisterUserToMobileBetaRequestBuilder> {
+  @BuiltValueField(wireName: r'accountId')
+  String get accountId;
 
-  NotesAPIUpdateBlockIndexRequest._();
+  V1RegisterUserToMobileBetaRequest._();
 
-  factory NotesAPIUpdateBlockIndexRequest([void updates(NotesAPIUpdateBlockIndexRequestBuilder b)]) = _$NotesAPIUpdateBlockIndexRequest;
+  factory V1RegisterUserToMobileBetaRequest([void updates(V1RegisterUserToMobileBetaRequestBuilder b)]) = _$V1RegisterUserToMobileBetaRequest;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(NotesAPIUpdateBlockIndexRequestBuilder b) => b;
+  static void _defaults(V1RegisterUserToMobileBetaRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<NotesAPIUpdateBlockIndexRequest> get serializer => _$NotesAPIUpdateBlockIndexRequestSerializer();
+  static Serializer<V1RegisterUserToMobileBetaRequest> get serializer => _$V1RegisterUserToMobileBetaRequestSerializer();
 }
 
-class _$NotesAPIUpdateBlockIndexRequestSerializer implements PrimitiveSerializer<NotesAPIUpdateBlockIndexRequest> {
+class _$V1RegisterUserToMobileBetaRequestSerializer implements PrimitiveSerializer<V1RegisterUserToMobileBetaRequest> {
   @override
-  final Iterable<Type> types = const [NotesAPIUpdateBlockIndexRequest, _$NotesAPIUpdateBlockIndexRequest];
+  final Iterable<Type> types = const [V1RegisterUserToMobileBetaRequest, _$V1RegisterUserToMobileBetaRequest];
 
   @override
-  final String wireName = r'NotesAPIUpdateBlockIndexRequest';
+  final String wireName = r'V1RegisterUserToMobileBetaRequest';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    NotesAPIUpdateBlockIndexRequest object, {
+    V1RegisterUserToMobileBetaRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'index';
+    yield r'accountId';
     yield serializers.serialize(
-      object.index,
-      specifiedType: const FullType(int),
+      object.accountId,
+      specifiedType: const FullType(String),
     );
   }
 
   @override
   Object serialize(
     Serializers serializers,
-    NotesAPIUpdateBlockIndexRequest object, {
+    V1RegisterUserToMobileBetaRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -61,19 +61,19 @@ class _$NotesAPIUpdateBlockIndexRequestSerializer implements PrimitiveSerializer
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required NotesAPIUpdateBlockIndexRequestBuilder result,
+    required V1RegisterUserToMobileBetaRequestBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'index':
+        case r'accountId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.index = valueDes;
+            specifiedType: const FullType(String),
+          ) as String;
+          result.accountId = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -84,12 +84,12 @@ class _$NotesAPIUpdateBlockIndexRequestSerializer implements PrimitiveSerializer
   }
 
   @override
-  NotesAPIUpdateBlockIndexRequest deserialize(
+  V1RegisterUserToMobileBetaRequest deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = NotesAPIUpdateBlockIndexRequestBuilder();
+    final result = V1RegisterUserToMobileBetaRequestBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(
