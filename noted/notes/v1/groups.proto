@@ -247,6 +247,12 @@ service GroupsAPI {
         };
     }
 
+    rpc StreamInvites(StreamInviteRequest) returns (stream StreamInviteResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/invites/stream",
+        };
+    };
+
     // Must be a group member. List all the activities in a group.
     rpc ListActivities(ListActivitiesRequest) returns (ListActivitiesResponse) {
         option (google.api.http) = {
@@ -507,6 +513,15 @@ message RevokeInviteRequest {
 message RevokeInviteResponse {
 }
 
+message StreamInviteRequest {
+    string group_id = 1;
+    // Returns only invites destined to recipient.
+    string recipient_account_id = 2;
+}
+
+message StreamInviteResponse {
+    repeated GroupInvite invites = 1;
+}
 
 message ListActivitiesRequest {
     string group_id = 1;
