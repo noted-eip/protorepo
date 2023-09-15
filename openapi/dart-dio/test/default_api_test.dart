@@ -234,6 +234,11 @@ void main() {
       // TODO
     });
 
+    //Future<StreamResultOfV1StreamInviteResponse> groupsAPIStreamInvites(String groupId, { String recipientAccountId }) async
+    test('test groupsAPIStreamInvites', () async {
+      // TODO
+    });
+
     // Must be group administrator.
     //
     //Future<V1UpdateGroupResponse> groupsAPIUpdateGroup(String groupId, GroupsAPIUpdateGroupRequest body) async

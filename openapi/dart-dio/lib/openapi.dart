@@ -23,6 +23,7 @@ export 'package:openapi/src/model/notes_api_change_note_edit_permission_request.
 export 'package:openapi/src/model/notes_api_create_note_request.dart';
 export 'package:openapi/src/model/notes_api_insert_block_request.dart';
 export 'package:openapi/src/model/notes_api_update_block_index_request.dart';
+export 'package:openapi/src/model/stream_result_of_v1_stream_invite_response.dart';
 export 'package:openapi/src/model/v1_accept_invite_response.dart';
 export 'package:openapi/src/model/v1_account.dart';
 export 'package:openapi/src/model/v1_authenticate_google_request.dart';
@@ -86,6 +87,7 @@ export 'package:openapi/src/model/v1_recipient.dart';
 export 'package:openapi/src/model/v1_register_user_to_mobile_beta_request.dart';
 export 'package:openapi/src/model/v1_send_conversation_message_response.dart';
 export 'package:openapi/src/model/v1_send_invite_response.dart';
+export 'package:openapi/src/model/v1_stream_invite_response.dart';
 export 'package:openapi/src/model/v1_summarize_response.dart';
 export 'package:openapi/src/model/v1_update_account_password_response.dart';
 export 'package:openapi/src/model/v1_update_account_response.dart';

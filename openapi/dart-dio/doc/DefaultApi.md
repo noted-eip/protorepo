@@ -42,6 +42,7 @@ Method | HTTP request | Description
 [**groupsAPIRevokeInvite**](DefaultApi.md#groupsapirevokeinvite) | **DELETE** /groups/{groupId}/invites/{inviteId} | Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
 [**groupsAPIRevokeInviteLink**](DefaultApi.md#groupsapirevokeinvitelink) | **DELETE** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
 [**groupsAPISendInvite**](DefaultApi.md#groupsapisendinvite) | **POST** /groups/{groupId}/invites | The sender defaults to the authenticated user. Must be group member.
+[**groupsAPIStreamInvites**](DefaultApi.md#groupsapistreaminvites) | **GET** /groups/{groupId}/invites/stream | 
 [**groupsAPIUpdateGroup**](DefaultApi.md#groupsapiupdategroup) | **PATCH** /groups/{groupId} | Must be group administrator.
 [**groupsAPIUpdateMember**](DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
 [**groupsAPIUseInviteLink**](DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
@@ -1469,6 +1470,49 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **groupsAPIStreamInvites**
+> StreamResultOfV1StreamInviteResponse groupsAPIStreamInvites(groupId, recipientAccountId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String recipientAccountId = recipientAccountId_example; // String | Returns only invites destined to recipient.
+
+try {
+    final response = api.groupsAPIStreamInvites(groupId, recipientAccountId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->groupsAPIStreamInvites: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **recipientAccountId** | **String**| Returns only invites destined to recipient. | [optional] 
+
+### Return type
+
+[**StreamResultOfV1StreamInviteResponse**](StreamResultOfV1StreamInviteResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

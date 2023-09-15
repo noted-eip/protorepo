@@ -630,6 +630,32 @@ paths:
                 type: string
             required:
               - recipientAccountId
+  /groups/{groupId}/invites/stream:
+    get:
+      operationId: GroupsAPI_StreamInvites
+      responses:
+        "200":
+          description: A successful response.(streaming responses)
+          schema:
+            type: object
+            properties:
+              result:
+                $ref: '#/definitions/v1StreamInviteResponse'
+            title: Stream result of v1StreamInviteResponse
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: recipientAccountId
+          description: Returns only invites destined to recipient.
+          in: query
+          required: false
+          type: string
   /groups/{groupId}/invites/{inviteId}:
     get:
       summary: Must be group administrator or sender or recipient.
@@ -1931,6 +1957,14 @@ definitions:
         $ref: '#/definitions/v1GroupInvite'
     required:
       - invite
+  v1StreamInviteResponse:
+    type: object
+    properties:
+      invites:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1GroupInvite'
   v1SummarizeResponse:
     type: object
     properties:

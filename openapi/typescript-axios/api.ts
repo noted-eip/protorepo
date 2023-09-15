@@ -235,6 +235,19 @@ export interface NotesAPIUpdateBlockIndexRequest {
 /**
  * 
  * @export
+ * @interface StreamResultOfV1StreamInviteResponse
+ */
+export interface StreamResultOfV1StreamInviteResponse {
+    /**
+     * 
+     * @type {V1StreamInviteResponse}
+     * @memberof StreamResultOfV1StreamInviteResponse
+     */
+    'result'?: V1StreamInviteResponse;
+}
+/**
+ * 
+ * @export
  * @interface V1AcceptInviteResponse
  */
 export interface V1AcceptInviteResponse {
@@ -1476,6 +1489,19 @@ export interface V1SendInviteResponse {
      * @memberof V1SendInviteResponse
      */
     'invite': V1GroupInvite;
+}
+/**
+ * 
+ * @export
+ * @interface V1StreamInviteResponse
+ */
+export interface V1StreamInviteResponse {
+    /**
+     * 
+     * @type {Array<V1GroupInvite>}
+     * @memberof V1StreamInviteResponse
+     */
+    'invites'?: Array<V1GroupInvite>;
 }
 /**
  * 
@@ -2980,6 +3006,44 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIStreamInvites: async (groupId: string, recipientAccountId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIStreamInvites', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/invites/stream`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (recipientAccountId !== undefined) {
+                localVarQueryParameter['recipientAccountId'] = recipientAccountId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be group administrator.
          * @param {string} groupId 
          * @param {GroupsAPIUpdateGroupRequest} body 
@@ -4062,6 +4126,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StreamResultOfV1StreamInviteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIStreamInvites(groupId, recipientAccountId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Must be group administrator.
          * @param {string} groupId 
          * @param {GroupsAPIUpdateGroupRequest} body 
@@ -4630,6 +4705,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteRequest, options?: any): AxiosPromise<V1SendInviteResponse> {
             return localVarFp.groupsAPISendInvite(groupId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: any): AxiosPromise<StreamResultOfV1StreamInviteResponse> {
+            return localVarFp.groupsAPIStreamInvites(groupId, recipientAccountId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5250,6 +5335,18 @@ export class DefaultApi extends BaseAPI {
      */
     public groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).groupsAPISendInvite(groupId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} groupId 
+     * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIStreamInvites(groupId, recipientAccountId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

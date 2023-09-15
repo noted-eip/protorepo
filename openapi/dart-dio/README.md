@@ -97,6 +97,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIRevokeInvite**](doc/DefaultApi.md#groupsapirevokeinvite) | **DELETE** /groups/{groupId}/invites/{inviteId} | Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIRevokeInviteLink**](doc/DefaultApi.md#groupsapirevokeinvitelink) | **DELETE** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPISendInvite**](doc/DefaultApi.md#groupsapisendinvite) | **POST** /groups/{groupId}/invites | The sender defaults to the authenticated user. Must be group member.
+[*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIStreamInvites**](doc/DefaultApi.md#groupsapistreaminvites) | **GET** /groups/{groupId}/invites/stream | 
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUpdateGroup**](doc/DefaultApi.md#groupsapiupdategroup) | **PATCH** /groups/{groupId} | Must be group administrator.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUpdateMember**](doc/DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUseInviteLink**](doc/DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
@@ -129,6 +130,7 @@ Class | Method | HTTP request | Description
  - [NotesAPICreateNoteRequest](doc/NotesAPICreateNoteRequest.md)
  - [NotesAPIInsertBlockRequest](doc/NotesAPIInsertBlockRequest.md)
  - [NotesAPIUpdateBlockIndexRequest](doc/NotesAPIUpdateBlockIndexRequest.md)
+ - [StreamResultOfV1StreamInviteResponse](doc/StreamResultOfV1StreamInviteResponse.md)
  - [V1AcceptInviteResponse](doc/V1AcceptInviteResponse.md)
  - [V1Account](doc/V1Account.md)
  - [V1AuthenticateGoogleRequest](doc/V1AuthenticateGoogleRequest.md)
@@ -192,6 +194,7 @@ Class | Method | HTTP request | Description
  - [V1RegisterUserToMobileBetaRequest](doc/V1RegisterUserToMobileBetaRequest.md)
  - [V1SendConversationMessageResponse](doc/V1SendConversationMessageResponse.md)
  - [V1SendInviteResponse](doc/V1SendInviteResponse.md)
+ - [V1StreamInviteResponse](doc/V1StreamInviteResponse.md)
  - [V1SummarizeResponse](doc/V1SummarizeResponse.md)
  - [V1UpdateAccountPasswordResponse](doc/V1UpdateAccountPasswordResponse.md)
  - [V1UpdateAccountResponse](doc/V1UpdateAccountResponse.md)
