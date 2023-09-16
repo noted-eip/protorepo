@@ -247,7 +247,7 @@ service GroupsAPI {
         };
     }
 
-    rpc StreamInvite(StreamInviteRequest) returns (stream StreamInviteResponse) {
+    rpc StreamInvites(StreamInvitesRequest) returns (stream StreamInvitesResponse) {
         option (google.api.http) = {
             get: "/groups/{group_id}/invites/stream",
         };
@@ -513,13 +513,13 @@ message RevokeInviteRequest {
 message RevokeInviteResponse {
 }
 
-message StreamInviteRequest {
+message StreamInvitesRequest {
     string group_id = 1;
     // Returns only invites destined to recipient.
     string recipient_account_id = 2;
 }
 
-message StreamInviteResponse {
+message StreamInvitesResponse {
     repeated GroupInvite invites = 1;
 }
 
