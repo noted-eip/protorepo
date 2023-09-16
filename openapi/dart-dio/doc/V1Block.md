@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
 **type** | [**V1BlockType**](V1BlockType.md) |  | 
+**styles** | [**BuiltList&lt;BlockTextStyle&gt;**](BlockTextStyle.md) |  | [optional] 
 **heading** | **String** |  | [optional] 
 **paragraph** | **String** |  | [optional] 
 **numberPoint** | **String** |  | [optional] 

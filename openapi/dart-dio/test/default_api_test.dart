@@ -234,7 +234,7 @@ void main() {
       // TODO
     });
 
-    //Future<StreamResultOfV1StreamInviteResponse> groupsAPIStreamInvites(String groupId, { String recipientAccountId }) async
+    //Future<StreamResultOfV1StreamInvitesResponse> groupsAPIStreamInvites(String groupId, { String recipientAccountId }) async
     test('test groupsAPIStreamInvites', () async {
       // TODO
     });

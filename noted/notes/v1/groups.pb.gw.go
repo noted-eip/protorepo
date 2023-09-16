@@ -1290,7 +1290,7 @@ var (
 )
 
 func request_GroupsAPI_StreamInvites_0(ctx context.Context, marshaler runtime.Marshaler, client GroupsAPIClient, req *http.Request, pathParams map[string]string) (GroupsAPI_StreamInvitesClient, runtime.ServerMetadata, error) {
-	var protoReq StreamInviteRequest
+	var protoReq StreamInvitesRequest
 	var metadata runtime.ServerMetadata
 
 	var (

@@ -117,6 +117,33 @@ export interface BlockCode {
 /**
  * 
  * @export
+ * @interface BlockTextStyle
+ */
+export interface BlockTextStyle {
+    /**
+     * 
+     * @type {TextStyleStyle}
+     * @memberof BlockTextStyle
+     */
+    'style'?: TextStyleStyle;
+    /**
+     * 
+     * @type {TextStylePosition}
+     * @memberof BlockTextStyle
+     */
+    'pos'?: TextStylePosition;
+    /**
+     * 
+     * @type {TextStyleColor}
+     * @memberof BlockTextStyle
+     */
+    'color'?: TextStyleColor;
+}
+
+
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -235,16 +262,77 @@ export interface NotesAPIUpdateBlockIndexRequest {
 /**
  * 
  * @export
- * @interface StreamResultOfV1StreamInviteResponse
+ * @interface StreamResultOfV1StreamInvitesResponse
  */
-export interface StreamResultOfV1StreamInviteResponse {
+export interface StreamResultOfV1StreamInvitesResponse {
     /**
      * 
-     * @type {V1StreamInviteResponse}
-     * @memberof StreamResultOfV1StreamInviteResponse
+     * @type {V1StreamInvitesResponse}
+     * @memberof StreamResultOfV1StreamInvitesResponse
      */
-    'result'?: V1StreamInviteResponse;
+    'result'?: V1StreamInvitesResponse;
 }
+/**
+ * 
+ * @export
+ * @interface TextStyleColor
+ */
+export interface TextStyleColor {
+    /**
+     * 
+     * @type {number}
+     * @memberof TextStyleColor
+     */
+    'r'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TextStyleColor
+     */
+    'g'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TextStyleColor
+     */
+    'b'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface TextStylePosition
+ */
+export interface TextStylePosition {
+    /**
+     * 
+     * @type {string}
+     * @memberof TextStylePosition
+     */
+    'start'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TextStylePosition
+     */
+    'length'?: string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const TextStyleStyle = {
+    BgColor: 'STYLE_BG_COLOR',
+    TxtColor: 'STYLE_TXT_COLOR',
+    Bold: 'STYLE_BOLD',
+    Italic: 'STYLE_ITALIC',
+    Underline: 'STYLE_UNDERLINE'
+} as const;
+
+export type TextStyleStyle = typeof TextStyleStyle[keyof typeof TextStyleStyle];
+
+
 /**
  * 
  * @export
@@ -365,6 +453,12 @@ export interface V1Block {
      * @memberof V1Block
      */
     'type': V1BlockType;
+    /**
+     * 
+     * @type {Array<BlockTextStyle>}
+     * @memberof V1Block
+     */
+    'styles'?: Array<BlockTextStyle>;
     /**
      * 
      * @type {string}
@@ -1493,13 +1587,13 @@ export interface V1SendInviteResponse {
 /**
  * 
  * @export
- * @interface V1StreamInviteResponse
+ * @interface V1StreamInvitesResponse
  */
-export interface V1StreamInviteResponse {
+export interface V1StreamInvitesResponse {
     /**
      * 
      * @type {Array<V1GroupInvite>}
-     * @memberof V1StreamInviteResponse
+     * @memberof V1StreamInvitesResponse
      */
     'invites'?: Array<V1GroupInvite>;
 }
@@ -4131,7 +4225,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StreamResultOfV1StreamInviteResponse>> {
+        async groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StreamResultOfV1StreamInvitesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIStreamInvites(groupId, recipientAccountId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4713,7 +4807,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: any): AxiosPromise<StreamResultOfV1StreamInviteResponse> {
+        groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: any): AxiosPromise<StreamResultOfV1StreamInvitesResponse> {
             return localVarFp.groupsAPIStreamInvites(groupId, recipientAccountId, options).then((request) => request(axios, basePath));
         },
         /**

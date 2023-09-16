@@ -640,8 +640,8 @@ paths:
             type: object
             properties:
               result:
-                $ref: '#/definitions/v1StreamInviteResponse'
-            title: Stream result of v1StreamInviteResponse
+                $ref: '#/definitions/v1StreamInvitesResponse'
+            title: Stream result of v1StreamInvitesResponse
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
@@ -1252,11 +1252,49 @@ definitions:
         type: string
       lang:
         type: string
+  BlockTextStyle:
+    type: object
+    properties:
+      style:
+        $ref: '#/definitions/TextStyleStyle'
+      pos:
+        $ref: '#/definitions/TextStylePosition'
+      color:
+        $ref: '#/definitions/TextStyleColor'
   ChangeNoteEditPermissionRequestAction:
     type: string
     enum:
       - ACTION_GRANT
       - ACTION_REMOVE
+  TextStyleColor:
+    type: object
+    properties:
+      r:
+        type: integer
+        format: int32
+      g:
+        type: integer
+        format: int32
+      b:
+        type: integer
+        format: int32
+  TextStylePosition:
+    type: object
+    properties:
+      start:
+        type: string
+        format: int64
+      length:
+        type: string
+        format: int64
+  TextStyleStyle:
+    type: string
+    enum:
+      - STYLE_BG_COLOR
+      - STYLE_TXT_COLOR
+      - STYLE_BOLD
+      - STYLE_ITALIC
+      - STYLE_UNDERLINE
   accountsv1Image:
     type: object
     properties:
@@ -1329,6 +1367,11 @@ definitions:
         type: string
       type:
         $ref: '#/definitions/v1BlockType'
+      styles:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/BlockTextStyle'
       heading:
         type: string
       paragraph:
@@ -1957,7 +2000,7 @@ definitions:
         $ref: '#/definitions/v1GroupInvite'
     required:
       - invite
-  v1StreamInviteResponse:
+  v1StreamInvitesResponse:
     type: object
     properties:
       invites:

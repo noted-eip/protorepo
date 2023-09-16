@@ -149,8 +149,8 @@ class GroupsAPIStub(object):
                 )
         self.StreamInvites = channel.unary_stream(
                 '/noted.notes.v1.GroupsAPI/StreamInvites',
-                request_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.StreamInviteRequest.SerializeToString,
-                response_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.StreamInviteResponse.FromString,
+                request_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.StreamInvitesRequest.SerializeToString,
+                response_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.StreamInvitesResponse.FromString,
                 )
         self.ListActivities = channel.unary_unary(
                 '/noted.notes.v1.GroupsAPI/ListActivities',
@@ -507,8 +507,8 @@ def add_GroupsAPIServicer_to_server(servicer, server):
             ),
             'StreamInvites': grpc.unary_stream_rpc_method_handler(
                     servicer.StreamInvites,
-                    request_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.StreamInviteRequest.FromString,
-                    response_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.StreamInviteResponse.SerializeToString,
+                    request_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.StreamInvitesRequest.FromString,
+                    response_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.StreamInvitesResponse.SerializeToString,
             ),
             'ListActivities': grpc.unary_unary_rpc_method_handler(
                     servicer.ListActivities,
@@ -987,8 +987,8 @@ class GroupsAPI(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/noted.notes.v1.GroupsAPI/StreamInvites',
-            noted_dot_notes_dot_v1_dot_groups__pb2.StreamInviteRequest.SerializeToString,
-            noted_dot_notes_dot_v1_dot_groups__pb2.StreamInviteResponse.FromString,
+            noted_dot_notes_dot_v1_dot_groups__pb2.StreamInvitesRequest.SerializeToString,
+            noted_dot_notes_dot_v1_dot_groups__pb2.StreamInvitesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

@@ -18,7 +18,7 @@ import 'package:openapi/src/model/notes_api_change_note_edit_permission_request.
 import 'package:openapi/src/model/notes_api_create_note_request.dart';
 import 'package:openapi/src/model/notes_api_insert_block_request.dart';
 import 'package:openapi/src/model/notes_api_update_block_index_request.dart';
-import 'package:openapi/src/model/stream_result_of_v1_stream_invite_response.dart';
+import 'package:openapi/src/model/stream_result_of_v1_stream_invites_response.dart';
 import 'package:openapi/src/model/v1_accept_invite_response.dart';
 import 'package:openapi/src/model/v1_account.dart';
 import 'package:openapi/src/model/v1_authenticate_google_request.dart';
@@ -2930,9 +2930,9 @@ class DefaultApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [StreamResultOfV1StreamInviteResponse] as data
+  /// Returns a [Future] containing a [Response] with a [StreamResultOfV1StreamInvitesResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<StreamResultOfV1StreamInviteResponse>> groupsAPIStreamInvites({ 
+  Future<Response<StreamResultOfV1StreamInvitesResponse>> groupsAPIStreamInvites({ 
     required String groupId,
     String? recipientAccountId,
     CancelToken? cancelToken,
@@ -2968,14 +2968,14 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    StreamResultOfV1StreamInviteResponse? _responseData;
+    StreamResultOfV1StreamInvitesResponse? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(StreamResultOfV1StreamInviteResponse),
-      ) as StreamResultOfV1StreamInviteResponse;
+        specifiedType: const FullType(StreamResultOfV1StreamInvitesResponse),
+      ) as StreamResultOfV1StreamInvitesResponse;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -2987,7 +2987,7 @@ class DefaultApi {
       );
     }
 
-    return Response<StreamResultOfV1StreamInviteResponse>(
+    return Response<StreamResultOfV1StreamInvitesResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

@@ -17,6 +17,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<BlockTextStyle> styles
+    test('to test the property `styles`', () async {
+      // TODO
+    });
+
     // String heading
     test('to test the property `heading`', () async {
       // TODO

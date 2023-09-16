@@ -3,50 +3,49 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/v1_group_invite.dart';
+import 'package:openapi/src/model/v1_stream_invites_response.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'v1_stream_invite_response.g.dart';
+part 'stream_result_of_v1_stream_invites_response.g.dart';
 
-/// V1StreamInviteResponse
+/// StreamResultOfV1StreamInvitesResponse
 ///
 /// Properties:
-/// * [invites] 
+/// * [result] 
 @BuiltValue()
-abstract class V1StreamInviteResponse implements Built<V1StreamInviteResponse, V1StreamInviteResponseBuilder> {
-  @BuiltValueField(wireName: r'invites')
-  BuiltList<V1GroupInvite>? get invites;
+abstract class StreamResultOfV1StreamInvitesResponse implements Built<StreamResultOfV1StreamInvitesResponse, StreamResultOfV1StreamInvitesResponseBuilder> {
+  @BuiltValueField(wireName: r'result')
+  V1StreamInvitesResponse? get result;
 
-  V1StreamInviteResponse._();
+  StreamResultOfV1StreamInvitesResponse._();
 
-  factory V1StreamInviteResponse([void updates(V1StreamInviteResponseBuilder b)]) = _$V1StreamInviteResponse;
+  factory StreamResultOfV1StreamInvitesResponse([void updates(StreamResultOfV1StreamInvitesResponseBuilder b)]) = _$StreamResultOfV1StreamInvitesResponse;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(V1StreamInviteResponseBuilder b) => b;
+  static void _defaults(StreamResultOfV1StreamInvitesResponseBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<V1StreamInviteResponse> get serializer => _$V1StreamInviteResponseSerializer();
+  static Serializer<StreamResultOfV1StreamInvitesResponse> get serializer => _$StreamResultOfV1StreamInvitesResponseSerializer();
 }
 
-class _$V1StreamInviteResponseSerializer implements PrimitiveSerializer<V1StreamInviteResponse> {
+class _$StreamResultOfV1StreamInvitesResponseSerializer implements PrimitiveSerializer<StreamResultOfV1StreamInvitesResponse> {
   @override
-  final Iterable<Type> types = const [V1StreamInviteResponse, _$V1StreamInviteResponse];
+  final Iterable<Type> types = const [StreamResultOfV1StreamInvitesResponse, _$StreamResultOfV1StreamInvitesResponse];
 
   @override
-  final String wireName = r'V1StreamInviteResponse';
+  final String wireName = r'StreamResultOfV1StreamInvitesResponse';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    V1StreamInviteResponse object, {
+    StreamResultOfV1StreamInvitesResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.invites != null) {
-      yield r'invites';
+    if (object.result != null) {
+      yield r'result';
       yield serializers.serialize(
-        object.invites,
-        specifiedType: const FullType(BuiltList, [FullType(V1GroupInvite)]),
+        object.result,
+        specifiedType: const FullType(V1StreamInvitesResponse),
       );
     }
   }
@@ -54,7 +53,7 @@ class _$V1StreamInviteResponseSerializer implements PrimitiveSerializer<V1Stream
   @override
   Object serialize(
     Serializers serializers,
-    V1StreamInviteResponse object, {
+    StreamResultOfV1StreamInvitesResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -65,19 +64,19 @@ class _$V1StreamInviteResponseSerializer implements PrimitiveSerializer<V1Stream
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required V1StreamInviteResponseBuilder result,
+    required StreamResultOfV1StreamInvitesResponseBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'invites':
+        case r'result':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(V1GroupInvite)]),
-          ) as BuiltList<V1GroupInvite>;
-          result.invites.replace(valueDes);
+            specifiedType: const FullType(V1StreamInvitesResponse),
+          ) as V1StreamInvitesResponse;
+          result.result.replace(valueDes);
           break;
         default:
           unhandled.add(key);
@@ -88,12 +87,12 @@ class _$V1StreamInviteResponseSerializer implements PrimitiveSerializer<V1Stream
   }
 
   @override
-  V1StreamInviteResponse deserialize(
+  StreamResultOfV1StreamInvitesResponse deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = V1StreamInviteResponseBuilder();
+    final result = StreamResultOfV1StreamInvitesResponseBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

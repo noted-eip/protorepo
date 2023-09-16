@@ -106,7 +106,7 @@ type GroupsAPIClient interface {
 	RevokeInvite(ctx context.Context, in *RevokeInviteRequest, opts ...grpc.CallOption) (*RevokeInviteResponse, error)
 	// Must be group administrator or sender or recipient.
 	ListInvites(ctx context.Context, in *ListInvitesRequest, opts ...grpc.CallOption) (*ListInvitesResponse, error)
-	StreamInvites(ctx context.Context, in *StreamInviteRequest, opts ...grpc.CallOption) (GroupsAPI_StreamInvitesClient, error)
+	StreamInvites(ctx context.Context, in *StreamInvitesRequest, opts ...grpc.CallOption) (GroupsAPI_StreamInvitesClient, error)
 	// Must be a group member. List all the activities in a group.
 	ListActivities(ctx context.Context, in *ListActivitiesRequest, opts ...grpc.CallOption) (*ListActivitiesResponse, error)
 	// Must be a group member. Returns a signle activity in a group.
@@ -355,7 +355,7 @@ func (c *groupsAPIClient) ListInvites(ctx context.Context, in *ListInvitesReques
 	return out, nil
 }
 
-func (c *groupsAPIClient) StreamInvites(ctx context.Context, in *StreamInviteRequest, opts ...grpc.CallOption) (GroupsAPI_StreamInvitesClient, error) {
+func (c *groupsAPIClient) StreamInvites(ctx context.Context, in *StreamInvitesRequest, opts ...grpc.CallOption) (GroupsAPI_StreamInvitesClient, error) {
 	stream, err := c.cc.NewStream(ctx, &GroupsAPI_ServiceDesc.Streams[0], GroupsAPI_StreamInvites_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
@@ -371,7 +371,7 @@ func (c *groupsAPIClient) StreamInvites(ctx context.Context, in *StreamInviteReq
 }
 
 type GroupsAPI_StreamInvitesClient interface {
-	Recv() (*StreamInviteResponse, error)
+	Recv() (*StreamInvitesResponse, error)
 	grpc.ClientStream
 }
 
@@ -379,8 +379,8 @@ type groupsAPIStreamInvitesClient struct {
 	grpc.ClientStream
 }
 
-func (x *groupsAPIStreamInvitesClient) Recv() (*StreamInviteResponse, error) {
-	m := new(StreamInviteResponse)
+func (x *groupsAPIStreamInvitesClient) Recv() (*StreamInvitesResponse, error) {
+	m := new(StreamInvitesResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -461,7 +461,7 @@ type GroupsAPIServer interface {
 	RevokeInvite(context.Context, *RevokeInviteRequest) (*RevokeInviteResponse, error)
 	// Must be group administrator or sender or recipient.
 	ListInvites(context.Context, *ListInvitesRequest) (*ListInvitesResponse, error)
-	StreamInvites(*StreamInviteRequest, GroupsAPI_StreamInvitesServer) error
+	StreamInvites(*StreamInvitesRequest, GroupsAPI_StreamInvitesServer) error
 	// Must be a group member. List all the activities in a group.
 	ListActivities(context.Context, *ListActivitiesRequest) (*ListActivitiesResponse, error)
 	// Must be a group member. Returns a signle activity in a group.
@@ -551,7 +551,7 @@ func (UnimplementedGroupsAPIServer) RevokeInvite(context.Context, *RevokeInviteR
 func (UnimplementedGroupsAPIServer) ListInvites(context.Context, *ListInvitesRequest) (*ListInvitesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListInvites not implemented")
 }
-func (UnimplementedGroupsAPIServer) StreamInvites(*StreamInviteRequest, GroupsAPI_StreamInvitesServer) error {
+func (UnimplementedGroupsAPIServer) StreamInvites(*StreamInvitesRequest, GroupsAPI_StreamInvitesServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamInvites not implemented")
 }
 func (UnimplementedGroupsAPIServer) ListActivities(context.Context, *ListActivitiesRequest) (*ListActivitiesResponse, error) {
@@ -1042,7 +1042,7 @@ func _GroupsAPI_ListInvites_Handler(srv interface{}, ctx context.Context, dec fu
 }
 
 func _GroupsAPI_StreamInvites_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(StreamInviteRequest)
+	m := new(StreamInvitesRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
@@ -1050,7 +1050,7 @@ func _GroupsAPI_StreamInvites_Handler(srv interface{}, stream grpc.ServerStream)
 }
 
 type GroupsAPI_StreamInvitesServer interface {
-	Send(*StreamInviteResponse) error
+	Send(*StreamInvitesResponse) error
 	grpc.ServerStream
 }
 
@@ -1058,7 +1058,7 @@ type groupsAPIStreamInvitesServer struct {
 	grpc.ServerStream
 }
 
-func (x *groupsAPIStreamInvitesServer) Send(m *StreamInviteResponse) error {
+func (x *groupsAPIStreamInvitesServer) Send(m *StreamInvitesResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 

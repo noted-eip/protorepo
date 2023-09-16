@@ -4,6 +4,8 @@
 
 // ignore_for_file: unused_element
 import 'package:openapi/src/model/block_code.dart';
+import 'package:openapi/src/model/block_text_style.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/v1_block_image.dart';
 import 'package:openapi/src/model/v1_block_type.dart';
 import 'package:built_value/built_value.dart';
@@ -16,6 +18,7 @@ part 'v1_block.g.dart';
 /// Properties:
 /// * [id] 
 /// * [type] 
+/// * [styles] 
 /// * [heading] 
 /// * [paragraph] 
 /// * [numberPoint] 
@@ -31,6 +34,9 @@ abstract class V1Block implements Built<V1Block, V1BlockBuilder> {
   @BuiltValueField(wireName: r'type')
   V1BlockType get type;
   // enum typeEnum {  TYPE_HEADING_1,  TYPE_HEADING_2,  TYPE_HEADING_3,  TYPE_PARAGRAPH,  TYPE_MATH,  TYPE_CODE,  TYPE_BULLET_POINT,  TYPE_NUMBER_POINT,  TYPE_IMAGE,  };
+
+  @BuiltValueField(wireName: r'styles')
+  BuiltList<BlockTextStyle>? get styles;
 
   @BuiltValueField(wireName: r'heading')
   String? get heading;
@@ -86,6 +92,13 @@ class _$V1BlockSerializer implements PrimitiveSerializer<V1Block> {
       object.type,
       specifiedType: const FullType(V1BlockType),
     );
+    if (object.styles != null) {
+      yield r'styles';
+      yield serializers.serialize(
+        object.styles,
+        specifiedType: const FullType(BuiltList, [FullType(BlockTextStyle)]),
+      );
+    }
     if (object.heading != null) {
       yield r'heading';
       yield serializers.serialize(
@@ -171,6 +184,13 @@ class _$V1BlockSerializer implements PrimitiveSerializer<V1Block> {
             specifiedType: const FullType(V1BlockType),
           ) as V1BlockType;
           result.type = valueDes;
+          break;
+        case r'styles':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(BlockTextStyle)]),
+          ) as BuiltList<BlockTextStyle>;
+          result.styles.replace(valueDes);
           break;
         case r'heading':
           final valueDes = serializers.deserialize(

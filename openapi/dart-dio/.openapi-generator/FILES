@@ -7,6 +7,7 @@ doc/AccountsAPIUploadAccountProfilePictureRequest.md
 doc/AccountsAPIValidateAccountRequest.md
 doc/Accountsv1Image.md
 doc/BlockCode.md
+doc/BlockTextStyle.md
 doc/ChangeNoteEditPermissionRequestAction.md
 doc/DefaultApi.md
 doc/GroupsAPISendInviteRequest.md
@@ -15,7 +16,10 @@ doc/NotesAPIChangeNoteEditPermissionRequest.md
 doc/NotesAPICreateNoteRequest.md
 doc/NotesAPIInsertBlockRequest.md
 doc/NotesAPIUpdateBlockIndexRequest.md
-doc/StreamResultOfV1StreamInviteResponse.md
+doc/StreamResultOfV1StreamInvitesResponse.md
+doc/TextStyleColor.md
+doc/TextStylePosition.md
+doc/TextStyleStyle.md
 doc/V1AcceptInviteResponse.md
 doc/V1Account.md
 doc/V1AuthenticateGoogleRequest.md
@@ -79,7 +83,7 @@ doc/V1Recipient.md
 doc/V1RegisterUserToMobileBetaRequest.md
 doc/V1SendConversationMessageResponse.md
 doc/V1SendInviteResponse.md
-doc/V1StreamInviteResponse.md
+doc/V1StreamInvitesResponse.md
 doc/V1SummarizeResponse.md
 doc/V1UpdateAccountPasswordResponse.md
 doc/V1UpdateAccountResponse.md
@@ -108,6 +112,7 @@ lib/src/model/accounts_api_upload_account_profile_picture_request.dart
 lib/src/model/accounts_api_validate_account_request.dart
 lib/src/model/accountsv1_image.dart
 lib/src/model/block_code.dart
+lib/src/model/block_text_style.dart
 lib/src/model/change_note_edit_permission_request_action.dart
 lib/src/model/date.dart
 lib/src/model/groups_api_send_invite_request.dart
@@ -116,7 +121,10 @@ lib/src/model/notes_api_change_note_edit_permission_request.dart
 lib/src/model/notes_api_create_note_request.dart
 lib/src/model/notes_api_insert_block_request.dart
 lib/src/model/notes_api_update_block_index_request.dart
-lib/src/model/stream_result_of_v1_stream_invite_response.dart
+lib/src/model/stream_result_of_v1_stream_invites_response.dart
+lib/src/model/text_style_color.dart
+lib/src/model/text_style_position.dart
+lib/src/model/text_style_style.dart
 lib/src/model/v1_accept_invite_response.dart
 lib/src/model/v1_account.dart
 lib/src/model/v1_authenticate_google_request.dart
@@ -180,7 +188,7 @@ lib/src/model/v1_recipient.dart
 lib/src/model/v1_register_user_to_mobile_beta_request.dart
 lib/src/model/v1_send_conversation_message_response.dart
 lib/src/model/v1_send_invite_response.dart
-lib/src/model/v1_stream_invite_response.dart
+lib/src/model/v1_stream_invites_response.dart
 lib/src/model/v1_summarize_response.dart
 lib/src/model/v1_update_account_password_response.dart
 lib/src/model/v1_update_account_response.dart
@@ -201,6 +209,7 @@ test/accounts_api_upload_account_profile_picture_request_test.dart
 test/accounts_api_validate_account_request_test.dart
 test/accountsv1_image_test.dart
 test/block_code_test.dart
+test/block_text_style_test.dart
 test/change_note_edit_permission_request_action_test.dart
 test/default_api_test.dart
 test/groups_api_send_invite_request_test.dart
@@ -209,7 +218,10 @@ test/notes_api_change_note_edit_permission_request_test.dart
 test/notes_api_create_note_request_test.dart
 test/notes_api_insert_block_request_test.dart
 test/notes_api_update_block_index_request_test.dart
-test/stream_result_of_v1_stream_invite_response_test.dart
+test/stream_result_of_v1_stream_invites_response_test.dart
+test/text_style_color_test.dart
+test/text_style_position_test.dart
+test/text_style_style_test.dart
 test/v1_accept_invite_response_test.dart
 test/v1_account_test.dart
 test/v1_authenticate_google_request_test.dart
@@ -273,7 +285,7 @@ test/v1_recipient_test.dart
 test/v1_register_user_to_mobile_beta_request_test.dart
 test/v1_send_conversation_message_response_test.dart
 test/v1_send_invite_response_test.dart
-test/v1_stream_invite_response_test.dart
+test/v1_stream_invites_response_test.dart
 test/v1_summarize_response_test.dart
 test/v1_update_account_password_response_test.dart
 test/v1_update_account_response_test.dart
