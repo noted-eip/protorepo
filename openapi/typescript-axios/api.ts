@@ -26,6 +26,57 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
 /**
  * 
  * @export
+ * @interface AccountsAPIUpdateAccountPasswordRequest
+ */
+export interface AccountsAPIUpdateAccountPasswordRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsAPIUpdateAccountPasswordRequest
+     */
+    'password': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsAPIUpdateAccountPasswordRequest
+     */
+    'token'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsAPIUpdateAccountPasswordRequest
+     */
+    'oldPassword'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AccountsAPIUploadAccountProfilePictureRequest
+ */
+export interface AccountsAPIUploadAccountProfilePictureRequest {
+    /**
+     * 
+     * @type {Accountsv1Image}
+     * @memberof AccountsAPIUploadAccountProfilePictureRequest
+     */
+    'image': Accountsv1Image;
+}
+/**
+ * 
+ * @export
+ * @interface AccountsAPIValidateAccountRequest
+ */
+export interface AccountsAPIValidateAccountRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsAPIValidateAccountRequest
+     */
+    'validationToken': string;
+}
+/**
+ * 
+ * @export
  * @interface Accountsv1Image
  */
 export interface Accountsv1Image {
@@ -77,6 +128,123 @@ export const ChangeNoteEditPermissionRequestAction = {
 export type ChangeNoteEditPermissionRequestAction = typeof ChangeNoteEditPermissionRequestAction[keyof typeof ChangeNoteEditPermissionRequestAction];
 
 
+/**
+ * 
+ * @export
+ * @interface GroupsAPISendInviteRequest
+ */
+export interface GroupsAPISendInviteRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupsAPISendInviteRequest
+     */
+    'recipientAccountId': string;
+}
+/**
+ * 
+ * @export
+ * @interface GroupsAPIUpdateGroupRequest
+ */
+export interface GroupsAPIUpdateGroupRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupsAPIUpdateGroupRequest
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupsAPIUpdateGroupRequest
+     */
+    'description'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface NotesAPIChangeNoteEditPermissionRequest
+ */
+export interface NotesAPIChangeNoteEditPermissionRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof NotesAPIChangeNoteEditPermissionRequest
+     */
+    'recipientAccountId': string;
+    /**
+     * 
+     * @type {ChangeNoteEditPermissionRequestAction}
+     * @memberof NotesAPIChangeNoteEditPermissionRequest
+     */
+    'type'?: ChangeNoteEditPermissionRequestAction;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface NotesAPICreateNoteRequest
+ */
+export interface NotesAPICreateNoteRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof NotesAPICreateNoteRequest
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {Array<V1Block>}
+     * @memberof NotesAPICreateNoteRequest
+     */
+    'blocks'?: Array<V1Block>;
+}
+/**
+ * 
+ * @export
+ * @interface NotesAPIInsertBlockRequest
+ */
+export interface NotesAPIInsertBlockRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof NotesAPIInsertBlockRequest
+     */
+    'index': number;
+    /**
+     * 
+     * @type {V1Block}
+     * @memberof NotesAPIInsertBlockRequest
+     */
+    'block': V1Block;
+}
+/**
+ * 
+ * @export
+ * @interface NotesAPIUpdateBlockIndexRequest
+ */
+export interface NotesAPIUpdateBlockIndexRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof NotesAPIUpdateBlockIndexRequest
+     */
+    'index': number;
+}
+/**
+ * 
+ * @export
+ * @interface StreamResultOfV1StreamInviteResponse
+ */
+export interface StreamResultOfV1StreamInviteResponse {
+    /**
+     * 
+     * @type {V1StreamInviteResponse}
+     * @memberof StreamResultOfV1StreamInviteResponse
+     */
+    'result'?: V1StreamInviteResponse;
+}
 /**
  * 
  * @export
@@ -1325,6 +1493,19 @@ export interface V1SendInviteResponse {
 /**
  * 
  * @export
+ * @interface V1StreamInviteResponse
+ */
+export interface V1StreamInviteResponse {
+    /**
+     * 
+     * @type {Array<V1GroupInvite>}
+     * @memberof V1StreamInviteResponse
+     */
+    'invites'?: Array<V1GroupInvite>;
+}
+/**
+ * 
+ * @export
  * @interface V1SummarizeResponse
  */
 export interface V1SummarizeResponse {
@@ -1527,4 +1708,3866 @@ export interface V1Widget {
      */
     'definitionWidget'?: V1DefinitionWidget;
 }
+
+/**
+ * DefaultApi - axios parameter creator
+ * @export
+ */
+export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Authenticate using the email and password flow.
+         * @param {V1AuthenticateRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIAuthenticate: async (body: V1AuthenticateRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIAuthenticate', 'body', body)
+            const localVarPath = `/authenticate`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Authenticate using the Google OAuth flow.
+         * @param {V1AuthenticateGoogleRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIAuthenticateGoogle: async (body: V1AuthenticateGoogleRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIAuthenticateGoogle', 'body', body)
+            const localVarPath = `/authenticate/google`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create an account using the email and password flow.
+         * @param {V1CreateAccountRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPICreateAccount: async (body: V1CreateAccountRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPICreateAccount', 'body', body)
+            const localVarPath = `/accounts`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be account owner.
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIDeleteAccount: async (accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsAPIDeleteAccount', 'accountId', accountId)
+            const localVarPath = `/accounts/{accountId}`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Send email to account containing code to create a new password.
+         * @param {V1ForgetAccountPasswordRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIForgetAccountPassword: async (body: V1ForgetAccountPasswordRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIForgetAccountPassword', 'body', body)
+            const localVarPath = `/accounts/forget`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Compare forgot password token provided by user with the one store in db.
+         * @param {V1ForgetAccountPasswordValidateTokenRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIForgetAccountPasswordValidateToken: async (body: V1ForgetAccountPasswordValidateTokenRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIForgetAccountPasswordValidateToken', 'body', body)
+            const localVarPath = `/accounts/forget/validate`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Allows getting an account by ID or searching for one through email.
+         * @param {string} accountId 
+         * @param {string} [email] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIGetAccount: async (accountId: string, email?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsAPIGetAccount', 'accountId', accountId)
+            const localVarPath = `/accounts/{accountId}`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (email !== undefined) {
+                localVarQueryParameter['email'] = email;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Allows getting an account by ID or searching for one through email.
+         * @param {V1GetAccountRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIGetAccount2: async (body: V1GetAccountRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIGetAccount2', 'body', body)
+            const localVarPath = `/search/accounts`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIGetAccountProfilePicture: async (accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsAPIGetAccountProfilePicture', 'accountId', accountId)
+            const localVarPath = `/accounts/{accountId}/picture`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List users based on email regex.
+         * @param {string} emailContains 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIListAccounts: async (emailContains: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'emailContains' is not null or undefined
+            assertParamExists('accountsAPIListAccounts', 'emailContains', emailContains)
+            const localVarPath = `/accounts`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (emailContains !== undefined) {
+                localVarQueryParameter['emailContains'] = emailContains;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Registers the user to the mobile application beta.
+         * @param {V1RegisterUserToMobileBetaRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIRegisterUserToMobileBeta: async (body: V1RegisterUserToMobileBetaRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIRegisterUserToMobileBeta', 'body', body)
+            const localVarPath = `/beta/mobile`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be account owner. Can only update `account.name`.
+         * @param {string} accountId 
+         * @param {V1Account} account 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIUpdateAccount: async (accountId: string, account: V1Account, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsAPIUpdateAccount', 'accountId', accountId)
+            // verify required parameter 'account' is not null or undefined
+            assertParamExists('accountsAPIUpdateAccount', 'account', account)
+            const localVarPath = `/accounts/{accountId}`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(account, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Update account password.
+         * @param {string} accountId 
+         * @param {AccountsAPIUpdateAccountPasswordRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIUpdateAccountPassword: async (accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsAPIUpdateAccountPassword', 'accountId', accountId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIUpdateAccountPassword', 'body', body)
+            const localVarPath = `/accounts/{accountId}/password`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} accountId 
+         * @param {AccountsAPIUploadAccountProfilePictureRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIUploadAccountProfilePicture: async (accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsAPIUploadAccountProfilePicture', 'accountId', accountId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIUploadAccountProfilePicture', 'body', body)
+            const localVarPath = `/accounts/{accountId}/picture`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Validate account email.
+         * @param {string} accountId 
+         * @param {AccountsAPIValidateAccountRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIValidateAccount: async (accountId: string, body: AccountsAPIValidateAccountRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsAPIValidateAccount', 'accountId', accountId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIValidateAccount', 'body', body)
+            const localVarPath = `/accounts/{accountId}/validate`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIAcceptInvite: async (groupId: string, inviteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIAcceptInvite', 'groupId', groupId)
+            // verify required parameter 'inviteId' is not null or undefined
+            assertParamExists('groupsAPIAcceptInvite', 'inviteId', inviteId)
+            const localVarPath = `/groups/{groupId}/invites/{inviteId}/accept`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteId"}}`, encodeURIComponent(String(inviteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Creates a group with a single administrator member (the authenticated user). Must be authenticated.
+         * @param {V1CreateGroupRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPICreateGroup: async (body: V1CreateGroupRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('groupsAPICreateGroup', 'body', body)
+            const localVarPath = `/groups`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group administrator. Deletes all the associated resources (members, notes).
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIDeleteGroup: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIDeleteGroup', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be recipient. Deletes the invitation without making the recipient join the group.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIDenyInvite: async (groupId: string, inviteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIDenyInvite', 'groupId', groupId)
+            // verify required parameter 'inviteId' is not null or undefined
+            assertParamExists('groupsAPIDenyInvite', 'inviteId', inviteId)
+            const localVarPath = `/groups/{groupId}/invites/{inviteId}/deny`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteId"}}`, encodeURIComponent(String(inviteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member. generated_by_account_id defaults to the authenticated user.
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGenerateInviteLink: async (groupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIGenerateInviteLink', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/inviteLinks`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be a group member. Returns a signle activity in a group.
+         * @param {string} groupId 
+         * @param {string} activityId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetActivity: async (groupId: string, activityId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIGetActivity', 'groupId', groupId)
+            // verify required parameter 'activityId' is not null or undefined
+            assertParamExists('groupsAPIGetActivity', 'activityId', activityId)
+            const localVarPath = `/groups/{groupId}/activity/{activityId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"activityId"}}`, encodeURIComponent(String(activityId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
+         * @param {string} groupId 
+         * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetGroup: async (groupId: string, inviteLinkCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIGetGroup', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (inviteLinkCode !== undefined) {
+                localVarQueryParameter['inviteLinkCode'] = inviteLinkCode;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetInvite: async (groupId: string, inviteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIGetInvite', 'groupId', groupId)
+            // verify required parameter 'inviteId' is not null or undefined
+            assertParamExists('groupsAPIGetInvite', 'inviteId', inviteId)
+            const localVarPath = `/groups/{groupId}/invites/{inviteId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteId"}}`, encodeURIComponent(String(inviteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetInviteLink: async (groupId: string, inviteLinkCode: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIGetInviteLink', 'groupId', groupId)
+            // verify required parameter 'inviteLinkCode' is not null or undefined
+            assertParamExists('groupsAPIGetInviteLink', 'inviteLinkCode', inviteLinkCode)
+            const localVarPath = `/groups/{groupId}/inviteLinks/{inviteLinkCode}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteLinkCode"}}`, encodeURIComponent(String(inviteLinkCode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetMember: async (groupId: string, accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIGetMember', 'groupId', groupId)
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('groupsAPIGetMember', 'accountId', accountId)
+            const localVarPath = `/groups/{groupId}/members/{accountId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be a group member. List all the activities in a group.
+         * @param {string} groupId 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListActivities: async (groupId: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIListActivities', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/activity`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member. Returns only the non-array fields of a group.
+         * @param {string} accountId 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListGroups: async (accountId: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('groupsAPIListGroups', 'accountId', accountId)
+            const localVarPath = `/groups`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (accountId !== undefined) {
+                localVarQueryParameter['accountId'] = accountId;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} [senderAccountId] Returns only invites from sender.
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {string} [groupId] Returns only invites for a given group.
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListInvites: async (senderAccountId?: string, recipientAccountId?: string, groupId?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/invites`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (senderAccountId !== undefined) {
+                localVarQueryParameter['senderAccountId'] = senderAccountId;
+            }
+
+            if (recipientAccountId !== undefined) {
+                localVarQueryParameter['recipientAccountId'] = recipientAccountId;
+            }
+
+            if (groupId !== undefined) {
+                localVarQueryParameter['groupId'] = groupId;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} groupId Returns only invites for a given group.
+         * @param {string} [senderAccountId] Returns only invites from sender.
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListInvites2: async (groupId: string, senderAccountId?: string, recipientAccountId?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIListInvites2', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/invites`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (senderAccountId !== undefined) {
+                localVarQueryParameter['senderAccountId'] = senderAccountId;
+            }
+
+            if (recipientAccountId !== undefined) {
+                localVarQueryParameter['recipientAccountId'] = recipientAccountId;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group administrator or the authenticated user removing itself from the group.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIRemoveMember: async (groupId: string, accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIRemoveMember', 'groupId', groupId)
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('groupsAPIRemoveMember', 'accountId', accountId)
+            const localVarPath = `/groups/{groupId}/members/{accountId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIRevokeInvite: async (groupId: string, inviteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIRevokeInvite', 'groupId', groupId)
+            // verify required parameter 'inviteId' is not null or undefined
+            assertParamExists('groupsAPIRevokeInvite', 'inviteId', inviteId)
+            const localVarPath = `/groups/{groupId}/invites/{inviteId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteId"}}`, encodeURIComponent(String(inviteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIRevokeInviteLink: async (groupId: string, inviteLinkCode: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIRevokeInviteLink', 'groupId', groupId)
+            // verify required parameter 'inviteLinkCode' is not null or undefined
+            assertParamExists('groupsAPIRevokeInviteLink', 'inviteLinkCode', inviteLinkCode)
+            const localVarPath = `/groups/{groupId}/inviteLinks/{inviteLinkCode}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteLinkCode"}}`, encodeURIComponent(String(inviteLinkCode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary The sender defaults to the authenticated user. Must be group member.
+         * @param {string} groupId 
+         * @param {GroupsAPISendInviteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPISendInvite: async (groupId: string, body: GroupsAPISendInviteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPISendInvite', 'groupId', groupId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('groupsAPISendInvite', 'body', body)
+            const localVarPath = `/groups/{groupId}/invites`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIStreamInvites: async (groupId: string, recipientAccountId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIStreamInvites', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/invites/stream`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (recipientAccountId !== undefined) {
+                localVarQueryParameter['recipientAccountId'] = recipientAccountId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group administrator.
+         * @param {string} groupId 
+         * @param {GroupsAPIUpdateGroupRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIUpdateGroup: async (groupId: string, body: GroupsAPIUpdateGroupRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIUpdateGroup', 'groupId', groupId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('groupsAPIUpdateGroup', 'body', body)
+            const localVarPath = `/groups/{groupId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group administrator. Can only update `role`.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {V1GroupMember} member 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIUpdateMember: async (groupId: string, accountId: string, member: V1GroupMember, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIUpdateMember', 'groupId', groupId)
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('groupsAPIUpdateMember', 'accountId', accountId)
+            // verify required parameter 'member' is not null or undefined
+            assertParamExists('groupsAPIUpdateMember', 'member', member)
+            const localVarPath = `/groups/{groupId}/members/{accountId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(member, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must not be group member. Makes the authenticated join the group on success.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIUseInviteLink: async (groupId: string, inviteLinkCode: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPIUseInviteLink', 'groupId', groupId)
+            // verify required parameter 'inviteLinkCode' is not null or undefined
+            assertParamExists('groupsAPIUseInviteLink', 'inviteLinkCode', inviteLinkCode)
+            const localVarPath = `/groups/{groupId}/inviteLinks/{inviteLinkCode}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"inviteLinkCode"}}`, encodeURIComponent(String(inviteLinkCode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {NotesAPIChangeNoteEditPermissionRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIChangeNoteEditPermission: async (groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIChangeNoteEditPermission', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIChangeNoteEditPermission', 'noteId', noteId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('notesAPIChangeNoteEditPermission', 'body', body)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/permission`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
+         * @param {string} groupId 
+         * @param {NotesAPICreateNoteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPICreateNote: async (groupId: string, body: NotesAPICreateNoteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPICreateNote', 'groupId', groupId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('notesAPICreateNote', 'body', body)
+            const localVarPath = `/groups/{groupId}/notes`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be author. Delete a block in a note and replace the indexes of the others.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIDeleteBlock: async (groupId: string, noteId: string, blockId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIDeleteBlock', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIDeleteBlock', 'noteId', noteId)
+            // verify required parameter 'blockId' is not null or undefined
+            assertParamExists('notesAPIDeleteBlock', 'blockId', blockId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/blocks/{blockId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)))
+                .replace(`{${"blockId"}}`, encodeURIComponent(String(blockId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be author. Delete a single note in database.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIDeleteNote: async (groupId: string, noteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIDeleteNote', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIDeleteNote', 'noteId', noteId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIGenerateQuiz: async (groupId: string, noteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIGenerateQuiz', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIGenerateQuiz', 'noteId', noteId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/quiz`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be group member or author. Return a note from id provided.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIGetNote: async (groupId: string, noteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIGetNote', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIGetNote', 'noteId', noteId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be author. Insert a block of content in a note at a specific index.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {NotesAPIInsertBlockRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIInsertBlock: async (groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIInsertBlock', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIInsertBlock', 'noteId', noteId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('notesAPIInsertBlock', 'body', body)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/blocks`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
+         * @param {string} [authorAccountId] 
+         * @param {string} [groupId] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListNotes: async (authorAccountId?: string, groupId?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/notes`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (authorAccountId !== undefined) {
+                localVarQueryParameter['authorAccountId'] = authorAccountId;
+            }
+
+            if (groupId !== undefined) {
+                localVarQueryParameter['groupId'] = groupId;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
+         * @param {string} groupId 
+         * @param {string} [authorAccountId] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListNotes2: async (groupId: string, authorAccountId?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIListNotes2', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/notes`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (authorAccountId !== undefined) {
+                localVarQueryParameter['authorAccountId'] = authorAccountId;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be author. Update a block content.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {V1Block} block 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIUpdateBlock: async (groupId: string, noteId: string, blockId: string, block: V1Block, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIUpdateBlock', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIUpdateBlock', 'noteId', noteId)
+            // verify required parameter 'blockId' is not null or undefined
+            assertParamExists('notesAPIUpdateBlock', 'blockId', blockId)
+            // verify required parameter 'block' is not null or undefined
+            assertParamExists('notesAPIUpdateBlock', 'block', block)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/blocks/{blockId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)))
+                .replace(`{${"blockId"}}`, encodeURIComponent(String(blockId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(block, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be author. Update a block index.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {NotesAPIUpdateBlockIndexRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIUpdateBlockIndex: async (groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIUpdateBlockIndex', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIUpdateBlockIndex', 'noteId', noteId)
+            // verify required parameter 'blockId' is not null or undefined
+            assertParamExists('notesAPIUpdateBlockIndex', 'blockId', blockId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('notesAPIUpdateBlockIndex', 'body', body)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/blocks/{blockId}/index`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)))
+                .replace(`{${"blockId"}}`, encodeURIComponent(String(blockId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be author. Can only update `title` or `blocks`.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {V1Note} note 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIUpdateNote: async (groupId: string, noteId: string, note: V1Note, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIUpdateNote', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIUpdateNote', 'noteId', noteId)
+            // verify required parameter 'note' is not null or undefined
+            assertParamExists('notesAPIUpdateNote', 'note', note)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(note, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Must be a group member. Returns all the relevent widgets from the given note id.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        recommendationsAPIGenerateWidgets: async (groupId: string, noteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('recommendationsAPIGenerateWidgets', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('recommendationsAPIGenerateWidgets', 'noteId', noteId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/widgets`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * DefaultApi - functional programming interface
+ * @export
+ */
+export const DefaultApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = DefaultApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Authenticate using the email and password flow.
+         * @param {V1AuthenticateRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIAuthenticate(body: V1AuthenticateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1AuthenticateResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIAuthenticate(body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Authenticate using the Google OAuth flow.
+         * @param {V1AuthenticateGoogleRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIAuthenticateGoogle(body: V1AuthenticateGoogleRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1AuthenticateGoogleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIAuthenticateGoogle(body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Create an account using the email and password flow.
+         * @param {V1CreateAccountRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPICreateAccount(body: V1CreateAccountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateAccountResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPICreateAccount(body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be account owner.
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIDeleteAccount(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIDeleteAccount(accountId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Send email to account containing code to create a new password.
+         * @param {V1ForgetAccountPasswordRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIForgetAccountPassword(body: V1ForgetAccountPasswordRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ForgetAccountPasswordResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIForgetAccountPassword(body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Compare forgot password token provided by user with the one store in db.
+         * @param {V1ForgetAccountPasswordValidateTokenRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIForgetAccountPasswordValidateToken(body: V1ForgetAccountPasswordValidateTokenRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ForgetAccountPasswordValidateTokenResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIForgetAccountPasswordValidateToken(body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Allows getting an account by ID or searching for one through email.
+         * @param {string} accountId 
+         * @param {string} [email] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIGetAccount(accountId: string, email?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetAccountResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIGetAccount(accountId, email, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Allows getting an account by ID or searching for one through email.
+         * @param {V1GetAccountRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIGetAccount2(body: V1GetAccountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetAccountResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIGetAccount2(body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIGetAccountProfilePicture(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetAccountProfilePictureResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIGetAccountProfilePicture(accountId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary List users based on email regex.
+         * @param {string} emailContains 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIListAccounts(emailContains: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListAccountsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIListAccounts(emailContains, limit, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Registers the user to the mobile application beta.
+         * @param {V1RegisterUserToMobileBetaRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIRegisterUserToMobileBeta(body: V1RegisterUserToMobileBetaRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIRegisterUserToMobileBeta(body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be account owner. Can only update `account.name`.
+         * @param {string} accountId 
+         * @param {V1Account} account 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIUpdateAccount(accountId: string, account: V1Account, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUpdateAccount(accountId, account, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Update account password.
+         * @param {string} accountId 
+         * @param {AccountsAPIUpdateAccountPasswordRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountPasswordResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUpdateAccountPassword(accountId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} accountId 
+         * @param {AccountsAPIUploadAccountProfilePictureRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUploadAccountProfilePicture(accountId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Validate account email.
+         * @param {string} accountId 
+         * @param {AccountsAPIValidateAccountRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIValidateAccount(accountId: string, body: AccountsAPIValidateAccountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ValidateAccountResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIValidateAccount(accountId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIAcceptInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1AcceptInviteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIAcceptInvite(groupId, inviteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Creates a group with a single administrator member (the authenticated user). Must be authenticated.
+         * @param {V1CreateGroupRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPICreateGroup(body: V1CreateGroupRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateGroupResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPICreateGroup(body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group administrator. Deletes all the associated resources (members, notes).
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIDeleteGroup(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIDeleteGroup(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be recipient. Deletes the invitation without making the recipient join the group.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIDenyInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIDenyInvite(groupId, inviteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member. generated_by_account_id defaults to the authenticated user.
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIGenerateInviteLink(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GenerateInviteLinkResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGenerateInviteLink(groupId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be a group member. Returns a signle activity in a group.
+         * @param {string} groupId 
+         * @param {string} activityId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIGetActivity(groupId: string, activityId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetActivityResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetActivity(groupId, activityId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
+         * @param {string} groupId 
+         * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIGetGroup(groupId: string, inviteLinkCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetGroupResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetGroup(groupId, inviteLinkCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIGetInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetInviteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetInvite(groupId, inviteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIGetInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetInviteLinkResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetInviteLink(groupId, inviteLinkCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIGetMember(groupId: string, accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetMemberResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetMember(groupId, accountId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be a group member. List all the activities in a group.
+         * @param {string} groupId 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIListActivities(groupId: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListActivitiesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListActivities(groupId, limit, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member. Returns only the non-array fields of a group.
+         * @param {string} accountId 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIListGroups(accountId: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListGroupsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListGroups(accountId, limit, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} [senderAccountId] Returns only invites from sender.
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {string} [groupId] Returns only invites for a given group.
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIListInvites(senderAccountId?: string, recipientAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListInvitesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListInvites(senderAccountId, recipientAccountId, groupId, limit, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} groupId Returns only invites for a given group.
+         * @param {string} [senderAccountId] Returns only invites from sender.
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIListInvites2(groupId: string, senderAccountId?: string, recipientAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListInvitesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListInvites2(groupId, senderAccountId, recipientAccountId, limit, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group administrator or the authenticated user removing itself from the group.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIRemoveMember(groupId: string, accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIRemoveMember(groupId, accountId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIRevokeInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIRevokeInvite(groupId, inviteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIRevokeInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIRevokeInviteLink(groupId, inviteLinkCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary The sender defaults to the authenticated user. Must be group member.
+         * @param {string} groupId 
+         * @param {GroupsAPISendInviteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1SendInviteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPISendInvite(groupId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StreamResultOfV1StreamInviteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIStreamInvites(groupId, recipientAccountId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group administrator.
+         * @param {string} groupId 
+         * @param {GroupsAPIUpdateGroupRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateGroupResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIUpdateGroup(groupId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group administrator. Can only update `role`.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {V1GroupMember} member 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateMemberResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIUpdateMember(groupId, accountId, member, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must not be group member. Makes the authenticated join the group on success.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIUseInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIUseInviteLink(groupId, inviteLinkCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {NotesAPIChangeNoteEditPermissionRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIChangeNoteEditPermission(groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIChangeNoteEditPermission(groupId, noteId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
+         * @param {string} groupId 
+         * @param {NotesAPICreateNoteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPICreateNote(groupId: string, body: NotesAPICreateNoteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateNoteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPICreateNote(groupId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be author. Delete a block in a note and replace the indexes of the others.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIDeleteBlock(groupId: string, noteId: string, blockId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIDeleteBlock(groupId, noteId, blockId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be author. Delete a single note in database.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIDeleteNote(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIDeleteNote(groupId, noteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIGenerateQuiz(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GenerateQuizResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIGenerateQuiz(groupId, noteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be group member or author. Return a note from id provided.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIGetNote(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetNoteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIGetNote(groupId, noteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be author. Insert a block of content in a note at a specific index.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {NotesAPIInsertBlockRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1InsertBlockResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIInsertBlock(groupId, noteId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
+         * @param {string} [authorAccountId] 
+         * @param {string} [groupId] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIListNotes(authorAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListNotesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListNotes(authorAccountId, groupId, limit, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
+         * @param {string} groupId 
+         * @param {string} [authorAccountId] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIListNotes2(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListNotesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListNotes2(groupId, authorAccountId, limit, offset, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be author. Update a block content.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {V1Block} block 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIUpdateBlock(groupId: string, noteId: string, blockId: string, block: V1Block, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateBlockResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateBlock(groupId, noteId, blockId, block, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be author. Update a block index.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {NotesAPIUpdateBlockIndexRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateBlockIndexResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateBlockIndex(groupId, noteId, blockId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be author. Can only update `title` or `blocks`.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {V1Note} note 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateNoteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateNote(groupId, noteId, note, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Must be a group member. Returns all the relevent widgets from the given note id.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async recommendationsAPIGenerateWidgets(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GenerateWidgetsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.recommendationsAPIGenerateWidgets(groupId, noteId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * DefaultApi - factory interface
+ * @export
+ */
+export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = DefaultApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Authenticate using the email and password flow.
+         * @param {V1AuthenticateRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIAuthenticate(body: V1AuthenticateRequest, options?: any): AxiosPromise<V1AuthenticateResponse> {
+            return localVarFp.accountsAPIAuthenticate(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Authenticate using the Google OAuth flow.
+         * @param {V1AuthenticateGoogleRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIAuthenticateGoogle(body: V1AuthenticateGoogleRequest, options?: any): AxiosPromise<V1AuthenticateGoogleResponse> {
+            return localVarFp.accountsAPIAuthenticateGoogle(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create an account using the email and password flow.
+         * @param {V1CreateAccountRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPICreateAccount(body: V1CreateAccountRequest, options?: any): AxiosPromise<V1CreateAccountResponse> {
+            return localVarFp.accountsAPICreateAccount(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be account owner.
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIDeleteAccount(accountId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.accountsAPIDeleteAccount(accountId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Send email to account containing code to create a new password.
+         * @param {V1ForgetAccountPasswordRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIForgetAccountPassword(body: V1ForgetAccountPasswordRequest, options?: any): AxiosPromise<V1ForgetAccountPasswordResponse> {
+            return localVarFp.accountsAPIForgetAccountPassword(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Compare forgot password token provided by user with the one store in db.
+         * @param {V1ForgetAccountPasswordValidateTokenRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIForgetAccountPasswordValidateToken(body: V1ForgetAccountPasswordValidateTokenRequest, options?: any): AxiosPromise<V1ForgetAccountPasswordValidateTokenResponse> {
+            return localVarFp.accountsAPIForgetAccountPasswordValidateToken(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Allows getting an account by ID or searching for one through email.
+         * @param {string} accountId 
+         * @param {string} [email] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIGetAccount(accountId: string, email?: string, options?: any): AxiosPromise<V1GetAccountResponse> {
+            return localVarFp.accountsAPIGetAccount(accountId, email, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Allows getting an account by ID or searching for one through email.
+         * @param {V1GetAccountRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIGetAccount2(body: V1GetAccountRequest, options?: any): AxiosPromise<V1GetAccountResponse> {
+            return localVarFp.accountsAPIGetAccount2(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIGetAccountProfilePicture(accountId: string, options?: any): AxiosPromise<V1GetAccountProfilePictureResponse> {
+            return localVarFp.accountsAPIGetAccountProfilePicture(accountId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List users based on email regex.
+         * @param {string} emailContains 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIListAccounts(emailContains: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListAccountsResponse> {
+            return localVarFp.accountsAPIListAccounts(emailContains, limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Registers the user to the mobile application beta.
+         * @param {V1RegisterUserToMobileBetaRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIRegisterUserToMobileBeta(body: V1RegisterUserToMobileBetaRequest, options?: any): AxiosPromise<object> {
+            return localVarFp.accountsAPIRegisterUserToMobileBeta(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be account owner. Can only update `account.name`.
+         * @param {string} accountId 
+         * @param {V1Account} account 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIUpdateAccount(accountId: string, account: V1Account, options?: any): AxiosPromise<V1UpdateAccountResponse> {
+            return localVarFp.accountsAPIUpdateAccount(accountId, account, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update account password.
+         * @param {string} accountId 
+         * @param {AccountsAPIUpdateAccountPasswordRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: any): AxiosPromise<V1UpdateAccountPasswordResponse> {
+            return localVarFp.accountsAPIUpdateAccountPassword(accountId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} accountId 
+         * @param {AccountsAPIUploadAccountProfilePictureRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options?: any): AxiosPromise<object> {
+            return localVarFp.accountsAPIUploadAccountProfilePicture(accountId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Validate account email.
+         * @param {string} accountId 
+         * @param {AccountsAPIValidateAccountRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIValidateAccount(accountId: string, body: AccountsAPIValidateAccountRequest, options?: any): AxiosPromise<V1ValidateAccountResponse> {
+            return localVarFp.accountsAPIValidateAccount(accountId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIAcceptInvite(groupId: string, inviteId: string, options?: any): AxiosPromise<V1AcceptInviteResponse> {
+            return localVarFp.groupsAPIAcceptInvite(groupId, inviteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Creates a group with a single administrator member (the authenticated user). Must be authenticated.
+         * @param {V1CreateGroupRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPICreateGroup(body: V1CreateGroupRequest, options?: any): AxiosPromise<V1CreateGroupResponse> {
+            return localVarFp.groupsAPICreateGroup(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group administrator. Deletes all the associated resources (members, notes).
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIDeleteGroup(groupId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.groupsAPIDeleteGroup(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be recipient. Deletes the invitation without making the recipient join the group.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIDenyInvite(groupId: string, inviteId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.groupsAPIDenyInvite(groupId, inviteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member. generated_by_account_id defaults to the authenticated user.
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGenerateInviteLink(groupId: string, options?: any): AxiosPromise<V1GenerateInviteLinkResponse> {
+            return localVarFp.groupsAPIGenerateInviteLink(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be a group member. Returns a signle activity in a group.
+         * @param {string} groupId 
+         * @param {string} activityId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetActivity(groupId: string, activityId: string, options?: any): AxiosPromise<V1GetActivityResponse> {
+            return localVarFp.groupsAPIGetActivity(groupId, activityId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
+         * @param {string} groupId 
+         * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetGroup(groupId: string, inviteLinkCode?: string, options?: any): AxiosPromise<V1GetGroupResponse> {
+            return localVarFp.groupsAPIGetGroup(groupId, inviteLinkCode, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetInvite(groupId: string, inviteId: string, options?: any): AxiosPromise<V1GetInviteResponse> {
+            return localVarFp.groupsAPIGetInvite(groupId, inviteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetInviteLink(groupId: string, inviteLinkCode: string, options?: any): AxiosPromise<V1GetInviteLinkResponse> {
+            return localVarFp.groupsAPIGetInviteLink(groupId, inviteLinkCode, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIGetMember(groupId: string, accountId: string, options?: any): AxiosPromise<V1GetMemberResponse> {
+            return localVarFp.groupsAPIGetMember(groupId, accountId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be a group member. List all the activities in a group.
+         * @param {string} groupId 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListActivities(groupId: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListActivitiesResponse> {
+            return localVarFp.groupsAPIListActivities(groupId, limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member. Returns only the non-array fields of a group.
+         * @param {string} accountId 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListGroups(accountId: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListGroupsResponse> {
+            return localVarFp.groupsAPIListGroups(accountId, limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} [senderAccountId] Returns only invites from sender.
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {string} [groupId] Returns only invites for a given group.
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListInvites(senderAccountId?: string, recipientAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListInvitesResponse> {
+            return localVarFp.groupsAPIListInvites(senderAccountId, recipientAccountId, groupId, limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender or recipient.
+         * @param {string} groupId Returns only invites for a given group.
+         * @param {string} [senderAccountId] Returns only invites from sender.
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIListInvites2(groupId: string, senderAccountId?: string, recipientAccountId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListInvitesResponse> {
+            return localVarFp.groupsAPIListInvites2(groupId, senderAccountId, recipientAccountId, limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group administrator or the authenticated user removing itself from the group.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIRemoveMember(groupId: string, accountId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.groupsAPIRemoveMember(groupId, accountId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
+         * @param {string} groupId 
+         * @param {string} inviteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIRevokeInvite(groupId: string, inviteId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.groupsAPIRevokeInvite(groupId, inviteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIRevokeInviteLink(groupId: string, inviteLinkCode: string, options?: any): AxiosPromise<object> {
+            return localVarFp.groupsAPIRevokeInviteLink(groupId, inviteLinkCode, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary The sender defaults to the authenticated user. Must be group member.
+         * @param {string} groupId 
+         * @param {GroupsAPISendInviteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteRequest, options?: any): AxiosPromise<V1SendInviteResponse> {
+            return localVarFp.groupsAPISendInvite(groupId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: any): AxiosPromise<StreamResultOfV1StreamInviteResponse> {
+            return localVarFp.groupsAPIStreamInvites(groupId, recipientAccountId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group administrator.
+         * @param {string} groupId 
+         * @param {GroupsAPIUpdateGroupRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupRequest, options?: any): AxiosPromise<V1UpdateGroupResponse> {
+            return localVarFp.groupsAPIUpdateGroup(groupId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group administrator. Can only update `role`.
+         * @param {string} groupId 
+         * @param {string} accountId 
+         * @param {V1GroupMember} member 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, options?: any): AxiosPromise<V1UpdateMemberResponse> {
+            return localVarFp.groupsAPIUpdateMember(groupId, accountId, member, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must not be group member. Makes the authenticated join the group on success.
+         * @param {string} groupId 
+         * @param {string} inviteLinkCode 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIUseInviteLink(groupId: string, inviteLinkCode: string, options?: any): AxiosPromise<object> {
+            return localVarFp.groupsAPIUseInviteLink(groupId, inviteLinkCode, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {NotesAPIChangeNoteEditPermissionRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIChangeNoteEditPermission(groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionRequest, options?: any): AxiosPromise<object> {
+            return localVarFp.notesAPIChangeNoteEditPermission(groupId, noteId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
+         * @param {string} groupId 
+         * @param {NotesAPICreateNoteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPICreateNote(groupId: string, body: NotesAPICreateNoteRequest, options?: any): AxiosPromise<V1CreateNoteResponse> {
+            return localVarFp.notesAPICreateNote(groupId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be author. Delete a block in a note and replace the indexes of the others.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIDeleteBlock(groupId: string, noteId: string, blockId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.notesAPIDeleteBlock(groupId, noteId, blockId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be author. Delete a single note in database.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIDeleteNote(groupId: string, noteId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.notesAPIDeleteNote(groupId, noteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIGenerateQuiz(groupId: string, noteId: string, options?: any): AxiosPromise<V1GenerateQuizResponse> {
+            return localVarFp.notesAPIGenerateQuiz(groupId, noteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member or author. Return a note from id provided.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIGetNote(groupId: string, noteId: string, options?: any): AxiosPromise<V1GetNoteResponse> {
+            return localVarFp.notesAPIGetNote(groupId, noteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be author. Insert a block of content in a note at a specific index.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {NotesAPIInsertBlockRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options?: any): AxiosPromise<V1InsertBlockResponse> {
+            return localVarFp.notesAPIInsertBlock(groupId, noteId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
+         * @param {string} [authorAccountId] 
+         * @param {string} [groupId] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListNotes(authorAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListNotesResponse> {
+            return localVarFp.notesAPIListNotes(authorAccountId, groupId, limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
+         * @param {string} groupId 
+         * @param {string} [authorAccountId] 
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListNotes2(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListNotesResponse> {
+            return localVarFp.notesAPIListNotes2(groupId, authorAccountId, limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be author. Update a block content.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {V1Block} block 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIUpdateBlock(groupId: string, noteId: string, blockId: string, block: V1Block, options?: any): AxiosPromise<V1UpdateBlockResponse> {
+            return localVarFp.notesAPIUpdateBlock(groupId, noteId, blockId, block, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be author. Update a block index.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {NotesAPIUpdateBlockIndexRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options?: any): AxiosPromise<V1UpdateBlockIndexResponse> {
+            return localVarFp.notesAPIUpdateBlockIndex(groupId, noteId, blockId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be author. Can only update `title` or `blocks`.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {V1Note} note 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, options?: any): AxiosPromise<V1UpdateNoteResponse> {
+            return localVarFp.notesAPIUpdateNote(groupId, noteId, note, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be a group member. Returns all the relevent widgets from the given note id.
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        recommendationsAPIGenerateWidgets(groupId: string, noteId: string, options?: any): AxiosPromise<V1GenerateWidgetsResponse> {
+            return localVarFp.recommendationsAPIGenerateWidgets(groupId, noteId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * DefaultApi - object-oriented interface
+ * @export
+ * @class DefaultApi
+ * @extends {BaseAPI}
+ */
+export class DefaultApi extends BaseAPI {
+    /**
+     * 
+     * @summary Authenticate using the email and password flow.
+     * @param {V1AuthenticateRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIAuthenticate(body: V1AuthenticateRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIAuthenticate(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Authenticate using the Google OAuth flow.
+     * @param {V1AuthenticateGoogleRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIAuthenticateGoogle(body: V1AuthenticateGoogleRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIAuthenticateGoogle(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create an account using the email and password flow.
+     * @param {V1CreateAccountRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPICreateAccount(body: V1CreateAccountRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPICreateAccount(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be account owner.
+     * @param {string} accountId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIDeleteAccount(accountId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIDeleteAccount(accountId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Send email to account containing code to create a new password.
+     * @param {V1ForgetAccountPasswordRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIForgetAccountPassword(body: V1ForgetAccountPasswordRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIForgetAccountPassword(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Compare forgot password token provided by user with the one store in db.
+     * @param {V1ForgetAccountPasswordValidateTokenRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIForgetAccountPasswordValidateToken(body: V1ForgetAccountPasswordValidateTokenRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIForgetAccountPasswordValidateToken(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Allows getting an account by ID or searching for one through email.
+     * @param {string} accountId 
+     * @param {string} [email] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIGetAccount(accountId: string, email?: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIGetAccount(accountId, email, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Allows getting an account by ID or searching for one through email.
+     * @param {V1GetAccountRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIGetAccount2(body: V1GetAccountRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIGetAccount2(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} accountId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIGetAccountProfilePicture(accountId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIGetAccountProfilePicture(accountId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List users based on email regex.
+     * @param {string} emailContains 
+     * @param {number} [limit] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIListAccounts(emailContains: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIListAccounts(emailContains, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Registers the user to the mobile application beta.
+     * @param {V1RegisterUserToMobileBetaRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIRegisterUserToMobileBeta(body: V1RegisterUserToMobileBetaRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIRegisterUserToMobileBeta(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be account owner. Can only update `account.name`.
+     * @param {string} accountId 
+     * @param {V1Account} account 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIUpdateAccount(accountId: string, account: V1Account, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIUpdateAccount(accountId, account, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update account password.
+     * @param {string} accountId 
+     * @param {AccountsAPIUpdateAccountPasswordRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIUpdateAccountPassword(accountId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} accountId 
+     * @param {AccountsAPIUploadAccountProfilePictureRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIUploadAccountProfilePicture(accountId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Validate account email.
+     * @param {string} accountId 
+     * @param {AccountsAPIValidateAccountRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIValidateAccount(accountId: string, body: AccountsAPIValidateAccountRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIValidateAccount(accountId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
+     * @param {string} groupId 
+     * @param {string} inviteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIAcceptInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIAcceptInvite(groupId, inviteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Creates a group with a single administrator member (the authenticated user). Must be authenticated.
+     * @param {V1CreateGroupRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPICreateGroup(body: V1CreateGroupRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPICreateGroup(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group administrator. Deletes all the associated resources (members, notes).
+     * @param {string} groupId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIDeleteGroup(groupId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIDeleteGroup(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be recipient. Deletes the invitation without making the recipient join the group.
+     * @param {string} groupId 
+     * @param {string} inviteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIDenyInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIDenyInvite(groupId, inviteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member. generated_by_account_id defaults to the authenticated user.
+     * @param {string} groupId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIGenerateInviteLink(groupId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIGenerateInviteLink(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be a group member. Returns a signle activity in a group.
+     * @param {string} groupId 
+     * @param {string} activityId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIGetActivity(groupId: string, activityId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIGetActivity(groupId, activityId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
+     * @param {string} groupId 
+     * @param {string} [inviteLinkCode] If the requester isn\&#39;t a member of the group nor have they been invited directly, they can provide an invite_link_code that will give them a public preview of the group they wish to join.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIGetGroup(groupId: string, inviteLinkCode?: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIGetGroup(groupId, inviteLinkCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group administrator or sender or recipient.
+     * @param {string} groupId 
+     * @param {string} inviteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIGetInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIGetInvite(groupId, inviteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member.
+     * @param {string} groupId 
+     * @param {string} inviteLinkCode 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIGetInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIGetInviteLink(groupId, inviteLinkCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member.
+     * @param {string} groupId 
+     * @param {string} accountId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIGetMember(groupId: string, accountId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIGetMember(groupId, accountId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be a group member. List all the activities in a group.
+     * @param {string} groupId 
+     * @param {number} [limit] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIListActivities(groupId: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIListActivities(groupId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member. Returns only the non-array fields of a group.
+     * @param {string} accountId 
+     * @param {number} [limit] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIListGroups(accountId: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIListGroups(accountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group administrator or sender or recipient.
+     * @param {string} [senderAccountId] Returns only invites from sender.
+     * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+     * @param {string} [groupId] Returns only invites for a given group.
+     * @param {number} [limit] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIListInvites(senderAccountId?: string, recipientAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIListInvites(senderAccountId, recipientAccountId, groupId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group administrator or sender or recipient.
+     * @param {string} groupId Returns only invites for a given group.
+     * @param {string} [senderAccountId] Returns only invites from sender.
+     * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+     * @param {number} [limit] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIListInvites2(groupId: string, senderAccountId?: string, recipientAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIListInvites2(groupId, senderAccountId, recipientAccountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group administrator or the authenticated user removing itself from the group.
+     * @param {string} groupId 
+     * @param {string} accountId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIRemoveMember(groupId: string, accountId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIRemoveMember(groupId, accountId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
+     * @param {string} groupId 
+     * @param {string} inviteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIRevokeInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIRevokeInvite(groupId, inviteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member.
+     * @param {string} groupId 
+     * @param {string} inviteLinkCode 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIRevokeInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIRevokeInviteLink(groupId, inviteLinkCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary The sender defaults to the authenticated user. Must be group member.
+     * @param {string} groupId 
+     * @param {GroupsAPISendInviteRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPISendInvite(groupId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} groupId 
+     * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIStreamInvites(groupId, recipientAccountId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group administrator.
+     * @param {string} groupId 
+     * @param {GroupsAPIUpdateGroupRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIUpdateGroup(groupId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group administrator. Can only update `role`.
+     * @param {string} groupId 
+     * @param {string} accountId 
+     * @param {V1GroupMember} member 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIUpdateMember(groupId, accountId, member, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must not be group member. Makes the authenticated join the group on success.
+     * @param {string} groupId 
+     * @param {string} inviteLinkCode 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIUseInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIUseInviteLink(groupId, inviteLinkCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {NotesAPIChangeNoteEditPermissionRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIChangeNoteEditPermission(groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIChangeNoteEditPermission(groupId, noteId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
+     * @param {string} groupId 
+     * @param {NotesAPICreateNoteRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPICreateNote(groupId: string, body: NotesAPICreateNoteRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPICreateNote(groupId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be author. Delete a block in a note and replace the indexes of the others.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {string} blockId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIDeleteBlock(groupId: string, noteId: string, blockId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIDeleteBlock(groupId, noteId, blockId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be author. Delete a single note in database.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIDeleteNote(groupId: string, noteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIDeleteNote(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIGenerateQuiz(groupId: string, noteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIGenerateQuiz(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member or author. Return a note from id provided.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIGetNote(groupId: string, noteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIGetNote(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be author. Insert a block of content in a note at a specific index.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {NotesAPIInsertBlockRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIInsertBlock(groupId, noteId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
+     * @param {string} [authorAccountId] 
+     * @param {string} [groupId] 
+     * @param {number} [limit] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIListNotes(authorAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIListNotes(authorAccountId, groupId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
+     * @param {string} groupId 
+     * @param {string} [authorAccountId] 
+     * @param {number} [limit] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIListNotes2(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIListNotes2(groupId, authorAccountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be author. Update a block content.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {string} blockId 
+     * @param {V1Block} block 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIUpdateBlock(groupId: string, noteId: string, blockId: string, block: V1Block, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIUpdateBlock(groupId, noteId, blockId, block, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be author. Update a block index.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {string} blockId 
+     * @param {NotesAPIUpdateBlockIndexRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIUpdateBlockIndex(groupId, noteId, blockId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be author. Can only update `title` or `blocks`.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {V1Note} note 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIUpdateNote(groupId, noteId, note, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be a group member. Returns all the relevent widgets from the given note id.
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public recommendationsAPIGenerateWidgets(groupId: string, noteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).recommendationsAPIGenerateWidgets(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
 

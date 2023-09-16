@@ -7,1217 +7,1243 @@ consumes:
 produces:
   - application/json
 paths:
-  /accounts: |
+  /accounts:
     get:
-        summary: List users based on email regex.
-        operationId: AccountsAPI_ListAccounts
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1ListAccountsResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: emailContains
-              in: query
-              required: true
-              type: string
-            - name: limit
-              in: query
-              required: false
-              type: integer
-              format: int32
-            - name: offset
-              in: query
-              required: false
-              type: integer
-              format: int32
+      summary: List users based on email regex.
+      operationId: AccountsAPI_ListAccounts
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListAccountsResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: emailContains
+          in: query
+          required: true
+          type: string
+        - name: limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int32
     post:
-        summary: Create an account using the email and password flow.
-        operationId: AccountsAPI_CreateAccount
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1CreateAccountResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: body
-              in: body
-              required: true
-              schema:
-                $ref: '#/definitions/v1CreateAccountRequest'
-  /accounts/forget: |
+      summary: Create an account using the email and password flow.
+      operationId: AccountsAPI_CreateAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1CreateAccountResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1CreateAccountRequest'
+  /accounts/forget:
     post:
-        summary: Send email to account containing code to create a new password.
-        operationId: AccountsAPI_ForgetAccountPassword
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1ForgetAccountPasswordResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: body
-              in: body
-              required: true
-              schema:
-                $ref: '#/definitions/v1ForgetAccountPasswordRequest'
-  /accounts/forget/validate: |
+      summary: Send email to account containing code to create a new password.
+      operationId: AccountsAPI_ForgetAccountPassword
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ForgetAccountPasswordResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1ForgetAccountPasswordRequest'
+  /accounts/forget/validate:
     post:
-        summary: Compare forgot password token provided by user with the one store in db.
-        operationId: AccountsAPI_ForgetAccountPasswordValidateToken
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1ForgetAccountPasswordValidateTokenResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: body
-              in: body
-              required: true
-              schema:
-                $ref: '#/definitions/v1ForgetAccountPasswordValidateTokenRequest'
-  /accounts/{accountId}: |
+      summary: Compare forgot password token provided by user with the one store in db.
+      operationId: AccountsAPI_ForgetAccountPasswordValidateToken
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ForgetAccountPasswordValidateTokenResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1ForgetAccountPasswordValidateTokenRequest'
+  /accounts/{accountId}:
     get:
-        summary: Allows getting an account by ID or searching for one through email.
-        operationId: AccountsAPI_GetAccount
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1GetAccountResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: accountId
-              in: path
-              required: true
-              type: string
-            - name: email
-              in: query
-              required: false
-              type: string
+      summary: Allows getting an account by ID or searching for one through email.
+      operationId: AccountsAPI_GetAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetAccountResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: email
+          in: query
+          required: false
+          type: string
     delete:
-        summary: Must be account owner.
-        operationId: AccountsAPI_DeleteAccount
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1DeleteAccountResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: accountId
-              in: path
-              required: true
-              type: string
+      summary: Must be account owner.
+      operationId: AccountsAPI_DeleteAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DeleteAccountResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
     patch:
-        summary: Must be account owner. Can only update `account.name`.
-        operationId: AccountsAPI_UpdateAccount
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1UpdateAccountResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: accountId
-              in: path
-              required: true
-              type: string
-            - name: account
-              in: body
-              required: true
-              schema:
-                $ref: '#/definitions/v1Account'
-                required:
-                    - account
-  /accounts/{accountId}/password: |
+      summary: Must be account owner. Can only update `account.name`.
+      operationId: AccountsAPI_UpdateAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UpdateAccountResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: account
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Account'
+            required:
+              - account
+  /accounts/{accountId}/password:
     patch:
-        summary: Update account password.
-        operationId: AccountsAPI_UpdateAccountPassword
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1UpdateAccountPasswordResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: accountId
-              in: path
-              required: true
-              type: string
-            - name: body
-              in: body
-              required: true
-              schema:
-                type: object
-                properties:
-                    password:
-                        type: string
-                    token:
-                        type: string
-                        title: Token from the reset email password if forgot password
-                    oldPassword:
-                        type: string
-                        title: Old password if the account is already log-in
-                required:
-                    - password
-  /accounts/{accountId}/picture: |
+      summary: Update account password.
+      operationId: AccountsAPI_UpdateAccountPassword
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UpdateAccountPasswordResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              password:
+                type: string
+              token:
+                type: string
+                title: Token from the reset email password if forgot password
+              oldPassword:
+                type: string
+                title: Old password if the account is already log-in
+            required:
+              - password
+  /accounts/{accountId}/picture:
     get:
-        operationId: AccountsAPI_GetAccountProfilePicture
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1GetAccountProfilePictureResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: accountId
-              in: path
-              required: true
-              type: string
+      operationId: AccountsAPI_GetAccountProfilePicture
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetAccountProfilePictureResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
     post:
-        operationId: AccountsAPI_UploadAccountProfilePicture
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1UploadAccountProfilePictureResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: accountId
-              in: path
-              required: true
-              type: string
-            - name: body
-              in: body
-              required: true
-              schema:
-                type: object
-                properties:
-                    image:
-                        $ref: '#/definitions/accountsv1Image'
-                required:
-                    - image
-  /accounts/{accountId}/validate: |
+      operationId: AccountsAPI_UploadAccountProfilePicture
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UploadAccountProfilePictureResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              image:
+                $ref: '#/definitions/accountsv1Image'
+            required:
+              - image
+  /accounts/{accountId}/validate:
     patch:
-        summary: Validate account email.
-        operationId: AccountsAPI_ValidateAccount
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1ValidateAccountResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: accountId
-              in: path
-              required: true
-              type: string
-            - name: body
-              in: body
-              required: true
-              schema:
-                type: object
-                properties:
-                    validationToken:
-                        type: string
-                required:
-                    - validationToken
-  /authenticate: |
+      summary: Validate account email.
+      operationId: AccountsAPI_ValidateAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ValidateAccountResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              validationToken:
+                type: string
+            required:
+              - validationToken
+  /authenticate:
     post:
-        summary: Authenticate using the email and password flow.
-        operationId: AccountsAPI_Authenticate
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1AuthenticateResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: body
-              in: body
-              required: true
-              schema:
-                $ref: '#/definitions/v1AuthenticateRequest'
-  /authenticate/google: |
+      summary: Authenticate using the email and password flow.
+      operationId: AccountsAPI_Authenticate
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1AuthenticateResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1AuthenticateRequest'
+  /authenticate/google:
     post:
-        summary: Authenticate using the Google OAuth flow.
-        operationId: AccountsAPI_AuthenticateGoogle
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1AuthenticateGoogleResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: body
-              in: body
-              required: true
-              schema:
-                $ref: '#/definitions/v1AuthenticateGoogleRequest'
-  /beta/mobile: |
+      summary: Authenticate using the Google OAuth flow.
+      operationId: AccountsAPI_AuthenticateGoogle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1AuthenticateGoogleResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1AuthenticateGoogleRequest'
+  /beta/mobile:
     post:
-        summary: Registers the user to the mobile application beta.
-        operationId: AccountsAPI_RegisterUserToMobileBeta
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1RegisterUserToMobileBetaResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: body
-              in: body
-              required: true
-              schema:
-                $ref: '#/definitions/v1RegisterUserToMobileBetaRequest'
-  /groups: |
+      summary: Registers the user to the mobile application beta.
+      operationId: AccountsAPI_RegisterUserToMobileBeta
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1RegisterUserToMobileBetaResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1RegisterUserToMobileBetaRequest'
+  /groups:
     get:
-        summary: Must be group member. Returns only the non-array fields of a group.
-        operationId: GroupsAPI_ListGroups
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1ListGroupsResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: accountId
-              in: query
-              required: true
-              type: string
-            - name: limit
-              in: query
-              required: false
-              type: integer
-              format: int32
-            - name: offset
-              in: query
-              required: false
-              type: integer
-              format: int32
+      summary: Must be group member. Returns only the non-array fields of a group.
+      operationId: GroupsAPI_ListGroups
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListGroupsResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: accountId
+          in: query
+          required: true
+          type: string
+        - name: limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int32
     post:
-        summary: Creates a group with a single administrator member (the authenticated user). Must be authenticated.
-        operationId: GroupsAPI_CreateGroup
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1CreateGroupResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: body
-              in: body
-              required: true
-              schema:
-                $ref: '#/definitions/v1CreateGroupRequest'
-  /groups/{groupId}: |
+      summary: Creates a group with a single administrator member (the authenticated user). Must be authenticated.
+      operationId: GroupsAPI_CreateGroup
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1CreateGroupResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1CreateGroupRequest'
+  /groups/{groupId}:
     get:
-        summary: Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
-        operationId: GroupsAPI_GetGroup
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1GetGroupResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: inviteLinkCode
-              description: |-
-                If the requester isn't a member of the group nor have they
-                been invited directly, they can provide an invite_link_code that will
-                give them a public preview of the group they wish to join.
-              in: query
-              required: false
-              type: string
+      summary: Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
+      operationId: GroupsAPI_GetGroup
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetGroupResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteLinkCode
+          description: |-
+            If the requester isn't a member of the group nor have they
+            been invited directly, they can provide an invite_link_code that will
+            give them a public preview of the group they wish to join.
+          in: query
+          required: false
+          type: string
     delete:
-        summary: Must be group administrator. Deletes all the associated resources (members, notes).
-        operationId: GroupsAPI_DeleteGroup
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1DeleteGroupResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
+      summary: Must be group administrator. Deletes all the associated resources (members, notes).
+      operationId: GroupsAPI_DeleteGroup
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DeleteGroupResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
     patch:
-        summary: Must be group administrator.
-        operationId: GroupsAPI_UpdateGroup
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1UpdateGroupResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: body
-              in: body
-              required: true
-              schema:
-                type: object
-                properties:
-                    name:
-                        type: string
-                    description:
-                        type: string
-  /groups/{groupId}/activity: |
+      summary: Must be group administrator.
+      operationId: GroupsAPI_UpdateGroup
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UpdateGroupResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+  /groups/{groupId}/activity:
     get:
-        summary: Must be a group member. List all the activities in a group.
-        operationId: GroupsAPI_ListActivities
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1ListActivitiesResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: limit
-              in: query
-              required: false
-              type: integer
-              format: int64
-            - name: offset
-              in: query
-              required: false
-              type: integer
-              format: int64
-  /groups/{groupId}/activity/{activityId}: |
+      summary: Must be a group member. List all the activities in a group.
+      operationId: GroupsAPI_ListActivities
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListActivitiesResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: limit
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int64
+  /groups/{groupId}/activity/{activityId}:
     get:
-        summary: Must be a group member. Returns a signle activity in a group.
-        operationId: GroupsAPI_GetActivity
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1GetActivityResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: activityId
-              in: path
-              required: true
-              type: string
-  /groups/{groupId}/inviteLinks: |
+      summary: Must be a group member. Returns a signle activity in a group.
+      operationId: GroupsAPI_GetActivity
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetActivityResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: activityId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/inviteLinks:
     post:
-        summary: Must be group member. generated_by_account_id defaults to the authenticated user.
-        operationId: GroupsAPI_GenerateInviteLink
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1GenerateInviteLinkResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-  /groups/{groupId}/inviteLinks/{inviteLinkCode}: |
+      summary: Must be group member. generated_by_account_id defaults to the authenticated user.
+      operationId: GroupsAPI_GenerateInviteLink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GenerateInviteLinkResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/inviteLinks/{inviteLinkCode}:
     get:
-        summary: Must be group member.
-        operationId: GroupsAPI_GetInviteLink
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1GetInviteLinkResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: inviteLinkCode
-              in: path
-              required: true
-              type: string
+      summary: Must be group member.
+      operationId: GroupsAPI_GetInviteLink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetInviteLinkResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteLinkCode
+          in: path
+          required: true
+          type: string
     delete:
-        summary: Must be group member.
-        operationId: GroupsAPI_RevokeInviteLink
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1RevokeInviteLinkResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: inviteLinkCode
-              in: path
-              required: true
-              type: string
+      summary: Must be group member.
+      operationId: GroupsAPI_RevokeInviteLink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1RevokeInviteLinkResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteLinkCode
+          in: path
+          required: true
+          type: string
     post:
-        summary: Must not be group member. Makes the authenticated join the group on success.
-        operationId: GroupsAPI_UseInviteLink
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1UseInviteLinkResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: inviteLinkCode
-              in: path
-              required: true
-              type: string
-  /groups/{groupId}/invites: |
+      summary: Must not be group member. Makes the authenticated join the group on success.
+      operationId: GroupsAPI_UseInviteLink
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UseInviteLinkResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteLinkCode
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/invites:
     get:
-        summary: Must be group administrator or sender or recipient.
-        operationId: GroupsAPI_ListInvites2
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1ListInvitesResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              description: Returns only invites for a given group.
-              in: path
-              required: true
-              type: string
-            - name: senderAccountId
-              description: Returns only invites from sender.
-              in: query
-              required: false
-              type: string
-            - name: recipientAccountId
-              description: Returns only invites destined to recipient.
-              in: query
-              required: false
-              type: string
-            - name: limit
-              in: query
-              required: false
-              type: integer
-              format: int32
-            - name: offset
-              in: query
-              required: false
-              type: integer
-              format: int32
+      summary: Must be group administrator or sender or recipient.
+      operationId: GroupsAPI_ListInvites2
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListInvitesResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          description: Returns only invites for a given group.
+          in: path
+          required: true
+          type: string
+        - name: senderAccountId
+          description: Returns only invites from sender.
+          in: query
+          required: false
+          type: string
+        - name: recipientAccountId
+          description: Returns only invites destined to recipient.
+          in: query
+          required: false
+          type: string
+        - name: limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int32
     post:
-        summary: The sender defaults to the authenticated user. Must be group member.
-        operationId: GroupsAPI_SendInvite
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1SendInviteResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: body
-              in: body
-              required: true
-              schema:
-                type: object
-                properties:
-                    recipientAccountId:
-                        type: string
-                required:
-                    - recipientAccountId
-  /groups/{groupId}/invites/{inviteId}: |
+      summary: The sender defaults to the authenticated user. Must be group member.
+      operationId: GroupsAPI_SendInvite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1SendInviteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              recipientAccountId:
+                type: string
+            required:
+              - recipientAccountId
+  /groups/{groupId}/invites/stream:
     get:
-        summary: Must be group administrator or sender or recipient.
-        operationId: GroupsAPI_GetInvite
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1GetInviteResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: inviteId
-              in: path
-              required: true
-              type: string
+      operationId: GroupsAPI_StreamInvites
+      responses:
+        "200":
+          description: A successful response.(streaming responses)
+          schema:
+            type: object
+            properties:
+              result:
+                $ref: '#/definitions/v1StreamInviteResponse'
+            title: Stream result of v1StreamInviteResponse
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: recipientAccountId
+          description: Returns only invites destined to recipient.
+          in: query
+          required: false
+          type: string
+  /groups/{groupId}/invites/{inviteId}:
+    get:
+      summary: Must be group administrator or sender or recipient.
+      operationId: GroupsAPI_GetInvite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetInviteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteId
+          in: path
+          required: true
+          type: string
     delete:
-        summary: Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
-        operationId: GroupsAPI_RevokeInvite
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1RevokeInviteResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: inviteId
-              in: path
-              required: true
-              type: string
-  /groups/{groupId}/invites/{inviteId}/accept: |
+      summary: Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
+      operationId: GroupsAPI_RevokeInvite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1RevokeInviteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/invites/{inviteId}/accept:
     post:
-        summary: Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
-        operationId: GroupsAPI_AcceptInvite
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1AcceptInviteResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: inviteId
-              in: path
-              required: true
-              type: string
-  /groups/{groupId}/invites/{inviteId}/deny: |
+      summary: Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
+      operationId: GroupsAPI_AcceptInvite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1AcceptInviteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/invites/{inviteId}/deny:
     post:
-        summary: Must be recipient. Deletes the invitation without making the recipient join the group.
-        operationId: GroupsAPI_DenyInvite
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1DenyInviteResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: inviteId
-              in: path
-              required: true
-              type: string
-  /groups/{groupId}/members/{accountId}: |
+      summary: Must be recipient. Deletes the invitation without making the recipient join the group.
+      operationId: GroupsAPI_DenyInvite
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DenyInviteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: inviteId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/members/{accountId}:
     get:
-        summary: Must be group member.
-        operationId: GroupsAPI_GetMember
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1GetMemberResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: accountId
-              in: path
-              required: true
-              type: string
+      summary: Must be group member.
+      operationId: GroupsAPI_GetMember
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetMemberResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: accountId
+          in: path
+          required: true
+          type: string
     delete:
-        summary: Must be group administrator or the authenticated user removing itself from the group.
-        operationId: GroupsAPI_RemoveMember
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1RemoveMemberResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: accountId
-              in: path
-              required: true
-              type: string
+      summary: Must be group administrator or the authenticated user removing itself from the group.
+      operationId: GroupsAPI_RemoveMember
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1RemoveMemberResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: accountId
+          in: path
+          required: true
+          type: string
     patch:
-        summary: Must be group administrator. Can only update `role`.
-        operationId: GroupsAPI_UpdateMember
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1UpdateMemberResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: accountId
-              in: path
-              required: true
-              type: string
-            - name: member
-              in: body
-              required: true
-              schema:
-                $ref: '#/definitions/v1GroupMember'
-                required:
-                    - member
-  /groups/{groupId}/notes: |
+      summary: Must be group administrator. Can only update `role`.
+      operationId: GroupsAPI_UpdateMember
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UpdateMemberResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: member
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1GroupMember'
+            required:
+              - member
+  /groups/{groupId}/notes:
     get:
-        summary: List notes in a group, authored by a user or both. Must have read access to the notes.
-        operationId: NotesAPI_ListNotes2
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1ListNotesResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: authorAccountId
-              in: query
-              required: false
-              type: string
-            - name: limit
-              in: query
-              required: false
-              type: integer
-              format: int32
-            - name: offset
-              in: query
-              required: false
-              type: integer
-              format: int32
+      summary: List notes in a group, authored by a user or both. Must have read access to the notes.
+      operationId: NotesAPI_ListNotes2
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListNotesResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: authorAccountId
+          in: query
+          required: false
+          type: string
+        - name: limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int32
     post:
-        summary: Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
-        operationId: NotesAPI_CreateNote
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1CreateNoteResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: body
-              in: body
-              required: true
-              schema:
-                type: object
-                properties:
-                    title:
-                        type: string
-                    blocks:
-                        type: array
-                        items:
-                            type: object
-                            $ref: '#/definitions/v1Block'
-  /groups/{groupId}/notes/{noteId}: |
+      summary: Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
+      operationId: NotesAPI_CreateNote
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1CreateNoteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              blocks:
+                type: array
+                items:
+                  type: object
+                  $ref: '#/definitions/v1Block'
+  /groups/{groupId}/notes/{noteId}:
     get:
-        summary: Must be group member or author. Return a note from id provided.
-        operationId: NotesAPI_GetNote
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1GetNoteResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: noteId
-              in: path
-              required: true
-              type: string
+      summary: Must be group member or author. Return a note from id provided.
+      operationId: NotesAPI_GetNote
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetNoteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
     delete:
-        summary: Must be author. Delete a single note in database.
-        operationId: NotesAPI_DeleteNote
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1DeleteNoteResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: noteId
-              in: path
-              required: true
-              type: string
+      summary: Must be author. Delete a single note in database.
+      operationId: NotesAPI_DeleteNote
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DeleteNoteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
     patch:
-        summary: Must be author. Can only update `title` or `blocks`.
-        operationId: NotesAPI_UpdateNote
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1UpdateNoteResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: noteId
-              in: path
-              required: true
-              type: string
-            - name: note
-              in: body
-              required: true
-              schema:
-                $ref: '#/definitions/v1Note'
-                required:
-                    - note
-  /groups/{groupId}/notes/{noteId}/blocks: |
+      summary: Must be author. Can only update `title` or `blocks`.
+      operationId: NotesAPI_UpdateNote
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UpdateNoteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: note
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Note'
+            required:
+              - note
+  /groups/{groupId}/notes/{noteId}/blocks:
     post:
-        summary: Must be author. Insert a block of content in a note at a specific index.
-        operationId: NotesAPI_InsertBlock
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1InsertBlockResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: noteId
-              in: path
-              required: true
-              type: string
-            - name: body
-              in: body
-              required: true
-              schema:
-                type: object
-                properties:
-                    index:
-                        type: integer
-                        format: int64
-                    block:
-                        $ref: '#/definitions/v1Block'
-                required:
-                    - index
-                    - block
-  /groups/{groupId}/notes/{noteId}/blocks/{blockId}: |
-    delete:
-        summary: Must be author. Delete a block in a note and replace the indexes of the others.
-        operationId: NotesAPI_DeleteBlock
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1DeleteBlockResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: noteId
-              in: path
-              required: true
-              type: string
-            - name: blockId
-              in: path
-              required: true
-              type: string
-    patch:
-        summary: Must be author. Update a block content.
-        operationId: NotesAPI_UpdateBlock
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1UpdateBlockResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: noteId
-              in: path
-              required: true
-              type: string
-            - name: blockId
-              in: path
-              required: true
-              type: string
-            - name: block
-              in: body
-              required: true
-              schema:
+      summary: Must be author. Insert a block of content in a note at a specific index.
+      operationId: NotesAPI_InsertBlock
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1InsertBlockResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              index:
+                type: integer
+                format: int64
+              block:
                 $ref: '#/definitions/v1Block'
-                required:
-                    - block
-  /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index: |
+            required:
+              - index
+              - block
+  /groups/{groupId}/notes/{noteId}/blocks/{blockId}:
+    delete:
+      summary: Must be author. Delete a block in a note and replace the indexes of the others.
+      operationId: NotesAPI_DeleteBlock
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DeleteBlockResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
+          in: path
+          required: true
+          type: string
+    patch:
+      summary: Must be author. Update a block content.
+      operationId: NotesAPI_UpdateBlock
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UpdateBlockResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
+          in: path
+          required: true
+          type: string
+        - name: block
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1Block'
+            required:
+              - block
+  /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index:
     post:
-        summary: Must be author. Update a block index.
-        operationId: NotesAPI_UpdateBlockIndex
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1UpdateBlockIndexResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: noteId
-              in: path
-              required: true
-              type: string
-            - name: blockId
-              in: path
-              required: true
-              type: string
-            - name: body
-              in: body
-              required: true
-              schema:
-                type: object
-                properties:
-                    index:
-                        type: integer
-                        format: int64
-                required:
-                    - index
-  /groups/{groupId}/notes/{noteId}/permission: |
+      summary: Must be author. Update a block index.
+      operationId: NotesAPI_UpdateBlockIndex
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1UpdateBlockIndexResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              index:
+                type: integer
+                format: int64
+            required:
+              - index
+  /groups/{groupId}/notes/{noteId}/permission:
     post:
-        operationId: NotesAPI_ChangeNoteEditPermission
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1ChangeNoteEditPermissionResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: noteId
-              in: path
-              required: true
-              type: string
-            - name: body
-              in: body
-              required: true
-              schema:
-                type: object
-                properties:
-                    recipientAccountId:
-                        type: string
-                    type:
-                        $ref: '#/definitions/ChangeNoteEditPermissionRequestAction'
-                required:
-                    - recipientAccountId
-  /groups/{groupId}/notes/{noteId}/quiz: |
+      operationId: NotesAPI_ChangeNoteEditPermission
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ChangeNoteEditPermissionResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              recipientAccountId:
+                type: string
+              type:
+                $ref: '#/definitions/ChangeNoteEditPermissionRequestAction'
+            required:
+              - recipientAccountId
+  /groups/{groupId}/notes/{noteId}/quiz:
     get:
-        operationId: NotesAPI_GenerateQuiz
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1GenerateQuizResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: noteId
-              in: path
-              required: true
-              type: string
-  /groups/{groupId}/notes/{noteId}/widgets: |
+      operationId: NotesAPI_GenerateQuiz
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GenerateQuizResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/notes/{noteId}/widgets:
     get:
-        summary: Must be a group member. Returns all the relevent widgets from the given note id.
-        operationId: RecommendationsAPI_GenerateWidgets
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1GenerateWidgetsResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: groupId
-              in: path
-              required: true
-              type: string
-            - name: noteId
-              in: path
-              required: true
-              type: string
-  /invites: |
+      summary: Must be a group member. Returns all the relevent widgets from the given note id.
+      operationId: RecommendationsAPI_GenerateWidgets
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GenerateWidgetsResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+  /invites:
     get:
-        summary: Must be group administrator or sender or recipient.
-        operationId: GroupsAPI_ListInvites
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1ListInvitesResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: senderAccountId
-              description: Returns only invites from sender.
-              in: query
-              required: false
-              type: string
-            - name: recipientAccountId
-              description: Returns only invites destined to recipient.
-              in: query
-              required: false
-              type: string
-            - name: groupId
-              description: Returns only invites for a given group.
-              in: query
-              required: false
-              type: string
-            - name: limit
-              in: query
-              required: false
-              type: integer
-              format: int32
-            - name: offset
-              in: query
-              required: false
-              type: integer
-              format: int32
-  /notes: |
+      summary: Must be group administrator or sender or recipient.
+      operationId: GroupsAPI_ListInvites
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListInvitesResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: senderAccountId
+          description: Returns only invites from sender.
+          in: query
+          required: false
+          type: string
+        - name: recipientAccountId
+          description: Returns only invites destined to recipient.
+          in: query
+          required: false
+          type: string
+        - name: groupId
+          description: Returns only invites for a given group.
+          in: query
+          required: false
+          type: string
+        - name: limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int32
+  /notes:
     get:
-        summary: List notes in a group, authored by a user or both. Must have read access to the notes.
-        operationId: NotesAPI_ListNotes
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1ListNotesResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: authorAccountId
-              in: query
-              required: false
-              type: string
-            - name: groupId
-              in: query
-              required: false
-              type: string
-            - name: limit
-              in: query
-              required: false
-              type: integer
-              format: int32
-            - name: offset
-              in: query
-              required: false
-              type: integer
-              format: int32
-  /search/accounts: |
+      summary: List notes in a group, authored by a user or both. Must have read access to the notes.
+      operationId: NotesAPI_ListNotes
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListNotesResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: authorAccountId
+          in: query
+          required: false
+          type: string
+        - name: groupId
+          in: query
+          required: false
+          type: string
+        - name: limit
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int32
+  /search/accounts:
     post:
-        summary: Allows getting an account by ID or searching for one through email.
-        operationId: AccountsAPI_GetAccount2
-        responses:
-            "200":
-                description: A successful response.
-                schema:
-                    $ref: '#/definitions/v1GetAccountResponse'
-            "404":
-                description: Resource not found or lacking permissions to access the resource.
-                schema:
-                    $ref: '#/definitions/v1HttpError'
-        parameters:
-            - name: body
-              in: body
-              required: true
-              schema:
-                $ref: '#/definitions/v1GetAccountRequest'
+      summary: Allows getting an account by ID or searching for one through email.
+      operationId: AccountsAPI_GetAccount2
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetAccountResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1GetAccountRequest'
 definitions:
   BlockCode:
     type: object
@@ -1931,6 +1957,14 @@ definitions:
         $ref: '#/definitions/v1GroupInvite'
     required:
       - invite
+  v1StreamInviteResponse:
+    type: object
+    properties:
+      invites:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1GroupInvite'
   v1SummarizeResponse:
     type: object
     properties:
