@@ -72,6 +72,33 @@ message Block {
         string caption = 2;
     }
 
+
+    message TextStyle {
+        enum Style {
+            STYLE_INVALID = 0;
+            STYLE_BG_COLOR = 1;
+            STYLE_TXT_COLOR = 2;
+            STYLE_BOLD = 3;
+            STYLE_ITALIC = 4;
+            STYLE_UNDERLINE = 5;
+        }
+        Style style = 1;
+
+        message Position {
+            int64 start = 1;
+            int64 length = 2;
+        }
+        Position pos = 2;
+
+        message Color {
+            int32 r = 1;
+            int32 g = 2;
+            int32 b = 3;
+        }
+        optional Color color = 3;
+    }
+    repeated TextStyle styles = 19;
+
     oneof data {
         string heading = 3;
         string paragraph = 4;
@@ -169,6 +196,7 @@ service NotesAPI {
             delete: "/groups/{group_id}/notes/{note_id}/blocks/{block_id}"
         };
     }
+
 
     // Must be group member. Returns a md or pdf dowloadable file.
     rpc ExportNote(ExportNoteRequest) returns (ExportNoteResponse) {}
