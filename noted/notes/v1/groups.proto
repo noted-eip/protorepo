@@ -247,7 +247,7 @@ service GroupsAPI {
         };
     }
 
-    rpc StreamInvites(StreamInviteRequest) returns (stream StreamInviteResponse) {
+    rpc StreamInvite(StreamInviteRequest) returns (stream StreamInviteResponse) {
         option (google.api.http) = {
             get: "/groups/{group_id}/invites/stream",
         };
