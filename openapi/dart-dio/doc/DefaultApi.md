@@ -28,6 +28,7 @@ Method | HTTP request | Description
 [**groupsAPICreateGroup**](DefaultApi.md#groupsapicreategroup) | **POST** /groups | Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 [**groupsAPIDeleteGroup**](DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
 [**groupsAPIDenyInvite**](DefaultApi.md#groupsapidenyinvite) | **POST** /groups/{groupId}/invites/{inviteId}/deny | Must be recipient. Deletes the invitation without making the recipient join the group.
+[**groupsAPIEndStreamInvites**](DefaultApi.md#groupsapiendstreaminvites) | **PUT** /groups/invites/{identifierAccountId}/stream/terminate | 
 [**groupsAPIGenerateInviteLink**](DefaultApi.md#groupsapigenerateinvitelink) | **POST** /groups/{groupId}/inviteLinks | Must be group member. generated_by_account_id defaults to the authenticated user.
 [**groupsAPIGetActivity**](DefaultApi.md#groupsapigetactivity) | **GET** /groups/{groupId}/activity/{activityId} | Must be a group member. Returns a signle activity in a group.
 [**groupsAPIGetGroup**](DefaultApi.md#groupsapigetgroup) | **GET** /groups/{groupId} | Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
@@ -42,7 +43,7 @@ Method | HTTP request | Description
 [**groupsAPIRevokeInvite**](DefaultApi.md#groupsapirevokeinvite) | **DELETE** /groups/{groupId}/invites/{inviteId} | Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
 [**groupsAPIRevokeInviteLink**](DefaultApi.md#groupsapirevokeinvitelink) | **DELETE** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
 [**groupsAPISendInvite**](DefaultApi.md#groupsapisendinvite) | **POST** /groups/{groupId}/invites | The sender defaults to the authenticated user. Must be group member.
-[**groupsAPIStreamInvites**](DefaultApi.md#groupsapistreaminvites) | **GET** /groups/{groupId}/invites/stream | 
+[**groupsAPIStreamInvites**](DefaultApi.md#groupsapistreaminvites) | **GET** /groups/invites/{identifierAccountId}/stream | 
 [**groupsAPIUpdateGroup**](DefaultApi.md#groupsapiupdategroup) | **PATCH** /groups/{groupId} | Must be group administrator.
 [**groupsAPIUpdateMember**](DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
 [**groupsAPIUseInviteLink**](DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
@@ -858,6 +859,47 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **groupsAPIEndStreamInvites**
+> JsonObject groupsAPIEndStreamInvites(identifierAccountId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String identifierAccountId = identifierAccountId_example; // String | terminate background service dedicated to account_id
+
+try {
+    final response = api.groupsAPIEndStreamInvites(identifierAccountId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->groupsAPIEndStreamInvites: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifierAccountId** | **String**| terminate background service dedicated to account_id | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **groupsAPIGenerateInviteLink**
 > V1GenerateInviteLinkResponse groupsAPIGenerateInviteLink(groupId)
 
@@ -1475,7 +1517,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **groupsAPIStreamInvites**
-> StreamResultOfV1StreamInvitesResponse groupsAPIStreamInvites(groupId, recipientAccountId)
+> StreamResultOfV1StreamInvitesResponse groupsAPIStreamInvites(identifierAccountId, groupId)
 
 
 
@@ -1484,11 +1526,11 @@ No authorization required
 import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
+final String identifierAccountId = identifierAccountId_example; // String | Returns only invites destined to recipient.
 final String groupId = groupId_example; // String | 
-final String recipientAccountId = recipientAccountId_example; // String | Returns only invites destined to recipient.
 
 try {
-    final response = api.groupsAPIStreamInvites(groupId, recipientAccountId);
+    final response = api.groupsAPIStreamInvites(identifierAccountId, groupId);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIStreamInvites: $e\n');
@@ -1499,8 +1541,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | **String**|  | 
- **recipientAccountId** | **String**| Returns only invites destined to recipient. | [optional] 
+ **identifierAccountId** | **String**| Returns only invites destined to recipient. | 
+ **groupId** | **String**|  | [optional] 
 
 ### Return type
 

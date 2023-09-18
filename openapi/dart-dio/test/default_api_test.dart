@@ -136,6 +136,11 @@ void main() {
       // TODO
     });
 
+    //Future<JsonObject> groupsAPIEndStreamInvites(String identifierAccountId) async
+    test('test groupsAPIEndStreamInvites', () async {
+      // TODO
+    });
+
     // Must be group member. generated_by_account_id defaults to the authenticated user.
     //
     //Future<V1GenerateInviteLinkResponse> groupsAPIGenerateInviteLink(String groupId) async
@@ -234,7 +239,7 @@ void main() {
       // TODO
     });
 
-    //Future<StreamResultOfV1StreamInvitesResponse> groupsAPIStreamInvites(String groupId, { String recipientAccountId }) async
+    //Future<StreamResultOfV1StreamInvitesResponse> groupsAPIStreamInvites(String identifierAccountId, { String groupId }) async
     test('test groupsAPIStreamInvites', () async {
       // TODO
     });

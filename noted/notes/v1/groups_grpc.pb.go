@@ -46,6 +46,7 @@ const (
 	GroupsAPI_RevokeInvite_FullMethodName              = "/noted.notes.v1.GroupsAPI/RevokeInvite"
 	GroupsAPI_ListInvites_FullMethodName               = "/noted.notes.v1.GroupsAPI/ListInvites"
 	GroupsAPI_StreamInvites_FullMethodName             = "/noted.notes.v1.GroupsAPI/StreamInvites"
+	GroupsAPI_EndStreamInvites_FullMethodName          = "/noted.notes.v1.GroupsAPI/EndStreamInvites"
 	GroupsAPI_ListActivities_FullMethodName            = "/noted.notes.v1.GroupsAPI/ListActivities"
 	GroupsAPI_GetActivity_FullMethodName               = "/noted.notes.v1.GroupsAPI/GetActivity"
 )
@@ -107,6 +108,7 @@ type GroupsAPIClient interface {
 	// Must be group administrator or sender or recipient.
 	ListInvites(ctx context.Context, in *ListInvitesRequest, opts ...grpc.CallOption) (*ListInvitesResponse, error)
 	StreamInvites(ctx context.Context, in *StreamInvitesRequest, opts ...grpc.CallOption) (GroupsAPI_StreamInvitesClient, error)
+	EndStreamInvites(ctx context.Context, in *EndStreamInvitesRequest, opts ...grpc.CallOption) (*EndStreamInvitesResponse, error)
 	// Must be a group member. List all the activities in a group.
 	ListActivities(ctx context.Context, in *ListActivitiesRequest, opts ...grpc.CallOption) (*ListActivitiesResponse, error)
 	// Must be a group member. Returns a signle activity in a group.
@@ -387,6 +389,15 @@ func (x *groupsAPIStreamInvitesClient) Recv() (*StreamInvitesResponse, error) {
 	return m, nil
 }
 
+func (c *groupsAPIClient) EndStreamInvites(ctx context.Context, in *EndStreamInvitesRequest, opts ...grpc.CallOption) (*EndStreamInvitesResponse, error) {
+	out := new(EndStreamInvitesResponse)
+	err := c.cc.Invoke(ctx, GroupsAPI_EndStreamInvites_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *groupsAPIClient) ListActivities(ctx context.Context, in *ListActivitiesRequest, opts ...grpc.CallOption) (*ListActivitiesResponse, error) {
 	out := new(ListActivitiesResponse)
 	err := c.cc.Invoke(ctx, GroupsAPI_ListActivities_FullMethodName, in, out, opts...)
@@ -462,6 +473,7 @@ type GroupsAPIServer interface {
 	// Must be group administrator or sender or recipient.
 	ListInvites(context.Context, *ListInvitesRequest) (*ListInvitesResponse, error)
 	StreamInvites(*StreamInvitesRequest, GroupsAPI_StreamInvitesServer) error
+	EndStreamInvites(context.Context, *EndStreamInvitesRequest) (*EndStreamInvitesResponse, error)
 	// Must be a group member. List all the activities in a group.
 	ListActivities(context.Context, *ListActivitiesRequest) (*ListActivitiesResponse, error)
 	// Must be a group member. Returns a signle activity in a group.
@@ -553,6 +565,9 @@ func (UnimplementedGroupsAPIServer) ListInvites(context.Context, *ListInvitesReq
 }
 func (UnimplementedGroupsAPIServer) StreamInvites(*StreamInvitesRequest, GroupsAPI_StreamInvitesServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamInvites not implemented")
+}
+func (UnimplementedGroupsAPIServer) EndStreamInvites(context.Context, *EndStreamInvitesRequest) (*EndStreamInvitesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EndStreamInvites not implemented")
 }
 func (UnimplementedGroupsAPIServer) ListActivities(context.Context, *ListActivitiesRequest) (*ListActivitiesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListActivities not implemented")
@@ -1062,6 +1077,24 @@ func (x *groupsAPIStreamInvitesServer) Send(m *StreamInvitesResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _GroupsAPI_EndStreamInvites_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EndStreamInvitesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).EndStreamInvites(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GroupsAPI_EndStreamInvites_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).EndStreamInvites(ctx, req.(*EndStreamInvitesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GroupsAPI_ListActivities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListActivitiesRequest)
 	if err := dec(in); err != nil {
@@ -1208,6 +1241,10 @@ var GroupsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListInvites",
 			Handler:    _GroupsAPI_ListInvites_Handler,
+		},
+		{
+			MethodName: "EndStreamInvites",
+			Handler:    _GroupsAPI_EndStreamInvites_Handler,
 		},
 		{
 			MethodName: "ListActivities",
