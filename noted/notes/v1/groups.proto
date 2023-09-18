@@ -249,13 +249,13 @@ service GroupsAPI {
 
     rpc StreamInvites(StreamInvitesRequest) returns (stream StreamInvitesResponse) {
         option (google.api.http) = {
-            get: "/groups/invites/{account_id}/stream",
+            get: "/groups/invites/{identifier_account_id}/stream",
         };
     };
 
     rpc EndStreamInvites(EndStreamInvitesRequest) returns (EndStreamInvitesResponse) {
         option (google.api.http) = {
-            put: "/groups/invites/{account_id}/stream/terminate",
+            put: "/groups/invites/{identifier_account_id}/stream/terminate",
         };
     };
 
@@ -522,7 +522,7 @@ message RevokeInviteResponse {
 message StreamInvitesRequest {
     string group_id = 1;
     // Returns only invites destined to recipient.
-    string recipient_account_id = 2;
+    string identifier_account_id = 2;
 }
 
 message StreamInvitesResponse {
