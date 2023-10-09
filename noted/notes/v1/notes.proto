@@ -380,11 +380,11 @@ message CreateBlockCommentRequest {
     string group_id = 1 [(google.api.field_behavior) = REQUIRED];
     string note_id = 2 [(google.api.field_behavior) = REQUIRED];
     string block_id = 3 [(google.api.field_behavior) = REQUIRED];
-    Comment comment = 4 [(google.api.field_behavior) = REQUIRED];
+    Block.Comment comment = 4 [(google.api.field_behavior) = REQUIRED];
 }
 
 message CreateBlockCommentResponse {
-    Comment comment = 1;
+    Block.Comment comment = 1;
 }
 
 message ListBlockCommentsRequest {
@@ -394,7 +394,7 @@ message ListBlockCommentsRequest {
 }
 
 message ListBlockCommentsResponse {
-    repeated Comment comments = 1;
+    repeated Block.Comment comments = 1;
 }
 
 message DeleteBlockCommentRequest {
