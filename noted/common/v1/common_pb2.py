@@ -19,8 +19,8 @@ _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'noted.common.v1.common_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
-  DESCRIPTOR._options = None
-  DESCRIPTOR._serialized_options = b'Z\017noted/common/v1'
+  _globals['DESCRIPTOR']._options = None
+  _globals['DESCRIPTOR']._serialized_options = b'Z\017noted/common/v1'
   _globals['_HTTPERROR']._serialized_start=49
   _globals['_HTTPERROR']._serialized_end=82
 # @@protoc_insertion_point(module_scope)

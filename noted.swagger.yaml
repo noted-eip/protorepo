@@ -1172,6 +1172,95 @@ paths:
           in: path
           required: true
           type: string
+  /groups/{groupId}/notes/{noteId}/{blockId}/comment:
+    post:
+      operationId: NotesAPI_CreateBlockComment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1CreateBlockCommentResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              comment:
+                $ref: '#/definitions/BlockComment'
+            required:
+              - comment
+  /groups/{groupId}/notes/{noteId}/{blockId}/comment/{commentId}:
+    delete:
+      operationId: NotesAPI_DeleteBlockComment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DeleteBlockCommentResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
+          in: path
+          required: true
+          type: string
+        - name: commentId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/notes/{noteId}/{blockId}/comments:
+    get:
+      operationId: NotesAPI_ListBlockComments
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListBlockCommentsResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
+          in: path
+          required: true
+          type: string
   /invites:
     get:
       summary: Must be group administrator or sender or recipient.
@@ -1269,6 +1358,15 @@ definitions:
       snippet:
         type: string
       lang:
+        type: string
+  BlockComment:
+    type: object
+    properties:
+      id:
+        type: string
+      authorId:
+        type: string
+      content:
         type: string
   BlockTextStyle:
     type: object
@@ -1404,6 +1502,11 @@ definitions:
         $ref: '#/definitions/BlockCode'
       math:
         type: string
+      thread:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/BlockComment'
     required:
       - id
       - type
@@ -1474,6 +1577,11 @@ definitions:
         $ref: '#/definitions/v1Account'
     required:
       - account
+  v1CreateBlockCommentResponse:
+    type: object
+    properties:
+      comment:
+        $ref: '#/definitions/BlockComment'
   v1CreateGroupRequest:
     type: object
     properties:
@@ -1520,6 +1628,8 @@ definitions:
       - word
       - content
   v1DeleteAccountResponse:
+    type: object
+  v1DeleteBlockCommentResponse:
     type: object
   v1DeleteBlockResponse:
     type: object
@@ -1891,6 +2001,14 @@ definitions:
           $ref: '#/definitions/v1GroupActivity'
     required:
       - activities
+  v1ListBlockCommentsResponse:
+    type: object
+    properties:
+      comments:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/BlockComment'
   v1ListConversationMessagesResponse:
     type: object
     properties:

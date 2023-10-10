@@ -270,6 +270,11 @@ void main() {
       // TODO
     });
 
+    //Future<V1CreateBlockCommentResponse> notesAPICreateBlockComment(String groupId, String noteId, String blockId, NotesAPICreateBlockCommentRequest body) async
+    test('test notesAPICreateBlockComment', () async {
+      // TODO
+    });
+
     // Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
     //
     //Future<V1CreateNoteResponse> notesAPICreateNote(String groupId, NotesAPICreateNoteRequest body) async
@@ -281,6 +286,11 @@ void main() {
     //
     //Future<JsonObject> notesAPIDeleteBlock(String groupId, String noteId, String blockId) async
     test('test notesAPIDeleteBlock', () async {
+      // TODO
+    });
+
+    //Future<JsonObject> notesAPIDeleteBlockComment(String groupId, String noteId, String blockId, String commentId) async
+    test('test notesAPIDeleteBlockComment', () async {
       // TODO
     });
 
@@ -307,6 +317,11 @@ void main() {
     //
     //Future<V1InsertBlockResponse> notesAPIInsertBlock(String groupId, String noteId, NotesAPIInsertBlockRequest body) async
     test('test notesAPIInsertBlock', () async {
+      // TODO
+    });
+
+    //Future<V1ListBlockCommentsResponse> notesAPIListBlockComments(String groupId, String noteId, String blockId) async
+    test('test notesAPIListBlockComments', () async {
       // TODO
     });
 
