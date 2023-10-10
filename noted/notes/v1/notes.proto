@@ -234,7 +234,6 @@ service NotesAPI {
     rpc ListBlockComments(ListBlockCommentsRequest) returns (ListBlockCommentsResponse) {
         option (google.api.http) = {
             get: "/groups/{group_id}/notes/{note_id}/{block_id}/comments"
-            body: "*"
         };
     }
 
