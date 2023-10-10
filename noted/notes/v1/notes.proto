@@ -240,7 +240,6 @@ service NotesAPI {
     rpc DeleteBlockComment(DeleteBlockCommentRequest) returns (DeleteBlockCommentResponse) {
         option (google.api.http) = {
             delete: "/groups/{group_id}/notes/{note_id}/{block_id}/comment/{comment_id}"
-            body: "*"
         };
     }
 
