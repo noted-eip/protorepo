@@ -109,6 +109,13 @@ message Block {
         string math = 18;
     }
 
+    message Comment {
+        string id = 1;
+        string author_id = 2;
+        string content = 3;
+    }
+    repeated Comment thread = 20;
+
     reserved 7, 8, 9, 10, 11, 12, 13, 14;
 }
 
@@ -214,6 +221,27 @@ service NotesAPI {
     rpc GenerateQuiz(GenerateQuizRequest) returns (GenerateQuizResponse) {
         option (google.api.http) = {
             get: "/groups/{group_id}/notes/{note_id}/quiz"
+        };
+    }
+
+    rpc CreateBlockComment(CreateBlockCommentRequest) returns (CreateBlockCommentResponse) {
+        option (google.api.http) = {
+            post: "/groups/{group_id}/notes/{note_id}/{block_id}/comment"
+            body: "*"
+        };
+    }
+
+    rpc ListBlockComments(ListBlockCommentsRequest) returns (ListBlockCommentsResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/notes/{note_id}/{block_id}/comments"
+            body: "*"
+        };
+    }
+
+    rpc DeleteBlockComment(DeleteBlockCommentRequest) returns (DeleteBlockCommentResponse) {
+        option (google.api.http) = {
+            delete: "/groups/{group_id}/notes/{note_id}/{block_id}/comment/{comment_id}"
+            body: "*"
         };
     }
 
@@ -346,4 +374,35 @@ message GenerateQuizRequest {
 
 message GenerateQuizResponse {
     Quiz quiz = 1;
+}
+
+message CreateBlockCommentRequest {
+    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string note_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string block_id = 3 [(google.api.field_behavior) = REQUIRED];
+    Block.Comment comment = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateBlockCommentResponse {
+    Block.Comment comment = 1;
+}
+
+message ListBlockCommentsRequest {
+    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string note_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string block_id = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ListBlockCommentsResponse {
+    repeated Block.Comment comments = 1;
+}
+
+message DeleteBlockCommentRequest {
+    string group_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string note_id = 2 [(google.api.field_behavior) = REQUIRED];
+    string block_id = 3 [(google.api.field_behavior) = REQUIRED];
+    string comment_id = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteBlockCommentResponse {
 }
