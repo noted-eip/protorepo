@@ -525,6 +525,7 @@ message StreamInvitesResponse {
 
 message ListActivitiesRequest {
     string group_id = 1;
+    string user_id = 2;
     uint32 limit = 3;
     uint32 offset = 4;
 }
