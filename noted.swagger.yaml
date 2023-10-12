@@ -494,6 +494,10 @@ paths:
           in: path
           required: true
           type: string
+        - name: accountId
+          in: query
+          required: false
+          type: string
         - name: limit
           in: query
           required: false

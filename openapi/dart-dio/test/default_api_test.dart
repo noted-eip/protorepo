@@ -185,7 +185,7 @@ void main() {
 
     // Must be a group member. List all the activities in a group.
     //
-    //Future<V1ListActivitiesResponse> groupsAPIListActivities(String groupId, { int limit, int offset }) async
+    //Future<V1ListActivitiesResponse> groupsAPIListActivities(String groupId, { String accountId, int limit, int offset }) async
     test('test groupsAPIListActivities', () async {
       // TODO
     });

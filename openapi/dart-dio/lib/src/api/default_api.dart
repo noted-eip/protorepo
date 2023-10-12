@@ -2318,6 +2318,7 @@ class DefaultApi {
   ///
   /// Parameters:
   /// * [groupId] 
+  /// * [accountId] 
   /// * [limit] 
   /// * [offset] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -2331,6 +2332,7 @@ class DefaultApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<V1ListActivitiesResponse>> groupsAPIListActivities({ 
     required String groupId,
+    String? accountId,
     int? limit,
     int? offset,
     CancelToken? cancelToken,
@@ -2354,6 +2356,7 @@ class DefaultApi {
     );
 
     final _queryParameters = <String, dynamic>{
+      if (accountId != null) r'accountId': encodeQueryParameter(_serializers, accountId, const FullType(String)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };

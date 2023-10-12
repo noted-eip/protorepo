@@ -1160,7 +1160,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **groupsAPIListActivities**
-> V1ListActivitiesResponse groupsAPIListActivities(groupId, limit, offset)
+> V1ListActivitiesResponse groupsAPIListActivities(groupId, accountId, limit, offset)
 
 Must be a group member. List all the activities in a group.
 
@@ -1170,11 +1170,12 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
+final String accountId = accountId_example; // String | 
 final int limit = 789; // int | 
 final int offset = 789; // int | 
 
 try {
-    final response = api.groupsAPIListActivities(groupId, limit, offset);
+    final response = api.groupsAPIListActivities(groupId, accountId, limit, offset);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIListActivities: $e\n');
@@ -1186,6 +1187,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **String**|  | 
+ **accountId** | **String**|  | [optional] 
  **limit** | **int**|  | [optional] 
  **offset** | **int**|  | [optional] 
 

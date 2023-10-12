@@ -2851,12 +2851,13 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary Must be a group member. List all the activities in a group.
          * @param {string} groupId 
+         * @param {string} [accountId] 
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIListActivities: async (groupId: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsAPIListActivities: async (groupId: string, accountId?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('groupsAPIListActivities', 'groupId', groupId)
             const localVarPath = `/groups/{groupId}/activity`
@@ -2871,6 +2872,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (accountId !== undefined) {
+                localVarQueryParameter['accountId'] = accountId;
+            }
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -4364,13 +4369,14 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * 
          * @summary Must be a group member. List all the activities in a group.
          * @param {string} groupId 
+         * @param {string} [accountId] 
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsAPIListActivities(groupId: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListActivitiesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListActivities(groupId, limit, offset, options);
+        async groupsAPIListActivities(groupId: string, accountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListActivitiesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListActivities(groupId, accountId, limit, offset, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5001,13 +5007,14 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary Must be a group member. List all the activities in a group.
          * @param {string} groupId 
+         * @param {string} [accountId] 
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIListActivities(groupId: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListActivitiesResponse> {
-            return localVarFp.groupsAPIListActivities(groupId, limit, offset, options).then((request) => request(axios, basePath));
+        groupsAPIListActivities(groupId: string, accountId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListActivitiesResponse> {
+            return localVarFp.groupsAPIListActivities(groupId, accountId, limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5662,14 +5669,15 @@ export class DefaultApi extends BaseAPI {
      * 
      * @summary Must be a group member. List all the activities in a group.
      * @param {string} groupId 
+     * @param {string} [accountId] 
      * @param {number} [limit] 
      * @param {number} [offset] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public groupsAPIListActivities(groupId: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).groupsAPIListActivities(groupId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public groupsAPIListActivities(groupId: string, accountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIListActivities(groupId, accountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
