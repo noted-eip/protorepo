@@ -1154,6 +1154,27 @@ paths:
           in: path
           required: true
           type: string
+  /groups/{groupId}/notes/{noteId}/sumary:
+    get:
+      operationId: NotesAPI_GenerateSummary
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GenerateSummaryResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
   /groups/{groupId}/notes/{noteId}/widgets:
     get:
       summary: Must be a group member. Returns all the relevent widgets from the given note id.
@@ -1722,6 +1743,11 @@ definitions:
     properties:
       quiz:
         $ref: '#/definitions/v1Quiz'
+  v1GenerateSummaryResponse:
+    type: object
+    properties:
+      sumary:
+        type: string
   v1GenerateWidgetsResponse:
     type: object
     properties:

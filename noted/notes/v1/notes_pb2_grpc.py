@@ -79,6 +79,11 @@ class NotesAPIStub(object):
                 request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.GenerateQuizRequest.SerializeToString,
                 response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.GenerateQuizResponse.FromString,
                 )
+        self.GenerateSummary = channel.unary_unary(
+                '/noted.notes.v1.NotesAPI/GenerateSummary',
+                request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.GenerateSummaryRequest.SerializeToString,
+                response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.GenerateSummaryResponse.FromString,
+                )
         self.CreateBlockComment = channel.unary_unary(
                 '/noted.notes.v1.NotesAPI/CreateBlockComment',
                 request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.CreateBlockCommentRequest.SerializeToString,
@@ -188,6 +193,12 @@ class NotesAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GenerateSummary(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def CreateBlockComment(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -273,6 +284,11 @@ def add_NotesAPIServicer_to_server(servicer, server):
                     servicer.GenerateQuiz,
                     request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.GenerateQuizRequest.FromString,
                     response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.GenerateQuizResponse.SerializeToString,
+            ),
+            'GenerateSummary': grpc.unary_unary_rpc_method_handler(
+                    servicer.GenerateSummary,
+                    request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.GenerateSummaryRequest.FromString,
+                    response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.GenerateSummaryResponse.SerializeToString,
             ),
             'CreateBlockComment': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateBlockComment,
@@ -517,6 +533,23 @@ class NotesAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/GenerateQuiz',
             noted_dot_notes_dot_v1_dot_notes__pb2.GenerateQuizRequest.SerializeToString,
             noted_dot_notes_dot_v1_dot_notes__pb2.GenerateQuizResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GenerateSummary(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/GenerateSummary',
+            noted_dot_notes_dot_v1_dot_notes__pb2.GenerateSummaryRequest.SerializeToString,
+            noted_dot_notes_dot_v1_dot_notes__pb2.GenerateSummaryResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

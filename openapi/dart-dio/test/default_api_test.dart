@@ -306,6 +306,11 @@ void main() {
       // TODO
     });
 
+    //Future<V1GenerateSummaryResponse> notesAPIGenerateSummary(String groupId, String noteId) async
+    test('test notesAPIGenerateSummary', () async {
+      // TODO
+    });
+
     // Must be group member or author. Return a note from id provided.
     //
     //Future<V1GetNoteResponse> notesAPIGetNote(String groupId, String noteId) async

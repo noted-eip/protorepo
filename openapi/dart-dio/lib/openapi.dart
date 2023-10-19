@@ -57,6 +57,7 @@ export 'package:openapi/src/model/v1_forget_account_password_validate_token_requ
 export 'package:openapi/src/model/v1_forget_account_password_validate_token_response.dart';
 export 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 export 'package:openapi/src/model/v1_generate_quiz_response.dart';
+export 'package:openapi/src/model/v1_generate_summary_response.dart';
 export 'package:openapi/src/model/v1_generate_widgets_response.dart';
 export 'package:openapi/src/model/v1_get_account_profile_picture_response.dart';
 export 'package:openapi/src/model/v1_get_account_request.dart';

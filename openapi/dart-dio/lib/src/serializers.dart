@@ -60,6 +60,7 @@ import 'package:openapi/src/model/v1_forget_account_password_validate_token_requ
 import 'package:openapi/src/model/v1_forget_account_password_validate_token_response.dart';
 import 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 import 'package:openapi/src/model/v1_generate_quiz_response.dart';
+import 'package:openapi/src/model/v1_generate_summary_response.dart';
 import 'package:openapi/src/model/v1_generate_widgets_response.dart';
 import 'package:openapi/src/model/v1_get_account_profile_picture_response.dart';
 import 'package:openapi/src/model/v1_get_account_request.dart';
@@ -162,6 +163,7 @@ part 'serializers.g.dart';
   V1ForgetAccountPasswordValidateTokenResponse,
   V1GenerateInviteLinkResponse,
   V1GenerateQuizResponse,
+  V1GenerateSummaryResponse,
   V1GenerateWidgetsResponse,
   V1GetAccountProfilePictureResponse,
   V1GetAccountRequest,

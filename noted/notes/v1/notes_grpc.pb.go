@@ -32,6 +32,7 @@ const (
 	NotesAPI_OnAccountDelete_FullMethodName          = "/noted.notes.v1.NotesAPI/OnAccountDelete"
 	NotesAPI_ChangeNoteEditPermission_FullMethodName = "/noted.notes.v1.NotesAPI/ChangeNoteEditPermission"
 	NotesAPI_GenerateQuiz_FullMethodName             = "/noted.notes.v1.NotesAPI/GenerateQuiz"
+	NotesAPI_GenerateSummary_FullMethodName          = "/noted.notes.v1.NotesAPI/GenerateSummary"
 	NotesAPI_CreateBlockComment_FullMethodName       = "/noted.notes.v1.NotesAPI/CreateBlockComment"
 	NotesAPI_ListBlockComments_FullMethodName        = "/noted.notes.v1.NotesAPI/ListBlockComments"
 	NotesAPI_DeleteBlockComment_FullMethodName       = "/noted.notes.v1.NotesAPI/DeleteBlockComment"
@@ -65,6 +66,7 @@ type NotesAPIClient interface {
 	OnAccountDelete(ctx context.Context, in *OnAccountDeleteRequest, opts ...grpc.CallOption) (*OnAccountDeleteResponse, error)
 	ChangeNoteEditPermission(ctx context.Context, in *ChangeNoteEditPermissionRequest, opts ...grpc.CallOption) (*ChangeNoteEditPermissionResponse, error)
 	GenerateQuiz(ctx context.Context, in *GenerateQuizRequest, opts ...grpc.CallOption) (*GenerateQuizResponse, error)
+	GenerateSummary(ctx context.Context, in *GenerateSummaryRequest, opts ...grpc.CallOption) (*GenerateSummaryResponse, error)
 	CreateBlockComment(ctx context.Context, in *CreateBlockCommentRequest, opts ...grpc.CallOption) (*CreateBlockCommentResponse, error)
 	ListBlockComments(ctx context.Context, in *ListBlockCommentsRequest, opts ...grpc.CallOption) (*ListBlockCommentsResponse, error)
 	DeleteBlockComment(ctx context.Context, in *DeleteBlockCommentRequest, opts ...grpc.CallOption) (*DeleteBlockCommentResponse, error)
@@ -195,6 +197,15 @@ func (c *notesAPIClient) GenerateQuiz(ctx context.Context, in *GenerateQuizReque
 	return out, nil
 }
 
+func (c *notesAPIClient) GenerateSummary(ctx context.Context, in *GenerateSummaryRequest, opts ...grpc.CallOption) (*GenerateSummaryResponse, error) {
+	out := new(GenerateSummaryResponse)
+	err := c.cc.Invoke(ctx, NotesAPI_GenerateSummary_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *notesAPIClient) CreateBlockComment(ctx context.Context, in *CreateBlockCommentRequest, opts ...grpc.CallOption) (*CreateBlockCommentResponse, error) {
 	out := new(CreateBlockCommentResponse)
 	err := c.cc.Invoke(ctx, NotesAPI_CreateBlockComment_FullMethodName, in, out, opts...)
@@ -250,6 +261,7 @@ type NotesAPIServer interface {
 	OnAccountDelete(context.Context, *OnAccountDeleteRequest) (*OnAccountDeleteResponse, error)
 	ChangeNoteEditPermission(context.Context, *ChangeNoteEditPermissionRequest) (*ChangeNoteEditPermissionResponse, error)
 	GenerateQuiz(context.Context, *GenerateQuizRequest) (*GenerateQuizResponse, error)
+	GenerateSummary(context.Context, *GenerateSummaryRequest) (*GenerateSummaryResponse, error)
 	CreateBlockComment(context.Context, *CreateBlockCommentRequest) (*CreateBlockCommentResponse, error)
 	ListBlockComments(context.Context, *ListBlockCommentsRequest) (*ListBlockCommentsResponse, error)
 	DeleteBlockComment(context.Context, *DeleteBlockCommentRequest) (*DeleteBlockCommentResponse, error)
@@ -298,6 +310,9 @@ func (UnimplementedNotesAPIServer) ChangeNoteEditPermission(context.Context, *Ch
 }
 func (UnimplementedNotesAPIServer) GenerateQuiz(context.Context, *GenerateQuizRequest) (*GenerateQuizResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateQuiz not implemented")
+}
+func (UnimplementedNotesAPIServer) GenerateSummary(context.Context, *GenerateSummaryRequest) (*GenerateSummaryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateSummary not implemented")
 }
 func (UnimplementedNotesAPIServer) CreateBlockComment(context.Context, *CreateBlockCommentRequest) (*CreateBlockCommentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBlockComment not implemented")
@@ -555,6 +570,24 @@ func _NotesAPI_GenerateQuiz_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NotesAPI_GenerateSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GenerateSummaryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotesAPIServer).GenerateSummary(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NotesAPI_GenerateSummary_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotesAPIServer).GenerateSummary(ctx, req.(*GenerateSummaryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _NotesAPI_CreateBlockComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateBlockCommentRequest)
 	if err := dec(in); err != nil {
@@ -667,6 +700,10 @@ var NotesAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GenerateQuiz",
 			Handler:    _NotesAPI_GenerateQuiz_Handler,
+		},
+		{
+			MethodName: "GenerateSummary",
+			Handler:    _NotesAPI_GenerateSummary_Handler,
 		},
 		{
 			MethodName: "CreateBlockComment",
