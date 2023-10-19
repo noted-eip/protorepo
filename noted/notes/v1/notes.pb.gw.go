@@ -1723,7 +1723,7 @@ func RegisterNotesAPIHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/noted.notes.v1.NotesAPI/GenerateSummary", runtime.WithHTTPPathPattern("/groups/{group_id}/notes/{note_id}/sumary"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/noted.notes.v1.NotesAPI/GenerateSummary", runtime.WithHTTPPathPattern("/groups/{group_id}/notes/{note_id}/summary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2126,7 +2126,7 @@ func RegisterNotesAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/noted.notes.v1.NotesAPI/GenerateSummary", runtime.WithHTTPPathPattern("/groups/{group_id}/notes/{note_id}/sumary"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/noted.notes.v1.NotesAPI/GenerateSummary", runtime.WithHTTPPathPattern("/groups/{group_id}/notes/{note_id}/summary"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2236,7 +2236,7 @@ var (
 
 	pattern_NotesAPI_GenerateQuiz_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"groups", "group_id", "notes", "note_id", "quiz"}, ""))
 
-	pattern_NotesAPI_GenerateSummary_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"groups", "group_id", "notes", "note_id", "sumary"}, ""))
+	pattern_NotesAPI_GenerateSummary_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"groups", "group_id", "notes", "note_id", "summary"}, ""))
 
 	pattern_NotesAPI_CreateBlockComment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"groups", "group_id", "notes", "note_id", "block_id", "comment"}, ""))
 

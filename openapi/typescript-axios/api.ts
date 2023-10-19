@@ -3683,7 +3683,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             assertParamExists('notesAPIGenerateSummary', 'groupId', groupId)
             // verify required parameter 'noteId' is not null or undefined
             assertParamExists('notesAPIGenerateSummary', 'noteId', noteId)
-            const localVarPath = `/groups/{groupId}/notes/{noteId}/sumary`
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/summary`
                 .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
                 .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.

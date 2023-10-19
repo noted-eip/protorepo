@@ -1154,7 +1154,7 @@ paths:
           in: path
           required: true
           type: string
-  /groups/{groupId}/notes/{noteId}/sumary:
+  /groups/{groupId}/notes/{noteId}/summary:
     get:
       operationId: NotesAPI_GenerateSummary
       responses:
