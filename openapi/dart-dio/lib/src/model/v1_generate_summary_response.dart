@@ -11,11 +11,11 @@ part 'v1_generate_summary_response.g.dart';
 /// V1GenerateSummaryResponse
 ///
 /// Properties:
-/// * [sumary] 
+/// * [summary] 
 @BuiltValue()
 abstract class V1GenerateSummaryResponse implements Built<V1GenerateSummaryResponse, V1GenerateSummaryResponseBuilder> {
-  @BuiltValueField(wireName: r'sumary')
-  String? get sumary;
+  @BuiltValueField(wireName: r'summary')
+  String? get summary;
 
   V1GenerateSummaryResponse._();
 
@@ -40,10 +40,10 @@ class _$V1GenerateSummaryResponseSerializer implements PrimitiveSerializer<V1Gen
     V1GenerateSummaryResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.sumary != null) {
-      yield r'sumary';
+    if (object.summary != null) {
+      yield r'summary';
       yield serializers.serialize(
-        object.sumary,
+        object.summary,
         specifiedType: const FullType(String),
       );
     }
@@ -70,12 +70,12 @@ class _$V1GenerateSummaryResponseSerializer implements PrimitiveSerializer<V1Gen
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'sumary':
+        case r'summary':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.sumary = valueDes;
+          result.summary = valueDes;
           break;
         default:
           unhandled.add(key);

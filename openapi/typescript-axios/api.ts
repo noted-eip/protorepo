@@ -929,7 +929,7 @@ export interface V1GenerateSummaryResponse {
      * @type {string}
      * @memberof V1GenerateSummaryResponse
      */
-    'sumary'?: string;
+    'summary'?: string;
 }
 /**
  * 

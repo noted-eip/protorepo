@@ -7,8 +7,8 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(V1GenerateSummaryResponse, () {
-    // String sumary
-    test('to test the property `sumary`', () async {
+    // String summary
+    test('to test the property `summary`', () async {
       // TODO
     });
 
