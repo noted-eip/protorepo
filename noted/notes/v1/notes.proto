@@ -226,7 +226,7 @@ service NotesAPI {
 
     rpc GenerateSummary(GenerateSummaryRequest) returns (GenerateSummaryResponse) {
         option (google.api.http) = {
-            get: "/groups/{group_id}/notes/{note_id}/sumary"
+            get: "/groups/{group_id}/notes/{note_id}/summary"
         };
     }
 
