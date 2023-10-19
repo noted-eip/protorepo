@@ -1746,7 +1746,7 @@ definitions:
   v1GenerateSummaryResponse:
     type: object
     properties:
-      sumary:
+      summary:
         type: string
   v1GenerateWidgetsResponse:
     type: object
