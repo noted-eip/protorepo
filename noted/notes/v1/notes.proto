@@ -224,6 +224,12 @@ service NotesAPI {
         };
     }
 
+    rpc GenerateSummary(GenerateSummaryRequest) returns (GenerateSummaryResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/notes/{note_id}/sumary"
+        };
+    }
+
     rpc CreateBlockComment(CreateBlockCommentRequest) returns (CreateBlockCommentResponse) {
         option (google.api.http) = {
             post: "/groups/{group_id}/notes/{note_id}/{block_id}/comment"
@@ -372,6 +378,15 @@ message GenerateQuizRequest {
 
 message GenerateQuizResponse {
     Quiz quiz = 1;
+}
+
+message GenerateSummaryRequest {
+    string group_id = 1;
+    string note_id = 2;
+}
+
+message GenerateSummaryResponse {
+    string sumary = 1;
 }
 
 message CreateBlockCommentRequest {
