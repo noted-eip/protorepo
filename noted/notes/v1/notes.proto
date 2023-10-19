@@ -386,7 +386,7 @@ message GenerateSummaryRequest {
 }
 
 message GenerateSummaryResponse {
-    string sumary = 1;
+    string summary = 1;
 }
 
 message CreateBlockCommentRequest {
