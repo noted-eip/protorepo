@@ -43,6 +43,7 @@ message Note {
     google.protobuf.Timestamp created_at = 6 [(google.api.field_behavior) = REQUIRED];
     google.protobuf.Timestamp modified_at = 7;
     google.protobuf.Timestamp analyzed_at = 8;
+    string lang = 9 [(google.api.field_behavior) = REQUIRED];
 }
 
 message Block {
