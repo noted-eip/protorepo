@@ -232,6 +232,7 @@ message CreateNoteRequest {
     string group_id = 1;
     string title = 2;
     repeated Block blocks = 3;
+    string lang = 4;
 }
 
 message CreateNoteResponse {
