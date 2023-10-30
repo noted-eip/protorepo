@@ -898,6 +898,8 @@ paths:
                 items:
                   type: object
                   $ref: '#/definitions/v1Block'
+              lang:
+                type: string
   /groups/{groupId}/notes/{noteId}:
     get:
       summary: Must be group member or author. Return a note from id provided.
@@ -2096,12 +2098,15 @@ definitions:
       analyzedAt:
         type: string
         format: date-time
+      lang:
+        type: string
     required:
       - id
       - groupId
       - authorAccountId
       - title
       - createdAt
+      - lang
   v1NoteExportFormat:
     type: string
     enum:
