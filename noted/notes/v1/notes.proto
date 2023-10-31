@@ -120,6 +120,7 @@ message QuizQuestion {
 
 message Quiz {
     repeated QuizQuestion questions = 1;
+    string id = 2;
 }
 
 enum NoteExportFormat {
