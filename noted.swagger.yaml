@@ -2122,6 +2122,8 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/v1QuizQuestion'
+      id:
+        type: string
   v1QuizQuestion:
     type: object
     properties:
