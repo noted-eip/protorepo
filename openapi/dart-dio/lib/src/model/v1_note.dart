@@ -21,6 +21,7 @@ part 'v1_note.g.dart';
 /// * [createdAt] 
 /// * [modifiedAt] 
 /// * [analyzedAt] 
+/// * [lang] 
 @BuiltValue()
 abstract class V1Note implements Built<V1Note, V1NoteBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -46,6 +47,9 @@ abstract class V1Note implements Built<V1Note, V1NoteBuilder> {
 
   @BuiltValueField(wireName: r'analyzedAt')
   DateTime? get analyzedAt;
+
+  @BuiltValueField(wireName: r'lang')
+  String get lang;
 
   V1Note._();
 
@@ -116,6 +120,11 @@ class _$V1NoteSerializer implements PrimitiveSerializer<V1Note> {
         specifiedType: const FullType(DateTime),
       );
     }
+    yield r'lang';
+    yield serializers.serialize(
+      object.lang,
+      specifiedType: const FullType(String),
+    );
   }
 
   @override
@@ -194,6 +203,13 @@ class _$V1NoteSerializer implements PrimitiveSerializer<V1Note> {
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.analyzedAt = valueDes;
+          break;
+        case r'lang':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.lang = valueDes;
           break;
         default:
           unhandled.add(key);

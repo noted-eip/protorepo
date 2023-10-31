@@ -185,7 +185,7 @@ void main() {
 
     // Must be a group member. List all the activities in a group.
     //
-    //Future<V1ListActivitiesResponse> groupsAPIListActivities(String groupId, { int limit, int offset }) async
+    //Future<V1ListActivitiesResponse> groupsAPIListActivities(String groupId, { String accountId, int limit, int offset }) async
     test('test groupsAPIListActivities', () async {
       // TODO
     });
@@ -270,6 +270,11 @@ void main() {
       // TODO
     });
 
+    //Future<V1CreateBlockCommentResponse> notesAPICreateBlockComment(String groupId, String noteId, String blockId, NotesAPICreateBlockCommentRequest body) async
+    test('test notesAPICreateBlockComment', () async {
+      // TODO
+    });
+
     // Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
     //
     //Future<V1CreateNoteResponse> notesAPICreateNote(String groupId, NotesAPICreateNoteRequest body) async
@@ -281,6 +286,11 @@ void main() {
     //
     //Future<JsonObject> notesAPIDeleteBlock(String groupId, String noteId, String blockId) async
     test('test notesAPIDeleteBlock', () async {
+      // TODO
+    });
+
+    //Future<JsonObject> notesAPIDeleteBlockComment(String groupId, String noteId, String blockId, String commentId) async
+    test('test notesAPIDeleteBlockComment', () async {
       // TODO
     });
 
@@ -296,6 +306,11 @@ void main() {
       // TODO
     });
 
+    //Future<V1GenerateSummaryResponse> notesAPIGenerateSummary(String groupId, String noteId) async
+    test('test notesAPIGenerateSummary', () async {
+      // TODO
+    });
+
     // Must be group member or author. Return a note from id provided.
     //
     //Future<V1GetNoteResponse> notesAPIGetNote(String groupId, String noteId) async
@@ -307,6 +322,11 @@ void main() {
     //
     //Future<V1InsertBlockResponse> notesAPIInsertBlock(String groupId, String noteId, NotesAPIInsertBlockRequest body) async
     test('test notesAPIInsertBlock', () async {
+      // TODO
+    });
+
+    //Future<V1ListBlockCommentsResponse> notesAPIListBlockComments(String groupId, String noteId, String blockId) async
+    test('test notesAPIListBlockComments', () async {
       // TODO
     });
 

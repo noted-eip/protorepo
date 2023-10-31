@@ -494,6 +494,10 @@ paths:
           in: path
           required: true
           type: string
+        - name: accountId
+          in: query
+          required: false
+          type: string
         - name: limit
           in: query
           required: false
@@ -894,6 +898,8 @@ paths:
                 items:
                   type: object
                   $ref: '#/definitions/v1Block'
+              lang:
+                type: string
   /groups/{groupId}/notes/{noteId}:
     get:
       summary: Must be group member or author. Return a note from id provided.
@@ -1150,6 +1156,27 @@ paths:
           in: path
           required: true
           type: string
+  /groups/{groupId}/notes/{noteId}/summary:
+    get:
+      operationId: NotesAPI_GenerateSummary
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GenerateSummaryResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
   /groups/{groupId}/notes/{noteId}/widgets:
     get:
       summary: Must be a group member. Returns all the relevent widgets from the given note id.
@@ -1169,6 +1196,95 @@ paths:
           required: true
           type: string
         - name: noteId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/notes/{noteId}/{blockId}/comment:
+    post:
+      operationId: NotesAPI_CreateBlockComment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1CreateBlockCommentResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              comment:
+                $ref: '#/definitions/BlockComment'
+            required:
+              - comment
+  /groups/{groupId}/notes/{noteId}/{blockId}/comment/{commentId}:
+    delete:
+      operationId: NotesAPI_DeleteBlockComment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DeleteBlockCommentResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
+          in: path
+          required: true
+          type: string
+        - name: commentId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/notes/{noteId}/{blockId}/comments:
+    get:
+      operationId: NotesAPI_ListBlockComments
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListBlockCommentsResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
           in: path
           required: true
           type: string
@@ -1269,6 +1385,15 @@ definitions:
       snippet:
         type: string
       lang:
+        type: string
+  BlockComment:
+    type: object
+    properties:
+      id:
+        type: string
+      authorId:
+        type: string
+      content:
         type: string
   BlockTextStyle:
     type: object
@@ -1404,6 +1529,11 @@ definitions:
         $ref: '#/definitions/BlockCode'
       math:
         type: string
+      thread:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/BlockComment'
     required:
       - id
       - type
@@ -1474,6 +1604,11 @@ definitions:
         $ref: '#/definitions/v1Account'
     required:
       - account
+  v1CreateBlockCommentResponse:
+    type: object
+    properties:
+      comment:
+        $ref: '#/definitions/BlockComment'
   v1CreateGroupRequest:
     type: object
     properties:
@@ -1520,6 +1655,8 @@ definitions:
       - word
       - content
   v1DeleteAccountResponse:
+    type: object
+  v1DeleteBlockCommentResponse:
     type: object
   v1DeleteBlockResponse:
     type: object
@@ -1608,6 +1745,11 @@ definitions:
     properties:
       quiz:
         $ref: '#/definitions/v1Quiz'
+  v1GenerateSummaryResponse:
+    type: object
+    properties:
+      summary:
+        type: string
   v1GenerateWidgetsResponse:
     type: object
     properties:
@@ -1891,6 +2033,14 @@ definitions:
           $ref: '#/definitions/v1GroupActivity'
     required:
       - activities
+  v1ListBlockCommentsResponse:
+    type: object
+    properties:
+      comments:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/BlockComment'
   v1ListConversationMessagesResponse:
     type: object
     properties:
@@ -1948,12 +2098,15 @@ definitions:
       analyzedAt:
         type: string
         format: date-time
+      lang:
+        type: string
     required:
       - id
       - groupId
       - authorAccountId
       - title
       - createdAt
+      - lang
   v1NoteExportFormat:
     type: string
     enum:

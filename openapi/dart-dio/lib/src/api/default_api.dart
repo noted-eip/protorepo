@@ -15,6 +15,7 @@ import 'package:openapi/src/model/accounts_api_validate_account_request.dart';
 import 'package:openapi/src/model/groups_api_send_invite_request.dart';
 import 'package:openapi/src/model/groups_api_update_group_request.dart';
 import 'package:openapi/src/model/notes_api_change_note_edit_permission_request.dart';
+import 'package:openapi/src/model/notes_api_create_block_comment_request.dart';
 import 'package:openapi/src/model/notes_api_create_note_request.dart';
 import 'package:openapi/src/model/notes_api_insert_block_request.dart';
 import 'package:openapi/src/model/notes_api_update_block_index_request.dart';
@@ -28,6 +29,7 @@ import 'package:openapi/src/model/v1_authenticate_response.dart';
 import 'package:openapi/src/model/v1_block.dart';
 import 'package:openapi/src/model/v1_create_account_request.dart';
 import 'package:openapi/src/model/v1_create_account_response.dart';
+import 'package:openapi/src/model/v1_create_block_comment_response.dart';
 import 'package:openapi/src/model/v1_create_group_request.dart';
 import 'package:openapi/src/model/v1_create_group_response.dart';
 import 'package:openapi/src/model/v1_create_note_response.dart';
@@ -37,6 +39,7 @@ import 'package:openapi/src/model/v1_forget_account_password_validate_token_requ
 import 'package:openapi/src/model/v1_forget_account_password_validate_token_response.dart';
 import 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 import 'package:openapi/src/model/v1_generate_quiz_response.dart';
+import 'package:openapi/src/model/v1_generate_summary_response.dart';
 import 'package:openapi/src/model/v1_generate_widgets_response.dart';
 import 'package:openapi/src/model/v1_get_account_profile_picture_response.dart';
 import 'package:openapi/src/model/v1_get_account_request.dart';
@@ -52,6 +55,7 @@ import 'package:openapi/src/model/v1_http_error.dart';
 import 'package:openapi/src/model/v1_insert_block_response.dart';
 import 'package:openapi/src/model/v1_list_accounts_response.dart';
 import 'package:openapi/src/model/v1_list_activities_response.dart';
+import 'package:openapi/src/model/v1_list_block_comments_response.dart';
 import 'package:openapi/src/model/v1_list_groups_response.dart';
 import 'package:openapi/src/model/v1_list_invites_response.dart';
 import 'package:openapi/src/model/v1_list_notes_response.dart';
@@ -2315,6 +2319,7 @@ class DefaultApi {
   ///
   /// Parameters:
   /// * [groupId] 
+  /// * [accountId] 
   /// * [limit] 
   /// * [offset] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -2328,6 +2333,7 @@ class DefaultApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<V1ListActivitiesResponse>> groupsAPIListActivities({ 
     required String groupId,
+    String? accountId,
     int? limit,
     int? offset,
     CancelToken? cancelToken,
@@ -2351,6 +2357,7 @@ class DefaultApi {
     );
 
     final _queryParameters = <String, dynamic>{
+      if (accountId != null) r'accountId': encodeQueryParameter(_serializers, accountId, const FullType(String)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
@@ -3446,6 +3453,107 @@ class DefaultApi {
     );
   }
 
+  /// notesAPICreateBlockComment
+  /// 
+  ///
+  /// Parameters:
+  /// * [groupId] 
+  /// * [noteId] 
+  /// * [blockId] 
+  /// * [body] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [V1CreateBlockCommentResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<V1CreateBlockCommentResponse>> notesAPICreateBlockComment({ 
+    required String groupId,
+    required String noteId,
+    required String blockId,
+    required NotesAPICreateBlockCommentRequest body,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/groups/{groupId}/notes/{noteId}/{blockId}/comment'.replaceAll('{' r'groupId' '}', encodeQueryParameter(_serializers, groupId, const FullType(String)).toString()).replaceAll('{' r'noteId' '}', encodeQueryParameter(_serializers, noteId, const FullType(String)).toString()).replaceAll('{' r'blockId' '}', encodeQueryParameter(_serializers, blockId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(NotesAPICreateBlockCommentRequest);
+      _bodyData = _serializers.serialize(body, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    V1CreateBlockCommentResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1CreateBlockCommentResponse),
+      ) as V1CreateBlockCommentResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<V1CreateBlockCommentResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
   /// 
   ///
@@ -3571,6 +3679,87 @@ class DefaultApi {
     ProgressCallback? onReceiveProgress,
   }) async {
     final _path = r'/groups/{groupId}/notes/{noteId}/blocks/{blockId}'.replaceAll('{' r'groupId' '}', encodeQueryParameter(_serializers, groupId, const FullType(String)).toString()).replaceAll('{' r'noteId' '}', encodeQueryParameter(_serializers, noteId, const FullType(String)).toString()).replaceAll('{' r'blockId' '}', encodeQueryParameter(_serializers, blockId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'DELETE',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    JsonObject? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(JsonObject),
+      ) as JsonObject;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<JsonObject>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// notesAPIDeleteBlockComment
+  /// 
+  ///
+  /// Parameters:
+  /// * [groupId] 
+  /// * [noteId] 
+  /// * [blockId] 
+  /// * [commentId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [JsonObject] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<JsonObject>> notesAPIDeleteBlockComment({ 
+    required String groupId,
+    required String noteId,
+    required String blockId,
+    required String commentId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/groups/{groupId}/notes/{noteId}/{blockId}/comment/{commentId}'.replaceAll('{' r'groupId' '}', encodeQueryParameter(_serializers, groupId, const FullType(String)).toString()).replaceAll('{' r'noteId' '}', encodeQueryParameter(_serializers, noteId, const FullType(String)).toString()).replaceAll('{' r'blockId' '}', encodeQueryParameter(_serializers, blockId, const FullType(String)).toString()).replaceAll('{' r'commentId' '}', encodeQueryParameter(_serializers, commentId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -3776,6 +3965,83 @@ class DefaultApi {
     );
   }
 
+  /// notesAPIGenerateSummary
+  /// 
+  ///
+  /// Parameters:
+  /// * [groupId] 
+  /// * [noteId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [V1GenerateSummaryResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<V1GenerateSummaryResponse>> notesAPIGenerateSummary({ 
+    required String groupId,
+    required String noteId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/groups/{groupId}/notes/{noteId}/summary'.replaceAll('{' r'groupId' '}', encodeQueryParameter(_serializers, groupId, const FullType(String)).toString()).replaceAll('{' r'noteId' '}', encodeQueryParameter(_serializers, noteId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    V1GenerateSummaryResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1GenerateSummaryResponse),
+      ) as V1GenerateSummaryResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<V1GenerateSummaryResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Must be group member or author. Return a note from id provided.
   /// 
   ///
@@ -3941,6 +4207,85 @@ class DefaultApi {
     }
 
     return Response<V1InsertBlockResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// notesAPIListBlockComments
+  /// 
+  ///
+  /// Parameters:
+  /// * [groupId] 
+  /// * [noteId] 
+  /// * [blockId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [V1ListBlockCommentsResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<V1ListBlockCommentsResponse>> notesAPIListBlockComments({ 
+    required String groupId,
+    required String noteId,
+    required String blockId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/groups/{groupId}/notes/{noteId}/{blockId}/comments'.replaceAll('{' r'groupId' '}', encodeQueryParameter(_serializers, groupId, const FullType(String)).toString()).replaceAll('{' r'noteId' '}', encodeQueryParameter(_serializers, noteId, const FullType(String)).toString()).replaceAll('{' r'blockId' '}', encodeQueryParameter(_serializers, blockId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    V1ListBlockCommentsResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1ListBlockCommentsResponse),
+      ) as V1ListBlockCommentsResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<V1ListBlockCommentsResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

@@ -19,8 +19,8 @@ _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'noted.mailing.v1.mailing_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
-  DESCRIPTOR._options = None
-  DESCRIPTOR._serialized_options = b'Z\020noted/mailing/v1'
+  _globals['DESCRIPTOR']._options = None
+  _globals['DESCRIPTOR']._serialized_options = b'Z\020noted/mailing/v1'
   _globals['_RECIPIENT']._serialized_start=52
   _globals['_RECIPIENT']._serialized_end=94
   _globals['_SENDEMAILSREQUEST']._serialized_start=97

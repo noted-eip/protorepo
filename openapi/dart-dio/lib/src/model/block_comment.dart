@@ -3,71 +3,69 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/v1_block.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'notes_api_create_note_request.g.dart';
+part 'block_comment.g.dart';
 
-/// NotesAPICreateNoteRequest
+/// BlockComment
 ///
 /// Properties:
-/// * [title] 
-/// * [blocks] 
-/// * [lang] 
+/// * [id] 
+/// * [authorId] 
+/// * [content] 
 @BuiltValue()
-abstract class NotesAPICreateNoteRequest implements Built<NotesAPICreateNoteRequest, NotesAPICreateNoteRequestBuilder> {
-  @BuiltValueField(wireName: r'title')
-  String? get title;
+abstract class BlockComment implements Built<BlockComment, BlockCommentBuilder> {
+  @BuiltValueField(wireName: r'id')
+  String? get id;
 
-  @BuiltValueField(wireName: r'blocks')
-  BuiltList<V1Block>? get blocks;
+  @BuiltValueField(wireName: r'authorId')
+  String? get authorId;
 
-  @BuiltValueField(wireName: r'lang')
-  String? get lang;
+  @BuiltValueField(wireName: r'content')
+  String? get content;
 
-  NotesAPICreateNoteRequest._();
+  BlockComment._();
 
-  factory NotesAPICreateNoteRequest([void updates(NotesAPICreateNoteRequestBuilder b)]) = _$NotesAPICreateNoteRequest;
+  factory BlockComment([void updates(BlockCommentBuilder b)]) = _$BlockComment;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(NotesAPICreateNoteRequestBuilder b) => b;
+  static void _defaults(BlockCommentBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<NotesAPICreateNoteRequest> get serializer => _$NotesAPICreateNoteRequestSerializer();
+  static Serializer<BlockComment> get serializer => _$BlockCommentSerializer();
 }
 
-class _$NotesAPICreateNoteRequestSerializer implements PrimitiveSerializer<NotesAPICreateNoteRequest> {
+class _$BlockCommentSerializer implements PrimitiveSerializer<BlockComment> {
   @override
-  final Iterable<Type> types = const [NotesAPICreateNoteRequest, _$NotesAPICreateNoteRequest];
+  final Iterable<Type> types = const [BlockComment, _$BlockComment];
 
   @override
-  final String wireName = r'NotesAPICreateNoteRequest';
+  final String wireName = r'BlockComment';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    NotesAPICreateNoteRequest object, {
+    BlockComment object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.title != null) {
-      yield r'title';
+    if (object.id != null) {
+      yield r'id';
       yield serializers.serialize(
-        object.title,
+        object.id,
         specifiedType: const FullType(String),
       );
     }
-    if (object.blocks != null) {
-      yield r'blocks';
+    if (object.authorId != null) {
+      yield r'authorId';
       yield serializers.serialize(
-        object.blocks,
-        specifiedType: const FullType(BuiltList, [FullType(V1Block)]),
+        object.authorId,
+        specifiedType: const FullType(String),
       );
     }
-    if (object.lang != null) {
-      yield r'lang';
+    if (object.content != null) {
+      yield r'content';
       yield serializers.serialize(
-        object.lang,
+        object.content,
         specifiedType: const FullType(String),
       );
     }
@@ -76,7 +74,7 @@ class _$NotesAPICreateNoteRequestSerializer implements PrimitiveSerializer<Notes
   @override
   Object serialize(
     Serializers serializers,
-    NotesAPICreateNoteRequest object, {
+    BlockComment object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -87,33 +85,33 @@ class _$NotesAPICreateNoteRequestSerializer implements PrimitiveSerializer<Notes
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required NotesAPICreateNoteRequestBuilder result,
+    required BlockCommentBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'title':
+        case r'id':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.title = valueDes;
+          result.id = valueDes;
           break;
-        case r'blocks':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(V1Block)]),
-          ) as BuiltList<V1Block>;
-          result.blocks.replace(valueDes);
-          break;
-        case r'lang':
+        case r'authorId':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.lang = valueDes;
+          result.authorId = valueDes;
+          break;
+        case r'content':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.content = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -124,12 +122,12 @@ class _$NotesAPICreateNoteRequestSerializer implements PrimitiveSerializer<Notes
   }
 
   @override
-  NotesAPICreateNoteRequest deserialize(
+  BlockComment deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = NotesAPICreateNoteRequestBuilder();
+    final result = BlockCommentBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

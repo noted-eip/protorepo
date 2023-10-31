@@ -103,12 +103,16 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUpdateMember**](doc/DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUseInviteLink**](doc/DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIChangeNoteEditPermission**](doc/DefaultApi.md#notesapichangenoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPICreateBlockComment**](doc/DefaultApi.md#notesapicreateblockcomment) | **POST** /groups/{groupId}/notes/{noteId}/{blockId}/comment | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPICreateNote**](doc/DefaultApi.md#notesapicreatenote) | **POST** /groups/{groupId}/notes | Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteBlock**](doc/DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Delete a block in a note and replace the indexes of the others.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteBlockComment**](doc/DefaultApi.md#notesapideleteblockcomment) | **DELETE** /groups/{groupId}/notes/{noteId}/{blockId}/comment/{commentId} | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteNote**](doc/DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author. Delete a single note in database.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGenerateQuiz**](doc/DefaultApi.md#notesapigeneratequiz) | **GET** /groups/{groupId}/notes/{noteId}/quiz | 
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGenerateSummary**](doc/DefaultApi.md#notesapigeneratesummary) | **GET** /groups/{groupId}/notes/{noteId}/summary | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIGetNote**](doc/DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author. Return a note from id provided.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIInsertBlock**](doc/DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author. Insert a block of content in a note at a specific index.
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListBlockComments**](doc/DefaultApi.md#notesapilistblockcomments) | **GET** /groups/{groupId}/notes/{noteId}/{blockId}/comments | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes**](doc/DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes2**](doc/DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlock**](doc/DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Update a block content.
@@ -124,11 +128,13 @@ Class | Method | HTTP request | Description
  - [AccountsAPIValidateAccountRequest](doc/AccountsAPIValidateAccountRequest.md)
  - [Accountsv1Image](doc/Accountsv1Image.md)
  - [BlockCode](doc/BlockCode.md)
+ - [BlockComment](doc/BlockComment.md)
  - [BlockTextStyle](doc/BlockTextStyle.md)
  - [ChangeNoteEditPermissionRequestAction](doc/ChangeNoteEditPermissionRequestAction.md)
  - [GroupsAPISendInviteRequest](doc/GroupsAPISendInviteRequest.md)
  - [GroupsAPIUpdateGroupRequest](doc/GroupsAPIUpdateGroupRequest.md)
  - [NotesAPIChangeNoteEditPermissionRequest](doc/NotesAPIChangeNoteEditPermissionRequest.md)
+ - [NotesAPICreateBlockCommentRequest](doc/NotesAPICreateBlockCommentRequest.md)
  - [NotesAPICreateNoteRequest](doc/NotesAPICreateNoteRequest.md)
  - [NotesAPIInsertBlockRequest](doc/NotesAPIInsertBlockRequest.md)
  - [NotesAPIUpdateBlockIndexRequest](doc/NotesAPIUpdateBlockIndexRequest.md)
@@ -148,6 +154,7 @@ Class | Method | HTTP request | Description
  - [V1ConversationMessage](doc/V1ConversationMessage.md)
  - [V1CreateAccountRequest](doc/V1CreateAccountRequest.md)
  - [V1CreateAccountResponse](doc/V1CreateAccountResponse.md)
+ - [V1CreateBlockCommentResponse](doc/V1CreateBlockCommentResponse.md)
  - [V1CreateGroupRequest](doc/V1CreateGroupRequest.md)
  - [V1CreateGroupResponse](doc/V1CreateGroupResponse.md)
  - [V1CreateNoteResponse](doc/V1CreateNoteResponse.md)
@@ -162,6 +169,7 @@ Class | Method | HTTP request | Description
  - [V1ForgetAccountPasswordValidateTokenResponse](doc/V1ForgetAccountPasswordValidateTokenResponse.md)
  - [V1GenerateInviteLinkResponse](doc/V1GenerateInviteLinkResponse.md)
  - [V1GenerateQuizResponse](doc/V1GenerateQuizResponse.md)
+ - [V1GenerateSummaryResponse](doc/V1GenerateSummaryResponse.md)
  - [V1GenerateWidgetsResponse](doc/V1GenerateWidgetsResponse.md)
  - [V1GetAccountProfilePictureResponse](doc/V1GetAccountProfilePictureResponse.md)
  - [V1GetAccountRequest](doc/V1GetAccountRequest.md)
@@ -187,6 +195,7 @@ Class | Method | HTTP request | Description
  - [V1InsertBlockResponse](doc/V1InsertBlockResponse.md)
  - [V1ListAccountsResponse](doc/V1ListAccountsResponse.md)
  - [V1ListActivitiesResponse](doc/V1ListActivitiesResponse.md)
+ - [V1ListBlockCommentsResponse](doc/V1ListBlockCommentsResponse.md)
  - [V1ListConversationMessagesResponse](doc/V1ListConversationMessagesResponse.md)
  - [V1ListGroupsResponse](doc/V1ListGroupsResponse.md)
  - [V1ListInvitesResponse](doc/V1ListInvitesResponse.md)

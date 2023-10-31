@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:openapi/src/model/block_code.dart';
+import 'package:openapi/src/model/block_comment.dart';
 import 'package:openapi/src/model/block_text_style.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/v1_block_image.dart';
@@ -26,6 +27,7 @@ part 'v1_block.g.dart';
 /// * [image] 
 /// * [code] 
 /// * [math] 
+/// * [thread] 
 @BuiltValue()
 abstract class V1Block implements Built<V1Block, V1BlockBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -58,6 +60,9 @@ abstract class V1Block implements Built<V1Block, V1BlockBuilder> {
 
   @BuiltValueField(wireName: r'math')
   String? get math;
+
+  @BuiltValueField(wireName: r'thread')
+  BuiltList<BlockComment>? get thread;
 
   V1Block._();
 
@@ -146,6 +151,13 @@ class _$V1BlockSerializer implements PrimitiveSerializer<V1Block> {
       yield serializers.serialize(
         object.math,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.thread != null) {
+      yield r'thread';
+      yield serializers.serialize(
+        object.thread,
+        specifiedType: const FullType(BuiltList, [FullType(BlockComment)]),
       );
     }
   }
@@ -240,6 +252,13 @@ class _$V1BlockSerializer implements PrimitiveSerializer<V1Block> {
             specifiedType: const FullType(String),
           ) as String;
           result.math = valueDes;
+          break;
+        case r'thread':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(BlockComment)]),
+          ) as BuiltList<BlockComment>;
+          result.thread.replace(valueDes);
           break;
         default:
           unhandled.add(key);
