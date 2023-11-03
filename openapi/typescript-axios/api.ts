@@ -1601,6 +1601,12 @@ export interface V1Quiz {
      * @memberof V1Quiz
      */
     'questions'?: Array<V1QuizQuestion>;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1Quiz
+     */
+    'id'?: string;
 }
 /**
  * 

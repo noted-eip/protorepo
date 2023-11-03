@@ -14,10 +14,14 @@ part 'v1_quiz.g.dart';
 ///
 /// Properties:
 /// * [questions] 
+/// * [id] 
 @BuiltValue()
 abstract class V1Quiz implements Built<V1Quiz, V1QuizBuilder> {
   @BuiltValueField(wireName: r'questions')
   BuiltList<V1QuizQuestion>? get questions;
+
+  @BuiltValueField(wireName: r'id')
+  String? get id;
 
   V1Quiz._();
 
@@ -49,6 +53,13 @@ class _$V1QuizSerializer implements PrimitiveSerializer<V1Quiz> {
         specifiedType: const FullType(BuiltList, [FullType(V1QuizQuestion)]),
       );
     }
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
   @override
@@ -78,6 +89,13 @@ class _$V1QuizSerializer implements PrimitiveSerializer<V1Quiz> {
             specifiedType: const FullType(BuiltList, [FullType(V1QuizQuestion)]),
           ) as BuiltList<V1QuizQuestion>;
           result.questions.replace(valueDes);
+          break;
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
           break;
         default:
           unhandled.add(key);
