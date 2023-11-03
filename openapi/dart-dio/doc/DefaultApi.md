@@ -53,13 +53,14 @@ Method | HTTP request | Description
 [**notesAPIDeleteBlock**](DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Delete a block in a note and replace the indexes of the others.
 [**notesAPIDeleteBlockComment**](DefaultApi.md#notesapideleteblockcomment) | **DELETE** /groups/{groupId}/notes/{noteId}/{blockId}/comment/{commentId} | 
 [**notesAPIDeleteNote**](DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author. Delete a single note in database.
-[**notesAPIGenerateQuiz**](DefaultApi.md#notesapigeneratequiz) | **GET** /groups/{groupId}/notes/{noteId}/quiz | 
+[**notesAPIGenerateQuiz**](DefaultApi.md#notesapigeneratequiz) | **POST** /groups/{groupId}/notes/{noteId}/quiz | 
 [**notesAPIGenerateSummary**](DefaultApi.md#notesapigeneratesummary) | **GET** /groups/{groupId}/notes/{noteId}/summary | 
 [**notesAPIGetNote**](DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author. Return a note from id provided.
 [**notesAPIInsertBlock**](DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author. Insert a block of content in a note at a specific index.
 [**notesAPIListBlockComments**](DefaultApi.md#notesapilistblockcomments) | **GET** /groups/{groupId}/notes/{noteId}/{blockId}/comments | 
 [**notesAPIListNotes**](DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIListNotes2**](DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
+[**notesAPIListQuizs**](DefaultApi.md#notesapilistquizs) | **GET** /groups/{groupId}/notes/{noteId}/quizs | 
 [**notesAPIUpdateBlock**](DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Update a block content.
 [**notesAPIUpdateBlockIndex**](DefaultApi.md#notesapiupdateblockindex) | **POST** /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index | Must be author. Update a block index.
 [**notesAPIUpdateNote**](DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60; or &#x60;blocks&#x60;.
@@ -2267,6 +2268,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1ListNotesResponse**](V1ListNotesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIListQuizs**
+> V1ListQuizsResponse notesAPIListQuizs(groupId, noteId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+
+try {
+    final response = api.notesAPIListQuizs(groupId, noteId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->notesAPIListQuizs: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+
+### Return type
+
+[**V1ListQuizsResponse**](V1ListQuizsResponse.md)
 
 ### Authorization
 

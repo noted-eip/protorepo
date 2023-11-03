@@ -91,6 +91,7 @@ import 'package:openapi/src/model/v1_list_conversation_messages_response.dart';
 import 'package:openapi/src/model/v1_list_groups_response.dart';
 import 'package:openapi/src/model/v1_list_invites_response.dart';
 import 'package:openapi/src/model/v1_list_notes_response.dart';
+import 'package:openapi/src/model/v1_list_quizs_response.dart';
 import 'package:openapi/src/model/v1_note.dart';
 import 'package:openapi/src/model/v1_note_export_format.dart';
 import 'package:openapi/src/model/v1_quiz.dart';
@@ -194,6 +195,7 @@ part 'serializers.g.dart';
   V1ListGroupsResponse,
   V1ListInvitesResponse,
   V1ListNotesResponse,
+  V1ListQuizsResponse,
   V1Note,
   V1NoteExportFormat,
   V1Quiz,

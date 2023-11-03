@@ -80,6 +80,7 @@ doc/V1ListConversationMessagesResponse.md
 doc/V1ListGroupsResponse.md
 doc/V1ListInvitesResponse.md
 doc/V1ListNotesResponse.md
+doc/V1ListQuizsResponse.md
 doc/V1Note.md
 doc/V1NoteExportFormat.md
 doc/V1Quiz.md
@@ -190,6 +191,7 @@ lib/src/model/v1_list_conversation_messages_response.dart
 lib/src/model/v1_list_groups_response.dart
 lib/src/model/v1_list_invites_response.dart
 lib/src/model/v1_list_notes_response.dart
+lib/src/model/v1_list_quizs_response.dart
 lib/src/model/v1_note.dart
 lib/src/model/v1_note_export_format.dart
 lib/src/model/v1_quiz.dart
@@ -292,6 +294,7 @@ test/v1_list_conversation_messages_response_test.dart
 test/v1_list_groups_response_test.dart
 test/v1_list_invites_response_test.dart
 test/v1_list_notes_response_test.dart
+test/v1_list_quizs_response_test.dart
 test/v1_note_export_format_test.dart
 test/v1_note_test.dart
 test/v1_quiz_question_test.dart

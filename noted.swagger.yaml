@@ -1136,13 +1136,34 @@ paths:
             required:
               - recipientAccountId
   /groups/{groupId}/notes/{noteId}/quiz:
-    get:
+    post:
       operationId: NotesAPI_GenerateQuiz
       responses:
         "200":
           description: A successful response.
           schema:
             $ref: '#/definitions/v1GenerateQuizResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/notes/{noteId}/quizs:
+    get:
+      operationId: NotesAPI_ListQuizs
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListQuizsResponse'
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
@@ -2073,6 +2094,14 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/v1Note'
+  v1ListQuizsResponse:
+    type: object
+    properties:
+      quizs:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Quiz'
   v1Note:
     type: object
     properties:

@@ -344,6 +344,11 @@ void main() {
       // TODO
     });
 
+    //Future<V1ListQuizsResponse> notesAPIListQuizs(String groupId, String noteId) async
+    test('test notesAPIListQuizs', () async {
+      // TODO
+    });
+
     // Must be author. Update a block content.
     //
     //Future<V1UpdateBlockResponse> notesAPIUpdateBlock(String groupId, String noteId, String blockId, V1Block block) async

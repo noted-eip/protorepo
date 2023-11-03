@@ -88,6 +88,7 @@ export 'package:openapi/src/model/v1_list_conversation_messages_response.dart';
 export 'package:openapi/src/model/v1_list_groups_response.dart';
 export 'package:openapi/src/model/v1_list_invites_response.dart';
 export 'package:openapi/src/model/v1_list_notes_response.dart';
+export 'package:openapi/src/model/v1_list_quizs_response.dart';
 export 'package:openapi/src/model/v1_note.dart';
 export 'package:openapi/src/model/v1_note_export_format.dart';
 export 'package:openapi/src/model/v1_quiz.dart';
