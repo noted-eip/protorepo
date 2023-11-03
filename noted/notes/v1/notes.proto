@@ -222,7 +222,13 @@ service NotesAPI {
 
     rpc GenerateQuiz(GenerateQuizRequest) returns (GenerateQuizResponse) {
         option (google.api.http) = {
-            get: "/groups/{group_id}/notes/{note_id}/quiz"
+            post: "/groups/{group_id}/notes/{note_id}/quiz"
+        };
+    }
+
+    rpc ListQuizs(ListQuizsRequest) returns (ListQuizsResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/notes/{note_id}/quizs"
         };
     }
 
@@ -381,6 +387,15 @@ message GenerateQuizRequest {
 
 message GenerateQuizResponse {
     Quiz quiz = 1;
+}
+
+message ListQuizsRequest {
+    string group_id = 1;
+    string note_id = 2;
+}
+
+message ListQuizsResponse {
+    repeated Quiz quizs = 1;
 }
 
 message GenerateSummaryRequest {
