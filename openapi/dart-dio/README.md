@@ -75,6 +75,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccountProfilePicture**](doc/DefaultApi.md#accountsapigetaccountprofilepicture) | **GET** /accounts/{accountId}/picture | 
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIListAccounts**](doc/DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIRegisterUserToMobileBeta**](doc/DefaultApi.md#accountsapiregisterusertomobilebeta) | **POST** /beta/mobile | Registers the user to the mobile application beta.
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPISendValidationToken**](doc/DefaultApi.md#accountsapisendvalidationtoken) | **POST** /accounts/{accountId}/send_validation_token | Send validation email again.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIUpdateAccount**](doc/DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIUpdateAccountPassword**](doc/DefaultApi.md#accountsapiupdateaccountpassword) | **PATCH** /accounts/{accountId}/password | Update account password.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIUploadAccountProfilePicture**](doc/DefaultApi.md#accountsapiuploadaccountprofilepicture) | **POST** /accounts/{accountId}/picture | 
@@ -210,6 +211,7 @@ Class | Method | HTTP request | Description
  - [V1RegisterUserToMobileBetaRequest](doc/V1RegisterUserToMobileBetaRequest.md)
  - [V1SendConversationMessageResponse](doc/V1SendConversationMessageResponse.md)
  - [V1SendInviteResponse](doc/V1SendInviteResponse.md)
+ - [V1SendValidationTokenResponse](doc/V1SendValidationTokenResponse.md)
  - [V1StreamInvitesResponse](doc/V1StreamInvitesResponse.md)
  - [V1SummarizeResponse](doc/V1SummarizeResponse.md)
  - [V1UpdateAccountPasswordResponse](doc/V1UpdateAccountPasswordResponse.md)
