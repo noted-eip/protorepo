@@ -91,6 +91,66 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/v1ForgetAccountPasswordValidateTokenRequest'
+  /accounts/is_validate:
+    get:
+      summary: Check if the account is validate.
+      operationId: AccountsAPI_IsAccountValidate
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1IsAccountValidateResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: email
+          in: query
+          required: true
+          type: string
+        - name: password
+          in: query
+          required: true
+          type: string
+  /accounts/send_validation_token:
+    post:
+      summary: Send validation email again.
+      operationId: AccountsAPI_SendValidationToken
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1SendValidationTokenResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1SendValidationTokenRequest'
+  /accounts/validate:
+    patch:
+      summary: Validate account email.
+      operationId: AccountsAPI_ValidateAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ValidateAccountResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1ValidateAccountRequest'
   /accounts/{accountId}:
     get:
       summary: Allows getting an account by ID or searching for one through email.
@@ -154,24 +214,6 @@ paths:
             $ref: '#/definitions/v1Account'
             required:
               - account
-  /accounts/{accountId}/is_validate:
-    get:
-      summary: Check if the account is validate.
-      operationId: AccountsAPI_IsAccountValidate
-      responses:
-        "200":
-          description: A successful response.
-          schema:
-            $ref: '#/definitions/v1IsAccountValidateResponse'
-        "404":
-          description: Resource not found or lacking permissions to access the resource.
-          schema:
-            $ref: '#/definitions/v1HttpError'
-      parameters:
-        - name: accountId
-          in: path
-          required: true
-          type: string
   /accounts/{accountId}/password:
     patch:
       summary: Update account password.
@@ -249,57 +291,6 @@ paths:
                 $ref: '#/definitions/accountsv1Image'
             required:
               - image
-  /accounts/{accountId}/send_validation_token:
-    post:
-      summary: Send validation email again.
-      operationId: AccountsAPI_SendValidationToken
-      responses:
-        "200":
-          description: A successful response.
-          schema:
-            $ref: '#/definitions/v1SendValidationTokenResponse'
-        "404":
-          description: Resource not found or lacking permissions to access the resource.
-          schema:
-            $ref: '#/definitions/v1HttpError'
-      parameters:
-        - name: accountId
-          in: path
-          required: true
-          type: string
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-  /accounts/{accountId}/validate:
-    patch:
-      summary: Validate account email.
-      operationId: AccountsAPI_ValidateAccount
-      responses:
-        "200":
-          description: A successful response.
-          schema:
-            $ref: '#/definitions/v1ValidateAccountResponse'
-        "404":
-          description: Resource not found or lacking permissions to access the resource.
-          schema:
-            $ref: '#/definitions/v1HttpError'
-      parameters:
-        - name: accountId
-          in: path
-          required: true
-          type: string
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              validationToken:
-                type: string
-            required:
-              - validationToken
   /authenticate:
     post:
       summary: Authenticate using the email and password flow.
@@ -2252,13 +2243,18 @@ definitions:
         $ref: '#/definitions/v1GroupInvite'
     required:
       - invite
-  v1SendValidationTokenResponse:
+  v1SendValidationTokenRequest:
     type: object
     properties:
-      account:
-        $ref: '#/definitions/v1Account'
+      email:
+        type: string
+      password:
+        type: string
     required:
-      - account
+      - email
+      - password
+  v1SendValidationTokenResponse:
+    type: object
   v1StreamInvitesResponse:
     type: object
     properties:
@@ -2340,6 +2336,19 @@ definitions:
     type: object
   v1UseInviteLinkResponse:
     type: object
+  v1ValidateAccountRequest:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      validationToken:
+        type: string
+    required:
+      - email
+      - password
+      - validationToken
   v1ValidateAccountResponse:
     type: object
     properties:

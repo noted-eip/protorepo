@@ -64,19 +64,6 @@ export interface AccountsAPIUploadAccountProfilePictureRequest {
 /**
  * 
  * @export
- * @interface AccountsAPIValidateAccountRequest
- */
-export interface AccountsAPIValidateAccountRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsAPIValidateAccountRequest
-     */
-    'validationToken': string;
-}
-/**
- * 
- * @export
  * @interface Accountsv1Image
  */
 export interface Accountsv1Image {
@@ -1714,15 +1701,21 @@ export interface V1SendInviteResponse {
 /**
  * 
  * @export
- * @interface V1SendValidationTokenResponse
+ * @interface V1SendValidationTokenRequest
  */
-export interface V1SendValidationTokenResponse {
+export interface V1SendValidationTokenRequest {
     /**
      * 
-     * @type {V1Account}
-     * @memberof V1SendValidationTokenResponse
+     * @type {string}
+     * @memberof V1SendValidationTokenRequest
      */
-    'account': V1Account;
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1SendValidationTokenRequest
+     */
+    'password': string;
 }
 /**
  * 
@@ -1866,6 +1859,31 @@ export interface V1UpdateNoteResponse {
      * @memberof V1UpdateNoteResponse
      */
     'note': V1Note;
+}
+/**
+ * 
+ * @export
+ * @interface V1ValidateAccountRequest
+ */
+export interface V1ValidateAccountRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof V1ValidateAccountRequest
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1ValidateAccountRequest
+     */
+    'password': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1ValidateAccountRequest
+     */
+    'validationToken': string;
 }
 /**
  * 
@@ -2274,15 +2292,17 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @summary Check if the account is validate.
-         * @param {string} accountId 
+         * @param {string} email 
+         * @param {string} password 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIIsAccountValidate: async (accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'accountId' is not null or undefined
-            assertParamExists('accountsAPIIsAccountValidate', 'accountId', accountId)
-            const localVarPath = `/accounts/{accountId}/is_validate`
-                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+        accountsAPIIsAccountValidate: async (email: string, password: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'email' is not null or undefined
+            assertParamExists('accountsAPIIsAccountValidate', 'email', email)
+            // verify required parameter 'password' is not null or undefined
+            assertParamExists('accountsAPIIsAccountValidate', 'password', password)
+            const localVarPath = `/accounts/is_validate`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2293,6 +2313,14 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (email !== undefined) {
+                localVarQueryParameter['email'] = email;
+            }
+
+            if (password !== undefined) {
+                localVarQueryParameter['password'] = password;
+            }
 
 
     
@@ -2391,18 +2419,14 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @summary Send validation email again.
-         * @param {string} accountId 
-         * @param {object} body 
+         * @param {V1SendValidationTokenRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPISendValidationToken: async (accountId: string, body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'accountId' is not null or undefined
-            assertParamExists('accountsAPISendValidationToken', 'accountId', accountId)
+        accountsAPISendValidationToken: async (body: V1SendValidationTokenRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('accountsAPISendValidationToken', 'body', body)
-            const localVarPath = `/accounts/{accountId}/send_validation_token`
-                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            const localVarPath = `/accounts/send_validation_token`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2550,18 +2574,14 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @summary Validate account email.
-         * @param {string} accountId 
-         * @param {AccountsAPIValidateAccountRequest} body 
+         * @param {V1ValidateAccountRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIValidateAccount: async (accountId: string, body: AccountsAPIValidateAccountRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'accountId' is not null or undefined
-            assertParamExists('accountsAPIValidateAccount', 'accountId', accountId)
+        accountsAPIValidateAccount: async (body: V1ValidateAccountRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('accountsAPIValidateAccount', 'body', body)
-            const localVarPath = `/accounts/{accountId}/validate`
-                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            const localVarPath = `/accounts/validate`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4406,12 +4426,13 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Check if the account is validate.
-         * @param {string} accountId 
+         * @param {string} email 
+         * @param {string} password 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsAPIIsAccountValidate(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1IsAccountValidateResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIIsAccountValidate(accountId, options);
+        async accountsAPIIsAccountValidate(email: string, password: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1IsAccountValidateResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIIsAccountValidate(email, password, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.accountsAPIIsAccountValidate']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -4447,13 +4468,12 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Send validation email again.
-         * @param {string} accountId 
-         * @param {object} body 
+         * @param {V1SendValidationTokenRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsAPISendValidationToken(accountId: string, body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1SendValidationTokenResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPISendValidationToken(accountId, body, options);
+        async accountsAPISendValidationToken(body: V1SendValidationTokenRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPISendValidationToken(body, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.accountsAPISendValidationToken']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -4502,13 +4522,12 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Validate account email.
-         * @param {string} accountId 
-         * @param {AccountsAPIValidateAccountRequest} body 
+         * @param {V1ValidateAccountRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsAPIValidateAccount(accountId: string, body: AccountsAPIValidateAccountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ValidateAccountResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIValidateAccount(accountId, body, options);
+        async accountsAPIValidateAccount(body: V1ValidateAccountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ValidateAccountResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIValidateAccount(body, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.accountsAPIValidateAccount']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -5204,12 +5223,13 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @summary Check if the account is validate.
-         * @param {string} accountId 
+         * @param {string} email 
+         * @param {string} password 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIIsAccountValidate(accountId: string, options?: any): AxiosPromise<V1IsAccountValidateResponse> {
-            return localVarFp.accountsAPIIsAccountValidate(accountId, options).then((request) => request(axios, basePath));
+        accountsAPIIsAccountValidate(email: string, password: string, options?: any): AxiosPromise<V1IsAccountValidateResponse> {
+            return localVarFp.accountsAPIIsAccountValidate(email, password, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5236,13 +5256,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @summary Send validation email again.
-         * @param {string} accountId 
-         * @param {object} body 
+         * @param {V1SendValidationTokenRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPISendValidationToken(accountId: string, body: object, options?: any): AxiosPromise<V1SendValidationTokenResponse> {
-            return localVarFp.accountsAPISendValidationToken(accountId, body, options).then((request) => request(axios, basePath));
+        accountsAPISendValidationToken(body: V1SendValidationTokenRequest, options?: any): AxiosPromise<object> {
+            return localVarFp.accountsAPISendValidationToken(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5279,13 +5298,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @summary Validate account email.
-         * @param {string} accountId 
-         * @param {AccountsAPIValidateAccountRequest} body 
+         * @param {V1ValidateAccountRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIValidateAccount(accountId: string, body: AccountsAPIValidateAccountRequest, options?: any): AxiosPromise<V1ValidateAccountResponse> {
-            return localVarFp.accountsAPIValidateAccount(accountId, body, options).then((request) => request(axios, basePath));
+        accountsAPIValidateAccount(body: V1ValidateAccountRequest, options?: any): AxiosPromise<V1ValidateAccountResponse> {
+            return localVarFp.accountsAPIValidateAccount(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5873,13 +5891,14 @@ export class DefaultApi extends BaseAPI {
     /**
      * 
      * @summary Check if the account is validate.
-     * @param {string} accountId 
+     * @param {string} email 
+     * @param {string} password 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public accountsAPIIsAccountValidate(accountId: string, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).accountsAPIIsAccountValidate(accountId, options).then((request) => request(this.axios, this.basePath));
+    public accountsAPIIsAccountValidate(email: string, password: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIIsAccountValidate(email, password, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5911,14 +5930,13 @@ export class DefaultApi extends BaseAPI {
     /**
      * 
      * @summary Send validation email again.
-     * @param {string} accountId 
-     * @param {object} body 
+     * @param {V1SendValidationTokenRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public accountsAPISendValidationToken(accountId: string, body: object, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).accountsAPISendValidationToken(accountId, body, options).then((request) => request(this.axios, this.basePath));
+    public accountsAPISendValidationToken(body: V1SendValidationTokenRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPISendValidationToken(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5962,14 +5980,13 @@ export class DefaultApi extends BaseAPI {
     /**
      * 
      * @summary Validate account email.
-     * @param {string} accountId 
-     * @param {AccountsAPIValidateAccountRequest} body 
+     * @param {V1ValidateAccountRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public accountsAPIValidateAccount(accountId: string, body: AccountsAPIValidateAccountRequest, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).accountsAPIValidateAccount(accountId, body, options).then((request) => request(this.axios, this.basePath));
+    public accountsAPIValidateAccount(body: V1ValidateAccountRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIValidateAccount(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

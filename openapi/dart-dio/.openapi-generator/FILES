@@ -4,7 +4,6 @@ README.md
 analysis_options.yaml
 doc/AccountsAPIUpdateAccountPasswordRequest.md
 doc/AccountsAPIUploadAccountProfilePictureRequest.md
-doc/AccountsAPIValidateAccountRequest.md
 doc/Accountsv1Image.md
 doc/BlockCode.md
 doc/BlockComment.md
@@ -90,7 +89,7 @@ doc/V1Recipient.md
 doc/V1RegisterUserToMobileBetaRequest.md
 doc/V1SendConversationMessageResponse.md
 doc/V1SendInviteResponse.md
-doc/V1SendValidationTokenResponse.md
+doc/V1SendValidationTokenRequest.md
 doc/V1StreamInvitesResponse.md
 doc/V1SummarizeResponse.md
 doc/V1UpdateAccountPasswordResponse.md
@@ -102,6 +101,7 @@ doc/V1UpdateConversationResponse.md
 doc/V1UpdateGroupResponse.md
 doc/V1UpdateMemberResponse.md
 doc/V1UpdateNoteResponse.md
+doc/V1ValidateAccountRequest.md
 doc/V1ValidateAccountResponse.md
 doc/V1WebsiteWidget.md
 doc/V1Widget.md
@@ -117,7 +117,6 @@ lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
 lib/src/model/accounts_api_update_account_password_request.dart
 lib/src/model/accounts_api_upload_account_profile_picture_request.dart
-lib/src/model/accounts_api_validate_account_request.dart
 lib/src/model/accountsv1_image.dart
 lib/src/model/block_code.dart
 lib/src/model/block_comment.dart
@@ -203,7 +202,7 @@ lib/src/model/v1_recipient.dart
 lib/src/model/v1_register_user_to_mobile_beta_request.dart
 lib/src/model/v1_send_conversation_message_response.dart
 lib/src/model/v1_send_invite_response.dart
-lib/src/model/v1_send_validation_token_response.dart
+lib/src/model/v1_send_validation_token_request.dart
 lib/src/model/v1_stream_invites_response.dart
 lib/src/model/v1_summarize_response.dart
 lib/src/model/v1_update_account_password_response.dart
@@ -215,6 +214,7 @@ lib/src/model/v1_update_conversation_response.dart
 lib/src/model/v1_update_group_response.dart
 lib/src/model/v1_update_member_response.dart
 lib/src/model/v1_update_note_response.dart
+lib/src/model/v1_validate_account_request.dart
 lib/src/model/v1_validate_account_response.dart
 lib/src/model/v1_website_widget.dart
 lib/src/model/v1_widget.dart
@@ -222,7 +222,6 @@ lib/src/serializers.dart
 pubspec.yaml
 test/accounts_api_update_account_password_request_test.dart
 test/accounts_api_upload_account_profile_picture_request_test.dart
-test/accounts_api_validate_account_request_test.dart
 test/accountsv1_image_test.dart
 test/block_code_test.dart
 test/block_comment_test.dart
@@ -308,7 +307,7 @@ test/v1_recipient_test.dart
 test/v1_register_user_to_mobile_beta_request_test.dart
 test/v1_send_conversation_message_response_test.dart
 test/v1_send_invite_response_test.dart
-test/v1_send_validation_token_response_test.dart
+test/v1_send_validation_token_request_test.dart
 test/v1_stream_invites_response_test.dart
 test/v1_summarize_response_test.dart
 test/v1_update_account_password_response_test.dart
@@ -320,6 +319,7 @@ test/v1_update_conversation_response_test.dart
 test/v1_update_group_response_test.dart
 test/v1_update_member_response_test.dart
 test/v1_update_note_response_test.dart
+test/v1_validate_account_request_test.dart
 test/v1_validate_account_response_test.dart
 test/v1_website_widget_test.dart
 test/v1_widget_test.dart

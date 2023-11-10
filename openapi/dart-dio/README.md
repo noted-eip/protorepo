@@ -73,14 +73,14 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount**](doc/DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Allows getting an account by ID or searching for one through email.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount2**](doc/DefaultApi.md#accountsapigetaccount2) | **POST** /search/accounts | Allows getting an account by ID or searching for one through email.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccountProfilePicture**](doc/DefaultApi.md#accountsapigetaccountprofilepicture) | **GET** /accounts/{accountId}/picture | 
-[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIIsAccountValidate**](doc/DefaultApi.md#accountsapiisaccountvalidate) | **GET** /accounts/{accountId}/is_validate | Check if the account is validate.
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIIsAccountValidate**](doc/DefaultApi.md#accountsapiisaccountvalidate) | **GET** /accounts/is_validate | Check if the account is validate.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIListAccounts**](doc/DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIRegisterUserToMobileBeta**](doc/DefaultApi.md#accountsapiregisterusertomobilebeta) | **POST** /beta/mobile | Registers the user to the mobile application beta.
-[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPISendValidationToken**](doc/DefaultApi.md#accountsapisendvalidationtoken) | **POST** /accounts/{accountId}/send_validation_token | Send validation email again.
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPISendValidationToken**](doc/DefaultApi.md#accountsapisendvalidationtoken) | **POST** /accounts/send_validation_token | Send validation email again.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIUpdateAccount**](doc/DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIUpdateAccountPassword**](doc/DefaultApi.md#accountsapiupdateaccountpassword) | **PATCH** /accounts/{accountId}/password | Update account password.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIUploadAccountProfilePicture**](doc/DefaultApi.md#accountsapiuploadaccountprofilepicture) | **POST** /accounts/{accountId}/picture | 
-[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIValidateAccount**](doc/DefaultApi.md#accountsapivalidateaccount) | **PATCH** /accounts/{accountId}/validate | Validate account email.
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIValidateAccount**](doc/DefaultApi.md#accountsapivalidateaccount) | **PATCH** /accounts/validate | Validate account email.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIAcceptInvite**](doc/DefaultApi.md#groupsapiacceptinvite) | **POST** /groups/{groupId}/invites/{inviteId}/accept | Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPICreateGroup**](doc/DefaultApi.md#groupsapicreategroup) | **POST** /groups | Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIDeleteGroup**](doc/DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
@@ -128,7 +128,6 @@ Class | Method | HTTP request | Description
 
  - [AccountsAPIUpdateAccountPasswordRequest](doc/AccountsAPIUpdateAccountPasswordRequest.md)
  - [AccountsAPIUploadAccountProfilePictureRequest](doc/AccountsAPIUploadAccountProfilePictureRequest.md)
- - [AccountsAPIValidateAccountRequest](doc/AccountsAPIValidateAccountRequest.md)
  - [Accountsv1Image](doc/Accountsv1Image.md)
  - [BlockCode](doc/BlockCode.md)
  - [BlockComment](doc/BlockComment.md)
@@ -213,7 +212,7 @@ Class | Method | HTTP request | Description
  - [V1RegisterUserToMobileBetaRequest](doc/V1RegisterUserToMobileBetaRequest.md)
  - [V1SendConversationMessageResponse](doc/V1SendConversationMessageResponse.md)
  - [V1SendInviteResponse](doc/V1SendInviteResponse.md)
- - [V1SendValidationTokenResponse](doc/V1SendValidationTokenResponse.md)
+ - [V1SendValidationTokenRequest](doc/V1SendValidationTokenRequest.md)
  - [V1StreamInvitesResponse](doc/V1StreamInvitesResponse.md)
  - [V1SummarizeResponse](doc/V1SummarizeResponse.md)
  - [V1UpdateAccountPasswordResponse](doc/V1UpdateAccountPasswordResponse.md)
@@ -225,6 +224,7 @@ Class | Method | HTTP request | Description
  - [V1UpdateGroupResponse](doc/V1UpdateGroupResponse.md)
  - [V1UpdateMemberResponse](doc/V1UpdateMemberResponse.md)
  - [V1UpdateNoteResponse](doc/V1UpdateNoteResponse.md)
+ - [V1ValidateAccountRequest](doc/V1ValidateAccountRequest.md)
  - [V1ValidateAccountResponse](doc/V1ValidateAccountResponse.md)
  - [V1WebsiteWidget](doc/V1WebsiteWidget.md)
  - [V1Widget](doc/V1Widget.md)

@@ -70,7 +70,7 @@ void main() {
 
     // Check if the account is validate.
     //
-    //Future<V1IsAccountValidateResponse> accountsAPIIsAccountValidate(String accountId) async
+    //Future<V1IsAccountValidateResponse> accountsAPIIsAccountValidate(String email, String password) async
     test('test accountsAPIIsAccountValidate', () async {
       // TODO
     });
@@ -91,7 +91,7 @@ void main() {
 
     // Send validation email again.
     //
-    //Future<V1SendValidationTokenResponse> accountsAPISendValidationToken(String accountId, JsonObject body) async
+    //Future<JsonObject> accountsAPISendValidationToken(V1SendValidationTokenRequest body) async
     test('test accountsAPISendValidationToken', () async {
       // TODO
     });
@@ -117,7 +117,7 @@ void main() {
 
     // Validate account email.
     //
-    //Future<V1ValidateAccountResponse> accountsAPIValidateAccount(String accountId, AccountsAPIValidateAccountRequest body) async
+    //Future<V1ValidateAccountResponse> accountsAPIValidateAccount(V1ValidateAccountRequest body) async
     test('test accountsAPIValidateAccount', () async {
       // TODO
     });

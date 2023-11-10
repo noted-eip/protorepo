@@ -11,7 +11,6 @@ import 'package:built_value/json_object.dart';
 import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/accounts_api_update_account_password_request.dart';
 import 'package:openapi/src/model/accounts_api_upload_account_profile_picture_request.dart';
-import 'package:openapi/src/model/accounts_api_validate_account_request.dart';
 import 'package:openapi/src/model/groups_api_send_invite_request.dart';
 import 'package:openapi/src/model/groups_api_update_group_request.dart';
 import 'package:openapi/src/model/notes_api_change_note_edit_permission_request.dart';
@@ -64,7 +63,7 @@ import 'package:openapi/src/model/v1_list_quizs_response.dart';
 import 'package:openapi/src/model/v1_note.dart';
 import 'package:openapi/src/model/v1_register_user_to_mobile_beta_request.dart';
 import 'package:openapi/src/model/v1_send_invite_response.dart';
-import 'package:openapi/src/model/v1_send_validation_token_response.dart';
+import 'package:openapi/src/model/v1_send_validation_token_request.dart';
 import 'package:openapi/src/model/v1_update_account_password_response.dart';
 import 'package:openapi/src/model/v1_update_account_response.dart';
 import 'package:openapi/src/model/v1_update_block_index_response.dart';
@@ -72,6 +71,7 @@ import 'package:openapi/src/model/v1_update_block_response.dart';
 import 'package:openapi/src/model/v1_update_group_response.dart';
 import 'package:openapi/src/model/v1_update_member_response.dart';
 import 'package:openapi/src/model/v1_update_note_response.dart';
+import 'package:openapi/src/model/v1_validate_account_request.dart';
 import 'package:openapi/src/model/v1_validate_account_response.dart';
 
 class DefaultApi {
@@ -888,7 +888,8 @@ class DefaultApi {
   /// 
   ///
   /// Parameters:
-  /// * [accountId] 
+  /// * [email] 
+  /// * [password] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -899,7 +900,8 @@ class DefaultApi {
   /// Returns a [Future] containing a [Response] with a [V1IsAccountValidateResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<V1IsAccountValidateResponse>> accountsAPIIsAccountValidate({ 
-    required String accountId,
+    required String email,
+    required String password,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -907,7 +909,7 @@ class DefaultApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/{accountId}/is_validate'.replaceAll('{' r'accountId' '}', encodeQueryParameter(_serializers, accountId, const FullType(String)).toString());
+    final _path = r'/accounts/is_validate';
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -920,9 +922,15 @@ class DefaultApi {
       validateStatus: validateStatus,
     );
 
+    final _queryParameters = <String, dynamic>{
+      r'email': encodeQueryParameter(_serializers, email, const FullType(String)),
+      r'password': encodeQueryParameter(_serializers, password, const FullType(String)),
+    };
+
     final _response = await _dio.request<Object>(
       _path,
       options: _options,
+      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
@@ -1144,7 +1152,6 @@ class DefaultApi {
   /// 
   ///
   /// Parameters:
-  /// * [accountId] 
   /// * [body] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -1153,11 +1160,10 @@ class DefaultApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [V1SendValidationTokenResponse] as data
+  /// Returns a [Future] containing a [Response] with a [JsonObject] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<V1SendValidationTokenResponse>> accountsAPISendValidationToken({ 
-    required String accountId,
-    required JsonObject body,
+  Future<Response<JsonObject>> accountsAPISendValidationToken({ 
+    required V1SendValidationTokenRequest body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1165,7 +1171,7 @@ class DefaultApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/{accountId}/send_validation_token'.replaceAll('{' r'accountId' '}', encodeQueryParameter(_serializers, accountId, const FullType(String)).toString());
+    final _path = r'/accounts/send_validation_token';
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -1182,7 +1188,8 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = body;
+      const _type = FullType(V1SendValidationTokenRequest);
+      _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -1205,14 +1212,14 @@ class DefaultApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    V1SendValidationTokenResponse? _responseData;
+    JsonObject? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(V1SendValidationTokenResponse),
-      ) as V1SendValidationTokenResponse;
+        specifiedType: const FullType(JsonObject),
+      ) as JsonObject;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -1224,7 +1231,7 @@ class DefaultApi {
       );
     }
 
-    return Response<V1SendValidationTokenResponse>(
+    return Response<JsonObject>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1531,7 +1538,6 @@ class DefaultApi {
   /// 
   ///
   /// Parameters:
-  /// * [accountId] 
   /// * [body] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -1543,8 +1549,7 @@ class DefaultApi {
   /// Returns a [Future] containing a [Response] with a [V1ValidateAccountResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<V1ValidateAccountResponse>> accountsAPIValidateAccount({ 
-    required String accountId,
-    required AccountsAPIValidateAccountRequest body,
+    required V1ValidateAccountRequest body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1552,7 +1557,7 @@ class DefaultApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/{accountId}/validate'.replaceAll('{' r'accountId' '}', encodeQueryParameter(_serializers, accountId, const FullType(String)).toString());
+    final _path = r'/accounts/validate';
     final _options = Options(
       method: r'PATCH',
       headers: <String, dynamic>{
@@ -1569,7 +1574,7 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(AccountsAPIValidateAccountRequest);
+      const _type = FullType(V1ValidateAccountRequest);
       _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     } catch(error, stackTrace) {

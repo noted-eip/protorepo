@@ -18,14 +18,14 @@ Method | HTTP request | Description
 [**accountsAPIGetAccount**](DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Allows getting an account by ID or searching for one through email.
 [**accountsAPIGetAccount2**](DefaultApi.md#accountsapigetaccount2) | **POST** /search/accounts | Allows getting an account by ID or searching for one through email.
 [**accountsAPIGetAccountProfilePicture**](DefaultApi.md#accountsapigetaccountprofilepicture) | **GET** /accounts/{accountId}/picture | 
-[**accountsAPIIsAccountValidate**](DefaultApi.md#accountsapiisaccountvalidate) | **GET** /accounts/{accountId}/is_validate | Check if the account is validate.
+[**accountsAPIIsAccountValidate**](DefaultApi.md#accountsapiisaccountvalidate) | **GET** /accounts/is_validate | Check if the account is validate.
 [**accountsAPIListAccounts**](DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [**accountsAPIRegisterUserToMobileBeta**](DefaultApi.md#accountsapiregisterusertomobilebeta) | **POST** /beta/mobile | Registers the user to the mobile application beta.
-[**accountsAPISendValidationToken**](DefaultApi.md#accountsapisendvalidationtoken) | **POST** /accounts/{accountId}/send_validation_token | Send validation email again.
+[**accountsAPISendValidationToken**](DefaultApi.md#accountsapisendvalidationtoken) | **POST** /accounts/send_validation_token | Send validation email again.
 [**accountsAPIUpdateAccount**](DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
 [**accountsAPIUpdateAccountPassword**](DefaultApi.md#accountsapiupdateaccountpassword) | **PATCH** /accounts/{accountId}/password | Update account password.
 [**accountsAPIUploadAccountProfilePicture**](DefaultApi.md#accountsapiuploadaccountprofilepicture) | **POST** /accounts/{accountId}/picture | 
-[**accountsAPIValidateAccount**](DefaultApi.md#accountsapivalidateaccount) | **PATCH** /accounts/{accountId}/validate | Validate account email.
+[**accountsAPIValidateAccount**](DefaultApi.md#accountsapivalidateaccount) | **PATCH** /accounts/validate | Validate account email.
 [**groupsAPIAcceptInvite**](DefaultApi.md#groupsapiacceptinvite) | **POST** /groups/{groupId}/invites/{inviteId}/accept | Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
 [**groupsAPICreateGroup**](DefaultApi.md#groupsapicreategroup) | **POST** /groups | Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 [**groupsAPIDeleteGroup**](DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
@@ -441,7 +441,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **accountsAPIIsAccountValidate**
-> V1IsAccountValidateResponse accountsAPIIsAccountValidate(accountId)
+> V1IsAccountValidateResponse accountsAPIIsAccountValidate(email, password)
 
 Check if the account is validate.
 
@@ -450,10 +450,11 @@ Check if the account is validate.
 import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
-final String accountId = accountId_example; // String | 
+final String email = email_example; // String | 
+final String password = password_example; // String | 
 
 try {
-    final response = api.accountsAPIIsAccountValidate(accountId);
+    final response = api.accountsAPIIsAccountValidate(email, password);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIIsAccountValidate: $e\n');
@@ -464,7 +465,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **String**|  | 
+ **email** | **String**|  | 
+ **password** | **String**|  | 
 
 ### Return type
 
@@ -568,7 +570,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **accountsAPISendValidationToken**
-> V1SendValidationTokenResponse accountsAPISendValidationToken(accountId, body)
+> JsonObject accountsAPISendValidationToken(body)
 
 Send validation email again.
 
@@ -577,11 +579,10 @@ Send validation email again.
 import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
-final String accountId = accountId_example; // String | 
-final JsonObject body = Object; // JsonObject | 
+final V1SendValidationTokenRequest body = ; // V1SendValidationTokenRequest | 
 
 try {
-    final response = api.accountsAPISendValidationToken(accountId, body);
+    final response = api.accountsAPISendValidationToken(body);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPISendValidationToken: $e\n');
@@ -592,12 +593,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **String**|  | 
- **body** | **JsonObject**|  | 
+ **body** | [**V1SendValidationTokenRequest**](V1SendValidationTokenRequest.md)|  | 
 
 ### Return type
 
-[**V1SendValidationTokenResponse**](V1SendValidationTokenResponse.md)
+[**JsonObject**](JsonObject.md)
 
 ### Authorization
 
@@ -740,7 +740,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **accountsAPIValidateAccount**
-> V1ValidateAccountResponse accountsAPIValidateAccount(accountId, body)
+> V1ValidateAccountResponse accountsAPIValidateAccount(body)
 
 Validate account email.
 
@@ -749,11 +749,10 @@ Validate account email.
 import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
-final String accountId = accountId_example; // String | 
-final AccountsAPIValidateAccountRequest body = ; // AccountsAPIValidateAccountRequest | 
+final V1ValidateAccountRequest body = ; // V1ValidateAccountRequest | 
 
 try {
-    final response = api.accountsAPIValidateAccount(accountId, body);
+    final response = api.accountsAPIValidateAccount(body);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIValidateAccount: $e\n');
@@ -764,8 +763,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **String**|  | 
- **body** | [**AccountsAPIValidateAccountRequest**](AccountsAPIValidateAccountRequest.md)|  | 
+ **body** | [**V1ValidateAccountRequest**](V1ValidateAccountRequest.md)|  | 
 
 ### Return type
 
