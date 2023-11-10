@@ -362,6 +362,50 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/v1CreateGroupRequest'
+  /groups/invites/{identifierAccountId}/stream:
+    get:
+      operationId: GroupsAPI_StreamInvites
+      responses:
+        "200":
+          description: A successful response.(streaming responses)
+          schema:
+            type: object
+            properties:
+              result:
+                $ref: '#/definitions/v1StreamInvitesResponse'
+            title: Stream result of v1StreamInvitesResponse
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: identifierAccountId
+          description: Returns only invites destined to recipient.
+          in: path
+          required: true
+          type: string
+        - name: groupId
+          in: query
+          required: false
+          type: string
+  /groups/invites/{identifierAccountId}/stream/terminate:
+    put:
+      operationId: GroupsAPI_EndStreamInvites
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1EndStreamInvitesResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: identifierAccountId
+          description: terminate background service dedicated to account_id
+          in: path
+          required: true
+          type: string
   /groups/{groupId}:
     get:
       summary: Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
@@ -449,6 +493,10 @@ paths:
         - name: groupId
           in: path
           required: true
+          type: string
+        - name: accountId
+          in: query
+          required: false
           type: string
         - name: limit
           in: query
@@ -630,32 +678,6 @@ paths:
                 type: string
             required:
               - recipientAccountId
-  /groups/{groupId}/invites/stream:
-    get:
-      operationId: GroupsAPI_StreamInvites
-      responses:
-        "200":
-          description: A successful response.(streaming responses)
-          schema:
-            type: object
-            properties:
-              result:
-                $ref: '#/definitions/v1StreamInvitesResponse'
-            title: Stream result of v1StreamInvitesResponse
-        "404":
-          description: Resource not found or lacking permissions to access the resource.
-          schema:
-            $ref: '#/definitions/v1HttpError'
-      parameters:
-        - name: groupId
-          in: path
-          required: true
-          type: string
-        - name: recipientAccountId
-          description: Returns only invites destined to recipient.
-          in: query
-          required: false
-          type: string
   /groups/{groupId}/invites/{inviteId}:
     get:
       summary: Must be group administrator or sender or recipient.
@@ -876,6 +898,8 @@ paths:
                 items:
                   type: object
                   $ref: '#/definitions/v1Block'
+              lang:
+                type: string
   /groups/{groupId}/notes/{noteId}:
     get:
       summary: Must be group member or author. Return a note from id provided.
@@ -1112,13 +1136,55 @@ paths:
             required:
               - recipientAccountId
   /groups/{groupId}/notes/{noteId}/quiz:
-    get:
+    post:
       operationId: NotesAPI_GenerateQuiz
       responses:
         "200":
           description: A successful response.
           schema:
             $ref: '#/definitions/v1GenerateQuizResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/notes/{noteId}/quizs:
+    get:
+      operationId: NotesAPI_ListQuizs
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListQuizsResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/notes/{noteId}/summary:
+    get:
+      operationId: NotesAPI_GenerateSummary
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GenerateSummaryResponse'
         "404":
           description: Resource not found or lacking permissions to access the resource.
           schema:
@@ -1151,6 +1217,95 @@ paths:
           required: true
           type: string
         - name: noteId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/notes/{noteId}/{blockId}/comment:
+    post:
+      operationId: NotesAPI_CreateBlockComment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1CreateBlockCommentResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              comment:
+                $ref: '#/definitions/BlockComment'
+            required:
+              - comment
+  /groups/{groupId}/notes/{noteId}/{blockId}/comment/{commentId}:
+    delete:
+      operationId: NotesAPI_DeleteBlockComment
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1DeleteBlockCommentResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
+          in: path
+          required: true
+          type: string
+        - name: commentId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/notes/{noteId}/{blockId}/comments:
+    get:
+      operationId: NotesAPI_ListBlockComments
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListBlockCommentsResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: blockId
           in: path
           required: true
           type: string
@@ -1251,6 +1406,15 @@ definitions:
       snippet:
         type: string
       lang:
+        type: string
+  BlockComment:
+    type: object
+    properties:
+      id:
+        type: string
+      authorId:
+        type: string
+      content:
         type: string
   BlockTextStyle:
     type: object
@@ -1386,6 +1550,11 @@ definitions:
         $ref: '#/definitions/BlockCode'
       math:
         type: string
+      thread:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/BlockComment'
     required:
       - id
       - type
@@ -1456,6 +1625,11 @@ definitions:
         $ref: '#/definitions/v1Account'
     required:
       - account
+  v1CreateBlockCommentResponse:
+    type: object
+    properties:
+      comment:
+        $ref: '#/definitions/BlockComment'
   v1CreateGroupRequest:
     type: object
     properties:
@@ -1503,6 +1677,8 @@ definitions:
       - content
   v1DeleteAccountResponse:
     type: object
+  v1DeleteBlockCommentResponse:
+    type: object
   v1DeleteBlockResponse:
     type: object
   v1DeleteConversationMessageResponse:
@@ -1512,6 +1688,8 @@ definitions:
   v1DeleteNoteResponse:
     type: object
   v1DenyInviteResponse:
+    type: object
+  v1EndStreamInvitesResponse:
     type: object
   v1ExportNoteResponse:
     type: object
@@ -1588,6 +1766,11 @@ definitions:
     properties:
       quiz:
         $ref: '#/definitions/v1Quiz'
+  v1GenerateSummaryResponse:
+    type: object
+    properties:
+      summary:
+        type: string
   v1GenerateWidgetsResponse:
     type: object
     properties:
@@ -1871,6 +2054,14 @@ definitions:
           $ref: '#/definitions/v1GroupActivity'
     required:
       - activities
+  v1ListBlockCommentsResponse:
+    type: object
+    properties:
+      comments:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/BlockComment'
   v1ListConversationMessagesResponse:
     type: object
     properties:
@@ -1903,6 +2094,14 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/v1Note'
+  v1ListQuizsResponse:
+    type: object
+    properties:
+      quizs:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Quiz'
   v1Note:
     type: object
     properties:
@@ -1928,12 +2127,15 @@ definitions:
       analyzedAt:
         type: string
         format: date-time
+      lang:
+        type: string
     required:
       - id
       - groupId
       - authorAccountId
       - title
       - createdAt
+      - lang
   v1NoteExportFormat:
     type: string
     enum:
@@ -1949,6 +2151,8 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/v1QuizQuestion'
+      id:
+        type: string
   v1QuizQuestion:
     type: object
     properties:

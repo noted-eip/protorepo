@@ -57,5 +57,10 @@ void main() {
       // TODO
     });
 
+    // BuiltList<BlockComment> thread
+    test('to test the property `thread`', () async {
+      // TODO
+    });
+
   });
 }

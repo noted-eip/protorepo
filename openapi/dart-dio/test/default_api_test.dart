@@ -136,6 +136,11 @@ void main() {
       // TODO
     });
 
+    //Future<JsonObject> groupsAPIEndStreamInvites(String identifierAccountId) async
+    test('test groupsAPIEndStreamInvites', () async {
+      // TODO
+    });
+
     // Must be group member. generated_by_account_id defaults to the authenticated user.
     //
     //Future<V1GenerateInviteLinkResponse> groupsAPIGenerateInviteLink(String groupId) async
@@ -180,7 +185,7 @@ void main() {
 
     // Must be a group member. List all the activities in a group.
     //
-    //Future<V1ListActivitiesResponse> groupsAPIListActivities(String groupId, { int limit, int offset }) async
+    //Future<V1ListActivitiesResponse> groupsAPIListActivities(String groupId, { String accountId, int limit, int offset }) async
     test('test groupsAPIListActivities', () async {
       // TODO
     });
@@ -234,7 +239,7 @@ void main() {
       // TODO
     });
 
-    //Future<StreamResultOfV1StreamInvitesResponse> groupsAPIStreamInvites(String groupId, { String recipientAccountId }) async
+    //Future<StreamResultOfV1StreamInvitesResponse> groupsAPIStreamInvites(String identifierAccountId, { String groupId }) async
     test('test groupsAPIStreamInvites', () async {
       // TODO
     });
@@ -265,6 +270,11 @@ void main() {
       // TODO
     });
 
+    //Future<V1CreateBlockCommentResponse> notesAPICreateBlockComment(String groupId, String noteId, String blockId, NotesAPICreateBlockCommentRequest body) async
+    test('test notesAPICreateBlockComment', () async {
+      // TODO
+    });
+
     // Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
     //
     //Future<V1CreateNoteResponse> notesAPICreateNote(String groupId, NotesAPICreateNoteRequest body) async
@@ -279,6 +289,11 @@ void main() {
       // TODO
     });
 
+    //Future<JsonObject> notesAPIDeleteBlockComment(String groupId, String noteId, String blockId, String commentId) async
+    test('test notesAPIDeleteBlockComment', () async {
+      // TODO
+    });
+
     // Must be author. Delete a single note in database.
     //
     //Future<JsonObject> notesAPIDeleteNote(String groupId, String noteId) async
@@ -288,6 +303,11 @@ void main() {
 
     //Future<V1GenerateQuizResponse> notesAPIGenerateQuiz(String groupId, String noteId) async
     test('test notesAPIGenerateQuiz', () async {
+      // TODO
+    });
+
+    //Future<V1GenerateSummaryResponse> notesAPIGenerateSummary(String groupId, String noteId) async
+    test('test notesAPIGenerateSummary', () async {
       // TODO
     });
 
@@ -305,6 +325,11 @@ void main() {
       // TODO
     });
 
+    //Future<V1ListBlockCommentsResponse> notesAPIListBlockComments(String groupId, String noteId, String blockId) async
+    test('test notesAPIListBlockComments', () async {
+      // TODO
+    });
+
     // List notes in a group, authored by a user or both. Must have read access to the notes.
     //
     //Future<V1ListNotesResponse> notesAPIListNotes({ String authorAccountId, String groupId, int limit, int offset }) async
@@ -316,6 +341,11 @@ void main() {
     //
     //Future<V1ListNotesResponse> notesAPIListNotes2(String groupId, { String authorAccountId, int limit, int offset }) async
     test('test notesAPIListNotes2', () async {
+      // TODO
+    });
+
+    //Future<V1ListQuizsResponse> notesAPIListQuizs(String groupId, String noteId) async
+    test('test notesAPIListQuizs', () async {
       // TODO
     });
 

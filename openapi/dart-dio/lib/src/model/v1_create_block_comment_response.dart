@@ -3,61 +3,49 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/v1_quiz_question.dart';
+import 'package:openapi/src/model/block_comment.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'v1_quiz.g.dart';
+part 'v1_create_block_comment_response.g.dart';
 
-/// V1Quiz
+/// V1CreateBlockCommentResponse
 ///
 /// Properties:
-/// * [questions] 
-/// * [id] 
+/// * [comment] 
 @BuiltValue()
-abstract class V1Quiz implements Built<V1Quiz, V1QuizBuilder> {
-  @BuiltValueField(wireName: r'questions')
-  BuiltList<V1QuizQuestion>? get questions;
+abstract class V1CreateBlockCommentResponse implements Built<V1CreateBlockCommentResponse, V1CreateBlockCommentResponseBuilder> {
+  @BuiltValueField(wireName: r'comment')
+  BlockComment? get comment;
 
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+  V1CreateBlockCommentResponse._();
 
-  V1Quiz._();
-
-  factory V1Quiz([void updates(V1QuizBuilder b)]) = _$V1Quiz;
+  factory V1CreateBlockCommentResponse([void updates(V1CreateBlockCommentResponseBuilder b)]) = _$V1CreateBlockCommentResponse;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(V1QuizBuilder b) => b;
+  static void _defaults(V1CreateBlockCommentResponseBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<V1Quiz> get serializer => _$V1QuizSerializer();
+  static Serializer<V1CreateBlockCommentResponse> get serializer => _$V1CreateBlockCommentResponseSerializer();
 }
 
-class _$V1QuizSerializer implements PrimitiveSerializer<V1Quiz> {
+class _$V1CreateBlockCommentResponseSerializer implements PrimitiveSerializer<V1CreateBlockCommentResponse> {
   @override
-  final Iterable<Type> types = const [V1Quiz, _$V1Quiz];
+  final Iterable<Type> types = const [V1CreateBlockCommentResponse, _$V1CreateBlockCommentResponse];
 
   @override
-  final String wireName = r'V1Quiz';
+  final String wireName = r'V1CreateBlockCommentResponse';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    V1Quiz object, {
+    V1CreateBlockCommentResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.questions != null) {
-      yield r'questions';
+    if (object.comment != null) {
+      yield r'comment';
       yield serializers.serialize(
-        object.questions,
-        specifiedType: const FullType(BuiltList, [FullType(V1QuizQuestion)]),
-      );
-    }
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
+        object.comment,
+        specifiedType: const FullType(BlockComment),
       );
     }
   }
@@ -65,7 +53,7 @@ class _$V1QuizSerializer implements PrimitiveSerializer<V1Quiz> {
   @override
   Object serialize(
     Serializers serializers,
-    V1Quiz object, {
+    V1CreateBlockCommentResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -76,26 +64,19 @@ class _$V1QuizSerializer implements PrimitiveSerializer<V1Quiz> {
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required V1QuizBuilder result,
+    required V1CreateBlockCommentResponseBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'questions':
+        case r'comment':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(V1QuizQuestion)]),
-          ) as BuiltList<V1QuizQuestion>;
-          result.questions.replace(valueDes);
-          break;
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
+            specifiedType: const FullType(BlockComment),
+          ) as BlockComment;
+          result.comment.replace(valueDes);
           break;
         default:
           unhandled.add(key);
@@ -106,12 +87,12 @@ class _$V1QuizSerializer implements PrimitiveSerializer<V1Quiz> {
   }
 
   @override
-  V1Quiz deserialize(
+  V1CreateBlockCommentResponse deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = V1QuizBuilder();
+    final result = V1CreateBlockCommentResponseBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

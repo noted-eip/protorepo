@@ -21,7 +21,7 @@ import globalAxios from 'axios';
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
 import type { RequestArgs } from './base';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
+import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
 /**
  * 
@@ -113,6 +113,31 @@ export interface BlockCode {
      * @memberof BlockCode
      */
     'lang'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface BlockComment
+ */
+export interface BlockComment {
+    /**
+     * 
+     * @type {string}
+     * @memberof BlockComment
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BlockComment
+     */
+    'authorId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BlockComment
+     */
+    'content'?: string;
 }
 /**
  * 
@@ -211,6 +236,19 @@ export interface NotesAPIChangeNoteEditPermissionRequest {
 /**
  * 
  * @export
+ * @interface NotesAPICreateBlockCommentRequest
+ */
+export interface NotesAPICreateBlockCommentRequest {
+    /**
+     * 
+     * @type {BlockComment}
+     * @memberof NotesAPICreateBlockCommentRequest
+     */
+    'comment': BlockComment;
+}
+/**
+ * 
+ * @export
  * @interface NotesAPICreateNoteRequest
  */
 export interface NotesAPICreateNoteRequest {
@@ -226,6 +264,12 @@ export interface NotesAPICreateNoteRequest {
      * @memberof NotesAPICreateNoteRequest
      */
     'blocks'?: Array<V1Block>;
+    /**
+     * 
+     * @type {string}
+     * @memberof NotesAPICreateNoteRequest
+     */
+    'lang'?: string;
 }
 /**
  * 
@@ -501,6 +545,12 @@ export interface V1Block {
      * @memberof V1Block
      */
     'math'?: string;
+    /**
+     * 
+     * @type {Array<BlockComment>}
+     * @memberof V1Block
+     */
+    'thread'?: Array<BlockComment>;
 }
 
 
@@ -630,6 +680,19 @@ export interface V1CreateAccountResponse {
      * @memberof V1CreateAccountResponse
      */
     'account': V1Account;
+}
+/**
+ * 
+ * @export
+ * @interface V1CreateBlockCommentResponse
+ */
+export interface V1CreateBlockCommentResponse {
+    /**
+     * 
+     * @type {BlockComment}
+     * @memberof V1CreateBlockCommentResponse
+     */
+    'comment'?: BlockComment;
 }
 /**
  * 
@@ -860,6 +923,19 @@ export interface V1GenerateQuizResponse {
      * @memberof V1GenerateQuizResponse
      */
     'quiz'?: V1Quiz;
+}
+/**
+ * 
+ * @export
+ * @interface V1GenerateSummaryResponse
+ */
+export interface V1GenerateSummaryResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof V1GenerateSummaryResponse
+     */
+    'summary'?: string;
 }
 /**
  * 
@@ -1376,6 +1452,19 @@ export interface V1ListActivitiesResponse {
 /**
  * 
  * @export
+ * @interface V1ListBlockCommentsResponse
+ */
+export interface V1ListBlockCommentsResponse {
+    /**
+     * 
+     * @type {Array<BlockComment>}
+     * @memberof V1ListBlockCommentsResponse
+     */
+    'comments'?: Array<BlockComment>;
+}
+/**
+ * 
+ * @export
  * @interface V1ListConversationMessagesResponse
  */
 export interface V1ListConversationMessagesResponse {
@@ -1424,6 +1513,19 @@ export interface V1ListNotesResponse {
      * @memberof V1ListNotesResponse
      */
     'notes'?: Array<V1Note>;
+}
+/**
+ * 
+ * @export
+ * @interface V1ListQuizsResponse
+ */
+export interface V1ListQuizsResponse {
+    /**
+     * 
+     * @type {Array<V1Quiz>}
+     * @memberof V1ListQuizsResponse
+     */
+    'quizs'?: Array<V1Quiz>;
 }
 /**
  * 
@@ -1479,6 +1581,12 @@ export interface V1Note {
      * @memberof V1Note
      */
     'analyzedAt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1Note
+     */
+    'lang': string;
 }
 /**
  * 
@@ -1506,6 +1614,12 @@ export interface V1Quiz {
      * @memberof V1Quiz
      */
     'questions'?: Array<V1QuizQuestion>;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1Quiz
+     */
+    'id'?: string;
 }
 /**
  * 
@@ -2521,6 +2635,39 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} identifierAccountId terminate background service dedicated to account_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIEndStreamInvites: async (identifierAccountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'identifierAccountId' is not null or undefined
+            assertParamExists('groupsAPIEndStreamInvites', 'identifierAccountId', identifierAccountId)
+            const localVarPath = `/groups/invites/{identifierAccountId}/stream/terminate`
+                .replace(`{${"identifierAccountId"}}`, encodeURIComponent(String(identifierAccountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be group member. generated_by_account_id defaults to the authenticated user.
          * @param {string} groupId 
          * @param {*} [options] Override http request option.
@@ -2748,12 +2895,13 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary Must be a group member. List all the activities in a group.
          * @param {string} groupId 
+         * @param {string} [accountId] 
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIListActivities: async (groupId: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsAPIListActivities: async (groupId: string, accountId?: string, limit?: number, offset?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('groupsAPIListActivities', 'groupId', groupId)
             const localVarPath = `/groups/{groupId}/activity`
@@ -2768,6 +2916,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (accountId !== undefined) {
+                localVarQueryParameter['accountId'] = accountId;
+            }
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -3100,16 +3252,16 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} groupId 
-         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {string} identifierAccountId Returns only invites destined to recipient.
+         * @param {string} [groupId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIStreamInvites: async (groupId: string, recipientAccountId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'groupId' is not null or undefined
-            assertParamExists('groupsAPIStreamInvites', 'groupId', groupId)
-            const localVarPath = `/groups/{groupId}/invites/stream`
-                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+        groupsAPIStreamInvites: async (identifierAccountId: string, groupId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'identifierAccountId' is not null or undefined
+            assertParamExists('groupsAPIStreamInvites', 'identifierAccountId', identifierAccountId)
+            const localVarPath = `/groups/invites/{identifierAccountId}/stream`
+                .replace(`{${"identifierAccountId"}}`, encodeURIComponent(String(identifierAccountId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3121,8 +3273,8 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            if (recipientAccountId !== undefined) {
-                localVarQueryParameter['recipientAccountId'] = recipientAccountId;
+            if (groupId !== undefined) {
+                localVarQueryParameter['groupId'] = groupId;
             }
 
 
@@ -3303,6 +3455,53 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {NotesAPICreateBlockCommentRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPICreateBlockComment: async (groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPICreateBlockComment', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPICreateBlockComment', 'noteId', noteId)
+            // verify required parameter 'blockId' is not null or undefined
+            assertParamExists('notesAPICreateBlockComment', 'blockId', blockId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('notesAPICreateBlockComment', 'body', body)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/{blockId}/comment`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)))
+                .replace(`{${"blockId"}}`, encodeURIComponent(String(blockId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
          * @param {string} groupId 
          * @param {NotesAPICreateNoteRequest} body 
@@ -3385,6 +3584,51 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {string} commentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIDeleteBlockComment: async (groupId: string, noteId: string, blockId: string, commentId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIDeleteBlockComment', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIDeleteBlockComment', 'noteId', noteId)
+            // verify required parameter 'blockId' is not null or undefined
+            assertParamExists('notesAPIDeleteBlockComment', 'blockId', blockId)
+            // verify required parameter 'commentId' is not null or undefined
+            assertParamExists('notesAPIDeleteBlockComment', 'commentId', commentId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/{blockId}/comment/{commentId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)))
+                .replace(`{${"blockId"}}`, encodeURIComponent(String(blockId)))
+                .replace(`{${"commentId"}}`, encodeURIComponent(String(commentId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be author. Delete a single note in database.
          * @param {string} groupId 
          * @param {string} noteId 
@@ -3434,6 +3678,43 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'noteId' is not null or undefined
             assertParamExists('notesAPIGenerateQuiz', 'noteId', noteId)
             const localVarPath = `/groups/{groupId}/notes/{noteId}/quiz`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIGenerateSummary: async (groupId: string, noteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIGenerateSummary', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIGenerateSummary', 'noteId', noteId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/summary`
                 .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
                 .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -3542,6 +3823,47 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListBlockComments: async (groupId: string, noteId: string, blockId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIListBlockComments', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIListBlockComments', 'noteId', noteId)
+            // verify required parameter 'blockId' is not null or undefined
+            assertParamExists('notesAPIListBlockComments', 'blockId', blockId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/{blockId}/comments`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)))
+                .replace(`{${"blockId"}}`, encodeURIComponent(String(blockId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
          * @param {string} [authorAccountId] 
          * @param {string} [groupId] 
@@ -3627,6 +3949,43 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             if (offset !== undefined) {
                 localVarQueryParameter['offset'] = offset;
             }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListQuizs: async (groupId: string, noteId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIListQuizs', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPIListQuizs', 'noteId', noteId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/quizs`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
 
     
@@ -3836,7 +4195,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIAuthenticate(body: V1AuthenticateRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1AuthenticateResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIAuthenticate(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIAuthenticate']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3847,7 +4208,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIAuthenticateGoogle(body: V1AuthenticateGoogleRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1AuthenticateGoogleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIAuthenticateGoogle(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIAuthenticateGoogle']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3858,7 +4221,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPICreateAccount(body: V1CreateAccountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateAccountResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPICreateAccount(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPICreateAccount']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3869,7 +4234,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIDeleteAccount(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIDeleteAccount(accountId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIDeleteAccount']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3880,7 +4247,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIForgetAccountPassword(body: V1ForgetAccountPasswordRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ForgetAccountPasswordResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIForgetAccountPassword(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIForgetAccountPassword']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3891,7 +4260,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIForgetAccountPasswordValidateToken(body: V1ForgetAccountPasswordValidateTokenRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ForgetAccountPasswordValidateTokenResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIForgetAccountPasswordValidateToken(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIForgetAccountPasswordValidateToken']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3903,7 +4274,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIGetAccount(accountId: string, email?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetAccountResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIGetAccount(accountId, email, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIGetAccount']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3914,7 +4287,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIGetAccount2(body: V1GetAccountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetAccountResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIGetAccount2(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIGetAccount2']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3924,7 +4299,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIGetAccountProfilePicture(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetAccountProfilePictureResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIGetAccountProfilePicture(accountId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIGetAccountProfilePicture']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3937,7 +4314,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIListAccounts(emailContains: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListAccountsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIListAccounts(emailContains, limit, offset, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIListAccounts']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3948,7 +4327,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIRegisterUserToMobileBeta(body: V1RegisterUserToMobileBetaRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIRegisterUserToMobileBeta(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIRegisterUserToMobileBeta']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3960,7 +4341,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIUpdateAccount(accountId: string, account: V1Account, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUpdateAccount(accountId, account, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIUpdateAccount']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3972,7 +4355,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountPasswordResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUpdateAccountPassword(accountId, body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIUpdateAccountPassword']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3983,7 +4368,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUploadAccountProfilePicture(accountId, body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIUploadAccountProfilePicture']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -3995,7 +4382,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async accountsAPIValidateAccount(accountId: string, body: AccountsAPIValidateAccountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ValidateAccountResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIValidateAccount(accountId, body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIValidateAccount']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4007,7 +4396,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIAcceptInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1AcceptInviteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIAcceptInvite(groupId, inviteId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIAcceptInvite']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4018,7 +4409,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPICreateGroup(body: V1CreateGroupRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateGroupResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPICreateGroup(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPICreateGroup']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4029,7 +4422,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIDeleteGroup(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIDeleteGroup(groupId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIDeleteGroup']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4041,7 +4436,21 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIDenyInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIDenyInvite(groupId, inviteId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIDenyInvite']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} identifierAccountId terminate background service dedicated to account_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPIEndStreamInvites(identifierAccountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIEndStreamInvites(identifierAccountId, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIEndStreamInvites']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4052,7 +4461,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIGenerateInviteLink(groupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GenerateInviteLinkResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGenerateInviteLink(groupId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIGenerateInviteLink']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4064,7 +4475,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIGetActivity(groupId: string, activityId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetActivityResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetActivity(groupId, activityId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIGetActivity']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4076,7 +4489,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIGetGroup(groupId: string, inviteLinkCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetGroupResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetGroup(groupId, inviteLinkCode, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIGetGroup']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4088,7 +4503,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIGetInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetInviteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetInvite(groupId, inviteId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIGetInvite']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4100,7 +4517,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIGetInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetInviteLinkResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetInviteLink(groupId, inviteLinkCode, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIGetInviteLink']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4112,20 +4531,25 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIGetMember(groupId: string, accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetMemberResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIGetMember(groupId, accountId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIGetMember']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
          * @summary Must be a group member. List all the activities in a group.
          * @param {string} groupId 
+         * @param {string} [accountId] 
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsAPIListActivities(groupId: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListActivitiesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListActivities(groupId, limit, offset, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        async groupsAPIListActivities(groupId: string, accountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListActivitiesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListActivities(groupId, accountId, limit, offset, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIListActivities']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4138,7 +4562,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIListGroups(accountId: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListGroupsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListGroups(accountId, limit, offset, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIListGroups']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4153,7 +4579,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIListInvites(senderAccountId?: string, recipientAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListInvitesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListInvites(senderAccountId, recipientAccountId, groupId, limit, offset, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIListInvites']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4168,7 +4596,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIListInvites2(groupId: string, senderAccountId?: string, recipientAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListInvitesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIListInvites2(groupId, senderAccountId, recipientAccountId, limit, offset, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIListInvites2']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4180,7 +4610,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIRemoveMember(groupId: string, accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIRemoveMember(groupId, accountId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIRemoveMember']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4192,7 +4624,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIRevokeInvite(groupId: string, inviteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIRevokeInvite(groupId, inviteId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIRevokeInvite']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4204,7 +4638,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIRevokeInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIRevokeInviteLink(groupId, inviteLinkCode, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIRevokeInviteLink']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4216,18 +4652,22 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1SendInviteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPISendInvite(groupId, body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPISendInvite']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
-         * @param {string} groupId 
-         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {string} identifierAccountId Returns only invites destined to recipient.
+         * @param {string} [groupId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StreamResultOfV1StreamInvitesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIStreamInvites(groupId, recipientAccountId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        async groupsAPIStreamInvites(identifierAccountId: string, groupId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StreamResultOfV1StreamInvitesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIStreamInvites(identifierAccountId, groupId, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIStreamInvites']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4239,7 +4679,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateGroupResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIUpdateGroup(groupId, body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIUpdateGroup']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4252,7 +4694,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIUpdateMember(groupId: string, accountId: string, member: V1GroupMember, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateMemberResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIUpdateMember(groupId, accountId, member, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIUpdateMember']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4264,7 +4708,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async groupsAPIUseInviteLink(groupId: string, inviteLinkCode: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIUseInviteLink(groupId, inviteLinkCode, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPIUseInviteLink']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4276,7 +4722,24 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async notesAPIChangeNoteEditPermission(groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIChangeNoteEditPermission(groupId, noteId, body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIChangeNoteEditPermission']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {NotesAPICreateBlockCommentRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPICreateBlockComment(groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateBlockCommentResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPICreateBlockComment(groupId, noteId, blockId, body, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPICreateBlockComment']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4288,7 +4751,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async notesAPICreateNote(groupId: string, body: NotesAPICreateNoteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateNoteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPICreateNote(groupId, body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPICreateNote']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4301,7 +4766,24 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async notesAPIDeleteBlock(groupId: string, noteId: string, blockId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIDeleteBlock(groupId, noteId, blockId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIDeleteBlock']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {string} commentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIDeleteBlockComment(groupId: string, noteId: string, blockId: string, commentId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIDeleteBlockComment(groupId, noteId, blockId, commentId, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIDeleteBlockComment']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4313,7 +4795,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async notesAPIDeleteNote(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIDeleteNote(groupId, noteId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIDeleteNote']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4324,7 +4808,22 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async notesAPIGenerateQuiz(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GenerateQuizResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIGenerateQuiz(groupId, noteId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIGenerateQuiz']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIGenerateSummary(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GenerateSummaryResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIGenerateSummary(groupId, noteId, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIGenerateSummary']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4336,7 +4835,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async notesAPIGetNote(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetNoteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIGetNote(groupId, noteId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIGetNote']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4349,7 +4850,23 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1InsertBlockResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIInsertBlock(groupId, noteId, body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIInsertBlock']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIListBlockComments(groupId: string, noteId: string, blockId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListBlockCommentsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListBlockComments(groupId, noteId, blockId, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIListBlockComments']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4363,7 +4880,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async notesAPIListNotes(authorAccountId?: string, groupId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListNotesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListNotes(authorAccountId, groupId, limit, offset, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIListNotes']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4377,7 +4896,22 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async notesAPIListNotes2(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListNotesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListNotes2(groupId, authorAccountId, limit, offset, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIListNotes2']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIListQuizs(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListQuizsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListQuizs(groupId, noteId, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIListQuizs']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4391,7 +4925,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async notesAPIUpdateBlock(groupId: string, noteId: string, blockId: string, block: V1Block, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateBlockResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateBlock(groupId, noteId, blockId, block, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIUpdateBlock']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4405,7 +4941,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateBlockIndexResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateBlockIndex(groupId, noteId, blockId, body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIUpdateBlockIndex']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4418,7 +4956,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async notesAPIUpdateNote(groupId: string, noteId: string, note: V1Note, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateNoteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateNote(groupId, noteId, note, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIUpdateNote']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
          * 
@@ -4430,7 +4970,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async recommendationsAPIGenerateWidgets(groupId: string, noteId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GenerateWidgetsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.recommendationsAPIGenerateWidgets(groupId, noteId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.recommendationsAPIGenerateWidgets']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
@@ -4641,6 +5183,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {string} identifierAccountId terminate background service dedicated to account_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPIEndStreamInvites(identifierAccountId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.groupsAPIEndStreamInvites(identifierAccountId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Must be group member. generated_by_account_id defaults to the authenticated user.
          * @param {string} groupId 
          * @param {*} [options] Override http request option.
@@ -4708,13 +5259,14 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary Must be a group member. List all the activities in a group.
          * @param {string} groupId 
+         * @param {string} [accountId] 
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIListActivities(groupId: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListActivitiesResponse> {
-            return localVarFp.groupsAPIListActivities(groupId, limit, offset, options).then((request) => request(axios, basePath));
+        groupsAPIListActivities(groupId: string, accountId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListActivitiesResponse> {
+            return localVarFp.groupsAPIListActivities(groupId, accountId, limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4802,13 +5354,13 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {string} groupId 
-         * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+         * @param {string} identifierAccountId Returns only invites destined to recipient.
+         * @param {string} [groupId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: any): AxiosPromise<StreamResultOfV1StreamInvitesResponse> {
-            return localVarFp.groupsAPIStreamInvites(groupId, recipientAccountId, options).then((request) => request(axios, basePath));
+        groupsAPIStreamInvites(identifierAccountId: string, groupId?: string, options?: any): AxiosPromise<StreamResultOfV1StreamInvitesResponse> {
+            return localVarFp.groupsAPIStreamInvites(identifierAccountId, groupId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4857,6 +5409,18 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {NotesAPICreateBlockCommentRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPICreateBlockComment(groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentRequest, options?: any): AxiosPromise<V1CreateBlockCommentResponse> {
+            return localVarFp.notesAPICreateBlockComment(groupId, noteId, blockId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
          * @param {string} groupId 
          * @param {NotesAPICreateNoteRequest} body 
@@ -4880,6 +5444,18 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {string} commentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIDeleteBlockComment(groupId: string, noteId: string, blockId: string, commentId: string, options?: any): AxiosPromise<object> {
+            return localVarFp.notesAPIDeleteBlockComment(groupId, noteId, blockId, commentId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Must be author. Delete a single note in database.
          * @param {string} groupId 
          * @param {string} noteId 
@@ -4898,6 +5474,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         notesAPIGenerateQuiz(groupId: string, noteId: string, options?: any): AxiosPromise<V1GenerateQuizResponse> {
             return localVarFp.notesAPIGenerateQuiz(groupId, noteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIGenerateSummary(groupId: string, noteId: string, options?: any): AxiosPromise<V1GenerateSummaryResponse> {
+            return localVarFp.notesAPIGenerateSummary(groupId, noteId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4924,6 +5510,17 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {string} blockId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListBlockComments(groupId: string, noteId: string, blockId: string, options?: any): AxiosPromise<V1ListBlockCommentsResponse> {
+            return localVarFp.notesAPIListBlockComments(groupId, noteId, blockId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
          * @param {string} [authorAccountId] 
          * @param {string} [groupId] 
@@ -4947,6 +5544,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         notesAPIListNotes2(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: any): AxiosPromise<V1ListNotesResponse> {
             return localVarFp.notesAPIListNotes2(groupId, authorAccountId, limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListQuizs(groupId: string, noteId: string, options?: any): AxiosPromise<V1ListQuizsResponse> {
+            return localVarFp.notesAPIListQuizs(groupId, noteId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5244,6 +5851,17 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} identifierAccountId terminate background service dedicated to account_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPIEndStreamInvites(identifierAccountId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIEndStreamInvites(identifierAccountId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Must be group member. generated_by_account_id defaults to the authenticated user.
      * @param {string} groupId 
      * @param {*} [options] Override http request option.
@@ -5323,14 +5941,15 @@ export class DefaultApi extends BaseAPI {
      * 
      * @summary Must be a group member. List all the activities in a group.
      * @param {string} groupId 
+     * @param {string} [accountId] 
      * @param {number} [limit] 
      * @param {number} [offset] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public groupsAPIListActivities(groupId: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).groupsAPIListActivities(groupId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public groupsAPIListActivities(groupId: string, accountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIListActivities(groupId, accountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5433,14 +6052,14 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @param {string} groupId 
-     * @param {string} [recipientAccountId] Returns only invites destined to recipient.
+     * @param {string} identifierAccountId Returns only invites destined to recipient.
+     * @param {string} [groupId] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public groupsAPIStreamInvites(groupId: string, recipientAccountId?: string, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).groupsAPIStreamInvites(groupId, recipientAccountId, options).then((request) => request(this.axios, this.basePath));
+    public groupsAPIStreamInvites(identifierAccountId: string, groupId?: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPIStreamInvites(identifierAccountId, groupId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5498,6 +6117,20 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {string} blockId 
+     * @param {NotesAPICreateBlockCommentRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPICreateBlockComment(groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPICreateBlockComment(groupId, noteId, blockId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
      * @param {string} groupId 
      * @param {NotesAPICreateNoteRequest} body 
@@ -5525,6 +6158,20 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {string} blockId 
+     * @param {string} commentId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIDeleteBlockComment(groupId: string, noteId: string, blockId: string, commentId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIDeleteBlockComment(groupId, noteId, blockId, commentId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Must be author. Delete a single note in database.
      * @param {string} groupId 
      * @param {string} noteId 
@@ -5546,6 +6193,18 @@ export class DefaultApi extends BaseAPI {
      */
     public notesAPIGenerateQuiz(groupId: string, noteId: string, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPIGenerateQuiz(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIGenerateSummary(groupId: string, noteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIGenerateSummary(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5577,6 +6236,19 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {string} blockId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIListBlockComments(groupId: string, noteId: string, blockId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIListBlockComments(groupId, noteId, blockId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary List notes in a group, authored by a user or both. Must have read access to the notes.
      * @param {string} [authorAccountId] 
      * @param {string} [groupId] 
@@ -5603,6 +6275,18 @@ export class DefaultApi extends BaseAPI {
      */
     public notesAPIListNotes2(groupId: string, authorAccountId?: string, limit?: number, offset?: number, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPIListNotes2(groupId, authorAccountId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIListQuizs(groupId: string, noteId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIListQuizs(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

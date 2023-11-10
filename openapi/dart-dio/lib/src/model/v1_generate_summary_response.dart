@@ -3,60 +3,47 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/v1_quiz_question.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'v1_quiz.g.dart';
+part 'v1_generate_summary_response.g.dart';
 
-/// V1Quiz
+/// V1GenerateSummaryResponse
 ///
 /// Properties:
-/// * [questions] 
-/// * [id] 
+/// * [summary] 
 @BuiltValue()
-abstract class V1Quiz implements Built<V1Quiz, V1QuizBuilder> {
-  @BuiltValueField(wireName: r'questions')
-  BuiltList<V1QuizQuestion>? get questions;
+abstract class V1GenerateSummaryResponse implements Built<V1GenerateSummaryResponse, V1GenerateSummaryResponseBuilder> {
+  @BuiltValueField(wireName: r'summary')
+  String? get summary;
 
-  @BuiltValueField(wireName: r'id')
-  String? get id;
+  V1GenerateSummaryResponse._();
 
-  V1Quiz._();
-
-  factory V1Quiz([void updates(V1QuizBuilder b)]) = _$V1Quiz;
+  factory V1GenerateSummaryResponse([void updates(V1GenerateSummaryResponseBuilder b)]) = _$V1GenerateSummaryResponse;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(V1QuizBuilder b) => b;
+  static void _defaults(V1GenerateSummaryResponseBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<V1Quiz> get serializer => _$V1QuizSerializer();
+  static Serializer<V1GenerateSummaryResponse> get serializer => _$V1GenerateSummaryResponseSerializer();
 }
 
-class _$V1QuizSerializer implements PrimitiveSerializer<V1Quiz> {
+class _$V1GenerateSummaryResponseSerializer implements PrimitiveSerializer<V1GenerateSummaryResponse> {
   @override
-  final Iterable<Type> types = const [V1Quiz, _$V1Quiz];
+  final Iterable<Type> types = const [V1GenerateSummaryResponse, _$V1GenerateSummaryResponse];
 
   @override
-  final String wireName = r'V1Quiz';
+  final String wireName = r'V1GenerateSummaryResponse';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    V1Quiz object, {
+    V1GenerateSummaryResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.questions != null) {
-      yield r'questions';
+    if (object.summary != null) {
+      yield r'summary';
       yield serializers.serialize(
-        object.questions,
-        specifiedType: const FullType(BuiltList, [FullType(V1QuizQuestion)]),
-      );
-    }
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
+        object.summary,
         specifiedType: const FullType(String),
       );
     }
@@ -65,7 +52,7 @@ class _$V1QuizSerializer implements PrimitiveSerializer<V1Quiz> {
   @override
   Object serialize(
     Serializers serializers,
-    V1Quiz object, {
+    V1GenerateSummaryResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -76,26 +63,19 @@ class _$V1QuizSerializer implements PrimitiveSerializer<V1Quiz> {
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required V1QuizBuilder result,
+    required V1GenerateSummaryResponseBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'questions':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(V1QuizQuestion)]),
-          ) as BuiltList<V1QuizQuestion>;
-          result.questions.replace(valueDes);
-          break;
-        case r'id':
+        case r'summary':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.id = valueDes;
+          result.summary = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -106,12 +86,12 @@ class _$V1QuizSerializer implements PrimitiveSerializer<V1Quiz> {
   }
 
   @override
-  V1Quiz deserialize(
+  V1GenerateSummaryResponse deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = V1QuizBuilder();
+    final result = V1GenerateSummaryResponseBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

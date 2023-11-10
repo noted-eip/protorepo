@@ -28,6 +28,7 @@ Method | HTTP request | Description
 [**groupsAPICreateGroup**](DefaultApi.md#groupsapicreategroup) | **POST** /groups | Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 [**groupsAPIDeleteGroup**](DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
 [**groupsAPIDenyInvite**](DefaultApi.md#groupsapidenyinvite) | **POST** /groups/{groupId}/invites/{inviteId}/deny | Must be recipient. Deletes the invitation without making the recipient join the group.
+[**groupsAPIEndStreamInvites**](DefaultApi.md#groupsapiendstreaminvites) | **PUT** /groups/invites/{identifierAccountId}/stream/terminate | 
 [**groupsAPIGenerateInviteLink**](DefaultApi.md#groupsapigenerateinvitelink) | **POST** /groups/{groupId}/inviteLinks | Must be group member. generated_by_account_id defaults to the authenticated user.
 [**groupsAPIGetActivity**](DefaultApi.md#groupsapigetactivity) | **GET** /groups/{groupId}/activity/{activityId} | Must be a group member. Returns a signle activity in a group.
 [**groupsAPIGetGroup**](DefaultApi.md#groupsapigetgroup) | **GET** /groups/{groupId} | Must be group member. If the caller is not a member but has been invited to the group or has an invite code link, it will access a limited view of the group.
@@ -42,19 +43,24 @@ Method | HTTP request | Description
 [**groupsAPIRevokeInvite**](DefaultApi.md#groupsapirevokeinvite) | **DELETE** /groups/{groupId}/invites/{inviteId} | Must be group administrator or sender. Deletes the invitation without making the recipient join the group.
 [**groupsAPIRevokeInviteLink**](DefaultApi.md#groupsapirevokeinvitelink) | **DELETE** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
 [**groupsAPISendInvite**](DefaultApi.md#groupsapisendinvite) | **POST** /groups/{groupId}/invites | The sender defaults to the authenticated user. Must be group member.
-[**groupsAPIStreamInvites**](DefaultApi.md#groupsapistreaminvites) | **GET** /groups/{groupId}/invites/stream | 
+[**groupsAPIStreamInvites**](DefaultApi.md#groupsapistreaminvites) | **GET** /groups/invites/{identifierAccountId}/stream | 
 [**groupsAPIUpdateGroup**](DefaultApi.md#groupsapiupdategroup) | **PATCH** /groups/{groupId} | Must be group administrator.
 [**groupsAPIUpdateMember**](DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
 [**groupsAPIUseInviteLink**](DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
 [**notesAPIChangeNoteEditPermission**](DefaultApi.md#notesapichangenoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
+[**notesAPICreateBlockComment**](DefaultApi.md#notesapicreateblockcomment) | **POST** /groups/{groupId}/notes/{noteId}/{blockId}/comment | 
 [**notesAPICreateNote**](DefaultApi.md#notesapicreatenote) | **POST** /groups/{groupId}/notes | Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
 [**notesAPIDeleteBlock**](DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Delete a block in a note and replace the indexes of the others.
+[**notesAPIDeleteBlockComment**](DefaultApi.md#notesapideleteblockcomment) | **DELETE** /groups/{groupId}/notes/{noteId}/{blockId}/comment/{commentId} | 
 [**notesAPIDeleteNote**](DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author. Delete a single note in database.
-[**notesAPIGenerateQuiz**](DefaultApi.md#notesapigeneratequiz) | **GET** /groups/{groupId}/notes/{noteId}/quiz | 
+[**notesAPIGenerateQuiz**](DefaultApi.md#notesapigeneratequiz) | **POST** /groups/{groupId}/notes/{noteId}/quiz | 
+[**notesAPIGenerateSummary**](DefaultApi.md#notesapigeneratesummary) | **GET** /groups/{groupId}/notes/{noteId}/summary | 
 [**notesAPIGetNote**](DefaultApi.md#notesapigetnote) | **GET** /groups/{groupId}/notes/{noteId} | Must be group member or author. Return a note from id provided.
 [**notesAPIInsertBlock**](DefaultApi.md#notesapiinsertblock) | **POST** /groups/{groupId}/notes/{noteId}/blocks | Must be author. Insert a block of content in a note at a specific index.
+[**notesAPIListBlockComments**](DefaultApi.md#notesapilistblockcomments) | **GET** /groups/{groupId}/notes/{noteId}/{blockId}/comments | 
 [**notesAPIListNotes**](DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIListNotes2**](DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
+[**notesAPIListQuizs**](DefaultApi.md#notesapilistquizs) | **GET** /groups/{groupId}/notes/{noteId}/quizs | 
 [**notesAPIUpdateBlock**](DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Update a block content.
 [**notesAPIUpdateBlockIndex**](DefaultApi.md#notesapiupdateblockindex) | **POST** /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index | Must be author. Update a block index.
 [**notesAPIUpdateNote**](DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60; or &#x60;blocks&#x60;.
@@ -858,6 +864,47 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **groupsAPIEndStreamInvites**
+> JsonObject groupsAPIEndStreamInvites(identifierAccountId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String identifierAccountId = identifierAccountId_example; // String | terminate background service dedicated to account_id
+
+try {
+    final response = api.groupsAPIEndStreamInvites(identifierAccountId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->groupsAPIEndStreamInvites: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifierAccountId** | **String**| terminate background service dedicated to account_id | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **groupsAPIGenerateInviteLink**
 > V1GenerateInviteLinkResponse groupsAPIGenerateInviteLink(groupId)
 
@@ -1115,7 +1162,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **groupsAPIListActivities**
-> V1ListActivitiesResponse groupsAPIListActivities(groupId, limit, offset)
+> V1ListActivitiesResponse groupsAPIListActivities(groupId, accountId, limit, offset)
 
 Must be a group member. List all the activities in a group.
 
@@ -1125,11 +1172,12 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
+final String accountId = accountId_example; // String | 
 final int limit = 789; // int | 
 final int offset = 789; // int | 
 
 try {
-    final response = api.groupsAPIListActivities(groupId, limit, offset);
+    final response = api.groupsAPIListActivities(groupId, accountId, limit, offset);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIListActivities: $e\n');
@@ -1141,6 +1189,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **String**|  | 
+ **accountId** | **String**|  | [optional] 
  **limit** | **int**|  | [optional] 
  **offset** | **int**|  | [optional] 
 
@@ -1475,7 +1524,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **groupsAPIStreamInvites**
-> StreamResultOfV1StreamInvitesResponse groupsAPIStreamInvites(groupId, recipientAccountId)
+> StreamResultOfV1StreamInvitesResponse groupsAPIStreamInvites(identifierAccountId, groupId)
 
 
 
@@ -1484,11 +1533,11 @@ No authorization required
 import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
+final String identifierAccountId = identifierAccountId_example; // String | Returns only invites destined to recipient.
 final String groupId = groupId_example; // String | 
-final String recipientAccountId = recipientAccountId_example; // String | Returns only invites destined to recipient.
 
 try {
-    final response = api.groupsAPIStreamInvites(groupId, recipientAccountId);
+    final response = api.groupsAPIStreamInvites(identifierAccountId, groupId);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPIStreamInvites: $e\n');
@@ -1499,8 +1548,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | **String**|  | 
- **recipientAccountId** | **String**| Returns only invites destined to recipient. | [optional] 
+ **identifierAccountId** | **String**| Returns only invites destined to recipient. | 
+ **groupId** | **String**|  | [optional] 
 
 ### Return type
 
@@ -1693,6 +1742,53 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **notesAPICreateBlockComment**
+> V1CreateBlockCommentResponse notesAPICreateBlockComment(groupId, noteId, blockId, body)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+final String blockId = blockId_example; // String | 
+final NotesAPICreateBlockCommentRequest body = ; // NotesAPICreateBlockCommentRequest | 
+
+try {
+    final response = api.notesAPICreateBlockComment(groupId, noteId, blockId, body);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->notesAPICreateBlockComment: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+ **blockId** | **String**|  | 
+ **body** | [**NotesAPICreateBlockCommentRequest**](NotesAPICreateBlockCommentRequest.md)|  | 
+
+### Return type
+
+[**V1CreateBlockCommentResponse**](V1CreateBlockCommentResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **notesAPICreateNote**
 > V1CreateNoteResponse notesAPICreateNote(groupId, body)
 
@@ -1765,6 +1861,53 @@ Name | Type | Description  | Notes
  **groupId** | **String**|  | 
  **noteId** | **String**|  | 
  **blockId** | **String**|  | 
+
+### Return type
+
+[**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIDeleteBlockComment**
+> JsonObject notesAPIDeleteBlockComment(groupId, noteId, blockId, commentId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+final String blockId = blockId_example; // String | 
+final String commentId = commentId_example; // String | 
+
+try {
+    final response = api.notesAPIDeleteBlockComment(groupId, noteId, blockId, commentId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->notesAPIDeleteBlockComment: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+ **blockId** | **String**|  | 
+ **commentId** | **String**|  | 
 
 ### Return type
 
@@ -1867,6 +2010,49 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **notesAPIGenerateSummary**
+> V1GenerateSummaryResponse notesAPIGenerateSummary(groupId, noteId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+
+try {
+    final response = api.notesAPIGenerateSummary(groupId, noteId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->notesAPIGenerateSummary: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+
+### Return type
+
+[**V1GenerateSummaryResponse**](V1GenerateSummaryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **notesAPIGetNote**
 > V1GetNoteResponse notesAPIGetNote(groupId, noteId)
 
@@ -1955,6 +2141,51 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **notesAPIListBlockComments**
+> V1ListBlockCommentsResponse notesAPIListBlockComments(groupId, noteId, blockId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+final String blockId = blockId_example; // String | 
+
+try {
+    final response = api.notesAPIListBlockComments(groupId, noteId, blockId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->notesAPIListBlockComments: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+ **blockId** | **String**|  | 
+
+### Return type
+
+[**V1ListBlockCommentsResponse**](V1ListBlockCommentsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **notesAPIListNotes**
 > V1ListNotesResponse notesAPIListNotes(authorAccountId, groupId, limit, offset)
 
@@ -2037,6 +2268,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1ListNotesResponse**](V1ListNotesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPIListQuizs**
+> V1ListQuizsResponse notesAPIListQuizs(groupId, noteId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+
+try {
+    final response = api.notesAPIListQuizs(groupId, noteId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->notesAPIListQuizs: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+
+### Return type
+
+[**V1ListQuizsResponse**](V1ListQuizsResponse.md)
 
 ### Authorization
 

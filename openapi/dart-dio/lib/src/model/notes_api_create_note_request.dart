@@ -15,6 +15,7 @@ part 'notes_api_create_note_request.g.dart';
 /// Properties:
 /// * [title] 
 /// * [blocks] 
+/// * [lang] 
 @BuiltValue()
 abstract class NotesAPICreateNoteRequest implements Built<NotesAPICreateNoteRequest, NotesAPICreateNoteRequestBuilder> {
   @BuiltValueField(wireName: r'title')
@@ -22,6 +23,9 @@ abstract class NotesAPICreateNoteRequest implements Built<NotesAPICreateNoteRequ
 
   @BuiltValueField(wireName: r'blocks')
   BuiltList<V1Block>? get blocks;
+
+  @BuiltValueField(wireName: r'lang')
+  String? get lang;
 
   NotesAPICreateNoteRequest._();
 
@@ -60,6 +64,13 @@ class _$NotesAPICreateNoteRequestSerializer implements PrimitiveSerializer<Notes
         specifiedType: const FullType(BuiltList, [FullType(V1Block)]),
       );
     }
+    if (object.lang != null) {
+      yield r'lang';
+      yield serializers.serialize(
+        object.lang,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
   @override
@@ -96,6 +107,13 @@ class _$NotesAPICreateNoteRequestSerializer implements PrimitiveSerializer<Notes
             specifiedType: const FullType(BuiltList, [FullType(V1Block)]),
           ) as BuiltList<V1Block>;
           result.blocks.replace(valueDes);
+          break;
+        case r'lang':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.lang = valueDes;
           break;
         default:
           unhandled.add(key);

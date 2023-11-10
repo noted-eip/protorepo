@@ -152,6 +152,11 @@ class GroupsAPIStub(object):
                 request_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.StreamInvitesRequest.SerializeToString,
                 response_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.StreamInvitesResponse.FromString,
                 )
+        self.EndStreamInvites = channel.unary_unary(
+                '/noted.notes.v1.GroupsAPI/EndStreamInvites',
+                request_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.EndStreamInvitesRequest.SerializeToString,
+                response_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.EndStreamInvitesResponse.FromString,
+                )
         self.ListActivities = channel.unary_unary(
                 '/noted.notes.v1.GroupsAPI/ListActivities',
                 request_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.ListActivitiesRequest.SerializeToString,
@@ -358,6 +363,12 @@ class GroupsAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def EndStreamInvites(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ListActivities(self, request, context):
         """Must be a group member. List all the activities in a group.
         """
@@ -509,6 +520,11 @@ def add_GroupsAPIServicer_to_server(servicer, server):
                     servicer.StreamInvites,
                     request_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.StreamInvitesRequest.FromString,
                     response_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.StreamInvitesResponse.SerializeToString,
+            ),
+            'EndStreamInvites': grpc.unary_unary_rpc_method_handler(
+                    servicer.EndStreamInvites,
+                    request_deserializer=noted_dot_notes_dot_v1_dot_groups__pb2.EndStreamInvitesRequest.FromString,
+                    response_serializer=noted_dot_notes_dot_v1_dot_groups__pb2.EndStreamInvitesResponse.SerializeToString,
             ),
             'ListActivities': grpc.unary_unary_rpc_method_handler(
                     servicer.ListActivities,
@@ -989,6 +1005,23 @@ class GroupsAPI(object):
         return grpc.experimental.unary_stream(request, target, '/noted.notes.v1.GroupsAPI/StreamInvites',
             noted_dot_notes_dot_v1_dot_groups__pb2.StreamInvitesRequest.SerializeToString,
             noted_dot_notes_dot_v1_dot_groups__pb2.StreamInvitesResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def EndStreamInvites(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.GroupsAPI/EndStreamInvites',
+            noted_dot_notes_dot_v1_dot_groups__pb2.EndStreamInvitesRequest.SerializeToString,
+            noted_dot_notes_dot_v1_dot_groups__pb2.EndStreamInvitesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

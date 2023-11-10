@@ -17,5 +17,10 @@ void main() {
       // TODO
     });
 
+    // String lang
+    test('to test the property `lang`', () async {
+      // TODO
+    });
+
   });
 }
