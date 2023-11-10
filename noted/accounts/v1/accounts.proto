@@ -148,6 +148,14 @@ service AccountsAPI {
         };
     }
 
+    // Check if the account is validate.
+    rpc IsAccountValidate(IsAccountValidateRequest) returns (IsAccountValidateResponse) {
+        option (google.api.http) = {
+            get: "/accounts/{account_id}/is_validate",
+            body: "*",
+        };
+    }
+
     // Send validation email again.
     rpc SendValidationToken(SendValidationTokenRequest) returns (SendValidationTokenResponse) {
         option (google.api.http) = {
@@ -323,6 +331,14 @@ message UploadAccountProfilePictureRequest {
 }
 
 message UploadAccountProfilePictureResponse {
+}
+
+message IsAccountValidateRequest {
+    string account_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message IsAccountValidateResponse {
+    bool is_account_validate = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message GetAccountProfilePictureRequest {
