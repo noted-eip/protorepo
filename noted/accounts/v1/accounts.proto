@@ -333,7 +333,8 @@ message UploadAccountProfilePictureResponse {
 }
 
 message IsAccountValidateRequest {
-    string account_id = 1 [(google.api.field_behavior) = REQUIRED];
+    string email = 1 [(google.api.field_behavior) = REQUIRED];
+    string password = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 message IsAccountValidateResponse {
