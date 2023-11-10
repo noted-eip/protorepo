@@ -73,6 +73,7 @@ doc/V1HttpError.md
 doc/V1ImageType.md
 doc/V1ImageWidget.md
 doc/V1InsertBlockResponse.md
+doc/V1IsAccountValidateResponse.md
 doc/V1ListAccountsResponse.md
 doc/V1ListActivitiesResponse.md
 doc/V1ListBlockCommentsResponse.md
@@ -185,6 +186,7 @@ lib/src/model/v1_http_error.dart
 lib/src/model/v1_image_type.dart
 lib/src/model/v1_image_widget.dart
 lib/src/model/v1_insert_block_response.dart
+lib/src/model/v1_is_account_validate_response.dart
 lib/src/model/v1_list_accounts_response.dart
 lib/src/model/v1_list_activities_response.dart
 lib/src/model/v1_list_block_comments_response.dart
@@ -289,6 +291,7 @@ test/v1_http_error_test.dart
 test/v1_image_type_test.dart
 test/v1_image_widget_test.dart
 test/v1_insert_block_response_test.dart
+test/v1_is_account_validate_response_test.dart
 test/v1_list_accounts_response_test.dart
 test/v1_list_activities_response_test.dart
 test/v1_list_block_comments_response_test.dart

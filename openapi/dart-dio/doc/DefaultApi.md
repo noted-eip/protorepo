@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**accountsAPIGetAccount**](DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Allows getting an account by ID or searching for one through email.
 [**accountsAPIGetAccount2**](DefaultApi.md#accountsapigetaccount2) | **POST** /search/accounts | Allows getting an account by ID or searching for one through email.
 [**accountsAPIGetAccountProfilePicture**](DefaultApi.md#accountsapigetaccountprofilepicture) | **GET** /accounts/{accountId}/picture | 
+[**accountsAPIIsAccountValidate**](DefaultApi.md#accountsapiisaccountvalidate) | **GET** /accounts/{accountId}/is_validate | Check if the account is validate.
 [**accountsAPIListAccounts**](DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [**accountsAPIRegisterUserToMobileBeta**](DefaultApi.md#accountsapiregisterusertomobilebeta) | **POST** /beta/mobile | Registers the user to the mobile application beta.
 [**accountsAPISendValidationToken**](DefaultApi.md#accountsapisendvalidationtoken) | **POST** /accounts/{accountId}/send_validation_token | Send validation email again.
@@ -427,6 +428,47 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1GetAccountProfilePictureResponse**](V1GetAccountProfilePictureResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **accountsAPIIsAccountValidate**
+> V1IsAccountValidateResponse accountsAPIIsAccountValidate(accountId)
+
+Check if the account is validate.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String accountId = accountId_example; // String | 
+
+try {
+    final response = api.accountsAPIIsAccountValidate(accountId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->accountsAPIIsAccountValidate: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountId** | **String**|  | 
+
+### Return type
+
+[**V1IsAccountValidateResponse**](V1IsAccountValidateResponse.md)
 
 ### Authorization
 

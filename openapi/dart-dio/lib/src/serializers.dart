@@ -84,6 +84,7 @@ import 'package:openapi/src/model/v1_http_error.dart';
 import 'package:openapi/src/model/v1_image_type.dart';
 import 'package:openapi/src/model/v1_image_widget.dart';
 import 'package:openapi/src/model/v1_insert_block_response.dart';
+import 'package:openapi/src/model/v1_is_account_validate_response.dart';
 import 'package:openapi/src/model/v1_list_accounts_response.dart';
 import 'package:openapi/src/model/v1_list_activities_response.dart';
 import 'package:openapi/src/model/v1_list_block_comments_response.dart';
@@ -189,6 +190,7 @@ part 'serializers.g.dart';
   V1ImageType,
   V1ImageWidget,
   V1InsertBlockResponse,
+  V1IsAccountValidateResponse,
   V1ListAccountsResponse,
   V1ListActivitiesResponse,
   V1ListBlockCommentsResponse,

@@ -68,6 +68,13 @@ void main() {
       // TODO
     });
 
+    // Check if the account is validate.
+    //
+    //Future<V1IsAccountValidateResponse> accountsAPIIsAccountValidate(String accountId) async
+    test('test accountsAPIIsAccountValidate', () async {
+      // TODO
+    });
+
     // List users based on email regex.
     //
     //Future<V1ListAccountsResponse> accountsAPIListAccounts(String emailContains, { int limit, int offset }) async

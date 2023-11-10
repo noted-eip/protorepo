@@ -81,6 +81,7 @@ export 'package:openapi/src/model/v1_http_error.dart';
 export 'package:openapi/src/model/v1_image_type.dart';
 export 'package:openapi/src/model/v1_image_widget.dart';
 export 'package:openapi/src/model/v1_insert_block_response.dart';
+export 'package:openapi/src/model/v1_is_account_validate_response.dart';
 export 'package:openapi/src/model/v1_list_accounts_response.dart';
 export 'package:openapi/src/model/v1_list_activities_response.dart';
 export 'package:openapi/src/model/v1_list_block_comments_response.dart';

@@ -77,6 +77,11 @@ class AccountsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountResponse.FromString,
                 )
+        self.IsAccountValidate = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/IsAccountValidate',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.IsAccountValidateRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.IsAccountValidateResponse.FromString,
+                )
         self.SendValidationToken = channel.unary_unary(
                 '/noted.accounts.v1.AccountsAPI/SendValidationToken',
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.SendValidationTokenRequest.SerializeToString,
@@ -192,6 +197,13 @@ class AccountsAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def IsAccountValidate(self, request, context):
+        """Check if the account is validate.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SendValidationToken(self, request, context):
         """Send validation email again.
         """
@@ -289,6 +301,11 @@ def add_AccountsAPIServicer_to_server(servicer, server):
                     servicer.ValidateAccount,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountResponse.SerializeToString,
+            ),
+            'IsAccountValidate': grpc.unary_unary_rpc_method_handler(
+                    servicer.IsAccountValidate,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.IsAccountValidateRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.IsAccountValidateResponse.SerializeToString,
             ),
             'SendValidationToken': grpc.unary_unary_rpc_method_handler(
                     servicer.SendValidationToken,
@@ -529,6 +546,23 @@ class AccountsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/ValidateAccount',
             noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountRequest.SerializeToString,
             noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def IsAccountValidate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/IsAccountValidate',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.IsAccountValidateRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.IsAccountValidateResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

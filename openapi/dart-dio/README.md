@@ -73,6 +73,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount**](doc/DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Allows getting an account by ID or searching for one through email.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount2**](doc/DefaultApi.md#accountsapigetaccount2) | **POST** /search/accounts | Allows getting an account by ID or searching for one through email.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccountProfilePicture**](doc/DefaultApi.md#accountsapigetaccountprofilepicture) | **GET** /accounts/{accountId}/picture | 
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIIsAccountValidate**](doc/DefaultApi.md#accountsapiisaccountvalidate) | **GET** /accounts/{accountId}/is_validate | Check if the account is validate.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIListAccounts**](doc/DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIRegisterUserToMobileBeta**](doc/DefaultApi.md#accountsapiregisterusertomobilebeta) | **POST** /beta/mobile | Registers the user to the mobile application beta.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPISendValidationToken**](doc/DefaultApi.md#accountsapisendvalidationtoken) | **POST** /accounts/{accountId}/send_validation_token | Send validation email again.
@@ -195,6 +196,7 @@ Class | Method | HTTP request | Description
  - [V1ImageType](doc/V1ImageType.md)
  - [V1ImageWidget](doc/V1ImageWidget.md)
  - [V1InsertBlockResponse](doc/V1InsertBlockResponse.md)
+ - [V1IsAccountValidateResponse](doc/V1IsAccountValidateResponse.md)
  - [V1ListAccountsResponse](doc/V1ListAccountsResponse.md)
  - [V1ListActivitiesResponse](doc/V1ListActivitiesResponse.md)
  - [V1ListBlockCommentsResponse](doc/V1ListBlockCommentsResponse.md)

@@ -31,6 +31,7 @@ const (
 	AccountsAPI_UploadAccountProfilePicture_FullMethodName        = "/noted.accounts.v1.AccountsAPI/UploadAccountProfilePicture"
 	AccountsAPI_GetAccountProfilePicture_FullMethodName           = "/noted.accounts.v1.AccountsAPI/GetAccountProfilePicture"
 	AccountsAPI_ValidateAccount_FullMethodName                    = "/noted.accounts.v1.AccountsAPI/ValidateAccount"
+	AccountsAPI_IsAccountValidate_FullMethodName                  = "/noted.accounts.v1.AccountsAPI/IsAccountValidate"
 	AccountsAPI_SendValidationToken_FullMethodName                = "/noted.accounts.v1.AccountsAPI/SendValidationToken"
 	AccountsAPI_SendGroupInviteMail_FullMethodName                = "/noted.accounts.v1.AccountsAPI/SendGroupInviteMail"
 	AccountsAPI_Authenticate_FullMethodName                       = "/noted.accounts.v1.AccountsAPI/Authenticate"
@@ -64,6 +65,8 @@ type AccountsAPIClient interface {
 	GetAccountProfilePicture(ctx context.Context, in *GetAccountProfilePictureRequest, opts ...grpc.CallOption) (*GetAccountProfilePictureResponse, error)
 	// Validate account email.
 	ValidateAccount(ctx context.Context, in *ValidateAccountRequest, opts ...grpc.CallOption) (*ValidateAccountResponse, error)
+	// Check if the account is validate.
+	IsAccountValidate(ctx context.Context, in *IsAccountValidateRequest, opts ...grpc.CallOption) (*IsAccountValidateResponse, error)
 	// Send validation email again.
 	SendValidationToken(ctx context.Context, in *SendValidationTokenRequest, opts ...grpc.CallOption) (*SendValidationTokenResponse, error)
 	// Send Email to recipient account to notify group invitation.
@@ -192,6 +195,15 @@ func (c *accountsAPIClient) ValidateAccount(ctx context.Context, in *ValidateAcc
 	return out, nil
 }
 
+func (c *accountsAPIClient) IsAccountValidate(ctx context.Context, in *IsAccountValidateRequest, opts ...grpc.CallOption) (*IsAccountValidateResponse, error) {
+	out := new(IsAccountValidateResponse)
+	err := c.cc.Invoke(ctx, AccountsAPI_IsAccountValidate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountsAPIClient) SendValidationToken(ctx context.Context, in *SendValidationTokenRequest, opts ...grpc.CallOption) (*SendValidationTokenResponse, error) {
 	out := new(SendValidationTokenResponse)
 	err := c.cc.Invoke(ctx, AccountsAPI_SendValidationToken_FullMethodName, in, out, opts...)
@@ -263,6 +275,8 @@ type AccountsAPIServer interface {
 	GetAccountProfilePicture(context.Context, *GetAccountProfilePictureRequest) (*GetAccountProfilePictureResponse, error)
 	// Validate account email.
 	ValidateAccount(context.Context, *ValidateAccountRequest) (*ValidateAccountResponse, error)
+	// Check if the account is validate.
+	IsAccountValidate(context.Context, *IsAccountValidateRequest) (*IsAccountValidateResponse, error)
 	// Send validation email again.
 	SendValidationToken(context.Context, *SendValidationTokenRequest) (*SendValidationTokenResponse, error)
 	// Send Email to recipient account to notify group invitation.
@@ -315,6 +329,9 @@ func (UnimplementedAccountsAPIServer) GetAccountProfilePicture(context.Context, 
 }
 func (UnimplementedAccountsAPIServer) ValidateAccount(context.Context, *ValidateAccountRequest) (*ValidateAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateAccount not implemented")
+}
+func (UnimplementedAccountsAPIServer) IsAccountValidate(context.Context, *IsAccountValidateRequest) (*IsAccountValidateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsAccountValidate not implemented")
 }
 func (UnimplementedAccountsAPIServer) SendValidationToken(context.Context, *SendValidationTokenRequest) (*SendValidationTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendValidationToken not implemented")
@@ -560,6 +577,24 @@ func _AccountsAPI_ValidateAccount_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountsAPI_IsAccountValidate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsAccountValidateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountsAPIServer).IsAccountValidate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountsAPI_IsAccountValidate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountsAPIServer).IsAccountValidate(ctx, req.(*IsAccountValidateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AccountsAPI_SendValidationToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SendValidationTokenRequest)
 	if err := dec(in); err != nil {
@@ -704,6 +739,10 @@ var AccountsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ValidateAccount",
 			Handler:    _AccountsAPI_ValidateAccount_Handler,
+		},
+		{
+			MethodName: "IsAccountValidate",
+			Handler:    _AccountsAPI_IsAccountValidate_Handler,
 		},
 		{
 			MethodName: "SendValidationToken",
