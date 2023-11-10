@@ -148,6 +148,14 @@ service AccountsAPI {
         };
     }
 
+    // Send validation email again.
+    rpc SendValidationToken(SendValidationTokenRequest) returns (SendValidationTokenResponse) {
+        option (google.api.http) = {
+            post: "/accounts/{account_id}/send_validation_token",
+            body: "*",
+        };
+    }
+
     // Send Email to recipient account to notify group invitation.
     rpc SendGroupInviteMail(SendGroupInviteMailRequest) returns (SendGroupInviteMailResponse) {}
 
@@ -280,6 +288,14 @@ message ValidateAccountRequest {
 }
 
 message ValidateAccountResponse {
+    Account account = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message SendValidationTokenRequest {
+    string account_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message SendValidationTokenResponse {
     Account account = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
