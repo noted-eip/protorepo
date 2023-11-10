@@ -338,7 +338,7 @@ message IsAccountValidateRequest {
 }
 
 message IsAccountValidateResponse {
-    bool isAccountValidate = 1 [(google.api.field_behavior) = REQUIRED];
+    bool is_account_validate = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 message GetAccountProfilePictureRequest {
