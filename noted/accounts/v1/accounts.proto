@@ -304,9 +304,7 @@ message SendValidationTokenRequest {
     string password = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
-message SendValidationTokenResponse {
-    Account account = 1 [(google.api.field_behavior) = REQUIRED];
-}
+message SendValidationTokenResponse {}
 
 message AuthenticateGoogleRequest {
     string client_access_token = 1 [(google.api.field_behavior) = REQUIRED];
