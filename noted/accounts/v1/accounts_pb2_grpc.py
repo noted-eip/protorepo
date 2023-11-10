@@ -77,6 +77,11 @@ class AccountsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountResponse.FromString,
                 )
+        self.SendValidationToken = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/SendValidationToken',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.SendValidationTokenRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.SendValidationTokenResponse.FromString,
+                )
         self.SendGroupInviteMail = channel.unary_unary(
                 '/noted.accounts.v1.AccountsAPI/SendGroupInviteMail',
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.SendGroupInviteMailRequest.SerializeToString,
@@ -187,6 +192,13 @@ class AccountsAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SendValidationToken(self, request, context):
+        """Send validation email again.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def SendGroupInviteMail(self, request, context):
         """Send Email to recipient account to notify group invitation.
         """
@@ -277,6 +289,11 @@ def add_AccountsAPIServicer_to_server(servicer, server):
                     servicer.ValidateAccount,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountResponse.SerializeToString,
+            ),
+            'SendValidationToken': grpc.unary_unary_rpc_method_handler(
+                    servicer.SendValidationToken,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.SendValidationTokenRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.SendValidationTokenResponse.SerializeToString,
             ),
             'SendGroupInviteMail': grpc.unary_unary_rpc_method_handler(
                     servicer.SendGroupInviteMail,
@@ -512,6 +529,23 @@ class AccountsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/ValidateAccount',
             noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountRequest.SerializeToString,
             noted_dot_accounts_dot_v1_dot_accounts__pb2.ValidateAccountResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SendValidationToken(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/SendValidationToken',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.SendValidationTokenRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.SendValidationTokenResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

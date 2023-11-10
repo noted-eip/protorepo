@@ -1701,6 +1701,19 @@ export interface V1SendInviteResponse {
 /**
  * 
  * @export
+ * @interface V1SendValidationTokenResponse
+ */
+export interface V1SendValidationTokenResponse {
+    /**
+     * 
+     * @type {V1Account}
+     * @memberof V1SendValidationTokenResponse
+     */
+    'account': V1Account;
+}
+/**
+ * 
+ * @export
  * @interface V1StreamInvitesResponse
  */
 export interface V1StreamInvitesResponse {
@@ -2303,6 +2316,46 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'body' is not null or undefined
             assertParamExists('accountsAPIRegisterUserToMobileBeta', 'body', body)
             const localVarPath = `/beta/mobile`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Send validation email again.
+         * @param {string} accountId 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPISendValidationToken: async (accountId: string, body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsAPISendValidationToken', 'accountId', accountId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPISendValidationToken', 'body', body)
+            const localVarPath = `/accounts/{accountId}/send_validation_token`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4333,6 +4386,20 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Send validation email again.
+         * @param {string} accountId 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPISendValidationToken(accountId: string, body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1SendValidationTokenResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPISendValidationToken(accountId, body, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPISendValidationToken']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Must be account owner. Can only update `account.name`.
          * @param {string} accountId 
          * @param {V1Account} account 
@@ -5098,6 +5165,17 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Send validation email again.
+         * @param {string} accountId 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPISendValidationToken(accountId: string, body: object, options?: any): AxiosPromise<V1SendValidationTokenResponse> {
+            return localVarFp.accountsAPISendValidationToken(accountId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Must be account owner. Can only update `account.name`.
          * @param {string} accountId 
          * @param {V1Account} account 
@@ -5746,6 +5824,19 @@ export class DefaultApi extends BaseAPI {
      */
     public accountsAPIRegisterUserToMobileBeta(body: V1RegisterUserToMobileBetaRequest, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).accountsAPIRegisterUserToMobileBeta(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Send validation email again.
+     * @param {string} accountId 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPISendValidationToken(accountId: string, body: object, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPISendValidationToken(accountId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

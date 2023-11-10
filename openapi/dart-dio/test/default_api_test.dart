@@ -82,6 +82,13 @@ void main() {
       // TODO
     });
 
+    // Send validation email again.
+    //
+    //Future<V1SendValidationTokenResponse> accountsAPISendValidationToken(String accountId, JsonObject body) async
+    test('test accountsAPISendValidationToken', () async {
+      // TODO
+    });
+
     // Must be account owner. Can only update `account.name`.
     //
     //Future<V1UpdateAccountResponse> accountsAPIUpdateAccount(String accountId, V1Account account) async

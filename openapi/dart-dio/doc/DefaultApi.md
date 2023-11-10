@@ -20,6 +20,7 @@ Method | HTTP request | Description
 [**accountsAPIGetAccountProfilePicture**](DefaultApi.md#accountsapigetaccountprofilepicture) | **GET** /accounts/{accountId}/picture | 
 [**accountsAPIListAccounts**](DefaultApi.md#accountsapilistaccounts) | **GET** /accounts | List users based on email regex.
 [**accountsAPIRegisterUserToMobileBeta**](DefaultApi.md#accountsapiregisterusertomobilebeta) | **POST** /beta/mobile | Registers the user to the mobile application beta.
+[**accountsAPISendValidationToken**](DefaultApi.md#accountsapisendvalidationtoken) | **POST** /accounts/{accountId}/send_validation_token | Send validation email again.
 [**accountsAPIUpdateAccount**](DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
 [**accountsAPIUpdateAccountPassword**](DefaultApi.md#accountsapiupdateaccountpassword) | **PATCH** /accounts/{accountId}/password | Update account password.
 [**accountsAPIUploadAccountProfilePicture**](DefaultApi.md#accountsapiuploadaccountprofilepicture) | **POST** /accounts/{accountId}/picture | 
@@ -512,6 +513,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**JsonObject**](JsonObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **accountsAPISendValidationToken**
+> V1SendValidationTokenResponse accountsAPISendValidationToken(accountId, body)
+
+Send validation email again.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String accountId = accountId_example; // String | 
+final JsonObject body = Object; // JsonObject | 
+
+try {
+    final response = api.accountsAPISendValidationToken(accountId, body);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->accountsAPISendValidationToken: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountId** | **String**|  | 
+ **body** | **JsonObject**|  | 
+
+### Return type
+
+[**V1SendValidationTokenResponse**](V1SendValidationTokenResponse.md)
 
 ### Authorization
 
