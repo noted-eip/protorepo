@@ -100,6 +100,7 @@ import 'package:openapi/src/model/v1_recipient.dart';
 import 'package:openapi/src/model/v1_register_user_to_mobile_beta_request.dart';
 import 'package:openapi/src/model/v1_send_conversation_message_response.dart';
 import 'package:openapi/src/model/v1_send_invite_response.dart';
+import 'package:openapi/src/model/v1_send_validation_token_response.dart';
 import 'package:openapi/src/model/v1_stream_invites_response.dart';
 import 'package:openapi/src/model/v1_summarize_response.dart';
 import 'package:openapi/src/model/v1_update_account_password_response.dart';
@@ -204,6 +205,7 @@ part 'serializers.g.dart';
   V1RegisterUserToMobileBetaRequest,
   V1SendConversationMessageResponse,
   V1SendInviteResponse,
+  V1SendValidationTokenResponse,
   V1StreamInvitesResponse,
   V1SummarizeResponse,
   V1UpdateAccountPasswordResponse,
