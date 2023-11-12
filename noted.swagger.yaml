@@ -132,7 +132,7 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/v1SendValidationTokenRequest'
-  /accounts/validate:
+  /accounts/validate/validation_token:
     post:
       summary: Validate account email.
       operationId: AccountsAPI_ValidateAccount

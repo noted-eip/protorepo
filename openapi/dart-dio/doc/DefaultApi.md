@@ -25,7 +25,7 @@ Method | HTTP request | Description
 [**accountsAPIUpdateAccount**](DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
 [**accountsAPIUpdateAccountPassword**](DefaultApi.md#accountsapiupdateaccountpassword) | **PATCH** /accounts/{accountId}/password | Update account password.
 [**accountsAPIUploadAccountProfilePicture**](DefaultApi.md#accountsapiuploadaccountprofilepicture) | **POST** /accounts/{accountId}/picture | 
-[**accountsAPIValidateAccount**](DefaultApi.md#accountsapivalidateaccount) | **POST** /accounts/validate | Validate account email.
+[**accountsAPIValidateAccount**](DefaultApi.md#accountsapivalidateaccount) | **POST** /accounts/validate/validation_token | Validate account email.
 [**groupsAPIAcceptInvite**](DefaultApi.md#groupsapiacceptinvite) | **POST** /groups/{groupId}/invites/{inviteId}/accept | Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
 [**groupsAPICreateGroup**](DefaultApi.md#groupsapicreategroup) | **POST** /groups | Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 [**groupsAPIDeleteGroup**](DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).

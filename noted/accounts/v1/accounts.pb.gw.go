@@ -1108,7 +1108,7 @@ func RegisterAccountsAPIHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/noted.accounts.v1.AccountsAPI/ValidateAccount", runtime.WithHTTPPathPattern("/accounts/validate"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/noted.accounts.v1.AccountsAPI/ValidateAccount", runtime.WithHTTPPathPattern("/accounts/validate/validation_token"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1539,7 +1539,7 @@ func RegisterAccountsAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/noted.accounts.v1.AccountsAPI/ValidateAccount", runtime.WithHTTPPathPattern("/accounts/validate"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/noted.accounts.v1.AccountsAPI/ValidateAccount", runtime.WithHTTPPathPattern("/accounts/validate/validation_token"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1691,7 +1691,7 @@ var (
 
 	pattern_AccountsAPI_GetAccountProfilePicture_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"accounts", "account_id", "picture"}, ""))
 
-	pattern_AccountsAPI_ValidateAccount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"accounts", "validate"}, ""))
+	pattern_AccountsAPI_ValidateAccount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"accounts", "validate", "validation_token"}, ""))
 
 	pattern_AccountsAPI_IsAccountValidate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"accounts", "is_validate"}, ""))
 

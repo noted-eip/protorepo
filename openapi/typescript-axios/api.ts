@@ -2581,7 +2581,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         accountsAPIValidateAccount: async (body: V1ValidateAccountRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('accountsAPIValidateAccount', 'body', body)
-            const localVarPath = `/accounts/validate`;
+            const localVarPath = `/accounts/validate/validation_token`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
