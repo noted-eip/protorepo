@@ -1,12 +1,17 @@
 import 'package:test/test.dart';
 import 'package:openapi/openapi.dart';
 
-// tests for AccountsAPIValidateAccountRequest
+// tests for V1ValidateAccountRequest
 void main() {
-  final instance = AccountsAPIValidateAccountRequestBuilder();
+  final instance = V1ValidateAccountRequestBuilder();
   // TODO add properties to the builder and call build()
 
-  group(AccountsAPIValidateAccountRequest, () {
+  group(V1ValidateAccountRequest, () {
+    // String email
+    test('to test the property `email`', () async {
+      // TODO
+    });
+
     // String password
     test('to test the property `password`', () async {
       // TODO

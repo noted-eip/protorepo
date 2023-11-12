@@ -117,7 +117,7 @@ void main() {
 
     // Validate account email.
     //
-    //Future<V1ValidateAccountResponse> accountsAPIValidateAccount(String email, AccountsAPIValidateAccountRequest body) async
+    //Future<V1ValidateAccountResponse> accountsAPIValidateAccount(V1ValidateAccountRequest body) async
     test('test accountsAPIValidateAccount', () async {
       // TODO
     });

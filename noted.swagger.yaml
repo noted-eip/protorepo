@@ -132,6 +132,25 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/v1SendValidationTokenRequest'
+  /accounts/validate:
+    post:
+      summary: Validate account email.
+      operationId: AccountsAPI_ValidateAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ValidateAccountResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1ValidateAccountRequest'
   /accounts/{accountId}:
     get:
       summary: Allows getting an account by ID or searching for one through email.
@@ -272,37 +291,6 @@ paths:
                 $ref: '#/definitions/accountsv1Image'
             required:
               - image
-  /accounts/{email}/validate:
-    patch:
-      summary: Validate account email.
-      operationId: AccountsAPI_ValidateAccount
-      responses:
-        "200":
-          description: A successful response.
-          schema:
-            $ref: '#/definitions/v1ValidateAccountResponse'
-        "404":
-          description: Resource not found or lacking permissions to access the resource.
-          schema:
-            $ref: '#/definitions/v1HttpError'
-      parameters:
-        - name: email
-          in: path
-          required: true
-          type: string
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              password:
-                type: string
-              validationToken:
-                type: string
-            required:
-              - password
-              - validationToken
   /authenticate:
     post:
       summary: Authenticate using the email and password flow.
@@ -2348,6 +2336,19 @@ definitions:
     type: object
   v1UseInviteLinkResponse:
     type: object
+  v1ValidateAccountRequest:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      validationToken:
+        type: string
+    required:
+      - email
+      - password
+      - validationToken
   v1ValidateAccountResponse:
     type: object
     properties:

@@ -625,23 +625,6 @@ func request_AccountsAPI_ValidateAccount_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["email"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "email")
-	}
-
-	protoReq.Email, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "email", err)
-	}
-
 	msg, err := client.ValidateAccount(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -657,23 +640,6 @@ func local_request_AccountsAPI_ValidateAccount_0(ctx context.Context, marshaler 
 	}
 	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["email"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "email")
-	}
-
-	protoReq.Email, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "email", err)
 	}
 
 	msg, err := server.ValidateAccount(ctx, &protoReq)
@@ -1134,7 +1100,7 @@ func RegisterAccountsAPIHandlerServer(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
-	mux.Handle("PATCH", pattern_AccountsAPI_ValidateAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AccountsAPI_ValidateAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -1142,7 +1108,7 @@ func RegisterAccountsAPIHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/noted.accounts.v1.AccountsAPI/ValidateAccount", runtime.WithHTTPPathPattern("/accounts/{email}/validate"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/noted.accounts.v1.AccountsAPI/ValidateAccount", runtime.WithHTTPPathPattern("/accounts/validate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1567,13 +1533,13 @@ func RegisterAccountsAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux
 
 	})
 
-	mux.Handle("PATCH", pattern_AccountsAPI_ValidateAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_AccountsAPI_ValidateAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/noted.accounts.v1.AccountsAPI/ValidateAccount", runtime.WithHTTPPathPattern("/accounts/{email}/validate"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/noted.accounts.v1.AccountsAPI/ValidateAccount", runtime.WithHTTPPathPattern("/accounts/validate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1725,7 +1691,7 @@ var (
 
 	pattern_AccountsAPI_GetAccountProfilePicture_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"accounts", "account_id", "picture"}, ""))
 
-	pattern_AccountsAPI_ValidateAccount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"accounts", "email", "validate"}, ""))
+	pattern_AccountsAPI_ValidateAccount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"accounts", "validate"}, ""))
 
 	pattern_AccountsAPI_IsAccountValidate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"accounts", "is_validate"}, ""))
 
