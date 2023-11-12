@@ -1,4 +1,4 @@
-# openapi.model.V1ValidateAccountRequest
+# openapi.model.AccountsAPIValidateAccountRequest
 
 ## Load the model package
 ```dart
@@ -8,7 +8,6 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **String** |  | 
 **password** | **String** |  | 
 **validationToken** | **String** |  | 
 

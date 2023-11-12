@@ -13,6 +13,7 @@ export 'package:openapi/src/api/default_api.dart';
 
 export 'package:openapi/src/model/accounts_api_update_account_password_request.dart';
 export 'package:openapi/src/model/accounts_api_upload_account_profile_picture_request.dart';
+export 'package:openapi/src/model/accounts_api_validate_account_request.dart';
 export 'package:openapi/src/model/accountsv1_image.dart';
 export 'package:openapi/src/model/block_code.dart';
 export 'package:openapi/src/model/block_comment.dart';
@@ -109,7 +110,6 @@ export 'package:openapi/src/model/v1_update_conversation_response.dart';
 export 'package:openapi/src/model/v1_update_group_response.dart';
 export 'package:openapi/src/model/v1_update_member_response.dart';
 export 'package:openapi/src/model/v1_update_note_response.dart';
-export 'package:openapi/src/model/v1_validate_account_request.dart';
 export 'package:openapi/src/model/v1_validate_account_response.dart';
 export 'package:openapi/src/model/v1_website_widget.dart';
 export 'package:openapi/src/model/v1_widget.dart';

@@ -25,7 +25,7 @@ Method | HTTP request | Description
 [**accountsAPIUpdateAccount**](DefaultApi.md#accountsapiupdateaccount) | **PATCH** /accounts/{accountId} | Must be account owner. Can only update &#x60;account.name&#x60;.
 [**accountsAPIUpdateAccountPassword**](DefaultApi.md#accountsapiupdateaccountpassword) | **PATCH** /accounts/{accountId}/password | Update account password.
 [**accountsAPIUploadAccountProfilePicture**](DefaultApi.md#accountsapiuploadaccountprofilepicture) | **POST** /accounts/{accountId}/picture | 
-[**accountsAPIValidateAccount**](DefaultApi.md#accountsapivalidateaccount) | **PATCH** /accounts/validate | Validate account email.
+[**accountsAPIValidateAccount**](DefaultApi.md#accountsapivalidateaccount) | **PATCH** /accounts/{email}/validate | Validate account email.
 [**groupsAPIAcceptInvite**](DefaultApi.md#groupsapiacceptinvite) | **POST** /groups/{groupId}/invites/{inviteId}/accept | Must be recipient. Accepting an invitation automatically adds the recipient to the group and deletes the invite.
 [**groupsAPICreateGroup**](DefaultApi.md#groupsapicreategroup) | **POST** /groups | Creates a group with a single administrator member (the authenticated user). Must be authenticated.
 [**groupsAPIDeleteGroup**](DefaultApi.md#groupsapideletegroup) | **DELETE** /groups/{groupId} | Must be group administrator. Deletes all the associated resources (members, notes).
@@ -740,7 +740,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **accountsAPIValidateAccount**
-> V1ValidateAccountResponse accountsAPIValidateAccount(body)
+> V1ValidateAccountResponse accountsAPIValidateAccount(email, body)
 
 Validate account email.
 
@@ -749,10 +749,11 @@ Validate account email.
 import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
-final V1ValidateAccountRequest body = ; // V1ValidateAccountRequest | 
+final String email = email_example; // String | 
+final AccountsAPIValidateAccountRequest body = ; // AccountsAPIValidateAccountRequest | 
 
 try {
-    final response = api.accountsAPIValidateAccount(body);
+    final response = api.accountsAPIValidateAccount(email, body);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling DefaultApi->accountsAPIValidateAccount: $e\n');
@@ -763,7 +764,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**V1ValidateAccountRequest**](V1ValidateAccountRequest.md)|  | 
+ **email** | **String**|  | 
+ **body** | [**AccountsAPIValidateAccountRequest**](AccountsAPIValidateAccountRequest.md)|  | 
 
 ### Return type
 

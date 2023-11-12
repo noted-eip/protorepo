@@ -11,6 +11,7 @@ import 'package:built_value/json_object.dart';
 import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/accounts_api_update_account_password_request.dart';
 import 'package:openapi/src/model/accounts_api_upload_account_profile_picture_request.dart';
+import 'package:openapi/src/model/accounts_api_validate_account_request.dart';
 import 'package:openapi/src/model/groups_api_send_invite_request.dart';
 import 'package:openapi/src/model/groups_api_update_group_request.dart';
 import 'package:openapi/src/model/notes_api_change_note_edit_permission_request.dart';
@@ -71,7 +72,6 @@ import 'package:openapi/src/model/v1_update_block_response.dart';
 import 'package:openapi/src/model/v1_update_group_response.dart';
 import 'package:openapi/src/model/v1_update_member_response.dart';
 import 'package:openapi/src/model/v1_update_note_response.dart';
-import 'package:openapi/src/model/v1_validate_account_request.dart';
 import 'package:openapi/src/model/v1_validate_account_response.dart';
 
 class DefaultApi {
@@ -1538,6 +1538,7 @@ class DefaultApi {
   /// 
   ///
   /// Parameters:
+  /// * [email] 
   /// * [body] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -1549,7 +1550,8 @@ class DefaultApi {
   /// Returns a [Future] containing a [Response] with a [V1ValidateAccountResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<V1ValidateAccountResponse>> accountsAPIValidateAccount({ 
-    required V1ValidateAccountRequest body,
+    required String email,
+    required AccountsAPIValidateAccountRequest body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1557,7 +1559,7 @@ class DefaultApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/validate';
+    final _path = r'/accounts/{email}/validate'.replaceAll('{' r'email' '}', encodeQueryParameter(_serializers, email, const FullType(String)).toString());
     final _options = Options(
       method: r'PATCH',
       headers: <String, dynamic>{
@@ -1574,7 +1576,7 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(V1ValidateAccountRequest);
+      const _type = FullType(AccountsAPIValidateAccountRequest);
       _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     } catch(error, stackTrace) {
