@@ -6,53 +6,44 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'v1_validate_account_request.g.dart';
+part 'accounts_api_validate_account_request.g.dart';
 
-/// V1ValidateAccountRequest
+/// AccountsAPIValidateAccountRequest
 ///
 /// Properties:
-/// * [email] 
 /// * [password] 
 /// * [validationToken] 
 @BuiltValue()
-abstract class V1ValidateAccountRequest implements Built<V1ValidateAccountRequest, V1ValidateAccountRequestBuilder> {
-  @BuiltValueField(wireName: r'email')
-  String get email;
-
+abstract class AccountsAPIValidateAccountRequest implements Built<AccountsAPIValidateAccountRequest, AccountsAPIValidateAccountRequestBuilder> {
   @BuiltValueField(wireName: r'password')
   String get password;
 
   @BuiltValueField(wireName: r'validationToken')
   String get validationToken;
 
-  V1ValidateAccountRequest._();
+  AccountsAPIValidateAccountRequest._();
 
-  factory V1ValidateAccountRequest([void updates(V1ValidateAccountRequestBuilder b)]) = _$V1ValidateAccountRequest;
+  factory AccountsAPIValidateAccountRequest([void updates(AccountsAPIValidateAccountRequestBuilder b)]) = _$AccountsAPIValidateAccountRequest;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(V1ValidateAccountRequestBuilder b) => b;
+  static void _defaults(AccountsAPIValidateAccountRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<V1ValidateAccountRequest> get serializer => _$V1ValidateAccountRequestSerializer();
+  static Serializer<AccountsAPIValidateAccountRequest> get serializer => _$AccountsAPIValidateAccountRequestSerializer();
 }
 
-class _$V1ValidateAccountRequestSerializer implements PrimitiveSerializer<V1ValidateAccountRequest> {
+class _$AccountsAPIValidateAccountRequestSerializer implements PrimitiveSerializer<AccountsAPIValidateAccountRequest> {
   @override
-  final Iterable<Type> types = const [V1ValidateAccountRequest, _$V1ValidateAccountRequest];
+  final Iterable<Type> types = const [AccountsAPIValidateAccountRequest, _$AccountsAPIValidateAccountRequest];
 
   @override
-  final String wireName = r'V1ValidateAccountRequest';
+  final String wireName = r'AccountsAPIValidateAccountRequest';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    V1ValidateAccountRequest object, {
+    AccountsAPIValidateAccountRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'email';
-    yield serializers.serialize(
-      object.email,
-      specifiedType: const FullType(String),
-    );
     yield r'password';
     yield serializers.serialize(
       object.password,
@@ -68,7 +59,7 @@ class _$V1ValidateAccountRequestSerializer implements PrimitiveSerializer<V1Vali
   @override
   Object serialize(
     Serializers serializers,
-    V1ValidateAccountRequest object, {
+    AccountsAPIValidateAccountRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -79,20 +70,13 @@ class _$V1ValidateAccountRequestSerializer implements PrimitiveSerializer<V1Vali
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required V1ValidateAccountRequestBuilder result,
+    required AccountsAPIValidateAccountRequestBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'email':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.email = valueDes;
-          break;
         case r'password':
           final valueDes = serializers.deserialize(
             value,
@@ -116,12 +100,12 @@ class _$V1ValidateAccountRequestSerializer implements PrimitiveSerializer<V1Vali
   }
 
   @override
-  V1ValidateAccountRequest deserialize(
+  AccountsAPIValidateAccountRequest deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = V1ValidateAccountRequestBuilder();
+    final result = AccountsAPIValidateAccountRequestBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(
