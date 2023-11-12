@@ -143,7 +143,7 @@ service AccountsAPI {
     // Validate account email.
     rpc ValidateAccount(ValidateAccountRequest) returns (ValidateAccountResponse) {
         option (google.api.http) = {
-            post: "/accounts/validate",
+            post: "/accounts/validate/validation_token",
             body: "*",
         };
     }
