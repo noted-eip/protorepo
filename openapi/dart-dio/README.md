@@ -106,7 +106,6 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUseInviteLink**](doc/DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIChangeNoteEditPermission**](doc/DefaultApi.md#notesapichangenoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPICreateBlockComment**](doc/DefaultApi.md#notesapicreateblockcomment) | **POST** /groups/{groupId}/notes/{noteId}/{blockId}/comment | 
-[*DefaultApi*](doc/DefaultApi.md) | [**notesAPICreateNote**](doc/DefaultApi.md#notesapicreatenote) | **POST** /groups/{groupId}/notes | Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteBlock**](doc/DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Delete a block in a note and replace the indexes of the others.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteBlockComment**](doc/DefaultApi.md#notesapideleteblockcomment) | **DELETE** /groups/{groupId}/notes/{noteId}/{blockId}/comment/{commentId} | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIDeleteNote**](doc/DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author. Delete a single note in database.
@@ -137,7 +136,6 @@ Class | Method | HTTP request | Description
  - [GroupsAPIUpdateGroupRequest](doc/GroupsAPIUpdateGroupRequest.md)
  - [NotesAPIChangeNoteEditPermissionRequest](doc/NotesAPIChangeNoteEditPermissionRequest.md)
  - [NotesAPICreateBlockCommentRequest](doc/NotesAPICreateBlockCommentRequest.md)
- - [NotesAPICreateNoteRequest](doc/NotesAPICreateNoteRequest.md)
  - [NotesAPIInsertBlockRequest](doc/NotesAPIInsertBlockRequest.md)
  - [NotesAPIUpdateBlockIndexRequest](doc/NotesAPIUpdateBlockIndexRequest.md)
  - [StreamResultOfV1StreamInvitesResponse](doc/StreamResultOfV1StreamInvitesResponse.md)

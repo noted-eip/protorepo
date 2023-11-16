@@ -289,13 +289,6 @@ void main() {
       // TODO
     });
 
-    // Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
-    //
-    //Future<V1CreateNoteResponse> notesAPICreateNote(String groupId, NotesAPICreateNoteRequest body) async
-    test('test notesAPICreateNote', () async {
-      // TODO
-    });
-
     // Must be author. Delete a block in a note and replace the indexes of the others.
     //
     //Future<JsonObject> notesAPIDeleteBlock(String groupId, String noteId, String blockId) async
