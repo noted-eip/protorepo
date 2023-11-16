@@ -98,16 +98,16 @@ message Block {
         }
         optional Color color = 3;
     }
-    repeated TextStyle styles = 19;
+    repeated TextStyle styles = 3;
 
     oneof data {
-        string heading = 3;
-        string paragraph = 4;
-        string number_point = 5;
-        string bullet_point = 6;
-        Image image = 16;
-        Code code = 17;
-        string math = 18;
+        string heading = 4;
+        string paragraph = 5;
+        string number_point = 6;
+        string bullet_point = 7;
+        Image image = 8;
+        Code code = 9;
+        string math = 10;
     }
 
     message Comment {
@@ -115,9 +115,7 @@ message Block {
         string author_id = 2;
         string content = 3;
     }
-    repeated Comment thread = 20;
-
-    reserved 7, 8, 9, 10, 11, 12, 13, 14, 15;
+    repeated Comment thread = 11;
 }
 
 message QuizQuestion {
