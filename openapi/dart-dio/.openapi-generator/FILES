@@ -14,6 +14,7 @@ doc/GroupsAPISendInviteRequest.md
 doc/GroupsAPIUpdateGroupRequest.md
 doc/NotesAPIChangeNoteEditPermissionRequest.md
 doc/NotesAPICreateBlockCommentRequest.md
+doc/NotesAPICreateNoteRequest.md
 doc/NotesAPIInsertBlockRequest.md
 doc/NotesAPIUpdateBlockIndexRequest.md
 doc/StreamResultOfV1StreamInvitesResponse.md
@@ -126,6 +127,7 @@ lib/src/model/groups_api_send_invite_request.dart
 lib/src/model/groups_api_update_group_request.dart
 lib/src/model/notes_api_change_note_edit_permission_request.dart
 lib/src/model/notes_api_create_block_comment_request.dart
+lib/src/model/notes_api_create_note_request.dart
 lib/src/model/notes_api_insert_block_request.dart
 lib/src/model/notes_api_update_block_index_request.dart
 lib/src/model/stream_result_of_v1_stream_invites_response.dart
@@ -230,6 +232,7 @@ test/groups_api_send_invite_request_test.dart
 test/groups_api_update_group_request_test.dart
 test/notes_api_change_note_edit_permission_request_test.dart
 test/notes_api_create_block_comment_request_test.dart
+test/notes_api_create_note_request_test.dart
 test/notes_api_insert_block_request_test.dart
 test/notes_api_update_block_index_request_test.dart
 test/stream_result_of_v1_stream_invites_response_test.dart

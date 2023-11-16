@@ -51,6 +51,7 @@ Method | HTTP request | Description
 [**groupsAPIUseInviteLink**](DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
 [**notesAPIChangeNoteEditPermission**](DefaultApi.md#notesapichangenoteeditpermission) | **POST** /groups/{groupId}/notes/{noteId}/permission | 
 [**notesAPICreateBlockComment**](DefaultApi.md#notesapicreateblockcomment) | **POST** /groups/{groupId}/notes/{noteId}/{blockId}/comment | 
+[**notesAPICreateNote**](DefaultApi.md#notesapicreatenote) | **POST** /groups/{groupId}/notes | Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
 [**notesAPIDeleteBlock**](DefaultApi.md#notesapideleteblock) | **DELETE** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Delete a block in a note and replace the indexes of the others.
 [**notesAPIDeleteBlockComment**](DefaultApi.md#notesapideleteblockcomment) | **DELETE** /groups/{groupId}/notes/{noteId}/{blockId}/comment/{commentId} | 
 [**notesAPIDeleteNote**](DefaultApi.md#notesapideletenote) | **DELETE** /groups/{groupId}/notes/{noteId} | Must be author. Delete a single note in database.
@@ -1860,6 +1861,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1CreateBlockCommentResponse**](V1CreateBlockCommentResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **notesAPICreateNote**
+> V1CreateNoteResponse notesAPICreateNote(groupId, body)
+
+Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final NotesAPICreateNoteRequest body = ; // NotesAPICreateNoteRequest | 
+
+try {
+    final response = api.notesAPICreateNote(groupId, body);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->notesAPICreateNote: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **body** | [**NotesAPICreateNoteRequest**](NotesAPICreateNoteRequest.md)|  | 
+
+### Return type
+
+[**V1CreateNoteResponse**](V1CreateNoteResponse.md)
 
 ### Authorization
 

@@ -236,6 +236,31 @@ export interface NotesAPICreateBlockCommentRequest {
 /**
  * 
  * @export
+ * @interface NotesAPICreateNoteRequest
+ */
+export interface NotesAPICreateNoteRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof NotesAPICreateNoteRequest
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {Array<V1Block>}
+     * @memberof NotesAPICreateNoteRequest
+     */
+    'blocks'?: Array<V1Block>;
+    /**
+     * 
+     * @type {string}
+     * @memberof NotesAPICreateNoteRequest
+     */
+    'lang'?: string;
+}
+/**
+ * 
+ * @export
  * @interface NotesAPIInsertBlockRequest
  */
 export interface NotesAPIInsertBlockRequest {
@@ -3597,6 +3622,46 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
+         * @param {string} groupId 
+         * @param {NotesAPICreateNoteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPICreateNote: async (groupId: string, body: NotesAPICreateNoteRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPICreateNote', 'groupId', groupId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('notesAPICreateNote', 'body', body)
+            const localVarPath = `/groups/{groupId}/notes`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be author. Delete a block in a note and replace the indexes of the others.
          * @param {string} groupId 
          * @param {string} noteId 
@@ -4824,6 +4889,20 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
+         * @param {string} groupId 
+         * @param {NotesAPICreateNoteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPICreateNote(groupId: string, body: NotesAPICreateNoteRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateNoteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPICreateNote(groupId, body, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPICreateNote']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Must be author. Delete a block in a note and replace the indexes of the others.
          * @param {string} groupId 
          * @param {string} noteId 
@@ -5505,6 +5584,17 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         notesAPICreateBlockComment(groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentRequest, options?: any): AxiosPromise<V1CreateBlockCommentResponse> {
             return localVarFp.notesAPICreateBlockComment(groupId, noteId, blockId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
+         * @param {string} groupId 
+         * @param {NotesAPICreateNoteRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPICreateNote(groupId: string, body: NotesAPICreateNoteRequest, options?: any): AxiosPromise<V1CreateNoteResponse> {
+            return localVarFp.notesAPICreateNote(groupId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6227,6 +6317,19 @@ export class DefaultApi extends BaseAPI {
      */
     public notesAPICreateBlockComment(groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentRequest, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPICreateBlockComment(groupId, noteId, blockId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
+     * @param {string} groupId 
+     * @param {NotesAPICreateNoteRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPICreateNote(groupId: string, body: NotesAPICreateNoteRequest, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPICreateNote(groupId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

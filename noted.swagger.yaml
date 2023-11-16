@@ -900,6 +900,38 @@ paths:
           required: false
           type: integer
           format: int32
+    post:
+      summary: Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
+      operationId: NotesAPI_CreateNote
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1CreateNoteResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              blocks:
+                type: array
+                items:
+                  type: object
+                  $ref: '#/definitions/v1Block'
+              lang:
+                type: string
   /groups/{groupId}/notes/{noteId}:
     get:
       summary: Must be group member or author. Return a note from id provided.
