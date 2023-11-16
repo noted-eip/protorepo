@@ -25,7 +25,6 @@ import 'package:openapi/src/model/groups_api_send_invite_request.dart';
 import 'package:openapi/src/model/groups_api_update_group_request.dart';
 import 'package:openapi/src/model/notes_api_change_note_edit_permission_request.dart';
 import 'package:openapi/src/model/notes_api_create_block_comment_request.dart';
-import 'package:openapi/src/model/notes_api_create_note_request.dart';
 import 'package:openapi/src/model/notes_api_insert_block_request.dart';
 import 'package:openapi/src/model/notes_api_update_block_index_request.dart';
 import 'package:openapi/src/model/stream_result_of_v1_stream_invites_response.dart';
@@ -131,7 +130,6 @@ part 'serializers.g.dart';
   GroupsAPIUpdateGroupRequest,
   NotesAPIChangeNoteEditPermissionRequest,
   NotesAPICreateBlockCommentRequest,
-  NotesAPICreateNoteRequest,
   NotesAPIInsertBlockRequest,
   NotesAPIUpdateBlockIndexRequest,
   StreamResultOfV1StreamInvitesResponse,
