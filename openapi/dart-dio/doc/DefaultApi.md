@@ -46,6 +46,7 @@ Method | HTTP request | Description
 [**groupsAPIRevokeInviteLink**](DefaultApi.md#groupsapirevokeinvitelink) | **DELETE** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
 [**groupsAPISendInvite**](DefaultApi.md#groupsapisendinvite) | **POST** /groups/{groupId}/invites | The sender defaults to the authenticated user. Must be group member.
 [**groupsAPIStreamInvites**](DefaultApi.md#groupsapistreaminvites) | **GET** /groups/invites/{identifierAccountId}/stream | 
+[**groupsAPITrackScore**](DefaultApi.md#groupsapitrackscore) | **POST** /groups/{groupId}/notes/{noteId}/track_score | 
 [**groupsAPIUpdateGroup**](DefaultApi.md#groupsapiupdategroup) | **PATCH** /groups/{groupId} | Must be group administrator.
 [**groupsAPIUpdateMember**](DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
 [**groupsAPIUseInviteLink**](DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
@@ -63,7 +64,6 @@ Method | HTTP request | Description
 [**notesAPIListNotes**](DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIListNotes2**](DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIListQuizs**](DefaultApi.md#notesapilistquizs) | **GET** /groups/{groupId}/notes/{noteId}/quizs | 
-[**notesAPITrackScore**](DefaultApi.md#notesapitrackscore) | **POST** /groups/{groupId}/notes/{noteId}/track_score | 
 [**notesAPIUpdateBlock**](DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Update a block content.
 [**notesAPIUpdateBlockIndex**](DefaultApi.md#notesapiupdateblockindex) | **POST** /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index | Must be author. Update a block index.
 [**notesAPIUpdateNote**](DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60; or &#x60;blocks&#x60;.
@@ -1651,6 +1651,53 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **groupsAPITrackScore**
+> V1TrackScoreResponse groupsAPITrackScore(groupId, noteId, score, responses)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final String groupId = groupId_example; // String | 
+final String noteId = noteId_example; // String | 
+final int score = 56; // int | 
+final int responses = 56; // int | 
+
+try {
+    final response = api.groupsAPITrackScore(groupId, noteId, score, responses);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->groupsAPITrackScore: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **String**|  | 
+ **noteId** | **String**|  | 
+ **score** | **int**|  | [optional] 
+ **responses** | **int**|  | [optional] 
+
+### Return type
+
+[**V1TrackScoreResponse**](V1TrackScoreResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **groupsAPIUpdateGroup**
 > V1UpdateGroupResponse groupsAPIUpdateGroup(groupId, body)
 
@@ -2396,53 +2443,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1ListQuizsResponse**](V1ListQuizsResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **notesAPITrackScore**
-> V1TrackScoreResponse notesAPITrackScore(groupId, noteId, score, responses)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getDefaultApi();
-final String groupId = groupId_example; // String | 
-final String noteId = noteId_example; // String | 
-final int score = 56; // int | 
-final int responses = 56; // int | 
-
-try {
-    final response = api.notesAPITrackScore(groupId, noteId, score, responses);
-    print(response);
-} catch on DioException (e) {
-    print('Exception when calling DefaultApi->notesAPITrackScore: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **groupId** | **String**|  | 
- **noteId** | **String**|  | 
- **score** | **int**|  | [optional] 
- **responses** | **int**|  | [optional] 
-
-### Return type
-
-[**V1TrackScoreResponse**](V1TrackScoreResponse.md)
 
 ### Authorization
 

@@ -3453,6 +3453,53 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {number} [score] 
+         * @param {number} [responses] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPITrackScore: async (groupId: string, noteId: string, score?: number, responses?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('groupsAPITrackScore', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('groupsAPITrackScore', 'noteId', noteId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/track_score`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (score !== undefined) {
+                localVarQueryParameter['score'] = score;
+            }
+
+            if (responses !== undefined) {
+                localVarQueryParameter['responses'] = responses;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be group administrator.
          * @param {string} groupId 
          * @param {GroupsAPIUpdateGroupRequest} body 
@@ -4149,53 +4196,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} groupId 
-         * @param {string} noteId 
-         * @param {number} [score] 
-         * @param {number} [responses] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        notesAPITrackScore: async (groupId: string, noteId: string, score?: number, responses?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'groupId' is not null or undefined
-            assertParamExists('notesAPITrackScore', 'groupId', groupId)
-            // verify required parameter 'noteId' is not null or undefined
-            assertParamExists('notesAPITrackScore', 'noteId', noteId)
-            const localVarPath = `/groups/{groupId}/notes/{noteId}/track_score`
-                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
-                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (score !== undefined) {
-                localVarQueryParameter['score'] = score;
-            }
-
-            if (responses !== undefined) {
-                localVarQueryParameter['responses'] = responses;
-            }
 
 
     
@@ -4907,6 +4907,21 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {number} [score] 
+         * @param {number} [responses] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async groupsAPITrackScore(groupId: string, noteId: string, score?: number, responses?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1TrackScoreResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPITrackScore(groupId, noteId, score, responses, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.groupsAPITrackScore']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Must be group administrator.
          * @param {string} groupId 
          * @param {GroupsAPIUpdateGroupRequest} body 
@@ -5147,21 +5162,6 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListQuizs(groupId, noteId, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.notesAPIListQuizs']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {string} groupId 
-         * @param {string} noteId 
-         * @param {number} [score] 
-         * @param {number} [responses] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async notesAPITrackScore(groupId: string, noteId: string, score?: number, responses?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1TrackScoreResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPITrackScore(groupId, noteId, score, responses, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.notesAPITrackScore']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
@@ -5635,6 +5635,18 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {number} [score] 
+         * @param {number} [responses] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupsAPITrackScore(groupId: string, noteId: string, score?: number, responses?: number, options?: any): AxiosPromise<V1TrackScoreResponse> {
+            return localVarFp.groupsAPITrackScore(groupId, noteId, score, responses, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Must be group administrator.
          * @param {string} groupId 
          * @param {GroupsAPIUpdateGroupRequest} body 
@@ -5825,18 +5837,6 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         notesAPIListQuizs(groupId: string, noteId: string, options?: any): AxiosPromise<V1ListQuizsResponse> {
             return localVarFp.notesAPIListQuizs(groupId, noteId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} groupId 
-         * @param {string} noteId 
-         * @param {number} [score] 
-         * @param {number} [responses] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        notesAPITrackScore(groupId: string, noteId: string, score?: number, responses?: number, options?: any): AxiosPromise<V1TrackScoreResponse> {
-            return localVarFp.notesAPITrackScore(groupId, noteId, score, responses, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6371,6 +6371,20 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {number} [score] 
+     * @param {number} [responses] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public groupsAPITrackScore(groupId: string, noteId: string, score?: number, responses?: number, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPITrackScore(groupId, noteId, score, responses, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Must be group administrator.
      * @param {string} groupId 
      * @param {GroupsAPIUpdateGroupRequest} body 
@@ -6594,20 +6608,6 @@ export class DefaultApi extends BaseAPI {
      */
     public notesAPIListQuizs(groupId: string, noteId: string, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPIListQuizs(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} groupId 
-     * @param {string} noteId 
-     * @param {number} [score] 
-     * @param {number} [responses] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public notesAPITrackScore(groupId: string, noteId: string, score?: number, responses?: number, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).notesAPITrackScore(groupId, noteId, score, responses, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

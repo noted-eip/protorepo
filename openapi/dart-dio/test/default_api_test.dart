@@ -258,6 +258,11 @@ void main() {
       // TODO
     });
 
+    //Future<V1TrackScoreResponse> groupsAPITrackScore(String groupId, String noteId, { int score, int responses }) async
+    test('test groupsAPITrackScore', () async {
+      // TODO
+    });
+
     // Must be group administrator.
     //
     //Future<V1UpdateGroupResponse> groupsAPIUpdateGroup(String groupId, GroupsAPIUpdateGroupRequest body) async
@@ -360,11 +365,6 @@ void main() {
 
     //Future<V1ListQuizsResponse> notesAPIListQuizs(String groupId, String noteId) async
     test('test notesAPIListQuizs', () async {
-      // TODO
-    });
-
-    //Future<V1TrackScoreResponse> notesAPITrackScore(String groupId, String noteId, { int score, int responses }) async
-    test('test notesAPITrackScore', () async {
       // TODO
     });
 

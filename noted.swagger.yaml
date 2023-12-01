@@ -1232,7 +1232,7 @@ paths:
           type: string
   /groups/{groupId}/notes/{noteId}/track_score:
     post:
-      operationId: NotesAPI_TrackScore
+      operationId: GroupsAPI_TrackScore
       responses:
         "200":
           description: A successful response.

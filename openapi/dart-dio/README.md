@@ -101,6 +101,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIRevokeInviteLink**](doc/DefaultApi.md#groupsapirevokeinvitelink) | **DELETE** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPISendInvite**](doc/DefaultApi.md#groupsapisendinvite) | **POST** /groups/{groupId}/invites | The sender defaults to the authenticated user. Must be group member.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIStreamInvites**](doc/DefaultApi.md#groupsapistreaminvites) | **GET** /groups/invites/{identifierAccountId}/stream | 
+[*DefaultApi*](doc/DefaultApi.md) | [**groupsAPITrackScore**](doc/DefaultApi.md#groupsapitrackscore) | **POST** /groups/{groupId}/notes/{noteId}/track_score | 
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUpdateGroup**](doc/DefaultApi.md#groupsapiupdategroup) | **PATCH** /groups/{groupId} | Must be group administrator.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUpdateMember**](doc/DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
 [*DefaultApi*](doc/DefaultApi.md) | [**groupsAPIUseInviteLink**](doc/DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
@@ -118,7 +119,6 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes**](doc/DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes2**](doc/DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListQuizs**](doc/DefaultApi.md#notesapilistquizs) | **GET** /groups/{groupId}/notes/{noteId}/quizs | 
-[*DefaultApi*](doc/DefaultApi.md) | [**notesAPITrackScore**](doc/DefaultApi.md#notesapitrackscore) | **POST** /groups/{groupId}/notes/{noteId}/track_score | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlock**](doc/DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Update a block content.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlockIndex**](doc/DefaultApi.md#notesapiupdateblockindex) | **POST** /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index | Must be author. Update a block index.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateNote**](doc/DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60; or &#x60;blocks&#x60;.

@@ -49,6 +49,7 @@ const (
 	GroupsAPI_EndStreamInvites_FullMethodName          = "/noted.notes.v1.GroupsAPI/EndStreamInvites"
 	GroupsAPI_ListActivities_FullMethodName            = "/noted.notes.v1.GroupsAPI/ListActivities"
 	GroupsAPI_GetActivity_FullMethodName               = "/noted.notes.v1.GroupsAPI/GetActivity"
+	GroupsAPI_TrackScore_FullMethodName                = "/noted.notes.v1.GroupsAPI/TrackScore"
 )
 
 // GroupsAPIClient is the client API for GroupsAPI service.
@@ -113,6 +114,7 @@ type GroupsAPIClient interface {
 	ListActivities(ctx context.Context, in *ListActivitiesRequest, opts ...grpc.CallOption) (*ListActivitiesResponse, error)
 	// Must be a group member. Returns a signle activity in a group.
 	GetActivity(ctx context.Context, in *GetActivityRequest, opts ...grpc.CallOption) (*GetActivityResponse, error)
+	TrackScore(ctx context.Context, in *TrackScoreRequest, opts ...grpc.CallOption) (*TrackScoreResponse, error)
 }
 
 type groupsAPIClient struct {
@@ -416,6 +418,15 @@ func (c *groupsAPIClient) GetActivity(ctx context.Context, in *GetActivityReques
 	return out, nil
 }
 
+func (c *groupsAPIClient) TrackScore(ctx context.Context, in *TrackScoreRequest, opts ...grpc.CallOption) (*TrackScoreResponse, error) {
+	out := new(TrackScoreResponse)
+	err := c.cc.Invoke(ctx, GroupsAPI_TrackScore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GroupsAPIServer is the server API for GroupsAPI service.
 // All implementations must embed UnimplementedGroupsAPIServer
 // for forward compatibility
@@ -478,6 +489,7 @@ type GroupsAPIServer interface {
 	ListActivities(context.Context, *ListActivitiesRequest) (*ListActivitiesResponse, error)
 	// Must be a group member. Returns a signle activity in a group.
 	GetActivity(context.Context, *GetActivityRequest) (*GetActivityResponse, error)
+	TrackScore(context.Context, *TrackScoreRequest) (*TrackScoreResponse, error)
 	mustEmbedUnimplementedGroupsAPIServer()
 }
 
@@ -574,6 +586,9 @@ func (UnimplementedGroupsAPIServer) ListActivities(context.Context, *ListActivit
 }
 func (UnimplementedGroupsAPIServer) GetActivity(context.Context, *GetActivityRequest) (*GetActivityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetActivity not implemented")
+}
+func (UnimplementedGroupsAPIServer) TrackScore(context.Context, *TrackScoreRequest) (*TrackScoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TrackScore not implemented")
 }
 func (UnimplementedGroupsAPIServer) mustEmbedUnimplementedGroupsAPIServer() {}
 
@@ -1131,6 +1146,24 @@ func _GroupsAPI_GetActivity_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GroupsAPI_TrackScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TrackScoreRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GroupsAPIServer).TrackScore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GroupsAPI_TrackScore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GroupsAPIServer).TrackScore(ctx, req.(*TrackScoreRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GroupsAPI_ServiceDesc is the grpc.ServiceDesc for GroupsAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1253,6 +1286,10 @@ var GroupsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetActivity",
 			Handler:    _GroupsAPI_GetActivity_Handler,
+		},
+		{
+			MethodName: "TrackScore",
+			Handler:    _GroupsAPI_TrackScore_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
