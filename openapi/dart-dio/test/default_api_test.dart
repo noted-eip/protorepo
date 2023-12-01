@@ -363,6 +363,16 @@ void main() {
       // TODO
     });
 
+    //Future<V1ListScoreResponse> notesAPIListScore(String groupId) async
+    test('test notesAPIListScore', () async {
+      // TODO
+    });
+
+    //Future<V1TrackScoreResponse> notesAPITrackScore(String groupId, String noteId, { int score, int responses }) async
+    test('test notesAPITrackScore', () async {
+      // TODO
+    });
+
     // Must be author. Update a block content.
     //
     //Future<V1UpdateBlockResponse> notesAPIUpdateBlock(String groupId, String noteId, String blockId, V1Block block) async

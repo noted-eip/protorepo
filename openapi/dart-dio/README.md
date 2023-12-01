@@ -118,6 +118,8 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes**](doc/DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListNotes2**](doc/DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListQuizs**](doc/DefaultApi.md#notesapilistquizs) | **GET** /groups/{groupId}/notes/{noteId}/quizs | 
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPIListScore**](doc/DefaultApi.md#notesapilistscore) | **GET** /groups/{groupId}/scores | 
+[*DefaultApi*](doc/DefaultApi.md) | [**notesAPITrackScore**](doc/DefaultApi.md#notesapitrackscore) | **POST** /groups/{groupId}/notes/{noteId}/track_score | 
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlock**](doc/DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Update a block content.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateBlockIndex**](doc/DefaultApi.md#notesapiupdateblockindex) | **POST** /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index | Must be author. Update a block index.
 [*DefaultApi*](doc/DefaultApi.md) | [**notesAPIUpdateNote**](doc/DefaultApi.md#notesapiupdatenote) | **PATCH** /groups/{groupId}/notes/{noteId} | Must be author. Can only update &#x60;title&#x60; or &#x60;blocks&#x60;.
@@ -204,17 +206,20 @@ Class | Method | HTTP request | Description
  - [V1ListInvitesResponse](doc/V1ListInvitesResponse.md)
  - [V1ListNotesResponse](doc/V1ListNotesResponse.md)
  - [V1ListQuizsResponse](doc/V1ListQuizsResponse.md)
+ - [V1ListScoreResponse](doc/V1ListScoreResponse.md)
  - [V1Note](doc/V1Note.md)
  - [V1NoteExportFormat](doc/V1NoteExportFormat.md)
  - [V1Quiz](doc/V1Quiz.md)
  - [V1QuizQuestion](doc/V1QuizQuestion.md)
  - [V1Recipient](doc/V1Recipient.md)
  - [V1RegisterUserToMobileBetaRequest](doc/V1RegisterUserToMobileBetaRequest.md)
+ - [V1Score](doc/V1Score.md)
  - [V1SendConversationMessageResponse](doc/V1SendConversationMessageResponse.md)
  - [V1SendInviteResponse](doc/V1SendInviteResponse.md)
  - [V1SendValidationTokenRequest](doc/V1SendValidationTokenRequest.md)
  - [V1StreamInvitesResponse](doc/V1StreamInvitesResponse.md)
  - [V1SummarizeResponse](doc/V1SummarizeResponse.md)
+ - [V1TrackScoreResponse](doc/V1TrackScoreResponse.md)
  - [V1UpdateAccountPasswordResponse](doc/V1UpdateAccountPasswordResponse.md)
  - [V1UpdateAccountResponse](doc/V1UpdateAccountResponse.md)
  - [V1UpdateBlockIndexResponse](doc/V1UpdateBlockIndexResponse.md)

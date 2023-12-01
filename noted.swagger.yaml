@@ -1230,6 +1230,37 @@ paths:
           in: path
           required: true
           type: string
+  /groups/{groupId}/notes/{noteId}/track_score:
+    post:
+      operationId: NotesAPI_TrackScore
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1TrackScoreResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: path
+          required: true
+          type: string
+        - name: score
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: responses
+          in: query
+          required: false
+          type: integer
+          format: int32
   /groups/{groupId}/notes/{noteId}/widgets:
     get:
       summary: Must be a group member. Returns all the relevent widgets from the given note id.
@@ -1338,6 +1369,23 @@ paths:
           required: true
           type: string
         - name: blockId
+          in: path
+          required: true
+          type: string
+  /groups/{groupId}/scores:
+    get:
+      operationId: NotesAPI_ListScore
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ListScoreResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
           in: path
           required: true
           type: string
@@ -2141,6 +2189,16 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/v1Quiz'
+  v1ListScoreResponse:
+    type: object
+    properties:
+      scores:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Score'
+      groupId:
+        type: string
   v1Note:
     type: object
     properties:
@@ -2225,6 +2283,18 @@ definitions:
     type: object
   v1RevokeInviteResponse:
     type: object
+  v1Score:
+    type: object
+    properties:
+      accountId:
+        type: integer
+        format: int32
+      scores:
+        type: integer
+        format: int32
+      responses:
+        type: integer
+        format: int32
   v1SendConversationMessageResponse:
     type: object
     properties:
@@ -2269,6 +2339,19 @@ definitions:
       summary:
         type: string
         description: Small text output which summarizes the original entry.
+  v1TrackScoreResponse:
+    type: object
+    properties:
+      accountId:
+        type: string
+      groupId:
+        type: string
+      scoreTotal:
+        type: integer
+        format: int32
+      responses:
+        type: integer
+        format: int32
   v1UpdateAccountPasswordResponse:
     type: object
     properties:

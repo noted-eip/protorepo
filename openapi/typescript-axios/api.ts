@@ -1530,6 +1530,25 @@ export interface V1ListQuizsResponse {
 /**
  * 
  * @export
+ * @interface V1ListScoreResponse
+ */
+export interface V1ListScoreResponse {
+    /**
+     * 
+     * @type {Array<V1Score>}
+     * @memberof V1ListScoreResponse
+     */
+    'scores'?: Array<V1Score>;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1ListScoreResponse
+     */
+    'groupId'?: string;
+}
+/**
+ * 
+ * @export
  * @interface V1Note
  */
 export interface V1Note {
@@ -1675,6 +1694,31 @@ export interface V1RegisterUserToMobileBetaRequest {
 /**
  * 
  * @export
+ * @interface V1Score
+ */
+export interface V1Score {
+    /**
+     * 
+     * @type {number}
+     * @memberof V1Score
+     */
+    'accountId'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof V1Score
+     */
+    'scores'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof V1Score
+     */
+    'responses'?: number;
+}
+/**
+ * 
+ * @export
  * @interface V1SendConversationMessageResponse
  */
 export interface V1SendConversationMessageResponse {
@@ -1742,6 +1786,37 @@ export interface V1SummarizeResponse {
      * @memberof V1SummarizeResponse
      */
     'summary'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface V1TrackScoreResponse
+ */
+export interface V1TrackScoreResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof V1TrackScoreResponse
+     */
+    'accountId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V1TrackScoreResponse
+     */
+    'groupId'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof V1TrackScoreResponse
+     */
+    'scoreTotal'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof V1TrackScoreResponse
+     */
+    'responses'?: number;
 }
 /**
  * 
@@ -4120,6 +4195,86 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListScore: async (groupId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPIListScore', 'groupId', groupId)
+            const localVarPath = `/groups/{groupId}/scores`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {number} [score] 
+         * @param {number} [responses] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPITrackScore: async (groupId: string, noteId: string, score?: number, responses?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'groupId' is not null or undefined
+            assertParamExists('notesAPITrackScore', 'groupId', groupId)
+            // verify required parameter 'noteId' is not null or undefined
+            assertParamExists('notesAPITrackScore', 'noteId', noteId)
+            const localVarPath = `/groups/{groupId}/notes/{noteId}/track_score`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
+                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (score !== undefined) {
+                localVarQueryParameter['score'] = score;
+            }
+
+            if (responses !== undefined) {
+                localVarQueryParameter['responses'] = responses;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Must be author. Update a block content.
          * @param {string} groupId 
          * @param {string} noteId 
@@ -5061,6 +5216,33 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPIListScore(groupId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListScoreResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListScore(groupId, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPIListScore']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {number} [score] 
+         * @param {number} [responses] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notesAPITrackScore(groupId: string, noteId: string, score?: number, responses?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1TrackScoreResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPITrackScore(groupId, noteId, score, responses, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.notesAPITrackScore']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Must be author. Update a block content.
          * @param {string} groupId 
          * @param {string} noteId 
@@ -5720,6 +5902,27 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         notesAPIListQuizs(groupId: string, noteId: string, options?: any): AxiosPromise<V1ListQuizsResponse> {
             return localVarFp.notesAPIListQuizs(groupId, noteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPIListScore(groupId: string, options?: any): AxiosPromise<V1ListScoreResponse> {
+            return localVarFp.notesAPIListScore(groupId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {string} noteId 
+         * @param {number} [score] 
+         * @param {number} [responses] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notesAPITrackScore(groupId: string, noteId: string, score?: number, responses?: number, options?: any): AxiosPromise<V1TrackScoreResponse> {
+            return localVarFp.notesAPITrackScore(groupId, noteId, score, responses, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6477,6 +6680,31 @@ export class DefaultApi extends BaseAPI {
      */
     public notesAPIListQuizs(groupId: string, noteId: string, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPIListQuizs(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} groupId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPIListScore(groupId: string, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPIListScore(groupId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} groupId 
+     * @param {string} noteId 
+     * @param {number} [score] 
+     * @param {number} [responses] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public notesAPITrackScore(groupId: string, noteId: string, score?: number, responses?: number, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).notesAPITrackScore(groupId, noteId, score, responses, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
