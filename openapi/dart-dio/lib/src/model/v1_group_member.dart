@@ -13,6 +13,8 @@ part 'v1_group_member.g.dart';
 /// Properties:
 /// * [accountId] 
 /// * [isAdmin] 
+/// * [score] 
+/// * [totalQuiz] 
 /// * [joinedAt] 
 @BuiltValue()
 abstract class V1GroupMember implements Built<V1GroupMember, V1GroupMemberBuilder> {
@@ -21,6 +23,12 @@ abstract class V1GroupMember implements Built<V1GroupMember, V1GroupMemberBuilde
 
   @BuiltValueField(wireName: r'isAdmin')
   bool get isAdmin;
+
+  @BuiltValueField(wireName: r'score')
+  int? get score;
+
+  @BuiltValueField(wireName: r'totalQuiz')
+  int? get totalQuiz;
 
   @BuiltValueField(wireName: r'joinedAt')
   DateTime get joinedAt;
@@ -58,6 +66,20 @@ class _$V1GroupMemberSerializer implements PrimitiveSerializer<V1GroupMember> {
       object.isAdmin,
       specifiedType: const FullType(bool),
     );
+    if (object.score != null) {
+      yield r'score';
+      yield serializers.serialize(
+        object.score,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.totalQuiz != null) {
+      yield r'totalQuiz';
+      yield serializers.serialize(
+        object.totalQuiz,
+        specifiedType: const FullType(int),
+      );
+    }
     yield r'joinedAt';
     yield serializers.serialize(
       object.joinedAt,
@@ -99,6 +121,20 @@ class _$V1GroupMemberSerializer implements PrimitiveSerializer<V1GroupMember> {
             specifiedType: const FullType(bool),
           ) as bool;
           result.isAdmin = valueDes;
+          break;
+        case r'score':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.score = valueDes;
+          break;
+        case r'totalQuiz':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalQuiz = valueDes;
           break;
         case r'joinedAt':
           final valueDes = serializers.deserialize(

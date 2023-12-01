@@ -92,14 +92,12 @@ import 'package:openapi/src/model/v1_list_groups_response.dart';
 import 'package:openapi/src/model/v1_list_invites_response.dart';
 import 'package:openapi/src/model/v1_list_notes_response.dart';
 import 'package:openapi/src/model/v1_list_quizs_response.dart';
-import 'package:openapi/src/model/v1_list_score_response.dart';
 import 'package:openapi/src/model/v1_note.dart';
 import 'package:openapi/src/model/v1_note_export_format.dart';
 import 'package:openapi/src/model/v1_quiz.dart';
 import 'package:openapi/src/model/v1_quiz_question.dart';
 import 'package:openapi/src/model/v1_recipient.dart';
 import 'package:openapi/src/model/v1_register_user_to_mobile_beta_request.dart';
-import 'package:openapi/src/model/v1_score.dart';
 import 'package:openapi/src/model/v1_send_conversation_message_response.dart';
 import 'package:openapi/src/model/v1_send_invite_response.dart';
 import 'package:openapi/src/model/v1_send_validation_token_request.dart';
@@ -201,14 +199,12 @@ part 'serializers.g.dart';
   V1ListInvitesResponse,
   V1ListNotesResponse,
   V1ListQuizsResponse,
-  V1ListScoreResponse,
   V1Note,
   V1NoteExportFormat,
   V1Quiz,
   V1QuizQuestion,
   V1Recipient,
   V1RegisterUserToMobileBetaRequest,
-  V1Score,
   V1SendConversationMessageResponse,
   V1SendInviteResponse,
   V1SendValidationTokenRequest,

@@ -1340,6 +1340,18 @@ export interface V1GroupMember {
     'isAdmin': boolean;
     /**
      * 
+     * @type {number}
+     * @memberof V1GroupMember
+     */
+    'score'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof V1GroupMember
+     */
+    'totalQuiz'?: number;
+    /**
+     * 
      * @type {string}
      * @memberof V1GroupMember
      */
@@ -1530,25 +1542,6 @@ export interface V1ListQuizsResponse {
 /**
  * 
  * @export
- * @interface V1ListScoreResponse
- */
-export interface V1ListScoreResponse {
-    /**
-     * 
-     * @type {Array<V1Score>}
-     * @memberof V1ListScoreResponse
-     */
-    'scores'?: Array<V1Score>;
-    /**
-     * 
-     * @type {string}
-     * @memberof V1ListScoreResponse
-     */
-    'groupId'?: string;
-}
-/**
- * 
- * @export
  * @interface V1Note
  */
 export interface V1Note {
@@ -1690,31 +1683,6 @@ export interface V1RegisterUserToMobileBetaRequest {
      * @memberof V1RegisterUserToMobileBetaRequest
      */
     'accountId': string;
-}
-/**
- * 
- * @export
- * @interface V1Score
- */
-export interface V1Score {
-    /**
-     * 
-     * @type {number}
-     * @memberof V1Score
-     */
-    'accountId'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof V1Score
-     */
-    'scores'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof V1Score
-     */
-    'responses'?: number;
 }
 /**
  * 
@@ -4196,39 +4164,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {string} groupId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        notesAPIListScore: async (groupId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'groupId' is not null or undefined
-            assertParamExists('notesAPIListScore', 'groupId', groupId)
-            const localVarPath = `/groups/{groupId}/scores`
-                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} groupId 
          * @param {string} noteId 
          * @param {number} [score] 
          * @param {number} [responses] 
@@ -5217,18 +5152,6 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} groupId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async notesAPIListScore(groupId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1ListScoreResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIListScore(groupId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.notesAPIListScore']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {string} groupId 
          * @param {string} noteId 
          * @param {number} [score] 
          * @param {number} [responses] 
@@ -5902,15 +5825,6 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         notesAPIListQuizs(groupId: string, noteId: string, options?: any): AxiosPromise<V1ListQuizsResponse> {
             return localVarFp.notesAPIListQuizs(groupId, noteId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} groupId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        notesAPIListScore(groupId: string, options?: any): AxiosPromise<V1ListScoreResponse> {
-            return localVarFp.notesAPIListScore(groupId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6680,17 +6594,6 @@ export class DefaultApi extends BaseAPI {
      */
     public notesAPIListQuizs(groupId: string, noteId: string, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPIListQuizs(groupId, noteId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} groupId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public notesAPIListScore(groupId: string, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).notesAPIListScore(groupId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

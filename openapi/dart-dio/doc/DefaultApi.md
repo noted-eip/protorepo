@@ -63,7 +63,6 @@ Method | HTTP request | Description
 [**notesAPIListNotes**](DefaultApi.md#notesapilistnotes) | **GET** /notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIListNotes2**](DefaultApi.md#notesapilistnotes2) | **GET** /groups/{groupId}/notes | List notes in a group, authored by a user or both. Must have read access to the notes.
 [**notesAPIListQuizs**](DefaultApi.md#notesapilistquizs) | **GET** /groups/{groupId}/notes/{noteId}/quizs | 
-[**notesAPIListScore**](DefaultApi.md#notesapilistscore) | **GET** /groups/{groupId}/scores | 
 [**notesAPITrackScore**](DefaultApi.md#notesapitrackscore) | **POST** /groups/{groupId}/notes/{noteId}/track_score | 
 [**notesAPIUpdateBlock**](DefaultApi.md#notesapiupdateblock) | **PATCH** /groups/{groupId}/notes/{noteId}/blocks/{blockId} | Must be author. Update a block content.
 [**notesAPIUpdateBlockIndex**](DefaultApi.md#notesapiupdateblockindex) | **POST** /groups/{groupId}/notes/{noteId}/blocks/{blockId}/index | Must be author. Update a block index.
@@ -2397,47 +2396,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1ListQuizsResponse**](V1ListQuizsResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **notesAPIListScore**
-> V1ListScoreResponse notesAPIListScore(groupId)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getDefaultApi();
-final String groupId = groupId_example; // String | 
-
-try {
-    final response = api.notesAPIListScore(groupId);
-    print(response);
-} catch on DioException (e) {
-    print('Exception when calling DefaultApi->notesAPIListScore: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **groupId** | **String**|  | 
-
-### Return type
-
-[**V1ListScoreResponse**](V1ListScoreResponse.md)
 
 ### Authorization
 

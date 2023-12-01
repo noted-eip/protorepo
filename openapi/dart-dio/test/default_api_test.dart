@@ -363,11 +363,6 @@ void main() {
       // TODO
     });
 
-    //Future<V1ListScoreResponse> notesAPIListScore(String groupId) async
-    test('test notesAPIListScore', () async {
-      // TODO
-    });
-
     //Future<V1TrackScoreResponse> notesAPITrackScore(String groupId, String noteId, { int score, int responses }) async
     test('test notesAPITrackScore', () async {
       // TODO

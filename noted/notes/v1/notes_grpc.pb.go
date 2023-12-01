@@ -33,7 +33,6 @@ const (
 	NotesAPI_ChangeNoteEditPermission_FullMethodName = "/noted.notes.v1.NotesAPI/ChangeNoteEditPermission"
 	NotesAPI_GenerateQuiz_FullMethodName             = "/noted.notes.v1.NotesAPI/GenerateQuiz"
 	NotesAPI_TrackScore_FullMethodName               = "/noted.notes.v1.NotesAPI/TrackScore"
-	NotesAPI_ListScore_FullMethodName                = "/noted.notes.v1.NotesAPI/ListScore"
 	NotesAPI_ListQuizs_FullMethodName                = "/noted.notes.v1.NotesAPI/ListQuizs"
 	NotesAPI_GenerateSummary_FullMethodName          = "/noted.notes.v1.NotesAPI/GenerateSummary"
 	NotesAPI_CreateBlockComment_FullMethodName       = "/noted.notes.v1.NotesAPI/CreateBlockComment"
@@ -70,7 +69,6 @@ type NotesAPIClient interface {
 	ChangeNoteEditPermission(ctx context.Context, in *ChangeNoteEditPermissionRequest, opts ...grpc.CallOption) (*ChangeNoteEditPermissionResponse, error)
 	GenerateQuiz(ctx context.Context, in *GenerateQuizRequest, opts ...grpc.CallOption) (*GenerateQuizResponse, error)
 	TrackScore(ctx context.Context, in *TrackScoreRequest, opts ...grpc.CallOption) (*TrackScoreResponse, error)
-	ListScore(ctx context.Context, in *ListScoreRequest, opts ...grpc.CallOption) (*ListScoreResponse, error)
 	ListQuizs(ctx context.Context, in *ListQuizsRequest, opts ...grpc.CallOption) (*ListQuizsResponse, error)
 	GenerateSummary(ctx context.Context, in *GenerateSummaryRequest, opts ...grpc.CallOption) (*GenerateSummaryResponse, error)
 	CreateBlockComment(ctx context.Context, in *CreateBlockCommentRequest, opts ...grpc.CallOption) (*CreateBlockCommentResponse, error)
@@ -212,15 +210,6 @@ func (c *notesAPIClient) TrackScore(ctx context.Context, in *TrackScoreRequest, 
 	return out, nil
 }
 
-func (c *notesAPIClient) ListScore(ctx context.Context, in *ListScoreRequest, opts ...grpc.CallOption) (*ListScoreResponse, error) {
-	out := new(ListScoreResponse)
-	err := c.cc.Invoke(ctx, NotesAPI_ListScore_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *notesAPIClient) ListQuizs(ctx context.Context, in *ListQuizsRequest, opts ...grpc.CallOption) (*ListQuizsResponse, error) {
 	out := new(ListQuizsResponse)
 	err := c.cc.Invoke(ctx, NotesAPI_ListQuizs_FullMethodName, in, out, opts...)
@@ -295,7 +284,6 @@ type NotesAPIServer interface {
 	ChangeNoteEditPermission(context.Context, *ChangeNoteEditPermissionRequest) (*ChangeNoteEditPermissionResponse, error)
 	GenerateQuiz(context.Context, *GenerateQuizRequest) (*GenerateQuizResponse, error)
 	TrackScore(context.Context, *TrackScoreRequest) (*TrackScoreResponse, error)
-	ListScore(context.Context, *ListScoreRequest) (*ListScoreResponse, error)
 	ListQuizs(context.Context, *ListQuizsRequest) (*ListQuizsResponse, error)
 	GenerateSummary(context.Context, *GenerateSummaryRequest) (*GenerateSummaryResponse, error)
 	CreateBlockComment(context.Context, *CreateBlockCommentRequest) (*CreateBlockCommentResponse, error)
@@ -349,9 +337,6 @@ func (UnimplementedNotesAPIServer) GenerateQuiz(context.Context, *GenerateQuizRe
 }
 func (UnimplementedNotesAPIServer) TrackScore(context.Context, *TrackScoreRequest) (*TrackScoreResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TrackScore not implemented")
-}
-func (UnimplementedNotesAPIServer) ListScore(context.Context, *ListScoreRequest) (*ListScoreResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListScore not implemented")
 }
 func (UnimplementedNotesAPIServer) ListQuizs(context.Context, *ListQuizsRequest) (*ListQuizsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListQuizs not implemented")
@@ -633,24 +618,6 @@ func _NotesAPI_TrackScore_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NotesAPI_ListScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListScoreRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NotesAPIServer).ListScore(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NotesAPI_ListScore_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NotesAPIServer).ListScore(ctx, req.(*ListScoreRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _NotesAPI_ListQuizs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListQuizsRequest)
 	if err := dec(in); err != nil {
@@ -803,10 +770,6 @@ var NotesAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TrackScore",
 			Handler:    _NotesAPI_TrackScore_Handler,
-		},
-		{
-			MethodName: "ListScore",
-			Handler:    _NotesAPI_ListScore_Handler,
 		},
 		{
 			MethodName: "ListQuizs",

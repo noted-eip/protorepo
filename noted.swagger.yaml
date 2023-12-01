@@ -1372,23 +1372,6 @@ paths:
           in: path
           required: true
           type: string
-  /groups/{groupId}/scores:
-    get:
-      operationId: NotesAPI_ListScore
-      responses:
-        "200":
-          description: A successful response.
-          schema:
-            $ref: '#/definitions/v1ListScoreResponse'
-        "404":
-          description: Resource not found or lacking permissions to access the resource.
-          schema:
-            $ref: '#/definitions/v1HttpError'
-      parameters:
-        - name: groupId
-          in: path
-          required: true
-          type: string
   /invites:
     get:
       summary: Must be group administrator or sender or recipient.
@@ -2080,6 +2063,12 @@ definitions:
         type: string
       isAdmin:
         type: boolean
+      score:
+        type: integer
+        format: int32
+      totalQuiz:
+        type: integer
+        format: int32
       joinedAt:
         type: string
         format: date-time
@@ -2189,16 +2178,6 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/v1Quiz'
-  v1ListScoreResponse:
-    type: object
-    properties:
-      scores:
-        type: array
-        items:
-          type: object
-          $ref: '#/definitions/v1Score'
-      groupId:
-        type: string
   v1Note:
     type: object
     properties:
@@ -2283,18 +2262,6 @@ definitions:
     type: object
   v1RevokeInviteResponse:
     type: object
-  v1Score:
-    type: object
-    properties:
-      accountId:
-        type: integer
-        format: int32
-      scores:
-        type: integer
-        format: int32
-      responses:
-        type: integer
-        format: int32
   v1SendConversationMessageResponse:
     type: object
     properties:

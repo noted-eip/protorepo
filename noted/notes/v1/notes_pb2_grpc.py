@@ -84,11 +84,6 @@ class NotesAPIStub(object):
                 request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.TrackScoreRequest.SerializeToString,
                 response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.TrackScoreResponse.FromString,
                 )
-        self.ListScore = channel.unary_unary(
-                '/noted.notes.v1.NotesAPI/ListScore',
-                request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.ListScoreRequest.SerializeToString,
-                response_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.ListScoreResponse.FromString,
-                )
         self.ListQuizs = channel.unary_unary(
                 '/noted.notes.v1.NotesAPI/ListQuizs',
                 request_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.ListQuizsRequest.SerializeToString,
@@ -214,12 +209,6 @@ class NotesAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ListScore(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def ListQuizs(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -322,11 +311,6 @@ def add_NotesAPIServicer_to_server(servicer, server):
                     servicer.TrackScore,
                     request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.TrackScoreRequest.FromString,
                     response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.TrackScoreResponse.SerializeToString,
-            ),
-            'ListScore': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListScore,
-                    request_deserializer=noted_dot_notes_dot_v1_dot_notes__pb2.ListScoreRequest.FromString,
-                    response_serializer=noted_dot_notes_dot_v1_dot_notes__pb2.ListScoreResponse.SerializeToString,
             ),
             'ListQuizs': grpc.unary_unary_rpc_method_handler(
                     servicer.ListQuizs,
@@ -598,23 +582,6 @@ class NotesAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/TrackScore',
             noted_dot_notes_dot_v1_dot_notes__pb2.TrackScoreRequest.SerializeToString,
             noted_dot_notes_dot_v1_dot_notes__pb2.TrackScoreResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def ListScore(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/noted.notes.v1.NotesAPI/ListScore',
-            noted_dot_notes_dot_v1_dot_notes__pb2.ListScoreRequest.SerializeToString,
-            noted_dot_notes_dot_v1_dot_notes__pb2.ListScoreResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

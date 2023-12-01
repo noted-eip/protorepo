@@ -17,6 +17,16 @@ void main() {
       // TODO
     });
 
+    // int score
+    test('to test the property `score`', () async {
+      // TODO
+    });
+
+    // int totalQuiz
+    test('to test the property `totalQuiz`', () async {
+      // TODO
+    });
+
     // DateTime joinedAt
     test('to test the property `joinedAt`', () async {
       // TODO
