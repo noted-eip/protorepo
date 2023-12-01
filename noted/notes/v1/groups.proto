@@ -277,7 +277,7 @@ service GroupsAPI {
 
     rpc TrackScore(TrackScoreRequest) returns (TrackScoreResponse) {
         option (google.api.http) = {
-            post: "/groups/{group_id}/notes/{note_id}/track_score"
+            post: "/groups/{group_id}/members/{account_id}/track_score"
         };
     }
 }
