@@ -129,6 +129,12 @@ message Quiz {
     string id = 2;
 }
 
+message Score {
+    int32 account_id = 1;
+    int32 scores = 3;
+    int32 responses = 4;
+}
+
 enum NoteExportFormat {
     NOTE_EXPORT_FORMAT_INVALID = 0;
     NOTE_EXPORT_FORMAT_MARKDOWN = 1;
@@ -224,6 +230,19 @@ service NotesAPI {
             post: "/groups/{group_id}/notes/{note_id}/quiz"
         };
     }
+
+    rpc TrackScore(TrackScoreRequest) returns (TrackScoreResponse) {
+        option (google.api.http) = {
+            post: "/groups/{group_id}/notes/{note_id}/track_score"
+        };
+    }
+
+    rpc ListScore(ListScoreRequest) returns (ListScoreResponse) {
+        option (google.api.http) = {
+            get: "/groups/{group_id}/notes/{note_id}/scores"
+        };
+    }
+
 
     rpc ListQuizs(ListQuizsRequest) returns (ListQuizsResponse) {
         option (google.api.http) = {
@@ -386,6 +405,29 @@ message GenerateQuizRequest {
 
 message GenerateQuizResponse {
     Quiz quiz = 1;
+}
+
+message ListScoreRequest  {
+    string group_id = 2;
+}
+
+message ListScoreResponse {
+    repeated Score scores = 1;
+    string group_id = 2;
+}
+
+message TrackScoreRequest {
+    string note_id = 1;
+    string group_id = 2;
+    int32 score = 3;
+    int32 responses = 4;
+}
+
+message TrackScoreResponse {
+    string account_id = 2;
+    string group_id = 1;
+    int32 score_total = 3;
+    int32 responses = 4;
 }
 
 message ListQuizsRequest {
