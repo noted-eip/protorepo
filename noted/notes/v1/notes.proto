@@ -225,12 +225,6 @@ service NotesAPI {
         };
     }
 
-    rpc TrackScore(TrackScoreRequest) returns (TrackScoreResponse) {
-        option (google.api.http) = {
-            post: "/groups/{group_id}/notes/{note_id}/track_score"
-        };
-    }
-
     rpc ListQuizs(ListQuizsRequest) returns (ListQuizsResponse) {
         option (google.api.http) = {
             get: "/groups/{group_id}/notes/{note_id}/quizs"
@@ -392,20 +386,6 @@ message GenerateQuizRequest {
 
 message GenerateQuizResponse {
     Quiz quiz = 1;
-}
-
-message TrackScoreRequest {
-    string note_id = 1;
-    string group_id = 2;
-    int32 score = 3;
-    int32 responses = 4;
-}
-
-message TrackScoreResponse {
-    string account_id = 2;
-    string group_id = 1;
-    int32 score_total = 3;
-    int32 responses = 4;
 }
 
 message ListQuizsRequest {
