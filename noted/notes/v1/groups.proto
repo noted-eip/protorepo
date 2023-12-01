@@ -53,7 +53,9 @@ message GroupConversation {
 message GroupMember {
     string account_id = 1 [(google.api.field_behavior) = REQUIRED];
     bool is_admin = 2 [(google.api.field_behavior) = REQUIRED];
-    google.protobuf.Timestamp joined_at = 3 [(google.api.field_behavior) = REQUIRED];
+    int32 score = 3;
+    int32 total_quiz = 4;
+    google.protobuf.Timestamp joined_at = 5 [(google.api.field_behavior) = REQUIRED];
 }
 
 message GroupInvite {
