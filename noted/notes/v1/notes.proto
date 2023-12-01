@@ -240,7 +240,7 @@ service NotesAPI {
 
     rpc ListScore(ListScoreRequest) returns (ListScoreResponse) {
         option (google.api.http) = {
-            get: "/groups/{group_id}/notes/{note_id}/scores"
+            get: "/groups/{group_id}/scores"
         };
     }
 
