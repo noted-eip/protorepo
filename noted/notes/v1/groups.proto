@@ -571,6 +571,7 @@ message TrackScoreRequest {
     string group_id = 2;
     int32 score = 3;
     int32 responses = 4;
+    string account_id = 5;
 }
 
 message TrackScoreResponse {
