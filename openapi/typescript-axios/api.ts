@@ -3454,20 +3454,21 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {string} groupId 
-         * @param {string} noteId 
+         * @param {string} accountId 
+         * @param {string} [noteId] 
          * @param {number} [score] 
          * @param {number} [responses] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPITrackScore: async (groupId: string, noteId: string, score?: number, responses?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsAPITrackScore: async (groupId: string, accountId: string, noteId?: string, score?: number, responses?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('groupsAPITrackScore', 'groupId', groupId)
-            // verify required parameter 'noteId' is not null or undefined
-            assertParamExists('groupsAPITrackScore', 'noteId', noteId)
-            const localVarPath = `/groups/{groupId}/notes/{noteId}/track_score`
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('groupsAPITrackScore', 'accountId', accountId)
+            const localVarPath = `/groups/{groupId}/members/{accountId}/track_score`
                 .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)))
-                .replace(`{${"noteId"}}`, encodeURIComponent(String(noteId)));
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3478,6 +3479,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (noteId !== undefined) {
+                localVarQueryParameter['noteId'] = noteId;
+            }
 
             if (score !== undefined) {
                 localVarQueryParameter['score'] = score;
@@ -4908,14 +4913,15 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} groupId 
-         * @param {string} noteId 
+         * @param {string} accountId 
+         * @param {string} [noteId] 
          * @param {number} [score] 
          * @param {number} [responses] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsAPITrackScore(groupId: string, noteId: string, score?: number, responses?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1TrackScoreResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPITrackScore(groupId, noteId, score, responses, options);
+        async groupsAPITrackScore(groupId: string, accountId: string, noteId?: string, score?: number, responses?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1TrackScoreResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPITrackScore(groupId, accountId, noteId, score, responses, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.groupsAPITrackScore']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -5636,14 +5642,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {string} groupId 
-         * @param {string} noteId 
+         * @param {string} accountId 
+         * @param {string} [noteId] 
          * @param {number} [score] 
          * @param {number} [responses] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPITrackScore(groupId: string, noteId: string, score?: number, responses?: number, options?: any): AxiosPromise<V1TrackScoreResponse> {
-            return localVarFp.groupsAPITrackScore(groupId, noteId, score, responses, options).then((request) => request(axios, basePath));
+        groupsAPITrackScore(groupId: string, accountId: string, noteId?: string, score?: number, responses?: number, options?: any): AxiosPromise<V1TrackScoreResponse> {
+            return localVarFp.groupsAPITrackScore(groupId, accountId, noteId, score, responses, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6372,15 +6379,16 @@ export class DefaultApi extends BaseAPI {
     /**
      * 
      * @param {string} groupId 
-     * @param {string} noteId 
+     * @param {string} accountId 
+     * @param {string} [noteId] 
      * @param {number} [score] 
      * @param {number} [responses] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public groupsAPITrackScore(groupId: string, noteId: string, score?: number, responses?: number, options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).groupsAPITrackScore(groupId, noteId, score, responses, options).then((request) => request(this.axios, this.basePath));
+    public groupsAPITrackScore(groupId: string, accountId: string, noteId?: string, score?: number, responses?: number, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).groupsAPITrackScore(groupId, accountId, noteId, score, responses, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

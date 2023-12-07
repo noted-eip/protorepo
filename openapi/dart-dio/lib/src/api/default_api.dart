@@ -3266,6 +3266,7 @@ class DefaultApi {
   ///
   /// Parameters:
   /// * [groupId] 
+  /// * [accountId] 
   /// * [noteId] 
   /// * [score] 
   /// * [responses] 
@@ -3280,7 +3281,8 @@ class DefaultApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<V1TrackScoreResponse>> groupsAPITrackScore({ 
     required String groupId,
-    required String noteId,
+    required String accountId,
+    String? noteId,
     int? score,
     int? responses,
     CancelToken? cancelToken,
@@ -3290,7 +3292,7 @@ class DefaultApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/groups/{groupId}/notes/{noteId}/track_score'.replaceAll('{' r'groupId' '}', encodeQueryParameter(_serializers, groupId, const FullType(String)).toString()).replaceAll('{' r'noteId' '}', encodeQueryParameter(_serializers, noteId, const FullType(String)).toString());
+    final _path = r'/groups/{groupId}/members/{accountId}/track_score'.replaceAll('{' r'groupId' '}', encodeQueryParameter(_serializers, groupId, const FullType(String)).toString()).replaceAll('{' r'accountId' '}', encodeQueryParameter(_serializers, accountId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -3304,6 +3306,7 @@ class DefaultApi {
     );
 
     final _queryParameters = <String, dynamic>{
+      if (noteId != null) r'noteId': encodeQueryParameter(_serializers, noteId, const FullType(String)),
       if (score != null) r'score': encodeQueryParameter(_serializers, score, const FullType(int)),
       if (responses != null) r'responses': encodeQueryParameter(_serializers, responses, const FullType(int)),
     };

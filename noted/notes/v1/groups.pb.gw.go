@@ -1525,7 +1525,7 @@ func local_request_GroupsAPI_GetActivity_0(ctx context.Context, marshaler runtim
 }
 
 var (
-	filter_GroupsAPI_TrackScore_0 = &utilities.DoubleArray{Encoding: map[string]int{"group_id": 0, "groupId": 1, "note_id": 2, "noteId": 3}, Base: []int{1, 1, 2, 3, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 2, 3, 4, 5}}
+	filter_GroupsAPI_TrackScore_0 = &utilities.DoubleArray{Encoding: map[string]int{"group_id": 0, "groupId": 1, "account_id": 2, "accountId": 3}, Base: []int{1, 1, 2, 3, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 2, 3, 4, 5}}
 )
 
 func request_GroupsAPI_TrackScore_0(ctx context.Context, marshaler runtime.Marshaler, client GroupsAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -1549,14 +1549,14 @@ func request_GroupsAPI_TrackScore_0(ctx context.Context, marshaler runtime.Marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "group_id", err)
 	}
 
-	val, ok = pathParams["note_id"]
+	val, ok = pathParams["account_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "note_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "account_id")
 	}
 
-	protoReq.NoteId, err = runtime.String(val)
+	protoReq.AccountId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "note_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "account_id", err)
 	}
 
 	if err := req.ParseForm(); err != nil {
@@ -1592,14 +1592,14 @@ func local_request_GroupsAPI_TrackScore_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "group_id", err)
 	}
 
-	val, ok = pathParams["note_id"]
+	val, ok = pathParams["account_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "note_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "account_id")
 	}
 
-	protoReq.NoteId, err = runtime.String(val)
+	protoReq.AccountId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "note_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "account_id", err)
 	}
 
 	if err := req.ParseForm(); err != nil {
@@ -2185,7 +2185,7 @@ func RegisterGroupsAPIHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/noted.notes.v1.GroupsAPI/TrackScore", runtime.WithHTTPPathPattern("/groups/{group_id}/notes/{note_id}/track_score"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/noted.notes.v1.GroupsAPI/TrackScore", runtime.WithHTTPPathPattern("/groups/{group_id}/members/{account_id}/track_score"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2755,7 +2755,7 @@ func RegisterGroupsAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/noted.notes.v1.GroupsAPI/TrackScore", runtime.WithHTTPPathPattern("/groups/{group_id}/notes/{note_id}/track_score"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/noted.notes.v1.GroupsAPI/TrackScore", runtime.WithHTTPPathPattern("/groups/{group_id}/members/{account_id}/track_score"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2821,7 +2821,7 @@ var (
 
 	pattern_GroupsAPI_GetActivity_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"groups", "group_id", "activity", "activity_id"}, ""))
 
-	pattern_GroupsAPI_TrackScore_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"groups", "group_id", "notes", "note_id", "track_score"}, ""))
+	pattern_GroupsAPI_TrackScore_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"groups", "group_id", "members", "account_id", "track_score"}, ""))
 )
 
 var (

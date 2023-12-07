@@ -46,7 +46,7 @@ Method | HTTP request | Description
 [**groupsAPIRevokeInviteLink**](DefaultApi.md#groupsapirevokeinvitelink) | **DELETE** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must be group member.
 [**groupsAPISendInvite**](DefaultApi.md#groupsapisendinvite) | **POST** /groups/{groupId}/invites | The sender defaults to the authenticated user. Must be group member.
 [**groupsAPIStreamInvites**](DefaultApi.md#groupsapistreaminvites) | **GET** /groups/invites/{identifierAccountId}/stream | 
-[**groupsAPITrackScore**](DefaultApi.md#groupsapitrackscore) | **POST** /groups/{groupId}/notes/{noteId}/track_score | 
+[**groupsAPITrackScore**](DefaultApi.md#groupsapitrackscore) | **POST** /groups/{groupId}/members/{accountId}/track_score | 
 [**groupsAPIUpdateGroup**](DefaultApi.md#groupsapiupdategroup) | **PATCH** /groups/{groupId} | Must be group administrator.
 [**groupsAPIUpdateMember**](DefaultApi.md#groupsapiupdatemember) | **PATCH** /groups/{groupId}/members/{accountId} | Must be group administrator. Can only update &#x60;role&#x60;.
 [**groupsAPIUseInviteLink**](DefaultApi.md#groupsapiuseinvitelink) | **POST** /groups/{groupId}/inviteLinks/{inviteLinkCode} | Must not be group member. Makes the authenticated join the group on success.
@@ -1652,7 +1652,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **groupsAPITrackScore**
-> V1TrackScoreResponse groupsAPITrackScore(groupId, noteId, score, responses)
+> V1TrackScoreResponse groupsAPITrackScore(groupId, accountId, noteId, score, responses)
 
 
 
@@ -1662,12 +1662,13 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
+final String accountId = accountId_example; // String | 
 final String noteId = noteId_example; // String | 
 final int score = 56; // int | 
 final int responses = 56; // int | 
 
 try {
-    final response = api.groupsAPITrackScore(groupId, noteId, score, responses);
+    final response = api.groupsAPITrackScore(groupId, accountId, noteId, score, responses);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling DefaultApi->groupsAPITrackScore: $e\n');
@@ -1679,7 +1680,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **String**|  | 
- **noteId** | **String**|  | 
+ **accountId** | **String**|  | 
+ **noteId** | **String**|  | [optional] 
  **score** | **int**|  | [optional] 
  **responses** | **int**|  | [optional] 
 

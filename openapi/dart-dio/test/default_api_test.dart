@@ -258,7 +258,7 @@ void main() {
       // TODO
     });
 
-    //Future<V1TrackScoreResponse> groupsAPITrackScore(String groupId, String noteId, { int score, int responses }) async
+    //Future<V1TrackScoreResponse> groupsAPITrackScore(String groupId, String accountId, { String noteId, int score, int responses }) async
     test('test groupsAPITrackScore', () async {
       // TODO
     });

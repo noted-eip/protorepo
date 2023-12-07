@@ -868,6 +868,41 @@ paths:
             $ref: '#/definitions/v1GroupMember'
             required:
               - member
+  /groups/{groupId}/members/{accountId}/track_score:
+    post:
+      operationId: GroupsAPI_TrackScore
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1TrackScoreResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          type: string
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: noteId
+          in: query
+          required: false
+          type: string
+        - name: score
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: responses
+          in: query
+          required: false
+          type: integer
+          format: int32
   /groups/{groupId}/notes:
     get:
       summary: List notes in a group, authored by a user or both. Must have read access to the notes.
@@ -1230,37 +1265,6 @@ paths:
           in: path
           required: true
           type: string
-  /groups/{groupId}/notes/{noteId}/track_score:
-    post:
-      operationId: GroupsAPI_TrackScore
-      responses:
-        "200":
-          description: A successful response.
-          schema:
-            $ref: '#/definitions/v1TrackScoreResponse'
-        "404":
-          description: Resource not found or lacking permissions to access the resource.
-          schema:
-            $ref: '#/definitions/v1HttpError'
-      parameters:
-        - name: groupId
-          in: path
-          required: true
-          type: string
-        - name: noteId
-          in: path
-          required: true
-          type: string
-        - name: score
-          in: query
-          required: false
-          type: integer
-          format: int32
-        - name: responses
-          in: query
-          required: false
-          type: integer
-          format: int32
   /groups/{groupId}/notes/{noteId}/widgets:
     get:
       summary: Must be a group member. Returns all the relevent widgets from the given note id.
