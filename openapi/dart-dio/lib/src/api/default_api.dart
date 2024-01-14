@@ -9,15 +9,15 @@ import 'package:dio/dio.dart';
 
 import 'package:built_value/json_object.dart';
 import 'package:openapi/src/api_util.dart';
-import 'package:openapi/src/model/accounts_api_update_account_password_request.dart';
-import 'package:openapi/src/model/accounts_api_upload_account_profile_picture_request.dart';
-import 'package:openapi/src/model/groups_api_send_invite_request.dart';
-import 'package:openapi/src/model/groups_api_update_group_request.dart';
-import 'package:openapi/src/model/notes_api_change_note_edit_permission_request.dart';
-import 'package:openapi/src/model/notes_api_create_block_comment_request.dart';
-import 'package:openapi/src/model/notes_api_create_note_request.dart';
-import 'package:openapi/src/model/notes_api_insert_block_request.dart';
-import 'package:openapi/src/model/notes_api_update_block_index_request.dart';
+import 'package:openapi/src/model/accounts_api_update_account_password_body.dart';
+import 'package:openapi/src/model/accounts_api_upload_account_profile_picture_body.dart';
+import 'package:openapi/src/model/groups_api_send_invite_body.dart';
+import 'package:openapi/src/model/groups_api_update_group_body.dart';
+import 'package:openapi/src/model/notes_api_change_note_edit_permission_body.dart';
+import 'package:openapi/src/model/notes_api_create_block_comment_body.dart';
+import 'package:openapi/src/model/notes_api_create_note_body.dart';
+import 'package:openapi/src/model/notes_api_insert_block_body.dart';
+import 'package:openapi/src/model/notes_api_update_block_index_body.dart';
 import 'package:openapi/src/model/stream_result_of_v1_stream_invites_response.dart';
 import 'package:openapi/src/model/v1_accept_invite_response.dart';
 import 'package:openapi/src/model/v1_account.dart';
@@ -40,6 +40,8 @@ import 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 import 'package:openapi/src/model/v1_generate_quiz_response.dart';
 import 'package:openapi/src/model/v1_generate_summary_response.dart';
 import 'package:openapi/src/model/v1_generate_widgets_response.dart';
+import 'package:openapi/src/model/v1_get_access_token_google_request.dart';
+import 'package:openapi/src/model/v1_get_access_token_google_response.dart';
 import 'package:openapi/src/model/v1_get_account_profile_picture_response.dart';
 import 'package:openapi/src/model/v1_get_account_request.dart';
 import 'package:openapi/src/model/v1_get_account_response.dart';
@@ -622,6 +624,101 @@ class DefaultApi {
     }
 
     return Response<V1ForgetAccountPasswordValidateTokenResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Get the accessToken using Google OAuth
+  /// 
+  ///
+  /// Parameters:
+  /// * [body] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [V1GetAccessTokenGoogleResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<V1GetAccessTokenGoogleResponse>> accountsAPIGetAccessTokenGoogle({ 
+    required V1GetAccessTokenGoogleRequest body,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/authenticate/google/token';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(V1GetAccessTokenGoogleRequest);
+      _bodyData = _serializers.serialize(body, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    V1GetAccessTokenGoogleResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(V1GetAccessTokenGoogleResponse),
+      ) as V1GetAccessTokenGoogleResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<V1GetAccessTokenGoogleResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1358,7 +1455,7 @@ class DefaultApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<V1UpdateAccountPasswordResponse>> accountsAPIUpdateAccountPassword({ 
     required String accountId,
-    required AccountsAPIUpdateAccountPasswordRequest body,
+    required AccountsAPIUpdateAccountPasswordBody body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1383,7 +1480,7 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(AccountsAPIUpdateAccountPasswordRequest);
+      const _type = FullType(AccountsAPIUpdateAccountPasswordBody);
       _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     } catch(error, stackTrace) {
@@ -1455,7 +1552,7 @@ class DefaultApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<JsonObject>> accountsAPIUploadAccountProfilePicture({ 
     required String accountId,
-    required AccountsAPIUploadAccountProfilePictureRequest body,
+    required AccountsAPIUploadAccountProfilePictureBody body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1480,7 +1577,7 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(AccountsAPIUploadAccountProfilePictureRequest);
+      const _type = FullType(AccountsAPIUploadAccountProfilePictureBody);
       _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     } catch(error, stackTrace) {
@@ -3099,7 +3196,7 @@ class DefaultApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<V1SendInviteResponse>> groupsAPISendInvite({ 
     required String groupId,
-    required GroupsAPISendInviteRequest body,
+    required GroupsAPISendInviteBody body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -3124,7 +3221,7 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(GroupsAPISendInviteRequest);
+      const _type = FullType(GroupsAPISendInviteBody);
       _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     } catch(error, stackTrace) {
@@ -3368,7 +3465,7 @@ class DefaultApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<V1UpdateGroupResponse>> groupsAPIUpdateGroup({ 
     required String groupId,
-    required GroupsAPIUpdateGroupRequest body,
+    required GroupsAPIUpdateGroupBody body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -3393,7 +3490,7 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(GroupsAPIUpdateGroupRequest);
+      const _type = FullType(GroupsAPIUpdateGroupBody);
       _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     } catch(error, stackTrace) {
@@ -3643,7 +3740,7 @@ class DefaultApi {
   Future<Response<JsonObject>> notesAPIChangeNoteEditPermission({ 
     required String groupId,
     required String noteId,
-    required NotesAPIChangeNoteEditPermissionRequest body,
+    required NotesAPIChangeNoteEditPermissionBody body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -3668,7 +3765,7 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(NotesAPIChangeNoteEditPermissionRequest);
+      const _type = FullType(NotesAPIChangeNoteEditPermissionBody);
       _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     } catch(error, stackTrace) {
@@ -3744,7 +3841,7 @@ class DefaultApi {
     required String groupId,
     required String noteId,
     required String blockId,
-    required NotesAPICreateBlockCommentRequest body,
+    required NotesAPICreateBlockCommentBody body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -3769,7 +3866,7 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(NotesAPICreateBlockCommentRequest);
+      const _type = FullType(NotesAPICreateBlockCommentBody);
       _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     } catch(error, stackTrace) {
@@ -3841,7 +3938,7 @@ class DefaultApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<V1CreateNoteResponse>> notesAPICreateNote({ 
     required String groupId,
-    required NotesAPICreateNoteRequest body,
+    required NotesAPICreateNoteBody body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -3866,7 +3963,7 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(NotesAPICreateNoteRequest);
+      const _type = FullType(NotesAPICreateNoteBody);
       _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     } catch(error, stackTrace) {
@@ -4408,7 +4505,7 @@ class DefaultApi {
   Future<Response<V1InsertBlockResponse>> notesAPIInsertBlock({ 
     required String groupId,
     required String noteId,
-    required NotesAPIInsertBlockRequest body,
+    required NotesAPIInsertBlockBody body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -4433,7 +4530,7 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(NotesAPIInsertBlockRequest);
+      const _type = FullType(NotesAPIInsertBlockBody);
       _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     } catch(error, stackTrace) {
@@ -4943,7 +5040,7 @@ class DefaultApi {
     required String groupId,
     required String noteId,
     required String blockId,
-    required NotesAPIUpdateBlockIndexRequest body,
+    required NotesAPIUpdateBlockIndexBody body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -4968,7 +5065,7 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(NotesAPIUpdateBlockIndexRequest);
+      const _type = FullType(NotesAPIUpdateBlockIndexBody);
       _bodyData = _serializers.serialize(body, specifiedType: _type);
 
     } catch(error, stackTrace) {

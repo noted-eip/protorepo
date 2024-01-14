@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**accountsAPIDeleteAccount**](DefaultApi.md#accountsapideleteaccount) | **DELETE** /accounts/{accountId} | Must be account owner.
 [**accountsAPIForgetAccountPassword**](DefaultApi.md#accountsapiforgetaccountpassword) | **POST** /accounts/forget | Send email to account containing code to create a new password.
 [**accountsAPIForgetAccountPasswordValidateToken**](DefaultApi.md#accountsapiforgetaccountpasswordvalidatetoken) | **POST** /accounts/forget/validate | Compare forgot password token provided by user with the one store in db.
+[**accountsAPIGetAccessTokenGoogle**](DefaultApi.md#accountsapigetaccesstokengoogle) | **POST** /authenticate/google/token | Get the accessToken using Google OAuth
 [**accountsAPIGetAccount**](DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Allows getting an account by ID or searching for one through email.
 [**accountsAPIGetAccount2**](DefaultApi.md#accountsapigetaccount2) | **POST** /search/accounts | Allows getting an account by ID or searching for one through email.
 [**accountsAPIGetAccountProfilePicture**](DefaultApi.md#accountsapigetaccountprofilepicture) | **GET** /accounts/{accountId}/picture | 
@@ -304,6 +305,47 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1ForgetAccountPasswordValidateTokenResponse**](V1ForgetAccountPasswordValidateTokenResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **accountsAPIGetAccessTokenGoogle**
+> V1GetAccessTokenGoogleResponse accountsAPIGetAccessTokenGoogle(body)
+
+Get the accessToken using Google OAuth
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getDefaultApi();
+final V1GetAccessTokenGoogleRequest body = ; // V1GetAccessTokenGoogleRequest | 
+
+try {
+    final response = api.accountsAPIGetAccessTokenGoogle(body);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling DefaultApi->accountsAPIGetAccessTokenGoogle: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**V1GetAccessTokenGoogleRequest**](V1GetAccessTokenGoogleRequest.md)|  | 
+
+### Return type
+
+[**V1GetAccessTokenGoogleResponse**](V1GetAccessTokenGoogleResponse.md)
 
 ### Authorization
 
@@ -665,7 +707,7 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String accountId = accountId_example; // String | 
-final AccountsAPIUpdateAccountPasswordRequest body = ; // AccountsAPIUpdateAccountPasswordRequest | 
+final AccountsAPIUpdateAccountPasswordBody body = ; // AccountsAPIUpdateAccountPasswordBody | 
 
 try {
     final response = api.accountsAPIUpdateAccountPassword(accountId, body);
@@ -680,7 +722,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accountId** | **String**|  | 
- **body** | [**AccountsAPIUpdateAccountPasswordRequest**](AccountsAPIUpdateAccountPasswordRequest.md)|  | 
+ **body** | [**AccountsAPIUpdateAccountPasswordBody**](AccountsAPIUpdateAccountPasswordBody.md)|  | 
 
 ### Return type
 
@@ -708,7 +750,7 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String accountId = accountId_example; // String | 
-final AccountsAPIUploadAccountProfilePictureRequest body = ; // AccountsAPIUploadAccountProfilePictureRequest | 
+final AccountsAPIUploadAccountProfilePictureBody body = ; // AccountsAPIUploadAccountProfilePictureBody | 
 
 try {
     final response = api.accountsAPIUploadAccountProfilePicture(accountId, body);
@@ -723,7 +765,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accountId** | **String**|  | 
- **body** | [**AccountsAPIUploadAccountProfilePictureRequest**](AccountsAPIUploadAccountProfilePictureRequest.md)|  | 
+ **body** | [**AccountsAPIUploadAccountProfilePictureBody**](AccountsAPIUploadAccountProfilePictureBody.md)|  | 
 
 ### Return type
 
@@ -1576,7 +1618,7 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
-final GroupsAPISendInviteRequest body = ; // GroupsAPISendInviteRequest | 
+final GroupsAPISendInviteBody body = ; // GroupsAPISendInviteBody | 
 
 try {
     final response = api.groupsAPISendInvite(groupId, body);
@@ -1591,7 +1633,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **String**|  | 
- **body** | [**GroupsAPISendInviteRequest**](GroupsAPISendInviteRequest.md)|  | 
+ **body** | [**GroupsAPISendInviteBody**](GroupsAPISendInviteBody.md)|  | 
 
 ### Return type
 
@@ -1711,7 +1753,7 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
-final GroupsAPIUpdateGroupRequest body = ; // GroupsAPIUpdateGroupRequest | 
+final GroupsAPIUpdateGroupBody body = ; // GroupsAPIUpdateGroupBody | 
 
 try {
     final response = api.groupsAPIUpdateGroup(groupId, body);
@@ -1726,7 +1768,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **String**|  | 
- **body** | [**GroupsAPIUpdateGroupRequest**](GroupsAPIUpdateGroupRequest.md)|  | 
+ **body** | [**GroupsAPIUpdateGroupBody**](GroupsAPIUpdateGroupBody.md)|  | 
 
 ### Return type
 
@@ -1843,7 +1885,7 @@ import 'package:openapi/api.dart';
 final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
 final String noteId = noteId_example; // String | 
-final NotesAPIChangeNoteEditPermissionRequest body = ; // NotesAPIChangeNoteEditPermissionRequest | 
+final NotesAPIChangeNoteEditPermissionBody body = ; // NotesAPIChangeNoteEditPermissionBody | 
 
 try {
     final response = api.notesAPIChangeNoteEditPermission(groupId, noteId, body);
@@ -1859,7 +1901,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **String**|  | 
  **noteId** | **String**|  | 
- **body** | [**NotesAPIChangeNoteEditPermissionRequest**](NotesAPIChangeNoteEditPermissionRequest.md)|  | 
+ **body** | [**NotesAPIChangeNoteEditPermissionBody**](NotesAPIChangeNoteEditPermissionBody.md)|  | 
 
 ### Return type
 
@@ -1889,7 +1931,7 @@ final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
 final String noteId = noteId_example; // String | 
 final String blockId = blockId_example; // String | 
-final NotesAPICreateBlockCommentRequest body = ; // NotesAPICreateBlockCommentRequest | 
+final NotesAPICreateBlockCommentBody body = ; // NotesAPICreateBlockCommentBody | 
 
 try {
     final response = api.notesAPICreateBlockComment(groupId, noteId, blockId, body);
@@ -1906,7 +1948,7 @@ Name | Type | Description  | Notes
  **groupId** | **String**|  | 
  **noteId** | **String**|  | 
  **blockId** | **String**|  | 
- **body** | [**NotesAPICreateBlockCommentRequest**](NotesAPICreateBlockCommentRequest.md)|  | 
+ **body** | [**NotesAPICreateBlockCommentBody**](NotesAPICreateBlockCommentBody.md)|  | 
 
 ### Return type
 
@@ -1934,7 +1976,7 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
-final NotesAPICreateNoteRequest body = ; // NotesAPICreateNoteRequest | 
+final NotesAPICreateNoteBody body = ; // NotesAPICreateNoteBody | 
 
 try {
     final response = api.notesAPICreateNote(groupId, body);
@@ -1949,7 +1991,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **String**|  | 
- **body** | [**NotesAPICreateNoteRequest**](NotesAPICreateNoteRequest.md)|  | 
+ **body** | [**NotesAPICreateNoteBody**](NotesAPICreateNoteBody.md)|  | 
 
 ### Return type
 
@@ -2242,7 +2284,7 @@ import 'package:openapi/api.dart';
 final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
 final String noteId = noteId_example; // String | 
-final NotesAPIInsertBlockRequest body = ; // NotesAPIInsertBlockRequest | 
+final NotesAPIInsertBlockBody body = ; // NotesAPIInsertBlockBody | 
 
 try {
     final response = api.notesAPIInsertBlock(groupId, noteId, body);
@@ -2258,7 +2300,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **String**|  | 
  **noteId** | **String**|  | 
- **body** | [**NotesAPIInsertBlockRequest**](NotesAPIInsertBlockRequest.md)|  | 
+ **body** | [**NotesAPIInsertBlockBody**](NotesAPIInsertBlockBody.md)|  | 
 
 ### Return type
 
@@ -2517,7 +2559,7 @@ final api = Openapi().getDefaultApi();
 final String groupId = groupId_example; // String | 
 final String noteId = noteId_example; // String | 
 final String blockId = blockId_example; // String | 
-final NotesAPIUpdateBlockIndexRequest body = ; // NotesAPIUpdateBlockIndexRequest | 
+final NotesAPIUpdateBlockIndexBody body = ; // NotesAPIUpdateBlockIndexBody | 
 
 try {
     final response = api.notesAPIUpdateBlockIndex(groupId, noteId, blockId, body);
@@ -2534,7 +2576,7 @@ Name | Type | Description  | Notes
  **groupId** | **String**|  | 
  **noteId** | **String**|  | 
  **blockId** | **String**|  | 
- **body** | [**NotesAPIUpdateBlockIndexRequest**](NotesAPIUpdateBlockIndexRequest.md)|  | 
+ **body** | [**NotesAPIUpdateBlockIndexBody**](NotesAPIUpdateBlockIndexBody.md)|  | 
 
 ### Return type
 

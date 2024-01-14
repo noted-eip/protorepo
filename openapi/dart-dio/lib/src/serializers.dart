@@ -14,20 +14,20 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:openapi/src/date_serializer.dart';
 import 'package:openapi/src/model/date.dart';
 
-import 'package:openapi/src/model/accounts_api_update_account_password_request.dart';
-import 'package:openapi/src/model/accounts_api_upload_account_profile_picture_request.dart';
+import 'package:openapi/src/model/accounts_api_update_account_password_body.dart';
+import 'package:openapi/src/model/accounts_api_upload_account_profile_picture_body.dart';
 import 'package:openapi/src/model/accountsv1_image.dart';
 import 'package:openapi/src/model/block_code.dart';
 import 'package:openapi/src/model/block_comment.dart';
 import 'package:openapi/src/model/block_text_style.dart';
 import 'package:openapi/src/model/change_note_edit_permission_request_action.dart';
-import 'package:openapi/src/model/groups_api_send_invite_request.dart';
-import 'package:openapi/src/model/groups_api_update_group_request.dart';
-import 'package:openapi/src/model/notes_api_change_note_edit_permission_request.dart';
-import 'package:openapi/src/model/notes_api_create_block_comment_request.dart';
-import 'package:openapi/src/model/notes_api_create_note_request.dart';
-import 'package:openapi/src/model/notes_api_insert_block_request.dart';
-import 'package:openapi/src/model/notes_api_update_block_index_request.dart';
+import 'package:openapi/src/model/groups_api_send_invite_body.dart';
+import 'package:openapi/src/model/groups_api_update_group_body.dart';
+import 'package:openapi/src/model/notes_api_change_note_edit_permission_body.dart';
+import 'package:openapi/src/model/notes_api_create_block_comment_body.dart';
+import 'package:openapi/src/model/notes_api_create_note_body.dart';
+import 'package:openapi/src/model/notes_api_insert_block_body.dart';
+import 'package:openapi/src/model/notes_api_update_block_index_body.dart';
 import 'package:openapi/src/model/stream_result_of_v1_stream_invites_response.dart';
 import 'package:openapi/src/model/text_style_color.dart';
 import 'package:openapi/src/model/text_style_position.dart';
@@ -61,6 +61,8 @@ import 'package:openapi/src/model/v1_generate_invite_link_response.dart';
 import 'package:openapi/src/model/v1_generate_quiz_response.dart';
 import 'package:openapi/src/model/v1_generate_summary_response.dart';
 import 'package:openapi/src/model/v1_generate_widgets_response.dart';
+import 'package:openapi/src/model/v1_get_access_token_google_request.dart';
+import 'package:openapi/src/model/v1_get_access_token_google_response.dart';
 import 'package:openapi/src/model/v1_get_account_profile_picture_response.dart';
 import 'package:openapi/src/model/v1_get_account_request.dart';
 import 'package:openapi/src/model/v1_get_account_response.dart';
@@ -121,20 +123,20 @@ import 'package:openapi/src/model/v1_widget.dart';
 part 'serializers.g.dart';
 
 @SerializersFor([
-  AccountsAPIUpdateAccountPasswordRequest,
-  AccountsAPIUploadAccountProfilePictureRequest,
+  AccountsAPIUpdateAccountPasswordBody,
+  AccountsAPIUploadAccountProfilePictureBody,
   Accountsv1Image,
   BlockCode,
   BlockComment,
   BlockTextStyle,
   ChangeNoteEditPermissionRequestAction,
-  GroupsAPISendInviteRequest,
-  GroupsAPIUpdateGroupRequest,
-  NotesAPIChangeNoteEditPermissionRequest,
-  NotesAPICreateBlockCommentRequest,
-  NotesAPICreateNoteRequest,
-  NotesAPIInsertBlockRequest,
-  NotesAPIUpdateBlockIndexRequest,
+  GroupsAPISendInviteBody,
+  GroupsAPIUpdateGroupBody,
+  NotesAPIChangeNoteEditPermissionBody,
+  NotesAPICreateBlockCommentBody,
+  NotesAPICreateNoteBody,
+  NotesAPIInsertBlockBody,
+  NotesAPIUpdateBlockIndexBody,
   StreamResultOfV1StreamInvitesResponse,
   TextStyleColor,
   TextStylePosition,
@@ -168,6 +170,8 @@ part 'serializers.g.dart';
   V1GenerateQuizResponse,
   V1GenerateSummaryResponse,
   V1GenerateWidgetsResponse,
+  V1GetAccessTokenGoogleRequest,
+  V1GetAccessTokenGoogleResponse,
   V1GetAccountProfilePictureResponse,
   V1GetAccountRequest,
   V1GetAccountResponse,

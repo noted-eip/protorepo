@@ -1,12 +1,12 @@
 import 'package:test/test.dart';
 import 'package:openapi/openapi.dart';
 
-// tests for GroupsAPISendInviteRequest
+// tests for GroupsAPISendInviteBody
 void main() {
-  final instance = GroupsAPISendInviteRequestBuilder();
+  final instance = GroupsAPISendInviteBodyBuilder();
   // TODO add properties to the builder and call build()
 
-  group(GroupsAPISendInviteRequest, () {
+  group(GroupsAPISendInviteBody, () {
     // String recipientAccountId
     test('to test the property `recipientAccountId`', () async {
       // TODO

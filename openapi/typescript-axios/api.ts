@@ -26,38 +26,38 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
- * @interface AccountsAPIUpdateAccountPasswordRequest
+ * @interface AccountsAPIUpdateAccountPasswordBody
  */
-export interface AccountsAPIUpdateAccountPasswordRequest {
+export interface AccountsAPIUpdateAccountPasswordBody {
     /**
      * 
      * @type {string}
-     * @memberof AccountsAPIUpdateAccountPasswordRequest
+     * @memberof AccountsAPIUpdateAccountPasswordBody
      */
     'password': string;
     /**
      * 
      * @type {string}
-     * @memberof AccountsAPIUpdateAccountPasswordRequest
+     * @memberof AccountsAPIUpdateAccountPasswordBody
      */
     'token'?: string;
     /**
      * 
      * @type {string}
-     * @memberof AccountsAPIUpdateAccountPasswordRequest
+     * @memberof AccountsAPIUpdateAccountPasswordBody
      */
     'oldPassword'?: string;
 }
 /**
  * 
  * @export
- * @interface AccountsAPIUploadAccountProfilePictureRequest
+ * @interface AccountsAPIUploadAccountProfilePictureBody
  */
-export interface AccountsAPIUploadAccountProfilePictureRequest {
+export interface AccountsAPIUploadAccountProfilePictureBody {
     /**
      * 
      * @type {Accountsv1Image}
-     * @memberof AccountsAPIUploadAccountProfilePictureRequest
+     * @memberof AccountsAPIUploadAccountProfilePictureBody
      */
     'image': Accountsv1Image;
 }
@@ -170,51 +170,51 @@ export type ChangeNoteEditPermissionRequestAction = typeof ChangeNoteEditPermiss
 /**
  * 
  * @export
- * @interface GroupsAPISendInviteRequest
+ * @interface GroupsAPISendInviteBody
  */
-export interface GroupsAPISendInviteRequest {
+export interface GroupsAPISendInviteBody {
     /**
      * 
      * @type {string}
-     * @memberof GroupsAPISendInviteRequest
+     * @memberof GroupsAPISendInviteBody
      */
     'recipientAccountId': string;
 }
 /**
  * 
  * @export
- * @interface GroupsAPIUpdateGroupRequest
+ * @interface GroupsAPIUpdateGroupBody
  */
-export interface GroupsAPIUpdateGroupRequest {
+export interface GroupsAPIUpdateGroupBody {
     /**
      * 
      * @type {string}
-     * @memberof GroupsAPIUpdateGroupRequest
+     * @memberof GroupsAPIUpdateGroupBody
      */
     'name'?: string;
     /**
      * 
      * @type {string}
-     * @memberof GroupsAPIUpdateGroupRequest
+     * @memberof GroupsAPIUpdateGroupBody
      */
     'description'?: string;
 }
 /**
  * 
  * @export
- * @interface NotesAPIChangeNoteEditPermissionRequest
+ * @interface NotesAPIChangeNoteEditPermissionBody
  */
-export interface NotesAPIChangeNoteEditPermissionRequest {
+export interface NotesAPIChangeNoteEditPermissionBody {
     /**
      * 
      * @type {string}
-     * @memberof NotesAPIChangeNoteEditPermissionRequest
+     * @memberof NotesAPIChangeNoteEditPermissionBody
      */
     'recipientAccountId': string;
     /**
      * 
      * @type {ChangeNoteEditPermissionRequestAction}
-     * @memberof NotesAPIChangeNoteEditPermissionRequest
+     * @memberof NotesAPIChangeNoteEditPermissionBody
      */
     'type'?: ChangeNoteEditPermissionRequestAction;
 }
@@ -223,70 +223,70 @@ export interface NotesAPIChangeNoteEditPermissionRequest {
 /**
  * 
  * @export
- * @interface NotesAPICreateBlockCommentRequest
+ * @interface NotesAPICreateBlockCommentBody
  */
-export interface NotesAPICreateBlockCommentRequest {
+export interface NotesAPICreateBlockCommentBody {
     /**
      * 
      * @type {BlockComment}
-     * @memberof NotesAPICreateBlockCommentRequest
+     * @memberof NotesAPICreateBlockCommentBody
      */
     'comment': BlockComment;
 }
 /**
  * 
  * @export
- * @interface NotesAPICreateNoteRequest
+ * @interface NotesAPICreateNoteBody
  */
-export interface NotesAPICreateNoteRequest {
+export interface NotesAPICreateNoteBody {
     /**
      * 
      * @type {string}
-     * @memberof NotesAPICreateNoteRequest
+     * @memberof NotesAPICreateNoteBody
      */
     'title'?: string;
     /**
      * 
      * @type {Array<V1Block>}
-     * @memberof NotesAPICreateNoteRequest
+     * @memberof NotesAPICreateNoteBody
      */
     'blocks'?: Array<V1Block>;
     /**
      * 
      * @type {string}
-     * @memberof NotesAPICreateNoteRequest
+     * @memberof NotesAPICreateNoteBody
      */
     'lang'?: string;
 }
 /**
  * 
  * @export
- * @interface NotesAPIInsertBlockRequest
+ * @interface NotesAPIInsertBlockBody
  */
-export interface NotesAPIInsertBlockRequest {
+export interface NotesAPIInsertBlockBody {
     /**
      * 
      * @type {number}
-     * @memberof NotesAPIInsertBlockRequest
+     * @memberof NotesAPIInsertBlockBody
      */
     'index': number;
     /**
      * 
      * @type {V1Block}
-     * @memberof NotesAPIInsertBlockRequest
+     * @memberof NotesAPIInsertBlockBody
      */
     'block': V1Block;
 }
 /**
  * 
  * @export
- * @interface NotesAPIUpdateBlockIndexRequest
+ * @interface NotesAPIUpdateBlockIndexBody
  */
-export interface NotesAPIUpdateBlockIndexRequest {
+export interface NotesAPIUpdateBlockIndexBody {
     /**
      * 
      * @type {number}
-     * @memberof NotesAPIUpdateBlockIndexRequest
+     * @memberof NotesAPIUpdateBlockIndexBody
      */
     'index': number;
 }
@@ -936,6 +936,32 @@ export interface V1GenerateWidgetsResponse {
      * @memberof V1GenerateWidgetsResponse
      */
     'widgets': Array<V1Widget>;
+}
+/**
+ * 
+ * @export
+ * @interface V1GetAccessTokenGoogleRequest
+ */
+export interface V1GetAccessTokenGoogleRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof V1GetAccessTokenGoogleRequest
+     */
+    'code': string;
+}
+/**
+ * 
+ * @export
+ * @interface V1GetAccessTokenGoogleResponse
+ */
+export interface V1GetAccessTokenGoogleResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof V1GetAccessTokenGoogleResponse
+     */
+    'accessToken': string;
 }
 /**
  * 
@@ -2226,6 +2252,42 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Get the accessToken using Google OAuth
+         * @param {V1GetAccessTokenGoogleRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIGetAccessTokenGoogle: async (body: V1GetAccessTokenGoogleRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('accountsAPIGetAccessTokenGoogle', 'body', body)
+            const localVarPath = `/authenticate/google/token`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Allows getting an account by ID or searching for one through email.
          * @param {string} accountId 
          * @param {string} [email] 
@@ -2539,11 +2601,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary Update account password.
          * @param {string} accountId 
-         * @param {AccountsAPIUpdateAccountPasswordRequest} body 
+         * @param {AccountsAPIUpdateAccountPasswordBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIUpdateAccountPassword: async (accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsAPIUpdateAccountPassword: async (accountId: string, body: AccountsAPIUpdateAccountPasswordBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('accountsAPIUpdateAccountPassword', 'accountId', accountId)
             // verify required parameter 'body' is not null or undefined
@@ -2578,11 +2640,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {string} accountId 
-         * @param {AccountsAPIUploadAccountProfilePictureRequest} body 
+         * @param {AccountsAPIUploadAccountProfilePictureBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIUploadAccountProfilePicture: async (accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsAPIUploadAccountProfilePicture: async (accountId: string, body: AccountsAPIUploadAccountProfilePictureBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('accountsAPIUploadAccountProfilePicture', 'accountId', accountId)
             // verify required parameter 'body' is not null or undefined
@@ -3377,11 +3439,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary The sender defaults to the authenticated user. Must be group member.
          * @param {string} groupId 
-         * @param {GroupsAPISendInviteRequest} body 
+         * @param {GroupsAPISendInviteBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPISendInvite: async (groupId: string, body: GroupsAPISendInviteRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsAPISendInvite: async (groupId: string, body: GroupsAPISendInviteBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('groupsAPISendInvite', 'groupId', groupId)
             // verify required parameter 'body' is not null or undefined
@@ -3507,11 +3569,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary Must be group administrator.
          * @param {string} groupId 
-         * @param {GroupsAPIUpdateGroupRequest} body 
+         * @param {GroupsAPIUpdateGroupBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIUpdateGroup: async (groupId: string, body: GroupsAPIUpdateGroupRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsAPIUpdateGroup: async (groupId: string, body: GroupsAPIUpdateGroupBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('groupsAPIUpdateGroup', 'groupId', groupId)
             // verify required parameter 'body' is not null or undefined
@@ -3629,11 +3691,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @param {string} groupId 
          * @param {string} noteId 
-         * @param {NotesAPIChangeNoteEditPermissionRequest} body 
+         * @param {NotesAPIChangeNoteEditPermissionBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPIChangeNoteEditPermission: async (groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notesAPIChangeNoteEditPermission: async (groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('notesAPIChangeNoteEditPermission', 'groupId', groupId)
             // verify required parameter 'noteId' is not null or undefined
@@ -3673,11 +3735,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
-         * @param {NotesAPICreateBlockCommentRequest} body 
+         * @param {NotesAPICreateBlockCommentBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPICreateBlockComment: async (groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notesAPICreateBlockComment: async (groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('notesAPICreateBlockComment', 'groupId', groupId)
             // verify required parameter 'noteId' is not null or undefined
@@ -3719,11 +3781,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
          * @param {string} groupId 
-         * @param {NotesAPICreateNoteRequest} body 
+         * @param {NotesAPICreateNoteBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPICreateNote: async (groupId: string, body: NotesAPICreateNoteRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notesAPICreateNote: async (groupId: string, body: NotesAPICreateNoteBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('notesAPICreateNote', 'groupId', groupId)
             // verify required parameter 'body' is not null or undefined
@@ -3997,11 +4059,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Must be author. Insert a block of content in a note at a specific index.
          * @param {string} groupId 
          * @param {string} noteId 
-         * @param {NotesAPIInsertBlockRequest} body 
+         * @param {NotesAPIInsertBlockBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPIInsertBlock: async (groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notesAPIInsertBlock: async (groupId: string, noteId: string, body: NotesAPIInsertBlockBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('notesAPIInsertBlock', 'groupId', groupId)
             // verify required parameter 'noteId' is not null or undefined
@@ -4267,11 +4329,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
-         * @param {NotesAPIUpdateBlockIndexRequest} body 
+         * @param {NotesAPIUpdateBlockIndexBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPIUpdateBlockIndex: async (groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        notesAPIUpdateBlockIndex: async (groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'groupId' is not null or undefined
             assertParamExists('notesAPIUpdateBlockIndex', 'groupId', groupId)
             // verify required parameter 'noteId' is not null or undefined
@@ -4481,6 +4543,19 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get the accessToken using Google OAuth
+         * @param {V1GetAccessTokenGoogleRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsAPIGetAccessTokenGoogle(body: V1GetAccessTokenGoogleRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1GetAccessTokenGoogleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIGetAccessTokenGoogle(body, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.accountsAPIGetAccessTokenGoogle']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Allows getting an account by ID or searching for one through email.
          * @param {string} accountId 
          * @param {string} [email] 
@@ -4591,11 +4666,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * 
          * @summary Update account password.
          * @param {string} accountId 
-         * @param {AccountsAPIUpdateAccountPasswordRequest} body 
+         * @param {AccountsAPIUpdateAccountPasswordBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountPasswordResponse>> {
+        async accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateAccountPasswordResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUpdateAccountPassword(accountId, body, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.accountsAPIUpdateAccountPassword']?.[index]?.url;
@@ -4604,11 +4679,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} accountId 
-         * @param {AccountsAPIUploadAccountProfilePictureRequest} body 
+         * @param {AccountsAPIUploadAccountProfilePictureBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsAPIUploadAccountProfilePicture(accountId, body, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.accountsAPIUploadAccountProfilePicture']?.[index]?.url;
@@ -4887,11 +4962,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * 
          * @summary The sender defaults to the authenticated user. Must be group member.
          * @param {string} groupId 
-         * @param {GroupsAPISendInviteRequest} body 
+         * @param {GroupsAPISendInviteBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1SendInviteResponse>> {
+        async groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1SendInviteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPISendInvite(groupId, body, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.groupsAPISendInvite']?.[index]?.url;
@@ -4930,11 +5005,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * 
          * @summary Must be group administrator.
          * @param {string} groupId 
-         * @param {GroupsAPIUpdateGroupRequest} body 
+         * @param {GroupsAPIUpdateGroupBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateGroupResponse>> {
+        async groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateGroupResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsAPIUpdateGroup(groupId, body, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.groupsAPIUpdateGroup']?.[index]?.url;
@@ -4973,11 +5048,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * 
          * @param {string} groupId 
          * @param {string} noteId 
-         * @param {NotesAPIChangeNoteEditPermissionRequest} body 
+         * @param {NotesAPIChangeNoteEditPermissionBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notesAPIChangeNoteEditPermission(groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async notesAPIChangeNoteEditPermission(groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIChangeNoteEditPermission(groupId, noteId, body, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.notesAPIChangeNoteEditPermission']?.[index]?.url;
@@ -4988,11 +5063,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
-         * @param {NotesAPICreateBlockCommentRequest} body 
+         * @param {NotesAPICreateBlockCommentBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notesAPICreateBlockComment(groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateBlockCommentResponse>> {
+        async notesAPICreateBlockComment(groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateBlockCommentResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPICreateBlockComment(groupId, noteId, blockId, body, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.notesAPICreateBlockComment']?.[index]?.url;
@@ -5002,11 +5077,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * 
          * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
          * @param {string} groupId 
-         * @param {NotesAPICreateNoteRequest} body 
+         * @param {NotesAPICreateNoteBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notesAPICreateNote(groupId: string, body: NotesAPICreateNoteRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateNoteResponse>> {
+        async notesAPICreateNote(groupId: string, body: NotesAPICreateNoteBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1CreateNoteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPICreateNote(groupId, body, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.notesAPICreateNote']?.[index]?.url;
@@ -5101,11 +5176,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @summary Must be author. Insert a block of content in a note at a specific index.
          * @param {string} groupId 
          * @param {string} noteId 
-         * @param {NotesAPIInsertBlockRequest} body 
+         * @param {NotesAPIInsertBlockBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1InsertBlockResponse>> {
+        async notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1InsertBlockResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIInsertBlock(groupId, noteId, body, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.notesAPIInsertBlock']?.[index]?.url;
@@ -5192,11 +5267,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
-         * @param {NotesAPIUpdateBlockIndexRequest} body 
+         * @param {NotesAPIUpdateBlockIndexBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateBlockIndexResponse>> {
+        async notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<V1UpdateBlockIndexResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.notesAPIUpdateBlockIndex(groupId, noteId, blockId, body, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.notesAPIUpdateBlockIndex']?.[index]?.url;
@@ -5303,6 +5378,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Get the accessToken using Google OAuth
+         * @param {V1GetAccessTokenGoogleRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsAPIGetAccessTokenGoogle(body: V1GetAccessTokenGoogleRequest, options?: any): AxiosPromise<V1GetAccessTokenGoogleResponse> {
+            return localVarFp.accountsAPIGetAccessTokenGoogle(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Allows getting an account by ID or searching for one through email.
          * @param {string} accountId 
          * @param {string} [email] 
@@ -5389,21 +5474,21 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary Update account password.
          * @param {string} accountId 
-         * @param {AccountsAPIUpdateAccountPasswordRequest} body 
+         * @param {AccountsAPIUpdateAccountPasswordBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: any): AxiosPromise<V1UpdateAccountPasswordResponse> {
+        accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordBody, options?: any): AxiosPromise<V1UpdateAccountPasswordResponse> {
             return localVarFp.accountsAPIUpdateAccountPassword(accountId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {string} accountId 
-         * @param {AccountsAPIUploadAccountProfilePictureRequest} body 
+         * @param {AccountsAPIUploadAccountProfilePictureBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options?: any): AxiosPromise<object> {
+        accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureBody, options?: any): AxiosPromise<object> {
             return localVarFp.accountsAPIUploadAccountProfilePicture(accountId, body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5622,11 +5707,11 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary The sender defaults to the authenticated user. Must be group member.
          * @param {string} groupId 
-         * @param {GroupsAPISendInviteRequest} body 
+         * @param {GroupsAPISendInviteBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteRequest, options?: any): AxiosPromise<V1SendInviteResponse> {
+        groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteBody, options?: any): AxiosPromise<V1SendInviteResponse> {
             return localVarFp.groupsAPISendInvite(groupId, body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5656,11 +5741,11 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary Must be group administrator.
          * @param {string} groupId 
-         * @param {GroupsAPIUpdateGroupRequest} body 
+         * @param {GroupsAPIUpdateGroupBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupRequest, options?: any): AxiosPromise<V1UpdateGroupResponse> {
+        groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupBody, options?: any): AxiosPromise<V1UpdateGroupResponse> {
             return localVarFp.groupsAPIUpdateGroup(groupId, body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5690,11 +5775,11 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * 
          * @param {string} groupId 
          * @param {string} noteId 
-         * @param {NotesAPIChangeNoteEditPermissionRequest} body 
+         * @param {NotesAPIChangeNoteEditPermissionBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPIChangeNoteEditPermission(groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionRequest, options?: any): AxiosPromise<object> {
+        notesAPIChangeNoteEditPermission(groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionBody, options?: any): AxiosPromise<object> {
             return localVarFp.notesAPIChangeNoteEditPermission(groupId, noteId, body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5702,22 +5787,22 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
-         * @param {NotesAPICreateBlockCommentRequest} body 
+         * @param {NotesAPICreateBlockCommentBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPICreateBlockComment(groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentRequest, options?: any): AxiosPromise<V1CreateBlockCommentResponse> {
+        notesAPICreateBlockComment(groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentBody, options?: any): AxiosPromise<V1CreateBlockCommentResponse> {
             return localVarFp.notesAPICreateBlockComment(groupId, noteId, blockId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
          * @param {string} groupId 
-         * @param {NotesAPICreateNoteRequest} body 
+         * @param {NotesAPICreateNoteBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPICreateNote(groupId: string, body: NotesAPICreateNoteRequest, options?: any): AxiosPromise<V1CreateNoteResponse> {
+        notesAPICreateNote(groupId: string, body: NotesAPICreateNoteBody, options?: any): AxiosPromise<V1CreateNoteResponse> {
             return localVarFp.notesAPICreateNote(groupId, body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5791,11 +5876,11 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @summary Must be author. Insert a block of content in a note at a specific index.
          * @param {string} groupId 
          * @param {string} noteId 
-         * @param {NotesAPIInsertBlockRequest} body 
+         * @param {NotesAPIInsertBlockBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options?: any): AxiosPromise<V1InsertBlockResponse> {
+        notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockBody, options?: any): AxiosPromise<V1InsertBlockResponse> {
             return localVarFp.notesAPIInsertBlock(groupId, noteId, body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5864,11 +5949,11 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {string} groupId 
          * @param {string} noteId 
          * @param {string} blockId 
-         * @param {NotesAPIUpdateBlockIndexRequest} body 
+         * @param {NotesAPIUpdateBlockIndexBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options?: any): AxiosPromise<V1UpdateBlockIndexResponse> {
+        notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexBody, options?: any): AxiosPromise<V1UpdateBlockIndexResponse> {
             return localVarFp.notesAPIUpdateBlockIndex(groupId, noteId, blockId, body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5978,6 +6063,18 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @summary Get the accessToken using Google OAuth
+     * @param {V1GetAccessTokenGoogleRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public accountsAPIGetAccessTokenGoogle(body: V1GetAccessTokenGoogleRequest, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).accountsAPIGetAccessTokenGoogle(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Allows getting an account by ID or searching for one through email.
      * @param {string} accountId 
      * @param {string} [email] 
@@ -6080,24 +6177,24 @@ export class DefaultApi extends BaseAPI {
      * 
      * @summary Update account password.
      * @param {string} accountId 
-     * @param {AccountsAPIUpdateAccountPasswordRequest} body 
+     * @param {AccountsAPIUpdateAccountPasswordBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordRequest, options?: RawAxiosRequestConfig) {
+    public accountsAPIUpdateAccountPassword(accountId: string, body: AccountsAPIUpdateAccountPasswordBody, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).accountsAPIUpdateAccountPassword(accountId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @param {string} accountId 
-     * @param {AccountsAPIUploadAccountProfilePictureRequest} body 
+     * @param {AccountsAPIUploadAccountProfilePictureBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureRequest, options?: RawAxiosRequestConfig) {
+    public accountsAPIUploadAccountProfilePicture(accountId: string, body: AccountsAPIUploadAccountProfilePictureBody, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).accountsAPIUploadAccountProfilePicture(accountId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6355,12 +6452,12 @@ export class DefaultApi extends BaseAPI {
      * 
      * @summary The sender defaults to the authenticated user. Must be group member.
      * @param {string} groupId 
-     * @param {GroupsAPISendInviteRequest} body 
+     * @param {GroupsAPISendInviteBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteRequest, options?: RawAxiosRequestConfig) {
+    public groupsAPISendInvite(groupId: string, body: GroupsAPISendInviteBody, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).groupsAPISendInvite(groupId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6395,12 +6492,12 @@ export class DefaultApi extends BaseAPI {
      * 
      * @summary Must be group administrator.
      * @param {string} groupId 
-     * @param {GroupsAPIUpdateGroupRequest} body 
+     * @param {GroupsAPIUpdateGroupBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupRequest, options?: RawAxiosRequestConfig) {
+    public groupsAPIUpdateGroup(groupId: string, body: GroupsAPIUpdateGroupBody, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).groupsAPIUpdateGroup(groupId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6435,12 +6532,12 @@ export class DefaultApi extends BaseAPI {
      * 
      * @param {string} groupId 
      * @param {string} noteId 
-     * @param {NotesAPIChangeNoteEditPermissionRequest} body 
+     * @param {NotesAPIChangeNoteEditPermissionBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public notesAPIChangeNoteEditPermission(groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionRequest, options?: RawAxiosRequestConfig) {
+    public notesAPIChangeNoteEditPermission(groupId: string, noteId: string, body: NotesAPIChangeNoteEditPermissionBody, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPIChangeNoteEditPermission(groupId, noteId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6449,12 +6546,12 @@ export class DefaultApi extends BaseAPI {
      * @param {string} groupId 
      * @param {string} noteId 
      * @param {string} blockId 
-     * @param {NotesAPICreateBlockCommentRequest} body 
+     * @param {NotesAPICreateBlockCommentBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public notesAPICreateBlockComment(groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentRequest, options?: RawAxiosRequestConfig) {
+    public notesAPICreateBlockComment(groupId: string, noteId: string, blockId: string, body: NotesAPICreateBlockCommentBody, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPICreateBlockComment(groupId, noteId, blockId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6462,12 +6559,12 @@ export class DefaultApi extends BaseAPI {
      * 
      * @summary Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
      * @param {string} groupId 
-     * @param {NotesAPICreateNoteRequest} body 
+     * @param {NotesAPICreateNoteBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public notesAPICreateNote(groupId: string, body: NotesAPICreateNoteRequest, options?: RawAxiosRequestConfig) {
+    public notesAPICreateNote(groupId: string, body: NotesAPICreateNoteBody, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPICreateNote(groupId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6554,12 +6651,12 @@ export class DefaultApi extends BaseAPI {
      * @summary Must be author. Insert a block of content in a note at a specific index.
      * @param {string} groupId 
      * @param {string} noteId 
-     * @param {NotesAPIInsertBlockRequest} body 
+     * @param {NotesAPIInsertBlockBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockRequest, options?: RawAxiosRequestConfig) {
+    public notesAPIInsertBlock(groupId: string, noteId: string, body: NotesAPIInsertBlockBody, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPIInsertBlock(groupId, noteId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6639,12 +6736,12 @@ export class DefaultApi extends BaseAPI {
      * @param {string} groupId 
      * @param {string} noteId 
      * @param {string} blockId 
-     * @param {NotesAPIUpdateBlockIndexRequest} body 
+     * @param {NotesAPIUpdateBlockIndexBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexRequest, options?: RawAxiosRequestConfig) {
+    public notesAPIUpdateBlockIndex(groupId: string, noteId: string, blockId: string, body: NotesAPIUpdateBlockIndexBody, options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).notesAPIUpdateBlockIndex(groupId, noteId, blockId, body, options).then((request) => request(this.axios, this.basePath));
     }
 

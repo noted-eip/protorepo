@@ -102,6 +102,11 @@ class AccountsAPIStub(object):
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateGoogleRequest.SerializeToString,
                 response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateGoogleResponse.FromString,
                 )
+        self.GetAccessTokenGoogle = channel.unary_unary(
+                '/noted.accounts.v1.AccountsAPI/GetAccessTokenGoogle',
+                request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccessTokenGoogleRequest.SerializeToString,
+                response_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccessTokenGoogleResponse.FromString,
+                )
         self.RegisterUserToMobileBeta = channel.unary_unary(
                 '/noted.accounts.v1.AccountsAPI/RegisterUserToMobileBeta',
                 request_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.RegisterUserToMobileBetaRequest.SerializeToString,
@@ -232,6 +237,13 @@ class AccountsAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetAccessTokenGoogle(self, request, context):
+        """Get the accessToken using Google OAuth
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def RegisterUserToMobileBeta(self, request, context):
         """Registers the user to the mobile application beta.
         """
@@ -326,6 +338,11 @@ def add_AccountsAPIServicer_to_server(servicer, server):
                     servicer.AuthenticateGoogle,
                     request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateGoogleRequest.FromString,
                     response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateGoogleResponse.SerializeToString,
+            ),
+            'GetAccessTokenGoogle': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAccessTokenGoogle,
+                    request_deserializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccessTokenGoogleRequest.FromString,
+                    response_serializer=noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccessTokenGoogleResponse.SerializeToString,
             ),
             'RegisterUserToMobileBeta': grpc.unary_unary_rpc_method_handler(
                     servicer.RegisterUserToMobileBeta,
@@ -631,6 +648,23 @@ class AccountsAPI(object):
         return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/AuthenticateGoogle',
             noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateGoogleRequest.SerializeToString,
             noted_dot_accounts_dot_v1_dot_accounts__pb2.AuthenticateGoogleResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAccessTokenGoogle(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/noted.accounts.v1.AccountsAPI/GetAccessTokenGoogle',
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccessTokenGoogleRequest.SerializeToString,
+            noted_dot_accounts_dot_v1_dot_accounts__pb2.GetAccessTokenGoogleResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

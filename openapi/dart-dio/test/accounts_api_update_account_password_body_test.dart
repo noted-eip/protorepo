@@ -1,12 +1,12 @@
 import 'package:test/test.dart';
 import 'package:openapi/openapi.dart';
 
-// tests for AccountsAPIUpdateAccountPasswordRequest
+// tests for AccountsAPIUpdateAccountPasswordBody
 void main() {
-  final instance = AccountsAPIUpdateAccountPasswordRequestBuilder();
+  final instance = AccountsAPIUpdateAccountPasswordBodyBuilder();
   // TODO add properties to the builder and call build()
 
-  group(AccountsAPIUpdateAccountPasswordRequest, () {
+  group(AccountsAPIUpdateAccountPasswordBody, () {
     // String password
     test('to test the property `password`', () async {
       // TODO

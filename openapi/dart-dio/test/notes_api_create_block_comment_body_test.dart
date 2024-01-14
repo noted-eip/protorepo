@@ -1,12 +1,12 @@
 import 'package:test/test.dart';
 import 'package:openapi/openapi.dart';
 
-// tests for NotesAPICreateBlockCommentRequest
+// tests for NotesAPICreateBlockCommentBody
 void main() {
-  final instance = NotesAPICreateBlockCommentRequestBuilder();
+  final instance = NotesAPICreateBlockCommentBodyBuilder();
   // TODO add properties to the builder and call build()
 
-  group(NotesAPICreateBlockCommentRequest, () {
+  group(NotesAPICreateBlockCommentBody, () {
     // BlockComment comment
     test('to test the property `comment`', () async {
       // TODO

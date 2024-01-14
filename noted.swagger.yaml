@@ -236,18 +236,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              password:
-                type: string
-              token:
-                type: string
-                title: Token from the reset email password if forgot password
-              oldPassword:
-                type: string
-                title: Old password if the account is already log-in
-            required:
-              - password
+            $ref: '#/definitions/AccountsAPIUpdateAccountPasswordBody'
   /accounts/{accountId}/picture:
     get:
       operationId: AccountsAPI_GetAccountProfilePicture
@@ -285,12 +274,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              image:
-                $ref: '#/definitions/accountsv1Image'
-            required:
-              - image
+            $ref: '#/definitions/AccountsAPIUploadAccountProfilePictureBody'
   /authenticate:
     post:
       summary: Authenticate using the email and password flow.
@@ -329,6 +313,25 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/v1AuthenticateGoogleRequest'
+  /authenticate/google/token:
+    post:
+      summary: Get the accessToken using Google OAuth
+      operationId: AccountsAPI_GetAccessTokenGoogle
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1GetAccessTokenGoogleResponse'
+        "404":
+          description: Resource not found or lacking permissions to access the resource.
+          schema:
+            $ref: '#/definitions/v1HttpError'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v1GetAccessTokenGoogleRequest'
   /beta/mobile:
     post:
       summary: Registers the user to the mobile application beta.
@@ -502,12 +505,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              name:
-                type: string
-              description:
-                type: string
+            $ref: '#/definitions/GroupsAPIUpdateGroupBody'
   /groups/{groupId}/activity:
     get:
       summary: Must be a group member. List all the activities in a group.
@@ -704,12 +702,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              recipientAccountId:
-                type: string
-            required:
-              - recipientAccountId
+            $ref: '#/definitions/GroupsAPISendInviteBody'
   /groups/{groupId}/invites/{inviteId}:
     get:
       summary: Must be group administrator or sender or recipient.
@@ -956,17 +949,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              title:
-                type: string
-              blocks:
-                type: array
-                items:
-                  type: object
-                  $ref: '#/definitions/v1Block'
-              lang:
-                type: string
+            $ref: '#/definitions/NotesAPICreateNoteBody'
   /groups/{groupId}/notes/{noteId}:
     get:
       summary: Must be group member or author. Return a note from id provided.
@@ -1064,16 +1047,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              index:
-                type: integer
-                format: int64
-              block:
-                $ref: '#/definitions/v1Block'
-            required:
-              - index
-              - block
+            $ref: '#/definitions/NotesAPIInsertBlockBody'
   /groups/{groupId}/notes/{noteId}/blocks/{blockId}:
     delete:
       summary: Must be author. Delete a block in a note and replace the indexes of the others.
@@ -1162,13 +1136,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              index:
-                type: integer
-                format: int64
-            required:
-              - index
+            $ref: '#/definitions/NotesAPIUpdateBlockIndexBody'
   /groups/{groupId}/notes/{noteId}/permission:
     post:
       operationId: NotesAPI_ChangeNoteEditPermission
@@ -1194,14 +1162,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              recipientAccountId:
-                type: string
-              type:
-                $ref: '#/definitions/ChangeNoteEditPermissionRequestAction'
-            required:
-              - recipientAccountId
+            $ref: '#/definitions/NotesAPIChangeNoteEditPermissionBody'
   /groups/{groupId}/notes/{noteId}/quiz:
     post:
       operationId: NotesAPI_GenerateQuiz
@@ -1316,12 +1277,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              comment:
-                $ref: '#/definitions/BlockComment'
-            required:
-              - comment
+            $ref: '#/definitions/NotesAPICreateBlockCommentBody'
   /groups/{groupId}/notes/{noteId}/{blockId}/comment/{commentId}:
     delete:
       operationId: NotesAPI_DeleteBlockComment
@@ -1467,6 +1423,26 @@ paths:
           schema:
             $ref: '#/definitions/v1GetAccountRequest'
 definitions:
+  AccountsAPIUpdateAccountPasswordBody:
+    type: object
+    properties:
+      password:
+        type: string
+      token:
+        type: string
+        title: Token from the reset email password if forgot password
+      oldPassword:
+        type: string
+        title: Old password if the account is already log-in
+    required:
+      - password
+  AccountsAPIUploadAccountProfilePictureBody:
+    type: object
+    properties:
+      image:
+        $ref: '#/definitions/accountsv1Image'
+    required:
+      - image
   BlockCode:
     type: object
     properties:
@@ -1497,6 +1473,67 @@ definitions:
     enum:
       - ACTION_GRANT
       - ACTION_REMOVE
+  GroupsAPISendInviteBody:
+    type: object
+    properties:
+      recipientAccountId:
+        type: string
+    required:
+      - recipientAccountId
+  GroupsAPIUpdateGroupBody:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+  NotesAPIChangeNoteEditPermissionBody:
+    type: object
+    properties:
+      recipientAccountId:
+        type: string
+      type:
+        $ref: '#/definitions/ChangeNoteEditPermissionRequestAction'
+    required:
+      - recipientAccountId
+  NotesAPICreateBlockCommentBody:
+    type: object
+    properties:
+      comment:
+        $ref: '#/definitions/BlockComment'
+    required:
+      - comment
+  NotesAPICreateNoteBody:
+    type: object
+    properties:
+      title:
+        type: string
+      blocks:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Block'
+      lang:
+        type: string
+  NotesAPIInsertBlockBody:
+    type: object
+    properties:
+      index:
+        type: integer
+        format: int64
+      block:
+        $ref: '#/definitions/v1Block'
+    required:
+      - index
+      - block
+  NotesAPIUpdateBlockIndexBody:
+    type: object
+    properties:
+      index:
+        type: integer
+        format: int64
+    required:
+      - index
   TextStyleColor:
     type: object
     properties:
@@ -1848,6 +1885,20 @@ definitions:
           $ref: '#/definitions/v1Widget'
     required:
       - widgets
+  v1GetAccessTokenGoogleRequest:
+    type: object
+    properties:
+      code:
+        type: string
+    required:
+      - code
+  v1GetAccessTokenGoogleResponse:
+    type: object
+    properties:
+      accessToken:
+        type: string
+    required:
+      - accessToken
   v1GetAccountProfilePictureResponse:
     type: object
     properties:

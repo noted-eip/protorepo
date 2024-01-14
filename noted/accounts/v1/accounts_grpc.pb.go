@@ -36,6 +36,7 @@ const (
 	AccountsAPI_SendGroupInviteMail_FullMethodName                = "/noted.accounts.v1.AccountsAPI/SendGroupInviteMail"
 	AccountsAPI_Authenticate_FullMethodName                       = "/noted.accounts.v1.AccountsAPI/Authenticate"
 	AccountsAPI_AuthenticateGoogle_FullMethodName                 = "/noted.accounts.v1.AccountsAPI/AuthenticateGoogle"
+	AccountsAPI_GetAccessTokenGoogle_FullMethodName               = "/noted.accounts.v1.AccountsAPI/GetAccessTokenGoogle"
 	AccountsAPI_RegisterUserToMobileBeta_FullMethodName           = "/noted.accounts.v1.AccountsAPI/RegisterUserToMobileBeta"
 )
 
@@ -75,6 +76,8 @@ type AccountsAPIClient interface {
 	Authenticate(ctx context.Context, in *AuthenticateRequest, opts ...grpc.CallOption) (*AuthenticateResponse, error)
 	// Authenticate using the Google OAuth flow.
 	AuthenticateGoogle(ctx context.Context, in *AuthenticateGoogleRequest, opts ...grpc.CallOption) (*AuthenticateGoogleResponse, error)
+	// Get the accessToken using Google OAuth
+	GetAccessTokenGoogle(ctx context.Context, in *GetAccessTokenGoogleRequest, opts ...grpc.CallOption) (*GetAccessTokenGoogleResponse, error)
 	// Registers the user to the mobile application beta.
 	RegisterUserToMobileBeta(ctx context.Context, in *RegisterUserToMobileBetaRequest, opts ...grpc.CallOption) (*RegisterUserToMobileBetaResponse, error)
 }
@@ -240,6 +243,15 @@ func (c *accountsAPIClient) AuthenticateGoogle(ctx context.Context, in *Authenti
 	return out, nil
 }
 
+func (c *accountsAPIClient) GetAccessTokenGoogle(ctx context.Context, in *GetAccessTokenGoogleRequest, opts ...grpc.CallOption) (*GetAccessTokenGoogleResponse, error) {
+	out := new(GetAccessTokenGoogleResponse)
+	err := c.cc.Invoke(ctx, AccountsAPI_GetAccessTokenGoogle_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accountsAPIClient) RegisterUserToMobileBeta(ctx context.Context, in *RegisterUserToMobileBetaRequest, opts ...grpc.CallOption) (*RegisterUserToMobileBetaResponse, error) {
 	out := new(RegisterUserToMobileBetaResponse)
 	err := c.cc.Invoke(ctx, AccountsAPI_RegisterUserToMobileBeta_FullMethodName, in, out, opts...)
@@ -285,6 +297,8 @@ type AccountsAPIServer interface {
 	Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error)
 	// Authenticate using the Google OAuth flow.
 	AuthenticateGoogle(context.Context, *AuthenticateGoogleRequest) (*AuthenticateGoogleResponse, error)
+	// Get the accessToken using Google OAuth
+	GetAccessTokenGoogle(context.Context, *GetAccessTokenGoogleRequest) (*GetAccessTokenGoogleResponse, error)
 	// Registers the user to the mobile application beta.
 	RegisterUserToMobileBeta(context.Context, *RegisterUserToMobileBetaRequest) (*RegisterUserToMobileBetaResponse, error)
 	mustEmbedUnimplementedAccountsAPIServer()
@@ -344,6 +358,9 @@ func (UnimplementedAccountsAPIServer) Authenticate(context.Context, *Authenticat
 }
 func (UnimplementedAccountsAPIServer) AuthenticateGoogle(context.Context, *AuthenticateGoogleRequest) (*AuthenticateGoogleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthenticateGoogle not implemented")
+}
+func (UnimplementedAccountsAPIServer) GetAccessTokenGoogle(context.Context, *GetAccessTokenGoogleRequest) (*GetAccessTokenGoogleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAccessTokenGoogle not implemented")
 }
 func (UnimplementedAccountsAPIServer) RegisterUserToMobileBeta(context.Context, *RegisterUserToMobileBetaRequest) (*RegisterUserToMobileBetaResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterUserToMobileBeta not implemented")
@@ -667,6 +684,24 @@ func _AccountsAPI_AuthenticateGoogle_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountsAPI_GetAccessTokenGoogle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAccessTokenGoogleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountsAPIServer).GetAccessTokenGoogle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountsAPI_GetAccessTokenGoogle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountsAPIServer).GetAccessTokenGoogle(ctx, req.(*GetAccessTokenGoogleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AccountsAPI_RegisterUserToMobileBeta_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterUserToMobileBetaRequest)
 	if err := dec(in); err != nil {
@@ -759,6 +794,10 @@ var AccountsAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AuthenticateGoogle",
 			Handler:    _AccountsAPI_AuthenticateGoogle_Handler,
+		},
+		{
+			MethodName: "GetAccessTokenGoogle",
+			Handler:    _AccountsAPI_GetAccessTokenGoogle_Handler,
 		},
 		{
 			MethodName: "RegisterUserToMobileBeta",

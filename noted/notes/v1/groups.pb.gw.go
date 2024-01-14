@@ -35,11 +35,7 @@ func request_GroupsAPI_CreateGroup_0(ctx context.Context, marshaler runtime.Mars
 	var protoReq CreateGroupRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -52,11 +48,7 @@ func local_request_GroupsAPI_CreateGroup_0(ctx context.Context, marshaler runtim
 	var protoReq CreateGroupRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -66,7 +58,7 @@ func local_request_GroupsAPI_CreateGroup_0(ctx context.Context, marshaler runtim
 }
 
 var (
-	filter_GroupsAPI_GetGroup_0 = &utilities.DoubleArray{Encoding: map[string]int{"group_id": 0, "groupId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_GroupsAPI_GetGroup_0 = &utilities.DoubleArray{Encoding: map[string]int{"group_id": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
 
 func request_GroupsAPI_GetGroup_0(ctx context.Context, marshaler runtime.Marshaler, client GroupsAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -139,11 +131,7 @@ func request_GroupsAPI_UpdateGroup_0(ctx context.Context, marshaler runtime.Mars
 	var protoReq UpdateGroupRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -173,11 +161,7 @@ func local_request_GroupsAPI_UpdateGroup_0(ctx context.Context, marshaler runtim
 	var protoReq UpdateGroupRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -364,7 +348,7 @@ func local_request_GroupsAPI_GetMember_0(ctx context.Context, marshaler runtime.
 }
 
 var (
-	filter_GroupsAPI_UpdateMember_0 = &utilities.DoubleArray{Encoding: map[string]int{"member": 0, "group_id": 1, "groupId": 2, "account_id": 3, "accountId": 4}, Base: []int{1, 2, 3, 4, 5, 6, 0, 0, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6}}
+	filter_GroupsAPI_UpdateMember_0 = &utilities.DoubleArray{Encoding: map[string]int{"member": 0, "group_id": 1, "account_id": 2}, Base: []int{1, 1, 2, 3, 0, 0, 0}, Check: []int{0, 1, 1, 1, 2, 3, 4}}
 )
 
 func request_GroupsAPI_UpdateMember_0(ctx context.Context, marshaler runtime.Marshaler, client GroupsAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -827,11 +811,7 @@ func request_GroupsAPI_SendInvite_0(ctx context.Context, marshaler runtime.Marsh
 	var protoReq SendInviteRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -861,11 +841,7 @@ func local_request_GroupsAPI_SendInvite_0(ctx context.Context, marshaler runtime
 	var protoReq SendInviteRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -1216,7 +1192,7 @@ func local_request_GroupsAPI_ListInvites_0(ctx context.Context, marshaler runtim
 }
 
 var (
-	filter_GroupsAPI_ListInvites_1 = &utilities.DoubleArray{Encoding: map[string]int{"group_id": 0, "groupId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_GroupsAPI_ListInvites_1 = &utilities.DoubleArray{Encoding: map[string]int{"group_id": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
 
 func request_GroupsAPI_ListInvites_1(ctx context.Context, marshaler runtime.Marshaler, client GroupsAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -1286,7 +1262,7 @@ func local_request_GroupsAPI_ListInvites_1(ctx context.Context, marshaler runtim
 }
 
 var (
-	filter_GroupsAPI_StreamInvites_0 = &utilities.DoubleArray{Encoding: map[string]int{"identifier_account_id": 0, "identifierAccountId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_GroupsAPI_StreamInvites_0 = &utilities.DoubleArray{Encoding: map[string]int{"identifier_account_id": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
 
 func request_GroupsAPI_StreamInvites_0(ctx context.Context, marshaler runtime.Marshaler, client GroupsAPIClient, req *http.Request, pathParams map[string]string) (GroupsAPI_StreamInvitesClient, runtime.ServerMetadata, error) {
@@ -1383,7 +1359,7 @@ func local_request_GroupsAPI_EndStreamInvites_0(ctx context.Context, marshaler r
 }
 
 var (
-	filter_GroupsAPI_ListActivities_0 = &utilities.DoubleArray{Encoding: map[string]int{"group_id": 0, "groupId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_GroupsAPI_ListActivities_0 = &utilities.DoubleArray{Encoding: map[string]int{"group_id": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
 
 func request_GroupsAPI_ListActivities_0(ctx context.Context, marshaler runtime.Marshaler, client GroupsAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -1525,7 +1501,7 @@ func local_request_GroupsAPI_GetActivity_0(ctx context.Context, marshaler runtim
 }
 
 var (
-	filter_GroupsAPI_TrackScore_0 = &utilities.DoubleArray{Encoding: map[string]int{"group_id": 0, "groupId": 1, "account_id": 2, "accountId": 3}, Base: []int{1, 1, 2, 3, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 2, 3, 4, 5}}
+	filter_GroupsAPI_TrackScore_0 = &utilities.DoubleArray{Encoding: map[string]int{"group_id": 0, "account_id": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 )
 
 func request_GroupsAPI_TrackScore_0(ctx context.Context, marshaler runtime.Marshaler, client GroupsAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {

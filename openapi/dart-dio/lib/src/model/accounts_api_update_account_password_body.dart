@@ -3,71 +3,67 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/v1_block.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'notes_api_create_note_request.g.dart';
+part 'accounts_api_update_account_password_body.g.dart';
 
-/// NotesAPICreateNoteRequest
+/// AccountsAPIUpdateAccountPasswordBody
 ///
 /// Properties:
-/// * [title] 
-/// * [blocks] 
-/// * [lang] 
+/// * [password] 
+/// * [token] 
+/// * [oldPassword] 
 @BuiltValue()
-abstract class NotesAPICreateNoteRequest implements Built<NotesAPICreateNoteRequest, NotesAPICreateNoteRequestBuilder> {
-  @BuiltValueField(wireName: r'title')
-  String? get title;
+abstract class AccountsAPIUpdateAccountPasswordBody implements Built<AccountsAPIUpdateAccountPasswordBody, AccountsAPIUpdateAccountPasswordBodyBuilder> {
+  @BuiltValueField(wireName: r'password')
+  String get password;
 
-  @BuiltValueField(wireName: r'blocks')
-  BuiltList<V1Block>? get blocks;
+  @BuiltValueField(wireName: r'token')
+  String? get token;
 
-  @BuiltValueField(wireName: r'lang')
-  String? get lang;
+  @BuiltValueField(wireName: r'oldPassword')
+  String? get oldPassword;
 
-  NotesAPICreateNoteRequest._();
+  AccountsAPIUpdateAccountPasswordBody._();
 
-  factory NotesAPICreateNoteRequest([void updates(NotesAPICreateNoteRequestBuilder b)]) = _$NotesAPICreateNoteRequest;
+  factory AccountsAPIUpdateAccountPasswordBody([void updates(AccountsAPIUpdateAccountPasswordBodyBuilder b)]) = _$AccountsAPIUpdateAccountPasswordBody;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(NotesAPICreateNoteRequestBuilder b) => b;
+  static void _defaults(AccountsAPIUpdateAccountPasswordBodyBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<NotesAPICreateNoteRequest> get serializer => _$NotesAPICreateNoteRequestSerializer();
+  static Serializer<AccountsAPIUpdateAccountPasswordBody> get serializer => _$AccountsAPIUpdateAccountPasswordBodySerializer();
 }
 
-class _$NotesAPICreateNoteRequestSerializer implements PrimitiveSerializer<NotesAPICreateNoteRequest> {
+class _$AccountsAPIUpdateAccountPasswordBodySerializer implements PrimitiveSerializer<AccountsAPIUpdateAccountPasswordBody> {
   @override
-  final Iterable<Type> types = const [NotesAPICreateNoteRequest, _$NotesAPICreateNoteRequest];
+  final Iterable<Type> types = const [AccountsAPIUpdateAccountPasswordBody, _$AccountsAPIUpdateAccountPasswordBody];
 
   @override
-  final String wireName = r'NotesAPICreateNoteRequest';
+  final String wireName = r'AccountsAPIUpdateAccountPasswordBody';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    NotesAPICreateNoteRequest object, {
+    AccountsAPIUpdateAccountPasswordBody object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.title != null) {
-      yield r'title';
+    yield r'password';
+    yield serializers.serialize(
+      object.password,
+      specifiedType: const FullType(String),
+    );
+    if (object.token != null) {
+      yield r'token';
       yield serializers.serialize(
-        object.title,
+        object.token,
         specifiedType: const FullType(String),
       );
     }
-    if (object.blocks != null) {
-      yield r'blocks';
+    if (object.oldPassword != null) {
+      yield r'oldPassword';
       yield serializers.serialize(
-        object.blocks,
-        specifiedType: const FullType(BuiltList, [FullType(V1Block)]),
-      );
-    }
-    if (object.lang != null) {
-      yield r'lang';
-      yield serializers.serialize(
-        object.lang,
+        object.oldPassword,
         specifiedType: const FullType(String),
       );
     }
@@ -76,7 +72,7 @@ class _$NotesAPICreateNoteRequestSerializer implements PrimitiveSerializer<Notes
   @override
   Object serialize(
     Serializers serializers,
-    NotesAPICreateNoteRequest object, {
+    AccountsAPIUpdateAccountPasswordBody object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -87,33 +83,33 @@ class _$NotesAPICreateNoteRequestSerializer implements PrimitiveSerializer<Notes
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required NotesAPICreateNoteRequestBuilder result,
+    required AccountsAPIUpdateAccountPasswordBodyBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'title':
+        case r'password':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.title = valueDes;
+          result.password = valueDes;
           break;
-        case r'blocks':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(V1Block)]),
-          ) as BuiltList<V1Block>;
-          result.blocks.replace(valueDes);
-          break;
-        case r'lang':
+        case r'token':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.lang = valueDes;
+          result.token = valueDes;
+          break;
+        case r'oldPassword':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.oldPassword = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -124,12 +120,12 @@ class _$NotesAPICreateNoteRequestSerializer implements PrimitiveSerializer<Notes
   }
 
   @override
-  NotesAPICreateNoteRequest deserialize(
+  AccountsAPIUpdateAccountPasswordBody deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = NotesAPICreateNoteRequestBuilder();
+    final result = AccountsAPIUpdateAccountPasswordBodyBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

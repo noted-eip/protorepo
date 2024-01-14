@@ -1,12 +1,12 @@
 import 'package:test/test.dart';
 import 'package:openapi/openapi.dart';
 
-// tests for AccountsAPIUploadAccountProfilePictureRequest
+// tests for AccountsAPIUploadAccountProfilePictureBody
 void main() {
-  final instance = AccountsAPIUploadAccountProfilePictureRequestBuilder();
+  final instance = AccountsAPIUploadAccountProfilePictureBodyBuilder();
   // TODO add properties to the builder and call build()
 
-  group(AccountsAPIUploadAccountProfilePictureRequest, () {
+  group(AccountsAPIUploadAccountProfilePictureBody, () {
     // Accountsv1Image image
     test('to test the property `image`', () async {
       // TODO

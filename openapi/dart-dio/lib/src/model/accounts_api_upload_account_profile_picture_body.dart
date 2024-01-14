@@ -3,54 +3,55 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:openapi/src/model/accountsv1_image.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'notes_api_update_block_index_request.g.dart';
+part 'accounts_api_upload_account_profile_picture_body.g.dart';
 
-/// NotesAPIUpdateBlockIndexRequest
+/// AccountsAPIUploadAccountProfilePictureBody
 ///
 /// Properties:
-/// * [index] 
+/// * [image] 
 @BuiltValue()
-abstract class NotesAPIUpdateBlockIndexRequest implements Built<NotesAPIUpdateBlockIndexRequest, NotesAPIUpdateBlockIndexRequestBuilder> {
-  @BuiltValueField(wireName: r'index')
-  int get index;
+abstract class AccountsAPIUploadAccountProfilePictureBody implements Built<AccountsAPIUploadAccountProfilePictureBody, AccountsAPIUploadAccountProfilePictureBodyBuilder> {
+  @BuiltValueField(wireName: r'image')
+  Accountsv1Image get image;
 
-  NotesAPIUpdateBlockIndexRequest._();
+  AccountsAPIUploadAccountProfilePictureBody._();
 
-  factory NotesAPIUpdateBlockIndexRequest([void updates(NotesAPIUpdateBlockIndexRequestBuilder b)]) = _$NotesAPIUpdateBlockIndexRequest;
+  factory AccountsAPIUploadAccountProfilePictureBody([void updates(AccountsAPIUploadAccountProfilePictureBodyBuilder b)]) = _$AccountsAPIUploadAccountProfilePictureBody;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(NotesAPIUpdateBlockIndexRequestBuilder b) => b;
+  static void _defaults(AccountsAPIUploadAccountProfilePictureBodyBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<NotesAPIUpdateBlockIndexRequest> get serializer => _$NotesAPIUpdateBlockIndexRequestSerializer();
+  static Serializer<AccountsAPIUploadAccountProfilePictureBody> get serializer => _$AccountsAPIUploadAccountProfilePictureBodySerializer();
 }
 
-class _$NotesAPIUpdateBlockIndexRequestSerializer implements PrimitiveSerializer<NotesAPIUpdateBlockIndexRequest> {
+class _$AccountsAPIUploadAccountProfilePictureBodySerializer implements PrimitiveSerializer<AccountsAPIUploadAccountProfilePictureBody> {
   @override
-  final Iterable<Type> types = const [NotesAPIUpdateBlockIndexRequest, _$NotesAPIUpdateBlockIndexRequest];
+  final Iterable<Type> types = const [AccountsAPIUploadAccountProfilePictureBody, _$AccountsAPIUploadAccountProfilePictureBody];
 
   @override
-  final String wireName = r'NotesAPIUpdateBlockIndexRequest';
+  final String wireName = r'AccountsAPIUploadAccountProfilePictureBody';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    NotesAPIUpdateBlockIndexRequest object, {
+    AccountsAPIUploadAccountProfilePictureBody object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'index';
+    yield r'image';
     yield serializers.serialize(
-      object.index,
-      specifiedType: const FullType(int),
+      object.image,
+      specifiedType: const FullType(Accountsv1Image),
     );
   }
 
   @override
   Object serialize(
     Serializers serializers,
-    NotesAPIUpdateBlockIndexRequest object, {
+    AccountsAPIUploadAccountProfilePictureBody object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -61,19 +62,19 @@ class _$NotesAPIUpdateBlockIndexRequestSerializer implements PrimitiveSerializer
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required NotesAPIUpdateBlockIndexRequestBuilder result,
+    required AccountsAPIUploadAccountProfilePictureBodyBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'index':
+        case r'image':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.index = valueDes;
+            specifiedType: const FullType(Accountsv1Image),
+          ) as Accountsv1Image;
+          result.image.replace(valueDes);
           break;
         default:
           unhandled.add(key);
@@ -84,12 +85,12 @@ class _$NotesAPIUpdateBlockIndexRequestSerializer implements PrimitiveSerializer
   }
 
   @override
-  NotesAPIUpdateBlockIndexRequest deserialize(
+  AccountsAPIUploadAccountProfilePictureBody deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = NotesAPIUpdateBlockIndexRequestBuilder();
+    final result = AccountsAPIUploadAccountProfilePictureBodyBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

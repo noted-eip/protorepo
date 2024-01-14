@@ -1,4 +1,4 @@
-# openapi.model.NotesAPIChangeNoteEditPermissionRequest
+# openapi.model.NotesAPIChangeNoteEditPermissionBody
 
 ## Load the model package
 ```dart

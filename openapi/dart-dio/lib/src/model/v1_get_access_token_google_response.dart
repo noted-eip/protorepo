@@ -6,43 +6,43 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'groups_api_send_invite_request.g.dart';
+part 'v1_get_access_token_google_response.g.dart';
 
-/// GroupsAPISendInviteRequest
+/// V1GetAccessTokenGoogleResponse
 ///
 /// Properties:
-/// * [recipientAccountId] 
+/// * [accessToken] 
 @BuiltValue()
-abstract class GroupsAPISendInviteRequest implements Built<GroupsAPISendInviteRequest, GroupsAPISendInviteRequestBuilder> {
-  @BuiltValueField(wireName: r'recipientAccountId')
-  String get recipientAccountId;
+abstract class V1GetAccessTokenGoogleResponse implements Built<V1GetAccessTokenGoogleResponse, V1GetAccessTokenGoogleResponseBuilder> {
+  @BuiltValueField(wireName: r'accessToken')
+  String get accessToken;
 
-  GroupsAPISendInviteRequest._();
+  V1GetAccessTokenGoogleResponse._();
 
-  factory GroupsAPISendInviteRequest([void updates(GroupsAPISendInviteRequestBuilder b)]) = _$GroupsAPISendInviteRequest;
+  factory V1GetAccessTokenGoogleResponse([void updates(V1GetAccessTokenGoogleResponseBuilder b)]) = _$V1GetAccessTokenGoogleResponse;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(GroupsAPISendInviteRequestBuilder b) => b;
+  static void _defaults(V1GetAccessTokenGoogleResponseBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<GroupsAPISendInviteRequest> get serializer => _$GroupsAPISendInviteRequestSerializer();
+  static Serializer<V1GetAccessTokenGoogleResponse> get serializer => _$V1GetAccessTokenGoogleResponseSerializer();
 }
 
-class _$GroupsAPISendInviteRequestSerializer implements PrimitiveSerializer<GroupsAPISendInviteRequest> {
+class _$V1GetAccessTokenGoogleResponseSerializer implements PrimitiveSerializer<V1GetAccessTokenGoogleResponse> {
   @override
-  final Iterable<Type> types = const [GroupsAPISendInviteRequest, _$GroupsAPISendInviteRequest];
+  final Iterable<Type> types = const [V1GetAccessTokenGoogleResponse, _$V1GetAccessTokenGoogleResponse];
 
   @override
-  final String wireName = r'GroupsAPISendInviteRequest';
+  final String wireName = r'V1GetAccessTokenGoogleResponse';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    GroupsAPISendInviteRequest object, {
+    V1GetAccessTokenGoogleResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'recipientAccountId';
+    yield r'accessToken';
     yield serializers.serialize(
-      object.recipientAccountId,
+      object.accessToken,
       specifiedType: const FullType(String),
     );
   }
@@ -50,7 +50,7 @@ class _$GroupsAPISendInviteRequestSerializer implements PrimitiveSerializer<Grou
   @override
   Object serialize(
     Serializers serializers,
-    GroupsAPISendInviteRequest object, {
+    V1GetAccessTokenGoogleResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -61,19 +61,19 @@ class _$GroupsAPISendInviteRequestSerializer implements PrimitiveSerializer<Grou
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required GroupsAPISendInviteRequestBuilder result,
+    required V1GetAccessTokenGoogleResponseBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'recipientAccountId':
+        case r'accessToken':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.recipientAccountId = valueDes;
+          result.accessToken = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -84,12 +84,12 @@ class _$GroupsAPISendInviteRequestSerializer implements PrimitiveSerializer<Grou
   }
 
   @override
-  GroupsAPISendInviteRequest deserialize(
+  V1GetAccessTokenGoogleResponse deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = GroupsAPISendInviteRequestBuilder();
+    final result = V1GetAccessTokenGoogleResponseBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

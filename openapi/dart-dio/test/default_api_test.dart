@@ -49,6 +49,13 @@ void main() {
       // TODO
     });
 
+    // Get the accessToken using Google OAuth
+    //
+    //Future<V1GetAccessTokenGoogleResponse> accountsAPIGetAccessTokenGoogle(V1GetAccessTokenGoogleRequest body) async
+    test('test accountsAPIGetAccessTokenGoogle', () async {
+      // TODO
+    });
+
     // Allows getting an account by ID or searching for one through email.
     //
     //Future<V1GetAccountResponse> accountsAPIGetAccount(String accountId, { String email }) async
@@ -105,12 +112,12 @@ void main() {
 
     // Update account password.
     //
-    //Future<V1UpdateAccountPasswordResponse> accountsAPIUpdateAccountPassword(String accountId, AccountsAPIUpdateAccountPasswordRequest body) async
+    //Future<V1UpdateAccountPasswordResponse> accountsAPIUpdateAccountPassword(String accountId, AccountsAPIUpdateAccountPasswordBody body) async
     test('test accountsAPIUpdateAccountPassword', () async {
       // TODO
     });
 
-    //Future<JsonObject> accountsAPIUploadAccountProfilePicture(String accountId, AccountsAPIUploadAccountProfilePictureRequest body) async
+    //Future<JsonObject> accountsAPIUploadAccountProfilePicture(String accountId, AccountsAPIUploadAccountProfilePictureBody body) async
     test('test accountsAPIUploadAccountProfilePicture', () async {
       // TODO
     });
@@ -248,7 +255,7 @@ void main() {
 
     // The sender defaults to the authenticated user. Must be group member.
     //
-    //Future<V1SendInviteResponse> groupsAPISendInvite(String groupId, GroupsAPISendInviteRequest body) async
+    //Future<V1SendInviteResponse> groupsAPISendInvite(String groupId, GroupsAPISendInviteBody body) async
     test('test groupsAPISendInvite', () async {
       // TODO
     });
@@ -265,7 +272,7 @@ void main() {
 
     // Must be group administrator.
     //
-    //Future<V1UpdateGroupResponse> groupsAPIUpdateGroup(String groupId, GroupsAPIUpdateGroupRequest body) async
+    //Future<V1UpdateGroupResponse> groupsAPIUpdateGroup(String groupId, GroupsAPIUpdateGroupBody body) async
     test('test groupsAPIUpdateGroup', () async {
       // TODO
     });
@@ -284,19 +291,19 @@ void main() {
       // TODO
     });
 
-    //Future<JsonObject> notesAPIChangeNoteEditPermission(String groupId, String noteId, NotesAPIChangeNoteEditPermissionRequest body) async
+    //Future<JsonObject> notesAPIChangeNoteEditPermission(String groupId, String noteId, NotesAPIChangeNoteEditPermissionBody body) async
     test('test notesAPIChangeNoteEditPermission', () async {
       // TODO
     });
 
-    //Future<V1CreateBlockCommentResponse> notesAPICreateBlockComment(String groupId, String noteId, String blockId, NotesAPICreateBlockCommentRequest body) async
+    //Future<V1CreateBlockCommentResponse> notesAPICreateBlockComment(String groupId, String noteId, String blockId, NotesAPICreateBlockCommentBody body) async
     test('test notesAPICreateBlockComment', () async {
       // TODO
     });
 
     // Must be group member, author_account_id defaults to the user making the request. Create a new note in database.
     //
-    //Future<V1CreateNoteResponse> notesAPICreateNote(String groupId, NotesAPICreateNoteRequest body) async
+    //Future<V1CreateNoteResponse> notesAPICreateNote(String groupId, NotesAPICreateNoteBody body) async
     test('test notesAPICreateNote', () async {
       // TODO
     });
@@ -339,7 +346,7 @@ void main() {
 
     // Must be author. Insert a block of content in a note at a specific index.
     //
-    //Future<V1InsertBlockResponse> notesAPIInsertBlock(String groupId, String noteId, NotesAPIInsertBlockRequest body) async
+    //Future<V1InsertBlockResponse> notesAPIInsertBlock(String groupId, String noteId, NotesAPIInsertBlockBody body) async
     test('test notesAPIInsertBlock', () async {
       // TODO
     });
@@ -377,7 +384,7 @@ void main() {
 
     // Must be author. Update a block index.
     //
-    //Future<V1UpdateBlockIndexResponse> notesAPIUpdateBlockIndex(String groupId, String noteId, String blockId, NotesAPIUpdateBlockIndexRequest body) async
+    //Future<V1UpdateBlockIndexResponse> notesAPIUpdateBlockIndex(String groupId, String noteId, String blockId, NotesAPIUpdateBlockIndexBody body) async
     test('test notesAPIUpdateBlockIndex', () async {
       // TODO
     });

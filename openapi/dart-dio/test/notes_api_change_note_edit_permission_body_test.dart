@@ -1,12 +1,12 @@
 import 'package:test/test.dart';
 import 'package:openapi/openapi.dart';
 
-// tests for NotesAPIChangeNoteEditPermissionRequest
+// tests for NotesAPIChangeNoteEditPermissionBody
 void main() {
-  final instance = NotesAPIChangeNoteEditPermissionRequestBuilder();
+  final instance = NotesAPIChangeNoteEditPermissionBodyBuilder();
   // TODO add properties to the builder and call build()
 
-  group(NotesAPIChangeNoteEditPermissionRequest, () {
+  group(NotesAPIChangeNoteEditPermissionBody, () {
     // String recipientAccountId
     test('to test the property `recipientAccountId`', () async {
       // TODO

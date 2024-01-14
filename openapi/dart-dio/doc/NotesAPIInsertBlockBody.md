@@ -1,4 +1,4 @@
-# openapi.model.AccountsAPIUpdateAccountPasswordRequest
+# openapi.model.NotesAPIInsertBlockBody
 
 ## Load the model package
 ```dart
@@ -8,9 +8,8 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**password** | **String** |  | 
-**token** | **String** |  | [optional] 
-**oldPassword** | **String** |  | [optional] 
+**index** | **int** |  | 
+**block** | [**V1Block**](V1Block.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

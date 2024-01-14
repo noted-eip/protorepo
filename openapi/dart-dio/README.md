@@ -70,6 +70,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIDeleteAccount**](doc/DefaultApi.md#accountsapideleteaccount) | **DELETE** /accounts/{accountId} | Must be account owner.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIForgetAccountPassword**](doc/DefaultApi.md#accountsapiforgetaccountpassword) | **POST** /accounts/forget | Send email to account containing code to create a new password.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIForgetAccountPasswordValidateToken**](doc/DefaultApi.md#accountsapiforgetaccountpasswordvalidatetoken) | **POST** /accounts/forget/validate | Compare forgot password token provided by user with the one store in db.
+[*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccessTokenGoogle**](doc/DefaultApi.md#accountsapigetaccesstokengoogle) | **POST** /authenticate/google/token | Get the accessToken using Google OAuth
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount**](doc/DefaultApi.md#accountsapigetaccount) | **GET** /accounts/{accountId} | Allows getting an account by ID or searching for one through email.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccount2**](doc/DefaultApi.md#accountsapigetaccount2) | **POST** /search/accounts | Allows getting an account by ID or searching for one through email.
 [*DefaultApi*](doc/DefaultApi.md) | [**accountsAPIGetAccountProfilePicture**](doc/DefaultApi.md#accountsapigetaccountprofilepicture) | **GET** /accounts/{accountId}/picture | 
@@ -127,20 +128,20 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [AccountsAPIUpdateAccountPasswordRequest](doc/AccountsAPIUpdateAccountPasswordRequest.md)
- - [AccountsAPIUploadAccountProfilePictureRequest](doc/AccountsAPIUploadAccountProfilePictureRequest.md)
+ - [AccountsAPIUpdateAccountPasswordBody](doc/AccountsAPIUpdateAccountPasswordBody.md)
+ - [AccountsAPIUploadAccountProfilePictureBody](doc/AccountsAPIUploadAccountProfilePictureBody.md)
  - [Accountsv1Image](doc/Accountsv1Image.md)
  - [BlockCode](doc/BlockCode.md)
  - [BlockComment](doc/BlockComment.md)
  - [BlockTextStyle](doc/BlockTextStyle.md)
  - [ChangeNoteEditPermissionRequestAction](doc/ChangeNoteEditPermissionRequestAction.md)
- - [GroupsAPISendInviteRequest](doc/GroupsAPISendInviteRequest.md)
- - [GroupsAPIUpdateGroupRequest](doc/GroupsAPIUpdateGroupRequest.md)
- - [NotesAPIChangeNoteEditPermissionRequest](doc/NotesAPIChangeNoteEditPermissionRequest.md)
- - [NotesAPICreateBlockCommentRequest](doc/NotesAPICreateBlockCommentRequest.md)
- - [NotesAPICreateNoteRequest](doc/NotesAPICreateNoteRequest.md)
- - [NotesAPIInsertBlockRequest](doc/NotesAPIInsertBlockRequest.md)
- - [NotesAPIUpdateBlockIndexRequest](doc/NotesAPIUpdateBlockIndexRequest.md)
+ - [GroupsAPISendInviteBody](doc/GroupsAPISendInviteBody.md)
+ - [GroupsAPIUpdateGroupBody](doc/GroupsAPIUpdateGroupBody.md)
+ - [NotesAPIChangeNoteEditPermissionBody](doc/NotesAPIChangeNoteEditPermissionBody.md)
+ - [NotesAPICreateBlockCommentBody](doc/NotesAPICreateBlockCommentBody.md)
+ - [NotesAPICreateNoteBody](doc/NotesAPICreateNoteBody.md)
+ - [NotesAPIInsertBlockBody](doc/NotesAPIInsertBlockBody.md)
+ - [NotesAPIUpdateBlockIndexBody](doc/NotesAPIUpdateBlockIndexBody.md)
  - [StreamResultOfV1StreamInvitesResponse](doc/StreamResultOfV1StreamInvitesResponse.md)
  - [TextStyleColor](doc/TextStyleColor.md)
  - [TextStylePosition](doc/TextStylePosition.md)
@@ -174,6 +175,8 @@ Class | Method | HTTP request | Description
  - [V1GenerateQuizResponse](doc/V1GenerateQuizResponse.md)
  - [V1GenerateSummaryResponse](doc/V1GenerateSummaryResponse.md)
  - [V1GenerateWidgetsResponse](doc/V1GenerateWidgetsResponse.md)
+ - [V1GetAccessTokenGoogleRequest](doc/V1GetAccessTokenGoogleRequest.md)
+ - [V1GetAccessTokenGoogleResponse](doc/V1GetAccessTokenGoogleResponse.md)
  - [V1GetAccountProfilePictureResponse](doc/V1GetAccountProfilePictureResponse.md)
  - [V1GetAccountRequest](doc/V1GetAccountRequest.md)
  - [V1GetAccountResponse](doc/V1GetAccountResponse.md)

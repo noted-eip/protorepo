@@ -3,47 +3,41 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:openapi/src/model/change_note_edit_permission_request_action.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'notes_api_change_note_edit_permission_request.g.dart';
+part 'groups_api_send_invite_body.g.dart';
 
-/// NotesAPIChangeNoteEditPermissionRequest
+/// GroupsAPISendInviteBody
 ///
 /// Properties:
 /// * [recipientAccountId] 
-/// * [type] 
 @BuiltValue()
-abstract class NotesAPIChangeNoteEditPermissionRequest implements Built<NotesAPIChangeNoteEditPermissionRequest, NotesAPIChangeNoteEditPermissionRequestBuilder> {
+abstract class GroupsAPISendInviteBody implements Built<GroupsAPISendInviteBody, GroupsAPISendInviteBodyBuilder> {
   @BuiltValueField(wireName: r'recipientAccountId')
   String get recipientAccountId;
 
-  @BuiltValueField(wireName: r'type')
-  ChangeNoteEditPermissionRequestAction? get type;
-  // enum typeEnum {  ACTION_GRANT,  ACTION_REMOVE,  };
+  GroupsAPISendInviteBody._();
 
-  NotesAPIChangeNoteEditPermissionRequest._();
-
-  factory NotesAPIChangeNoteEditPermissionRequest([void updates(NotesAPIChangeNoteEditPermissionRequestBuilder b)]) = _$NotesAPIChangeNoteEditPermissionRequest;
+  factory GroupsAPISendInviteBody([void updates(GroupsAPISendInviteBodyBuilder b)]) = _$GroupsAPISendInviteBody;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(NotesAPIChangeNoteEditPermissionRequestBuilder b) => b;
+  static void _defaults(GroupsAPISendInviteBodyBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<NotesAPIChangeNoteEditPermissionRequest> get serializer => _$NotesAPIChangeNoteEditPermissionRequestSerializer();
+  static Serializer<GroupsAPISendInviteBody> get serializer => _$GroupsAPISendInviteBodySerializer();
 }
 
-class _$NotesAPIChangeNoteEditPermissionRequestSerializer implements PrimitiveSerializer<NotesAPIChangeNoteEditPermissionRequest> {
+class _$GroupsAPISendInviteBodySerializer implements PrimitiveSerializer<GroupsAPISendInviteBody> {
   @override
-  final Iterable<Type> types = const [NotesAPIChangeNoteEditPermissionRequest, _$NotesAPIChangeNoteEditPermissionRequest];
+  final Iterable<Type> types = const [GroupsAPISendInviteBody, _$GroupsAPISendInviteBody];
 
   @override
-  final String wireName = r'NotesAPIChangeNoteEditPermissionRequest';
+  final String wireName = r'GroupsAPISendInviteBody';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    NotesAPIChangeNoteEditPermissionRequest object, {
+    GroupsAPISendInviteBody object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
     yield r'recipientAccountId';
@@ -51,19 +45,12 @@ class _$NotesAPIChangeNoteEditPermissionRequestSerializer implements PrimitiveSe
       object.recipientAccountId,
       specifiedType: const FullType(String),
     );
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(ChangeNoteEditPermissionRequestAction),
-      );
-    }
   }
 
   @override
   Object serialize(
     Serializers serializers,
-    NotesAPIChangeNoteEditPermissionRequest object, {
+    GroupsAPISendInviteBody object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -74,7 +61,7 @@ class _$NotesAPIChangeNoteEditPermissionRequestSerializer implements PrimitiveSe
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required NotesAPIChangeNoteEditPermissionRequestBuilder result,
+    required GroupsAPISendInviteBodyBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
@@ -88,13 +75,6 @@ class _$NotesAPIChangeNoteEditPermissionRequestSerializer implements PrimitiveSe
           ) as String;
           result.recipientAccountId = valueDes;
           break;
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(ChangeNoteEditPermissionRequestAction),
-          ) as ChangeNoteEditPermissionRequestAction;
-          result.type = valueDes;
-          break;
         default:
           unhandled.add(key);
           unhandled.add(value);
@@ -104,12 +84,12 @@ class _$NotesAPIChangeNoteEditPermissionRequestSerializer implements PrimitiveSe
   }
 
   @override
-  NotesAPIChangeNoteEditPermissionRequest deserialize(
+  GroupsAPISendInviteBody deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = NotesAPIChangeNoteEditPermissionRequestBuilder();
+    final result = GroupsAPISendInviteBodyBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

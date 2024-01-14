@@ -7,38 +7,38 @@ import 'package:openapi/src/model/block_comment.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'notes_api_create_block_comment_request.g.dart';
+part 'notes_api_create_block_comment_body.g.dart';
 
-/// NotesAPICreateBlockCommentRequest
+/// NotesAPICreateBlockCommentBody
 ///
 /// Properties:
 /// * [comment] 
 @BuiltValue()
-abstract class NotesAPICreateBlockCommentRequest implements Built<NotesAPICreateBlockCommentRequest, NotesAPICreateBlockCommentRequestBuilder> {
+abstract class NotesAPICreateBlockCommentBody implements Built<NotesAPICreateBlockCommentBody, NotesAPICreateBlockCommentBodyBuilder> {
   @BuiltValueField(wireName: r'comment')
   BlockComment get comment;
 
-  NotesAPICreateBlockCommentRequest._();
+  NotesAPICreateBlockCommentBody._();
 
-  factory NotesAPICreateBlockCommentRequest([void updates(NotesAPICreateBlockCommentRequestBuilder b)]) = _$NotesAPICreateBlockCommentRequest;
+  factory NotesAPICreateBlockCommentBody([void updates(NotesAPICreateBlockCommentBodyBuilder b)]) = _$NotesAPICreateBlockCommentBody;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(NotesAPICreateBlockCommentRequestBuilder b) => b;
+  static void _defaults(NotesAPICreateBlockCommentBodyBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<NotesAPICreateBlockCommentRequest> get serializer => _$NotesAPICreateBlockCommentRequestSerializer();
+  static Serializer<NotesAPICreateBlockCommentBody> get serializer => _$NotesAPICreateBlockCommentBodySerializer();
 }
 
-class _$NotesAPICreateBlockCommentRequestSerializer implements PrimitiveSerializer<NotesAPICreateBlockCommentRequest> {
+class _$NotesAPICreateBlockCommentBodySerializer implements PrimitiveSerializer<NotesAPICreateBlockCommentBody> {
   @override
-  final Iterable<Type> types = const [NotesAPICreateBlockCommentRequest, _$NotesAPICreateBlockCommentRequest];
+  final Iterable<Type> types = const [NotesAPICreateBlockCommentBody, _$NotesAPICreateBlockCommentBody];
 
   @override
-  final String wireName = r'NotesAPICreateBlockCommentRequest';
+  final String wireName = r'NotesAPICreateBlockCommentBody';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    NotesAPICreateBlockCommentRequest object, {
+    NotesAPICreateBlockCommentBody object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
     yield r'comment';
@@ -51,7 +51,7 @@ class _$NotesAPICreateBlockCommentRequestSerializer implements PrimitiveSerializ
   @override
   Object serialize(
     Serializers serializers,
-    NotesAPICreateBlockCommentRequest object, {
+    NotesAPICreateBlockCommentBody object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -62,7 +62,7 @@ class _$NotesAPICreateBlockCommentRequestSerializer implements PrimitiveSerializ
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required NotesAPICreateBlockCommentRequestBuilder result,
+    required NotesAPICreateBlockCommentBodyBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
@@ -85,12 +85,12 @@ class _$NotesAPICreateBlockCommentRequestSerializer implements PrimitiveSerializ
   }
 
   @override
-  NotesAPICreateBlockCommentRequest deserialize(
+  NotesAPICreateBlockCommentBody deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = NotesAPICreateBlockCommentRequestBuilder();
+    final result = NotesAPICreateBlockCommentBodyBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(
