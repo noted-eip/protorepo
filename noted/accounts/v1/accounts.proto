@@ -181,6 +181,14 @@ service AccountsAPI {
         };
     }
 
+    // Get the accessToken using Google OAuth
+    rpc GetAccessTokenGoogle(GetAccessTokenGoogleRequest) returns (GetAccessTokenGoogleResponse) {
+        option (google.api.http) = {
+            post: "/authenticate/google/token",
+            body: "*",
+        };
+    }
+
     // Registers the user to the mobile application beta.
     rpc RegisterUserToMobileBeta(RegisterUserToMobileBetaRequest) returns (RegisterUserToMobileBetaResponse) {
         option (google.api.http) = {
@@ -305,6 +313,14 @@ message SendValidationTokenRequest {
 }
 
 message SendValidationTokenResponse {}
+
+message GetAccessTokenGoogleRequest {
+    string code = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetAccessTokenGoogleResponse {
+    string access_token = 1 [(google.api.field_behavior) = REQUIRED];
+}
 
 message AuthenticateGoogleRequest {
     string client_access_token = 1 [(google.api.field_behavior) = REQUIRED];
